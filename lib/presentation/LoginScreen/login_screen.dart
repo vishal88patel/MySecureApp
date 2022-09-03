@@ -26,12 +26,13 @@ class LoginScreen extends StatelessWidget {
                    mainAxisAlignment : MainAxisAlignment.spaceBetween,
                   children: [
                     Icon(
+
+
                       Icons.arrow_back,
                       color: ColorConstant.primaryWhite,
                     ),
                     Text(
                       "2/4",
-
                       style: AppStyle.textStylePoppinsRegular
                           .copyWith(color: ColorConstant.primaryWhite),
                     )
