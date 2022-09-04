@@ -70,6 +70,7 @@ flutter:
 
   assets:
     - asset/
+    - asset/icons/
     - asset/main_background_images/
 
   fonts:

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import '../App Configurations/color_constants.dart';
 
 class MainCutomBackGround extends StatelessWidget {
-  const MainCutomBackGround({Key? key}) : super(key: key);
+  final Widget child;
+  const MainCutomBackGround({Key? key, required this.child}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +20,7 @@ class MainCutomBackGround extends StatelessWidget {
             bottom: 0,
             left: 0,
             child: Image.asset("asset/main_background_images/Polygon 2.png")),
+        Container(child: child,)
       ],
     );
   }

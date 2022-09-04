@@ -10,10 +10,10 @@ import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
-import 'controller/login_screen_controller.dart';
+import 'controller/login_email_screen_controller.dart';
 
-class LoginScreen extends StatelessWidget {
-  var loginController = Get.find<LoginScreenController>();
+class LoginEmilScreen extends StatelessWidget {
+  var logiEmailnController = Get.find<LoginEmailScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                             ],
                           ),
                        SizedBox(height: getVerticalSize(57),),
-                       Text("Give us your \nEmail ID",style: AppStyle.textStylePoppinsRegular
+                       Text("Give us your \nPhone call  ",style: AppStyle.textStylePoppinsRegular
                            .copyWith(color: ColorConstant.primaryWhite,
                            fontWeight: FontWeight.w700,fontSize: getFontSize(32)),),
                        SizedBox(height: getVerticalSize(5),),
@@ -48,9 +48,9 @@ class LoginScreen extends StatelessWidget {
                        SizedBox(width: getHorizontalSize(229),
                            child: const AppTextField()),
                        Spacer(),
-                      AppElevatedButton(buttonName: 'Continue with email',
+                      AppElevatedButton(buttonName: 'Continue with phone',
                       onPressed: (){
-                        Get.toNamed(AppRoutes.loginEmailScreen);
+                        Get.toNamed(AppRoutes.creatPasswordScreen);
                       }),
                        SizedBox(height: getVerticalSize(36),),
                        Center(child: Container(height: getVerticalSize(4),

@@ -4,14 +4,13 @@ import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
+import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
-import 'controller/create_password_screen_controller.dart';
-
-class CreatePasswordScreen extends StatelessWidget {
-  var createPasswordController = Get.find<CreatePasswordScreenController>();
+class EnterPersonalDetailScreen extends StatelessWidget {
+  var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -29,41 +28,31 @@ class CreatePasswordScreen extends StatelessWidget {
                             Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
                               children: [
                                 Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
-                                Text("3/4",style: AppStyle.textStylePoppinsRegular
+                                Text("4/4",style: AppStyle.textStylePoppinsRegular
                                     .copyWith(color: ColorConstant.primaryWhite),),
                               ],
                             ),
                             SizedBox(height: getVerticalSize(57),),
-                            Text("Create your new \nPassword",style: AppStyle.textStylePoppinsRegular
+                            Text("Enter your \nPersonal details",style: AppStyle.textStylePoppinsRegular
                                 .copyWith(color: ColorConstant.primaryWhite,
                                 fontWeight: FontWeight.w700,fontSize: getFontSize(32)),),
-                            SizedBox(height: getVerticalSize(5),),
-                            Text("Your new password must be different \nfrom previous used passwords.",
-                              style: AppStyle.textStylePoppinsRegular
-                                  .copyWith(color: ColorConstant.primaryAppTextF1,
-                                  fontWeight: FontWeight.w400,fontSize: getFontSize(16)),),
-                            SizedBox(height: getVerticalSize(54),),
-                             AppTextField(hintText: 'Create Password ',
-                              suffixIcon: IconButton(icon: const Icon( Icons.visibility
-                                    // Icons.visibility_off,
-                                       ),
-                               color: ColorConstant.primaryAppTextF1,
-                               iconSize: getSize(20),
-                               onPressed: () { },
-                             ),),
+                            SizedBox(height: getVerticalSize(43),),
+                            const AppTextField(hintText: 'Enter your Address 01'),
                             SizedBox(height: getVerticalSize(30),),
-                             AppTextField(hintText: 'Confirm password   ',
-                              suffixIcon: IconButton(icon: const Icon( Icons.visibility_off
-                                // Icons.visibility,
-                              ),
-                                onPressed: () { },
-                                iconSize: getSize(20),
-                                color: ColorConstant.primaryAppTextF1,
-                              ),),
+                            const AppTextField(hintText: 'Enter your Address 02',),
+                            SizedBox(height: getVerticalSize(30),),
+                            const AppTextField(hintText: 'City',),
+                            SizedBox(height: getVerticalSize(30),),
+                            Row(
+                              children:  [
+                                 const Expanded(child: AppTextField(hintText: 'State',)),
+                                SizedBox(width: getHorizontalSize(50),),
+                                const Expanded(child:  AppTextField(hintText: 'Zip Code',)),
+                              ],
+                            ),
                             Spacer(),
                             AppElevatedButton(buttonName: 'Next', onPressed: () {
-                              Get.toNamed(AppRoutes.enterPersonalDetailScreen);
-
+                              Get.toNamed(AppRoutes.personalDetailScreen);
                             },),
                             SizedBox(height: getVerticalSize(36),),
                             Center(child: Container(height: getVerticalSize(4),
