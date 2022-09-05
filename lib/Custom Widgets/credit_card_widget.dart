@@ -46,9 +46,7 @@ class CreditCardWidget extends StatelessWidget {
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(cardNumber.toString(),
-                          style: AppStyle.textStylePoppinsRegular
-                              .copyWith(color: ColorConstant.primaryWhite,
-                              fontWeight: FontWeight.w500,fontSize: getFontSize(22))),
+                          style: AppStyle.textStylePoppinsRegular.copyWith(color: ColorConstant.primaryWhite, fontWeight: FontWeight.w500,fontSize: getFontSize(22))),
 
                       Image.asset('asset/Chip_image.png',
                         height: getVerticalSize(28.4),
