@@ -19,61 +19,83 @@ class BankListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-          children: [
-            MainCutomBackGround(
-                child: Padding(
-                  padding: EdgeInsets.only(
-                    left: getHorizontalSize(20.0),
-                    right: getHorizontalSize(20.0),
-                    top:getVerticalSize( 26)),
-                  child: SafeArea(
-                    child: Stack(
+      children: [
+        MainCutomBackGround(
+            child: Padding(
+          padding: EdgeInsets.only(
+              left: getHorizontalSize(20.0),
+              right: getHorizontalSize(20.0),
+              top: getVerticalSize(26)),
+          child: SafeArea(
+            child: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Column(crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                              children: [
-                                InkWell(
-                                    onTap:(){Get.toNamed(AppRoutes.bankDetailScreen);},
-                                    child: Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,)),
-                                InkWell(
-                                  onTap: (){ Get.toNamed(AppRoutes.accountDetailListScreen);
-                                  },
-                                  child: Image.asset('asset/icons/notification_icon.png',
-                                    height: getVerticalSize(20),width: getHorizontalSize(16),),
-                                )
-                              ],
-                            ),
-                            SizedBox(height: getVerticalSize(25),),
-                    SizedBox(height: getVerticalSize(38),
-                      child: AppTextFormFieldFill(
-                        hintText: 'y',
-                        prefixIcon: Icon(
-                        Icons.search,
-                        color:  ColorConstant.primaryAppTextF1,
-                      ),)
-                    ),
-                            SizedBox(height: getVerticalSize(25),),
-                            Expanded(
-                              child: ListView.builder(
-                                itemCount: 15,
-                                physics: const BouncingScrollPhysics(),
-                                shrinkWrap: true,
-                                itemBuilder: (BuildContext context,int index) {
-                                  return Padding(
-                                    padding:  EdgeInsets.symmetric(vertical: getVerticalSize(6.5)),
-                                    child: BankListWidget(name: 'Your Bank Name ',image: 'asset/bank_image.png'),
-                                  );
-                                }
-                              ),
-                            )
-                          ],
-                        ),
+                        InkWell(
+                            onTap: () {
+                              Get.toNamed(AppRoutes.bankDetailScreen);
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: ColorConstant.primaryWhite,
+                            )),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(AppRoutes.accountDetailListScreen);
+                          },
+                          child: Image.asset(
+                            'asset/icons/notification_icon.png',
+                            height: getVerticalSize(20),
+                            width: getHorizontalSize(16),
+                          ),
+                        )
                       ],
                     ),
-                  ),
-                ) ),
-          ],
-        ));
+                    SizedBox(
+                      height: getVerticalSize(25),
+                    ),
+                    SizedBox(
+                        height: getVerticalSize(38),
+                        child: AppTextFormFieldFill(
+                          hintText: 'y',
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: ColorConstant.primaryAppTextF1,
+                          ),
+                        )),
+                    SizedBox(
+                      height: getVerticalSize(25),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                          itemCount: 15,
+                          physics: const BouncingScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getVerticalSize(6.5)),
+                              child: InkWell(
+                                  onTap: () {
+                                    Get.toNamed(AppRoutes.progressScreen);
+                                  },
+                                  child: BankListWidget(
+                                      name: 'Your Bank Name ',
+                                      image: 'asset/bank_image.png')),
+                            );
+                          }),
+                    )
+                  ],
+                ),
+              ],
+            ),
+          ),
+        )),
+      ],
+    ));
   }
 }

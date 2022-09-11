@@ -128,7 +128,7 @@ class PinScreen extends StatelessWidget {
 
                         },
                         onNext: () {
-                          Get.toNamed(AppRoutes.progressScreen);
+                          Get.toNamed(AppRoutes.bankDetailScreen);
                         },
                       )),
                 ],

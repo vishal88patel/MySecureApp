@@ -12,7 +12,7 @@ import '../../Custom Widgets/dash_widget.dart';
 import 'controller/loan_calculator_screen_controller.dart';
 
 class LoanCalculatorScreen extends StatelessWidget {
-  var loanCalculatorController = Get.find<LoanCalculatorScreenController>();
+  var loanCalculatorController = Get.put(LoanCalculatorScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -456,7 +456,7 @@ class LoanCalculatorScreen extends StatelessWidget {
                         textColor: ColorConstant.primaryBlack,
                         fontWeight: FontWeight.w700,
                         onPressed: () {
-                          Get.toNamed(AppRoutes.accountDetailListScreen);
+                          Get.toNamed(AppRoutes.loanStepScreen);
                         },),
                     ),
                     SizedBox(height: getVerticalSize(40),),

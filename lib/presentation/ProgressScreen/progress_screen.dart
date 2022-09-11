@@ -27,9 +27,13 @@ class ProgressScreen extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Lottie.asset("asset/animations/progress2.json",
-                        height: MediaQuery.of(context).size.height / 2,
-                        width: MediaQuery.of(context).size.width),
+                    Container(
+                height: MediaQuery.of(context).size.height / 2.5,
+                width: MediaQuery.of(context).size.width/1.25,
+                      child: Lottie.asset("asset/animations/progressbar.json",
+                          height: MediaQuery.of(context).size.height / 2,
+                          width: MediaQuery.of(context).size.width),
+                    ),
                     Text("Finding account linked with bank",
                       style: AppStyle.textStyleSFPRORegular
                           .copyWith(color: ColorConstant.primaryWhite,

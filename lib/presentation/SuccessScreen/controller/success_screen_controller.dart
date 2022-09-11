@@ -17,6 +17,9 @@ class SuccessScreenController extends GetxController {
   @override
   void onInit() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+    Future.delayed(Duration(milliseconds: 2000), () {
+      Get.toNamed(AppRoutes.accountDetailListScreen);
+    });
     super.onInit();
   }
 

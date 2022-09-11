@@ -81,7 +81,7 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                                     fontWeight: FontWeight.w400,fontSize: getFontSize(12))),
                             Spacer(),
                             AppElevatedButton(buttonName: 'Next', onPressed: () {
-                              Get.toNamed(AppRoutes.accountDetailListScreen);
+                              Get.toNamed(AppRoutes.progressScreen);
                             },),
                             SizedBox(height: getVerticalSize(36),),
                             Center(child: Container(height: getVerticalSize(4),

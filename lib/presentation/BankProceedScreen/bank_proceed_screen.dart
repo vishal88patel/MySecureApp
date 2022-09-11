@@ -109,7 +109,9 @@ class BankProceedScreen extends StatelessWidget {
                           height: getVerticalSize(14),
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.approvedScreen);
+                          },
                           style: ElevatedButton.styleFrom(
                             primary: ColorConstant.primaryBlack,
                             minimumSize: const Size.fromHeight(45),

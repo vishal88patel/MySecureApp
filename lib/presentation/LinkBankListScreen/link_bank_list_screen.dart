@@ -38,7 +38,7 @@ class LinkBankListScreen extends StatelessWidget {
                                     onTap:(){Navigator.pop(context);},
                                     child: Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,)),
                                 InkWell(
-                                  onTap: (){ Get.toNamed(AppRoutes.profileScreen);
+                                  onTap: (){
                                   },
                                   child: Image.asset('asset/icons/notification_icon.png',
                                     height: getVerticalSize(20),width: getHorizontalSize(16),),
@@ -53,14 +53,24 @@ class LinkBankListScreen extends StatelessWidget {
                                   physics: const BouncingScrollPhysics(),
                                   shrinkWrap: true,
                                   children:[
-                                    const LinkBankWidget( image: 'asset/green_image.png',
-                                      icon: 'asset/icons/go_link_icon.png',image1:'asset/rafiki_image.png' ,
+                                    InkWell(
+                                      onTap: (){
+                                        Get.toNamed(AppRoutes.bankListScreen);
+                                      },
+                                      child: const LinkBankWidget( image: 'asset/green_image.png',
+                                        icon: 'asset/icons/go_link_icon.png',image1:'asset/rafiki_image.png' ,
 
-                                      title: 'Link Your Bank',),
-                                    const LinkBankWidget( image: 'asset/purple_image.png',
-                                      image1: 'asset/amico_image.png',
-                                      icon: 'asset/icons/go_link_icon.png',
-                                      title: 'Add Your \nCredit/Debit Card',),
+                                        title: 'Link Your Bank',),
+                                    ),
+                                    InkWell(
+                                      onTap: (){
+                                        Get.toNamed(AppRoutes.cardDetailScreen);
+                                      },
+                                      child: const LinkBankWidget( image: 'asset/purple_image.png',
+                                        image1: 'asset/amico_image.png',
+                                        icon: 'asset/icons/go_link_icon.png',
+                                        title: 'Add Your \nCredit/Debit Card',),
+                                    ),
                                     const LinkBankWidget( image: 'asset/yellow_image.png',
                                       icon: 'asset/icons/go_link_icon.png',
                                       title: 'Add Your Wallet ', image1: 'asset/pana_image.png',),

@@ -140,7 +140,7 @@ class CardProfileDetailScreen extends StatelessWidget {
 
                             AppElevatedButton(buttonName: 'Next',
                                 onPressed: (){
-                                  Get.toNamed(AppRoutes.cardProfileDetailScreen);
+                                  Get.toNamed(AppRoutes.dashBoardScreen);
                                 }),
                             SizedBox(height: getVerticalSize(40),)
                           ],

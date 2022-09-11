@@ -169,21 +169,26 @@ class ApprovedScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  height: getVerticalSize(50),
-                                  width: getHorizontalSize(190),
-                                  decoration: BoxDecoration(
-                                      color: ColorConstant.lightGreen,
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(5))),
-                                  child: Center(
-                                    child: Text(
-                                      "Approved",
-                                      style: AppStyle.textStyleSFPRORegular
-                                          .copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(24)),
+                                InkWell(
+                                  onTap: (){
+                                    Get.toNamed(AppRoutes.cardProfileDetailScreen);
+                                  },
+                                  child: Container(
+                                    height: getVerticalSize(50),
+                                    width: getHorizontalSize(190),
+                                    decoration: BoxDecoration(
+                                        color: ColorConstant.lightGreen,
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(5))),
+                                    child: Center(
+                                      child: Text(
+                                        "Approved",
+                                        style: AppStyle.textStyleSFPRORegular
+                                            .copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: getFontSize(24)),
+                                      ),
                                     ),
                                   ),
                                 ),

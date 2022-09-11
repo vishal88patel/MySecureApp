@@ -49,8 +49,13 @@ class CardListScreen extends StatelessWidget {
                                 itemBuilder: (BuildContext context,int index) {
                                   return Padding(
                                     padding:  EdgeInsets.symmetric(vertical: getVerticalSize(6.5)),
-                                    child:const  CreditCardWidget(cardHolderName: 'john Carter',
-                                        cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
+                                    child:InkWell(
+                                      onTap: (){
+                                        Get.toNamed(AppRoutes.cardDetailListScreen);
+                                      },
+                                      child: const  CreditCardWidget(cardHolderName: 'john Carter',
+                                          cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
+                                    ),
                                   );
                                 }
                               ),

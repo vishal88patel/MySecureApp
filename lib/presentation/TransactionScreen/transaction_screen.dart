@@ -12,7 +12,7 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'controller/transaction_screen_controller.dart';
 
 class TransactionScreen extends StatelessWidget {
-  var transactionController = Get.find<TransactionScreenController>();
+  var transactionController = Get.put(TransactionScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class TransactionScreen extends StatelessWidget {
                                 Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
                                 InkWell(
                                   onTap: (){
-                                    Get.toNamed(AppRoutes.cardDetailListScreen);
+
                                   },
                                   child: Image.asset('asset/icons/notification_icon.png',
                                     height: getVerticalSize(20),width: getHorizontalSize(16),),
@@ -101,38 +101,43 @@ class TransactionScreen extends StatelessWidget {
 
                             Row(children: [
                               Expanded(
-                                child: Container(
-                                decoration: BoxDecoration(
-                                    color: ColorConstant.blue26,
-                                borderRadius: BorderRadius.circular(10)),
-                                child:  Padding(
-                                  padding:  EdgeInsets.symmetric(vertical: getVerticalSize(22)),
-                                  child: Row(mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text('Add Cash',
-                                          style: AppStyle.textStylePoppinsRegular
-                                              .copyWith(color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,fontSize: getFontSize(15))),
-                                      SizedBox(width: getHorizontalSize(12),),
-                                      DottedBorder(
-                                        color: ColorConstant.skyE8,
-                                        strokeWidth: 1,
-                                        borderType: BorderType.Circle,
-                                        radius: Radius.circular(100),
-                                        child: Container(
-                                          height: getVerticalSize(26),
-                                          width: getHorizontalSize(26),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(4.0),
-                                            child: Image.asset('asset/Income_image.png'),
-                                          ),
-                                         )
-                                      )
+                                child: InkWell(
+                                  onTap: (){
+                                    Get.toNamed(AppRoutes.cardListScreen);
+                                  },
+                                  child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ColorConstant.blue26,
+                                  borderRadius: BorderRadius.circular(10)),
+                                  child:  Padding(
+                                    padding:  EdgeInsets.symmetric(vertical: getVerticalSize(22)),
+                                    child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text('Add Cash',
+                                            style: AppStyle.textStylePoppinsRegular
+                                                .copyWith(color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,fontSize: getFontSize(15))),
+                                        SizedBox(width: getHorizontalSize(12),),
+                                        DottedBorder(
+                                          color: ColorConstant.skyE8,
+                                          strokeWidth: 1,
+                                          borderType: BorderType.Circle,
+                                          radius: Radius.circular(100),
+                                          child: Container(
+                                            height: getVerticalSize(26),
+                                            width: getHorizontalSize(26),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: Image.asset('asset/Income_image.png'),
+                                            ),
+                                           )
+                                        )
 
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
                             ),
+                                ),
                               ),
                               SizedBox(width: getHorizontalSize(20),),
                               Expanded(

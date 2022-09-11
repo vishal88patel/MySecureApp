@@ -188,7 +188,7 @@ class LoanStepScreen extends StatelessWidget {
 
                             AppElevatedButton(buttonName: 'Next',
                                 onPressed: (){
-                                  Get.toNamed(AppRoutes.cardProfileDetailScreen);
+                                  Get.toNamed(AppRoutes.bankProceedScreen);
                                 }),
                             SizedBox(height: getVerticalSize(40),)
                           ],

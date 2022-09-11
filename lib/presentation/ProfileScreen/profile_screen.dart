@@ -12,7 +12,7 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'controller/profile_screen_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
-  var profileController = Get.find<ProfileScreenController>();
+  var profileController = Get.put(ProfileScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,7 @@ class ProfileScreen extends StatelessWidget {
                         SizedBox(height: getVerticalSize(15),),
                         ProfileWidget(name: 'Documents',image: 'asset/icons/document_icon.png',
                             onTap: (){
-                              Get.toNamed(AppRoutes.cardProfileDetailScreen);
+                              Get.toNamed(AppRoutes.uploadDocument);
                             }),
                         SizedBox(height: getVerticalSize(15),),
                         ProfileWidget(name: 'Support',image: 'asset/icons/support_icon.png',onTap: (){
@@ -86,12 +86,7 @@ class ProfileScreen extends StatelessWidget {
                           Get.toNamed(AppRoutes.transactionScreen);
 
                         },),
-                        SizedBox(height: getVerticalSize(36),),
-                        Center(child: Container(height: getVerticalSize(4),
-                          width: getHorizontalSize(106),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(4),
-                              color: ColorConstant.primaryAppTextF1),))
+                        SizedBox(height: getVerticalSize(40),),
 
                       ],
                     ),

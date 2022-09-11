@@ -45,8 +45,13 @@ class CardDetailListScreen extends StatelessWidget {
                               ],
                             ),
                             SizedBox(height: getVerticalSize(25),),
-                            CreditCardWidget(cardHolderName: 'john Carter',
-                            cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
+                            InkWell(
+                              onTap: (){
+                                Get.toNamed(AppRoutes.amountNumPadScreen);
+                              },
+                              child: CreditCardWidget(cardHolderName: 'john Carter',
+                              cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
+                            ),
                             SizedBox(height: getVerticalSize(25),),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

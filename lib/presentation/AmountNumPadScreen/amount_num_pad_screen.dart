@@ -107,7 +107,7 @@ class AmountNumPadScreen extends StatelessWidget {
                           print('${amountController.text}');
                         },
                         onNext: (){
-                          Get.toNamed(AppRoutes.progressScreen);
+                            Get.toNamed(AppRoutes.pinScreen);
                         },
                       )
                   ),
