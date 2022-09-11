@@ -13,6 +13,8 @@ import 'package:my_secure_app/presentation/CardDetailScreen/binding/card_detail_
 import 'package:my_secure_app/presentation/CardDetailScreen/card_detail_screen.dart';
 import 'package:my_secure_app/presentation/CardListScreen/binding/card_list_screen_binding.dart';
 import 'package:my_secure_app/presentation/CardListScreen/card_list_screen.dart';
+import 'package:my_secure_app/presentation/DashboardScreen/binding/dashboard_screen_binding.dart';
+import 'package:my_secure_app/presentation/DashboardScreen/dashboard_screen.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
@@ -58,6 +60,7 @@ class AppRoutes {
   static String pinScreen = '/pin_screen';
   static String approvedScreen = '/approved_screen';
   static String bankProceedScreen = '/bank_procees_screen';
+  static String dashBoardScreen = '/dashboard_screen';
 
 
   static List<GetPage> pages = [
@@ -118,6 +121,16 @@ class AppRoutes {
       page: () => PersonalDetailScreen(),
       bindings: [
         PersonalScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: dashBoardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => DashBoardScreen(),
+      bindings: [
+        DashBoardScreenBinding(),
       ],
     ),
 
