@@ -25,8 +25,7 @@ class SDashBoardScreen extends StatelessWidget {
         MainCutomBackGround(
             child: Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: getHorizontalSize(25.0),
-              vertical: getVerticalSize(26)),
+              horizontal: getHorizontalSize(25.0)),
           child: SafeArea(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
