@@ -44,7 +44,7 @@ class SplashScreenController extends GetxController {
     //   });
     // }
     Future.delayed(Duration(milliseconds: 2000), () {
-      Get.toNamed(AppRoutes.loginScreen);
+      Get.toNamed(AppRoutes.dashBoardScreen);
     });
   }
 

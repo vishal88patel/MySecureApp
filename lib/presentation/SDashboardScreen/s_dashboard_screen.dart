@@ -15,7 +15,7 @@ import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 class SDashBoardScreen extends StatelessWidget {
-  var sDashBoardController = Get.find<SDashBoardScreenController>();
+  var sDashBoardController = Get.put(SDashBoardScreenController());
 
   @override
   Widget build(BuildContext context) {

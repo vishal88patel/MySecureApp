@@ -14,7 +14,7 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'controller/link_bank_list_screen_controller.dart';
 
 class LinkBankListScreen extends StatelessWidget {
-  var linkBankListController = Get.find<LinkBankListScreenController>();
+  var linkBankListController = Get.put(LinkBankListScreenController());
 
   @override
   Widget build(BuildContext context) {
