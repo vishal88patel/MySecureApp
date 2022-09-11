@@ -8,6 +8,7 @@ class ColorConstant {
   static Color primaryAppTextF1= const Color(0xFFEAE8F1).withOpacity(0.36);
   static Color blue26= const Color(0xFF181A26);
   static Color skyE8= const Color(0xFF27EBE8);
+  static Color lightSky= const Color(0xE8769D94);
   static Color grey77= const Color(0xFF777777);
   static Color lightText= const Color(0xFF8A8A8A);
   static Color divider= const Color(0xFFE6E6E6);

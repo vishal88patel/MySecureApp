@@ -20,15 +20,15 @@ class AppElevatedButton extends StatelessWidget {
      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
        primary: ColorConstant.primaryWhite,
-          minimumSize: const Size.fromHeight(45),
+          minimumSize: const Size.fromHeight(50),
           shape:const RoundedRectangleBorder(  borderRadius: BorderRadius.zero),
        textStyle:  AppStyle.textStylePoppinsRegular
         .copyWith(color: ColorConstant.primaryBlack,
-        fontWeight: FontWeight.w600,fontSize: getFontSize(14))),
+        fontWeight: FontWeight.w700,fontSize: getFontSize(18))),
 
      child: Text(buttonName.toString(),style:  AppStyle.textStylePoppinsRegular
          .copyWith(color:textColor?? ColorConstant.primaryBlack,
-         fontWeight:fontWeight?? FontWeight.w600,fontSize: getFontSize(14)),),
+         fontWeight:fontWeight?? FontWeight.w700,fontSize: getFontSize(16)),),
     );
   }
 }

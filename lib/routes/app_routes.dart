@@ -18,6 +18,7 @@ import 'package:my_secure_app/presentation/DashboardScreen/dashboard_screen.dart
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
+import 'package:my_secure_app/presentation/LoanCalculator/binding/loan_calculator_screen_binding.dart';
 import 'package:my_secure_app/presentation/LoginEmailScreen/binding/login_email_screen_binding.dart';
 import 'package:my_secure_app/presentation/LoginEmailScreen/login_email_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
@@ -33,6 +34,7 @@ import '../presentation/ApprovedScreen/binding/approved_screen_binding.dart';
 import '../presentation/BankProceedScreen/binding/bank_proceed_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
+import '../presentation/LoanCalculator/loan_calculator_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
@@ -61,6 +63,7 @@ class AppRoutes {
   static String approvedScreen = '/approved_screen';
   static String bankProceedScreen = '/bank_procees_screen';
   static String dashBoardScreen = '/dashboard_screen';
+  static String loanCalculatorScreen = '/loan_calculator_screen';
 
 
   static List<GetPage> pages = [
@@ -251,6 +254,16 @@ class AppRoutes {
       page: () => BankProceedScreen(),
       bindings: [
         BankProceedScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanCalculatorScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => LoanCalculatorScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
       ],
     ),
 

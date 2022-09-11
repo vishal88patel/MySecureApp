@@ -125,15 +125,10 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                               )).toList(),
                             ),
                             Spacer(),
-                            AppElevatedButton(buttonName: 'Nesxt', onPressed: () {
-                              Get.toNamed(AppRoutes.bankListScreen);
+                            AppElevatedButton(buttonName: 'Next', onPressed: () {
+                              Get.toNamed(AppRoutes.dashBoardScreen);
                             },),
-                            SizedBox(height: getVerticalSize(36),),
-                            Center(child: Container(height: getVerticalSize(4),
-                              width: getHorizontalSize(106),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: ColorConstant.primaryAppTextF1),))
+                            SizedBox(height: getVerticalSize(40),),
 
                           ],
                         ),

@@ -53,14 +53,9 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                             Spacer(),
                             AppElevatedButton(buttonName: 'Next', onPressed: () {
                               // Get.toNamed(AppRoutes.personalDetailScreen);
-                              Get.toNamed(AppRoutes.dashBoardScreen);
+                              Get.toNamed(AppRoutes.personalDetailScreen);
                             },),
-                            SizedBox(height: getVerticalSize(36),),
-                            Center(child: Container(height: getVerticalSize(4),
-                              width: getHorizontalSize(106),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(4),
-                                  color: ColorConstant.primaryAppTextF1),))
+                            SizedBox(height: getVerticalSize(40),),
 
                           ],
                         ),

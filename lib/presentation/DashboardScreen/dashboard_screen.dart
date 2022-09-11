@@ -22,6 +22,7 @@ class DashBoardScreen extends StatelessWidget {
         index: dashBoardController.selectedIndex.value,
         children: [
           BankListScreen(),
+
         ],
       ),
       bottomNavigationBar: Obx(
@@ -75,7 +76,6 @@ class DashBoardScreen extends StatelessWidget {
                   label: dashBoardController.selectedIndex.value==0?"":"Home",
                 ),
 
-
                 BottomNavigationBarItem(
                   icon: SvgPicture.asset(
                     'asset/icons/ic_wallet_unselected.svg',
@@ -103,7 +103,7 @@ class DashBoardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  label: dashBoardController.selectedIndex.value==1?"":"Home",
+                  label: dashBoardController.selectedIndex.value==1?"":"Wallet",
                 ),
 
                 BottomNavigationBarItem(
@@ -133,7 +133,7 @@ class DashBoardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  label: dashBoardController.selectedIndex.value==2?"":"Home",
+                  label: dashBoardController.selectedIndex.value==2?"":"Bank",
                 ),
 
                 BottomNavigationBarItem(
@@ -163,7 +163,7 @@ class DashBoardScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  label: dashBoardController.selectedIndex.value==3?"":"Home",
+                  label: dashBoardController.selectedIndex.value==3?"":"Loan",
                 ),
 
                 BottomNavigationBarItem(
@@ -188,15 +188,12 @@ class DashBoardScreen extends StatelessWidget {
                         ),
                         child: SvgPicture.asset(
                           'asset/icons/ic_setting_selected.svg',
-
                         ),
                       ),
                     ],
                   ),
-                  label: dashBoardController.selectedIndex.value==4?"":"Home",
+                  label: dashBoardController.selectedIndex.value==4?"":"Setting",
                 ),
-
-
               ]),
           ),
       ),
