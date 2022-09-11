@@ -100,6 +100,7 @@ class AppRoutes {
   static String cardProfileDetailScreen = '/card_profile_detail_screen';
   static String transactionScreen = '/transaction_screen';
   static String uploadDocument= '/upload_document';
+  static String linkBankListScreen= '/link_bank_list_screen';
 
   static List<GetPage> pages = [
     GetPage(
