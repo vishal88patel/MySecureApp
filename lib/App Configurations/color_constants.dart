@@ -3,12 +3,18 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 class ColorConstant {
-  static Color primaryWhite = const Color(0xFFffffff);
+  static Color  primaryWhite = const Color(0xFFffffff);
   static Color primaryBlack= const Color(0xFF0D0D0D);
   static Color primaryAppTextF1= const Color(0xFFEAE8F1).withOpacity(0.36);
   static Color blue26= const Color(0xFF181A26);
   static Color skyE8= const Color(0xFF27EBE8);
   static Color grey77= const Color(0xFF777777);
+  static Color lightText= const Color(0xFF8A8A8A);
+  static Color divider= const Color(0xFFE6E6E6);
+  static Color lightButton= const Color(0xFFC5C5C5);
+  static Color lightGreen= const Color(0xFF26BE63);
+  static Color underLine= const Color(0xFF2C2A31);
+  static Color darkBlue= const Color(0xFF1A1C29);
   static Color blueFF= const Color(0xFF0088FF).withOpacity(0.20);
   // static Color primaryBlack = Color(0xFF070707);
   // static Color primaryGrey = Color(0xFF9E9E9E);
