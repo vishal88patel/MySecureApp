@@ -19,8 +19,10 @@ class AccountDetailListScreen extends StatelessWidget {
         body: Stack(
           children: [
             MainCutomBackGround(
-                child: Padding(padding: EdgeInsets.symmetric(
-                    horizontal: getHorizontalSize(20.0),vertical:getVerticalSize( 26)),
+                child: Padding(padding: EdgeInsets.only(
+                    left: getHorizontalSize(20.0),
+                    right: getHorizontalSize(20.0),
+                    top:getVerticalSize( 26)),
                   child: SafeArea(
                     child: Stack(
                       children: [
@@ -125,6 +127,7 @@ class AccountDetailListScreen extends StatelessWidget {
                             Expanded(
                               child: ListView.builder(
                                 itemCount: 15,
+                                physics:const BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context,int index) {
                                   return Padding(

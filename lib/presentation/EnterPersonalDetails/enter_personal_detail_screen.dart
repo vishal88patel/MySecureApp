@@ -50,6 +50,8 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                                 const Expanded(child:  AppTextField(hintText: 'Zip Code',)),
                               ],
                             ),
+                            SizedBox(height: getVerticalSize(30),),
+                            AppTextField(hintText: 'SNN',),
                             Spacer(),
                             AppElevatedButton(buttonName: 'Next', onPressed: () {
                               // Get.toNamed(AppRoutes.personalDetailScreen);

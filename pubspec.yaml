@@ -48,6 +48,8 @@ dependencies:
   lottie: ^1.4.2
   pin_code_fields: ^7.4.0
   percent_indicator: ^4.2.2
+  #  for border dashed
+  dotted_border: ^2.0.0+2
 
 dev_dependencies:
   flutter_test:
@@ -59,7 +61,6 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
-  floating_bottom_navigation_bar: ^1.5.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -75,7 +76,6 @@ flutter:
   assets:
     - asset/
     - asset/icons/
-    - asset/animations/
     - asset/main_background_images/
 
   fonts:

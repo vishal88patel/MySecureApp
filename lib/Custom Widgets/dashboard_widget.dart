@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+import 'package:my_secure_app/theme/app_style.dart';
+import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+
+import '../App Configurations/color_constants.dart';
+
+class DashboardWidget extends StatelessWidget {
+  final String image;
+  final String icon;
+  final String title;
+
+  const DashboardWidget({Key? key,
+    required this.image,
+    required this.icon,
+    required this.title,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  Stack(
+      children: [
+        Image.asset(image.toString(),height: getVerticalSize(210),),
+        Positioned(
+          top:getVerticalSize(60) ,
+          bottom: 0,
+          left: getHorizontalSize(40),
+          child:  Column(
+            children: [
+              Image.asset(icon.toString(),
+                height: getVerticalSize(34.8),width: getHorizontalSize(34.8),),
+SizedBox(height: getVerticalSize(10),),
+              Text(title.toString(),style: AppStyle.textStylePoppinsRegular
+                  .copyWith(color: ColorConstant.blue62,
+                  fontWeight: FontWeight.w700,fontSize: getFontSize(14)),),
+
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}

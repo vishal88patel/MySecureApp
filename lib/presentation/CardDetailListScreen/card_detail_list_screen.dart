@@ -23,8 +23,10 @@ class CardDetailListScreen extends StatelessWidget {
         body: Stack(
           children: [
             MainCutomBackGround(
-                child: Padding(padding: EdgeInsets.symmetric(
-                    horizontal: getHorizontalSize(20.0),vertical:getVerticalSize( 26)),
+                child: Padding(padding: EdgeInsets.only(
+                    left: getHorizontalSize(20.0),
+                    right: getHorizontalSize(20.0),
+                    top:getVerticalSize( 26)),
                   child: SafeArea(
                     child: Stack(
                       children: [
@@ -61,6 +63,7 @@ class CardDetailListScreen extends StatelessWidget {
                               child: ListView.builder(
                                 itemCount: 15,
                                 shrinkWrap: true,
+                                physics: const BouncingScrollPhysics(),
                                 itemBuilder: (BuildContext context,int index) {
                                   return Padding(
                                     padding:  EdgeInsets.symmetric(vertical: getVerticalSize(6.5)),
