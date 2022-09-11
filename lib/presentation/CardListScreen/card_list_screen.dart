@@ -20,8 +20,10 @@ class CardListScreen extends StatelessWidget {
         body: Stack(
           children: [
             MainCutomBackGround(
-                child: Padding(padding: EdgeInsets.symmetric(
-                    horizontal: getHorizontalSize(20.0),vertical:getVerticalSize( 26)),
+                child: Padding(padding: EdgeInsets.only(
+                    left: getHorizontalSize(20.0),
+                    right: getHorizontalSize(20.0),
+                    top:getVerticalSize( 26)),
                   child: SafeArea(
                     child: Stack(
                       children: [
@@ -31,7 +33,7 @@ class CardListScreen extends StatelessWidget {
                               children: [
                                 Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
                                 InkWell(
-                                  onTap: (){ Get.toNamed(AppRoutes.accountDetailListScreen);
+                                  onTap: (){ Get.toNamed(AppRoutes.sDashboardScreen);
                                   },
                                   child: Image.asset('asset/icons/notification_icon.png',
                                     height: getVerticalSize(20),width: getHorizontalSize(16),),
@@ -42,11 +44,12 @@ class CardListScreen extends StatelessWidget {
                             Expanded(
                               child: ListView.builder(
                                 itemCount: 5,
+                                physics: const BouncingScrollPhysics(),
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context,int index) {
                                   return Padding(
                                     padding:  EdgeInsets.symmetric(vertical: getVerticalSize(6.5)),
-                                    child: CreditCardWidget(cardHolderName: 'john Carter',
+                                    child:const  CreditCardWidget(cardHolderName: 'john Carter',
                                         cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
                                   );
                                 }

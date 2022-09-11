@@ -9,6 +9,8 @@ class ColorConstant {
   static Color blue26= const Color(0xFF181A26);
   static Color skyE8= const Color(0xFF27EBE8);
   static Color grey77= const Color(0xFF777777);
+  static Color blue62= const Color(0xFF092362);
+
   static Color blueFF= const Color(0xFF0088FF).withOpacity(0.20);
   // static Color primaryBlack = Color(0xFF070707);
   // static Color primaryGrey = Color(0xFF9E9E9E);
