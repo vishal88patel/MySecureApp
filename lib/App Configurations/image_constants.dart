@@ -1,5 +1,5 @@
 class AppImages {
-  static String splashImagePath = "asset/splash_image.png";
+  static String splashImagePath = "asset/app_icon_splash.png";
   // static String appbarImagePath =
   //     "asset/My Pandit/rounded_red_logo_without_name.svg";
   // static String welcomePageBG = "asset/welcome_page_background.svg";

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_secure_app/App%20Configurations/image_constants.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../../Custom Widgets/main_custom_background.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import 'controller/splash_screen_controller.dart';
 
@@ -13,12 +14,11 @@ class SplashScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+      body: MainCutomBackGround(
         child: Image.asset(
-          AppImages.splashImagePath,
-          height: size.height,
-          width: size.width,
-          fit: BoxFit.contain,
+          "asset/app_icon_splash.png",
+          height: 200,
+          width: 200,
         ),
       ),
     );
