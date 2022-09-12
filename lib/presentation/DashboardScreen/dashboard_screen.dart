@@ -22,181 +22,187 @@ class DashBoardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBody: true,
-      body: IndexedStack(
-        index: dashBoardController.selectedIndex.value,
-        children: [
-          SDashBoardScreen(),
-          TransactionScreen(),
-          LinkBankListScreen(),
-          LoanCalculatorScreen(),
-          ProfileScreen()
-        ],
+      body: Obx(
+        ()=> IndexedStack(
+          index: dashBoardController.selectedIndex.value,
+          children: [
+            SDashBoardScreen(),
+            TransactionScreen(),
+            LinkBankListScreen(),
+            LoanCalculatorScreen(),
+            ProfileScreen()
+          ],
+        ),
       ),
       bottomNavigationBar: Obx(
-          ()=> BottomNavigationBar(
-            selectedLabelStyle: TextStyle(fontSize: 12, color: Colors.red),
-            unselectedLabelStyle: AppStyle.textStyleSFPRO,
-            unselectedItemColor: ColorConstant.primaryWhite,
-            type: BottomNavigationBarType.fixed,
-            backgroundColor: Colors.transparent,
-            currentIndex: dashBoardController.selectedIndex.value,
-            onTap: (value) {
-              dashBoardController.onTapOfBottomnavigation(value);
-              // print(value);
-              // _index = value;
-              // setState(() {
-              //   widget.savePrevIndex = widget._currentIndex;
-              //   widget._currentIndex = value;
-              // });
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'asset/icons/ic_home_unselected.svg',
-                ),
-                activeIcon: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Container(
-                      child: SvgPicture.asset(
-                          "asset/icons/selected_icon_bakground.svg"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 4),
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorConstant.primaryWhite,
+          ()=> Container(
+            height: 120,
+            child: BottomNavigationBar(
+              selectedLabelStyle: TextStyle(fontSize: 12, color: Colors.red),
+              unselectedLabelStyle: AppStyle.textStyleSFPRO,
+              unselectedItemColor: ColorConstant.primaryWhite,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Colors.transparent,
+              currentIndex: dashBoardController.selectedIndex.value,
+              onTap: (value) {
+                dashBoardController.onTapOfBottomnavigation(value);
+                // print(value);
+                // _index = value;
+                // setState(() {
+                //   widget.savePrevIndex = widget._currentIndex;
+                //   widget._currentIndex = value;
+                // });
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    'asset/icons/ic_home_unselected.svg',
+                  ),
+                  activeIcon: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Container(
+                        height: 55,
+                        child: SvgPicture.asset(
+                            "asset/icons/selected_icon_bakground.svg"),
                       ),
-                      child: SvgPicture.asset(
-                        'asset/icons/ic_home_selected.svg',
+                      Container(
+                        margin: EdgeInsets.only(top: 4),
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorConstant.primaryWhite,
+                        ),
+                        child: SvgPicture.asset(
+                          'asset/icons/ic_home_selected.svg',
 
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  label: dashBoardController.selectedIndex.value==0?"":"Home",
                 ),
-                label: dashBoardController.selectedIndex.value==0?"":"Home",
-              ),
 
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'asset/icons/ic_wallet_unselected.svg',
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    'asset/icons/ic_wallet_unselected.svg',
 
-                ),
-                activeIcon: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Container(
-                      height: 55,
-                      child: SvgPicture.asset(
-                          "asset/icons/selected_icon_bakground.svg"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 4),
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorConstant.primaryWhite,
+                  ),
+                  activeIcon: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Container(
+                        height: 55,
+                        child: SvgPicture.asset(
+                            "asset/icons/selected_icon_bakground.svg"),
                       ),
-                      child: SvgPicture.asset(
-                        'asset/icons/ic_wallet_selected.svg',
+                      Container(
+                        margin: EdgeInsets.only(top: 4),
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorConstant.primaryWhite,
+                        ),
+                        child: SvgPicture.asset(
+                          'asset/icons/ic_wallet_selected.svg',
 
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  label: dashBoardController.selectedIndex.value==1?"":"Wallet",
                 ),
-                label: dashBoardController.selectedIndex.value==1?"":"Wallet",
-              ),
 
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'asset/icons/ic_bank_unselected.svg',
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    'asset/icons/ic_bank_unselected.svg',
 
-                ),
-                activeIcon: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Container(
-                      height: 55,
-                      child: SvgPicture.asset(
-                          "asset/icons/selected_icon_bakground.svg"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 4),
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorConstant.primaryWhite,
+                  ),
+                  activeIcon: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Container(
+                        height: 55,
+                        child: SvgPicture.asset(
+                            "asset/icons/selected_icon_bakground.svg"),
                       ),
-                      child: SvgPicture.asset(
-                        'asset/icons/ic_bank_selected.svg',
+                      Container(
+                        margin: EdgeInsets.only(top: 4),
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorConstant.primaryWhite,
+                        ),
+                        child: SvgPicture.asset(
+                          'asset/icons/ic_bank_selected.svg',
 
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  label: dashBoardController.selectedIndex.value==2?"":"Bank",
                 ),
-                label: dashBoardController.selectedIndex.value==2?"":"Bank",
-              ),
 
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'asset/icons/ic_loan_unselected.svg',
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    'asset/icons/ic_loan_unselected.svg',
 
-                ),
-                activeIcon: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Container(
-                      height: 55,
-                      child: SvgPicture.asset(
-                          "asset/icons/selected_icon_bakground.svg"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 4),
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorConstant.primaryWhite,
+                  ),
+                  activeIcon: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Container(
+                        height: 55,
+                        child: SvgPicture.asset(
+                            "asset/icons/selected_icon_bakground.svg"),
                       ),
-                      child: SvgPicture.asset(
-                        'asset/icons/ic_loan_selected.svg',
+                      Container(
+                        margin: EdgeInsets.only(top: 4),
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorConstant.primaryWhite,
+                        ),
+                        child: SvgPicture.asset(
+                          'asset/icons/ic_loan_selected.svg',
 
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  label: dashBoardController.selectedIndex.value==3?"":"Loan",
                 ),
-                label: dashBoardController.selectedIndex.value==3?"":"Loan",
-              ),
 
-              BottomNavigationBarItem(
-                icon: SvgPicture.asset(
-                  'asset/icons/ic_setting_unselected.svg',
+                BottomNavigationBarItem(
+                  icon: SvgPicture.asset(
+                    'asset/icons/ic_setting_unselected.svg',
 
-                ),
-                activeIcon: Stack(
-                  alignment: Alignment.topCenter,
-                  children: [
-                    Container(
-                      height: 55,
-                      child: SvgPicture.asset(
-                          "asset/icons/selected_icon_bakground.svg"),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 4),
-                      padding: EdgeInsets.all(6),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: ColorConstant.primaryWhite,
+                  ),
+                  activeIcon: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Container(
+                        height: 55,
+                        child: SvgPicture.asset(
+                            "asset/icons/selected_icon_bakground.svg"),
                       ),
-                      child: SvgPicture.asset(
-                        'asset/icons/ic_setting_selected.svg',
+                      Container(
+                        margin: EdgeInsets.only(top: 4),
+                        padding: EdgeInsets.all(6),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: ColorConstant.primaryWhite,
+                        ),
+                        child: SvgPicture.asset(
+                          'asset/icons/ic_setting_selected.svg',
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                  label: dashBoardController.selectedIndex.value==4?"":"Setting",
                 ),
-                label: dashBoardController.selectedIndex.value==4?"":"Setting",
-              ),
-            ]),
+              ]),
+          ),
       ),
     );
   }
