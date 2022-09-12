@@ -23,7 +23,7 @@ class TransactionScreen extends StatelessWidget {
                 child: Padding(padding: EdgeInsets.only(
                     left: getHorizontalSize(20.0),
                     right: getHorizontalSize(20.0),
-                    top:getVerticalSize( 26)),
+                    top:getVerticalSize(26)),
                   child: SafeArea(
                     child: Stack(
                       children: [

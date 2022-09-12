@@ -16,9 +16,10 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: MainCutomBackGround(
         child: Image.asset(
-          "asset/app_icon_splash.png",
-          height: 200,
-          width: 200,
+          "asset/splash_image.png",
+          height: MediaQuery.of(context).size.height,
+          width: MediaQuery.of(context).size.width,
+          fit: BoxFit.fill,
         ),
       ),
     );

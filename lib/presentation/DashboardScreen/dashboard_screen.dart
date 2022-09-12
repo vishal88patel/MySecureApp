@@ -36,7 +36,7 @@ class DashBoardScreen extends StatelessWidget {
       ),
       bottomNavigationBar: Obx(
           ()=> Container(
-            height: 120,
+            height: 85,
             child: BottomNavigationBar(
               selectedLabelStyle: TextStyle(fontSize: 12, color: Colors.red),
               unselectedLabelStyle: AppStyle.textStyleSFPRO,

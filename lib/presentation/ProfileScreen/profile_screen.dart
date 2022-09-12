@@ -19,7 +19,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
         body: MainCutomBackGround(
             child: Padding(padding: EdgeInsets.symmetric(
-                horizontal: getHorizontalSize(20.0),vertical:getVerticalSize( 26)),
+                horizontal: getHorizontalSize(20.0),vertical:getVerticalSize(26)),
               child: SafeArea(
                 child: Stack(
                   children: [
