@@ -17,7 +17,7 @@ class SplashScreenController extends GetxController {
 
   @override
   void onInit() {
-    checkInterner();
+    changeRoute();
 
     super.onInit();
   }
@@ -44,7 +44,7 @@ class SplashScreenController extends GetxController {
     //   });
     // }
     Future.delayed(Duration(milliseconds: 2000), () {
-      Get.toNamed(AppRoutes.loginScreen);
+      Get.offAllNamed(AppRoutes.loginScreen);
     });
   }
 

@@ -60,6 +60,7 @@ class UIUtils {
       headerText,
       bodyText,
       snackPosition: SnackPosition.BOTTOM,
+      colorText: ColorConstant.primaryWhite
     );
   }
 

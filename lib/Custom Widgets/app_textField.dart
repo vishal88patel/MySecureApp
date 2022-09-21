@@ -18,6 +18,7 @@ class AppTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      style: TextStyle(color: ColorConstant.primaryWhite),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppStyle.textStylePoppinsRegular

@@ -19,47 +19,61 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-          children: [
-            MainCutomBackGround(
-             child: Padding(padding: EdgeInsets.symmetric(
-                 horizontal: getHorizontalSize(36.0),vertical:getVerticalSize( 26)),
-              child: SafeArea(
-               child: Stack(
-                 children: [
-                   Column(crossAxisAlignment: CrossAxisAlignment.start,
-                     children: [
-                       Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                        children: [
-                         Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
-                         Text("2/4",style: AppStyle.textStylePoppinsRegular
-                             .copyWith(color: ColorConstant.primaryWhite),),
-                            ],
-                          ),
-                       SizedBox(height: getVerticalSize(57),),
-                       Text("Give us your \nEmail ID",style: AppStyle.textStylePoppinsRegular
-                           .copyWith(color: ColorConstant.primaryWhite,
-                           fontWeight: FontWeight.w700,fontSize: getFontSize(32)),),
-                       SizedBox(height: getVerticalSize(5),),
-                       Text("To apply, we need your Email ID linked to \nyour app",
-                         style: AppStyle.textStylePoppinsRegular
-                           .copyWith(color: ColorConstant.primaryAppTextF1,
-                           fontWeight: FontWeight.w400,fontSize: getFontSize(16)),),
-                       SizedBox(height: getVerticalSize(54),),
-                       SizedBox(width: getHorizontalSize(229),
-                           child: const AppTextField()),
-                       Spacer(),
-                      AppElevatedButton(buttonName: 'Continue with email',
-                      onPressed: (){
-                        Get.toNamed(AppRoutes.loginEmailScreen);
-                      }),
-                       SizedBox(height: getVerticalSize(40),),
-                     ],
-                   ),
-                 ],
-               ),
-              ),
-            ) ),
-          ],
-        ));
+      children: [
+        MainCutomBackGround(
+            child: Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: getHorizontalSize(36.0),
+              vertical: getVerticalSize(26)),
+          child: SafeArea(
+            child: Stack(
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: getVerticalSize(57),
+                    ),
+                    Text(
+                      "Give us your \nEmail ID",
+                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                          color: ColorConstant.primaryWhite,
+                          fontWeight: FontWeight.w700,
+                          fontSize: getFontSize(32)),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(5),
+                    ),
+                    Text(
+                      "To apply, we need your Email ID linked to \nyour app",
+                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                          color: ColorConstant.primaryAppTextF1,
+                          fontWeight: FontWeight.w400,
+                          fontSize: getFontSize(16)),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(54),
+                    ),
+                    SizedBox(
+                        width: getHorizontalSize(229),
+                        child: AppTextField(controller:loginController.emailController ,)),
+                    Spacer(),
+                    AppElevatedButton(
+                        buttonName: 'Continue with email',
+                        onPressed: () {
+                          loginController.onTapOfButton();
+                          // Get.toNamed(AppRoutes.loginEmailScreen);
+                        }),
+                    SizedBox(
+                      height: getVerticalSize(40),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        )),
+      ],
+    ));
   }
 }
