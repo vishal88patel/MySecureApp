@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
+import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 
 
@@ -42,17 +43,17 @@ class CreatePasswordScreenController extends GetxController {
   void onTapOfNextButton() {
     if(createPassController.text.isEmpty){
       UIUtils.showSnakBar(
-        headerText: "Error",
+        headerText:StringConstants.ERROR,
         bodyText: "Please enter password",
       );
     }else if(confirmPassController.text.isEmpty){
       UIUtils.showSnakBar(
-        headerText: "Error",
+        headerText: StringConstants.ERROR,
         bodyText: "Please enter confirm Password",
       );
     }else if(createPassController.text!=confirmPassController.text){
       UIUtils.showSnakBar(
-        headerText: "Error",
+        headerText: StringConstants.ERROR,
         bodyText: "Password did not matched",
       );
     }else{

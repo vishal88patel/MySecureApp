@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
+import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 
@@ -33,22 +34,22 @@ class LoginScreenController extends GetxController {
   void onTapOfButton() {
     if (emailController.text.isEmpty) {
       UIUtils.showSnakBar(
-        headerText: "Error",
+        headerText:StringConstants.ERROR,
         bodyText: "Please enter  email",
       );
     } else if (emailController.text.isNotEmpty) {
       if (RegexPatterns.emailRegex.hasMatch(emailController.text) == false) {
         UIUtils.showSnakBar(
-          headerText: "Error",
+          headerText: StringConstants.ERROR,
           bodyText: "Please enter Valid email".tr,
         );
       } else {
-        callLoginApi();
+        checkLoginApi();
       }
     } else {}
   }
 
-  Future<void> callLoginApi() async {
+  Future<void> checkLoginApi() async {
     ApiService()
         .callPostApi(
             body: await getBody(emailController.text),
@@ -59,10 +60,17 @@ class LoginScreenController extends GetxController {
       if (value['status']) {
         if (value['message'] == "User is not registered.") {
           Get.toNamed(AppRoutes.creatPasswordScreen);
-        } else {}
+        } else {
+          Get.toNamed(
+              AppRoutes.enterPasswordScreen,
+              arguments: {
+                "email":
+                emailController.text
+              });
+        }
       } else {
         UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: "ERRORMESSAGE".tr);
+            bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
   }

@@ -58,6 +58,8 @@ import 'package:my_secure_app/presentation/UserPersonalScreen/binding/user_perso
 import 'package:my_secure_app/presentation/UserPersonalScreen/user_personal_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
+import '../presentation/EnterPasswordScreen/binding/enter_password_screen_binding.dart';
+import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
 import '../presentation/LoanCalculator/loan_calculator_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
@@ -72,6 +74,7 @@ class AppRoutes {
   static String loginScreen = '/login_screen';
   static String loginEmailScreen = '/login_email_screen';
   static String creatPasswordScreen = '/create_password_screen';
+  static String enterPasswordScreen = '/enter_password_screen';
   static String enterPersonalDetailScreen = '/enter_personal_detail_screen';
   static String personalDetailScreen = '/personal_detail_screen';
   static String bankListScreen = '/bank_list_screen';
@@ -140,6 +143,15 @@ class AppRoutes {
       page: () => CreatePasswordScreen(),
       bindings: [
         CreatePasswordScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: enterPasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => EnterPasswordScreen(),
+      bindings: [
+        EnterPasswordScreenBinding(),
       ],
     ),
 
