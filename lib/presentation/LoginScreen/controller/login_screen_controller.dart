@@ -56,13 +56,13 @@ class LoginScreenController extends GetxController {
             url: ApiEndPoints.CHECK_USER)
         .then((value) {
       print(value);
-      if (value["result"]["status_code"] == "200" &&
-          value["result"]["status"] == "success") {
-       LoginResponseModel loginModel =LoginResponseModel();
+      if (value['status']) {
+        if (value['message'] == "User is not registered.") {
+          Get.toNamed(AppRoutes.creatPasswordScreen);
+        } else {}
       } else {
-        // UIUtils.showSnakBar(
-        //     bodyText: value["result"]["message"],
-        //     headerText: "ERRORMESSAGE".tr);
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: "ERRORMESSAGE".tr);
       }
     });
   }

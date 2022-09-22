@@ -8,17 +8,21 @@ class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
   final String? hintText;
   final Widget? suffixIcon;
+  final bool isObsecure;
 
   const AppTextField({Key? key,
     this.controller,
     this.hintText,
-    this.suffixIcon}) : super(key: key);
+    this.suffixIcon,
+    this.isObsecure=false,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
       style: TextStyle(color: ColorConstant.primaryWhite),
+      obscureText: isObsecure,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppStyle.textStylePoppinsRegular

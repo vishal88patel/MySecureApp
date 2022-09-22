@@ -5,10 +5,16 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
+import '../../../utils/HelperFiles/ui_utils.dart';
 
 
 
 class CreatePasswordScreenController extends GetxController {
+  TextEditingController createPassController=TextEditingController();
+  TextEditingController confirmPassController=TextEditingController();
+
+  var createPaasIsObsecure=true.obs;
+  var confirmPassIsObsecure=true.obs;
 
   @override
   void onReady() {
@@ -24,6 +30,34 @@ class CreatePasswordScreenController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void onTapOfCreatePassObsecure(bool val) {
+    createPaasIsObsecure.value=!val;
+  }
+  void onTapOfConfirmPassObsecure(bool val) {
+    confirmPassIsObsecure.value=!val;
+  }
+
+  void onTapOfNextButton() {
+    if(createPassController.text.isEmpty){
+      UIUtils.showSnakBar(
+        headerText: "Error",
+        bodyText: "Please enter password",
+      );
+    }else if(confirmPassController.text.isEmpty){
+      UIUtils.showSnakBar(
+        headerText: "Error",
+        bodyText: "Please enter confirm Password",
+      );
+    }else if(createPassController.text!=confirmPassController.text){
+      UIUtils.showSnakBar(
+        headerText: "Error",
+        bodyText: "Password did not matched",
+      );
+    }else{
+      Get.toNamed(AppRoutes.enterPersonalDetailScreen);
+    }
   }
 
 }

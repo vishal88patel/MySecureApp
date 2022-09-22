@@ -22,9 +22,9 @@ class UIUtils {
             child: Stack(
               alignment: Alignment.center,
               children: [
-                SvgPicture.asset(
+                Image.asset(
                   // you can replace this with Image.asset
-                  'asset/rounded_red_logo.svg',
+                  'asset/icons/progress_icon.png',
                   fit: BoxFit.cover,
                   height: 80,
                   width: 80,
@@ -35,8 +35,8 @@ class UIUtils {
                   width: 150,
                   child: CircularProgressIndicator(
                     valueColor: AlwaysStoppedAnimation<Color>(
-                        ColorConstant.appProgressBarColor),
-                    strokeWidth: 3,
+                        ColorConstant.skyE8),
+                    strokeWidth: 5,
                   ),
                 ),
               ],
