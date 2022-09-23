@@ -21,7 +21,7 @@ class ApiService extends GetConnect {
       headers = {"Accept": "application/json"};
       headersWithToken = {
         "Accept": "application/json",
-        "Authorization": "Bearer" + " " + "$authToken"
+        "Authorization": "Bearer" + " " + "14|Lyx8MI3LOUd2wH8namEvGF7GMafv1pkb2iBx36jX"
       };
       contentType = "multipart/form-data";
     });
@@ -41,6 +41,35 @@ class ApiService extends GetConnect {
     final response = await post(
       url,
       body,
+      headers: headerWithToken ? headersWithToken : headers,
+      contentType: contentType,
+    );
+    if (response.status.hasError) {
+      if (showLoader) {
+        UIUtils.hideProgressDialog();
+      }
+      return Future.error(response.statusText!);
+    } else {
+      if (showLoader) {
+        UIUtils.hideProgressDialog();
+      }
+      return response.body;
+    }
+  }
+
+
+
+  Future<dynamic> callGetApi(
+      {required FormData body,
+      required url,
+      bool showLoader = true,
+      bool headerWithToken = true}) async {
+    if (showLoader) {
+      UIUtils.showProgressDialog(isCancellable: false);
+    }
+    await initApiService();
+    final response = await get(
+      url,
       headers: headerWithToken ? headersWithToken : headers,
       contentType: contentType,
     );

@@ -6,6 +6,7 @@ import '../App Configurations/color_constants.dart';
 
 class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
+  final TextInputType? keyBordType;
   final String? hintText;
   final Widget? suffixIcon;
   final bool isObsecure;
@@ -14,6 +15,7 @@ class AppTextField extends StatelessWidget {
     this.controller,
     this.hintText,
     this.suffixIcon,
+    this.keyBordType=TextInputType.text,
     this.isObsecure=false,
   }) : super(key: key);
 
@@ -21,6 +23,7 @@ class AppTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      keyboardType: keyBordType,
       style: TextStyle(color: ColorConstant.primaryWhite),
       obscureText: isObsecure,
       decoration: InputDecoration(
