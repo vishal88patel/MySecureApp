@@ -73,7 +73,7 @@ class EnterPasswordScreenController extends GetxController {
   }
 
   Future<FormData> getLoginBody({required String email,required String password}) async {
-    final form = FormData({"type": "1",
+    final form = FormData({
       "type": "1",
       "email": email,
       "mobile": "",

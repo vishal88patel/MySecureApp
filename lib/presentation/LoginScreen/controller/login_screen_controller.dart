@@ -14,6 +14,7 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 
 class LoginScreenController extends GetxController {
   TextEditingController emailController = TextEditingController();
+  bool showNext = false;
 
   @override
   void onReady() {
@@ -35,7 +36,7 @@ class LoginScreenController extends GetxController {
     if (emailController.text.isEmpty) {
       UIUtils.showSnakBar(
         headerText:StringConstants.ERROR,
-        bodyText: "Please enter  email",
+        bodyText: "Please enter email",
       );
     } else if (emailController.text.isNotEmpty) {
       if (RegexPatterns.emailRegex.hasMatch(emailController.text) == false) {

@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                         child: AppTextField(controller:loginController.emailController ,)),
                     Spacer(),
                     AppElevatedButton(
-                        buttonName: 'Continue with email',
+                        buttonName: 'Continue with phone',
                         onPressed: () {
                           loginController.onTapOfButton();
                           // Get.toNamed(AppRoutes.loginEmailScreen);

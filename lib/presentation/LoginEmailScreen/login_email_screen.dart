@@ -48,7 +48,7 @@ class LoginEmilScreen extends StatelessWidget {
                        SizedBox(width: getHorizontalSize(229),
                            child: const AppTextField()),
                        Spacer(),
-                      AppElevatedButton(buttonName: 'Continue with phone',
+                      AppElevatedButton(buttonName: 'Continue with email',
                       onPressed: (){
                         Get.toNamed(AppRoutes.creatPasswordScreen);
                       }),
