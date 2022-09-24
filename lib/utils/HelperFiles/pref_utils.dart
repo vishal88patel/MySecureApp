@@ -2,6 +2,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../presentation/EnterPasswordScreen/models/login_response_model.dart';
+
 
 class PrefUtils {
   static Future<SharedPreferences> get _instance async =>
@@ -38,22 +40,13 @@ class PrefUtils {
     return prefs.setString(key, json.encode(value));
   }
 
-  // static Future<VerifyOtpResponseModel?> getDataObject(String key) async {
-  //   var prefs = await _instance;
-  //   String? _data = prefs.getString(key);
-  //   return (_data == null || _data.isEmpty)
-  //       ? null
-  //       : VerifyOtpResponseModel.fromJson(jsonDecode(_data));
-  // }
-  //
-  // static Future<HomePageApiResponseModel?> getHomePageDataObject(
-  //     String key) async {
-  //   var prefs = await _instance;
-  //   String? _data = prefs.getString(key);
-  //   return (_data == null || _data.isEmpty)
-  //       ? null
-  //       : HomePageApiResponseModel.fromJson(jsonDecode(_data));
-  // }
+  static Future<LoginResponseModel?> getLoginModelData(String key) async {
+    var prefs = await _instance;
+    String? _data = prefs.getString(key);
+    return (_data == null || _data.isEmpty)
+        ? null
+        : LoginResponseModel.fromJson(jsonDecode(_data));
+  }
 
 
   static Future<bool>? clear() {

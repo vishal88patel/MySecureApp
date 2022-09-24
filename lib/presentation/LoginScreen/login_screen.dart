@@ -31,6 +31,17 @@ class LoginScreen extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+
+                        Text(
+                          "1/4",
+                          style: AppStyle.textStylePoppinsRegular
+                              .copyWith(color: ColorConstant.primaryWhite),
+                        ),
+                      ],
+                    ),
                     SizedBox(
                       height: getVerticalSize(57),
                     ),
@@ -56,12 +67,33 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(
                         width: getHorizontalSize(229),
-                        child: AppTextField(controller:loginController.emailController ,)),
+                        child: AppTextField(
+                          controller: loginController.emailController,
+                        )),
                     Spacer(),
+                    AppElevatedButton(
+                        buttonName: 'Next',
+                        onPressed: () {
+                          loginController.onTapOfButton();
+                          // Get.toNamed(AppRoutes.loginEmailScreen);
+                        }),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "OR",
+                            style: AppStyle.textStylePoppinsRegular
+                                .copyWith(color: ColorConstant.primaryWhite),
+                          ),
+                        ],
+                      ),
+                    ),
                     AppElevatedButton(
                         buttonName: 'Continue with phone',
                         onPressed: () {
-                          loginController.onTapOfButton();
+                          // loginController.onTapOfButton();
                           // Get.toNamed(AppRoutes.loginEmailScreen);
                         }),
                     SizedBox(

@@ -1,7 +1,7 @@
 class GetLoanTypeResponseModel {
   bool? status;
   String? message;
-  List<Data>? data;
+  List<LoanModel>? data;
 
   GetLoanTypeResponseModel({this.status, this.message, this.data});
 
@@ -9,9 +9,9 @@ class GetLoanTypeResponseModel {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Data>[];
+      data = <LoanModel>[];
       json['data'].forEach((v) {
-        data!.add(new Data.fromJson(v));
+        data!.add(new LoanModel.fromJson(v));
       });
     }
   }
@@ -27,16 +27,16 @@ class GetLoanTypeResponseModel {
   }
 }
 
-class Data {
+class LoanModel {
   int? id;
   String? name;
   String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
 
-  Data({this.id, this.name, this.createdAt, this.updatedAt, this.deletedAt});
+  LoanModel({this.id, this.name, this.createdAt, this.updatedAt, this.deletedAt});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  LoanModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     createdAt = json['created_at'];

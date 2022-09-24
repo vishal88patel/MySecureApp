@@ -21,7 +21,7 @@ class ApiService extends GetConnect {
       headers = {"Accept": "application/json"};
       headersWithToken = {
         "Accept": "application/json",
-        "Authorization": "Bearer" + " " + "14|Lyx8MI3LOUd2wH8namEvGF7GMafv1pkb2iBx36jX"
+        "Authorization": "Bearer" + " " + "$authToken"
       };
       contentType = "multipart/form-data";
     });
@@ -48,7 +48,7 @@ class ApiService extends GetConnect {
       if (showLoader) {
         UIUtils.hideProgressDialog();
       }
-      return Future.error(response.statusText!);
+      return response.body;
     } else {
       if (showLoader) {
         UIUtils.hideProgressDialog();
@@ -77,7 +77,7 @@ class ApiService extends GetConnect {
       if (showLoader) {
         UIUtils.hideProgressDialog();
       }
-      return Future.error(response.statusText!);
+      return response.body;
     } else {
       if (showLoader) {
         UIUtils.hideProgressDialog();

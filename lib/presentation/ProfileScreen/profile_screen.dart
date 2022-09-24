@@ -83,7 +83,8 @@ class ProfileScreen extends StatelessWidget {
                         },),
                         Spacer(),
                         AppElevatedButton(buttonName: 'Signout', onPressed: () {
-                          Get.toNamed(AppRoutes.transactionScreen);
+                          profileController.showLogOutDialouge();
+                          // Get.toNamed(AppRoutes.transactionScreen);
 
                         },),
                         SizedBox(height: getVerticalSize(40),),

@@ -32,12 +32,17 @@ class EnterPasswordScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: ColorConstant.primaryWhite,
+                        InkWell(
+                          onTap:(){
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: ColorConstant.primaryWhite,
+                          ),
                         ),
                         Text(
-                          "3/4",
+                          "2/2",
                           style: AppStyle.textStylePoppinsRegular
                               .copyWith(color: ColorConstant.primaryWhite),
                         ),
@@ -47,7 +52,7 @@ class EnterPasswordScreen extends StatelessWidget {
                       height: getVerticalSize(57),
                     ),
                     Text(
-                      "Create your new \nPassword",
+                      "Enter your  \nPassword",
                       style: AppStyle.textStylePoppinsRegular.copyWith(
                           color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w700,
@@ -57,7 +62,7 @@ class EnterPasswordScreen extends StatelessWidget {
                       height: getVerticalSize(5),
                     ),
                     Text(
-                      "Your new password must be different \nfrom previous used passwords.",
+                      "Please enter your password",
                       style: AppStyle.textStylePoppinsRegular.copyWith(
                           color: ColorConstant.primaryAppTextF1,
                           fontWeight: FontWeight.w400,
@@ -66,12 +71,29 @@ class EnterPasswordScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(54),
                     ),
-                    AppTextField(
-                      hintText: 'Enter Password ',
-                      controller:
-                      enterPasswordController.passController,
-
+                    Obx(
+                          () => AppTextField(
+                        hintText: 'Enter Password ',
+                        controller: enterPasswordController.passController,
+                        isObsecure: enterPasswordController.PaasIsObsecure.value,
+                        suffixIcon: IconButton(
+                          icon: Icon( enterPasswordController.PaasIsObsecure.value
+                              ? Icons.visibility_off
+                              : Icons.visibility
+                            // Icons.visibility_off,
+                          ),
+                          color: ColorConstant.primaryAppTextF1,
+                          iconSize: getSize(20),
+                          onPressed: () {
+                            print("oooooooooo");
+                            enterPasswordController.onTapOfPassObsecure(
+                                enterPasswordController
+                                    .PaasIsObsecure.value);
+                          },
+                        ),
+                      ),
                     ),
+
                     SizedBox(
                       height: getVerticalSize(30),
                     ),

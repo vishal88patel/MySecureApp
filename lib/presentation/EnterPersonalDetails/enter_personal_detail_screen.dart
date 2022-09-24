@@ -15,115 +15,143 @@ class EnterPersonalDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        MainCutomBackGround(
-            child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: getHorizontalSize(36.0),
-              vertical: getVerticalSize(26)),
-          child: SafeArea(
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      backgroundColor: ColorConstant.primaryBlack,
+        body: SingleChildScrollView(
+      child: Container(
+        height: size.height * 1.1,
+        child: Stack(
+          children: [
+            MainCutomBackGround(
+                child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getHorizontalSize(36.0),
+                  vertical: getVerticalSize(26)),
+              child: SafeArea(
+                child: Stack(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: ColorConstant.primaryWhite,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell(
+                              onTap:(){
+                                Get.back();
+                              },
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: ColorConstant.primaryWhite,
+                              ),
+                            ),
+                            Text(
+                              "3/4",
+                              style: AppStyle.textStylePoppinsRegular
+                                  .copyWith(color: ColorConstant.primaryWhite),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(57),
                         ),
                         Text(
-                          "4/4",
-                          style: AppStyle.textStylePoppinsRegular
-                              .copyWith(color: ColorConstant.primaryWhite),
+                          "Enter your \nPersonal details",
+                          style: AppStyle.textStylePoppinsRegular.copyWith(
+                              color: ColorConstant.primaryWhite,
+                              fontWeight: FontWeight.w700,
+                              fontSize: getFontSize(32)),
                         ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(57),
-                    ),
-                    Text(
-                      "Enter your \nPersonal details",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w700,
-                          fontSize: getFontSize(32)),
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(43),
-                    ),
-                    AppTextField(
-                        hintText: 'Enter your Address 01',
-                        controller:
-                            enterPersonalDetailController.address01Controller),
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    AppTextField(
-                      hintText: 'Enter your Address 02',
-                      controller:
-                          enterPersonalDetailController.address02Controller,
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    AppTextField(
-                      hintText: 'City',
-                      controller: enterPersonalDetailController.cityController,
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    Row(
-                      children: [
-                        Expanded(
-                            child: AppTextField(
-                          hintText: 'State',
-                          controller:
-                              enterPersonalDetailController.stateController,
-                        )),
                         SizedBox(
-                          width: getHorizontalSize(50),
+                          height: getVerticalSize(43),
                         ),
-                        Expanded(
-                            child: AppTextField(
-                          hintText: 'Zip Code',
-                          keyBordType: TextInputType.number,
+                        AppTextField(
+                            hintText: 'Enter your first name',
+                            controller: enterPersonalDetailController
+                                .firstNameController),
+                        SizedBox(
+                          height: getVerticalSize(43),
+                        ),
+                        AppTextField(
+                            hintText: 'Enter your last name',
+                            controller: enterPersonalDetailController
+                                .lastNameController),
+                        SizedBox(
+                          height: getVerticalSize(43),
+                        ),
+                        AppTextField(
+                            hintText: 'Enter your Address 01',
+                            controller: enterPersonalDetailController
+                                .address01Controller),
+                        SizedBox(
+                          height: getVerticalSize(30),
+                        ),
+                        AppTextField(
+                          hintText: 'Enter your Address 02',
                           controller:
-                              enterPersonalDetailController.zipCodeController,
-                        )),
+                              enterPersonalDetailController.address02Controller,
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(30),
+                        ),
+                        AppTextField(
+                          hintText: 'City',
+                          controller:
+                              enterPersonalDetailController.cityController,
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(30),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: AppTextField(
+                              hintText: 'State',
+                              controller:
+                                  enterPersonalDetailController.stateController,
+                            )),
+                            SizedBox(
+                              width: getHorizontalSize(50),
+                            ),
+                            Expanded(
+                                child: AppTextField(
+                              hintText: 'Zip Code',
+                              keyBordType: TextInputType.number,
+                              controller: enterPersonalDetailController
+                                  .zipCodeController,
+                            )),
+                          ],
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(30),
+                        ),
+                        AppTextField(
+                          hintText: 'SNN',
+                          controller:
+                              enterPersonalDetailController.ssnController,
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(22),
+                        ),
+                        AppElevatedButton(
+                          buttonName: 'Next',
+                          onPressed: () {
+                            // Get.toNamed(AppRoutes.personalDetailScreen);
+                            // Get.toNamed(AppRoutes.personalDetailScreen);
+                            enterPersonalDetailController.onTapOfNextButton();
+                          },
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(40),
+                        ),
                       ],
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    AppTextField(
-                      hintText: 'SNN',
-                      controller: enterPersonalDetailController.ssnController,
-
-                    ),
-                    Spacer(),
-                    AppElevatedButton(
-                      buttonName: 'Next',
-                      onPressed: () {
-                        // Get.toNamed(AppRoutes.personalDetailScreen);
-                        // Get.toNamed(AppRoutes.personalDetailScreen);
-                        enterPersonalDetailController.onTapOfNextButton();
-                      },
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(40),
                     ),
                   ],
                 ),
-              ],
-            ),
-          ),
-        )),
-      ],
+              ),
+            )),
+          ],
+        ),
+      ),
     ));
   }
 }

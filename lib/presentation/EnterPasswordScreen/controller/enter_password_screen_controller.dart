@@ -16,6 +16,7 @@ class EnterPasswordScreenController extends GetxController {
   TextEditingController passController = TextEditingController();
   String email="";
   var arguments = Get.arguments;
+  var PaasIsObsecure=true.obs;
 
   @override
   void onReady() {
@@ -51,23 +52,18 @@ class EnterPasswordScreenController extends GetxController {
 
   Future<void> callLoginApi() async {
     ApiService()
-        .callPostApi(
-            body: await getLoginBody(email: email,password: passController.text),
-            headerWithToken: false,
-            url: ApiEndPoints.LOGIN)
-        .then((value) {
+        .callPostApi(body: await getLoginBody(email: email,password: passController.text), headerWithToken: false, url: ApiEndPoints.LOGIN).then((value) {
       print(value);
       if (value['status']) {
         UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: "ERRORMESSAGE".tr);
+            bodyText: value['message'],headerText: StringConstants.SUCCESS);
         LoginResponseModel loginResponseModel =LoginResponseModel.fromJson(value);
         PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
-        PrefUtils.putObject(StringConstants.LOGINRESPONSE, loginResponseModel);
-        Get.toNamed(AppRoutes.dashBoardScreen);
-
+        PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
+        Get.offAllNamed(AppRoutes.dashBoardScreen);
       } else {
         UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: "ERRORMESSAGE".tr);
+            bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
   }
@@ -81,4 +77,9 @@ class EnterPasswordScreenController extends GetxController {
     });
     return form;
   }
+
+  void onTapOfPassObsecure(bool val) {
+    PaasIsObsecure.value=!val;
+  }
+
 }

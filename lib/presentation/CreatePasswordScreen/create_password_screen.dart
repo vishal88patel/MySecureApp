@@ -32,12 +32,17 @@ class CreatePasswordScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: ColorConstant.primaryWhite,
+                        InkWell(
+                          onTap:(){
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: ColorConstant.primaryWhite,
+                          ),
                         ),
                         Text(
-                          "3/4",
+                          "2/4",
                           style: AppStyle.textStylePoppinsRegular
                               .copyWith(color: ColorConstant.primaryWhite),
                         ),

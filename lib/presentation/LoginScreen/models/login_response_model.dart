@@ -42,10 +42,10 @@ class Data {
   String? jobTitle;
   String? annualIncome;
   String? purpouseOfOpeningAccount;
-  Null? firstName;
-  Null? lastName;
-  Null? dateOfBirth;
-  Null? loanType;
+  String? firstName;
+  String? lastName;
+  String? dateOfBirth;
+  String? loanType;
   String? token;
   String? profilePhotoUrl;
 

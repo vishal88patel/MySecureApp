@@ -31,9 +31,14 @@ class PersonalDetailScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: ColorConstant.primaryWhite,
+                        InkWell(
+                          onTap:(){
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.arrow_back,
+                            color: ColorConstant.primaryWhite,
+                          ),
                         ),
                         Text(
                           "4/4",
@@ -55,65 +60,114 @@ class PersonalDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(21),
                     ),
-                    const AppTextField(hintText: 'Employment name '),
+                    AppTextField(
+                        hintText: 'Employment name ',
+                        controller:
+                            personalDetailController.employmentNameController),
                     SizedBox(
                       height: getVerticalSize(30),
                     ),
-                    const AppTextField(
+                    AppTextField(
                       hintText: 'Job Title',
+                      controller: personalDetailController.jobTitleController,
                     ),
                     SizedBox(
                       height: getVerticalSize(30),
                     ),
-                    const AppTextField(
+                    AppTextField(
                       hintText: 'Annual income',
+                      controller:
+                          personalDetailController.annualIncomeController,
+                      keyBordType: TextInputType.number,
                     ),
                     SizedBox(
                       height: getVerticalSize(30),
                     ),
-                    const AppTextField(
-                      hintText: 'Purpouse of opening account ',
+                    Text(
+                      "Purpouse of opening account",
+                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                          color: ColorConstant.primaryAppTextF1,
+                          fontWeight: FontWeight.w400,
+                          fontSize: getFontSize(16)),
                     ),
+
                     SizedBox(
-                      height: getVerticalSize(20),
+                      height: getVerticalSize(10),
                     ),
                     Row(
                       children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color: ColorConstant.primaryWhite,
-                              border: Border.all(
-                                  color: ColorConstant.primaryWhite)),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: getHorizontalSize(16),
-                                vertical: getVerticalSize(4)),
-                            child: Text('Borrow Loan',
-                                style: AppStyle.textStylePoppinsRegular
-                                    .copyWith(
-                                        color: ColorConstant.primaryBlack,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: getFontSize(14))),
+                        Obx(
+                          () => InkWell(
+                            onTap: () {
+                              personalDetailController
+                                  .onTapOfBorroeOrPErsonalLoan("borrow_loan");
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: personalDetailController
+                                              .purposeOfOpeningAcc.value ==
+                                          "borrow_loan"
+                                      ? ColorConstant.primaryWhite
+                                      : Colors.transparent,
+                                  border: Border.all(
+                                      color: ColorConstant.primaryAppTextF1)),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getHorizontalSize(16),
+                                    vertical: getVerticalSize(4)),
+                                child: Text('Borrow Loan',
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(
+                                            color: personalDetailController
+                                                        .purposeOfOpeningAcc
+                                                        .value ==
+                                                    "borrow_loan"
+                                                ? ColorConstant.primaryBlack
+                                                : ColorConstant
+                                                    .primaryAppTextF1,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(14))),
+                              ),
+                            ),
                           ),
                         ),
                         SizedBox(
                           width: getHorizontalSize(11),
                         ),
-                        Container(
-                          decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              border: Border.all(
-                                  color: ColorConstant.primaryAppTextF1)),
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: getHorizontalSize(16),
-                                vertical: getVerticalSize(4)),
-                            child: Text('Using Wallet Service',
-                                style: AppStyle.textStylePoppinsRegular
-                                    .copyWith(
-                                        color: ColorConstant.primaryAppTextF1,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: getFontSize(14))),
+                        Obx(
+                          () => InkWell(
+                            onTap: () {
+                              personalDetailController
+                                  .onTapOfBorroeOrPErsonalLoan(
+                                      "using_wallet_service");
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  color: personalDetailController
+                                              .purposeOfOpeningAcc.value ==
+                                          "using_wallet_service"
+                                      ? ColorConstant.primaryWhite
+                                      : Colors.transparent,
+                                  border: Border.all(
+                                      color: ColorConstant.primaryAppTextF1)),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getHorizontalSize(16),
+                                    vertical: getVerticalSize(4)),
+                                child: Text('Using Wallet Service',
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(
+                                            color: personalDetailController
+                                                        .purposeOfOpeningAcc
+                                                        .value ==
+                                                    "using_wallet_service"
+                                                ? ColorConstant.primaryBlack
+                                                : ColorConstant
+                                                    .primaryAppTextF1,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(14))),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -145,52 +199,73 @@ class PersonalDetailScreen extends StatelessWidget {
                     //
                     // ),
                     Obx(
-                      () => Wrap(
-                        alignment: WrapAlignment.start,
-                        children: personalDetailController.loanList.value
-                            .map((i) => Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: getVerticalSize(8)),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Container(
-                                        width: getHorizontalSize(9),
-                                        height: getVerticalSize(9),
-                                        decoration: BoxDecoration(
-                                            color: Colors.transparent,
-                                            borderRadius:
-                                                BorderRadius.circular(100),
-                                            border: Border.all(
-                                                color: ColorConstant
-                                                    .primaryAppTextF1)),
-                                      ),
-                                      SizedBox(
-                                        width: getHorizontalSize(7),
-                                      ),
-                                      Text(
-                                        i,
-                                        style: AppStyle.textStylePoppinsRegular
-                                            .copyWith(
-                                                color: ColorConstant
-                                                    .primaryAppTextF1,
-                                                fontSize: getFontSize(12)),
-                                      ),
-                                      SizedBox(
-                                        width: getHorizontalSize(10),
-                                      ),
-                                    ],
-                                  ),
-                                ))
-                            .toList(),
-                      ),
+                      () => personalDetailController
+                                  .purposeOfOpeningAcc.value ==
+                              "using_wallet_service"
+                          ? Container()
+                          : Wrap(
+                              alignment: WrapAlignment.start,
+                              children: personalDetailController.loanList.value
+                                  .map((i) => Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            vertical: getVerticalSize(8)),
+                                        child: InkWell(
+                                          onTap: () {
+                                            personalDetailController
+                                                .onTapOnLoanTile(i.id);
+                                          },
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Container(
+                                                width: getHorizontalSize(9),
+                                                height: getVerticalSize(9),
+                                                decoration: BoxDecoration(
+                                                    color: personalDetailController
+                                                                .selectedLoanId
+                                                                .value ==
+                                                            i.id.toString()
+                                                        ? ColorConstant
+                                                            .primaryWhite
+                                                        : Colors.transparent,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            100),
+                                                    border: Border.all(
+                                                        color: ColorConstant
+                                                            .primaryAppTextF1)),
+                                              ),
+                                              SizedBox(
+                                                width: getHorizontalSize(7),
+                                              ),
+                                              Text(
+                                                i.name.toString(),
+                                                style: AppStyle
+                                                    .textStylePoppinsRegular
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryAppTextF1,
+                                                        fontSize:
+                                                            getFontSize(12)),
+                                              ),
+                                              SizedBox(
+                                                width: getHorizontalSize(10),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ))
+                                  .toList(),
+                            ),
                     ),
                     Spacer(),
                     AppElevatedButton(
-                      buttonName: 'Next',
+                      buttonName: 'Register',
                       onPressed: () {
-                        Get.toNamed(AppRoutes.dashBoardScreen);
+                        personalDetailController.onClickOfRegisterButton();
+                        // Get.toNamed(AppRoutes.dashBoardScreen);
                       },
                     ),
                     SizedBox(
