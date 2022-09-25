@@ -23,23 +23,20 @@ class HomePageResponseModel {
 }
 
 class Data {
-  String? homeImage1;
-  String? homeImage2;
-  String? homeImage3;
+  String? bannerImage;
+  List<String>? topOffer;
 
-  Data({this.homeImage1, this.homeImage2, this.homeImage3});
+  Data({this.bannerImage, this.topOffer});
 
   Data.fromJson(Map<String, dynamic> json) {
-    homeImage1 = json['home_image_1'];
-    homeImage2 = json['home_image_2'];
-    homeImage3 = json['home_image_3'];
+    bannerImage = json['bannerImage'];
+    topOffer = json['topOffer'].cast<String>();
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['home_image_1'] = this.homeImage1;
-    data['home_image_2'] = this.homeImage2;
-    data['home_image_3'] = this.homeImage3;
+    data['bannerImage'] = this.bannerImage;
+    data['topOffer'] = this.topOffer;
     return data;
   }
 }

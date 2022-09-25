@@ -106,6 +106,7 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: SingleChildScrollView(
+                    physics: BouncingScrollPhysics(),
                     child: Column(
                       children: [
                         SizedBox(
@@ -151,11 +152,12 @@ class HomeScreen extends StatelessWidget {
                             ? ClipRRect(
                                 borderRadius: BorderRadius.circular(15),
                                 child: Image.network(homeController
-                                    .homeModel.value.data!.homeImage1
+                                    .homeModel.value.data!.bannerImage
                                     .toString()))
                             : Shimmer.fromColors(
                                 baseColor: ColorConstant.shimmerBaseColor,
-                                highlightColor: ColorConstant.shimmerHighlightColor,
+                                highlightColor:
+                                    ColorConstant.shimmerHighlightColor,
                                 child: Container(
                                   decoration: BoxDecoration(
                                     color: ColorConstant.appProgressBarColor,
@@ -195,141 +197,92 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: getVerticalSize(10),
                         ),
-                        Obx(
-                          () => homeController.homeModel.value.data != null
-                              ? Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
+                        Container(
+                          height: size.height / 6.5,
+                          child: Obx(
+                            () => homeController
+                                    .homeModel.value.data!=null
+                                ? SizedBox(
+                                    height: getVerticalSize(135),
+                                    child: ListView.builder(
+                                      physics: BouncingScrollPhysics(),
+                                      itemCount: homeController.homeModel.value
+                                          .data!.topOffer!.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (context, pagePosition) {
+                                        return GestureDetector(
+                                          onTap: () async {},
+                                          child: Container(
+                                            width: size.width/2,
+                                            padding: EdgeInsets.only(
+                                                right: 16),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(
+                                                      getHorizontalSize(15))),
+                                              child: Image.network(
+                                                homeController
+                                                    .homeModel
+                                                    .value
+                                                    .data!
+                                                    .topOffer![pagePosition],
+                                                fit: BoxFit.cover,
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      },
+                                    ),
+                                  )
+                                :Row(
                                   children: [
                                     Expanded(
-                                        child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: Stack(
-                                        children: [
-                                          Image.network(
-                                            homeController.homeModel.value.data!
-                                                .homeImage2
-                                                .toString(),
-                                            height: getVerticalSize(100),
-                                            fit: BoxFit.cover,
+                                      child: Shimmer.fromColors(
+                                        baseColor: ColorConstant.shimmerBaseColor,
+                                        highlightColor:
+                                        ColorConstant.shimmerHighlightColor,
+                                        child: Container(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: getHorizontalSize(10)),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(
+                                                      getHorizontalSize(15))),
+                                              child: Container(
+                                                height: getVerticalSize(350),
+                                                color: ColorConstant.primaryWhite,
+                                              ),
+                                            ),
                                           ),
-                                          // Positioned(
-                                          //     child: Padding(
-                                          //   padding: const EdgeInsets.all(12.0),
-                                          //   child: Column(
-                                          //     crossAxisAlignment:
-                                          //         CrossAxisAlignment.start,
-                                          //     children: [
-                                          //       Text(
-                                          //         "Top Offer on \nMy Secure Pay",
-                                          //         style: AppStyle
-                                          //             .textStylePoppinsRegular
-                                          //             .copyWith(
-                                          //                 fontWeight: FontWeight.w500,
-                                          //                 fontSize: getFontSize(10)),
-                                          //       ),
-                                          //       SizedBox(
-                                          //         height: getVerticalSize(10),
-                                          //       ),
-                                          //       Container(
-                                          //         decoration: BoxDecoration(
-                                          //             borderRadius:
-                                          //                 BorderRadius.circular(3),
-                                          //             color: Colors.black),
-                                          //         padding: EdgeInsets.symmetric(
-                                          //             vertical: getVerticalSize(4),
-                                          //             horizontal:
-                                          //                 getHorizontalSize(15)),
-                                          //         child: Text(
-                                          //           "Explore",
-                                          //           style: AppStyle
-                                          //               .textStylePoppinsRegular
-                                          //               .copyWith(
-                                          //                   color: ColorConstant
-                                          //                       .primaryWhite,
-                                          //                   fontWeight: FontWeight.w400,
-                                          //                   fontSize: getFontSize(6)),
-                                          //         ),
-                                          //       ),
-                                          //     ],
-                                          //   ),
-                                          // ))
-                                        ],
+                                        ),
                                       ),
-                                    )),
-                                    SizedBox(
-                                      width: getHorizontalSize(17),
                                     ),
                                     Expanded(
-                                        child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15),
-                                      child: Stack(
-                                        children: [
-                                          Image.network(
-                                            homeController.homeModel.value.data!
-                                                .homeImage3
-                                                .toString(),
-                                            height: getVerticalSize(100),
-                                            fit: BoxFit.cover,
-                                          ),
-                                          Positioned(
-                                              child: Padding(
-                                            padding: const EdgeInsets.all(12.0),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  "Top Offer on \nMy Secure Pay",
-                                                  style: AppStyle
-                                                      .textStylePoppinsRegular
-                                                      .copyWith(
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize:
-                                                              getFontSize(10)),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(10),
-                                                ),
-                                                Container(
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              3),
-                                                      color: Colors.black),
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical:
-                                                          getVerticalSize(4),
-                                                      horizontal:
-                                                          getHorizontalSize(
-                                                              15)),
-                                                  child: Text(
-                                                    "Explore",
-                                                    style: AppStyle
-                                                        .textStylePoppinsRegular
-                                                        .copyWith(
-                                                            color: ColorConstant
-                                                                .primaryWhite,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                getFontSize(6)),
-                                                  ),
-                                                ),
-                                              ],
+                                      child: Shimmer.fromColors(
+                                        baseColor: ColorConstant.shimmerBaseColor,
+                                        highlightColor:
+                                        ColorConstant.shimmerHighlightColor,
+                                        child: Container(
+                                          child: Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: getHorizontalSize(10)),
+                                            child: ClipRRect(
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(
+                                                      getHorizontalSize(15))),
+                                              child: Container(
+                                                height: getVerticalSize(350),
+                                                color: ColorConstant.primaryWhite,
+                                              ),
                                             ),
-                                          ))
-                                        ],
+                                          ),
+                                        ),
                                       ),
-                                    )),
+                                    ),
                                   ],
                                 )
-                              : Container(
-                                  child: CircularProgressIndicator(
-                                    color: ColorConstant.skyE8,
-                                  ),
-                                ),
+                          ),
                         ),
                       ],
                     ),
