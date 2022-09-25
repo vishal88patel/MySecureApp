@@ -20,6 +20,8 @@ import 'package:my_secure_app/presentation/DashboardScreen/dashboard_screen.dart
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
+import 'package:my_secure_app/presentation/ForgetPassScreen/binding/forget_pass_screen_binding.dart';
+import 'package:my_secure_app/presentation/ForgetPassScreen/forget_pass_screen.dart';
 import 'package:my_secure_app/presentation/LoanCalculator/binding/loan_calculator_screen_binding.dart';
 import 'package:my_secure_app/presentation/FaqScreen/binding/faq_screen_binding.dart';
 import 'package:my_secure_app/presentation/FaqScreen/faq_screen.dart';
@@ -76,6 +78,7 @@ class AppRoutes {
   static String creatPasswordScreen = '/create_password_screen';
   static String enterPasswordScreen = '/enter_password_screen';
   static String enterPersonalDetailScreen = '/enter_personal_detail_screen';
+  static String forgetPassScreen = '/forget_pass_screen';
   static String personalDetailScreen = '/personal_detail_screen';
   static String bankListScreen = '/bank_list_screen';
   static String cardDetailScreen = '/card_detail_screen';
@@ -152,6 +155,16 @@ class AppRoutes {
       page: () => EnterPasswordScreen(),
       bindings: [
         EnterPasswordScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: forgetPassScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => ForgetPassScreen(),
+      bindings: [
+        ForgetPassScreenBinding(),
       ],
     ),
 

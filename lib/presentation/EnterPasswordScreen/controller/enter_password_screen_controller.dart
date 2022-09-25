@@ -38,6 +38,9 @@ class EnterPasswordScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  void onTapOfForgetPassButton() {
+    Get.toNamed(AppRoutes.forgetPassScreen);
+  }
 
   void onTapOfNextButton() {
     if (passController.text.isEmpty) {
@@ -49,6 +52,8 @@ class EnterPasswordScreenController extends GetxController {
       callLoginApi();
     }
   }
+
+
 
   Future<void> callLoginApi() async {
     ApiService()
