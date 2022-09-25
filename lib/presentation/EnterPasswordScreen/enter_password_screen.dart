@@ -100,21 +100,23 @@ class EnterPasswordScreen extends StatelessWidget {
 
                     Spacer(),
                     AppElevatedButton(
-                      buttonName: 'Forget Password',
-                      onPressed: () {
-                        enterPasswordController.onTapOfForgetPassButton();
-                      },
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    AppElevatedButton(
                       buttonName: 'Next',
                       onPressed: () {
                         enterPasswordController.onTapOfNextButton();
 
                       },
                     ),
+
+                    SizedBox(
+                      height: getVerticalSize(30),
+                    ),
+                    AppElevatedButton(
+                      buttonName: 'Forget Password',
+                      onPressed: () {
+                        enterPasswordController.onTapOfForgetPassButton();
+                      },
+                    ),
+
                     SizedBox(
                       height: getVerticalSize(40),
                     ),
