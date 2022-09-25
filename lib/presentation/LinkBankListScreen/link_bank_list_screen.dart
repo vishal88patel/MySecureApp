@@ -49,7 +49,6 @@ class LinkBankListScreen extends StatelessWidget {
 
                             Expanded(
                               child: ListView(
-
                                   physics: const BouncingScrollPhysics(),
                                   shrinkWrap: true,
                                   children:[

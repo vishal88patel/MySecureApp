@@ -15,6 +15,7 @@ class BankListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 50,
       decoration: BoxDecoration(
           color: ColorConstant.blue26,
         borderRadius: BorderRadius.circular(10)
@@ -35,7 +36,7 @@ class BankListWidget extends StatelessWidget {
                 padding:  EdgeInsets.symmetric(
                     horizontal: getHorizontalSize(10),
                     vertical: getVerticalSize(10)),
-                child: Image.asset(image.toString(),
+                child: Image.network(image.toString(),
                   height: getVerticalSize(15.29),width: getHorizontalSize(15.29),)
               ),),
             SizedBox(width: getHorizontalSize(20),),

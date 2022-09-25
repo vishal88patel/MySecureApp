@@ -42,7 +42,13 @@ class SupportScreen extends StatelessWidget {
                         }),
                         SizedBox(height: getVerticalSize(15),),
                         SupportWidget(name: 'need more help?',icon: 'asset/icons/person_icon.png',onTap: (){
-                          Get.toNamed(AppRoutes.moreHelpScreen);
+                          // Get.toNamed(AppRoutes.moreHelpScreen);
+                          String webLink = "https://adminsecure.thriftyspends.com/contact-us";
+                          print("Webview Link in Daily Horoscope Page :- " + webLink);
+                          Get.toNamed(AppRoutes.webviewPage, arguments: {
+                            "webLink": webLink,
+                            "appBarName": "Contact us",
+                          });
                         }),
 
                       ],

@@ -66,6 +66,8 @@ import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
+import '../presentation/WebViewPage/binding/webview_binding.dart';
+import '../presentation/WebViewPage/webview_screen.dart';
 
 
 class AppRoutes {
@@ -104,7 +106,7 @@ class AppRoutes {
   static String transactionScreen = '/transaction_screen';
   static String uploadDocument= '/upload_document';
   static String linkBankListScreen= '/link_bank_list_screen';
-
+  static String webviewPage = '/webView_page';
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -431,6 +433,15 @@ class AppRoutes {
       page: () => LoanCalculatorScreen(),
       bindings: [
         LoanCalculatorScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: webviewPage,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => WebviewScreen(),
+      bindings: [
+        WbviewScreenBinding(),
       ],
     ),
 

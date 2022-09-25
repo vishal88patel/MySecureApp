@@ -51,6 +51,8 @@ dependencies:
   #  for border dashed
   dotted_border: ^2.0.0+2
   shimmer: ^2.0.0
+  webview_flutter:
+
 
 dev_dependencies:
   flutter_test:
