@@ -6,5 +6,6 @@ class ApiEndPoints {
   static String REGISTER = BASE_URL + "/auth/register";
   static String LOGOUT = BASE_URL + "/auth/logout";
   static String LOAN_TYPE = BASE_URL + "/auth/loan_type";
+  static String HOME_PAGE_API = BASE_URL + "/auth/home";
 
 }

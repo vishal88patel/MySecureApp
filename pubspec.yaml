@@ -50,6 +50,7 @@ dependencies:
   percent_indicator: ^4.2.2
   #  for border dashed
   dotted_border: ^2.0.0+2
+  shimmer: ^2.0.0
 
 dev_dependencies:
   flutter_test:

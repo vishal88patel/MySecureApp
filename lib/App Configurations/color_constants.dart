@@ -17,6 +17,8 @@ class ColorConstant {
   static Color underLine= const Color(0xFF2C2A31);
   static Color darkBlue= const Color(0xFF1A1C29);
   static Color blue62= const Color(0xFF092362);
+  static Color shimmerBaseColor = Colors.grey;
+  static Color shimmerHighlightColor = Color(0xFFF5F5F5);
 
   static Color blueFF= const Color(0xFF0088FF).withOpacity(0.20);
   // static Color primaryBlack = Color(0xFF070707);

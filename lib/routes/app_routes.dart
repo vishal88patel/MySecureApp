@@ -46,8 +46,6 @@ import 'package:my_secure_app/presentation/PrivacyPolicyScreen/binding/privacy_p
 import 'package:my_secure_app/presentation/PrivacyPolicyScreen/privacy_policy_screen.dart';
 import 'package:my_secure_app/presentation/ProfileScreen/binding/profile_screen_binding.dart';
 import 'package:my_secure_app/presentation/ProfileScreen/profile_screen.dart';
-import 'package:my_secure_app/presentation/SDashboardScreen/binding/s_dashboard_screen_binding.dart';
-import 'package:my_secure_app/presentation/SDashboardScreen/s_dashboard_screen.dart';
 import 'package:my_secure_app/presentation/SupportScreen/binding/support_screen_binding.dart';
 import 'package:my_secure_app/presentation/SupportScreen/support_screen.dart';
 import 'package:my_secure_app/presentation/TransactionScreen/binding/transaction_screen_binding.dart';
@@ -60,6 +58,8 @@ import '../presentation/CreatePasswordScreen/binding/create_password_screen_bind
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
 import '../presentation/EnterPasswordScreen/binding/enter_password_screen_binding.dart';
 import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
+import '../presentation/HomeScreen/binding/home_screen_binding.dart';
+import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoanCalculator/loan_calculator_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
@@ -92,7 +92,7 @@ class AppRoutes {
   static String dashBoardScreen = '/dashboard_screen';
   static String loanCalculatorScreen = '/loan_calculator_screen';
 
-  static String sDashboardScreen = '/s_dashboard_screen';
+  static String homeScreen = '/home_screen';
   static String profileScreen = '/profile_screen';
   static String userPersonalScreen = '/userPersonal_screen';
   static String privacyPolicyScreen = '/privacyPolicyScreen_screen';
@@ -246,12 +246,12 @@ class AppRoutes {
     ),
 
     GetPage(
-      name: sDashboardScreen,
+      name: homeScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 250),
-      page: () => SDashBoardScreen(),
+      page: () => HomeScreen(),
       bindings: [
-        SDashBoardScreenBinding(),
+        HomeScreenBinding(),
       ],
     ),
 

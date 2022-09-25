@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:my_secure_app/App%20Configurations/image_constants.dart';
 import 'package:my_secure_app/presentation/LinkBankListScreen/link_bank_list_screen.dart';
 import 'package:my_secure_app/presentation/LoanCalculator/loan_calculator_screen.dart';
-import 'package:my_secure_app/presentation/SDashboardScreen/s_dashboard_screen.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../BankListScreen/bank_list_screen.dart';
+import '../HomeScreen/home_screen.dart';
 import '../ProfileScreen/profile_screen.dart';
 import '../TransactionScreen/transaction_screen.dart';
 import 'controller/dashboard_screen_controller.dart';
@@ -26,7 +26,7 @@ class DashBoardScreen extends StatelessWidget {
         ()=> IndexedStack(
           index: dashBoardController.selectedIndex.value,
           children: [
-            SDashBoardScreen(),
+            HomeScreen(),
             TransactionScreen(),
             LinkBankListScreen(),
             LoanCalculatorScreen(),
