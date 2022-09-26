@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyWebView">
+
+
+    <TextView
+        android:id="@+id/getlogsfromapp"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"
+        android:textSize="15dp"
+        android:paddingBottom="4dp"
+        android:textColor="@color/design_default_color_primary_dark"
+        android:text="Logs will show here after typing in Webview"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/listtt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listtt"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_x="174dp"
+        android:layout_y="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/getlogsfromapp"
+        app:layout_constraintBottom_toTopOf="@id/webviewFlutter"/>
+
+    <WebView
+        android:id="@+id/webviewFlutter"
+        android:layout_width="match_parent"
+        android:layout_alignParentLeft="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listtt"
+        tools:layout_editor_absoluteX="98dp" android:layout_height="0dp">
+
+
+    </WebView>
+    <ProgressBar
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/progressBar_cyclic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+
+        android:layout_centerHorizontal="true" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
