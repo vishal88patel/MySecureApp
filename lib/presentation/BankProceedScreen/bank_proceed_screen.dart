@@ -93,11 +93,13 @@ class BankProceedScreen extends StatelessWidget {
                             // Note: Styles for TextSpans must be explicitly defined.
                             // Child text spans will inherit styles from parent
                             style: AppStyle.textStyleSFPRORegular.copyWith(
-                          color: ColorConstant.primaryBlack,
-                              fontWeight: FontWeight.w400,
-                              fontSize: getFontSize(16)),
+                                color: ColorConstant.primaryBlack,
+                                fontWeight: FontWeight.w400,
+                                fontSize: getFontSize(16)),
                             children: <TextSpan>[
-                              TextSpan(text: 'To improve your payments experience, extra Link ID will be activated. Standard SMS chares apply.'),
+                              TextSpan(
+                                  text:
+                                      'To improve your payments experience, extra Link ID will be activated. Standard SMS chares apply.'),
                               TextSpan(
                                   text: 'Learn more',
                                   style: const TextStyle(
@@ -110,7 +112,8 @@ class BankProceedScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(AppRoutes.approvedScreen);
+                            Get.toNamed(AppRoutes.collectDetailScreen);
+
                           },
                           style: ElevatedButton.styleFrom(
                             primary: ColorConstant.primaryBlack,

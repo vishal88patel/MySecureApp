@@ -15,6 +15,8 @@ import 'package:my_secure_app/presentation/CardListScreen/binding/card_list_scre
 import 'package:my_secure_app/presentation/CardListScreen/card_list_screen.dart';
 import 'package:my_secure_app/presentation/CardProfileDetailScreen/binding/card_profile_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/CardProfileDetailScreen/card_profile_detail_screen.dart';
+import 'package:my_secure_app/presentation/CollectDetailScreen/binding/splash_screen_binding.dart';
+import 'package:my_secure_app/presentation/CollectDetailScreen/collect_detail_screen.dart';
 import 'package:my_secure_app/presentation/DashboardScreen/binding/dashboard_screen_binding.dart';
 import 'package:my_secure_app/presentation/DashboardScreen/dashboard_screen.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
@@ -110,6 +112,7 @@ class AppRoutes {
   static String uploadDocument= '/upload_document';
   static String linkBankListScreen= '/link_bank_list_screen';
   static String webviewPage = '/webView_page';
+  static String collectDetailScreen = '/collect_detail_screen';
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -455,6 +458,17 @@ class AppRoutes {
       page: () => WebviewScreen(),
       bindings: [
         WbviewScreenBinding(),
+      ],
+    ),
+
+
+    GetPage(
+      name: collectDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => CollectDetailScreen(),
+      bindings: [
+        CollectDetailScreenBinding(),
       ],
     ),
 

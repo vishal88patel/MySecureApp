@@ -72,39 +72,52 @@ class BankListScreen extends StatelessWidget {
                     ),
                     Expanded(
                       child: Obx(
-                        () =>bankListController.bankListModel.value.data!=null? ListView.builder(
-                            itemCount: bankListController.mainBankList.value.length+1,
-                            physics: const BouncingScrollPhysics(),
-                            controller:bankListController. controller,
-                            itemBuilder: (BuildContext context, int index) {
-                              if(index==bankListController.mainBankList.value.length){
-                                if(bankListController.pageNumber.value>=bankListController.lastPage.value){
-                                  return Container();
-                                }else{
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Center(child: CircularProgressIndicator(color: ColorConstant.skyE8,)),
-                                  );
-                                }
-
-                              }else{
-                                return Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: getVerticalSize(6.5)),
-                                  child: InkWell(
-                                      onTap: () {
-                                        Get.toNamed(AppRoutes.progressScreen);
-                                      },
-                                      child: BankListWidget(
-                                        name: bankListController.mainBankList.value[index].name
-                                            .toString(),
-                                        image: bankListController.mainBankList.value[index].image
-                                            .toString(),)),
-                                );
-                              }
-
-
-                            }):Container(),
+                        () => bankListController.bankListModel.value.data !=
+                                null
+                            ? ListView.builder(
+                                itemCount: bankListController
+                                        .mainBankList.value.length +
+                                    1,
+                                physics: const BouncingScrollPhysics(),
+                                controller: bankListController.controller,
+                                itemBuilder: (BuildContext context, int index) {
+                                  if (index ==
+                                      bankListController
+                                          .mainBankList.value.length) {
+                                    if (bankListController.pageNumber.value >=
+                                        bankListController.lastPage.value) {
+                                      return Container();
+                                    } else {
+                                      return Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Center(
+                                            child: CircularProgressIndicator(
+                                          color: ColorConstant.skyE8,
+                                        )),
+                                      );
+                                    }
+                                  } else {
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: getVerticalSize(6.5)),
+                                      child: InkWell(
+                                          onTap: () {
+                                            // Get.toNamed(AppRoutes.progressScreen);
+                                            Get.toNamed(
+                                                AppRoutes.bankProceedScreen,);
+                                          },
+                                          child: BankListWidget(
+                                            name: bankListController
+                                                .mainBankList.value[index].name
+                                                .toString(),
+                                            image: bankListController
+                                                .mainBankList.value[index].image
+                                                .toString(),
+                                          )),
+                                    );
+                                  }
+                                })
+                            : Container(),
                       ),
                     )
                   ],
