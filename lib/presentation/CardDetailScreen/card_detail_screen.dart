@@ -46,12 +46,14 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                             SizedBox(height: getVerticalSize(45),
                                 child: AppTextFormFieldFill(
                                   hintText: 'Card holder name ',
+                                  controller: cardDetailController.nameController,
                                  )
                             ),
                             SizedBox(height: getVerticalSize(15),),
                             SizedBox(height: getVerticalSize(45),
                                 child: AppTextFormFieldFill(
                                   hintText: 'Credit/debit card number*',
+                                  controller: cardDetailController.cardNumberController,
                                  )
                             ),
                             SizedBox(height: getVerticalSize(15),),
@@ -61,6 +63,7 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                                   child: SizedBox(height: getVerticalSize(45),
                                       child: AppTextFormFieldFill(
                                         hintText: 'Exp month & year*',
+                                        controller: cardDetailController.expDateController,
                                       )
                                   ),
                                 ),
@@ -68,7 +71,8 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                                 Expanded(
                                   child: SizedBox(height: getVerticalSize(45),
                                       child: AppTextFormFieldFill(
-                                        hintText: 'CVC*',
+                                        hintText: 'CVV*',
+                                        controller: cardDetailController.cvvController,
                                       )
                                   ),
                                 ),
@@ -81,7 +85,8 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                                     fontWeight: FontWeight.w400,fontSize: getFontSize(12))),
                             Spacer(),
                             AppElevatedButton(buttonName: 'Next', onPressed: () {
-                              Get.toNamed(AppRoutes.progressScreen);
+                              cardDetailController.onClickOfAddCardButton();
+                              //Get.toNamed(AppRoutes.progressScreen);
                             },),
                             SizedBox(height: getVerticalSize(36),),
                             Center(child: Container(height: getVerticalSize(4),

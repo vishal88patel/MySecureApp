@@ -42,22 +42,24 @@ class CardListScreen extends StatelessWidget {
                             ),
                             SizedBox(height: getVerticalSize(25),),
                             Expanded(
-                              child: ListView.builder(
-                                itemCount: 5,
-                                physics: const BouncingScrollPhysics(),
-                                shrinkWrap: true,
-                                itemBuilder: (BuildContext context,int index) {
-                                  return Padding(
-                                    padding:  EdgeInsets.symmetric(vertical: getVerticalSize(6.5)),
-                                    child:InkWell(
-                                      onTap: (){
-                                        Get.toNamed(AppRoutes.cardDetailListScreen);
-                                      },
-                                      child: const  CreditCardWidget(cardHolderName: 'john Carter',
-                                          cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
-                                    ),
-                                  );
-                                }
+                              child: Obx(
+                                    () =>cardListController.cardListModel.value.data!=null? ListView.builder(
+                                        itemCount: cardListController.mainCardList.length,
+                                        physics: const BouncingScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemBuilder: (BuildContext context,int index) {
+                                          return Padding(
+                                            padding:  EdgeInsets.symmetric(vertical: getVerticalSize(6.5)),
+                                            child:InkWell(
+                                              onTap: (){
+                                                Get.toNamed(AppRoutes.cardDetailListScreen);
+                                              },
+                                              child: const  CreditCardWidget(cardHolderName: "ABC",
+                                                  cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
+                                            ),
+                                          );
+                                        }
+                                    ):Container(),
                               ),
                             )
                           ],
