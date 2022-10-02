@@ -31,7 +31,7 @@ class CollectDetailScreenController extends GetxController {
   }
 
   Future<void> gotoWeb() async {
-    await platformChannel.invokeMethod('goToWeb');
+    await platformChannel.invokeMethod('goToWeb',{"AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN)});
     platformChannel.setMethodCallHandler(_processEngineOutput);
   }
   Future<void> _processEngineOutput(MethodCall call) async {

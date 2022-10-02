@@ -41,7 +41,7 @@ class CardListScreenController extends GetxController {
       if (value['status']) {
         cardListModel.value = CardListResponseModel.fromJson(value);
         for (int i = 0; i < cardListModel.value.data!.length; i++) {
-          mainCardList.add(cardListModel.value.data![i]);
+          mainCardList.value.add(cardListModel.value.data![i]);
         }
 
       } else {

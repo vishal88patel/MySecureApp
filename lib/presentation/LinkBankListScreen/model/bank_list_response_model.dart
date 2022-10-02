@@ -62,9 +62,9 @@ class Banks {
   String? name;
   String? bankUrl;
   String? image;
-  Null? createdAt;
-  Null? updatedAt;
-  Null? deletedAt;
+  String? createdAt;
+  String? updatedAt;
+  String? deletedAt;
 
   Banks(
       {this.id,

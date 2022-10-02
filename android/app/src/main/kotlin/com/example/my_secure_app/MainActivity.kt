@@ -14,7 +14,9 @@ class MainActivity: FlutterActivity() {
             CHANNEL
         ).setMethodCallHandler { call, result ->
             if (call.method == "goToWeb") {
-                val intent = Intent(this,CustomActivity::class.java)
+                val token: String? = call.argument("AUTHTOKEN")
+                Constants.AuthToken=token
+                val intent = Intent(this,MyTestingActivityKotlin::class.java)
                 startActivity(intent)
             } else {
                 result.notImplemented()
