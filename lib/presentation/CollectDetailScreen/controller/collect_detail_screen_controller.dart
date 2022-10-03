@@ -13,6 +13,8 @@ import '../../EnterPasswordScreen/models/login_response_model.dart';
 
 class CollectDetailScreenController extends GetxController {
   static const platformChannel = MethodChannel('GET_DETAIL_CHANNEL');
+  var arguments = Get.arguments;
+  var bankId="";
 
   @override
   void onReady() {
@@ -21,9 +23,10 @@ class CollectDetailScreenController extends GetxController {
 
   @override
   void onInit() {
-    gotoWeb();
+    getArguments();
     super.onInit();
   }
+
 
   @override
   void onClose() {
@@ -31,11 +34,22 @@ class CollectDetailScreenController extends GetxController {
   }
 
   Future<void> gotoWeb() async {
-    await platformChannel.invokeMethod('goToWeb',{"AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN)});
+    await platformChannel.invokeMethod('goToWeb',{
+      "AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN,),
+      "BANK_ID": bankId,
+    });
     platformChannel.setMethodCallHandler(_processEngineOutput);
   }
+
   Future<void> _processEngineOutput(MethodCall call) async {
     print(call.arguments);
+  }
+
+  void getArguments() {
+    if (arguments != null) {
+      bankId = arguments['BANK_ID'] ?? '';
+      gotoWeb();
+    }
   }
 
 }

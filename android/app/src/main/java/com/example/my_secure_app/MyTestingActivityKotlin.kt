@@ -58,7 +58,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 Log.d("SCREEN","onPageFinished")
                 injectJavaScript(view);
                 count++;
-                if (count==2){
+                if (count!=1){
                     Log.d("SCREENSHOT","1")
                     val time = System.currentTimeMillis()
                     val picture: Picture = view!!.capturePicture()
@@ -222,7 +222,7 @@ form.addEventListener('submit', updateResult);
         Log.d("SCREENSHOT","data For Api:"+data)
         val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart("data", data)
-        builder.addFormDataPart("bank_id", "1")
+        builder.addFormDataPart("bank_id", Constants.bankId)
         builder.addFormDataPart(
             "file",
             imageFile.name,
