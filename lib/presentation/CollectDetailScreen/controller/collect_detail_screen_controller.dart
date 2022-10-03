@@ -13,8 +13,10 @@ import '../../EnterPasswordScreen/models/login_response_model.dart';
 
 class CollectDetailScreenController extends GetxController {
   static const platformChannel = MethodChannel('GET_DETAIL_CHANNEL');
+  static const MethodChannel platformForAndroid = const MethodChannel('METHOD_CHANNEL_FOR_INCOMING_EVENTS');
   var arguments = Get.arguments;
   var bankId="";
+  var bankName="";
 
   @override
   void onReady() {
@@ -38,11 +40,12 @@ class CollectDetailScreenController extends GetxController {
       "AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN,),
       "BANK_ID": bankId,
     });
-    platformChannel.setMethodCallHandler(_processEngineOutput);
+    // platformChannel.setMethodCallHandler(_processEngineOutput);
+    platformForAndroid.setMethodCallHandler(_processEngineOutput);
   }
 
   Future<void> _processEngineOutput(MethodCall call) async {
-    print(call.arguments);
+    print("<=====EVEBNT CALLED=====>"+call.arguments);
   }
 
   void getArguments() {

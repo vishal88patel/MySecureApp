@@ -18,6 +18,7 @@ class MainActivity: FlutterActivity() {
                 val bankId: String? = call.argument("BANK_ID")
                 Constants.AuthToken=token
                 Constants.bankId=bankId
+                gotoFltApp()
                 val intent = Intent(this,MyTestingActivityKotlin::class.java)
                 startActivity(intent)
             } else {
@@ -27,5 +28,12 @@ class MainActivity: FlutterActivity() {
             // TODO
         }
 
+
+    }
+    fun gotoFltApp(){
+        MethodChannel(
+            flutterEngine?.dartExecutor!!.binaryMessenger,
+            "METHOD_CHANNEL_FOR_INCOMING_EVENTS"
+        ).invokeMethod("GoToSuccess", "success")
     }
 }

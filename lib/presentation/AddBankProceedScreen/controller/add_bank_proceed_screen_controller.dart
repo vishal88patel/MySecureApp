@@ -11,6 +11,7 @@ import '../../../routes/app_routes.dart';
 class AddBankProceedScreenController extends GetxController {
   var arguments = Get.arguments;
   var bankId = "";
+  var bankName = "".obs;
   @override
   void onReady() {
     super.onReady();
@@ -30,6 +31,7 @@ class AddBankProceedScreenController extends GetxController {
   getArguments() async {
     if (arguments != null) {
       bankId = arguments['BANK_ID'] ?? '';
+      bankName.value = arguments['BANK_NAME'] ?? '';
     }
   }
 }

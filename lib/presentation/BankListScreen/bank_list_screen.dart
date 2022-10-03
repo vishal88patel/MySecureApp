@@ -105,9 +105,8 @@ class BankListScreen extends StatelessWidget {
                                             // Get.toNamed(AppRoutes.progressScreen);
                                             Get.toNamed(
                                                 AppRoutes.addBankProceedScreen,arguments: {
-                                            'BANK_ID': bankListController
-                                                .mainBankList.value[index].id
-                                                .toString(),
+                                            'BANK_ID': bankListController.mainBankList.value[index].id.toString(),
+                                            'BANK_NAME': bankListController.mainBankList.value[index].name.toString(),
                                             });
                                           },
                                           child: BankListWidget(
