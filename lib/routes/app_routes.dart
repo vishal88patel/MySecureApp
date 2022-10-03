@@ -42,6 +42,8 @@ import 'package:my_secure_app/presentation/PinScreen/pin_screen.dart';
 import 'package:my_secure_app/presentation/ProgressScreen/progress_screen.dart';
 import 'package:my_secure_app/presentation/SuccessScreen/binding/success_screen_binding.dart';
 import 'package:my_secure_app/presentation/SuccessScreen/success_screen.dart';
+import '../presentation/AddBankProceedScreen/add_bank_proceed_screen.dart';
+import '../presentation/AddBankProceedScreen/binding/add_bank_proceed_screen_binding.dart';
 import '../presentation/AmountNumPadScreen/amount_num_pad_screen.dart';
 import '../presentation/ApprovedScreen/approved_screen.dart';
 import '../presentation/ApprovedScreen/binding/approved_screen_binding.dart';
@@ -96,6 +98,7 @@ class AppRoutes {
   static String pinScreen = '/pin_screen';
   static String approvedScreen = '/approved_screen';
   static String bankProceedScreen = '/bank_procees_screen';
+  static String addBankProceedScreen = '/add_bank_procees_screen';
   static String dashBoardScreen = '/dashboard_screen';
   static String loanCalculatorScreen = '/loan_calculator_screen';
 
@@ -429,6 +432,16 @@ class AppRoutes {
       page: () => ApprovedScreen(),
       bindings: [
         ApprovedScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: addBankProceedScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => AddBankProceedScreen(),
+      bindings: [
+        AddBankProceedScreenBinding(),
       ],
     ),
 

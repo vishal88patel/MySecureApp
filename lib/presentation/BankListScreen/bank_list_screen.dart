@@ -104,7 +104,7 @@ class BankListScreen extends StatelessWidget {
                                           onTap: () {
                                             // Get.toNamed(AppRoutes.progressScreen);
                                             Get.toNamed(
-                                                AppRoutes.bankProceedScreen,);
+                                                AppRoutes.addBankProceedScreen,);
                                           },
                                           child: BankListWidget(
                                             name: bankListController
