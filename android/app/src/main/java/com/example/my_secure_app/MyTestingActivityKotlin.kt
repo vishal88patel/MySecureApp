@@ -4,21 +4,21 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
-import android.graphics.Canvas
-import android.graphics.Picture
+import android.graphics.*
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
-import android.text.TextUtils
 import android.text.format.DateFormat
 import android.util.Log
+import android.view.Window
+import android.view.WindowManager
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
@@ -35,6 +35,8 @@ import java.util.*
 
 class MyTestingActivityKotlin : AppCompatActivity() {
     private var webView: WebView?=null
+    private var url: TextView?=null
+    private var close: ImageView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
     private var count:Int=0
     private val permissionstorage = arrayOf(
@@ -46,7 +48,15 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_testing_kotlin)
+        supportActionBar?.hide()
         webView = findViewById(R.id.web_kotlin)
+        url= findViewById(R.id.tv_url)
+        close=findViewById(R.id.iv_close)
+        val window: Window = window
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.statusBarColor = Color.parseColor("#1D1C21")
+        url!!.text = "https://adminsecure.thriftyspends.com/login"
         verifypermissions(this)
         webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
@@ -87,14 +97,13 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                         Log.d("SCREENSHOT","3"+e)
                     }
                 }
-
             }
-
-
-
         }
         webView?.addJavascriptInterface(JSBridge, "Bridge")
         //getScreenshots("String")
+        close!!.setOnClickListener {
+            finish()
+        }
 
     }
 
