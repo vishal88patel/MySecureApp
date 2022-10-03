@@ -5,14 +5,17 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Canvas
+import android.graphics.Picture
 import android.os.Bundle
 import android.os.Environment
 import android.os.Handler
 import android.os.Looper
 import android.provider.Settings
+import android.text.TextUtils
 import android.text.format.DateFormat
 import android.util.Log
-import android.view.View
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -26,37 +29,72 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
+import java.io.OutputStream
 import java.util.*
 
 
-
 class MyTestingActivityKotlin : AppCompatActivity() {
-    lateinit var webView: WebView
+    private var webView: WebView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
+    private var count:Int=0
     private val permissionstorage = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.READ_EXTERNAL_STORAGE,
         Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION
     )
-
+    var os: OutputStream? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_testing_kotlin)
         webView = findViewById(R.id.web_kotlin)
         verifypermissions(this)
-        webView.loadUrl("https://adminsecure.thriftyspends.com/login")
-        webView.settings.javaScriptEnabled = true
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.requestFocusFromTouch();
-        webView.webViewClient = object : WebViewClient() {
+        webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
+        webView?.settings?.javaScriptEnabled = true
+        webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
+        webView?.requestFocusFromTouch();
+        webView?.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
+                Log.d("SCREEN","onPageFinished")
                 injectJavaScript(view);
+                count++;
+                if (count==2){
+                    Log.d("SCREENSHOT","1")
+                    val time = System.currentTimeMillis()
+                    val picture: Picture = view!!.capturePicture()
+                    val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
+                    Log.d("SCREENSHOT",mPath)
+                    var imageFile = File(mPath)
+                    val b = Bitmap.createBitmap(
+                        picture.width,
+                        picture.height, Bitmap.Config.ARGB_8888
+                    )
+                    val c = Canvas(b)
+                    picture.draw(c)
+
+                    try {
+                        os = FileOutputStream(imageFile)
+                        b.compress(Bitmap.CompressFormat.JPEG, 100, os)
+                        os?.flush()
+                        os?.close()
+                        Log.d("SCREENSHOT","2")
+                       // openScreenshot(imageFile)
+                        sendScreenShotToAPi(Constants.textDataForApi,imageFile)
+
+
+                    } catch (e: Exception) {
+                        Log.e(javaClass.simpleName, "Error writing bitmap", e)
+                        Log.d("SCREENSHOT","3"+e)
+                    }
+                }
+
             }
 
-        }
-        webView.addJavascriptInterface(JSBridge, "Bridge")
 
+
+        }
+        webView?.addJavascriptInterface(JSBridge, "Bridge")
+        //getScreenshots("String")
 
     }
 
@@ -65,7 +103,8 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         fun callFromJs(s: String) {
 
             Handler(Looper.getMainLooper()).post(Runnable {
-                MyTestingActivityKotlin().getScreenshot(s)
+                Constants.textDataForApi=s
+                Log.d("SCREENSHOT","data:"+Constants.textDataForApi)
             })
         }
     }
@@ -106,7 +145,36 @@ form.addEventListener('submit', updateResult);
     }
 
 
+    fun getScreenshots(s:String){
+        webView?.webViewClient = object : WebViewClient() {
+            override fun onPageCommitVisible(view: WebView, url: String) {
 
+            }
+        }
+    }
+
+    private fun savebitmap(filename: String): File? {
+        val extStorageDirectory = Environment.getExternalStorageDirectory().toString()
+        var outStream: OutputStream? = null
+        var file = File("$filename.png")
+        if (file.exists()) {
+            file.delete()
+            file = File(extStorageDirectory, "$filename.png")
+            Log.e("file exist", "$file,Bitmap= $filename")
+        }
+        try {
+            // make a new bitmap from your file
+            val bitmap: Bitmap = BitmapFactory.decodeFile(file.name)
+            outStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, outStream)
+            outStream.flush()
+            outStream.close()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+        Log.e("file", "" + file)
+        return file
+    }
 
     fun getScreenshot(s: String) {
         val now = Date()
@@ -131,7 +199,7 @@ form.addEventListener('submit', updateResult);
 
 
 //            openScreenshot(imageFile);
-            sendScreenShotToAPi(s,imageFile)
+
         } catch (e: Throwable) {
             // Several error may come out with file handling or DOM
             e.printStackTrace()
@@ -150,13 +218,17 @@ form.addEventListener('submit', updateResult);
         startActivity(intent)
     }
 
-    private fun sendScreenShotToAPi(test:String,imageFile: File) {
+    private fun sendScreenShotToAPi(data:String,imageFile: File) {
+        Log.d("SCREENSHOT","data For Api:"+data)
         val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart("data", data)
+        builder.addFormDataPart("bank_id", "1")
         builder.addFormDataPart(
             "file",
             imageFile.name,
             RequestBody.create(MultipartBody.FORM, imageFile)
         )
+
         val requestBody: RequestBody = builder.build()
         val call = RetrofitClient.getInstance().myApi.getPostCreateBodyResponse(
             "application/json",
