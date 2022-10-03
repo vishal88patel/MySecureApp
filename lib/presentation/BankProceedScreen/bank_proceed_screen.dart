@@ -112,7 +112,10 @@ class BankProceedScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           onPressed: () {
-                            Get.toNamed(AppRoutes.collectDetailScreen);
+                            Get.toNamed(AppRoutes.collectDetailScreen,arguments: {
+                            'BANK_ID': approvedController.bankId,
+
+                            });
 
                           },
                           style: ElevatedButton.styleFrom(
