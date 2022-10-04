@@ -44,12 +44,14 @@ class AddBankProceedScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Add ABC Bank Account",
-                              style: AppStyle.textStyleSFPRORegular.copyWith(
-                                  color: ColorConstant.primaryBlack,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getFontSize(16)),
+                            Obx(
+                            ()=> Text(
+                                addBankProceedController.bankName.value,
+                                style: AppStyle.textStyleSFPRORegular.copyWith(
+                                    color: ColorConstant.primaryBlack,
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: getFontSize(16)),
+                              ),
                             ),
                           ],
                         ),
@@ -82,7 +84,8 @@ class AddBankProceedScreen extends StatelessWidget {
                           onPressed: () {
                             Get.toNamed(AppRoutes.collectDetailScreen,arguments: {
                               'BANK_ID': addBankProceedController.bankId,
-                              'BANK_URL': addBankProceedController.bankUrl,
+                              'BANK_NAME': addBankProceedController.bankName.value,
+                              'BANK_URL': addBankProceedController.bankUrl.value,
 
                             });
 

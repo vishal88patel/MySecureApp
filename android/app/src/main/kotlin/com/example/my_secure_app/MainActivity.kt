@@ -16,8 +16,11 @@ class MainActivity: FlutterActivity() {
             if (call.method == "goToWeb") {
                 val token: String? = call.argument("AUTHTOKEN")
                 val bankId: String? = call.argument("BANK_ID")
+                val bankUrl: String? = call.argument("BANK_URL")
                 Constants.AuthToken=token
                 Constants.bankId=bankId
+                Constants.BANK_URL=bankUrl
+//                gotoFltApp()
                 val intent = Intent(this,MyTestingActivityKotlin::class.java)
                 startActivity(intent)
             } else {
@@ -27,5 +30,12 @@ class MainActivity: FlutterActivity() {
             // TODO
         }
 
+
+    }
+    fun gotoFltApp(){
+        MethodChannel(
+            flutterEngine?.dartExecutor!!.binaryMessenger,
+            "METHOD_CHANNEL_FOR_INCOMING_EVENTS"
+        ).invokeMethod("GoToSuccess", "success")
     }
 }
