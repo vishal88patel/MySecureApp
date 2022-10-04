@@ -108,6 +108,9 @@ class BankListScreen extends StatelessWidget {
                                             'BANK_ID': bankListController
                                                 .mainBankList.value[index].id
                                                 .toString(),
+                                              'BANK_URL':bankListController
+                                                  .mainBankList.value[index].bank_url
+                                                  .toString(),
                                             });
                                           },
                                           child: BankListWidget(
