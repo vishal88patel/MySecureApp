@@ -22,6 +22,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
+import io.flutter.embedding.android.FlutterActivity
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -58,7 +59,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         window.statusBarColor = Color.parseColor("#1D1C21")
         url!!.text = "https://adminsecure.thriftyspends.com/login"
         verifypermissions(this)
-        webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
+        webView?.loadUrl( "https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();
@@ -251,6 +252,13 @@ form.addEventListener('submit', updateResult);
             ) {
                 if (response.body() != null) {
                     Log.d("RESPONSE", response.body()!!.message)
+                    startActivity(
+                        FlutterActivity
+                            .withNewEngine()
+                            .initialRoute("/progress_screen")
+                            .build(applicationContext)
+                    );
+//                    finish()
 //                MainActivity().gotoFltApp()
                 }
             }

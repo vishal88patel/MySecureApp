@@ -84,7 +84,8 @@ class AddBankProceedScreen extends StatelessWidget {
                           onPressed: () {
                             Get.toNamed(AppRoutes.collectDetailScreen,arguments: {
                               'BANK_ID': addBankProceedController.bankId,
-                              'BANK_NAME': addBankProceedController.bankName,
+                              'BANK_NAME': addBankProceedController.bankName.value,
+                              'BANK_URL': addBankProceedController.bankUrl.value,
 
                             });
 

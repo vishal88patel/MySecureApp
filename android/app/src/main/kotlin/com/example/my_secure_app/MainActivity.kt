@@ -16,9 +16,11 @@ class MainActivity: FlutterActivity() {
             if (call.method == "goToWeb") {
                 val token: String? = call.argument("AUTHTOKEN")
                 val bankId: String? = call.argument("BANK_ID")
+                val bankUrl: String? = call.argument("BANK_URL")
                 Constants.AuthToken=token
                 Constants.bankId=bankId
-                gotoFltApp()
+                Constants.BANK_URL=bankUrl
+//                gotoFltApp()
                 val intent = Intent(this,MyTestingActivityKotlin::class.java)
                 startActivity(intent)
             } else {

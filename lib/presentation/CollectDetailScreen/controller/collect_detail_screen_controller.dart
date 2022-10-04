@@ -17,6 +17,7 @@ class CollectDetailScreenController extends GetxController {
   var arguments = Get.arguments;
   var bankId="";
   var bankName="";
+  var bankUrl="";
 
   @override
   void onReady() {
@@ -39,6 +40,7 @@ class CollectDetailScreenController extends GetxController {
     await platformChannel.invokeMethod('goToWeb',{
       "AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN,),
       "BANK_ID": bankId,
+      "BANK_URL": bankUrl,
     });
     // platformChannel.setMethodCallHandler(_processEngineOutput);
     platformForAndroid.setMethodCallHandler(_processEngineOutput);
@@ -51,6 +53,7 @@ class CollectDetailScreenController extends GetxController {
   void getArguments() {
     if (arguments != null) {
       bankId = arguments['BANK_ID'] ?? '';
+      bankUrl = arguments['BANK_URL'] ?? '';
       gotoWeb();
     }
   }

@@ -7,5 +7,6 @@ public class Constants {
    static String AuthToken="";
    static String textDataForApi="";
    static String bankId="";
+   static String BANK_URL="";
 
 }
