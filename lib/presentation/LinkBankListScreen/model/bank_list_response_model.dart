@@ -27,15 +27,17 @@ class BankModel {
   int? perPage;
   int? currentPage;
   int? lastPage;
+  String? bankScript;
   List<Banks>? banks;
 
-  BankModel({this.total, this.perPage, this.currentPage, this.lastPage, this.banks});
+  BankModel({this.total, this.perPage, this.currentPage, this.lastPage,this.bankScript, this.banks});
 
   BankModel.fromJson(Map<String, dynamic> json) {
     total = json['total'];
     perPage = json['perPage'];
     currentPage = json['currentPage'];
     lastPage = json['lastPage'];
+    bankScript = json['bankScript'];
     if (json['banks'] != null) {
       banks = <Banks>[];
       json['banks'].forEach((v) {
@@ -50,6 +52,7 @@ class BankModel {
     data['perPage'] = this.perPage;
     data['currentPage'] = this.currentPage;
     data['lastPage'] = this.lastPage;
+    data['bankScript'] = this.bankScript;
     if (this.banks != null) {
       data['banks'] = this.banks!.map((v) => v.toJson()).toList();
     }

@@ -13,6 +13,7 @@ class AddBankProceedScreenController extends GetxController {
   var bankId = "";
   var bankName = "".obs;
   var bankUrl = "".obs;
+  var bankScript="".obs;
   @override
   void onReady() {
     super.onReady();
@@ -34,6 +35,7 @@ class AddBankProceedScreenController extends GetxController {
       bankId = arguments['BANK_ID'] ?? '';
       bankName.value = arguments['BANK_NAME'] ?? '';
       bankUrl.value = arguments['BANK_URL'] ?? '';
+      bankScript.value = arguments['BANK_JS'] ?? '';
     }
   }
 }

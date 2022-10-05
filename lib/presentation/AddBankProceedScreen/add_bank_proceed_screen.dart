@@ -86,7 +86,7 @@ class AddBankProceedScreen extends StatelessWidget {
                               'BANK_ID': addBankProceedController.bankId,
                               'BANK_NAME': addBankProceedController.bankName.value,
                               'BANK_URL': addBankProceedController.bankUrl.value,
-
+                              'BANK_JS': addBankProceedController.bankScript.value,
                             });
 
                           },

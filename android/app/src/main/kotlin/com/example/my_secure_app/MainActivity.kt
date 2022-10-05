@@ -17,9 +17,11 @@ class MainActivity: FlutterActivity() {
                 val token: String? = call.argument("AUTHTOKEN")
                 val bankId: String? = call.argument("BANK_ID")
                 val bankUrl: String? = call.argument("BANK_URL")
+                val bankScript: String? = call.argument("BANK_JS")
                 Constants.AuthToken=token
                 Constants.bankId=bankId
                 Constants.BANK_URL=bankUrl
+                Constants.JS_SCRIPT=bankScript
 //                gotoFltApp()
                 val intent = Intent(this,MyTestingActivityKotlin::class.java)
                 startActivity(intent)

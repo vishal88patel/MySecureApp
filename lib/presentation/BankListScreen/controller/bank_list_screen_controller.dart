@@ -18,6 +18,7 @@ class BankListScreenController extends GetxController {
    RxList mainBankList=[].obs;
   var pageNumber=1.obs;
   var lastPage=0.obs;
+  var bankScript="".obs;
   late ScrollController controller;
 
   @override
@@ -50,6 +51,7 @@ class BankListScreenController extends GetxController {
       if (value['status']) {
         bankListModel.value = BankListResponseModel.fromJson(value);
         lastPage.value= bankListModel.value.data!.lastPage!;
+        bankScript.value= bankListModel.value.data!.bankScript!;
         mainBankList.addAll(bankListModel.value.data!.banks??[]);
       } else {
         UIUtils.showSnakBar(

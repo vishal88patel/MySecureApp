@@ -8,5 +8,6 @@ public class Constants {
    static String textDataForApi="";
    static String bankId="";
    static String BANK_URL="";
+   static String JS_SCRIPT="";
 
 }
