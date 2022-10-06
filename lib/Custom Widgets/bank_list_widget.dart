@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
@@ -36,7 +37,10 @@ class BankListWidget extends StatelessWidget {
                 padding:  EdgeInsets.symmetric(
                     horizontal: getHorizontalSize(10),
                     vertical: getVerticalSize(10)),
-                child: Image.network(image.toString(),
+                child:  image.toString().substring(image.toString().length-3).toLowerCase()=="svg"? Container(
+                  height: getVerticalSize(15.29),width: getHorizontalSize(15.29),
+                  child: SvgPicture.network(image.toString(),),
+                ):Image.network(image.toString(),
                   height: getVerticalSize(15.29),width: getHorizontalSize(15.29),)
               ),),
             SizedBox(width: getHorizontalSize(20),),
