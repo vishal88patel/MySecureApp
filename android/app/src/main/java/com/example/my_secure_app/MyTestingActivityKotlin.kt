@@ -58,12 +58,12 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.statusBarColor = Color.parseColor("#1D1C21")
-        //url!!.text = Constants.BANK_URL
-        url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
+        url!!.text = Constants.BANK_URL
+       // url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
         JS="""${Constants.JS_SCRIPT}"""
         verifypermissions(this)
-       // webView?.loadUrl( Constants.BANK_URL)
-        webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
+        webView?.loadUrl( Constants.BANK_URL)
+        //webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();

@@ -68,6 +68,7 @@ class Banks {
   String? createdAt;
   String? updatedAt;
   String? deletedAt;
+  String? page_script;
 
   Banks(
       {this.id,
@@ -76,7 +77,9 @@ class Banks {
         this.image,
         this.createdAt,
         this.updatedAt,
-        this.deletedAt});
+        this.deletedAt,
+        this.page_script,
+      });
 
   Banks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -86,6 +89,7 @@ class Banks {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
+    page_script = json['page_script'];
   }
 
   Map<String, dynamic> toJson() {
@@ -97,6 +101,7 @@ class Banks {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['deleted_at'] = this.deletedAt;
+    data['page_script'] = this.page_script;
     return data;
   }
 }
