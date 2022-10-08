@@ -40,6 +40,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     private var close: ImageView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
     private var count:Int=0
+    private var apiCount:Int=0
     private var JS=""" """
     private val permissionstorage = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -58,6 +59,9 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.statusBarColor = Color.parseColor("#1D1C21")
+        webView?.getSettings()?.loadWithOverviewMode = true
+        webView?.getSettings()?.useWideViewPort = true
+        webView?.getSettings()?.domStorageEnabled = true
         url!!.text = Constants.BANK_URL
        // url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
         JS="""${Constants.JS_SCRIPT}"""
@@ -243,13 +247,14 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             ) {
                 if (response.body() != null) {
                     Log.d("RESPONSE", response.body()!!.message)
+
                     startActivity(
                         FlutterActivity
                             .withNewEngine()
                             .initialRoute("/progress_screen")
                             .build(applicationContext)
                     );
-//                    finish()
+                    finish()
 //                MainActivity().gotoFltApp()
                 }
             }

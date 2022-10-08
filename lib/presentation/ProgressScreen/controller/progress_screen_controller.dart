@@ -18,7 +18,7 @@ class ProgressScreenController extends GetxController {
   void onInit() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     Future.delayed(Duration(milliseconds: 2500), () {
-      Get.offAndToNamed(AppRoutes.successScreen);
+      Get.offAllNamed(AppRoutes.successScreen);
     });
     super.onInit();
   }
