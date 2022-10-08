@@ -65,13 +65,11 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         webView?.getSettings()?.useWideViewPort = true
         webView?.getSettings()?.domStorageEnabled = true
         url!!.text = Constants.BANK_URL
-       // url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
-        //url!!.text = Constants.BANK_URL
-        url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
+        //url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
         JS="""${Constants.JS_SCRIPT}"""
         verifypermissions()
-        //webView?.loadUrl( Constants.BANK_URL)
-        webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
+        webView?.loadUrl( Constants.BANK_URL)
+       // webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();
@@ -153,9 +151,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         }
         webView?.addJavascriptInterface(JSBridge, "Bridge")
         //getScreenshots("String")
-        close!!.setOnClickListener {
-            finish()
-        }
+
 
     }
 
