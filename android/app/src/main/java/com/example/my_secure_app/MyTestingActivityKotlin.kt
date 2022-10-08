@@ -300,7 +300,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                             .initialRoute("/progress_screen")
                             .build(applicationContext)
                     );
-                    finish()
+                    onBackPressed()
 //                MainActivity().gotoFltApp()
                 }
             }
@@ -311,5 +311,8 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         })
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 
 }

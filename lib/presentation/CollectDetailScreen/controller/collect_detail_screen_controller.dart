@@ -38,7 +38,7 @@ class CollectDetailScreenController extends GetxController {
   }
 
   Future<void> gotoWeb() async {
-    await platformChannel.invokeMethod('goToWeb',{
+    await  MethodChannel('GET_DETAIL_CHANNEL').invokeMethod('goToWeb',{
       "AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN,),
       "BANK_ID": bankId,
       "BANK_URL": bankUrl,

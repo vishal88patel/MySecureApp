@@ -40,4 +40,8 @@ class MainActivity: FlutterActivity() {
             "METHOD_CHANNEL_FOR_INCOMING_EVENTS"
         ).invokeMethod("GoToSuccess", "success")
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+    }
 }
