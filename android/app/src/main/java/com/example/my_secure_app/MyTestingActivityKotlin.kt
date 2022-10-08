@@ -1,14 +1,14 @@
 package com.example.my_secure_app
 
 import android.Manifest
+import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.*
-import android.os.Bundle
-import android.os.Environment
-import android.os.Handler
-import android.os.Looper
+import android.net.Uri
+import android.os.*
+import android.os.Build.VERSION.SDK_INT
 import android.provider.Settings
 import android.text.format.DateFormat
 import android.util.Log
