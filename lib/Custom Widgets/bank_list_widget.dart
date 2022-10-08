@@ -16,7 +16,7 @@ class BankListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 70,
       decoration: BoxDecoration(
           color: ColorConstant.blue26,
         borderRadius: BorderRadius.circular(10)

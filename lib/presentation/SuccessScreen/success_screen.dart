@@ -39,7 +39,9 @@ class SuccessScreen extends StatelessWidget {
                     AppElevatedButton(
                         buttonName: 'Go to Home',
                         onPressed: () {
-                          Get.offAndToNamed(AppRoutes.dashBoardScreen);
+                          // Get.offAndToNamed(AppRoutes.dashBoardScreen);
+                          Get.back();
+                          Get.back();
                         }),
                   ],
                 )),

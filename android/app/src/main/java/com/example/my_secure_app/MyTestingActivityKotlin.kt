@@ -292,13 +292,14 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             ) {
                 if (response.body() != null) {
                     Log.d("RESPONSE", response.body()!!.message)
+                    onBackPressed()
                     startActivity(
                         FlutterActivity
                             .withNewEngine()
                             .initialRoute("/progress_screen")
                             .build(applicationContext)
                     );
-                    onBackPressed()
+
 //                MainActivity().gotoFltApp()
                 }
             }
@@ -307,10 +308,6 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 Log.d("RESPONSE", t.toString())
             }
         })
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
     }
 
 }
