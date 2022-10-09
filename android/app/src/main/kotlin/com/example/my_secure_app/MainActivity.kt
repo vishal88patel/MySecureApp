@@ -27,7 +27,7 @@ class MainActivity : FlutterActivity() {
                 Constants.JS_SCRIPT = ""
                 Constants.textDataForApi = ""
                 Constants.killApp = false
-                killcount=0
+//                killcount=0
                 Constants.AuthToken = token
                 Constants.bankId = bankId
                 Constants.BANK_URL = bankUrl
