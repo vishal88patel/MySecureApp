@@ -268,18 +268,6 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             e.printStackTrace()
         }
     }
-    private fun openScreenshot(imageFile: File) {
-        val intent = Intent()
-        intent.action = Intent.ACTION_VIEW
-        val photoURI = FileProvider.getUriForFile(
-            applicationContext, applicationContext.packageName + ".provider", imageFile
-        )
-
-//        Uri uri = Uri.fromFile(imageFile);
-        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
-        intent.setDataAndType(photoURI, "image/*")
-        startActivity(intent)
-    }
 
     private fun sendScreenShotToAPi(data:String,imageFile: File) {
         Log.d("SCREENSHOT","data For Api:"+data)
