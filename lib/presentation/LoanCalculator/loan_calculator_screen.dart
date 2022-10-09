@@ -457,7 +457,9 @@ class LoanCalculatorScreen extends StatelessWidget {
                         textColor: ColorConstant.primaryBlack,
                         fontWeight: FontWeight.w700,
                         onPressed: () {
-                          Get.toNamed(AppRoutes.loanStepScreen);
+                          // Get.toNamed(AppRoutes.loanStepScreen);
+                          // Get.offAllNamed(AppRoutes.dashBoardScreen);
+                          Get.toNamed(AppRoutes.successScreen);
                         },),
                     ),
                     SizedBox(height: getVerticalSize(40),),

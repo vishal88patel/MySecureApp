@@ -34,7 +34,7 @@ class ProgressScreen extends StatelessWidget {
                           height: MediaQuery.of(context).size.height / 2,
                           width: MediaQuery.of(context).size.width),
                     ),
-                    Text("Finding account linked with bank",
+                    Text("Linking account linked with bank",
                       style: AppStyle.textStyleSFPRORegular
                           .copyWith(color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w400,fontSize: getFontSize(18)),),

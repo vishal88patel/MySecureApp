@@ -1,14 +1,17 @@
 package com.example.my_secure_app
 
 import android.content.Intent
+import android.util.Log
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
-class MainActivity: FlutterActivity() {
+class MainActivity : FlutterActivity() {
     private val CHANNEL = "GET_DETAIL_CHANNEL"
+    private var killcount: Int = 0;
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
+
         MethodChannel(
             flutterEngine.dartExecutor.binaryMessenger,
             CHANNEL
@@ -18,13 +21,20 @@ class MainActivity: FlutterActivity() {
                 val bankId: String? = call.argument("BANK_ID")
                 val bankUrl: String? = call.argument("BANK_URL")
                 val bankScript: String? = call.argument("BANK_JS")
-                Constants.AuthToken=token
-                Constants.bankId=bankId
-                Constants.BANK_URL=bankUrl
-                Constants.JS_SCRIPT=bankScript
-//                gotoFltApp()
-                val intent = Intent(this,MyTestingActivityKotlin::class.java)
+                Constants.AuthToken = ""
+                Constants.bankId = ""
+                Constants.BANK_URL = ""
+                Constants.JS_SCRIPT = ""
+                Constants.killApp = false
+
+                Constants.AuthToken = token
+                Constants.bankId = bankId
+                Constants.BANK_URL = bankUrl
+                Constants.JS_SCRIPT = bankScript
+
+                val intent = Intent(this, MyTestingActivityKotlin::class.java)
                 startActivity(intent)
+//                finish()
             } else {
                 result.notImplemented()
             }
@@ -34,7 +44,8 @@ class MainActivity: FlutterActivity() {
 
 
     }
-    fun gotoFltApp(){
+
+    fun gotoFltApp() {
         MethodChannel(
             flutterEngine?.dartExecutor!!.binaryMessenger,
             "METHOD_CHANNEL_FOR_INCOMING_EVENTS"
@@ -43,5 +54,43 @@ class MainActivity: FlutterActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        Log.d("DDDDDDDDDDDDD", "____-----------onDestroy")
     }
+
+    override fun onResume() {
+
+        super.onResume()
+        Log.d("DDDDDDDDDDDDD", "____-----------onResume" + killcount.toString())
+
+        killcount++
+        if (killcount > 1) {
+
+            if (Constants.killApp == true) {
+                Log.d("DDDDDDDDDDDDD", "____-----------kill" + killcount.toString())
+                MethodChannel(
+                    flutterEngine?.dartExecutor!!.binaryMessenger,
+                    "INCOMING_EVENTS"
+                ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
+                killcount = 0
+//                finish()
+
+            } else {
+                MethodChannel(
+                    flutterEngine?.dartExecutor!!.binaryMessenger,
+                    "INCOMING_EVENTS"
+                ).invokeMethod("SHOW_SUCCESS_SCREEN", false)
+            }
+
+        }else{
+            if(Constants.killApp){
+                MethodChannel(
+                    flutterEngine?.dartExecutor!!.binaryMessenger,
+                    "INCOMING_EVENTS"
+                ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
+                killcount = 0
+//                finish()
+            }
+        }
+    }
+
 }

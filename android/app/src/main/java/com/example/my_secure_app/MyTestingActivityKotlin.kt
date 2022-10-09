@@ -23,6 +23,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.FlutterEngine
+import io.flutter.embedding.engine.FlutterEngineCache
+import io.flutter.embedding.engine.dart.DartExecutor
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -45,6 +48,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     private var apiCount:Int=0
     private var JS=""" """
     private val handler = Handler()
+    lateinit var flutterEngine : FlutterEngine
     private val permissionstorage = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -170,7 +174,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
 
             Handler(Looper.getMainLooper()).post(Runnable {
                 Constants.textDataForApi=s
-                Log.d("SCREENSHOT","data:"+Constants.textDataForApi)
+                Log.v("<=====SCREENSHOT=====>","data:"+Constants.textDataForApi)
             })
         }
     }
@@ -300,16 +304,27 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 response: Response<DataResponseModel?>
             ) {
                 if (response.body() != null) {
-                    Log.d("RESPONSE", response.body()!!.message)
-                    webView!!.invalidate()
+                    Log.d("<=====RESPONSE=====>", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
+                    Constants.killApp=true
+                    finish()
+//                    startActivity(
+//                        FlutterActivity.createDefaultIntent(this@MyTestingActivityKotlin)
+//                    );
+
+//                    webView!!.invalidate()
 //                    onBackPressed()
 //                    finish()
-                    startActivity(
-                        FlutterActivity
-                            .withNewEngine()
-                            .initialRoute("/progress_screen")
-                            .build(applicationContext)
-                    );
+//                    startActivity(
+//                        FlutterActivity
+//                            .withNewEngine()
+//                            .initialRoute("/progress_screen")
+//                            .build(applicationContext)
+//                    );
+
+
+//                    startActivity(
+//                        FlutterActivity.createDefaultIntent(FlutterActivity())
+//                    );
 
 //                MainActivity().gotoFltApp()
                 }
@@ -320,5 +335,6 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             }
         })
     }
+
 
 }

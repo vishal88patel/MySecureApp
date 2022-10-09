@@ -13,7 +13,7 @@ import '../../EnterPasswordScreen/models/login_response_model.dart';
 
 class CollectDetailScreenController extends GetxController {
   static const platformChannel = MethodChannel('GET_DETAIL_CHANNEL');
-  static const MethodChannel platformForAndroid = const MethodChannel('METHOD_CHANNEL_FOR_INCOMING_EVENTS');
+  static const MethodChannel platformForAndroid = const MethodChannel('INCOMING_EVENTS');
   var arguments = Get.arguments;
   var bankId="";
   var bankName="";
@@ -27,6 +27,7 @@ class CollectDetailScreenController extends GetxController {
 
   @override
   void onInit() {
+    platformForAndroid.setMethodCallHandler(_processEngineOutput);
     getArguments();
     super.onInit();
   }
@@ -38,17 +39,21 @@ class CollectDetailScreenController extends GetxController {
   }
 
   Future<void> gotoWeb() async {
-    await  MethodChannel('GET_DETAIL_CHANNEL').invokeMethod('goToWeb',{
+    await  platformChannel.invokeMethod('goToWeb',{
       "AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN,),
       "BANK_ID": bankId,
       "BANK_URL": bankUrl,
       "BANK_JS":bankScript
     });
-    // platformChannel.setMethodCallHandler(_processEngineOutput);
-    platformForAndroid.setMethodCallHandler(_processEngineOutput);
   }
 
   Future<void> _processEngineOutput(MethodCall call) async {
+    var arg=call.arguments;
+    if(arg){
+      Get.offAllNamed(AppRoutes.progressScreen);
+    }else{
+      Get.back();
+    }
     print("<=====EVEBNT CALLED=====>"+call.arguments);
   }
 
