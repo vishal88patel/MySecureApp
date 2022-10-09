@@ -231,11 +231,11 @@ public class CustomActivity extends AppCompatActivity {
         call.enqueue(new Callback<DataResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<DataResponseModel> call, @NonNull Response<DataResponseModel> response) {
-                if (response.body() != null) {
-                    progressBar.setVisibility(View.GONE);
-                    Log.d("RESPONSE", response.body().getMessage());
-
-                }
+//                if (response.body() != null) {
+//                    progressBar.setVisibility(View.GONE);
+//                    Log.d("RESPONSE", response.body().getMessage());
+//
+//                }
 
             }
 

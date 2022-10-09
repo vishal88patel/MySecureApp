@@ -2,7 +2,7 @@ package com.example.my_secure_app;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-public class DataResponseModel {
+ class DataResponseModel {
 
     @SerializedName("status")
     @Expose

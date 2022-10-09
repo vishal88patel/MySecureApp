@@ -36,13 +36,16 @@ class SuccessScreen extends StatelessWidget {
                       style: AppStyle.textStyleSFPRORegular
                           .copyWith(color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w400,fontSize: getFontSize(18)),),
-                    AppElevatedButton(
-                        buttonName: 'Go to Home',
-                        onPressed: () {
-                          // Get.offAndToNamed(AppRoutes.dashBoardScreen);
-                          Get.back();
-                          Get.back();
-                        }),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 8),
+                      child: AppElevatedButton(
+                          buttonName: 'Go to Home',
+                          onPressed: () {
+                            Get.offAllNamed(AppRoutes.dashBoardScreen);
+                            // Get.offAndToNamed(AppRoutes.dashBoardScreen);
+                            // Get.back();
+                          }),
+                    ),
                   ],
                 )),
           ),

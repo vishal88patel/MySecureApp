@@ -2,9 +2,7 @@ package com.example.my_secure_app
 
 import android.Manifest
 import android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.*
 import android.net.Uri
 import android.os.*
@@ -12,12 +10,14 @@ import android.os.Build.VERSION.SDK_INT
 import android.provider.Settings
 import android.text.format.DateFormat
 import android.util.Log
+import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.webkit.JavascriptInterface
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -36,6 +36,7 @@ import java.util.*
 
 class MyTestingActivityKotlin : AppCompatActivity() {
     private var webView: WebView?=null
+    private var progress_bar: ProgressBar?=null
     private var url: TextView?=null
     private var close: ImageView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
@@ -55,6 +56,8 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         setContentView(R.layout.activity_my_testing_kotlin)
         supportActionBar?.hide()
         webView = findViewById(R.id.web_kotlin)
+        progress_bar = findViewById(R.id.pp)
+
         url= findViewById(R.id.tv_url)
         close=findViewById(R.id.iv_close)
         val window: Window = window
@@ -74,9 +77,15 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();
         webView?.webViewClient = object : WebViewClient() {
+            override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                super.onPageStarted(view, url, favicon)
+                progress_bar!!.setVisibility(View.VISIBLE)
+            }
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
                 Log.d("SCREEN","onPageFinished")
+                progress_bar!!.setVisibility(View.GONE)
+
                 injectJavaScript(view);
                 count++;
                 if (count!=1){
@@ -292,7 +301,9 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             ) {
                 if (response.body() != null) {
                     Log.d("RESPONSE", response.body()!!.message)
-                    onBackPressed()
+                    webView!!.invalidate()
+//                    onBackPressed()
+//                    finish()
                     startActivity(
                         FlutterActivity
                             .withNewEngine()
