@@ -65,7 +65,7 @@ class EnterPasswordScreenController extends GetxController {
         LoginResponseModel loginResponseModel =LoginResponseModel.fromJson(value);
         PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
-        Get.offAllNamed(AppRoutes.dashBoardScreen);
+        Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
