@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_textFormField_fill.dart';
 import 'package:my_secure_app/Custom%20Widgets/dashboard_widget.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
-import 'package:my_secure_app/presentation/BankDetailScreen/controller/bank_detail_screen_controller.dart';
-import 'package:my_secure_app/presentation/CardDetailScreen/controller/card_detail_screen_controller.dart';
-import 'package:my_secure_app/presentation/PersonalDetails/controller/personal_detail_screen_controller.dart';
 import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'package:shimmer/shimmer.dart';
-
-import 'controller/home_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
@@ -119,11 +111,15 @@ class HomeScreen extends StatelessWidget {
                               image: 'asset/blue_card_image.png',
                               icon: 'asset/icons/walle_tbalance.png',
                               title: 'Wallet Balance',
+                              onTap: () {},
                             ),
                             DashboardWidget(
                               image: 'asset/purple_card_image.png',
                               icon: 'asset/icons/bank_icon.png',
                               title: '         Link Bank         ',
+                              onTap: () {
+                                Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":2});
+                              },
                             ),
                           ],
                         ),
@@ -137,11 +133,13 @@ class HomeScreen extends StatelessWidget {
                               image: 'asset/orange_card_image.png',
                               icon: 'asset/icons/apply_loan_icon (2).png',
                               title: 'Apply for Loan',
+                              onTap: () {},
                             ),
                             DashboardWidget(
                               image: 'asset/sky_card_image.png',
                               icon: 'asset/icons/bush_icon.png',
                               title: 'Boost Cibil Score',
+                              onTap: () {},
                             ),
                           ],
                         ),
@@ -199,59 +197,61 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Container(
                           height: size.height / 6.5,
-                          child: Obx(
-                            () => homeController
-                                    .homeModel.value.data!=null
-                                ? SizedBox(
-                                    height: getVerticalSize(135),
-                                    child: ListView.builder(
-                                      physics: BouncingScrollPhysics(),
-                                      itemCount: homeController.homeModel.value
-                                          .data!.topOffer!.length,
-                                      scrollDirection: Axis.horizontal,
-                                      itemBuilder: (context, pagePosition) {
-                                        return GestureDetector(
-                                          onTap: () async {},
-                                          child: Container(
-                                            width: size.width/2,
-                                            padding: EdgeInsets.only(
-                                                right: 16),
-                                            child: ClipRRect(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(
-                                                      getHorizontalSize(15))),
-                                              child: Image.network(
-                                                homeController
-                                                    .homeModel
-                                                    .value
-                                                    .data!
-                                                    .topOffer![pagePosition],
-                                                fit: BoxFit.cover,
-                                              ),
+                          child: Obx(() => homeController
+                                      .homeModel.value.data !=
+                                  null
+                              ? SizedBox(
+                                  height: getVerticalSize(135),
+                                  child: ListView.builder(
+                                    physics: BouncingScrollPhysics(),
+                                    itemCount: homeController
+                                        .homeModel.value.data!.topOffer!.length,
+                                    scrollDirection: Axis.horizontal,
+                                    itemBuilder: (context, pagePosition) {
+                                      return GestureDetector(
+                                        onTap: () async {},
+                                        child: Container(
+                                          width: size.width / 2,
+                                          padding: EdgeInsets.only(right: 16),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(
+                                                    getHorizontalSize(15))),
+                                            child: Image.network(
+                                              homeController
+                                                  .homeModel
+                                                  .value
+                                                  .data!
+                                                  .topOffer![pagePosition],
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
-                                        );
-                                      },
-                                    ),
-                                  )
-                                :Row(
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                )
+                              : Row(
                                   children: [
                                     Expanded(
                                       child: Shimmer.fromColors(
-                                        baseColor: ColorConstant.shimmerBaseColor,
+                                        baseColor:
+                                            ColorConstant.shimmerBaseColor,
                                         highlightColor:
-                                        ColorConstant.shimmerHighlightColor,
+                                            ColorConstant.shimmerHighlightColor,
                                         child: Container(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
-                                                horizontal: getHorizontalSize(10)),
+                                                horizontal:
+                                                    getHorizontalSize(10)),
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(
                                                       getHorizontalSize(15))),
                                               child: Container(
                                                 height: getVerticalSize(350),
-                                                color: ColorConstant.primaryWhite,
+                                                color:
+                                                    ColorConstant.primaryWhite,
                                               ),
                                             ),
                                           ),
@@ -260,20 +260,23 @@ class HomeScreen extends StatelessWidget {
                                     ),
                                     Expanded(
                                       child: Shimmer.fromColors(
-                                        baseColor: ColorConstant.shimmerBaseColor,
+                                        baseColor:
+                                            ColorConstant.shimmerBaseColor,
                                         highlightColor:
-                                        ColorConstant.shimmerHighlightColor,
+                                            ColorConstant.shimmerHighlightColor,
                                         child: Container(
                                           child: Padding(
                                             padding: EdgeInsets.symmetric(
-                                                horizontal: getHorizontalSize(10)),
+                                                horizontal:
+                                                    getHorizontalSize(10)),
                                             child: ClipRRect(
                                               borderRadius: BorderRadius.all(
                                                   Radius.circular(
                                                       getHorizontalSize(15))),
                                               child: Container(
                                                 height: getVerticalSize(350),
-                                                color: ColorConstant.primaryWhite,
+                                                color:
+                                                    ColorConstant.primaryWhite,
                                               ),
                                             ),
                                           ),
@@ -281,8 +284,7 @@ class HomeScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ],
-                                )
-                          ),
+                                )),
                         ),
                       ],
                     ),

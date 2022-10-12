@@ -10,6 +10,7 @@ import '../../../routes/app_routes.dart';
 
 class DashBoarScreenController extends GetxController {
   var selectedIndex = 0.obs;
+  var arguments = Get.arguments;
   @override
   void onReady() {
     super.onReady();
@@ -17,7 +18,7 @@ class DashBoarScreenController extends GetxController {
 
   @override
   void onInit() {
-
+    getArguments();
     super.onInit();
   }
 
@@ -29,5 +30,10 @@ class DashBoarScreenController extends GetxController {
   void onTapOfBottomnavigation(int value) {
     selectedIndex.value=value;
 
+  }
+  void getArguments() {
+    if (arguments != null) {
+      selectedIndex.value = arguments['bottomTabCount'] ?? 0;
+    }
   }
 }

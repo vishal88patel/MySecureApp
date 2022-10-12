@@ -74,6 +74,7 @@ import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
+import '../test_card.dart';
 
 
 class AppRoutes {
@@ -220,7 +221,7 @@ class AppRoutes {
       name: cardDetailScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 250),
-      page: () => CardDetailScreen(),
+      page: () => MySample(),
       bindings: [
         CardScreenBinding(),
       ],

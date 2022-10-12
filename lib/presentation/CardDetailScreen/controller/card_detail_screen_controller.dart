@@ -51,7 +51,7 @@ class CardScreenController extends GetxController {
           bodyText: "Please enter CVC",
           headerText: StringConstants.ERROR);
     } else {
-      callAddCardApi();
+      // callAddCardApi();
       // Get.toNamed(AppRoutes.personalDetailScreen);
     }
   }
@@ -99,5 +99,6 @@ class CardScreenController extends GetxController {
     });
     return form;
   }
+
 
 }

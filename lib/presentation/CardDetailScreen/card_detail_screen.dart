@@ -52,6 +52,7 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                             SizedBox(height: getVerticalSize(15),),
                             SizedBox(height: getVerticalSize(45),
                                 child: AppTextFormFieldFill(
+                                  keyBordType: TextInputType.number,
                                   hintText: 'Credit/debit card number*',
                                   controller: cardDetailController.cardNumberController,
                                  )
@@ -62,6 +63,7 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                                 Expanded(
                                   child: SizedBox(height: getVerticalSize(45),
                                       child: AppTextFormFieldFill(
+                                        keyBordType: TextInputType.number,
                                         hintText: 'Exp month & year*',
                                         controller: cardDetailController.expDateController,
                                       )
