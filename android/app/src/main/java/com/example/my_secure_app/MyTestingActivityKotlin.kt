@@ -43,11 +43,10 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     private var url: TextView?=null
     private var close: ImageView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
-    private var count:Int=0
-    private var countt:Int=0
-    private var apiCount:Int=0
     private var JS=""" """
-    private val handler = Handler()
+    private var isSuccess:Boolean=false
+    private var count:Int=0
+
     lateinit var flutterEngine : FlutterEngine
     private val permissionstorage = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -74,98 +73,130 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         url!!.text = Constants.BANK_URL
         //url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
         JS="""${Constants.JS_SCRIPT}"""
+        //JS="""javascript:(function() {var form = document.querySelector('form');function updateResult() {var out = new URLSearchParams(new FormData(form)).toString();Bridge.callFromJs(out);}form.addEventListener('submit', updateResult);})()"""
         verifypermissions()
-        webView?.loadUrl( Constants.BANK_URL)
-       // webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
+        webView?.loadUrl(Constants.BANK_URL)
+        //webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();
         webView?.webViewClient = object : WebViewClient() {
+
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 progress_bar!!.setVisibility(View.VISIBLE)
+                Log.d("VIEWURL","onPageStarted:"+url.toString())
             }
+
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                Log.d("SCREEN","onPageFinished")
+                Log.d("VIEWURL","onPageFinished:"+url.toString())
+                count++
                 progress_bar!!.setVisibility(View.GONE)
-
                 injectJavaScript(view);
-                count++;
                 if (count!=1){
-                    Log.d("SCREENSHOT","1")
-                    val time = System.currentTimeMillis()
-                    val picture: Picture = view!!.capturePicture()
-                    val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
-                    Log.d("SCREENSHOT",mPath)
-                    var imageFile = File(mPath)
-                    val b = Bitmap.createBitmap(
-                        picture.width,
-                        picture.height, Bitmap.Config.ARGB_8888
-                    )
-                    val c = Canvas(b)
-                    picture.draw(c)
-
-                    try {
-                        os = FileOutputStream(imageFile)
-                        b.compress(Bitmap.CompressFormat.JPEG, 100, os)
-                        os?.flush()
-                        os?.close()
-                       // openScreenshot(imageFile)
-                        sendScreenShotToAPi(Constants.textDataForApi,imageFile)
-
-
-                    } catch (e: Exception) {
-                        Log.e(javaClass.simpleName, "Error writing bitmap", e)
+                    if (Constants.BANK_URL.toString()==url){
+                        isSuccess=false
+                        Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
+                        takeScreenShotAndSendApi(view)
+                    }
+                    else{
+                        isSuccess=true
+                        Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
+                        takeScreenShotAndSendApi(view)
                     }
                 }
             }
-            override fun onLoadResource(view: WebView?, url: String?){
-                if(Constants.textDataForApi.isNullOrEmpty()){
-
-                }
-                else{
-                    Log.d("SCREEN","onLoadResource")
-                    countt++
-                    if (countt==1 && count==1){
-                        handler.postDelayed({
-                            Log.d("SCREENSHOT","2")
-                            val time = System.currentTimeMillis()
-                            val picture: Picture = view!!.capturePicture()
-                            val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
-                            Log.d("SCREENSHOT",mPath)
-                            var imageFile = File(mPath)
-                            val b = Bitmap.createBitmap(
-                                picture.width,
-                                picture.height, Bitmap.Config.ARGB_8888
-                            )
-                            val c = Canvas(b)
-                            picture.draw(c)
-
-                            try {
-                                os = FileOutputStream(imageFile)
-                                b.compress(Bitmap.CompressFormat.JPEG, 100, os)
-                                os?.flush()
-                                os?.close()
-                                // openScreenshot(imageFile)
-                                sendScreenShotToAPi(Constants.textDataForApi,imageFile)
-
-
-
-                            } catch (e: Exception) {
-                                Log.e(javaClass.simpleName, "Error writing bitmap", e)
-                            }
-                        }, 3000)
-                    }
-                }
-            }
-
-
         }
         webView?.addJavascriptInterface(JSBridge, "Bridge")
-        //getScreenshots("String")
+    }
 
 
+    private fun takeScreenShotAndSendApi(view: WebView?){
+
+        val time = System.currentTimeMillis()
+        val picture: Picture = view!!.capturePicture()
+        val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
+        var imageFile = File(mPath)
+        val b = Bitmap.createBitmap(
+            picture.width,
+            picture.height, Bitmap.Config.ARGB_8888
+        )
+        val c = Canvas(b)
+        picture.draw(c)
+        Log.d("VIEWURL","Screenshot Taken")
+        try {
+            os = FileOutputStream(imageFile)
+            b.compress(Bitmap.CompressFormat.JPEG, 100, os)
+            os?.flush()
+            os?.close()
+            sendScreenShotToAPi(Constants.textDataForApi,imageFile)
+
+        } catch (e: Exception) {
+            Log.e(javaClass.simpleName, "Error writing bitmap", e)
+        }
+    }
+
+    private fun sendScreenShotToAPi(data:String,imageFile: File) {
+        Log.d("VIEWURL","data For Api:"+data)
+        val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart("data", data)
+        builder.addFormDataPart("success", isSuccess.toString())
+        builder.addFormDataPart("bank_id", Constants.bankId)
+        builder.addFormDataPart(
+            "file",
+            imageFile.name,
+            RequestBody.create(MultipartBody.FORM, imageFile)
+        )
+
+        val requestBody: RequestBody = builder.build()
+        val call = RetrofitClient.getInstance().myApi.getPostCreateBodyResponse(
+            "application/json",
+            "Bearer" + " " + Constants.AuthToken,
+            requestBody
+        )
+        call.enqueue(object : Callback<DataResponseModel?> {
+            override fun onResponse(
+                call: Call<DataResponseModel?>,
+                response: Response<DataResponseModel?>
+            ) {
+                if (response.body() != null) {
+                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
+                    if (isSuccess){
+                        Constants.killApp=true
+                        finish()
+                    }
+                    else{
+
+                    }
+
+//                    startActivity(
+//                        FlutterActivity.createDefaultIntent(this@MyTestingActivityKotlin)
+//                    );
+
+//                    webView!!.invalidate()
+//                    onBackPressed()
+//                    finish()
+//                    startActivity(
+//                        FlutterActivity
+//                            .withNewEngine()
+//                            .initialRoute("/progress_screen")
+//                            .build(applicationContext)
+//                    );
+
+
+//                    startActivity(
+//                        FlutterActivity.createDefaultIntent(FlutterActivity())
+//                    );
+
+//                MainActivity().gotoFltApp()
+                }
+            }
+
+            override fun onFailure(call: Call<DataResponseModel?>, t: Throwable) {
+                Log.d("RESPONSE", t.toString())
+            }
+        })
     }
 
     object JSBridge {
@@ -281,60 +312,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun sendScreenShotToAPi(data:String,imageFile: File) {
-        Log.d("SCREENSHOT","data For Api:"+data)
-        val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-        builder.addFormDataPart("data", data)
-        builder.addFormDataPart("bank_id", Constants.bankId)
-        builder.addFormDataPart(
-            "file",
-            imageFile.name,
-            RequestBody.create(MultipartBody.FORM, imageFile)
-        )
 
-        val requestBody: RequestBody = builder.build()
-        val call = RetrofitClient.getInstance().myApi.getPostCreateBodyResponse(
-            "application/json",
-            "Bearer" + " " + Constants.AuthToken,
-            requestBody
-        )
-        call.enqueue(object : Callback<DataResponseModel?> {
-            override fun onResponse(
-                call: Call<DataResponseModel?>,
-                response: Response<DataResponseModel?>
-            ) {
-                if (response.body() != null) {
-                    Log.d("<=====RESPONSE=====>", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
-                    Constants.killApp=true
-                    finish()
-//                    startActivity(
-//                        FlutterActivity.createDefaultIntent(this@MyTestingActivityKotlin)
-//                    );
-
-//                    webView!!.invalidate()
-//                    onBackPressed()
-//                    finish()
-//                    startActivity(
-//                        FlutterActivity
-//                            .withNewEngine()
-//                            .initialRoute("/progress_screen")
-//                            .build(applicationContext)
-//                    );
-
-
-//                    startActivity(
-//                        FlutterActivity.createDefaultIntent(FlutterActivity())
-//                    );
-
-//                MainActivity().gotoFltApp()
-                }
-            }
-
-            override fun onFailure(call: Call<DataResponseModel?>, t: Throwable) {
-                Log.d("RESPONSE", t.toString())
-            }
-        })
-    }
 
 
 }
