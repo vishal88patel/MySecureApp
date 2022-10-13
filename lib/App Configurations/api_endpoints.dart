@@ -11,5 +11,6 @@ class ApiEndPoints {
   static String LOAN_TYPE = BASE_URL + "/auth/loan_type";
   static String GET_BANKLIST = BASE_URL + "/getBankList";
   static String HOME_PAGE_API = BASE_URL + "/auth/home";
+  static String HOME_PAGE_GET_LINKED_BANK = BASE_URL + "/getLinkBank";
 
 }

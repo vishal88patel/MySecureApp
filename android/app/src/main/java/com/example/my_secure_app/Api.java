@@ -7,7 +7,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 
- interface Api {
+public interface Api {
 
     String BASE_URL = "https://adminsecure.thriftyspends.com/api/";
     @POST("linkBank")

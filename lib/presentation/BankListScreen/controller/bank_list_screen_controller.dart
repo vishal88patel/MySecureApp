@@ -51,7 +51,7 @@ class BankListScreenController extends GetxController {
       if (value['status']) {
         bankListModel.value = BankListResponseModel.fromJson(value);
         lastPage.value= bankListModel.value.data!.lastPage!;
-        bankScript.value= bankListModel.value.data!.bankScript!;
+        bankScript.value= bankListModel.value.data!.bankStript!;
         mainBankList.addAll(bankListModel.value.data!.banks??[]);
       } else {
         UIUtils.showSnakBar(

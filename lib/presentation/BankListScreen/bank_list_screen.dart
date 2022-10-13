@@ -10,6 +10,7 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
+import '../HomeScreen/controller/home_screen_controller.dart';
 import 'controller/bank_list_screen_controller.dart';
 
 class BankListScreen extends StatelessWidget {
@@ -108,7 +109,7 @@ class BankListScreen extends StatelessWidget {
                                             'BANK_ID': bankListController.mainBankList.value[index].id.toString(),
                                             'BANK_NAME': bankListController.mainBankList.value[index].name.toString(),
                                             'BANK_URL': bankListController.mainBankList.value[index].bankUrl.toString(),
-                                            'BANK_JS': bankListController.mainBankList.value[index].page_script!=null?bankListController.mainBankList.value[index].page_script.toString():bankListController.bankScript.value,
+                                            'BANK_JS': /*bankListController.mainBankList.value[index].page_script!=null?bankListController.mainBankList.value[index].page_script.toString():*/bankListController.bankScript.value,
                                             });
                                           },
                                           child: BankListWidget(

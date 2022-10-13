@@ -7,6 +7,7 @@ import '../../../App Configurations/api_endpoints.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../model/get_linked_bank.dart';
 import '../model/home_page_response_model.dart';
 
 
@@ -14,6 +15,7 @@ import '../model/home_page_response_model.dart';
 class HomeScreenController extends GetxController {
   LoginResponseModel? loginResponseModel=LoginResponseModel();
   var homeModel = HomePageResponseModel().obs;
+  var getLinkedBankModel = GrtLinkedBank().obs;
   var homePageHeadeName="".obs;
   @override
   void onReady() {
@@ -23,7 +25,8 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     getStoredData();
-    callHomePageApi();
+    // callHomePageApi();
+    callGetLinkedBankApi();
     super.onInit();
   }
 
@@ -46,8 +49,26 @@ class HomeScreenController extends GetxController {
         url: ApiEndPoints.HOME_PAGE_API)
         .then((value) {
       print(value);
-      if (value['status']) {
+      if (value['status']!=null && value['status']) {
         homeModel.value = HomePageResponseModel.fromJson(value);
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<void> callGetLinkedBankApi() async {
+    ApiService()
+        .callGetApi(
+        body: await getHomePageApiBody(),
+        headerWithToken: true,
+        showLoader: false,
+        url: ApiEndPoints.HOME_PAGE_GET_LINKED_BANK)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        getLinkedBankModel.value = GrtLinkedBank.fromJson(value);
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

@@ -50,7 +50,7 @@ class CollectDetailScreenController extends GetxController {
   Future<void> _processEngineOutput(MethodCall call) async {
     var arg=call.arguments;
     if(arg){
-      Get.offAllNamed(AppRoutes.progressScreen);
+      Get.offAllNamed(AppRoutes.progressScreen,arguments: {"destinationRoute":AppRoutes.accountDetailListScreen});
     }else{
       Get.back();
     }

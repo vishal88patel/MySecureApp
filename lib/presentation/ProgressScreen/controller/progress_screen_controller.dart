@@ -9,6 +9,9 @@ import '../../../routes/app_routes.dart';
 
 
 class ProgressScreenController extends GetxController {
+  var arguments = Get.arguments;
+  var destinationScreen;
+
   @override
   void onReady() {
     super.onReady();
@@ -16,17 +19,28 @@ class ProgressScreenController extends GetxController {
 
   @override
   void onInit() {
+    getArguments();
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    Future.delayed(Duration(milliseconds: 2500), () {
-      Get.toNamed(AppRoutes.successScreen);
-      // Get.toNamed(AppRoutes.successScreen);
-    });
+
     super.onInit();
   }
 
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void getArguments() {
+    if (arguments != null) {
+      destinationScreen= arguments['destinationRoute'];
+        Future.delayed(Duration(milliseconds: 2500), () {
+          // Get.toNamed(destinationScreen,);
+          Get.toNamed(AppRoutes.successScreen,arguments: {"destinationRoute":destinationScreen} );
+        });
+
+
+    }
   }
 
 }

@@ -39,9 +39,10 @@ class SuccessScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 25.0,vertical: 8),
                       child: AppElevatedButton(
-                          buttonName: 'Go to Home',
+                          buttonName: 'View Details',
                           onPressed: () {
-                            Get.offAllNamed(AppRoutes.dashBoardScreen);
+                            // Get.offAllNamed(AppRoutes.dashBoardScreen);
+                            progressController.   onclickofButton();
 
                           }),
                     ),

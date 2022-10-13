@@ -3,7 +3,7 @@ package com.example.my_secure_app;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
- class RetrofitClient {
+ public  class RetrofitClient {
 
     private static RetrofitClient instance = null;
     private Api myApi;

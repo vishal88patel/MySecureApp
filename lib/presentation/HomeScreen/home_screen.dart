@@ -113,13 +113,56 @@ class HomeScreen extends StatelessWidget {
                               title: 'Wallet Balance',
                               onTap: () {},
                             ),
-                            DashboardWidget(
-                              image: 'asset/purple_card_image.png',
-                              icon: 'asset/icons/bank_icon.png',
-                              title: '         Link Bank         ',
-                              onTap: () {
-                                Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":2});
-                              },
+                            Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                DashboardWidget(
+                                  image: 'asset/purple_card_image.png',
+                                  icon: 'asset/icons/bank_icon.png',
+                                  title: '         Link Bank         ',
+                                  onTap: () {
+                                    Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                        arguments: {"bottomTabCount": 2});
+                                  },
+                                ),
+                                Obx(
+                                  ()=> homeController.getLinkedBankModel
+                                      .value.data !=
+                                      null
+                                      && homeController
+                                      .getLinkedBankModel
+                                      .value
+                                      .data!
+                                      .length>=0
+                                      ?Positioned(
+                                    right: 0,
+                                    top: -10,
+                                    child: Container(
+                                      height: 40,
+                                      width: 40,
+                                      decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          shape: BoxShape.circle),
+                                      child: Obx(() => Center(
+                                            child: Text(
+                                              homeController.getLinkedBankModel
+                                                          .value !=
+                                                      null
+                                                  ? homeController
+                                                      .getLinkedBankModel
+                                                      .value
+                                                      .data!
+                                                      .length
+                                                      .toString()
+                                                  : "",
+                                              style:
+                                                  TextStyle(color: Colors.white),
+                                            ),
+                                          )),
+                                    ),
+                                  ):Container(),
+                                )
+                              ],
                             ),
                           ],
                         ),

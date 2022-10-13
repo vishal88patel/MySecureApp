@@ -9,6 +9,9 @@ import '../../../routes/app_routes.dart';
 
 
 class SuccessScreenController extends GetxController {
+  var destinationScreen;
+  var arguments = Get.arguments;
+
   @override
   void onReady() {
     super.onReady();
@@ -17,15 +20,37 @@ class SuccessScreenController extends GetxController {
   @override
   void onInit() {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    // Future.delayed(Duration(milliseconds: 2600), () {
-    //   Get.toNamed(AppRoutes.dashBoardScreen);
-    // });
+    getArguments();
+
     super.onInit();
   }
 
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void onclickofButton() {
+    if(destinationScreen==AppRoutes.dashBoardScreen){
+      Future.delayed(Duration(milliseconds: 2500), () {
+        // Get.toNamed(destinationScreen,);
+        Get.toNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0} );
+      });
+    }else{
+      Future.delayed(Duration(milliseconds: 2500), () {
+        // Get.toNamed(destinationScreen,);
+        Get.toNamed(AppRoutes.accountDetailListScreen );
+      });
+    }
+  }
+
+  void getArguments() {
+    if (arguments != null) {
+      if (arguments != null) {
+        destinationScreen= arguments['destinationRoute'];
+
+      }
+    }
   }
 
 }

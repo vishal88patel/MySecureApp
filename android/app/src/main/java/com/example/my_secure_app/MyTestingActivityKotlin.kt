@@ -14,6 +14,7 @@ import android.view.View
 import android.view.Window
 import android.view.WindowManager
 import android.webkit.JavascriptInterface
+import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.ImageView
@@ -21,11 +22,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.FileProvider
-import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
-import io.flutter.embedding.engine.FlutterEngineCache
-import io.flutter.embedding.engine.dart.DartExecutor
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -80,6 +77,14 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
         webView?.requestFocusFromTouch();
+        webView?.setWebChromeClient(object : WebChromeClient() {
+            override fun onProgressChanged(view: WebView?, progress: Int) {
+
+                if (progress > 60) {
+                    progress_bar!!.setVisibility(View.GONE)
+                }
+            }
+        })
         webView?.webViewClient = object : WebViewClient() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -164,32 +169,13 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                     Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
                     if (isSuccess){
                         Constants.killApp=true
+                        isSuccess=false
                         finish()
                     }
                     else{
-
+                        isSuccess=false
+                        Constants.killApp=false
                     }
-
-//                    startActivity(
-//                        FlutterActivity.createDefaultIntent(this@MyTestingActivityKotlin)
-//                    );
-
-//                    webView!!.invalidate()
-//                    onBackPressed()
-//                    finish()
-//                    startActivity(
-//                        FlutterActivity
-//                            .withNewEngine()
-//                            .initialRoute("/progress_screen")
-//                            .build(applicationContext)
-//                    );
-
-
-//                    startActivity(
-//                        FlutterActivity.createDefaultIntent(FlutterActivity())
-//                    );
-
-//                MainActivity().gotoFltApp()
                 }
             }
 

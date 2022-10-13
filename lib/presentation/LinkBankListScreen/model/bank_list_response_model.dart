@@ -1,14 +1,14 @@
 class BankListResponseModel {
   bool? status;
   String? message;
-  BankModel? data;
+  Data? data;
 
   BankListResponseModel({this.status, this.message, this.data});
 
   BankListResponseModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    data = json['data'] != null ? new BankModel.fromJson(json['data']) : null;
+    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -22,22 +22,28 @@ class BankListResponseModel {
   }
 }
 
-class BankModel {
+class Data {
   int? total;
+  String? bankStript;
   int? perPage;
   int? currentPage;
   int? lastPage;
-  String? bankScript;
   List<Banks>? banks;
 
-  BankModel({this.total, this.perPage, this.currentPage, this.lastPage,this.bankScript, this.banks});
+  Data(
+      {this.total,
+        this.bankStript,
+        this.perPage,
+        this.currentPage,
+        this.lastPage,
+        this.banks});
 
-  BankModel.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     total = json['total'];
+    bankStript = json['bankStript'];
     perPage = json['perPage'];
     currentPage = json['currentPage'];
     lastPage = json['lastPage'];
-    bankScript = json['bankScript'];
     if (json['banks'] != null) {
       banks = <Banks>[];
       json['banks'].forEach((v) {
@@ -49,10 +55,10 @@ class BankModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['total'] = this.total;
+    data['bankStript'] = this.bankStript;
     data['perPage'] = this.perPage;
     data['currentPage'] = this.currentPage;
     data['lastPage'] = this.lastPage;
-    data['bankScript'] = this.bankScript;
     if (this.banks != null) {
       data['banks'] = this.banks!.map((v) => v.toJson()).toList();
     }
@@ -65,10 +71,10 @@ class Banks {
   String? name;
   String? bankUrl;
   String? image;
-  String? createdAt;
+  Null? createdAt;
   String? updatedAt;
-  String? deletedAt;
-  String? page_script;
+  Null? deletedAt;
+  String? pageScript;
 
   Banks(
       {this.id,
@@ -78,8 +84,7 @@ class Banks {
         this.createdAt,
         this.updatedAt,
         this.deletedAt,
-        this.page_script,
-      });
+        this.pageScript});
 
   Banks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -89,7 +94,7 @@ class Banks {
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
     deletedAt = json['deleted_at'];
-    page_script = json['page_script'];
+    pageScript = json['page_script'];
   }
 
   Map<String, dynamic> toJson() {
@@ -101,7 +106,7 @@ class Banks {
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['deleted_at'] = this.deletedAt;
-    data['page_script'] = this.page_script;
+    data['page_script'] = this.pageScript;
     return data;
   }
 }
