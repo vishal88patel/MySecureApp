@@ -107,6 +107,7 @@ class BankListScreen extends StatelessWidget {
                                             Get.toNamed(
                                                 AppRoutes.addBankProceedScreen,arguments: {
                                             'BANK_ID': bankListController.mainBankList.value[index].id.toString(),
+                                            'BANK_IMAGE': bankListController.mainBankList.value[index].image.toString(),
                                             'BANK_NAME': bankListController.mainBankList.value[index].name.toString(),
                                             'BANK_URL': bankListController.mainBankList.value[index].bankUrl.toString(),
                                             'BANK_JS': /*bankListController.mainBankList.value[index].page_script!=null?bankListController.mainBankList.value[index].page_script.toString():*/bankListController.bankScript.value,

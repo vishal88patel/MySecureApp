@@ -1,24 +1,20 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../../ApiServices/network_info.dart';
+
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
-import '../../EnterPasswordScreen/models/login_response_model.dart';
-
-
 
 class CollectDetailScreenController extends GetxController {
   static const platformChannel = MethodChannel('GET_DETAIL_CHANNEL');
-  static const MethodChannel platformForAndroid = const MethodChannel('INCOMING_EVENTS');
+  static const MethodChannel platformForAndroid =
+      const MethodChannel('INCOMING_EVENTS');
   var arguments = Get.arguments;
-  var bankId="";
-  var bankName="";
-  var bankUrl="";
-  var bankScript="";
+  var bankId = "";
+  var bankName = "";
+  var bankUrl = "";
+  var bankScript = "";
+  var bankImage = "";
 
   @override
   void onReady() {
@@ -32,29 +28,34 @@ class CollectDetailScreenController extends GetxController {
     super.onInit();
   }
 
-
   @override
   void onClose() {
     super.onClose();
   }
 
   Future<void> gotoWeb() async {
-    await  platformChannel.invokeMethod('goToWeb',{
-      "AUTHTOKEN": await PrefUtils.getString(StringConstants.AUTH_TOKEN,),
+    await platformChannel.invokeMethod('goToWeb', {
+      "AUTHTOKEN": await PrefUtils.getString(
+        StringConstants.AUTH_TOKEN,
+      ),
       "BANK_ID": bankId,
       "BANK_URL": bankUrl,
-      "BANK_JS":bankScript
+      "BANK_JS": bankScript
     });
   }
 
   Future<void> _processEngineOutput(MethodCall call) async {
-    var arg=call.arguments;
-    if(arg){
-      Get.offAllNamed(AppRoutes.progressScreen,arguments: {"destinationRoute":AppRoutes.accountDetailListScreen});
-    }else{
+    var arg = call.arguments;
+    if (arg) {
+      Get.offAllNamed(AppRoutes.progressScreen, arguments: {
+        "destinationRoute": AppRoutes.accountDetailListScreen,
+        "BANK_IMAGE": bankImage,
+        "BANK_NAME": bankName,
+      });
+    } else {
       Get.back();
     }
-    print("<=====EVEBNT CALLED=====>"+call.arguments);
+    print("<=====EVEBNT CALLED=====>" + call.arguments);
   }
 
   void getArguments() {
@@ -62,8 +63,9 @@ class CollectDetailScreenController extends GetxController {
       bankId = arguments['BANK_ID'] ?? '';
       bankUrl = arguments['BANK_URL'] ?? '';
       bankScript = arguments['BANK_JS'] ?? '';
+      bankImage = arguments['BANK_IMAGE'] ?? '';
+      bankName = arguments['BANK_NAME'] ?? '';
       gotoWeb();
     }
   }
-
 }

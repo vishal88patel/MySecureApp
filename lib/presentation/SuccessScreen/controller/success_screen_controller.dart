@@ -11,6 +11,9 @@ import '../../../routes/app_routes.dart';
 class SuccessScreenController extends GetxController {
   var destinationScreen;
   var arguments = Get.arguments;
+  var bankName = "".obs;
+
+  var bankImage = "".obs;
 
   @override
   void onReady() {
@@ -48,6 +51,10 @@ class SuccessScreenController extends GetxController {
     if (arguments != null) {
       if (arguments != null) {
         destinationScreen= arguments['destinationRoute'];
+        if(destinationScreen==AppRoutes.accountDetailListScreen){
+          bankName.value = arguments['BANK_NAME'];
+          bankImage.value = arguments['BANK_IMAGE'];
+        }
 
       }
     }

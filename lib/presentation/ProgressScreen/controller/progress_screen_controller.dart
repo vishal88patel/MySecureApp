@@ -1,16 +1,17 @@
-import 'dart:io';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import '../../../ApiServices/network_info.dart';
+
 import '../../../routes/app_routes.dart';
-
-
 
 class ProgressScreenController extends GetxController {
   var arguments = Get.arguments;
   var destinationScreen;
+
+  // "BANK_IMAGE": bankImage,
+  // "BANK_NAME": bankName,
+  var bankName = "".obs;
+
+  var bankImage = "".obs;
 
   @override
   void onReady() {
@@ -33,14 +34,17 @@ class ProgressScreenController extends GetxController {
 
   void getArguments() {
     if (arguments != null) {
-      destinationScreen= arguments['destinationRoute'];
-        Future.delayed(Duration(milliseconds: 2500), () {
-          // Get.toNamed(destinationScreen,);
-          Get.toNamed(AppRoutes.successScreen,arguments: {"destinationRoute":destinationScreen} );
+      destinationScreen = arguments['destinationRoute'];
+      bankName.value = arguments['BANK_NAME'];
+      bankImage.value = arguments['BANK_IMAGE'];
+      Future.delayed(Duration(milliseconds: 2500), () {
+        // Get.toNamed(destinationScreen,);
+        Get.toNamed(AppRoutes.successScreen, arguments: {
+          "destinationRoute": destinationScreen,
+          "BANK_NAME": bankName.value,
+          "BANK_IMAGE": bankImage.value,
         });
-
-
+      });
     }
   }
-
 }

@@ -17,6 +17,7 @@ class AddBankProceedScreenController extends GetxController {
   var bankName = "".obs;
   var bankUrl = "".obs;
   var bankScript="".obs;
+  var bankImage="".obs;
   @override
   void onReady() {
     super.onReady();
@@ -39,6 +40,7 @@ class AddBankProceedScreenController extends GetxController {
       bankName.value = arguments['BANK_NAME'] ?? '';
       bankUrl.value = arguments['BANK_URL'] ?? '';
       bankScript.value = arguments['BANK_JS'] ?? '';
+      bankImage.value = arguments['BANK_IMAGE'] ?? '';
     }
   }
 
@@ -53,6 +55,7 @@ class AddBankProceedScreenController extends GetxController {
         'BANK_NAME':bankName.value,
         'BANK_URL': bankUrl.value,
         'BANK_JS': bankScript.value,
+        'BANK_IMAGE': bankImage.value,
       });
     } else if (status == PermissionStatus.denied) {
       UIUtils.showSnakBar(

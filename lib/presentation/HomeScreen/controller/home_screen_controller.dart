@@ -49,7 +49,7 @@ class HomeScreenController extends GetxController {
         url: ApiEndPoints.HOME_PAGE_API)
         .then((value) {
       print(value);
-      if (value['status']!=null && value['status']) {
+      if (value['status']??false) {
         homeModel.value = HomePageResponseModel.fromJson(value);
       } else {
         UIUtils.showSnakBar(
@@ -67,7 +67,7 @@ class HomeScreenController extends GetxController {
         url: ApiEndPoints.HOME_PAGE_GET_LINKED_BANK)
         .then((value) {
       print(value);
-      if (value['status']!=null && value['status'] ) {
+      if (value['status']??false ) {
         getLinkedBankModel.value = GrtLinkedBank.fromJson(value);
       } else {
         UIUtils.showSnakBar(
