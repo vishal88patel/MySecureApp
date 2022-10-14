@@ -99,8 +99,9 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 count++
                 progress_bar!!.setVisibility(View.GONE)
                 injectJavaScript(view);
+
                 if (count!=1){
-                    if (Constants.BANK_URL.toString()==url){
+                    if (Constants.BANK_URL.toString()==url || url.toString().contains(Constants.BANK_URL)){
                         isSuccess=false
                         Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
                         takeScreenShotAndSendApi(view)
