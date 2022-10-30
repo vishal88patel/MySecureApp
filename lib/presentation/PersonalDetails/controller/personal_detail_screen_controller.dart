@@ -1,7 +1,9 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
+import 'package:platform_device_id/platform_device_id.dart';
+import 'dart:io';
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
@@ -27,6 +29,8 @@ class PersonalScreenController extends GetxController {
   var selectedLoanId = "".obs;
   var loanList = [].obs;
 
+
+  String device_type="";
   @override
   void onReady() {
     super.onReady();
@@ -34,6 +38,7 @@ class PersonalScreenController extends GetxController {
 
   @override
   void onInit() {
+    checkDeviceType();
     getLoanTypeApi();
     super.onInit();
   }
@@ -123,7 +128,10 @@ class PersonalScreenController extends GetxController {
             loan_type: selectedLoanId.value,
             first_name: enterPersonalDetailController.firstNameController.text,
             last_name: enterPersonalDetailController.lastNameController.text,
-            date_of_birth:""
+            date_of_birth:"",
+          device_id: await PlatformDeviceId.getDeviceId,
+          fcm_token: "empty",
+          devicy_type: device_type,
         ),
         headerWithToken: false,
         url: ApiEndPoints.REGISTER)
@@ -157,6 +165,9 @@ class PersonalScreenController extends GetxController {
     required String first_name,
     required String last_name,
     required String date_of_birth,
+    required String? device_id,
+    required String fcm_token,
+    required String devicy_type,
   }) async {
     final form = FormData({
       "type": "1",
@@ -177,7 +188,18 @@ class PersonalScreenController extends GetxController {
       "first_name": first_name,
       "last_name": last_name,
       "date_of_birth": "25-8-2022",
+      "device_id": device_id,
+      "fcm_token": fcm_token,
+      "devicy_type": devicy_type,
     });
     return form;
+  }
+
+  void checkDeviceType() {
+    if (Platform.isMacOS) {
+      device_type = "Ios";
+    } else {
+      device_type = "Android";
+    }
   }
 }

@@ -62,7 +62,7 @@ class BankListScreen extends StatelessWidget {
                     SizedBox(
                         height: getVerticalSize(38),
                         child: AppTextFormFieldFill(
-                          hintText: 'y',
+                          hintText: 'Enter bank name',
                           prefixIcon: Icon(
                             Icons.search,
                             color: ColorConstant.primaryAppTextF1,

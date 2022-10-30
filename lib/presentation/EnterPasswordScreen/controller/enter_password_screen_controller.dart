@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/LoginScreen/models/login_response_model.dart';
 import 'package:my_secure_app/utils/HelperFiles/pref_utils.dart';
+import 'package:platform_device_id/platform_device_id.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../ApiServices/network_info.dart';
@@ -15,6 +16,8 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 class EnterPasswordScreenController extends GetxController {
   TextEditingController passController = TextEditingController();
   String email="";
+  String device_type="";
+  String device_id="";
   var arguments = Get.arguments;
   var PaasIsObsecure=true.obs;
 
@@ -26,6 +29,7 @@ class EnterPasswordScreenController extends GetxController {
   @override
   void onInit() {
     getArguments();
+    checkDeviceType();
     super.onInit();
   }
   getArguments(){
@@ -79,6 +83,9 @@ class EnterPasswordScreenController extends GetxController {
       "email": email,
       "mobile": "",
       "password": password,
+      "device_id": await PlatformDeviceId.getDeviceId,
+      "fcm_token": "empty",
+      "devicy_type": device_type,
     });
     return form;
   }
@@ -87,4 +94,11 @@ class EnterPasswordScreenController extends GetxController {
     PaasIsObsecure.value=!val;
   }
 
+  void checkDeviceType() {
+    if (Platform.isMacOS) {
+      device_type = "Ios";
+    } else {
+      device_type = "Android";
+    }
+  }
 }

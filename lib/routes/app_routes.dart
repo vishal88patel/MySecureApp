@@ -40,6 +40,7 @@ import 'package:my_secure_app/presentation/PersonalDetails/personal_detail_scree
 import 'package:my_secure_app/presentation/PinScreen/binding/pin_screen_binding.dart';
 import 'package:my_secure_app/presentation/PinScreen/pin_screen.dart';
 import 'package:my_secure_app/presentation/ProgressScreen/progress_screen.dart';
+import 'package:my_secure_app/presentation/QrCodeScreen/qrCode_screen.dart';
 import 'package:my_secure_app/presentation/SuccessScreen/binding/success_screen_binding.dart';
 import 'package:my_secure_app/presentation/SuccessScreen/success_screen.dart';
 import '../presentation/AddBankProceedScreen/add_bank_proceed_screen.dart';
@@ -70,6 +71,7 @@ import '../presentation/LoanCalculator/loan_calculator_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
+import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
@@ -117,6 +119,7 @@ class AppRoutes {
   static String linkBankListScreen= '/link_bank_list_screen';
   static String webviewPage = '/webView_page';
   static String collectDetailScreen = '/collect_detail_screen';
+  static String qrCodeScreen = '/qr_code_screen';
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -483,6 +486,16 @@ class AppRoutes {
       page: () => CollectDetailScreen(),
       bindings: [
         CollectDetailScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: qrCodeScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => QrCodeScreen(),
+      bindings: [
+        QrCodeScreenBinding(),
       ],
     ),
 

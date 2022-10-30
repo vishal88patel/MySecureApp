@@ -12,5 +12,8 @@ class ApiEndPoints {
   static String GET_BANKLIST = BASE_URL + "/getBankList";
   static String HOME_PAGE_API = BASE_URL + "/auth/home";
   static String HOME_PAGE_GET_LINKED_BANK = BASE_URL + "/getLinkBank";
+  static String GET_WALLET = BASE_URL + "/getWallet";
+  static String GET_UUID_USER = BASE_URL + "/getUuidUser";
+  static String TRANSACTION = BASE_URL + "/transaction";
 
 }

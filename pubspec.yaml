@@ -55,6 +55,9 @@ dependencies:
   permission_handler: ^10.1.0
   credit_card_type_detector: ^2.0.0
   flutter_credit_card: ^3.0.4
+  qr_flutter: ^4.0.0
+  flutter_barcode_scanner: ^2.0.0
+  platform_device_id: ^1.0.1
 
 
 dev_dependencies:
