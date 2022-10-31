@@ -16,7 +16,7 @@ import 'controller/amount_num_pad_screen_controller.dart';
 
 class AmountNumPadScreen extends StatelessWidget {
   var amountNumPadController = Get.find<AmountNumPadScreenController>();
-  final amountController = TextEditingController();
+
   final String _userPrefix = "\$";
 
   @override
@@ -32,41 +32,129 @@ class AmountNumPadScreen extends StatelessWidget {
                 children: [
                   Padding(
                     padding: const EdgeInsets.only(right: 24.0, top: 20),
-                    child: SvgPicture.asset(
-                      // you can replace this with Image.asset
-                      'asset/close_image.svg',
-                      fit: BoxFit.cover,
-                      height: 18,
-                      width: 18,
+                    child: InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: SvgPicture.asset(
+                        // you can replace this with Image.asset
+                        'asset/close_image.svg',
+                        fit: BoxFit.cover,
+                        height: 18,
+                        width: 18,
+                      ),
                     ),
                   ),
                 ],
               ),
+              Padding(
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ColorConstant.blue26,
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(24)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Obx(
+                              () => ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.network(
+                                  amountNumPadController.profile_pic.value,
+                                  height: getVerticalSize(60),
+                                  width: getVerticalSize(60),
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value: loadingProgress
+                                                    .expectedTotalBytes !=
+                                                null
+                                            ? loadingProgress
+                                                    .cumulativeBytesLoaded /
+                                                loadingProgress
+                                                    .expectedTotalBytes!
+                                            : null,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 14.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Obx(
+                                    () => Text(amountNumPadController.name.value,
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w600,
+                                                fontSize: getFontSize(18))),
+                                  ),
+                                  Obx(
+                                    () => Text(amountNumPadController.email.value,
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                                color: ColorConstant.lightText,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: getFontSize(18))),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ]),
+                    ),
+                  ),
+                ),
+              ),
+              Text("Please Enter Amount",
+                    style: AppStyle.textStylePoppinsRegular
+                        .copyWith(
+                        color: ColorConstant.lightText,
+                        fontWeight: FontWeight.w400,
+                        fontSize: getFontSize(20))),
               Container(
-                width: MediaQuery.of(context).size.width/1.5,
+                width: MediaQuery.of(context).size.width / 1.5,
                 height: getVerticalSize(70),
                 child: TextFormField(
-                  inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))],
-                  controller: amountController,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))
+                  ],
+                  controller: amountNumPadController.amountController,
                   maxLines: 1,
                   onChanged: (value) {
-                      if (value == _userPrefix) {
-                      amountController.text = "";
+                    if (value == _userPrefix) {
+                      amountNumPadController.amountController.text = "";
                       return;
                     }
                     value.startsWith(_userPrefix)
-                        ? amountController.text = value
-                        : amountController.text = _userPrefix+value;
-                    amountController.selection = TextSelection.fromPosition(
-                        TextPosition(
-                            offset: amountController.text.length));
+                        ? amountNumPadController.amountController.text = value
+                        : amountNumPadController.amountController.text =
+                            _userPrefix + value;
+                    amountNumPadController.amountController.selection =
+                        TextSelection.fromPosition(TextPosition(
+                            offset: amountNumPadController
+                                .amountController.text.length));
                   },
                   focusNode: AlwaysDisabledFocusNode(),
                   style: AppStyle.textStyleSFPRO.copyWith(
                       color: ColorConstant.skyE8,
                       fontWeight: FontWeight.w400,
                       fontSize: getFontSize(60)),
-
                   decoration: InputDecoration(
                     errorStyle: TextStyle(height: 0),
                     hintText: "\$",
@@ -79,7 +167,8 @@ class AmountNumPadScreen extends StatelessWidget {
                           BorderSide(color: ColorConstant.underLine, width: 3),
                     ),
                     focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: ColorConstant.underLine,width: 3),
+                      borderSide:
+                          BorderSide(color: ColorConstant.underLine, width: 3),
                     ),
                   ),
                   cursorColor: ColorConstant.primaryAppTextF1,
@@ -88,7 +177,7 @@ class AmountNumPadScreen extends StatelessWidget {
               Column(
                 children: [
                   Container(
-                      height: MediaQuery.of(context).size.height/2,
+                      height: MediaQuery.of(context).size.height / 2,
                       decoration: BoxDecoration(
                         color: ColorConstant.darkBlue,
                         boxShadow: [
@@ -96,31 +185,31 @@ class AmountNumPadScreen extends StatelessWidget {
                             color: Colors.grey.shade500.withOpacity(0.3),
                             spreadRadius: 0.1,
                             blurRadius: 10,
-                            offset: Offset(-1,-4), // changes position of shadow
+                            offset:
+                                Offset(-1, -4), // changes position of shadow
                           ),
                         ],
                       ),
                       child: KeyPad(
-                        pinController: amountController,
+                        pinController: amountNumPadController.amountController,
                         onChange: (String pin) {
-                          amountController.text =_userPrefix+pin;
-                          print('${amountController.text}');
+                          amountNumPadController.amountController.text =
+                              _userPrefix + pin;
+                          print(
+                              '${amountNumPadController.amountController.text}');
                         },
-                        onNext: (){
-                            Get.toNamed(AppRoutes.pinScreen);
+                        onNext: () {
+                          amountNumPadController.goNextScreen();
                         },
-                      )
-                  ),
-
+                      )),
                 ],
               )
             ],
           ),
         ));
   }
-
-
 }
+
 class AlwaysDisabledFocusNode extends FocusNode {
   @override
   bool get hasFocus => false;

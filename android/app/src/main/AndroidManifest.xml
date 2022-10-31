@@ -20,7 +20,7 @@
         android:label="my_secure_app"
         android:requestLegacyExternalStorage="true"
         tools:replace="android:theme"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".MyTestingActivityKotlin"
             android:exported="false" />

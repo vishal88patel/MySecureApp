@@ -10,7 +10,6 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
-
 import 'controller/transaction_screen_controller.dart';
 
 class TransactionScreen extends StatelessWidget {
@@ -20,14 +19,17 @@ class TransactionScreen extends StatelessWidget {
     String barcodeScanRes;
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          '#ff6666', 'Cancel', true, ScanMode.QR);
+          '#000000', 'Cancel', false, ScanMode.QR);
       print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
     }
 
     transactionController.qrCodeResult.value = barcodeScanRes;
-    print("qrCodeResult:"+barcodeScanRes.toString());
+    print("qrCodeResult:"+transactionController.qrCodeResult.value);
+    if(transactionController.qrCodeResult.value!=null && transactionController.qrCodeResult.value.isNotEmpty){
+      transactionController.callGetUuidApi();
+    }
   }
 
   @override
@@ -104,12 +106,14 @@ class TransactionScreen extends StatelessWidget {
                                   SizedBox(
                                     height: getVerticalSize(25),
                                   ),
-                                  Text(
-                                      '\$${transactionController.balance.string}',
-                                      style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(28))),
+                                  Obx(
+                                    ()=> Text(
+                                        '\$${transactionController.balance.value}',
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: getFontSize(28))),
+                                  ),
                                   SizedBox(
                                     height: getVerticalSize(5),
                                   ),
@@ -353,7 +357,7 @@ class TransactionScreen extends StatelessWidget {
                                   1,
                               physics: const BouncingScrollPhysics(),
                               shrinkWrap: true,
-                              controller: transactionController.controller,
+                              //controller: transactionController.controller,
                               itemBuilder: (BuildContext context, int index) {
                                 if (index ==
                                     transactionController

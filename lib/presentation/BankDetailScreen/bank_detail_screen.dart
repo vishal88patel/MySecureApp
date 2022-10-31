@@ -12,10 +12,11 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
+import '../PinScreen/controller/pin_screen_controller.dart';
+
 class BankDetailScreen extends StatelessWidget {
   var bankDetailController = Get.find<BankDetailScreenController>();
-List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
-                                 'Mortage Loan','Emergency Loan',];
+  var pinScreenController = Get.find<PinScreenController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,66 +41,130 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                                 )],
                             ),
                             SizedBox(height: getVerticalSize(44),),
-                            Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    Image.asset('asset/bank_image.png',
-                                      height: getVerticalSize(21),width: getHorizontalSize(21),),
-                                    SizedBox(width: getHorizontalSize(11),),
-                                    Text("ABC Bank ",style: AppStyle.textStylePoppinsRegular
-                                        .copyWith(color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w700,fontSize: getFontSize(20)),),
-                                  ],
-                                ),                                InkWell(
-                                  // onTap: (){ Get.toNamed(AppRoutes.cardDetailScreen);
-                                  // },
-                                  child: Stack(clipBehavior: Clip.none,
-                                    children: [
-                                      ClipRRect(borderRadius: BorderRadius.circular(100),
-                                        child: Container(
-                                          // height: getVerticalSize(30.8),width: getHorizontalSize(30.8),
-                                          color: ColorConstant.primaryWhite,
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(0.5),
-                                            child: ClipRRect(borderRadius: BorderRadius.circular(100),
-                                              child: Image.asset('asset/card_image.png',fit: BoxFit.cover,
-                                                height: getVerticalSize(30.8),width: getHorizontalSize(30.8),),
+                            Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: ColorConstant.blue26,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(24)),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(12.0),
+                                  child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Obx(
+                                              () => ClipRRect(
+                                            borderRadius: BorderRadius.circular(50),
+                                            child: Image.network(
+                                              pinScreenController.profile_pic.value,
+                                              height: getVerticalSize(60),
+                                              width: getVerticalSize(60),
+                                              loadingBuilder: (BuildContext context,
+                                                  Widget child,
+                                                  ImageChunkEvent? loadingProgress) {
+                                                if (loadingProgress == null) return child;
+                                                return Center(
+                                                  child: CircularProgressIndicator(
+                                                    value: loadingProgress
+                                                        .expectedTotalBytes !=
+                                                        null
+                                                        ? loadingProgress
+                                                        .cumulativeBytesLoaded /
+                                                        loadingProgress
+                                                            .expectedTotalBytes!
+                                                        : null,
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ),
-                                      ),
-                                      Positioned(left: -3,top: 15,
-                                        child: Container(
-                                          height: getVerticalSize(8),width: getHorizontalSize(8),
-                                          decoration: BoxDecoration(
-                                              color: Colors.green,
-                                              borderRadius: BorderRadius.circular(100)),),
-                                      )
-                                    ],
-                                  ),
-                                )],
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 14.0),
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Obx(
+                                                    () => Text(pinScreenController.name.value,
+                                                    style: AppStyle.textStylePoppinsRegular
+                                                        .copyWith(
+                                                        color: ColorConstant.primaryWhite,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: getFontSize(18))),
+                                              ),
+                                              Obx(
+                                                    () => Text(pinScreenController.email.value,
+                                                    style: AppStyle.textStylePoppinsRegular
+                                                        .copyWith(
+                                                        color: ColorConstant.lightText,
+                                                        fontWeight: FontWeight.w400,
+                                                        fontSize: getFontSize(18))),
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ]),
+                                ),
+                              ),
                             ),
-
                             SizedBox(height: getVerticalSize(85),),
                             Center(
                               child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
-                                  Text('\$10.00'.toString(),
-                                      style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(color: ColorConstant.skyE8,
-                                          fontWeight: FontWeight.w500,fontSize: getFontSize(60))),
-                                  Text('cash Balance',
+                                  Obx(()=>
+                                    Text('${pinScreenController.amount.value}'.toString(),
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(color: ColorConstant.skyE8,
+                                            fontWeight: FontWeight.w500,fontSize: getFontSize(60))),
+                                  ),
+                                  Text('Amount Transferred Successfully',
                                       style: AppStyle.textStylePoppinsRegular
                                           .copyWith(color: ColorConstant.primaryAppTextF1,
-                                          fontWeight: FontWeight.w400,fontSize: getFontSize(18))),
+                                          fontWeight: FontWeight.w400,fontSize: getFontSize(22))),
 
                                 ],
                               ),
                             ),
                             SizedBox(height: getVerticalSize(67),),
-
-                            Padding(
+                            Spacer(),
+                            InkWell(
+                              onTap:() {
+                                Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":1});
+                              },
+                              child: Container(
+                                height: MediaQuery.of(context).size.height/16,
+                                decoration: BoxDecoration(
+                                  color: ColorConstant.blue26,
+                                  borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(10),
+                                      topRight: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10),
+                                      bottomRight: Radius.circular(10)
+                                  ),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Colors.grey.shade700.withOpacity(0.3),
+                                      spreadRadius: 0.1,
+                                      blurRadius: 10,
+                                      offset: Offset(-6, -6), // changes position of shadow
+                                    ),
+                                  ],
+                                ),
+                                child: Center(
+                                  child: Text("Done",style: AppStyle.textStyleSFPRO.copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(18)),),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: getVerticalSize(32),),
+                            /*Padding(
                               padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(35)),
                               child: Column(
                                 children: [
@@ -166,7 +231,7 @@ List<String> payment=[ 'Personal Loan','Payday Loan','Auto Loan',
                                   ),
                                 ],
                               ),
-                            ),
+                            ),*/
 
 
                           ],

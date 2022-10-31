@@ -32,7 +32,7 @@ class QrCodeScreenController extends GetxController {
 
   void getArguments() {
     if (arguments != null) {
-      uuid = arguments['UUID_ID'] ?? '';
+      uuid.value = arguments['UUID_ID'] ?? '';
     }
   }
 

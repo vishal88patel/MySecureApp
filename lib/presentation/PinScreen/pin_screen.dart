@@ -17,7 +17,8 @@ import '../../Custom Widgets/key_pad.dart';
 import 'controller/pin_screen_controller.dart';
 
 class PinScreen extends StatelessWidget {
-  final pinController = TextEditingController();
+  var pinScreenController = Get.find<PinScreenController>();
+
 
 
   @override
@@ -35,9 +36,14 @@ class PinScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
-                      Icons.arrow_back,
-                      color: ColorConstant.primaryWhite,
+                    InkWell(
+                      onTap:(){
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: ColorConstant.primaryWhite,
+                      ),
                     ),
                     InkWell(
                       // onTap: (){ Get.toNamed(AppRoutes.cardDetailScreen);
@@ -52,21 +58,90 @@ class PinScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: getHorizontalSize(25.0),
-                    vertical: getVerticalSize(26)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text("Confirm your Cash PIN",
-                      style: AppStyle.textStyleSFPROBold
-                          .copyWith(color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w700,fontSize: getFontSize(24)),),
-                    Image.asset("asset/image_icon.png",height:getVerticalSize(40),width: getHorizontalSize(40),)
-                  ],
+                padding: EdgeInsets.only(left: 20.0, right: 20.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: ColorConstant.blue26,
+                      borderRadius: BorderRadius.all(
+                          Radius.circular(24)),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Obx(
+                                  () => ClipRRect(
+                                borderRadius: BorderRadius.circular(50),
+                                child: Image.network(
+                                  pinScreenController.profile_pic.value,
+                                  height: getVerticalSize(60),
+                                  width: getVerticalSize(60),
+                                  loadingBuilder: (BuildContext context,
+                                      Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value: loadingProgress
+                                            .expectedTotalBytes !=
+                                            null
+                                            ? loadingProgress
+                                            .cumulativeBytesLoaded /
+                                            loadingProgress
+                                                .expectedTotalBytes!
+                                            : null,
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 14.0),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Obx(
+                                        () => Text(pinScreenController.name.value,
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                            color: ColorConstant.primaryWhite,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: getFontSize(18))),
+                                  ),
+                                  Obx(
+                                        () => Text(pinScreenController.email.value,
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                            color: ColorConstant.lightText,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(18))),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ]),
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(height: getVerticalSize(60),),
+
+              SizedBox(height: getVerticalSize(20),),
+              Obx(
+                    () => Text(pinScreenController.isPin.value==0?"Please Set Your Pin":"Please Enter Your Pin",
+                    style: AppStyle.textStylePoppinsRegular
+                        .copyWith(
+                        color: ColorConstant.lightText,
+                        fontWeight: FontWeight.w400,
+                        fontSize: getFontSize(20))),
+              ),
+              SizedBox(height: getVerticalSize(20),),
               Container(
                 width: MediaQuery.of(context).size.width/2,
                 child: PinCodeTextField(
@@ -93,7 +168,7 @@ class PinScreen extends StatelessWidget {
                   animationDuration: Duration(milliseconds: 300),
                   backgroundColor: Colors.transparent,
                   enableActiveFill: true,
-                  controller: pinController,
+                  controller: pinScreenController.pinController,
                   onCompleted: (v) {
                     print("Completed");
                   },
@@ -123,7 +198,7 @@ class PinScreen extends StatelessWidget {
                         ],
                       ),
                       child: KeyPadPin(
-                        pinController: pinController,
+                        pinController: pinScreenController.pinController,
                         onChange: (String pin) {
 
                         },

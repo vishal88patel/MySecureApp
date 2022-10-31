@@ -29,7 +29,7 @@ class Data {
   int? currentPage;
   int? lastPage;
   String? walletBalance;
-  Null? uuid;
+  String? uuid;
   List<UserTransaction>? userTransaction;
 
   Data(
