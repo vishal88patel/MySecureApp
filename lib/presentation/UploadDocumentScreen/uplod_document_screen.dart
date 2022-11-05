@@ -50,34 +50,7 @@ class UploadDocumentScreen extends StatelessWidget {
                                 .copyWith(color: ColorConstant.primaryWhite,
                                 fontWeight: FontWeight.w600,fontSize: getFontSize(24)),),
                         ),
-                        SizedBox(height: getVerticalSize(54),),
-                        Padding(
-                          padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                          child: DottedBorder(
-                              color: ColorConstant.primaryWhite,
-                              strokeWidth: 1,
-                              borderType: BorderType.Rect,
-                              
-                              radius: Radius.circular(100),
-                              child: Container(
-                                height: getVerticalSize(115),
-                                width: size.width,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset('asset/licences_image.png',height: getVerticalSize(30),
-                                      width: getHorizontalSize(30),),
-                                    SizedBox(                                height: getVerticalSize(10),
-                                    ),
-                                    Text("Upload your Driving Licence",
-                                      style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w500,fontSize: getFontSize(18)),),
-                                  ],
-                                ),
-                              ) ),
-                        ),
-                        SizedBox(height: getVerticalSize(20),),
+                        SizedBox(height: getVerticalSize(34),),
                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                           child: DottedBorder(
@@ -111,7 +84,6 @@ class UploadDocumentScreen extends StatelessWidget {
                               color: ColorConstant.primaryWhite,
                               strokeWidth: 1,
                               borderType: BorderType.Rect,
-
                               radius: Radius.circular(100),
                               child: Container(
                                 height: getVerticalSize(115),
@@ -119,11 +91,11 @@ class UploadDocumentScreen extends StatelessWidget {
                                 child: Column(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Image.asset('asset/doller_image.png',height: getVerticalSize(30),
+                                    Image.asset('asset/licences_image.png',height: getVerticalSize(30),
                                       width: getHorizontalSize(30),),
                                     SizedBox(                                height: getVerticalSize(10),
                                     ),
-                                    Text("Upload your Proof of income",
+                                    Text("Upload your Driving Licence(Front)",
                                       style: AppStyle.textStylePoppinsRegular
                                           .copyWith(color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w500,fontSize: getFontSize(18)),),
@@ -131,8 +103,58 @@ class UploadDocumentScreen extends StatelessWidget {
                                 ),
                               ) ),
                         ),
-
-
+                        SizedBox(height: getVerticalSize(20),),
+                        Padding(
+                          padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                          child: DottedBorder(
+                              color: ColorConstant.primaryWhite,
+                              strokeWidth: 1,
+                              borderType: BorderType.Rect,
+                              radius: Radius.circular(100),
+                              child: Container(
+                                height: getVerticalSize(115),
+                                width: size.width,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset('asset/licences_image.png',height: getVerticalSize(30),
+                                      width: getHorizontalSize(30),),
+                                    SizedBox(                                height: getVerticalSize(10),
+                                    ),
+                                    Text("Upload your Driving Licence(Back)",
+                                      style: AppStyle.textStylePoppinsRegular
+                                          .copyWith(color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,fontSize: getFontSize(18)),),
+                                  ],
+                                ),
+                              ) ),
+                        ),
+                        SizedBox(height: getVerticalSize(20),),
+                        Padding(
+                          padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                          child: DottedBorder(
+                              color: ColorConstant.primaryWhite,
+                              strokeWidth: 1,
+                              borderType: BorderType.Rect,
+                              radius: Radius.circular(100),
+                              child: Container(
+                                height: getVerticalSize(80),
+                                width: size.width,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset('asset/add_photo_image.png',height: getVerticalSize(30),
+                                      width: getHorizontalSize(30),),
+                                    SizedBox(                                height: getVerticalSize(10),
+                                    ),
+                                    Text("Scan your Driving Licence ",
+                                      style: AppStyle.textStylePoppinsRegular
+                                          .copyWith(color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,fontSize: getFontSize(18)),),
+                                  ],
+                                ),
+                              ) ),
+                        ),
                         Spacer(),
                         AppElevatedButton(buttonName: 'Signout', onPressed: () {
                           Get.toNamed(AppRoutes.transactionScreen);

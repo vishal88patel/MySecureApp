@@ -8,9 +8,10 @@ import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'controller/enter_address_screen_controller.dart';
 
-class EnterPersonalDetailScreen extends StatelessWidget {
-  var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+class EnterAddressDetailScreen extends StatelessWidget {
+  var enterAddressController = Get.find<EnterAddressScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
       backgroundColor: ColorConstant.primaryBlack,
         body: SingleChildScrollView(
       child: Container(
-        height: size.height,
+        height: size.height ,
         child: Stack(
           children: [
             MainCutomBackGround(
@@ -45,7 +46,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "5/6",
+                              "4/6",
                               style: AppStyle.textStylePoppinsRegular
                                   .copyWith(color: ColorConstant.primaryWhite),
                             ),
@@ -55,7 +56,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           height: getVerticalSize(57),
                         ),
                         Text(
-                          "Enter your \nPersonal details",
+                          "Enter your Address",
                           style: AppStyle.textStylePoppinsRegular.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w700,
@@ -65,17 +66,47 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           height: getVerticalSize(43),
                         ),
                         AppTextField(
-                          hintText: 'Date Of Birth',
-                          controller:
-                          enterPersonalDetailController.dobController,
-                        ),
+                            hintText: 'Enter your Address 01',
+                            controller: enterAddressController
+                                .address01Controller),
                         SizedBox(
-                          height: getVerticalSize(43),
+                          height: getVerticalSize(30),
                         ),
                         AppTextField(
-                          hintText: 'SNN',
+                          hintText: 'Enter your Address 02',
                           controller:
-                              enterPersonalDetailController.ssnController,
+                              enterAddressController.address02Controller,
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(30),
+                        ),
+                        AppTextField(
+                          hintText: 'City',
+                          controller:
+                              enterAddressController.cityController,
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(30),
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                                child: AppTextField(
+                              hintText: 'State',
+                              controller:
+                                  enterAddressController.stateController,
+                            )),
+                            SizedBox(
+                              width: getHorizontalSize(50),
+                            ),
+                            Expanded(
+                                child: AppTextField(
+                              hintText: 'Zip Code',
+                              keyBordType: TextInputType.number,
+                              controller: enterAddressController
+                                  .zipCodeController,
+                            )),
+                          ],
                         ),
                         Spacer(),
                         AppElevatedButton(
@@ -83,7 +114,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           onPressed: () {
                             // Get.toNamed(AppRoutes.personalDetailScreen);
                             // Get.toNamed(AppRoutes.personalDetailScreen);
-                            enterPersonalDetailController.onTapOfNextButton();
+                            enterAddressController.onTapOfNextButton();
                           },
                         ),
                         SizedBox(

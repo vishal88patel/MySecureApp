@@ -36,7 +36,7 @@ class LoginScreen extends StatelessWidget {
                       children: [
 
                         Text(
-                          "1/4",
+                          "1/6",
                           style: AppStyle.textStylePoppinsRegular
                               .copyWith(color: ColorConstant.primaryWhite),
                         ),

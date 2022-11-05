@@ -15,7 +15,7 @@ import '../../LinkBankListScreen/model/bank_list_response_model.dart';
 
 class BankListScreenController extends GetxController {
   var bankListModel=BankListResponseModel().obs;
-   RxList mainBankList=[].obs;
+  RxList mainBankList=[].obs;
   var pageNumber=1.obs;
   var lastPage=0.obs;
   var bankScript="".obs;
@@ -72,7 +72,6 @@ class BankListScreenController extends GetxController {
       if(pageNumber.value<=lastPage.value){
         callGetBankListApi(pageNo: pageNumber.value);
       }
-
     }
   }
 }

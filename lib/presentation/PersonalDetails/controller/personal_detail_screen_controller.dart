@@ -16,9 +16,9 @@ import '../model/get_loan_type_response_model.dart';
 import '../model/register_response_model.dart';
 
 class PersonalScreenController extends GetxController {
-  var loginController = Get.find<LoginScreenController>();
-  var createPasswordController = Get.find<CreatePasswordScreenController>();
-  var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+ // var loginController = Get.find<LoginScreenController>();
+ // var createPasswordController = Get.find<CreatePasswordScreenController>();
+ // var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
 
   TextEditingController employmentNameController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
@@ -102,12 +102,12 @@ class PersonalScreenController extends GetxController {
           bodyText: "Please enter loan type",
           headerText: StringConstants.ERROR);
     } else {
-      callRegisterApi();
+     // callRegisterApi();
       // Get.toNamed(AppRoutes.personalDetailScreen);
     }
   }
 
-  Future<void> callRegisterApi() async {
+  /*Future<void> callRegisterApi() async {
     ApiService()
         .callPostApi(
         body: await getRegisterBody(
@@ -132,6 +132,7 @@ class PersonalScreenController extends GetxController {
           device_id: await PlatformDeviceId.getDeviceId,
           fcm_token: "empty",
           devicy_type: device_type,
+          middle_name: enterPersonalDetailController.firstNameController.text,
         ),
         headerWithToken: false,
         url: ApiEndPoints.REGISTER)
@@ -145,7 +146,7 @@ class PersonalScreenController extends GetxController {
             bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
-  }
+  }*/
 
   Future<FormData> getRegisterBody({required String type,
     required String email,
@@ -168,6 +169,7 @@ class PersonalScreenController extends GetxController {
     required String? device_id,
     required String fcm_token,
     required String devicy_type,
+    required String middle_name,
   }) async {
     final form = FormData({
       "type": "1",
@@ -191,6 +193,7 @@ class PersonalScreenController extends GetxController {
       "device_id": device_id,
       "fcm_token": fcm_token,
       "devicy_type": devicy_type,
+      "middle_name": middle_name,
     });
     return form;
   }

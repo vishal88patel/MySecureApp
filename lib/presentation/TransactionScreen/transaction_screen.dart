@@ -10,10 +10,14 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
+import '../../utils/HelperFiles/ui_utils.dart';
+import '../HomeScreen/controller/home_screen_controller.dart';
 import 'controller/transaction_screen_controller.dart';
 
 class TransactionScreen extends StatelessWidget {
   var transactionController = Get.put(TransactionScreenController());
+  var homeController = Get.put(HomeScreenController());
 
   Future<void> scanQR() async {
     String barcodeScanRes;
@@ -117,7 +121,7 @@ class TransactionScreen extends StatelessWidget {
                                   SizedBox(
                                     height: getVerticalSize(5),
                                   ),
-                                  Text('+\$25,60',
+                                  Text('+\$0.0',
                                       style: AppStyle.textStylePoppinsRegular
                                           .copyWith(
                                               fontWeight: FontWeight.w500,
@@ -153,7 +157,16 @@ class TransactionScreen extends StatelessWidget {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              Get.toNamed(AppRoutes.cardListScreen);
+                              if (homeController
+                                  .getLinkedBankModel.value.data!.length >
+                                  0) {
+                                Get.toNamed(AppRoutes.cardListScreen);
+                              } else {
+                                UIUtils.showSnakBar(
+                                  headerText: StringConstants.ERROR,
+                                  bodyText: "Please Link Bank & Card First",
+                                );
+                              }
                             },
                             child: Container(
                               decoration: BoxDecoration(

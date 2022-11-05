@@ -37,7 +37,7 @@ class CardDetailListScreen extends StatelessWidget {
                                 Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
                                 InkWell(
                                   onTap: (){
-                                    Get.toNamed(AppRoutes.cardListScreen);
+
                                   },
                                   child: Image.asset('asset/icons/notification_icon.png',
                                     height: getVerticalSize(20),width: getHorizontalSize(16),),

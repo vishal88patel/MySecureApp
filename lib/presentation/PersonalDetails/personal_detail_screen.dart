@@ -41,7 +41,7 @@ class PersonalDetailScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "4/4",
+                          "6/6",
                           style: AppStyle.textStylePoppinsRegular
                               .copyWith(color: ColorConstant.primaryWhite),
                         ),
@@ -51,7 +51,7 @@ class PersonalDetailScreen extends StatelessWidget {
                       height: getVerticalSize(57),
                     ),
                     Text(
-                      "Personal Details ",
+                      "Enter your Employment Details ",
                       style: AppStyle.textStylePoppinsRegular.copyWith(
                           color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w700,
@@ -61,7 +61,7 @@ class PersonalDetailScreen extends StatelessWidget {
                       height: getVerticalSize(21),
                     ),
                     AppTextField(
-                        hintText: 'Employment name ',
+                        hintText: 'Employment status ',
                         controller:
                             personalDetailController.employmentNameController),
                     SizedBox(

@@ -19,6 +19,8 @@ import 'package:my_secure_app/presentation/CollectDetailScreen/binding/collect_d
 import 'package:my_secure_app/presentation/CollectDetailScreen/collect_detail_screen.dart';
 import 'package:my_secure_app/presentation/DashboardScreen/binding/dashboard_screen_binding.dart';
 import 'package:my_secure_app/presentation/DashboardScreen/dashboard_screen.dart';
+import 'package:my_secure_app/presentation/EnterAddress/enter_address_screen.dart';
+import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_legel_name_screen.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
@@ -63,6 +65,8 @@ import 'package:my_secure_app/presentation/UserPersonalScreen/binding/user_perso
 import 'package:my_secure_app/presentation/UserPersonalScreen/user_personal_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
+import '../presentation/EnterAddress/binding/enter_address_screen_binding.dart';
+import '../presentation/EnterLegalNameDetails/binding/enter_legel_name_screen_binding.dart';
 import '../presentation/EnterPasswordScreen/binding/enter_password_screen_binding.dart';
 import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
@@ -86,6 +90,8 @@ class AppRoutes {
   static String loginEmailScreen = '/login_email_screen';
   static String creatPasswordScreen = '/create_password_screen';
   static String enterPasswordScreen = '/enter_password_screen';
+  static String enterLegalNameScreen = '/enter_legal_name_screen';
+  static String enterAddressScreen = '/enter_address_screen';
   static String enterPersonalDetailScreen = '/enter_personal_detail_screen';
   static String forgetPassScreen = '/forget_pass_screen';
   static String personalDetailScreen = '/personal_detail_screen';
@@ -177,6 +183,26 @@ class AppRoutes {
       page: () => ForgetPassScreen(),
       bindings: [
         ForgetPassScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterLegalNameScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => EnterLegalNameDetailScreen(),
+      bindings: [
+        EnterLegalNameScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterAddressScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => EnterAddressDetailScreen(),
+      bindings: [
+        EnterAddressScreenBinding(),
       ],
     ),
 

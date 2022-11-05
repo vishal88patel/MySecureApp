@@ -8,9 +8,10 @@ import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'controller/enter_legel_name_screen_controller.dart';
 
-class EnterPersonalDetailScreen extends StatelessWidget {
-  var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+class EnterLegalNameDetailScreen extends StatelessWidget {
+  var enterLegelNameController = Get.find<EnterLegalNameScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +46,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "5/6",
+                              "3/6",
                               style: AppStyle.textStylePoppinsRegular
                                   .copyWith(color: ColorConstant.primaryWhite),
                             ),
@@ -55,7 +56,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           height: getVerticalSize(57),
                         ),
                         Text(
-                          "Enter your \nPersonal details",
+                          "Enter your Legal Name",
                           style: AppStyle.textStylePoppinsRegular.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w700,
@@ -65,25 +66,30 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           height: getVerticalSize(43),
                         ),
                         AppTextField(
-                          hintText: 'Date Of Birth',
-                          controller:
-                          enterPersonalDetailController.dobController,
-                        ),
+                            hintText: 'Enter your first name',
+                            controller: enterLegelNameController
+                                .firstNameController),
                         SizedBox(
                           height: getVerticalSize(43),
                         ),
                         AppTextField(
-                          hintText: 'SNN',
-                          controller:
-                              enterPersonalDetailController.ssnController,
+                            hintText: 'Enter your middle name',
+                            controller: enterLegelNameController
+                                .middleNameController),
+                        SizedBox(
+                          height: getVerticalSize(43),
                         ),
+                        AppTextField(
+                            hintText: 'Enter your last name',
+                            controller: enterLegelNameController
+                                .lastNameController),
                         Spacer(),
                         AppElevatedButton(
                           buttonName: 'Next',
                           onPressed: () {
                             // Get.toNamed(AppRoutes.personalDetailScreen);
                             // Get.toNamed(AppRoutes.personalDetailScreen);
-                            enterPersonalDetailController.onTapOfNextButton();
+                            enterLegelNameController.onTapOfNextButton();
                           },
                         ),
                         SizedBox(

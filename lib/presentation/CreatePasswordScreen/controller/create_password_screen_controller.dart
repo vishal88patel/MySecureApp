@@ -57,7 +57,7 @@ class CreatePasswordScreenController extends GetxController {
         bodyText: "Password did not matched",
       );
     }else{
-      Get.toNamed(AppRoutes.enterPersonalDetailScreen);
+      Get.toNamed(AppRoutes.enterLegalNameScreen);
     }
   }
 
