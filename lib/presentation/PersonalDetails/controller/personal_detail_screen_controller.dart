@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -14,23 +13,28 @@ import '../../EnterPersonalDetails/controller/enter_personal_detail_screen_contr
 import '../../LoginScreen/controller/login_screen_controller.dart';
 import '../model/get_loan_type_response_model.dart';
 import '../model/register_response_model.dart';
+import 'get_status_income_response_model.dart';
 
 class PersonalScreenController extends GetxController {
- // var loginController = Get.find<LoginScreenController>();
- // var createPasswordController = Get.find<CreatePasswordScreenController>();
- // var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+  // var loginController = Get.find<LoginScreenController>();
+  // var createPasswordController = Get.find<CreatePasswordScreenController>();
+  // var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
 
   TextEditingController employmentNameController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController annualIncomeController = TextEditingController();
   var purposeOfOpeningAcc = "".obs;
+  var employmentStatus = "abc".obs;
+  List dropdownText = ['abc', 'def', 'ghi'];
 
   var loanModel = GetLoanTypeResponseModel().obs;
+  var getStatusIncomeResponseModel = GetStatusAndIncomeResponseModel().obs;
+  var List<EmployeementStatus>  statusIncomeLIst = [];
   var selectedLoanId = "".obs;
   var loanList = [].obs;
 
+  String device_type = "";
 
-  String device_type="";
   @override
   void onReady() {
     super.onReady();
@@ -51,14 +55,34 @@ class PersonalScreenController extends GetxController {
   Future<void> getLoanTypeApi() async {
     ApiService()
         .callGetApi(
-        body: await getLoanTypeBody(),
-        headerWithToken: false,
-        url: ApiEndPoints.LOAN_TYPE)
+            body: await getLoanTypeBody(),
+            headerWithToken: false,
+            url: ApiEndPoints.LOAN_TYPE)
         .then((value) {
       print(value);
       if (value['status']) {
         loanModel.value = GetLoanTypeResponseModel.fromJson(value);
         loanList.value = loanModel.value.data ?? [];
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<void> getStatusAndIncome() async {
+    ApiService()
+        .callGetApi(
+            body: await getLoanTypeBody(),
+            headerWithToken: false,
+            url: ApiEndPoints.GET_STATUS_AND_INCOME_API)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        getStatusIncomeResponseModel.value =
+            GetStatusAndIncomeResponseModel.fromJson(value);
+        statusIncomeLIst.value =
+            getStatusIncomeResponseModel.value.data!.employeementStatus ?? [];
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
@@ -102,7 +126,7 @@ class PersonalScreenController extends GetxController {
           bodyText: "Please enter loan type",
           headerText: StringConstants.ERROR);
     } else {
-     // callRegisterApi();
+      // callRegisterApi();
       // Get.toNamed(AppRoutes.personalDetailScreen);
     }
   }
@@ -148,7 +172,8 @@ class PersonalScreenController extends GetxController {
     });
   }*/
 
-  Future<FormData> getRegisterBody({required String type,
+  Future<FormData> getRegisterBody({
+    required String type,
     required String email,
     required String mobile,
     required String password,

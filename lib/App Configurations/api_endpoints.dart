@@ -9,6 +9,7 @@ class ApiEndPoints {
   static String FORGOT_PASSWORD = BASE_URL + "/auth/forgotPassword";
   static String GET_CARDLIST = BASE_URL + "/getCardList";
   static String LOAN_TYPE = BASE_URL + "/auth/loan_type";
+  static String GET_STATUS_AND_INCOME_API = BASE_URL + "/auth/getRegister";
   static String GET_BANKLIST = BASE_URL + "/getBankList";
   static String HOME_PAGE_API = BASE_URL + "/auth/home";
   static String HOME_PAGE_GET_LINKED_BANK = BASE_URL + "/getLinkBank";

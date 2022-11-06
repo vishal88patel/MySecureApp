@@ -32,7 +32,7 @@ class PersonalDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap:(){
+                          onTap: () {
                             Get.back();
                           },
                           child: Icon(
@@ -60,10 +60,28 @@ class PersonalDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(21),
                     ),
-                    AppTextField(
+                    /*AppTextField(
                         hintText: 'Employment status ',
                         controller:
-                            personalDetailController.employmentNameController),
+                            personalDetailController.employmentNameController),*/
+                    Obx( () => DropdownButton(
+                      hint: Text(
+                        'Book Type',
+                      ),
+                      onChanged: (newValue) {
+                        // bookController.setSelected(newValue);
+                      },
+                      value: personalDetailController.employmentStatus.value,
+                      items: personalDetailController.dropdownText.map((selectedType) {
+                        return DropdownMenuItem(
+                          child: new Text(
+                            selectedType,
+                          ),
+                          value: selectedType,
+                        );
+                      }).toList(),
+                    )
+                    ),
                     SizedBox(
                       height: getVerticalSize(30),
                     ),
@@ -199,9 +217,7 @@ class PersonalDetailScreen extends StatelessWidget {
                     //
                     // ),
                     Obx(
-                      () => personalDetailController
-                                  .purposeOfOpeningAcc.value ==
-                              "using_wallet_service"
+                      () => personalDetailController.purposeOfOpeningAcc.value == "using_wallet_service"
                           ? Container()
                           : Wrap(
                               alignment: WrapAlignment.start,
@@ -215,8 +231,7 @@ class PersonalDetailScreen extends StatelessWidget {
                                                 .onTapOnLoanTile(i.id);
                                           },
                                           child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            mainAxisAlignment: MainAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
