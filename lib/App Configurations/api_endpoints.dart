@@ -16,5 +16,6 @@ class ApiEndPoints {
   static String GET_WALLET = BASE_URL + "/getWallet";
   static String GET_UUID_USER = BASE_URL + "/getUuidUser";
   static String TRANSACTION = BASE_URL + "/transaction";
+  static String KYC_UPDATE = BASE_URL + "/auth/kycUpdate";
 
 }

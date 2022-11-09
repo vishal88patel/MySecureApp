@@ -59,6 +59,7 @@ dependencies:
   flutter_barcode_scanner: ^2.0.0
   platform_device_id: ^1.0.1
   intl: ^0.17.0
+  image_picker: ^0.8.6
 
 
 dev_dependencies:
