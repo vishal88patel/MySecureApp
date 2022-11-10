@@ -46,23 +46,24 @@ class UploadDocumentScreen extends StatelessWidget {
                       color: ColorConstant.skyE8,
                       child: Padding(
                         padding: const EdgeInsets.all(1.8),
-                        child: Obx(()=>
-                           ClipRRect(
+                        child: Obx(
+                          () => ClipRRect(
                               borderRadius: BorderRadius.circular(100),
-                              child: documentController.netImage1.toString() == ""
-                                  ? Image.asset(
-                                      'asset/account_backgraund_image.png',
-                                      fit: BoxFit.cover,
-                                      height: getVerticalSize(73),
-                                      width: getHorizontalSize(73),
-                                    )
-                                  : Image.file(
-                                      File(documentController.netImage1
-                                          .toString()),
-                                      height: getVerticalSize(73),
-                                      width: getHorizontalSize(73),
-                                      fit: BoxFit.cover,
-                                    )),
+                              child:
+                                  documentController.netImage1.toString() == ""
+                                      ? Image.asset(
+                                          'asset/account_backgraund_image.png',
+                                          fit: BoxFit.cover,
+                                          height: getVerticalSize(73),
+                                          width: getHorizontalSize(73),
+                                        )
+                                      : Image.file(
+                                          File(documentController.netImage1
+                                              .toString()),
+                                          height: getVerticalSize(73),
+                                          width: getHorizontalSize(73),
+                                          fit: BoxFit.cover,
+                                        )),
                         ),
                       ),
                     ),
@@ -72,12 +73,14 @@ class UploadDocumentScreen extends StatelessWidget {
                   height: getVerticalSize(15),
                 ),
                 Center(
-                  child: Text(
-                    "Hello Smith",
-                    style: AppStyle.textStylePoppinsRegular.copyWith(
-                        color: ColorConstant.primaryWhite,
-                        fontWeight: FontWeight.w600,
-                        fontSize: getFontSize(24)),
+                  child: Obx(
+                    () => Text(
+                      documentController.userName.value,
+                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                          color: ColorConstant.primaryWhite,
+                          fontWeight: FontWeight.w600,
+                          fontSize: getFontSize(24)),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -88,39 +91,101 @@ class UploadDocumentScreen extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                   child: GestureDetector(
                     onTap: () {
-                      showChoiceDialog(
-                          context, documentController.profileImage,documentController.netImage1.toString());
+                      // showChoiceDialog(context, documentController.profileImage,documentController.netImage1.toString());
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                "Pick Image From".tr,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontFamily: "Font2"),
+                              ),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: [
+                                    ListTile(
+                                      onTap: () async {
+                                        try {
+                                          final SelectedImage =
+                                              await ImagePicker().pickImage(
+                                                  source: ImageSource.gallery);
+                                          if (SelectedImage == null) return;
+                                          final imageTemporary =
+                                              File(SelectedImage.path);
+                                          documentController.netImage1.value = imageTemporary.path;
+                                          //uploadPic(File(image.path));
+                                          // path = SelectedImage.path.toString();
+                                          // print(path.toString());
+                                        } on PlatformException catch (e) {
+                                          print('Failed to pick image:$e');
+                                        }
+                                        Navigator.pop(context);
+                                      },
+                                      title: Text("Gallery".tr),
+                                    ),
+                                    ListTile(
+                                      onTap: () async {
+                                        try {
+                                          final SelectedImage =
+                                              await ImagePicker().pickImage(source: ImageSource.camera);
+                                          if (SelectedImage == null) return;
+                                          final imageTemporary = File(SelectedImage.path);
+                                          documentController.netImage1.value = imageTemporary.path;
+                                          // path = SelectedImage.path.toString();
+                                          // print(path.toString());
+                                          //uploadPic(File(image.path));
+                                        } on PlatformException catch (e) {
+                                          print('Failed to pick image:$e');
+                                        }
+                                        Navigator.pop(context);
+                                      },
+                                      title: Text("Camera".tr),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
                     },
-                    child: DottedBorder(
-                        color: ColorConstant.primaryWhite,
-                        strokeWidth: 1,
-                        borderType: BorderType.Rect,
-                        radius: Radius.circular(100),
-                        child: Container(
-                          height: getVerticalSize(115),
-                          width: size.width,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'asset/add_photo_image.png',
-                                height: getVerticalSize(30),
-                                width: getHorizontalSize(30),
-                              ),
-                              SizedBox(
-                                height: getVerticalSize(10),
-                              ),
-                              Text(
-                                "Upload your Photo ",
-                                style: AppStyle.textStylePoppinsRegular
-                                    .copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
-                              ),
-                            ],
-                          ),
-                        )),
+                    child: Obx(
+                        ()=> DottedBorder(
+                          color: ColorConstant.primaryWhite,
+                          strokeWidth: 1,
+                          borderType: BorderType.Rect,
+                          radius: Radius.circular(100),
+                          child:  documentController.netImage1.value.isNotEmpty?Container(
+                            height: getVerticalSize(115),
+                            width: size.width,
+                            child: Image.file(File(documentController.netImage1.value),fit: BoxFit.cover,),
+                          ):Container(
+                            height: getVerticalSize(115),
+                            width: size.width,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'asset/add_photo_image.png',
+                                  height: getVerticalSize(30),
+                                  width: getHorizontalSize(30),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
+                                Text(
+                                  "Upload your Photo ",
+                                  style: AppStyle.textStylePoppinsRegular
+                                      .copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(18)),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -131,39 +196,100 @@ class UploadDocumentScreen extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                   child: GestureDetector(
                     onTap: () {
-                      showChoiceDialog(
-                          context, documentController.licenceImageFront,documentController.netImage2.toString());
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                "Pick Image From".tr,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontFamily: "Font2"),
+                              ),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: [
+                                    ListTile(
+                                      onTap: () async {
+                                        try {
+                                          final SelectedImage =
+                                          await ImagePicker().pickImage(
+                                              source: ImageSource.gallery);
+                                          if (SelectedImage == null) return;
+                                          final imageTemporary =
+                                          File(SelectedImage.path);
+                                          documentController.netImage2.value = imageTemporary.path;
+                                          //uploadPic(File(image.path));
+                                          // path = SelectedImage.path.toString();
+                                          // print(path.toString());
+                                        } on PlatformException catch (e) {
+                                          print('Failed to pick image:$e');
+                                        }
+                                        Navigator.pop(context);
+                                      },
+                                      title: Text("Gallery".tr),
+                                    ),
+                                    ListTile(
+                                      onTap: () async {
+                                        try {
+                                          final SelectedImage =
+                                              await ImagePicker().pickImage(source: ImageSource.camera);
+                                          if (SelectedImage == null) return;
+                                          final imageTemporary = File(SelectedImage.path);
+                                          documentController.netImage2.value = imageTemporary.path;
+                                          // path = SelectedImage.path.toString();
+                                          // print(path.toString());
+                                          //uploadPic(File(image.path));
+                                        } on PlatformException catch (e) {
+                                          print('Failed to pick image:$e');
+                                        }
+                                        Navigator.pop(context);
+                                      },
+                                      title: Text("Camera".tr),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
                     },
-                    child: DottedBorder(
-                        color: ColorConstant.primaryWhite,
-                        strokeWidth: 1,
-                        borderType: BorderType.Rect,
-                        radius: Radius.circular(100),
-                        child: Container(
-                          height: getVerticalSize(115),
-                          width: size.width,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'asset/licences_image.png',
-                                height: getVerticalSize(30),
-                                width: getHorizontalSize(30),
-                              ),
-                              SizedBox(
-                                height: getVerticalSize(10),
-                              ),
-                              Text(
-                                "Upload your Driving Licence(Front)",
-                                style: AppStyle.textStylePoppinsRegular
-                                    .copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
-                              ),
-                            ],
-                          ),
-                        )),
+                    child: Obx(
+                        ()=> DottedBorder(
+                          color: ColorConstant.primaryWhite,
+                          strokeWidth: 1,
+                          borderType: BorderType.Rect,
+                          radius: Radius.circular(100),
+                          child: documentController.netImage2.value.isNotEmpty?Container(
+                            height: getVerticalSize(115),
+                            width: size.width,
+                            child: Image.file(File(documentController.netImage2.value),fit: BoxFit.cover,),
+                          ):Container(
+                            height: getVerticalSize(115),
+                            width: size.width,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'asset/licences_image.png',
+                                  height: getVerticalSize(30),
+                                  width: getHorizontalSize(30),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
+                                Text(
+                                  "Upload your Driving Licence(Front)",
+                                  style: AppStyle.textStylePoppinsRegular
+                                      .copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(18)),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -174,39 +300,100 @@ class UploadDocumentScreen extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                   child: GestureDetector(
                     onTap: () {
-                      showChoiceDialog(
-                          context, documentController.licenceImageBack,documentController.netImage3.toString());
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              title: Text(
+                                "Pick Image From".tr,
+                                style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 18,
+                                    fontFamily: "Font2"),
+                              ),
+                              content: SingleChildScrollView(
+                                child: ListBody(
+                                  children: [
+                                    ListTile(
+                                      onTap: () async {
+                                        try {
+                                          final SelectedImage =
+                                          await ImagePicker().pickImage(
+                                              source: ImageSource.gallery);
+                                          if (SelectedImage == null) return;
+                                          final imageTemporary =
+                                          File(SelectedImage.path);
+                                          documentController.netImage3.value = imageTemporary.path;
+                                          //uploadPic(File(image.path));
+                                          // path = SelectedImage.path.toString();
+                                          // print(path.toString());
+                                        } on PlatformException catch (e) {
+                                          print('Failed to pick image:$e');
+                                        }
+                                        Navigator.pop(context);
+                                      },
+                                      title: Text("Gallery".tr),
+                                    ),
+                                    ListTile(
+                                      onTap: () async {
+                                        try {
+                                          final SelectedImage =
+                                              await ImagePicker().pickImage(source: ImageSource.camera);
+                                          if (SelectedImage == null) return;
+                                          final imageTemporary = File(SelectedImage.path);
+                                          documentController.netImage3.value = imageTemporary.path;
+                                          // path = SelectedImage.path.toString();
+                                          // print(path.toString());
+                                          //uploadPic(File(image.path));
+                                        } on PlatformException catch (e) {
+                                          print('Failed to pick image:$e');
+                                        }
+                                        Navigator.pop(context);
+                                      },
+                                      title: Text("Camera".tr),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            );
+                          });
                     },
-                    child: DottedBorder(
-                        color: ColorConstant.primaryWhite,
-                        strokeWidth: 1,
-                        borderType: BorderType.Rect,
-                        radius: Radius.circular(100),
-                        child: Container(
-                          height: getVerticalSize(115),
-                          width: size.width,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Image.asset(
-                                'asset/licences_image.png',
-                                height: getVerticalSize(30),
-                                width: getHorizontalSize(30),
-                              ),
-                              SizedBox(
-                                height: getVerticalSize(10),
-                              ),
-                              Text(
-                                "Upload your Driving Licence(Back)",
-                                style: AppStyle.textStylePoppinsRegular
-                                    .copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
-                              ),
-                            ],
-                          ),
-                        )),
+                    child: Obx(
+                        ()=> DottedBorder(
+                          color: ColorConstant.primaryWhite,
+                          strokeWidth: 1,
+                          borderType: BorderType.Rect,
+                          radius: Radius.circular(100),
+                          child: documentController.netImage3.value.isNotEmpty?Container(
+                            height: getVerticalSize(115),
+                            width: size.width,
+                            child: Image.file(File(documentController.netImage3.value),fit: BoxFit.cover,),
+                          ):Container(
+                            height: getVerticalSize(115),
+                            width: size.width,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                  'asset/licences_image.png',
+                                  height: getVerticalSize(30),
+                                  width: getHorizontalSize(30),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
+                                Text(
+                                  "Upload your Driving Licence(Back)",
+                                  style: AppStyle.textStylePoppinsRegular
+                                      .copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(18)),
+                                ),
+                              ],
+                            ),
+                          )),
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -238,13 +425,22 @@ class UploadDocumentScreen extends StatelessWidget {
                               SizedBox(
                                 height: getVerticalSize(10),
                               ),
-                              Text(
-                                "Scan your Driving Licence ",
-                                style: AppStyle.textStylePoppinsRegular
-                                    .copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
+                              Obx(
+                                ()=>documentController.qrCodeResult.value.isNotEmpty && documentController.qrCodeResult.value!="-1"?Text(
+                                  "Scan Done ",
+                                  style: AppStyle.textStylePoppinsRegular
+                                      .copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(18)),
+                                ): Text(
+                                  "Scan your Driving Licence ",
+                                  style: AppStyle.textStylePoppinsRegular
+                                      .copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(18)),
+                                ),
                               ),
                             ],
                           ),
@@ -253,7 +449,7 @@ class UploadDocumentScreen extends StatelessWidget {
                 ),
                 Spacer(),
                 AppElevatedButton(
-                  buttonName: 'Signout',
+                  buttonName: 'Upload Documents',
                   onPressed: () {
                     documentController.onClickOfSubmitButton();
                   },
@@ -291,7 +487,7 @@ class UploadDocumentScreen extends StatelessWidget {
     print("qrCodeResult:" + documentController.qrCodeResult.value);
   }
 
-  Future pickImageGallery(File? image,String path) async {
+  Future pickImageGallery(File? image, String path) async {
     try {
       final SelectedImage =
           await ImagePicker().pickImage(source: ImageSource.gallery);
@@ -299,21 +495,21 @@ class UploadDocumentScreen extends StatelessWidget {
       final imageTemporary = File(SelectedImage.path);
       image = imageTemporary;
       //uploadPic(File(image.path));
-      path=SelectedImage.path.toString();
+      path = SelectedImage.path.toString();
       print(path.toString());
     } on PlatformException catch (e) {
       print('Failed to pick image:$e');
     }
   }
 
-  Future pickImageCamera(File? image,String path) async {
+  Future pickImageCamera(File? image, String path) async {
     try {
       final SelectedImage =
           await ImagePicker().pickImage(source: ImageSource.camera);
       if (SelectedImage == null) return;
       final imageTemporary = File(SelectedImage.path);
       image = imageTemporary;
-      path=SelectedImage.path.toString();
+      path = SelectedImage.path.toString();
       print(path.toString());
       //uploadPic(File(image.path));
     } on PlatformException catch (e) {
@@ -321,7 +517,8 @@ class UploadDocumentScreen extends StatelessWidget {
     }
   }
 
-  Future<void> showChoiceDialog(BuildContext context, File? image,String path) {
+  Future<void> showChoiceDialog(
+      BuildContext context, File? image, String path) {
     return showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -336,14 +533,14 @@ class UploadDocumentScreen extends StatelessWidget {
                 children: [
                   ListTile(
                     onTap: () {
-                      pickImageGallery(image,path);
+                      pickImageGallery(image, path);
                       Navigator.pop(context);
                     },
                     title: Text("Gallery".tr),
                   ),
                   ListTile(
                     onTap: () {
-                      pickImageCamera(image,path);
+                      pickImageCamera(image, path);
                       Navigator.pop(context);
                     },
                     title: Text("Camera".tr),

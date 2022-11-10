@@ -64,8 +64,26 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                         SizedBox(
                           height: getVerticalSize(43),
                         ),
-                        AppTextField(
-                          hintText: 'Date Of Birth',
+                        TextFormField(
+                          readOnly: true,
+                          onTap: (){
+                            enterPersonalDetailController.selectBirthDate(context);
+
+                          },
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+                            hintText: 'Date Of Birth',
+                            hintStyle: AppStyle.textStylePoppinsRegular
+                                .copyWith(color: ColorConstant.primaryAppTextF1,
+                                fontWeight: FontWeight.w400,fontSize: getFontSize(16)),
+                            suffixIcon:Icon( Icons.calendar_month,color: ColorConstant.primaryAppTextF1,),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+                            ),
+                          ),
                           controller:
                           enterPersonalDetailController.dobController,
                         ),

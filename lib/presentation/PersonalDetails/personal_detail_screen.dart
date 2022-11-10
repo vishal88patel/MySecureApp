@@ -5,7 +5,6 @@ import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/controller/personal_detail_screen_controller.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
@@ -64,24 +63,39 @@ class PersonalDetailScreen extends StatelessWidget {
                         hintText: 'Employment status ',
                         controller:
                             personalDetailController.employmentNameController),*/
-                    Obx( () => DropdownButton(
-                      hint: Text(
-                        'Book Type',
-                      ),
-                      onChanged: (newValue) {
-                        // bookController.setSelected(newValue);
-                      },
-                      value: personalDetailController.employmentStatus.value,
-                      items: personalDetailController.dropdownText.map((selectedType) {
-                        return DropdownMenuItem(
-                          child: new Text(
-                            selectedType,
+                    Obx(() => DropdownButton(
+                          isExpanded: true,
+                          isDense: true,
+                          onChanged: (newValue) {
+                            personalDetailController
+                                .setSelected(newValue.toString());
+                          },
+                          style: new TextStyle(
+                            color: Colors.white,
                           ),
-                          value: selectedType,
-                        );
-                      }).toList(),
-                    )
-                    ),
+                          selectedItemBuilder: (BuildContext context) {
+                            //<-- SEE HERE
+                            return <String>['Car', 'Train', 'Bus', 'Flight']
+                                .map((String value) {
+                              return Text(
+                                personalDetailController.employmentStatus.value,
+                                style: const TextStyle(color: Colors.white),
+                              );
+                            }).toList();
+                          },
+                          value:
+                              personalDetailController.employmentStatus.value,
+                          items: personalDetailController.dropdownTextForStatus
+                              .map((selectedType) {
+                            return DropdownMenuItem(
+                              child: new Text(
+                                selectedType,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              value: selectedType,
+                            );
+                          }).toList(),
+                        )),
                     SizedBox(
                       height: getVerticalSize(30),
                     ),
@@ -92,12 +106,45 @@ class PersonalDetailScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(30),
                     ),
-                    AppTextField(
-                      hintText: 'Annual income',
-                      controller:
-                          personalDetailController.annualIncomeController,
-                      keyBordType: TextInputType.number,
-                    ),
+                    // AppTextField(
+                    //   hintText: 'Annual income',
+                    //   controller:
+                    //       personalDetailController.annualIncomeController,
+                    //   keyBordType: TextInputType.number,
+                    // ),
+                    Obx(() => DropdownButton(
+                          isExpanded: true,
+                          isDense: true,
+                          onChanged: (newValue) {
+                            personalDetailController
+                                .setAnnualIncome(newValue.toString());
+                          },
+                          style: new TextStyle(
+                            color: Colors.white,
+                          ),
+                          selectedItemBuilder: (BuildContext context) {
+                            //<-- SEE HERE
+                            return <String>['Car', 'Train', 'Bus', 'Flight','bb','trac']
+                                .map((String value) {
+                              return Text(
+                                personalDetailController.setSelectedAnnualIncome.value,
+                                style: const TextStyle(color: Colors.white),
+                              );
+                            }).toList();
+                          },
+                          value:
+                              personalDetailController.setSelectedAnnualIncome.value,
+                          items: personalDetailController.dropdownTextForIncome
+                              .map((selectedType) {
+                            return DropdownMenuItem(
+                              child: new Text(
+                                selectedType,
+                                style: TextStyle(color: Colors.black),
+                              ),
+                              value: selectedType,
+                            );
+                          }).toList(),
+                        )),
                     SizedBox(
                       height: getVerticalSize(30),
                     ),
@@ -217,7 +264,9 @@ class PersonalDetailScreen extends StatelessWidget {
                     //
                     // ),
                     Obx(
-                      () => personalDetailController.purposeOfOpeningAcc.value == "using_wallet_service"
+                      () => personalDetailController
+                                  .purposeOfOpeningAcc.value ==
+                              "using_wallet_service"
                           ? Container()
                           : Wrap(
                               alignment: WrapAlignment.start,
@@ -231,7 +280,8 @@ class PersonalDetailScreen extends StatelessWidget {
                                                 .onTapOnLoanTile(i.id);
                                           },
                                           child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
+
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
-import 'dart:convert';
+
 class EnterPersonalScreenController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
@@ -28,13 +29,58 @@ class EnterPersonalScreenController extends GetxController {
   onTapOfNextButton() {
     if (dobController.text.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please enter Date of Birth", headerText: StringConstants.ERROR);
-    }
-    else if (ssnController.text.isEmpty) {
+          bodyText: "Please enter Date of Birth",
+          headerText: StringConstants.ERROR);
+    } else if (ssnController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
     } else {
       Get.toNamed(AppRoutes.personalDetailScreen);
+    }
+  }
+
+  Future<void> selectBirthDate(
+    BuildContext context,
+  ) async {
+    final DateTime? picked = await showDatePicker(
+        context: context,
+        initialDate: selectedDate,
+        firstDate: DateTime(1900, 8),
+        lastDate: DateTime.now(),
+      builder: (context, child){
+        return Theme(
+          data: ThemeData.dark().copyWith(
+              colorScheme: const ColorScheme.dark(
+                  onPrimary: Colors.black, // selected text color
+                  onSurface: Colors.white, // default text color
+                  primary: Colors.white // circle color
+              ),
+              dialogBackgroundColor: Colors.black,
+              textButtonTheme: TextButtonThemeData(
+                  style: TextButton.styleFrom(
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12,
+                          fontFamily: 'Quicksand'),
+                      primary: Colors.white, // color of button's letters
+                      backgroundColor: Colors.black, // Background color
+                      shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                              style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(50))))),
+          child: child!,
+        );
+      },
+
+    );
+    if (picked != null && picked != selectedDate) {
+      final DateFormat formatter = DateFormat('dd-MM-yyyy');
+      final String startDate = formatter.format(picked);
+dobController.text=startDate;
+
     }
   }
 }

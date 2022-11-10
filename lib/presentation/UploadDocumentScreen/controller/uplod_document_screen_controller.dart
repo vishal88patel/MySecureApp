@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,7 +9,10 @@ import '../../../ApiServices/network_info.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../EnterPasswordScreen/models/login_response_model.dart';
+import 'package:http/http.dart' as http;
 
 
 
@@ -24,6 +28,9 @@ class UploadDocumentScreenController extends GetxController {
   var lastName="".obs;
   var dob="".obs;
   var imageUrll ="".obs;
+  var userName="".obs;
+  LoginResponseModel? loginResponseModel=LoginResponseModel();
+
   @override
   void onReady() {
     super.onReady();
@@ -31,8 +38,13 @@ class UploadDocumentScreenController extends GetxController {
 
   @override
   void onInit() {
+    getStoredData();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
+  }
+  Future<void> getStoredData() async {
+    loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+    userName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
   }
 
   @override
@@ -41,20 +53,20 @@ class UploadDocumentScreenController extends GetxController {
   }
 
   void onClickOfSubmitButton() {
-   /* if (profileImage.isNull ) {
+    if (netImage1.isNull ) {
       UIUtils.showSnakBar(
           bodyText: "Please Select Your Photo",
           headerText: StringConstants.ERROR);
-    } else if (licenceImageFront.isNull) {
+    } else if (netImage2.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Select Driving Licence Front Photo",
           headerText: StringConstants.ERROR);
-    } else if (licenceImageBack.isNull) {
+    } else if (netImage3.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Select Driving Licence Back Photo",
           headerText: StringConstants.ERROR);
-    } else */
-    if (qrCodeResult.isEmpty || qrCodeResult.isNull) {
+    } else
+    if (qrCodeResult.isEmpty || qrCodeResult.isNull || qrCodeResult.value=="-1") {
       UIUtils.showSnakBar(
           bodyText: "Please Scan Your Driving Licence",
           headerText: StringConstants.ERROR);
@@ -83,7 +95,7 @@ class UploadDocumentScreenController extends GetxController {
     }
   }
 
-  Future<void> callKycApi() async {
+ /* Future<void> ggggg() async {
     ApiService()
         .callPostApi(
         body: await getKycBody(
@@ -104,6 +116,48 @@ class UploadDocumentScreenController extends GetxController {
             bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
+  }*/
+
+  callKycApi() async {
+    UIUtils.showProgressDialog(isCancellable: false);
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization':
+      'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
+    };
+
+
+    var request = http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
+
+    request.headers.addAll(headers);
+    request.fields['licence_json'] =  "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
+    // "profile": profile,
+    // "licence_front": licence_front,
+    // "licence_back": licence_back,
+    // "licence_json": licence_json,
+
+    request.files.add(await http.MultipartFile.fromPath(
+        "profile", netImage1.value));
+
+    request.files.add(await http.MultipartFile.fromPath(
+        "licence_front", netImage2.value));
+
+    request.files.add(await http.MultipartFile.fromPath(
+        "licence_back", netImage3.value));
+    var response = await request.send();
+
+    var responsed = await http.Response.fromStream(response);
+    final responseData = json.decode(responsed.body);
+
+    if (response.statusCode == 200) {
+      UIUtils.hideProgressDialog();
+      UIUtils.showSnakBar(bodyText: responseData['message'], headerText: StringConstants.SUCCESS);
+      Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
+    } else {
+      UIUtils.hideProgressDialog();
+      UIUtils.showSnakBar(bodyText: responseData['message'], headerText: StringConstants.SUCCESS);
+
+    }
   }
 
   Future<FormData> getKycBody({

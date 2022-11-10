@@ -1,36 +1,44 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:platform_device_id/platform_device_id.dart';
-import 'dart:io';
+
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CreatePasswordScreen/controller/create_password_screen_controller.dart';
+import '../../EnterAddress/controller/enter_address_screen_controller.dart';
+import '../../EnterLegalNameDetails/controller/enter_legel_name_screen_controller.dart';
 import '../../EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import '../../LoginScreen/controller/login_screen_controller.dart';
 import '../model/get_loan_type_response_model.dart';
-import '../model/register_response_model.dart';
 import 'get_status_income_response_model.dart';
 
 class PersonalScreenController extends GetxController {
-  // var loginController = Get.find<LoginScreenController>();
-  // var createPasswordController = Get.find<CreatePasswordScreenController>();
-  // var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+  var loginController = Get.find<LoginScreenController>();
+  var createPasswordController = Get.find<CreatePasswordScreenController>();
+  var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+  var enterLegalNameController = Get.find<EnterLegalNameScreenController>();
+  var enterAddressController = Get.find<EnterAddressScreenController>();
+  // var enterAddressController = Get.find<EnterPersonalScreenController>();
 
   TextEditingController employmentNameController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController annualIncomeController = TextEditingController();
   var purposeOfOpeningAcc = "".obs;
-  var employmentStatus = "abc".obs;
-  List dropdownText = ['abc', 'def', 'ghi'];
+  var employmentStatus = "Employeed".obs;
+  var setSelectedAnnualIncome = "Less than 25,000".obs;
+  List dropdownTextForStatus = ['Employeed', 'Retired', 'Disabikity','Self Employed'];
+  List dropdownTextForIncome = ['Less than 25,000', '25,000 - 50,000', '50,000 - 75,000','75,000 - 1,00,000','Greter than 1,00,000'];
 
   var loanModel = GetLoanTypeResponseModel().obs;
   var getStatusIncomeResponseModel = GetStatusAndIncomeResponseModel().obs;
-  var List<EmployeementStatus>  statusIncomeLIst = [];
-  var selectedLoanId = "".obs;
+  EmployeementStatus statusIncomeObject = EmployeementStatus();
+
+  var selectedLoanId = "1".obs;
   var loanList = [].obs;
 
   String device_type = "";
@@ -42,6 +50,8 @@ class PersonalScreenController extends GetxController {
 
   @override
   void onInit() {
+    employmentNameController.text=setSelectedAnnualIncome.value;
+    annualIncomeController.text=setSelectedAnnualIncome.value;
     checkDeviceType();
     getLoanTypeApi();
     super.onInit();
@@ -50,6 +60,14 @@ class PersonalScreenController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+  void setSelected(String value){
+    employmentStatus.value = value;
+    employmentNameController.text=employmentStatus.value;
+  }
+  void setAnnualIncome(String value){
+    setSelectedAnnualIncome.value = value;
+    annualIncomeController.text=setSelectedAnnualIncome.value;
   }
 
   Future<void> getLoanTypeApi() async {
@@ -81,8 +99,8 @@ class PersonalScreenController extends GetxController {
       if (value['status']) {
         getStatusIncomeResponseModel.value =
             GetStatusAndIncomeResponseModel.fromJson(value);
-        statusIncomeLIst.value =
-            getStatusIncomeResponseModel.value.data!.employeementStatus ?? [];
+        statusIncomeObject =
+            getStatusIncomeResponseModel.value.data!.employeementStatus!;
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
@@ -126,12 +144,12 @@ class PersonalScreenController extends GetxController {
           bodyText: "Please enter loan type",
           headerText: StringConstants.ERROR);
     } else {
-      // callRegisterApi();
+      callRegisterApi();
       // Get.toNamed(AppRoutes.personalDetailScreen);
     }
   }
 
-  /*Future<void> callRegisterApi() async {
+  Future<void> callRegisterApi() async {
     ApiService()
         .callPostApi(
         body: await getRegisterBody(
@@ -139,24 +157,24 @@ class PersonalScreenController extends GetxController {
             email: loginController.emailController.text,
             mobile: "",
             password: createPasswordController.confirmPassController.text,
-            address_1: enterPersonalDetailController.address01Controller.text,
-            address_2: enterPersonalDetailController.address02Controller.text,
-            city: enterPersonalDetailController.cityController.text,
-            state: enterPersonalDetailController.stateController.text,
-            zip_code: enterPersonalDetailController.zipCodeController.text,
+            address_1: enterAddressController.address01Controller.text,
+            address_2: enterAddressController.address02Controller.text,
+            city: enterAddressController.cityController.text,
+            state: enterAddressController.stateController.text,
+            zip_code: enterAddressController.zipCodeController.text,
             ssn: enterPersonalDetailController.ssnController.text,
             name: employmentNameController.text,
             job_title: jobTitleController.text,
             annual_income: annualIncomeController.text,
             purpouse_of_opening_account: purposeOfOpeningAcc.value,
             loan_type: selectedLoanId.value,
-            first_name: enterPersonalDetailController.firstNameController.text,
-            last_name: enterPersonalDetailController.lastNameController.text,
-            date_of_birth:"",
+            first_name: enterLegalNameController.firstNameController.text,
+            last_name: enterLegalNameController.lastNameController.text,
+            date_of_birth:enterPersonalDetailController.dobController.text,
           device_id: await PlatformDeviceId.getDeviceId,
           fcm_token: "empty",
           devicy_type: device_type,
-          middle_name: enterPersonalDetailController.firstNameController.text,
+          middle_name: enterLegalNameController.middleNameController.text,
         ),
         headerWithToken: false,
         url: ApiEndPoints.REGISTER)
@@ -170,7 +188,7 @@ class PersonalScreenController extends GetxController {
             bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
-  }*/
+  }
 
   Future<FormData> getRegisterBody({
     required String type,
@@ -214,7 +232,7 @@ class PersonalScreenController extends GetxController {
       "loan_type": loan_type,
       "first_name": first_name,
       "last_name": last_name,
-      "date_of_birth": "25-8-2022",
+      "date_of_birth":date_of_birth,
       "device_id": device_id,
       "fcm_token": fcm_token,
       "devicy_type": devicy_type,
