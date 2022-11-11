@@ -8,10 +8,12 @@ import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CreatePasswordScreen/controller/create_password_screen_controller.dart';
 import '../../EnterAddress/controller/enter_address_screen_controller.dart';
 import '../../EnterLegalNameDetails/controller/enter_legel_name_screen_controller.dart';
+import '../../EnterPasswordScreen/models/login_response_model.dart';
 import '../../EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import '../../LoginScreen/controller/login_screen_controller.dart';
 import '../model/get_loan_type_response_model.dart';
@@ -40,6 +42,7 @@ class PersonalScreenController extends GetxController {
 
   var selectedLoanId = "1".obs;
   var loanList = [].obs;
+  var showJobTitle = true.obs;
 
   String device_type = "";
 
@@ -64,6 +67,12 @@ class PersonalScreenController extends GetxController {
   void setSelected(String value){
     employmentStatus.value = value;
     employmentNameController.text=employmentStatus.value;
+    if(employmentNameController.text=="Retired" || employmentNameController.text=="Disabikity"){
+      showJobTitle.value=false;
+    }else{
+      showJobTitle.value=true;
+
+    }
   }
   void setAnnualIncome(String value){
     setSelectedAnnualIncome.value = value;
@@ -124,9 +133,9 @@ class PersonalScreenController extends GetxController {
   void onClickOfRegisterButton() {
     if (employmentNameController.text.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please enter employment name",
+          bodyText: "Please enter employment type",
           headerText: StringConstants.ERROR);
-    } else if (jobTitleController.text.isEmpty) {
+    } else if (showJobTitle.value && jobTitleController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter job title",
           headerText: StringConstants.ERROR);
@@ -182,7 +191,10 @@ class PersonalScreenController extends GetxController {
       print(value);
       if (value['status']) {
         UIUtils.showSnakBar(bodyText: value['message'], headerText: StringConstants.SUCCESS);
-        Get.offAllNamed(AppRoutes.loginScreen);
+        LoginResponseModel loginResponseModel =LoginResponseModel.fromJson(value);
+        PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
+        PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
+        Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

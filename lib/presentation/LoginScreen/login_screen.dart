@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                       height: getVerticalSize(54),
                     ),
                     SizedBox(
-                        width: getHorizontalSize(229),
+
                         child: AppTextField(
                           controller: loginController.emailController,
                         )),

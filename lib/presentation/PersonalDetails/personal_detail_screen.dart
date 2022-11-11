@@ -96,12 +96,16 @@ class PersonalDetailScreen extends StatelessWidget {
                             );
                           }).toList(),
                         )),
-                    SizedBox(
-                      height: getVerticalSize(30),
+                    Obx(
+                        ()=> personalDetailController.showJobTitle.value?SizedBox(
+                        height: getVerticalSize(30),
+                      ):Container(),
                     ),
-                    AppTextField(
-                      hintText: 'Job Title',
-                      controller: personalDetailController.jobTitleController,
+                    Obx(
+                      ()=> personalDetailController.showJobTitle.value?AppTextField(
+                        hintText: 'Job Title',
+                        controller: personalDetailController.jobTitleController,
+                      ):Container(),
                     ),
                     SizedBox(
                       height: getVerticalSize(30),
@@ -149,7 +153,7 @@ class PersonalDetailScreen extends StatelessWidget {
                       height: getVerticalSize(30),
                     ),
                     Text(
-                      "Purpouse of opening account",
+                      "Purpouse Of Opening Account",
                       style: AppStyle.textStylePoppinsRegular.copyWith(
                           color: ColorConstant.primaryAppTextF1,
                           fontWeight: FontWeight.w400,
@@ -266,7 +270,9 @@ class PersonalDetailScreen extends StatelessWidget {
                     Obx(
                       () => personalDetailController
                                   .purposeOfOpeningAcc.value ==
-                              "using_wallet_service"
+                              "using_wallet_service" || personalDetailController
+                          .purposeOfOpeningAcc.value ==
+                          ""
                           ? Container()
                           : Wrap(
                               alignment: WrapAlignment.start,

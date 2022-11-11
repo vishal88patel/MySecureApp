@@ -31,12 +31,27 @@ class EnterPersonalScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter Date of Birth",
           headerText: StringConstants.ERROR);
-    } else if (ssnController.text.isEmpty) {
+    } else if (!isAdult(dobController.text)) {
+      UIUtils.showSnakBar(
+          bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
+    }else if (ssnController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
     } else {
       Get.toNamed(AppRoutes.personalDetailScreen);
     }
+  }
+  bool isAdult(String birthDateString) {
+    String datePattern = "dd-MM-yyyy";
+
+    DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
+    DateTime today = DateTime.now();
+
+    int yearDiff = today.year - birthDate.year;
+    int monthDiff = today.month - birthDate.month;
+    int dayDiff = today.day - birthDate.day;
+
+    return yearDiff > 18 || yearDiff == 18 && monthDiff >= 0 && dayDiff >= 0;
   }
 
   Future<void> selectBirthDate(
