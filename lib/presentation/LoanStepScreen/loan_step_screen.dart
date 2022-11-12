@@ -56,10 +56,12 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("\$ 45,000",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                    ()=> Text("\$ ${loanStepController.loanAmount.toString()}",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
                             SizedBox(height: getVerticalSize(5),),
@@ -69,7 +71,7 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("\$ 45",
+                                Text("",
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
@@ -84,10 +86,12 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("\$ 45,000",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                      ()=> Text("\$ ${loanStepController.loanCalModel.value.data!.loanAmount.toString()}",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
 
@@ -103,10 +107,12 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("36 Month ",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                      ()=> Text(" ${loanStepController.loanCalModel.value.data!.month.toString()} Month",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
                             SizedBox(height: getVerticalSize(5),),
@@ -116,10 +122,12 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("8% ",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                      ()=> Text("\$ ${loanStepController.loanCalModel.value.data!.intrestRate.toString()}%",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
                             SizedBox(height: getVerticalSize(5),),
@@ -131,10 +139,12 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("\$ 54,198",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                      ()=> Text("\$ ${loanStepController.loanCalModel.value.data!.paybleAmount.toString()}",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
 
@@ -150,23 +160,27 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("\$ 1505",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                      ()=> Text("\$ ${loanStepController.loanCalModel.value.data!.monthlyEMI.toString()}",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
                             SizedBox(height: getVerticalSize(5),),
                             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("01 outof 36",
+                                Text("Number of EMI ",
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("01 outof 36",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                      ()=> Text("${loanStepController.loanCalModel.value.data!.emiNumber.toString()}",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
                             SizedBox(height: getVerticalSize(5),),
@@ -177,10 +191,12 @@ class LoanStepScreen extends StatelessWidget {
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
-                                Text("AWE123CV",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                Obx(
+                                      ()=> Text("${loanStepController.loanCalModel.value.data!.eMINumber.toString()}",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,fontSize: getFontSize(14)),),
+                                ),
                               ],
                             ),
 

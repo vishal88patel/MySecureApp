@@ -291,8 +291,8 @@ class PersonalDetailScreen extends StatelessWidget {
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Container(
-                                                width: getHorizontalSize(9),
-                                                height: getVerticalSize(9),
+                                                width: getHorizontalSize(22),
+                                                height: getVerticalSize(22),
                                                 decoration: BoxDecoration(
                                                     color: personalDetailController
                                                                 .selectedLoanId
@@ -319,7 +319,7 @@ class PersonalDetailScreen extends StatelessWidget {
                                                         color: ColorConstant
                                                             .primaryAppTextF1,
                                                         fontSize:
-                                                            getFontSize(12)),
+                                                            getFontSize(14)),
                                               ),
                                               SizedBox(
                                                 width: getHorizontalSize(10),
