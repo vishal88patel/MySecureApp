@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../ApiServices/network_info.dart';
@@ -14,23 +16,28 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../EnterPasswordScreen/models/login_response_model.dart';
 import 'package:http/http.dart' as http;
 
-
-
 class UploadDocumentScreenController extends GetxController {
   File? profileImage;
   File? licenceImageFront;
   File? licenceImageBack;
-  var netImage1="".obs;
-  var netImage2="".obs;
-  var netImage3="".obs;
-  var qrCodeResult="".obs;
-  var firstName="".obs;
-  var lastName="".obs;
-  var dob="".obs;
-  var imageUrll ="".obs;
-  var userName="".obs;
-  LoginResponseModel? loginResponseModel=LoginResponseModel();
-
+  var netImage1 = "".obs;
+  var netImage2 = "".obs;
+  var netImage3 = "".obs;
+  var qrCodeResult = "".obs;
+  var firstName = "".obs;
+  var lastName = "".obs;
+  var dob = "".obs;
+  var imageUrll = "".obs;
+  var userName = "".obs;
+  var isVerified = "0".obs;
+  LoginResponseModel? loginResponseModel = LoginResponseModel();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController mobileController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController dobController = TextEditingController();
+  TextEditingController ssnController = TextEditingController();
+  DateTime selectedDate = DateTime.now();
   @override
   void onReady() {
     super.onReady();
@@ -42,9 +49,19 @@ class UploadDocumentScreenController extends GetxController {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
+
   Future<void> getStoredData() async {
-    loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
-    userName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
+    loginResponseModel =
+        (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+    userName.value = loginResponseModel!.data!.firstName! + " " + loginResponseModel!.data!.lastName.toString();
+
+    firstNameController.text=loginResponseModel!.data!.firstName.isNull?"":loginResponseModel!.data!.firstName!;
+    lastNameController.text=loginResponseModel!.data!.lastName.isNull?"":loginResponseModel!.data!.lastName!;
+    mobileController.text=loginResponseModel!.data!.mobile.isNull?"":loginResponseModel!.data!.mobile!;
+    dobController.text=loginResponseModel!.data!.dateOfBirth.isNull?"":loginResponseModel!.data!.dateOfBirth!;
+    ssnController.text=loginResponseModel!.data!.ssn.isNull?"":loginResponseModel!.data!.ssn!;
+    emailController.text=loginResponseModel!.data!.email.isNull?"":loginResponseModel!.data!.email!;
+    isVerified.value=loginResponseModel!.data!.is_kyc.toString();
   }
 
   @override
@@ -52,8 +69,37 @@ class UploadDocumentScreenController extends GetxController {
     super.onClose();
   }
 
+  void onClickOfNextButton() {
+    if (firstNameController.text.isEmpty || firstNameController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter First Name",
+          headerText: StringConstants.ERROR);
+    } else if (lastNameController.text.isEmpty ||
+        lastNameController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter Last Name",
+          headerText: StringConstants.ERROR);
+    } else if (mobileController.text.isEmpty || mobileController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter Mobile Number",
+          headerText: StringConstants.ERROR);
+    } else if (emailController.text.isEmpty || emailController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter Email", headerText: StringConstants.ERROR);
+    } else if (dobController.text.isEmpty || dobController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter Date Of Birth",
+          headerText: StringConstants.ERROR);
+    } else if (ssnController.text.isEmpty || ssnController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter SSN", headerText: StringConstants.ERROR);
+    } else {
+      Get.toNamed(AppRoutes.uploadDocument2);
+    }
+  }
+
   void onClickOfSubmitButton() {
-    if (netImage1.isNull ) {
+    if (netImage1.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Select Your Photo",
           headerText: StringConstants.ERROR);
@@ -65,8 +111,9 @@ class UploadDocumentScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Select Driving Licence Back Photo",
           headerText: StringConstants.ERROR);
-    } else
-    if (qrCodeResult.isEmpty || qrCodeResult.isNull || qrCodeResult.value=="-1") {
+    } else if (qrCodeResult.isEmpty ||
+        qrCodeResult.isNull ||
+        qrCodeResult.value == "-1") {
       UIUtils.showSnakBar(
           bodyText: "Please Scan Your Driving Licence",
           headerText: StringConstants.ERROR);
@@ -74,76 +121,81 @@ class UploadDocumentScreenController extends GetxController {
       const start1 = "DCS";
       const end1 = "DDE";
       final startIndex1 = qrCodeResult.value.indexOf(start1);
-      final endIndex1 = qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
-      firstName.value=qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
+      final endIndex1 =
+          qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
+      firstName.value =
+          qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
 
       const start2 = "DAC";
       const end2 = "DDF";
       final startIndex2 = qrCodeResult.value.indexOf(start2);
-      final endIndex2 = qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
-      lastName.value=qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
+      final endIndex2 =
+          qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
+      lastName.value =
+          qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
 
       const start3 = "DBB";
       const end3 = "DBA";
       final startIndex3 = qrCodeResult.value.indexOf(start3);
-      final endIndex3 = qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
-      dob.value=qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
+      final endIndex3 =
+          qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
+      dob.value =
+          qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
+      print(firstName.value + "," + lastName.value + "," + dob.value);
 
-      print(firstName.value+","+lastName.value+","+dob.value);
-       callKycApi();
-      // Get.toNamed(AppRoutes.personalDetailScreen);
+      scanData(firstName.value, lastName.value, dob.value);
     }
   }
 
- /* Future<void> ggggg() async {
-    ApiService()
-        .callPostApi(
-        body: await getKycBody(
-          profile: netImage1.value,
-            licence_front: netImage1.value,
-          licence_back: netImage1.value,
-          licence_json: "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}"
-        ),
-        headerWithToken: true,
-        url: ApiEndPoints.KYC_UPDATE)
-        .then((value) {
-      print(value);
-      if (value['status']) {
-        UIUtils.showSnakBar(bodyText: value['message'], headerText: StringConstants.SUCCESS);
-        Get.offAllNamed(AppRoutes.progressScreen);
-      } else {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
-      }
-    });
-  }*/
+  void scanData(String? fName, String? lName, String? dateOfBirth) {
+    if (fName?.toLowerCase().trim()!=firstNameController.text.toLowerCase().trim()) {
+      UIUtils.showSnakBar(
+          bodyText: "First Name is Not match With Driving Licence First Name",
+          headerText: StringConstants.ERROR);
+    } else if (lName?.toLowerCase().trim()!=lastNameController.text.toLowerCase().trim()) {
+      UIUtils.showSnakBar(
+          bodyText: "Last Name is Not match With Driving Licence Last Name",
+          headerText: StringConstants.ERROR);
+   /* } else if (dateOfBirth?.toLowerCase().trim()!=dobController.text.toLowerCase().trim()) {
+      UIUtils.showSnakBar(
+          bodyText: "Date Of Birth is Not match With Driving Licence Date Of Birth",
+          headerText: StringConstants.ERROR);*/
+    }else{
+      callKycApi();
+    }
+
+  }
 
   callKycApi() async {
     UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
       'Authorization':
-      'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
+          'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
     };
 
-
-    var request = http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
+    var request =
+        http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
 
     request.headers.addAll(headers);
-    request.fields['licence_json'] =  "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
-    // "profile": profile,
-    // "licence_front": licence_front,
-    // "licence_back": licence_back,
-    // "licence_json": licence_json,
 
-    request.files.add(await http.MultipartFile.fromPath(
-        "profile", netImage1.value));
+    request.fields['first_name'] = firstNameController.text;
+    request.fields['last_name'] = lastNameController.text;
+    request.fields['email'] = emailController.text;
+    request.fields['mobile'] = mobileController.text;
+    request.fields['ssn'] = ssnController.text;
+    request.fields['date_of_birth'] = dobController.text;
+    request.fields['licence_json'] =
+        "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
 
-    request.files.add(await http.MultipartFile.fromPath(
-        "licence_front", netImage2.value));
+    request.files
+        .add(await http.MultipartFile.fromPath("profile", netImage1.value));
 
-    request.files.add(await http.MultipartFile.fromPath(
-        "licence_back", netImage3.value));
+    request.files.add(
+        await http.MultipartFile.fromPath("licence_front", netImage2.value));
+
+    request.files.add(
+        await http.MultipartFile.fromPath("licence_back", netImage3.value));
     var response = await request.send();
 
     var responsed = await http.Response.fromStream(response);
@@ -151,12 +203,16 @@ class UploadDocumentScreenController extends GetxController {
 
     if (response.statusCode == 200) {
       UIUtils.hideProgressDialog();
-      UIUtils.showSnakBar(bodyText: responseData['message'], headerText: StringConstants.SUCCESS);
-      Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.SUCCESS);
+      Get.offAllNamed(AppRoutes.dashBoardScreen,
+          arguments: {"bottomTabCount": 0});
     } else {
       UIUtils.hideProgressDialog();
-      UIUtils.showSnakBar(bodyText: responseData['message'], headerText: StringConstants.SUCCESS);
-
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.SUCCESS);
     }
   }
 
@@ -175,4 +231,48 @@ class UploadDocumentScreenController extends GetxController {
     return form;
   }
 
+  Future<void> selectBirthDate(
+      BuildContext context,
+      ) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      firstDate: DateTime(1900, 8),
+      lastDate: DateTime.now(),
+      builder: (context, child){
+        return Theme(
+          data: ThemeData.dark().copyWith(
+              colorScheme: const ColorScheme.dark(
+                  onPrimary: Colors.black, // selected text color
+                  onSurface: Colors.white, // default text color
+                  primary: Colors.white // circle color
+              ),
+              dialogBackgroundColor: Colors.black,
+              textButtonTheme: TextButtonThemeData(
+                  style: TextButton.styleFrom(
+                      textStyle: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12,
+                          fontFamily: 'Quicksand'),
+                      primary: Colors.white, // color of button's letters
+                      backgroundColor: Colors.black, // Background color
+                      shape: RoundedRectangleBorder(
+                          side: const BorderSide(
+                              color: Colors.black,
+                              width: 1,
+                              style: BorderStyle.solid),
+                          borderRadius: BorderRadius.circular(50))))),
+          child: child!,
+        );
+      },
+
+    );
+    if (picked != null && picked != selectedDate) {
+      final DateFormat formatter = DateFormat('dd-MM-yyyy');
+      final String startDate = formatter.format(picked);
+      dobController.text=startDate;
+
+    }
+  }
 }

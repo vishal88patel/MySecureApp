@@ -457,14 +457,6 @@ class UploadDocumentScreen extends StatelessWidget {
                 SizedBox(
                   height: getVerticalSize(36),
                 ),
-                Center(
-                    child: Container(
-                  height: getVerticalSize(4),
-                  width: getHorizontalSize(106),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(4),
-                      color: ColorConstant.primaryAppTextF1),
-                ))
               ],
             ),
           ],
@@ -487,68 +479,4 @@ class UploadDocumentScreen extends StatelessWidget {
     print("qrCodeResult:" + documentController.qrCodeResult.value);
   }
 
-  Future pickImageGallery(File? image, String path) async {
-    try {
-      final SelectedImage =
-          await ImagePicker().pickImage(source: ImageSource.gallery);
-      if (SelectedImage == null) return;
-      final imageTemporary = File(SelectedImage.path);
-      image = imageTemporary;
-      //uploadPic(File(image.path));
-      path = SelectedImage.path.toString();
-      print(path.toString());
-    } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
-
-  Future pickImageCamera(File? image, String path) async {
-    try {
-      final SelectedImage =
-          await ImagePicker().pickImage(source: ImageSource.camera);
-      if (SelectedImage == null) return;
-      final imageTemporary = File(SelectedImage.path);
-      image = imageTemporary;
-      path = SelectedImage.path.toString();
-      print(path.toString());
-      //uploadPic(File(image.path));
-    } on PlatformException catch (e) {
-      print('Failed to pick image:$e');
-    }
-  }
-
-  Future<void> showChoiceDialog(
-      BuildContext context, File? image, String path) {
-    return showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text(
-              "Pick Image From".tr,
-              style: TextStyle(
-                  color: Colors.black, fontSize: 18, fontFamily: "Font2"),
-            ),
-            content: SingleChildScrollView(
-              child: ListBody(
-                children: [
-                  ListTile(
-                    onTap: () {
-                      pickImageGallery(image, path);
-                      Navigator.pop(context);
-                    },
-                    title: Text("Gallery".tr),
-                  ),
-                  ListTile(
-                    onTap: () {
-                      pickImageCamera(image, path);
-                      Navigator.pop(context);
-                    },
-                    title: Text("Camera".tr),
-                  ),
-                ],
-              ),
-            ),
-          );
-        });
-  }
 }

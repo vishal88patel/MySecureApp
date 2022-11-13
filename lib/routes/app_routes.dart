@@ -80,6 +80,8 @@ import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
 import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
+import '../presentation/UploadDocumentScreen/uplod_document_screen1.dart';
+import '../presentation/UploadDocumentScreen/uplod_document_screen2.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
 import '../test_card.dart';
@@ -123,7 +125,8 @@ class AppRoutes {
   static String loanStepScreen = '/loan_step_screen';
   static String cardProfileDetailScreen = '/card_profile_detail_screen';
   static String transactionScreen = '/transaction_screen';
-  static String uploadDocument= '/upload_document';
+  static String uploadDocument1= '/upload_document1';
+  static String uploadDocument2= '/upload_document2';
   static String linkBankListScreen= '/link_bank_list_screen';
   static String webviewPage = '/webView_page';
   static String collectDetailScreen = '/collect_detail_screen';
@@ -149,6 +152,7 @@ class AppRoutes {
         LoginScreenBinding(),
       ],
     ),
+
 
     GetPage(
       name: loginEmailScreen,
@@ -409,10 +413,22 @@ class AppRoutes {
     ),
 
     GetPage(
-      name: uploadDocument,
+      name: uploadDocument1,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => UploadDocumentScreen1(),
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: uploadDocument2,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => UploadDocumentScreen(),
+      transitionDuration: Duration(milliseconds: 250),
+      page: () => UploadDocumentScreen2(),
       bindings: [
         UploadDocumentScreenBinding(),
       ],

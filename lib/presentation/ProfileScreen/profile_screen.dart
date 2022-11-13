@@ -55,7 +55,7 @@ class ProfileScreen extends StatelessWidget {
                           child: AppElevatedButton(buttonName: 'Invite Friends, Get \$10',
                            buttonColor: ColorConstant.skyE8,
                             onPressed: () {
-                            Get.toNamed(AppRoutes.uploadDocument);
+                            Get.toNamed(AppRoutes.uploadDocument1);
 
                           },),
                         ),
@@ -73,9 +73,9 @@ class ProfileScreen extends StatelessWidget {
                               Get.toNamed(AppRoutes.loanStepScreen);
                             }),
                         SizedBox(height: getVerticalSize(15),),
-                        ProfileWidget(name: 'Documents',image: 'asset/icons/document_icon.png',
+                        ProfileWidget(name: 'KYC',image: 'asset/icons/document_icon.png',
                             onTap: (){
-                              Get.toNamed(AppRoutes.uploadDocument);
+                              Get.toNamed(AppRoutes.uploadDocument1);
                             }),
                         SizedBox(height: getVerticalSize(15),),
                         ProfileWidget(name: 'Support',image: 'asset/icons/support_icon.png',onTap: (){
