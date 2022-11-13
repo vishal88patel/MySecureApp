@@ -17,6 +17,8 @@ class HomeScreenController extends GetxController {
   var homeModel = HomePageResponseModel().obs;
   var getLinkedBankModel = GrtLinkedBank().obs;
   var homePageHeadeName="".obs;
+  var profilePicture="".obs;
+  var showNotiFiBadge=false.obs;
   @override
   void onReady() {
     super.onReady();
@@ -38,6 +40,12 @@ class HomeScreenController extends GetxController {
   Future<void> getStoredData() async {
      loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
      homePageHeadeName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
+     profilePicture.value=loginResponseModel!.data!.profilePhotoPath.toString();
+     if(PrefUtils.getString(StringConstants.IS_KYC_DONE)=="0"){
+       showNotiFiBadge.value=true;
+     }else{
+       showNotiFiBadge.value=false;
+     }
   }
 
   Future<void> callHomePageApi() async {

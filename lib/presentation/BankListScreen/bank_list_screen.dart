@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textFormField_fill.dart';
-import 'package:my_secure_app/Custom%20Widgets/bank_list_widget.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
-import '../HomeScreen/controller/home_screen_controller.dart';
+import '../../theme/app_style.dart';
 import 'controller/bank_list_screen_controller.dart';
 
 class BankListScreen extends StatelessWidget {
@@ -105,21 +102,135 @@ class BankListScreen extends StatelessWidget {
                                           onTap: () {
                                             // Get.toNamed(AppRoutes.progressScreen);
                                             Get.toNamed(
-                                                AppRoutes.addBankProceedScreen,arguments: {
-                                            'BANK_ID': bankListController.mainBankList.value[index].id.toString(),
-                                            'BANK_IMAGE': bankListController.mainBankList.value[index].image.toString(),
-                                            'BANK_NAME': bankListController.mainBankList.value[index].name.toString(),
-                                            'BANK_URL': bankListController.mainBankList.value[index].bankUrl.toString(),
-                                            'BANK_JS': /*bankListController.mainBankList.value[index].page_script!=null?bankListController.mainBankList.value[index].page_script.toString():*/bankListController.bankScript.value,
-                                            });
+                                                AppRoutes.addBankProceedScreen,
+                                                arguments: {
+                                                  'BANK_ID': bankListController
+                                                      .mainBankList
+                                                      .value[index]
+                                                      .id
+                                                      .toString(),
+                                                  'BANK_IMAGE':
+                                                      bankListController
+                                                          .mainBankList
+                                                          .value[index]
+                                                          .image
+                                                          .toString(),
+                                                  'BANK_NAME':
+                                                      bankListController
+                                                          .mainBankList
+                                                          .value[index]
+                                                          .name
+                                                          .toString(),
+                                                  'BANK_URL': bankListController
+                                                      .mainBankList
+                                                      .value[index]
+                                                      .bankUrl
+                                                      .toString(),
+                                                  'BANK_JS': /*bankListController.mainBankList.value[index].page_script!=null?bankListController.mainBankList.value[index].page_script.toString():*/ bankListController
+                                                      .bankScript.value,
+                                                });
                                           },
-                                          child: BankListWidget(
+                                          /*  child: BankListWidget(
                                             name: bankListController
                                                 .mainBankList.value[index].name
                                                 .toString(),
                                             image: bankListController
                                                 .mainBankList.value[index].image
                                                 .toString(),
+                                          )*/
+
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: ColorConstant.blue26,
+                                                borderRadius:
+                                                    BorderRadius.circular(10)),
+                                            child: Row(
+                                              children: [
+                                                bankListController.mainBankList
+                                                            .value[index].image
+                                                            .toString()
+                                                            .substring(bankListController
+                                                                    .mainBankList
+                                                                    .value[
+                                                                        index]
+                                                                    .image
+                                                                    .toString()
+                                                                    .length -
+                                                                3)
+                                                            .toLowerCase() ==
+                                                        "svg"
+                                                    ? Container(
+                                                        padding:
+                                                            EdgeInsets.all(8),
+                                                        width: 100,
+                                                        height: 100,
+                                                        decoration: BoxDecoration(
+                                                            color: ColorConstant
+                                                                .blue26,
+                                                            border: Border.all(
+                                                                color:
+                                                                    ColorConstant
+                                                                        .blueFF),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        child:
+                                                            SvgPicture.network(
+                                                          bankListController
+                                                              .mainBankList
+                                                              .value[index]
+                                                              .image
+                                                              .toString(),
+                                                          fit: BoxFit.contain,
+                                                        ),
+                                                      )
+                                                    : Container(
+                                                        padding:
+                                                            EdgeInsets.all(8),
+                                                        width: 100,
+                                                        height: 100,
+                                                        decoration: BoxDecoration(
+                                                            color: ColorConstant
+                                                                .blue26,
+                                                            border: Border.all(
+                                                                color:
+                                                                    ColorConstant
+                                                                        .blueFF),
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        child: Image.network(
+                                                          bankListController
+                                                              .mainBankList
+                                                              .value[index]
+                                                              .image
+                                                              .toString(),
+                                                          fit: BoxFit.contain,
+                                                        ),
+                                                      ),
+                                                SizedBox(
+                                                  width: 12,
+                                                ),
+                                                Text(
+                                                    bankListController
+                                                        .mainBankList
+                                                        .value[index]
+                                                        .name
+                                                        .toString(),
+                                                    style: AppStyle
+                                                        .textStylePoppinsRegular
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .primaryWhite,
+                                                            fontWeight:
+                                                                FontWeight.w600,
+                                                            fontSize:
+                                                                getFontSize(
+                                                                    18))),
+                                              ],
+                                            ),
                                           )),
                                     );
                                   }

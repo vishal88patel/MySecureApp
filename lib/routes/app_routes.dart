@@ -76,6 +76,8 @@ import '../presentation/LoanApprovedScreen/binding/loan_approved_screen_binding.
 import '../presentation/LoanCalculator/loan_calculator_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
+import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
+import '../presentation/NotificationScreen/notification_screen.dart';
 import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
 import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
@@ -120,6 +122,7 @@ class AppRoutes {
   static String userPersonalScreen = '/userPersonal_screen';
   static String privacyPolicyScreen = '/privacyPolicyScreen_screen';
   static String supportScreen = '/support_screen';
+  static String notificationScreen = '/notification_screen';
   static String faqScreen = '/faq_screen';
   static String moreHelpScreen = '/moreHelp_screen';
   static String loanStepScreen = '/loan_step_screen';
@@ -359,6 +362,15 @@ class AppRoutes {
       page: () => SupportScreen(),
       bindings: [
         SupportScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: notificationScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => NotificationScreen(),
+      bindings: [
+        NotificationScreenBinding(),
       ],
     ),
 

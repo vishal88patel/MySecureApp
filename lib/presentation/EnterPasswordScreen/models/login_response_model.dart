@@ -27,10 +27,10 @@ class Data {
   int? is_kyc;
   String? name;
   String? email;
-  Null? emailVerifiedAt;
-  Null? twoFactorConfirmedAt;
-  Null? currentTeamId;
-  Null? profilePhotoPath;
+  String? emailVerifiedAt;
+  String? twoFactorConfirmedAt;
+  String? currentTeamId;
+  String? profilePhotoPath;
   String? createdAt;
   String? updatedAt;
   String? mobile;
@@ -48,7 +48,7 @@ class Data {
   String? dateOfBirth;
   String? loanType;
   String? token;
-  String? profilePhotoUrl;
+
 
   Data(
       {this.id,
@@ -76,7 +76,7 @@ class Data {
         this.dateOfBirth,
         this.loanType,
         this.token,
-        this.profilePhotoUrl});
+        });
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -103,7 +103,7 @@ class Data {
     dateOfBirth = json['date_of_birth'];
     loanType = json['loan_type'];
     token = json['token'];
-    profilePhotoUrl = json['profile_photo_url'];
+
     is_kyc = json['is_kyc'];
   }
 
@@ -133,7 +133,6 @@ class Data {
     data['date_of_birth'] = this.dateOfBirth;
     data['loan_type'] = this.loanType;
     data['token'] = this.token;
-    data['profile_photo_url'] = this.profilePhotoUrl;
     data['is_kyc'] = this.is_kyc;
     return data;
   }

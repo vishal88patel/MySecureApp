@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
@@ -42,17 +43,20 @@ class HomeScreen extends StatelessWidget {
                               width: getHorizontalSize(45),
                               color: ColorConstant.primaryWhite,
                               child: Padding(
-                                padding: const EdgeInsets.all(0.5),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(100),
-                                  child: Image.asset(
-                                    'asset/card_image.png',
-                                    fit: BoxFit.cover,
-                                    height: getVerticalSize(30.8),
-                                    width: getHorizontalSize(30.8),
-                                  ),
-                                ),
-                              ),
+                                  padding: const EdgeInsets.all(0.5),
+                                  child: Obx(
+                                    () => CachedNetworkImage(
+                                      imageUrl:
+                                          homeController.profilePicture.value,
+                                      fit: BoxFit.cover,
+                                      width: MediaQuery.of(context).size.width,
+                                      placeholder: (context, url) =>
+                                          CircularProgressIndicator(
+                                              color: ColorConstant.skyE8),
+                                      errorWidget: (context, url, error) =>
+                                          new Icon(Icons.error),
+                                    ),
+                                  )),
                             ),
                           ),
                         ),
@@ -83,17 +87,29 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
-                    InkWell(
-                      onTap: () {
-                        Get.toNamed(AppRoutes.uploadDocument1);
+                    GestureDetector(
+                      onTap: (){
+                        Get.toNamed(AppRoutes.notificationScreen);
                       },
-                      child: Image.asset(
-                        'asset/icons/notification_icon.png',
-                        fit: BoxFit.cover,
-                        height: getVerticalSize(20),
-                        width: getHorizontalSize(16),
-                      ),
-                    )
+                      child: Stack(children: <Widget>[
+                        Image.asset(
+                          'asset/icons/notification_icon.png',
+                          fit: BoxFit.cover,
+                          height: getVerticalSize(25),
+                          width: getHorizontalSize(20),
+                        ),
+                        Obx(
+                          () => homeController.showNotiFiBadge.value
+                              ? Positioned(
+                                  top: 0.0,
+                                  right: -2.0,
+                                  child: new Icon(Icons.brightness_1,
+                                      size: 12.0, color: Colors.redAccent),
+                                )
+                              : Container(),
+                        )
+                      ]),
+                    ),
                   ],
                 ),
                 Expanded(
@@ -126,41 +142,41 @@ class HomeScreen extends StatelessWidget {
                                   },
                                 ),
                                 Obx(
-                                  ()=> homeController.getLinkedBankModel
-                                      .value.data !=
-                                      null
-                                      && homeController
-                                      .getLinkedBankModel
-                                      .value
-                                      .data!
-                                      .length>=0
-                                      ?Positioned(
-                                    right: 0,
-                                    top: -10,
-                                    child: Container(
-                                      height: 40,
-                                      width: 40,
-                                      decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          shape: BoxShape.circle),
-                                      child: Obx(() => Center(
-                                            child: Text(
-                                              homeController.getLinkedBankModel
-                                                          .value !=
-                                                      null
-                                                  ? homeController
-                                                      .getLinkedBankModel
-                                                      .value
-                                                      .data!
-                                                      .length
-                                                      .toString()
-                                                  : "",
-                                              style:
-                                                  TextStyle(color: Colors.white),
-                                            ),
-                                          )),
-                                    ),
-                                  ):Container(),
+                                  () => homeController.getLinkedBankModel.value
+                                                  .data !=
+                                              null &&
+                                          homeController.getLinkedBankModel
+                                                  .value.data!.length >=
+                                              0
+                                      ? Positioned(
+                                          right: 0,
+                                          top: -10,
+                                          child: Container(
+                                            height: 40,
+                                            width: 40,
+                                            decoration: BoxDecoration(
+                                                color: Colors.red,
+                                                shape: BoxShape.circle),
+                                            child: Obx(() => Center(
+                                                  child: Text(
+                                                    homeController
+                                                                .getLinkedBankModel
+                                                                .value !=
+                                                            null
+                                                        ? homeController
+                                                            .getLinkedBankModel
+                                                            .value
+                                                            .data!
+                                                            .length
+                                                            .toString()
+                                                        : "",
+                                                    style: TextStyle(
+                                                        color: Colors.white),
+                                                  ),
+                                                )),
+                                          ),
+                                        )
+                                      : Container(),
                                 )
                               ],
                             ),

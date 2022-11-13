@@ -243,7 +243,7 @@ class LoanApprovedScreen extends StatelessWidget {
                                       Flexible(
                                         child: Text(
                                           textAlign: TextAlign.center,
-                                          "your loan is approved! and the Amount has been credited in your Wallet",
+                                          "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
                                           style: AppStyle.textStyleSFPRORegular
                                               .copyWith(
                                                   color: ColorConstant

@@ -48,8 +48,7 @@ class LoanStepScreenController extends GetxController {
     ApiService()
         .callPostApi(
         body: await getRegisterBody(
-            // amount: loanCalModel.value.data!.loanAmount.toString(),
-            amount: "2000",
+            amount: loanCalModel.value.data!.loanAmount.toString(),
             loan_type: loan_type.value,
             month: loanCalModel.value.data!.month.toString(),
             type: "2"),

@@ -57,7 +57,7 @@ class TransactionScreenController extends GetxController {
         lastPage.value= walletModel.value.data!.lastPage!;
         balance.value= walletModel.value.data!.walletBalance!;
         transactionList.addAll(walletModel.value.data!.userTransaction??[]);
-        uuid.value= walletModel.value.data!.uuid!;
+        uuid.value= walletModel.value.data!.uuid!??"";
 
       } else {
         UIUtils.showSnakBar(

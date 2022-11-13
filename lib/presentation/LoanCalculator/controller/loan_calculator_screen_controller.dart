@@ -6,6 +6,7 @@ import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../PersonalDetails/model/get_loan_type_response_model.dart';
 
@@ -34,6 +35,7 @@ class LoanCalculatorScreenController extends GetxController {
   var selectedLoan = "Please select loan".obs;
 
   var selectedLoanAmount = "".obs;
+  var isKycDone=false.obs;
 
   @override
   void onReady() {
@@ -42,9 +44,19 @@ class LoanCalculatorScreenController extends GetxController {
 
   @override
   void onInit() {
-    Future.delayed(Duration(milliseconds: 50),(){getLoanTypeApi();});
+    getStoredData();
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
+  }
+  Future<void> getStoredData() async {
+
+    if(PrefUtils.getString(StringConstants.IS_KYC_DONE)!="0"){
+      isKycDone.value=true;
+      Future.delayed(Duration(milliseconds: 50),(){getLoanTypeApi();});
+    }else{
+      isKycDone.value=false;
+    }
   }
 
   @override
