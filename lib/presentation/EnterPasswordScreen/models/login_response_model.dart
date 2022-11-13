@@ -24,6 +24,7 @@ class LoginResponseModel {
 
 class Data {
   int? id;
+  String? is_kyc;
   String? name;
   String? email;
   Null? emailVerifiedAt;
@@ -51,6 +52,7 @@ class Data {
 
   Data(
       {this.id,
+        this.is_kyc,
         this.name,
         this.email,
         this.emailVerifiedAt,
@@ -78,6 +80,7 @@ class Data {
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    is_kyc = json['is_kyc'];
     name = json['name'];
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
@@ -107,6 +110,7 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['is_kyc'] = this.is_kyc;
     data['name'] = this.name;
     data['email'] = this.email;
     data['email_verified_at'] = this.emailVerifiedAt;

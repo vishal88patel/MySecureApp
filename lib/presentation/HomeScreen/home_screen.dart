@@ -85,7 +85,7 @@ class HomeScreen extends StatelessWidget {
                     ),
                     InkWell(
                       onTap: () {
-                        Get.toNamed(AppRoutes.linkBankListScreen);
+                        Get.toNamed(AppRoutes.uploadDocument1);
                       },
                       child: Image.asset(
                         'asset/icons/notification_icon.png',
