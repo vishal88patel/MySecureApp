@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../App Configurations/color_constants.dart';
 import '../theme/app_style.dart';
@@ -103,7 +104,9 @@ class _QRViewExampleState extends State<QRViewExample> {
           borderRadius: 10,
           borderLength: 30,
           borderWidth: 10,
-          cutOutSize: scanArea),
+          cutOutHeight:MediaQuery.of(context).size.width/2.25 ,
+          cutOutWidth: MediaQuery.of(context).size.width/1.1,
+          ),
       onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
     );
   }
@@ -119,6 +122,7 @@ class _QRViewExampleState extends State<QRViewExample> {
         print(scanData.code.toString());
         if(documentController.qrCodeResult.value.isNotEmpty && counter==0){
           counter=1;
+          UIUtils.showSnakBar(headerText: "Success",bodyText: "Driving Licence Scan Completed");
           Navigator.pop(context);
         }
       });

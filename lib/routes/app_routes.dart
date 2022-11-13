@@ -260,7 +260,7 @@ class AppRoutes {
       name: cardDetailScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => MySample(),
+      page: () => CardDetailScreen(),
       bindings: [
         CardScreenBinding(),
       ],

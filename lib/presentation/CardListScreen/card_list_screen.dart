@@ -31,13 +31,17 @@ class CardListScreen extends StatelessWidget {
                           children: [
                             Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
                               children: [
-                                Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
                                 InkWell(
+                                  onTap:(){
+                                    Navigator.pop(context);
+                                  },
+                                    child: Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,)),
+                                /*InkWell(
                                   onTap: (){ Get.toNamed(AppRoutes.homeScreen);
                                   },
                                   child: Image.asset('asset/icons/notification_icon.png',
                                     height: getVerticalSize(20),width: getHorizontalSize(16),),
-                                )
+                                )*/
                               ],
                             ),
                             SizedBox(height: getVerticalSize(25),),
@@ -56,6 +60,11 @@ class CardListScreen extends StatelessWidget {
                                               },
                                               child: const  CreditCardWidget(cardHolderName: "ABC",
                                                   cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
+                                                // holderName
+                                                // cardNumber
+                                                // expireYear
+                                                // expireMonth
+
                                             ),
                                           );
                                         }

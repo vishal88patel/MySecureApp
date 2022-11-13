@@ -35,9 +35,14 @@ class UploadDocumentScreen1 extends StatelessWidget {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Icon(
-                      Icons.arrow_back,
-                      color: ColorConstant.primaryWhite,
+                    InkWell(
+                      onTap: (){
+                        Navigator.pop(context);
+                      },
+                      child: Icon(
+                        Icons.arrow_back,
+                        color: ColorConstant.primaryWhite,
+                      ),
                     ),
                     SizedBox(
                       height: getVerticalSize(27),

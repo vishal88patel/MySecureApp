@@ -20,6 +20,7 @@ class CardListScreenController extends GetxController {
 
   @override
   void onInit() {
+    callGetBankListApi(pageNo: 0);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
