@@ -28,7 +28,7 @@ class LoanCalculatorScreenController extends GetxController {
   ].obs;
   var selectedLoanId = "".obs;
   var selectedLoanTenureId = 0.obs;
-  var maximumAvailableLoan = 0.obs;
+  var maximumAvailableLoan = 500000.obs;
   var interestRate = "".obs;
   var selectedLoanTenure = "".obs;
   var selectedLoan = "Please select loan".obs;
@@ -42,7 +42,7 @@ class LoanCalculatorScreenController extends GetxController {
 
   @override
   void onInit() {
-    getLoanTypeApi();
+    Future.delayed(Duration(milliseconds: 50),(){getLoanTypeApi();});
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }

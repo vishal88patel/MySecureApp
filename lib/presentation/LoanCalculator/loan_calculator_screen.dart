@@ -19,7 +19,7 @@ class LoanCalculatorScreen extends StatefulWidget {
 class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
   var loanCalculatorController = Get.put(LoanCalculatorScreenController());
 
-  double _volumeValue = 20000;
+  double _volumeValue = 0;
 
   Future<void> onVolumeChanged(double value) async {
     if (await Vibrate.canVibrate) {
@@ -188,7 +188,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                             width: 300,
                             child: SfRadialGauge(axes: <RadialAxis>[
                               RadialAxis(
-                                  minimum: 20000,
+                                  minimum: 0,
                                   startAngle: 270,
                                   endAngle: 270,
                                   maximum: loanCalculatorController.maximumAvailableLoan.value.toDouble(),
