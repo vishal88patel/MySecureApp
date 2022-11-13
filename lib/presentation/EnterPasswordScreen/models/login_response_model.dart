@@ -27,10 +27,10 @@ class Data {
   int? is_kyc;
   String? name;
   String? email;
-  Null? emailVerifiedAt;
-  Null? twoFactorConfirmedAt;
-  Null? currentTeamId;
-  Null? profilePhotoPath;
+  String? emailVerifiedAt;
+  String? twoFactorConfirmedAt;
+  String? currentTeamId;
+  String? profilePhotoPath;
   String? createdAt;
   String? updatedAt;
   String? mobile;

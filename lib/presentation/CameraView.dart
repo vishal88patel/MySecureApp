@@ -3,12 +3,20 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 
+import '../App Configurations/color_constants.dart';
+import '../theme/app_style.dart';
+import '../utils/HelperFiles/math_utils.dart';
+import 'UploadDocumentScreen/controller/uplod_document_screen_controller.dart';
+
 class CameraScreen extends StatefulWidget {
-  const CameraScreen() : super();
+  final int? image;
+  const CameraScreen({required this.image}) : super();
 
   @override
   CameraScreenState createState() => CameraScreenState();
@@ -19,22 +27,26 @@ class CameraScreenState extends State<CameraScreen>
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-
-
+  var documentController = Get.find<UploadDocumentScreenController>();
+  int width=6;
+  XFile? imageFile;
   @override
   void initState() {
     _initCamera();
+    if(widget.image==1){
+      width=0;
+    }
     super.initState();
   }
 
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
-    _controller = CameraController(_cameras![0], ResolutionPreset.medium);
+    _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
     _controller?.initialize().then((_) {
       if (!mounted) {
         return;
       }
+      _controller!.setFlashMode(FlashMode.off);
       setState(() {});
     });
   }
@@ -72,36 +84,89 @@ class CameraScreenState extends State<CameraScreen>
       body: Stack(
         children: <Widget>[
           _buildCameraPreview(),
-          Positioned(
-            top: 24.0,
-            left: 12.0,
-            child: IconButton(
-              icon: Icon(
-                Icons.switch_camera,
-                color: Colors.white,
+          Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: getVerticalSize(60)),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      "Take A Picture",
+                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                          color: ColorConstant.primaryWhite,
+                          fontWeight: FontWeight.w500,
+                          fontSize: getFontSize(30)),
+                    ),
+                  ],
+                ),
               ),
-              onPressed: () {
-                _onCameraSwitch();
-              },
-            ),
+
+            ],
           ),
+          cameraOverlay(
+              padding: 20, aspectRatio: 1, color: Color(0x90000000))
         ],
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
+  Widget cameraOverlay({required double padding, required double aspectRatio, required Color color}) {
+    return LayoutBuilder(builder: (context, constraints) {
+      double parentAspectRatio = constraints.maxWidth / constraints.maxHeight;
+      double horizontalPadding;
+      double verticalPadding;
+
+      if (parentAspectRatio < aspectRatio) {
+        horizontalPadding = padding;
+        verticalPadding = (constraints.maxHeight -
+            ((constraints.maxWidth - width * padding) / aspectRatio)) /
+            2;
+      } else {
+        verticalPadding = padding;
+        horizontalPadding = (constraints.maxWidth -
+            ((constraints.maxHeight - 2 * padding) * aspectRatio)) /
+            2;
+      }
+      return Stack(fit: StackFit.expand, children: [
+        Align(
+            alignment: Alignment.centerLeft,
+            child: Container(width: horizontalPadding, color: color)),
+        Align(
+            alignment: Alignment.centerRight,
+            child: Container(width: horizontalPadding, color: color)),
+        Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+                margin: EdgeInsets.only(
+                    left: horizontalPadding, right: horizontalPadding),
+                height: verticalPadding,
+                color: color)),
+        Align(
+            alignment: Alignment.bottomCenter,
+            child: Container(
+                margin: EdgeInsets.only(
+                    left: horizontalPadding, right: horizontalPadding),
+                height: verticalPadding,
+                color: color)),
+        Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: horizontalPadding, vertical: verticalPadding),
+          decoration: BoxDecoration(border: Border.all(color: Colors.cyan)),
+        )
+      ]);
+    });
+  }
   Widget _buildCameraPreview() {
     final size = MediaQuery.of(context).size;
     return ClipRect(
       child: Container(
         child: Transform.scale(
-          scale: _controller!.value.aspectRatio / size.aspectRatio,
+          scale: 6/4,
           child: Center(
-            child: AspectRatio(
-              aspectRatio: _controller!.value.aspectRatio,
-              child: CameraPreview(_controller!),
-            ),
+            child: CameraPreview(_controller!),
           ),
         ),
       ),
@@ -109,83 +174,126 @@ class CameraScreenState extends State<CameraScreen>
   }
 
   Widget _buildBottomNavigationBar() {
-    return Container(
-      color: Theme.of(context).bottomAppBarColor,
-      height: 100.0,
-      width: double.infinity,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: <Widget>[
-          CircleAvatar(
-            backgroundColor: Colors.white,
-            radius: 28.0,
-            child: IconButton(
-              icon: Icon(
-                 Icons.camera_alt,
-                size: 28.0,
-                color: Colors.black,
+    return Padding(
+      padding:  EdgeInsets.only(bottom: 36.0),
+      child: Container(
+        color: Colors.transparent,
+        height: 100.0,
+        width: double.infinity,
+        child: Row(
+          mainAxisAlignment:MainAxisAlignment.spaceAround,
+          children: <Widget>[
+            Container(height: 40,width: 40,),
+            InkWell(
+              onTap: (){
+              _captureImage();
+            },
+              child: CircleAvatar(
+                backgroundColor: Colors.grey.shade300,
+                radius: 40.0,
+                  child: Center(
+                      child: Icon(
+                        Icons.camera_alt,
+                        size: 50.0,
+                        color:Colors.black,
+                      ),
+                ),
               ),
-              onPressed: () {
-                  _captureImage();
-                }
-
             ),
-          ),
-        ],
+            widget.image==1?InkWell(
+              onTap: (){
+                _onCameraSwitch();
+              },
+              child: Center(
+                child: Icon(
+                  Icons.cameraswitch_outlined,
+                  size: 50.0,
+                  color:Colors.white,
+                ),
+              ),
+            ):Container(height: 40,width: 40,),
+
+          ],
+        ),
       ),
     );
   }
 
 
+  void _captureImage() async {
+    print('_captureImage');
+    if (_controller!.value.isInitialized) {
+      takePicture().then((XFile? file) {
+        if (mounted) {
+          setState(() {
+            imageFile = file;
+          });
+          if(widget.image==1){
+            documentController.netImage1.value=file!.path;
+          }else if(widget.image==2){
+            documentController.netImage2.value=file!.path;
+          }else if(widget.image==3){
+            documentController.netImage3.value=file!.path;
+          }else{
 
+          }
+          if(file!.path.isNotEmpty){
+            Navigator.pop(context);
+          }
+          setState(() {});
+        }
+      });
+
+    }
+  }
+
+  Future<XFile?> takePicture() async {
+    final CameraController? cameraController = _controller;
+    if (cameraController == null || !cameraController.value.isInitialized) {
+      showInSnackBar('Error: select a camera first.');
+      return null;
+    }
+
+    if (cameraController.value.isTakingPicture) {
+      // A capture is already pending, do nothing.
+      return null;
+    }
+
+    try {
+      final XFile file = await cameraController.takePicture();
+      return file;
+    } on CameraException catch (e) {
+
+      return null;
+    }
+  }
   Future<void> _onCameraSwitch() async {
     final CameraDescription cameraDescription =
     (_controller!.description == _cameras![0]) ? _cameras![1] : _cameras![0];
     if (_controller != null) {
-      await _controller?.dispose();
+      await _controller!.dispose();
     }
-    _controller = CameraController(cameraDescription, ResolutionPreset.medium);
-    _controller?.addListener(() {
+    _controller = CameraController(cameraDescription, ResolutionPreset.veryHigh);
+    _controller!.addListener(() {
       if (mounted) setState(() {});
       if (_controller!.value.hasError) {
-        UIUtils.showSnakBar(headerText: "Error ", bodyText:'Camera error ${_controller!.value.errorDescription}');
-
+        showInSnackBar('Camera error ${_controller!.value.errorDescription}');
       }
     });
 
     try {
-      await _controller!.initialize();
+      await _controller?.initialize();
     } on CameraException catch (e) {
-      _showCameraException(e);
-    }
 
+    }
     if (mounted) {
       setState(() {});
     }
   }
 
-  void _captureImage() async {
-    print('_captureImage');
-    if (_controller!.value.isInitialized) {
-      SystemSound.play(SystemSoundType.click);
-      final Directory extDir = await getApplicationDocumentsDirectory();
-      final String dirPath = '${extDir.path}/media';
-      await Directory(dirPath).create(recursive: true);
-      final String filePath = '$dirPath/${_timestamp()}.jpeg';
-      print('path: $filePath');
-      await _controller!.takePicture();
-      setState(() {});
-    }
+  void showInSnackBar(String message) {
+    UIUtils.showSnakBar(headerText: "",bodyText: message.toString());
   }
-
-
-  String _timestamp() => DateTime.now().millisecondsSinceEpoch.toString();
-
-  void _showCameraException(CameraException e) {
-    UIUtils.showSnakBar(headerText: "Error ", bodyText:e.code.toString()+e.description.toString());
-  }
-
-
 
   void logError(String code, String message) =>
       print('Error: $code\nError Message: $message');

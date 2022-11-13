@@ -61,7 +61,7 @@ class UploadDocumentScreenController extends GetxController {
     dobController.text=loginResponseModel!.data!.dateOfBirth.isNull?"":loginResponseModel!.data!.dateOfBirth!;
     ssnController.text=loginResponseModel!.data!.ssn.isNull?"":loginResponseModel!.data!.ssn!;
     emailController.text=loginResponseModel!.data!.email.isNull?"":loginResponseModel!.data!.email!;
-    isVerified.value=loginResponseModel!.data!.is_kyc.toString();
+    isVerified.value=PrefUtils.getString(StringConstants.IS_KYC_DONE);
   }
 
   @override
@@ -83,33 +83,42 @@ class UploadDocumentScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Mobile Number",
           headerText: StringConstants.ERROR);
+    }else if (mobileController.text.length!=11) {
+      UIUtils.showSnakBar(
+          bodyText: "Mobile Number Should be 11 digit number", headerText: StringConstants.ERROR);
     } else if (emailController.text.isEmpty || emailController.text.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Email", headerText: StringConstants.ERROR);
-    } else if (dobController.text.isEmpty || dobController.text.isNull) {
+    } else if (dobController.text.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please Enter Date Of Birth",
+          bodyText: "Please enter Date of Birth",
           headerText: StringConstants.ERROR);
-    } else if (ssnController.text.isEmpty || ssnController.text.isNull) {
+    } else if (!isAdult(dobController.text)) {
       UIUtils.showSnakBar(
-          bodyText: "Please Enter SSN", headerText: StringConstants.ERROR);
+          bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
+    }else if (ssnController.text.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
+    }else if (ssnController.text.length!=9) {
+      UIUtils.showSnakBar(
+          bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
     } else {
       Get.toNamed(AppRoutes.uploadDocument2);
     }
   }
 
   void onClickOfSubmitButton() {
-    if (netImage1.isNull) {
+    if (netImage1.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please Select Your Photo",
+          bodyText: "Please Click Your E-KYC Profile Selfie",
           headerText: StringConstants.ERROR);
-    } else if (netImage2.isNull) {
+    } else if (netImage2.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please Select Driving Licence Front Photo",
+          bodyText: "Please Click Driving Licence Front Photo",
           headerText: StringConstants.ERROR);
-    } else if (netImage3.isNull) {
+    } else if (netImage3.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please Select Driving Licence Back Photo",
+          bodyText: "Please Click Driving Licence Back Photo",
           headerText: StringConstants.ERROR);
     } else if (qrCodeResult.isEmpty ||
         qrCodeResult.isNull ||
@@ -156,10 +165,7 @@ class UploadDocumentScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Last Name is Not match With Driving Licence Last Name",
           headerText: StringConstants.ERROR);
-   /* } else if (dateOfBirth?.toLowerCase().trim()!=dobController.text.toLowerCase().trim()) {
-      UIUtils.showSnakBar(
-          bodyText: "Date Of Birth is Not match With Driving Licence Date Of Birth",
-          headerText: StringConstants.ERROR);*/
+
     }else{
       callKycApi();
     }
@@ -206,6 +212,7 @@ class UploadDocumentScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: responseData['message'],
           headerText: StringConstants.SUCCESS);
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
       Get.offAllNamed(AppRoutes.dashBoardScreen,
           arguments: {"bottomTabCount": 0});
     } else {
@@ -274,5 +281,18 @@ class UploadDocumentScreenController extends GetxController {
       dobController.text=startDate;
 
     }
+  }
+
+  bool isAdult(String birthDateString) {
+    String datePattern = "dd-MM-yyyy";
+
+    DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
+    DateTime today = DateTime.now();
+
+    int yearDiff = today.year - birthDate.year;
+    int monthDiff = today.month - birthDate.month;
+    int dayDiff = today.day - birthDate.day;
+
+    return yearDiff > 18 || yearDiff == 18 && monthDiff >= 0 && dayDiff >= 0;
   }
 }

@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
-
 import '../App Configurations/color_constants.dart';
 import '../theme/app_style.dart';
 import '../utils/HelperFiles/math_utils.dart';
@@ -22,6 +21,7 @@ class QRViewExample extends StatefulWidget {
 class _QRViewExampleState extends State<QRViewExample> {
   Barcode? result;
   QRViewController? controller;
+  int? counter=0;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
   var documentController = Get.find<UploadDocumentScreenController>();
   // In order to get hot reload to work we need to pause the camera if the platform
@@ -116,9 +116,11 @@ class _QRViewExampleState extends State<QRViewExample> {
       setState(() {
         result = scanData;
         documentController.qrCodeResult.value=scanData.code.toString();
-        print(result.toString());
-        //Navigator.pop(context);
-
+        print(scanData.code.toString());
+        if(documentController.qrCodeResult.value.isNotEmpty && counter==0){
+          counter=1;
+          Navigator.pop(context);
+        }
       });
     });
   }
@@ -132,9 +134,5 @@ class _QRViewExampleState extends State<QRViewExample> {
     }
   }
 
-  @override
-  void dispose() {
-    controller?.dispose();
-    super.dispose();
-  }
+
 }

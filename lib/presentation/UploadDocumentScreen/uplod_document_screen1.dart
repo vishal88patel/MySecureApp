@@ -195,6 +195,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                     Padding(
                       padding: EdgeInsets.only(left:getHorizontalSize(10),right: getHorizontalSize(10)),
                       child: AppTextField(
+                          keyBordType: TextInputType.number,
                           hintText: 'SSN',
                           controller: documentController
                               .ssnController),
@@ -204,54 +205,56 @@ class UploadDocumentScreen1 extends StatelessWidget {
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: getHorizontalSize(10),right: getHorizontalSize(10)),
-                      child: Row(
-                        children: [
-                          Text(
-                            "KYC Status",
-                            style: AppStyle.textStylePoppinsRegular.copyWith(
-                                color: ColorConstant.primaryWhite,
-                                fontWeight: FontWeight.w500,
-                                fontSize: getFontSize(20)),
-                          ),
-                          documentController.isVerified=="1"?Padding(
-                            padding: EdgeInsets.only(left: getHorizontalSize(10)),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'asset/verified.png',
-                                  color: ColorConstant.lightGreen,
-                                  height: getVerticalSize(24),
-                                  width: getHorizontalSize(24),
-                                ),
-                                Text(
-                                  " Verified",
-                                  style: AppStyle.textStylePoppinsRegular.copyWith(
-                                      color: ColorConstant.lightGreen,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                                ),
-                              ],
+                      child: Obx(()=>
+                         Row(
+                          children: [
+                            Text(
+                              "KYC Status",
+                              style: AppStyle.textStylePoppinsRegular.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: getFontSize(20)),
                             ),
-                          ):Padding(
-                            padding: EdgeInsets.only(left: getHorizontalSize(10)),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  'asset/not_verify.png',
-                                  height: getVerticalSize(24),
-                                  width: getHorizontalSize(24),
-                                ),
-                                Text(
-                                  " Not Verified",
-                                  style: AppStyle.textStylePoppinsRegular.copyWith(
-                                      color: ColorConstant.appProgressBarColor,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                                ),
-                              ],
+                            documentController.isVerified=="1"?Padding(
+                              padding: EdgeInsets.only(left: getHorizontalSize(10)),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'asset/verified.png',
+                                    color: ColorConstant.lightGreen,
+                                    height: getVerticalSize(24),
+                                    width: getHorizontalSize(24),
+                                  ),
+                                  Text(
+                                    " Verified",
+                                    style: AppStyle.textStylePoppinsRegular.copyWith(
+                                        color: ColorConstant.lightGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
+                                ],
+                              ),
+                            ):Padding(
+                              padding: EdgeInsets.only(left: getHorizontalSize(10)),
+                              child: Row(
+                                children: [
+                                  Image.asset(
+                                    'asset/not_verify.png',
+                                    height: getVerticalSize(24),
+                                    width: getHorizontalSize(24),
+                                  ),
+                                  Text(
+                                    " Not Verified",
+                                    style: AppStyle.textStylePoppinsRegular.copyWith(
+                                        color: ColorConstant.appProgressBarColor,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     Spacer(),

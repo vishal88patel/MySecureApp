@@ -134,7 +134,14 @@ class UploadDocumentScreen2 extends StatelessWidget {
                       Column(
                         children: [
                           InkWell(
-                            onTap: () async {
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const CameraScreen(image: 2,)),
+                              );
+                            },
+                            /*onTap: () async {
                               try {
                                 final SelectedImage = await ImagePicker()
                                     .pickImage(source: ImageSource.camera);
@@ -146,10 +153,13 @@ class UploadDocumentScreen2 extends StatelessWidget {
                               } on PlatformException catch (e) {
                                 print('Failed to pick image:$e');
                               }
-                            },
+                            },*/
                             child: Obx(()=>
                                DottedBorder(
-                                  color: ColorConstant.primaryWhite,
+                                  color: documentController.netImage1.value.isEmpty &&
+                                      documentController.netImage2.value.isEmpty &&
+                                      documentController.netImage3.value.isEmpty
+                                   ?ColorConstant.lightGreen:ColorConstant.primaryWhite,
                                   strokeWidth: 1,
                                   borderType: BorderType.Rect,
                                   radius: Radius.circular(100),
@@ -198,7 +208,14 @@ class UploadDocumentScreen2 extends StatelessWidget {
                       Column(
                         children: [
                           InkWell(
-                            onTap: () async {
+                            onTap: (){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const CameraScreen(image: 3,)),
+                              );
+                            },
+                            /*onTap: () async {
                               try {
                                 final SelectedImage = await ImagePicker()
                                     .pickImage(source: ImageSource.camera);
@@ -209,10 +226,13 @@ class UploadDocumentScreen2 extends StatelessWidget {
                               } on PlatformException catch (e) {
                                 print('Failed to pick image:$e');
                               }
-                            },
+                            },*/
                             child: Obx(()=>
                               DottedBorder(
-                                  color: ColorConstant.primaryWhite,
+                                  color: documentController.netImage1.value.isEmpty &&
+                                      documentController.netImage2.value.isNotEmpty &&
+                                      documentController.netImage3.value.isEmpty
+                                      ?ColorConstant.lightGreen:ColorConstant.primaryWhite,
                                   strokeWidth: 1,
                                   borderType: BorderType.Rect,
                                   radius: Radius.circular(100),
@@ -267,17 +287,23 @@ class UploadDocumentScreen2 extends StatelessWidget {
                 Padding(
                   padding: EdgeInsets.only(
                       left: getVerticalSize(20), right: getVerticalSize(20)),
-                  child: AppElevatedButton(
-                    buttonName: 'Scan your Driving Licence',
-                    buttonColor: ColorConstant.lightGreen,
-                    onPressed: () {
-                      //scanQR();
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const QRViewExample()),
-                      );
-                    },
+                  child: Obx(()=>
+                   AppElevatedButton(
+
+                      buttonName: documentController.qrCodeResult.isEmpty?'Scan your Driving Licence':'Scan Completed',
+                      buttonColor: documentController.qrCodeResult.isEmpty&&documentController.netImage1.value.isEmpty &&
+                          documentController.netImage2.value.isNotEmpty &&
+                          documentController.netImage3.value.isNotEmpty?
+                      ColorConstant.lightGreen:ColorConstant.lightText,
+                      onPressed: () {
+                        //scanQR();
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const QRViewExample()),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -303,7 +329,14 @@ class UploadDocumentScreen2 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       InkWell(
-                        onTap: () async {
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const CameraScreen(image: 1,)),
+                          );
+                        },
+                       /* onTap: () async {
                           try {
                             final SelectedImage = await ImagePicker()
                                 .pickImage(source: ImageSource.camera);
@@ -314,9 +347,13 @@ class UploadDocumentScreen2 extends StatelessWidget {
                           } on PlatformException catch (e) {
                             print('Failed to pick image:$e');
                           }
-                        },
+                        },*/
                         child: Obx(()=> DottedBorder(
-                              color: ColorConstant.primaryWhite,
+                            color: documentController.netImage1.value.isEmpty &&
+                                documentController.netImage2.value.isNotEmpty &&
+                                documentController.netImage3.value.isNotEmpty &&
+                                documentController.qrCodeResult.isNotEmpty
+                                ?ColorConstant.lightGreen:ColorConstant.primaryWhite,
                               strokeWidth: 1,
                               borderType: BorderType.Rect,
                               radius: Radius.circular(100),

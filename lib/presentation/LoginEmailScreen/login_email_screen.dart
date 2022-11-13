@@ -36,7 +36,7 @@ class LoginEmilScreen extends StatelessWidget {
                             ],
                           ),
                        SizedBox(height: getVerticalSize(57),),
-                       Text("Give us your \nPhone call  ",style: AppStyle.textStylePoppinsRegular
+                       Text("Give us your \nPhone Number  ",style: AppStyle.textStylePoppinsRegular
                            .copyWith(color: ColorConstant.primaryWhite,
                            fontWeight: FontWeight.w700,fontSize: getFontSize(32)),),
                        SizedBox(height: getVerticalSize(5),),
