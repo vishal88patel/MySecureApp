@@ -24,6 +24,7 @@ class LoginResponseModel {
 
 class Data {
   int? id;
+  int? is_kyc;
   String? name;
   String? email;
   Null? emailVerifiedAt;
@@ -51,6 +52,7 @@ class Data {
 
   Data(
       {this.id,
+        this.is_kyc,
         this.name,
         this.email,
         this.emailVerifiedAt,
@@ -102,6 +104,7 @@ class Data {
     loanType = json['loan_type'];
     token = json['token'];
     profilePhotoUrl = json['profile_photo_url'];
+    is_kyc = json['is_kyc'];
   }
 
   Map<String, dynamic> toJson() {
@@ -131,6 +134,7 @@ class Data {
     data['loan_type'] = this.loanType;
     data['token'] = this.token;
     data['profile_photo_url'] = this.profilePhotoUrl;
+    data['is_kyc'] = this.is_kyc;
     return data;
   }
 }

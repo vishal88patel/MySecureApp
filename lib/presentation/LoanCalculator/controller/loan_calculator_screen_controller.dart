@@ -137,6 +137,7 @@ class LoanCalculatorScreenController extends GetxController {
             arguments: {
           "loanCalModel": loanCalModel,
           "loanAmount": selectedLoanAmount.value,
+          "loan_type": selectedLoan.value,
         });
       } else {
         UIUtils.showSnakBar(

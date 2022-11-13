@@ -26,6 +26,7 @@ import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
 import 'package:my_secure_app/presentation/ForgetPassScreen/binding/forget_pass_screen_binding.dart';
 import 'package:my_secure_app/presentation/ForgetPassScreen/forget_pass_screen.dart';
+import 'package:my_secure_app/presentation/LoanApprovedScreen/loan_approved_screen.dart';
 import 'package:my_secure_app/presentation/LoanCalculator/binding/loan_calculator_screen_binding.dart';
 import 'package:my_secure_app/presentation/FaqScreen/binding/faq_screen_binding.dart';
 import 'package:my_secure_app/presentation/FaqScreen/faq_screen.dart';
@@ -71,6 +72,7 @@ import '../presentation/EnterPasswordScreen/binding/enter_password_screen_bindin
 import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
+import '../presentation/LoanApprovedScreen/binding/loan_approved_screen_binding.dart';
 import '../presentation/LoanCalculator/loan_calculator_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
@@ -126,6 +128,7 @@ class AppRoutes {
   static String webviewPage = '/webView_page';
   static String collectDetailScreen = '/collect_detail_screen';
   static String qrCodeScreen = '/qr_code_screen';
+  static String loan_approved = '/loan_approved_screen';
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -522,6 +525,15 @@ class AppRoutes {
       page: () => QrCodeScreen(),
       bindings: [
         QrCodeScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: loan_approved,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanApprovedScreen(),
+      bindings: [
+        LoanApprovedScreenBinding(),
       ],
     ),
 
