@@ -13,6 +13,7 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/ui_utils.dart';
 import '../HomeScreen/controller/home_screen_controller.dart';
+import '../QrView2.dart';
 import 'controller/transaction_screen_controller.dart';
 
 class TransactionScreen extends StatelessWidget {
@@ -267,7 +268,11 @@ class TransactionScreen extends StatelessWidget {
                         Expanded(
                           child: InkWell(
                             onTap: () {
-                              scanQR();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const QRViewExample2()),
+                              );
                             },
                             child: Container(
                               decoration: BoxDecoration(

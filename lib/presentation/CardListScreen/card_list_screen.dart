@@ -58,8 +58,8 @@ class CardListScreen extends StatelessWidget {
                                               onTap: (){
                                                 Get.toNamed(AppRoutes.cardDetailListScreen);
                                               },
-                                              child: const  CreditCardWidget(cardHolderName: "ABC",
-                                                  cardNumber:'3455 **** **** 3507' ,expiryDate: '10/23'),
+                                              child:  CreditCardWidget(cardHolderName: cardListController.mainCardList.value[index].holderName.toString(),
+                                                  cardNumber: cardListController.mainCardList.value[index].cardNumber.toString() ,expiryDate: cardListController.mainCardList.value[index].expireMonth.toString()+"/"+cardListController.mainCardList.value[index].expireYear.toString()),
                                                 // holderName
                                                 // cardNumber
                                                 // expireYear
