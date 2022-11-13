@@ -137,6 +137,7 @@ class ProfileScreenController extends GetxController {
         PrefUtils.clear();
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.SUCCESS);
+        PrefUtils.clear();
         Get.offAllNamed(AppRoutes.loginScreen);
       } else {
         UIUtils.showSnakBar(
