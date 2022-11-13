@@ -53,6 +53,7 @@ class PersonalScreenController extends GetxController {
 
   @override
   void onInit() {
+
     employmentNameController.text=setSelectedAnnualIncome.value;
     annualIncomeController.text=setSelectedAnnualIncome.value;
     checkDeviceType();
@@ -169,11 +170,11 @@ class PersonalScreenController extends GetxController {
             address_1: enterAddressController.address01Controller.text,
             address_2: enterAddressController.address02Controller.text,
             city: enterAddressController.cityController.text,
-            state: enterAddressController.stateController.text,
+            state: enterAddressController.selectedState.value,
             zip_code: enterAddressController.zipCodeController.text,
             ssn: enterPersonalDetailController.ssnController.text,
             name: employmentNameController.text,
-            job_title: jobTitleController.text,
+            job_title: jobTitleController.text==""?"No Jobe Title":jobTitleController.text,
             annual_income: annualIncomeController.text,
             purpouse_of_opening_account: purposeOfOpeningAcc.value,
             loan_type: selectedLoanId.value,
