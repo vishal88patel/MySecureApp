@@ -133,7 +133,7 @@ class AppRoutes {
     GetPage(
       name: splashScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => SplashScreen(),
       bindings: [
         SplashScreenBinding(),
@@ -143,7 +143,7 @@ class AppRoutes {
     GetPage(
       name: loginScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => LoginScreen(),
       bindings: [
         LoginScreenBinding(),
@@ -154,7 +154,7 @@ class AppRoutes {
     GetPage(
       name: loginEmailScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => LoginEmilScreen(),
       bindings: [
         LoginEmailScreenBinding(),
@@ -164,7 +164,7 @@ class AppRoutes {
     GetPage(
       name: creatPasswordScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => CreatePasswordScreen(),
       bindings: [
         CreatePasswordScreenBinding(),
@@ -173,7 +173,7 @@ class AppRoutes {
     GetPage(
       name: enterPasswordScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => EnterPasswordScreen(),
       bindings: [
         EnterPasswordScreenBinding(),
@@ -183,7 +183,7 @@ class AppRoutes {
     GetPage(
       name: forgetPassScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => ForgetPassScreen(),
       bindings: [
         ForgetPassScreenBinding(),
@@ -193,7 +193,7 @@ class AppRoutes {
     GetPage(
       name: enterLegalNameScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => EnterLegalNameDetailScreen(),
       bindings: [
         EnterLegalNameScreenBinding(),
@@ -203,7 +203,7 @@ class AppRoutes {
     GetPage(
       name: enterAddressScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => EnterAddressDetailScreen(),
       bindings: [
         EnterAddressScreenBinding(),
@@ -213,7 +213,7 @@ class AppRoutes {
     GetPage(
       name: enterPersonalDetailScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => EnterPersonalDetailScreen(),
       bindings: [
         EnterPersonalScreenBinding(),
@@ -223,7 +223,7 @@ class AppRoutes {
     GetPage(
       name: personalDetailScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => PersonalDetailScreen(),
       bindings: [
         PersonalScreenBinding(),
@@ -233,7 +233,7 @@ class AppRoutes {
     GetPage(
       name: dashBoardScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => DashBoardScreen(),
       bindings: [
         DashBoardScreenBinding(),
@@ -243,7 +243,7 @@ class AppRoutes {
     GetPage(
       name: bankListScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => BankListScreen(),
       bindings: [
         BankListScreenBinding(),
@@ -253,7 +253,7 @@ class AppRoutes {
     GetPage(
       name: cardDetailScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => MySample(),
       bindings: [
         CardScreenBinding(),
@@ -263,7 +263,7 @@ class AppRoutes {
     GetPage(
       name: accountDetailListScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => AccountDetailListScreen(),
       bindings: [
         AccountDetailListScreenBinding(),
@@ -273,7 +273,7 @@ class AppRoutes {
     GetPage(
       name: cardDetailListScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => CardDetailListScreen(),
       bindings: [
         CardDetailListScreenBinding(),
@@ -283,7 +283,7 @@ class AppRoutes {
     GetPage(
       name: cardListScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => CardListScreen(),
       bindings: [
         CardListScreenBinding(),
@@ -293,7 +293,7 @@ class AppRoutes {
     GetPage(
       name: bankDetailScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => BankDetailScreen(),
       bindings: [
         BankDeetailScreenBinding(),
@@ -303,7 +303,7 @@ class AppRoutes {
     GetPage(
       name: homeScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => HomeScreen(),
       bindings: [
         HomeScreenBinding(),
@@ -313,7 +313,7 @@ class AppRoutes {
     GetPage(
       name: linkBankListScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => LinkBankListScreen(),
       bindings: [
         LinkBankListScreenBinding(),
@@ -323,7 +323,7 @@ class AppRoutes {
     GetPage(
       name: profileScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => ProfileScreen(),
       bindings: [
         ProfileScreenBinding(),
@@ -333,7 +333,7 @@ class AppRoutes {
     GetPage(
       name: userPersonalScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => UserPersonalScreen(),
       bindings: [
         UserPersonalScreenBinding(),
@@ -342,7 +342,7 @@ class AppRoutes {
     GetPage(
       name: privacyPolicyScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => PrivacyPolicyScreen(),
       bindings: [
         PrivacyPolicyScreenBinding(),
@@ -352,7 +352,7 @@ class AppRoutes {
     GetPage(
       name: supportScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => SupportScreen(),
       bindings: [
         SupportScreenBinding(),
@@ -362,7 +362,7 @@ class AppRoutes {
     GetPage(
       name: faqScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => FaqScreen(),
       bindings: [
         FaqScreenBinding(),
@@ -372,7 +372,7 @@ class AppRoutes {
     GetPage(
       name: moreHelpScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => MoreHelpScreen(),
       bindings: [
         MoreHelpScreenBinding(),
@@ -382,7 +382,7 @@ class AppRoutes {
     GetPage(
       name: loanStepScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => LoanStepScreen(),
       bindings: [
         LoanStepScreenBinding(),
@@ -392,7 +392,7 @@ class AppRoutes {
     GetPage(
       name: cardProfileDetailScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => CardProfileDetailScreen(),
       bindings: [
         CardProfileDetailScreenBinding(),
@@ -402,7 +402,7 @@ class AppRoutes {
     GetPage(
       name: transactionScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => TransactionScreen(),
       bindings: [
         TransactionScreenBinding(),
@@ -422,6 +422,8 @@ class AppRoutes {
     GetPage(
       name: uploadDocument2,
       transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => UploadDocumentScreen(),
       transitionDuration: Duration(milliseconds: 250),
       page: () => UploadDocumentScreen2(),
       bindings: [
@@ -432,7 +434,7 @@ class AppRoutes {
     GetPage(
       name: amountNumPadScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => AmountNumPadScreen(),
       bindings: [
         AmountNumPadScreenBinding(),
@@ -442,7 +444,7 @@ class AppRoutes {
     GetPage(
       name: progressScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => ProgressScreen(),
       bindings: [
         ProgressScreenBinding(),
@@ -452,7 +454,7 @@ class AppRoutes {
     GetPage(
       name: successScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => SuccessScreen(),
       bindings: [
         SuccessScreenBinding(),
@@ -462,7 +464,7 @@ class AppRoutes {
     GetPage(
       name: pinScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => PinScreen(),
       bindings: [
         PinScreenBinding(),
@@ -472,7 +474,7 @@ class AppRoutes {
     GetPage(
       name: approvedScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => ApprovedScreen(),
       bindings: [
         ApprovedScreenBinding(),
@@ -482,7 +484,7 @@ class AppRoutes {
     GetPage(
       name: addBankProceedScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => AddBankProceedScreen(),
       bindings: [
         AddBankProceedScreenBinding(),
@@ -492,7 +494,7 @@ class AppRoutes {
     GetPage(
       name: bankProceedScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => BankProceedScreen(),
       bindings: [
         BankProceedScreenBinding(),
@@ -502,7 +504,7 @@ class AppRoutes {
     GetPage(
       name: loanCalculatorScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => LoanCalculatorScreen(),
       bindings: [
         LoanCalculatorScreenBinding(),
@@ -511,7 +513,7 @@ class AppRoutes {
     GetPage(
       name: webviewPage,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => WebviewScreen(),
       bindings: [
         WbviewScreenBinding(),
@@ -522,7 +524,7 @@ class AppRoutes {
     GetPage(
       name: collectDetailScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => CollectDetailScreen(),
       bindings: [
         CollectDetailScreenBinding(),
@@ -532,7 +534,7 @@ class AppRoutes {
     GetPage(
       name: qrCodeScreen,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => QrCodeScreen(),
       bindings: [
         QrCodeScreenBinding(),

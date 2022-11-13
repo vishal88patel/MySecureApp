@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_middle_name_screen.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 
 import '../../../utils/ConstantsFiles/string_constants.dart';
@@ -41,7 +42,8 @@ class EnterLegalNameScreenController extends GetxController {
           bodyText: "Please enter last name",
           headerText: StringConstants.ERROR);
     } else {
-      Get.toNamed(AppRoutes.enterAddressScreen);
+      // Get.toNamed(AppRoutes.enterAddressScreen);
+      Get.to(EnterMiddleNameDetailScreen(),transition: Transition.rightToLeft,duration:   Duration(milliseconds: 500),);
     }
   }
 }

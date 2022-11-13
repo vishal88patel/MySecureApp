@@ -394,7 +394,7 @@ class TransactionScreen extends StatelessWidget {
                                     child: AccountDetailListWidget(
                                         name: transactionController.transactionList.value[index].notes,
                                         price: transactionController.transactionList.value[index].amount,
-                                        time: transactionController.transactionList.value[index].createdAt,
+                                        time: transactionController.transactionList.value[index].createdAt??"",
                                         image: 'asset/icons/Apple_icon.png'),
                                   );
                                 }

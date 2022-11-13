@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_first_name_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
@@ -57,7 +58,8 @@ class CreatePasswordScreenController extends GetxController {
         bodyText: "Password did not matched",
       );
     }else{
-      Get.toNamed(AppRoutes.enterLegalNameScreen);
+      // Get.toNamed(AppRoutes.enterLegalNameScreen);
+      Get.to(EnterFirstNameDetailScreen(),transition: Transition.rightToLeft);
     }
   }
 
