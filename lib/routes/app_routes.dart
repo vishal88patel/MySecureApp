@@ -415,7 +415,7 @@ class AppRoutes {
     GetPage(
       name: uploadDocument1,
       transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 250),
+      transitionDuration: Duration(milliseconds: 400),
       page: () => UploadDocumentScreen1(),
       bindings: [
         UploadDocumentScreenBinding(),
@@ -426,8 +426,6 @@ class AppRoutes {
       name: uploadDocument2,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => UploadDocumentScreen(),
-      transitionDuration: Duration(milliseconds: 250),
       page: () => UploadDocumentScreen2(),
       bindings: [
         UploadDocumentScreenBinding(),
