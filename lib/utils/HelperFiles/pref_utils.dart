@@ -2,7 +2,8 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../presentation/EnterPasswordScreen/models/login_response_model.dart';
+import '../../presentation/LoginScreen/models/login_response_model.dart';
+
 
 
 class PrefUtils {

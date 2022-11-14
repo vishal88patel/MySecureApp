@@ -81,7 +81,7 @@ class CardDetailScreen extends StatelessWidget {
                           children: [
                             Container(
                               child: AppTextField(
-                                keyBordType: TextInputType.datetime,
+                                keyBordType: TextInputType.text,
                                 hintText: 'Exp month & year*',
                                 controller: cardDetailController.expDateController,
                               ),

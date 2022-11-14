@@ -1,12 +1,12 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/presentation/EnterPasswordScreen/models/login_response_model.dart';
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 import '../model/get_linked_bank.dart';
 import '../model/home_page_response_model.dart';
 

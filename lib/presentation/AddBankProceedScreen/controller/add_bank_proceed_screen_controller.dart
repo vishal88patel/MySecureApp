@@ -44,10 +44,7 @@ class AddBankProceedScreenController extends GetxController {
     }
   }
 
-  Future<void> onClickOfNextButton() async {
-    // Map<Permission, PermissionStatus> statuses = await [
-    //   Permission.manageExternalStorage,
-    // ].request();
+  Future<void> onClickOfNextButtonForAndroid() async {
     final status = await Permission.manageExternalStorage.request();
     if (status == PermissionStatus.granted) {
       Get.toNamed(AppRoutes.collectDetailScreen,arguments: {
@@ -64,17 +61,15 @@ class AddBankProceedScreenController extends GetxController {
       print('Take the user to the settings page.');
       await openAppSettings();
     }
-    // PermissionStatus status = await  Permission.manageExternalStorage.request();
-    // if(statuses[Permission.manageExternalStorage]!.isDenied){ //check each permission status after.
-    //   print("Location permission is denied.");
-    // }else{
-    //   Get.toNamed(AppRoutes.collectDetailScreen,arguments: {
-    //     'BANK_ID': bankId,
-    //     'BANK_NAME':bankName.value,
-    //     'BANK_URL': bankUrl.value,
-    //     'BANK_JS': bankScript.value,
-    //   });
-    // }
+  }
 
+  void onClickOfNextButtonForIOS() {
+    Get.toNamed(AppRoutes.collectDetailScreen,arguments: {
+      'BANK_ID': bankId,
+      'BANK_NAME':bankName.value,
+      'BANK_URL': bankUrl.value,
+      'BANK_JS': bankScript.value,
+      'BANK_IMAGE': bankImage.value,
+    });
   }
 }

@@ -14,9 +14,9 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CreatePasswordScreen/controller/create_password_screen_controller.dart';
 import '../../EnterAddress/controller/enter_address_screen_controller.dart';
 import '../../EnterLegalNameDetails/controller/enter_legel_name_screen_controller.dart';
-import '../../EnterPasswordScreen/models/login_response_model.dart';
 import '../../EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import '../../LoginScreen/controller/login_screen_controller.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 import '../model/get_loan_type_response_model.dart';
 import 'get_status_income_response_model.dart';
 
@@ -55,6 +55,7 @@ class PersonalScreenController extends GetxController {
 
   @override
   void onInit() {
+
     employmentNameController.text=setSelectedAnnualIncome.value;
     annualIncomeController.text=setSelectedAnnualIncome.value;
     checkDeviceType();
@@ -175,7 +176,7 @@ class PersonalScreenController extends GetxController {
             zip_code: enterAddressController.zipCodeController.text,
             ssn: enterPersonalDetailController.ssnController.text,
             name: employmentNameController.text,
-            job_title: jobTitleController.text,
+            job_title: jobTitleController.text==""?"No Jobe Title":jobTitleController.text,
             annual_income: annualIncomeController.text,
             purpouse_of_opening_account: purposeOfOpeningAcc.value,
             loan_type: selectedLoanId.value,

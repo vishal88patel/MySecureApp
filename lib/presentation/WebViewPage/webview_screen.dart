@@ -28,7 +28,7 @@ class WebviewScreen extends StatelessWidget {
           },
           child:Padding(
             padding: EdgeInsets.all(getSize(20)),
-            child: Icon(Icons.arrow_back),
+            child: Icon(Icons.arrow_back,color: Colors.black,),
           ),
         ),
         title: Obx(
