@@ -49,6 +49,7 @@ class Data {
   String? loanType;
   String? token;
   String? profilePhotoUrl;
+  String? privacyPolicy;
 
   Data(
       {this.id,
@@ -76,6 +77,7 @@ class Data {
         this.dateOfBirth,
         this.loanType,
         this.token,
+        this.privacyPolicy,
         this.profilePhotoUrl});
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -96,6 +98,7 @@ class Data {
     zipCode = json['zip_code'];
     ssn = json['ssn'];
     jobTitle = json['job_title'];
+    privacyPolicy = json['privacyPolicy'];
     annualIncome = json['annual_income'];
     purpouseOfOpeningAccount = json['purpouse_of_opening_account'];
     firstName = json['first_name'];
@@ -120,6 +123,7 @@ class Data {
     data['updated_at'] = this.updatedAt;
     data['mobile'] = this.mobile;
     data['address1'] = this.address1;
+    data['privacyPolicy'] = this.privacyPolicy;
     data['address2'] = this.address2;
     data['city'] = this.city;
     data['state'] = this.state;

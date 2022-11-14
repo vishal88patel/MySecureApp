@@ -49,7 +49,7 @@ class Data {
     currentPage = json['currentPage'];
     lastPage = json['lastPage'];
     walletBalance = json['wallet_balance'];
-    uuid = json['uuid'];
+    uuid = json['uuid']??"";
     if (json['userTransaction'] != null) {
       userTransaction = <UserTransaction>[];
       json['userTransaction'].forEach((v) {

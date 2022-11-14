@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -7,8 +9,8 @@ import '../../../utils/HelperFiles/pref_utils.dart';
 
 class CollectDetailScreenController extends GetxController {
   static const platformChannel = MethodChannel('GET_DETAIL_CHANNEL');
-  static const MethodChannel platformForAndroid =
-      const MethodChannel('INCOMING_EVENTS');
+  static const MethodChannel platformForAndroid = const MethodChannel('INCOMING_EVENTS');
+  static const MethodChannel platformForIOS = const MethodChannel('INCOMING_EVENTS');
   var arguments = Get.arguments;
   var bankId = "";
   var bankName = "";
@@ -23,7 +25,12 @@ class CollectDetailScreenController extends GetxController {
 
   @override
   void onInit() {
-    platformForAndroid.setMethodCallHandler(_processEngineOutput);
+    if(Platform.isAndroid){
+      platformForAndroid.setMethodCallHandler(_processEngineOutput_ANDROID);
+    }else{
+      platformForIOS.setMethodCallHandler(_processEngineOutput_IOS);
+
+    }
     getArguments();
     super.onInit();
   }
@@ -44,7 +51,7 @@ class CollectDetailScreenController extends GetxController {
     });
   }
 
-  Future<void> _processEngineOutput(MethodCall call) async {
+  Future<void> _processEngineOutput_ANDROID(MethodCall call) async {
     var arg = call.arguments;
     if (arg) {
       Get.offAllNamed(AppRoutes.progressScreen, arguments: {
@@ -52,6 +59,21 @@ class CollectDetailScreenController extends GetxController {
         "BANK_IMAGE": bankImage,
         "BANK_NAME": bankName,
       });
+    } else {
+      Get.back();
+    }
+    print("<=====EVEBNT CALLED=====>" + call.arguments);
+  }
+
+  Future<void> _processEngineOutput_IOS(MethodCall call) async {
+    var arg = call.arguments;
+    print("<=====CALL_IN_FLUTTER=====>");
+    if (arg) {
+      // Get.offAllNamed(AppRoutes.progressScreen, arguments: {
+      //   "destinationRoute": AppRoutes.accountDetailListScreen,
+      //   "BANK_IMAGE": bankImage,
+      //   "BANK_NAME": bankName,
+      // });
     } else {
       Get.back();
     }

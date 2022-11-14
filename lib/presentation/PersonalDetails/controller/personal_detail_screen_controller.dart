@@ -13,9 +13,9 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CreatePasswordScreen/controller/create_password_screen_controller.dart';
 import '../../EnterAddress/controller/enter_address_screen_controller.dart';
 import '../../EnterLegalNameDetails/controller/enter_legel_name_screen_controller.dart';
-import '../../EnterPasswordScreen/models/login_response_model.dart';
 import '../../EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import '../../LoginScreen/controller/login_screen_controller.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 import '../model/get_loan_type_response_model.dart';
 import 'get_status_income_response_model.dart';
 

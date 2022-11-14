@@ -74,16 +74,17 @@ class LinkBankListScreen extends StatelessWidget {
                             ),
                             InkWell(
                               onTap: () {
-                                if (homeController
-                                        .getLinkedBankModel.value.data!.length >
-                                    0) {
-                                  Get.toNamed(AppRoutes.cardDetailScreen);
-                                } else {
-                                  UIUtils.showSnakBar(
-                                    headerText: StringConstants.ERROR,
-                                    bodyText: "Please Link Bank First",
-                                  );
-                                }
+                                // if (homeController
+                                //         .getLinkedBankModel.value.data!.length >
+                                //     0) {
+                                //   Get.toNamed(AppRoutes.cardDetailScreen);
+                                // } else {
+                                //   UIUtils.showSnakBar(
+                                //     headerText: StringConstants.ERROR,
+                                //     bodyText: "Please Link Bank First",
+                                //   );
+                                // }
+                                Get.toNamed(AppRoutes.cardDetailScreen);
                               },
                               child: const LinkBankWidget(
                                 image: 'asset/purple_image.png',

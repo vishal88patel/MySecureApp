@@ -14,11 +14,14 @@ import '../../../theme/app_style.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 
 
 
 class ProfileScreenController extends GetxController {
-
+  LoginResponseModel? loginResponseModel=LoginResponseModel();
+  var homePageHeadeName="".obs;
+  var profilePicture="".obs;
   @override
   void onReady() {
     super.onReady();
@@ -26,6 +29,7 @@ class ProfileScreenController extends GetxController {
 
   @override
   void onInit() {
+    getStoredData();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -149,6 +153,13 @@ class ProfileScreenController extends GetxController {
   Future<FormData> getLogOutBody() async {
     final form = FormData({});
     return form;
+  }
+
+  Future<void> getStoredData() async {
+    loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+    homePageHeadeName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
+    profilePicture.value=loginResponseModel!.data!.profilePhotoPath.toString();
+
   }
 
 }

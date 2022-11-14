@@ -10,8 +10,8 @@ import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
-import '../../EnterPasswordScreen/models/login_response_model.dart';
 import '../../LoanCalculator/model/loan_calculation_response.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 
 
 
