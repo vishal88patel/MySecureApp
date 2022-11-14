@@ -8,17 +8,15 @@ class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyBordType;
   final String? hintText;
-  final int? maxLength;
   final Widget? suffixIcon;
   final bool isObsecure;
-  final Function? onChange;
+  final int? maxLength;
 
   const AppTextField({Key? key,
     this.controller,
     this.hintText,
-    this.maxLength,
     this.suffixIcon,
-    this.onChange,
+    this.maxLength,
     this.keyBordType=TextInputType.text,
     this.isObsecure=false,
   }) : super(key: key);
@@ -31,7 +29,6 @@ class AppTextField extends StatelessWidget {
       style: TextStyle(color: ColorConstant.primaryWhite),
       obscureText: isObsecure,
       maxLength: maxLength,
-      onChanged: (text) => onChange!(),
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppStyle.textStylePoppinsRegular

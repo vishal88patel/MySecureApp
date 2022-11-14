@@ -22,6 +22,7 @@ class CardScreenController extends GetxController {
 
   var netImage1 = "".obs;
   var netImage2 = "".obs;
+  var cardTypeImage = "".obs;
 
   @override
   void onReady() {
@@ -170,6 +171,23 @@ class CardScreenController extends GetxController {
           headerText: StringConstants.ERROR,
           bodyText: "Please enter Valid card",
         );
+        break;
+    }
+  }
+
+  void checkCardImage(String number) {
+    var type = detectCCType(number);
+
+    switch (type) {
+      case CreditCardType.visa:
+        cardTypeImage.value="asset/Visa_image.png";
+        break;
+
+      case CreditCardType.mastercard:
+        cardTypeImage.value="asset/master_card_back.png";
+        break;
+      default:
+        cardTypeImage.value="";
         break;
     }
   }

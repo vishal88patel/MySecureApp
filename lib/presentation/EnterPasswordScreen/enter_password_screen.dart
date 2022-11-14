@@ -76,6 +76,7 @@ class EnterPasswordScreen extends StatelessWidget {
                         hintText: 'Enter Password ',
                         controller: enterPasswordController.passController,
                         isObsecure: enterPasswordController.PaasIsObsecure.value,
+                        maxLength: 15,
                         suffixIcon: IconButton(
                           icon: Icon( enterPasswordController.PaasIsObsecure.value
                               ? Icons.visibility_off

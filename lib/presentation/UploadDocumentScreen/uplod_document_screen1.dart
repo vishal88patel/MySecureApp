@@ -24,7 +24,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
     return Scaffold(
         body: SingleChildScrollView(
           child: Container(
-              height: size.height,
+              height: size.height*1.05,
             child: MainCutomBackGround(
                 child: Padding(
       padding: EdgeInsets.symmetric(
@@ -157,9 +157,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                           controller: documentController
                               .mobileController),
                     ),
-                    SizedBox(
-                      height: getVerticalSize(20),
-                    ),
+
                     Padding(
                       padding: EdgeInsets.only(left:getHorizontalSize(10),right: getHorizontalSize(10)),
                       child: AppTextField(
@@ -208,7 +206,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                               .ssnController),
                     ),
                     SizedBox(
-                      height: getVerticalSize(26),
+                      height: getVerticalSize(20),
                     ),
                     Padding(
                       padding: EdgeInsets.only(left: getHorizontalSize(10),right: getHorizontalSize(10)),

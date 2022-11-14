@@ -45,7 +45,7 @@ class LoginEmilScreen extends StatelessWidget {
                            .copyWith(color: ColorConstant.primaryAppTextF1,
                            fontWeight: FontWeight.w400,fontSize: getFontSize(16)),),
                        SizedBox(height: getVerticalSize(54),),
-                       AppTextField(keyBordType: TextInputType.number,hintText: "Phone Number",controller:logiEmailnController.phoneController,),
+                       AppTextField(keyBordType: TextInputType.number,maxLength:11,hintText: "Phone Number",controller:logiEmailnController.phoneController,),
                        Spacer(),
                        AppElevatedButton(
                            buttonName: 'Next',
