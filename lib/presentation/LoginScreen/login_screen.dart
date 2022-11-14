@@ -66,9 +66,9 @@ class LoginScreen extends StatelessWidget {
                       height: getVerticalSize(54),
                     ),
                     SizedBox(
-
                         child: AppTextField(
                           controller: loginController.emailController,
+                          keyBordType: TextInputType.emailAddress,hintText: "Email",
                         )),
                     Spacer(),
                     AppElevatedButton(
@@ -91,13 +91,13 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ),
                     AppElevatedButton(
-                        buttonName: 'Continue with phone',
+                        buttonName: 'Continue with Phone',
                         onPressed: () {
                           // loginController.onTapOfButton();
-                          // Get.toNamed(AppRoutes.loginEmailScreen);
+                           Get.toNamed(AppRoutes.loginEmailScreen);
                         }),
                     SizedBox(
-                      height: getVerticalSize(40),
+                      height: getVerticalSize(36),
                     ),
                   ],
                 ),

@@ -92,6 +92,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                         ),
                         AppTextField(
                           hintText: 'SNN',
+                          maxLength: 9,
                           controller:
                               enterPersonalDetailController.ssnController,
                           keyBordType: TextInputType.number,

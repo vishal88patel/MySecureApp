@@ -69,6 +69,9 @@ class CardDetailScreen extends StatelessWidget {
                           keyBordType: TextInputType.number,
                           hintText: 'Card number*',
                           controller: cardDetailController.cardNumberController,
+                          onChange: (text){
+                            print("object:"+text);
+                          },
                         ),
                         SizedBox(
                           height: getVerticalSize(20),

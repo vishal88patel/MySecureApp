@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/LoginEmailScreen/controller/login_email_screen_controller.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 
 import '../../../ApiServices/api_service.dart';
@@ -21,6 +22,7 @@ import 'get_status_income_response_model.dart';
 
 class PersonalScreenController extends GetxController {
   var loginController = Get.find<LoginScreenController>();
+  var loginEmailController = Get.find<LoginEmailScreenController>();
   var createPasswordController = Get.find<CreatePasswordScreenController>();
   var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
   var enterLegalNameController = Get.find<EnterLegalNameScreenController>();
@@ -161,15 +163,15 @@ class PersonalScreenController extends GetxController {
   Future<void> callRegisterApi() async {
     ApiService()
         .callPostApi(
-        body: await getRegisterBody(
-            type: "1",
-            email: loginController.emailController.text,
-            mobile: "",
+        body: loginController.emailController.text.isEmpty? await getRegisterBody2(
+            type: loginController.emailController.text.isEmpty?"2":"1",
+            email: loginController.emailController.text.isEmpty?"":loginController.emailController.text,
+            mobile: loginEmailController.phoneController.text.isEmpty?"":loginEmailController.phoneController.text,
             password: createPasswordController.confirmPassController.text,
             address_1: enterAddressController.address01Controller.text,
             address_2: enterAddressController.address02Controller.text,
             city: enterAddressController.cityController.text,
-            state: enterAddressController.stateController.text,
+            state: enterAddressController.selectedState.value,
             zip_code: enterAddressController.zipCodeController.text,
             ssn: enterPersonalDetailController.ssnController.text,
             name: employmentNameController.text,
@@ -180,6 +182,29 @@ class PersonalScreenController extends GetxController {
             first_name: enterLegalNameController.firstNameController.text,
             last_name: enterLegalNameController.lastNameController.text,
             date_of_birth:enterPersonalDetailController.dobController.text,
+          device_id: await PlatformDeviceId.getDeviceId,
+          fcm_token: "empty",
+          devicy_type: device_type,
+          middle_name: enterLegalNameController.middleNameController.text,
+        ):await getRegisterBody(
+          type: loginController.emailController.text.isEmpty?"2":"1",
+          email: loginController.emailController.text.isEmpty?"":loginController.emailController.text,
+          mobile: loginEmailController.phoneController.text.isEmpty?"":loginEmailController.phoneController.text,
+          password: createPasswordController.confirmPassController.text,
+          address_1: enterAddressController.address01Controller.text,
+          address_2: enterAddressController.address02Controller.text,
+          city: enterAddressController.cityController.text,
+          state: enterAddressController.selectedState.value,
+          zip_code: enterAddressController.zipCodeController.text,
+          ssn: enterPersonalDetailController.ssnController.text,
+          name: employmentNameController.text,
+          job_title: jobTitleController.text,
+          annual_income: annualIncomeController.text,
+          purpouse_of_opening_account: purposeOfOpeningAcc.value,
+          loan_type: selectedLoanId.value,
+          first_name: enterLegalNameController.firstNameController.text,
+          last_name: enterLegalNameController.lastNameController.text,
+          date_of_birth:enterPersonalDetailController.dobController.text,
           device_id: await PlatformDeviceId.getDeviceId,
           fcm_token: "empty",
           devicy_type: device_type,
@@ -228,9 +253,58 @@ class PersonalScreenController extends GetxController {
     required String middle_name,
   }) async {
     final form = FormData({
-      "type": "1",
+      "type":type,
       "email": email,
-      // "mobile": "",
+      "address_1": address_1,
+      "address_2": address_2,
+      "city": city,
+      "state": state,
+      "zip_code": zip_code,
+      "ssn": ssn,
+      "name": name,
+      "job_title": job_title,
+      "annual_income": annual_income,
+      "purpouse_of_opening_account": purpouse_of_opening_account,
+      "password": password,
+      "loan_type": loan_type,
+      "first_name": first_name,
+      "last_name": last_name,
+      "date_of_birth":date_of_birth,
+      "device_id": device_id,
+      "fcm_token": fcm_token,
+      "devicy_type": devicy_type,
+      "middle_name": middle_name,
+    });
+    return form;
+  }
+
+  Future<FormData> getRegisterBody2({
+    required String type,
+    required String email,
+    required String mobile,
+    required String password,
+    required String address_1,
+    required String address_2,
+    required String city,
+    required String state,
+    required String zip_code,
+    required String ssn,
+    required String name,
+    required String job_title,
+    required String annual_income,
+    required String purpouse_of_opening_account,
+    required String loan_type,
+    required String first_name,
+    required String last_name,
+    required String date_of_birth,
+    required String? device_id,
+    required String fcm_token,
+    required String devicy_type,
+    required String middle_name,
+  }) async {
+    final form = FormData({
+      "type":type,
+      "mobile": mobile,
       "address_1": address_1,
       "address_2": address_2,
       "city": city,

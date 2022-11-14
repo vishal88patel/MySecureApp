@@ -153,6 +153,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                       child: AppTextField(
                         keyBordType: TextInputType.number,
                           hintText: 'Mobile Number',
+                          maxLength: 11,
                           controller: documentController
                               .mobileController),
                     ),
@@ -202,6 +203,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                       child: AppTextField(
                           keyBordType: TextInputType.number,
                           hintText: 'SSN',
+                          maxLength: 9,
                           controller: documentController
                               .ssnController),
                     ),

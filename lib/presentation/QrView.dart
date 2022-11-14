@@ -122,7 +122,8 @@ class _QRViewExampleState extends State<QRViewExample> {
         print(scanData.code.toString());
         if(documentController.qrCodeResult.value.isNotEmpty && counter==0){
           counter=1;
-          UIUtils.showSnakBar(headerText: "Success",bodyText: "Driving Licence Scan Completed");
+          UIUtils.showSnakBar(headerText: "Success",bodyText: "Driving Licence Scan Successfully");
+          print("Driving Licence Scan Successfully");
           Navigator.pop(context);
         }
       });

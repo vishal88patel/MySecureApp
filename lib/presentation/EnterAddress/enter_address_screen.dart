@@ -205,6 +205,7 @@ class EnterAddressDetailScreen extends StatelessWidget {
                               keyBordType: TextInputType.number,
                               controller:
                                   enterAddressController.zipCodeController,
+                              maxLength: 5,
                             ),
                             Spacer(),
                             AppElevatedButton(

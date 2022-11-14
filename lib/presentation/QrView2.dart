@@ -123,6 +123,7 @@ class _QRViewExample2State extends State<QRViewExample2> {
         if(transactionController.qrCodeResult.value.isNotEmpty && counter==0){
           counter=1;
           if(transactionController.qrCodeResult.value!=null && transactionController.qrCodeResult.value.isNotEmpty){
+            UIUtils.showSnakBar(headerText: "Success",bodyText: "Qr Code Scan Successfully");
             transactionController.callGetUuidApi();
           }
         }

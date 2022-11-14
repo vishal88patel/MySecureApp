@@ -54,8 +54,8 @@ class EnterAddressScreenController extends GetxController {
     } else if (zipCodeController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter zipcode", headerText: StringConstants.ERROR);
-    }else if (zipCodeController.text.length<5) {
-      UIUtils.showSnakBar(bodyText: "Please enter correct zip code", headerText: StringConstants.ERROR);
+    }else if (zipCodeController.text.length!=5) {
+      UIUtils.showSnakBar(bodyText: "Please 5 digit zip code", headerText: StringConstants.ERROR);
     } else {
       Get.toNamed(AppRoutes.enterPersonalDetailScreen);
     }

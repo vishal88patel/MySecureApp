@@ -31,28 +31,49 @@ class LoginEmilScreen extends StatelessWidget {
                        Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
                         children: [
                          Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
-                         Text("2/4",style: AppStyle.textStylePoppinsRegular
+                         Text("1/6",style: AppStyle.textStylePoppinsRegular
                              .copyWith(color: ColorConstant.primaryWhite),),
                             ],
                           ),
                        SizedBox(height: getVerticalSize(57),),
-                       Text("Give us your \nPhone Number  ",style: AppStyle.textStylePoppinsRegular
+                       Text("Give us your \nPhone Number",style: AppStyle.textStylePoppinsRegular
                            .copyWith(color: ColorConstant.primaryWhite,
                            fontWeight: FontWeight.w700,fontSize: getFontSize(32)),),
                        SizedBox(height: getVerticalSize(5),),
-                       Text("To apply, we need your Email ID linked to \nyour app",
+                       Text("To apply, we need your Phone Number linked to \nyour app",
                          style: AppStyle.textStylePoppinsRegular
                            .copyWith(color: ColorConstant.primaryAppTextF1,
                            fontWeight: FontWeight.w400,fontSize: getFontSize(16)),),
                        SizedBox(height: getVerticalSize(54),),
-                       SizedBox(width: getHorizontalSize(229),
-                           child: const AppTextField()),
+                       AppTextField(keyBordType: TextInputType.number,hintText: "Phone Number",controller:logiEmailnController.phoneController,),
                        Spacer(),
-                      AppElevatedButton(buttonName: 'Continue with email',
-                      onPressed: (){
-                        Get.toNamed(AppRoutes.creatPasswordScreen);
-                      }),
-                       SizedBox(height: getVerticalSize(40),),
+                       AppElevatedButton(
+                           buttonName: 'Next',
+                           onPressed: () {
+                             logiEmailnController.onTapOfButton();
+                             // Get.toNamed(AppRoutes.loginEmailScreen);
+                           }),
+                       Padding(
+                         padding: const EdgeInsets.symmetric(vertical: 8.0),
+                         child: Row(
+                           mainAxisAlignment: MainAxisAlignment.center,
+                           children: [
+                             Text(
+                               "OR",
+                               style: AppStyle.textStylePoppinsRegular
+                                   .copyWith(color: ColorConstant.primaryWhite),
+                             ),
+                           ],
+                         ),
+                       ),
+                       AppElevatedButton(
+                           buttonName: 'Continue with Email',
+                           onPressed: () {
+                             Navigator.pop(context);
+                           }),
+                       SizedBox(
+                         height: getVerticalSize(36),
+                       ),
                      ],
                    ),
                  ],

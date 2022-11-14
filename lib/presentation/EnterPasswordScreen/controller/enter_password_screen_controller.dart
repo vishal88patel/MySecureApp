@@ -16,6 +16,7 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 class EnterPasswordScreenController extends GetxController {
   TextEditingController passController = TextEditingController();
   String email="";
+  String phone="";
   String device_type="";
   String device_id="";
   var arguments = Get.arguments;
@@ -35,6 +36,7 @@ class EnterPasswordScreenController extends GetxController {
   getArguments(){
     if (arguments != null) {
       email = arguments['email'];
+      phone = arguments['phone'];
     }
   }
 
@@ -61,7 +63,7 @@ class EnterPasswordScreenController extends GetxController {
 
   Future<void> callLoginApi() async {
     ApiService()
-        .callPostApi(body: await getLoginBody(email: email,password: passController.text), headerWithToken: false, url: ApiEndPoints.LOGIN).then((value) {
+        .callPostApi(body: await getLoginBody(email: email,phone:phone,password: passController.text), headerWithToken: false, url: ApiEndPoints.LOGIN).then((value) {
       print(value);
       if (value['status']) {
         UIUtils.showSnakBar(
@@ -78,11 +80,11 @@ class EnterPasswordScreenController extends GetxController {
     });
   }
 
-  Future<FormData> getLoginBody({required String email,required String password}) async {
+  Future<FormData> getLoginBody({required String email,required String phone,required String password}) async {
     final form = FormData({
-      "type": "1",
+      "type": email.isEmpty?"2":"1",
       "email": email,
-      "mobile": "",
+      "mobile":phone,
       "password": password,
       "device_id": await PlatformDeviceId.getDeviceId,
       "fcm_token": "empty",

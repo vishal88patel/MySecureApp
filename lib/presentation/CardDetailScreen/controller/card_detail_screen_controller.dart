@@ -125,10 +125,7 @@ class CardScreenController extends GetxController {
       case CreditCardType.visa:
         callAddCardApi("visa");
         break;
-      case CreditCardType.mastercard:
-        callAddCardApi("visa");
 
-        break;
       case CreditCardType.mastercard:
         callAddCardApi("mastercard");
 

@@ -65,8 +65,8 @@ class LoginScreenController extends GetxController {
           Get.toNamed(
               AppRoutes.enterPasswordScreen,
               arguments: {
-                "email":
-                emailController.text
+                "email": emailController.text,
+                "phone":""
               });
         }
       } else {
