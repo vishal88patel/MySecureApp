@@ -13,7 +13,7 @@ import '../../App Configurations/color_constants.dart';
 import 'controller/login_email_screen_controller.dart';
 
 class LoginEmilScreen extends StatelessWidget {
-  var logiEmailnController = Get.find<LoginEmailScreenController>();
+  var loginEmailnController = Get.find<LoginEmailScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +45,12 @@ class LoginEmilScreen extends StatelessWidget {
                            .copyWith(color: ColorConstant.primaryAppTextF1,
                            fontWeight: FontWeight.w400,fontSize: getFontSize(16)),),
                        SizedBox(height: getVerticalSize(54),),
-                       AppTextField(keyBordType: TextInputType.number,maxLength:11,hintText: "Phone Number",controller:logiEmailnController.phoneController,),
+                       AppTextField(keyBordType: TextInputType.number,maxLength:11,hintText: "Phone Number",controller:loginEmailnController.phoneController,),
                        Spacer(),
                        AppElevatedButton(
                            buttonName: 'Next',
                            onPressed: () {
-                             logiEmailnController.onTapOfButton();
+                             loginEmailnController.onTapOfButton();
                              // Get.toNamed(AppRoutes.loginEmailScreen);
                            }),
                        Padding(

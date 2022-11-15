@@ -160,7 +160,7 @@ class UploadDocumentScreenController extends GetxController {
   void scanData(String? fName, String? lName, String? dateOfBirth) {
     if (fName?.toLowerCase().trim()!=firstNameController.text.toLowerCase().trim()) {
       UIUtils.showSnakBar(
-          bodyText: "First Name is Not match With Driving Licence First Name",
+          bodyText: "Profile details and licence details not match",
           headerText: StringConstants.ERROR);
     } else if (lName?.toLowerCase().trim()!=lastNameController.text.toLowerCase().trim()) {
       UIUtils.showSnakBar(
@@ -211,7 +211,7 @@ class UploadDocumentScreenController extends GetxController {
     if (response.statusCode == 200) {
       UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(
-          bodyText: responseData['message'],
+          bodyText: "KYC has been completed successfully",
           headerText: StringConstants.SUCCESS);
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
       Get.offAllNamed(AppRoutes.dashBoardScreen,

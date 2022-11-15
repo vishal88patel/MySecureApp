@@ -22,7 +22,7 @@ import 'get_status_income_response_model.dart';
 
 class PersonalScreenController extends GetxController {
   var loginController = Get.find<LoginScreenController>();
-  var loginEmailController = Get.find<LoginEmailScreenController>();
+  var loginEmailController = Get.put(LoginEmailScreenController());
   var createPasswordController = Get.find<CreatePasswordScreenController>();
   var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
   var enterLegalNameController = Get.find<EnterLegalNameScreenController>();
