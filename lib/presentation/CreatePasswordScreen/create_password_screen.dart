@@ -124,12 +124,30 @@ class CreatePasswordScreen extends StatelessWidget {
                       ),
                     ),
                     Spacer(),
-                    AppElevatedButton(
-                      buttonName: 'Next',
-                      onPressed: () {
-                        createPasswordController.onTapOfNextButton();
-                        // Get.toNamed(AppRoutes.enterPersonalDetailScreen);
-                      },
+                    Row(
+                      children: [
+
+                        Expanded(
+                          child: AppElevatedButton(
+                            buttonName: 'Cancel',
+                            radius: 5,
+                            onPressed: () {
+                              Get.back();
+                            },
+                          ),
+                        ),
+                        SizedBox(width: getHorizontalSize(20)),
+                        Expanded(
+                          child: AppElevatedButton(
+                            buttonName: 'Next',
+                            radius: 5,
+                            onPressed: () {
+                              createPasswordController.onTapOfNextButton();
+                              // Get.toNamed(AppRoutes.enterPersonalDetailScreen);
+                            },
+                          ),
+                        ),
+                      ],
                     ),
                     SizedBox(
                       height: getVerticalSize(40),

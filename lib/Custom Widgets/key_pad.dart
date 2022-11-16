@@ -16,7 +16,7 @@ class KeyPad extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 30, right: 30),
+      margin: EdgeInsets.only(left: 15, right: 15),
       child: Column(
         children: [
           SizedBox(height: 25),
@@ -84,14 +84,7 @@ class KeyPad extends StatelessWidget{
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10)
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade700.withOpacity(0.3),
-                    spreadRadius: 0.1,
-                    blurRadius: 10,
-                    offset: Offset(-6, -6), // changes position of shadow
-                  ),
-                ],
+
               ),
               child: Center(
                 child: Text("Next",style: AppStyle.textStyleSFPRO.copyWith(
@@ -113,7 +106,7 @@ class KeyPad extends StatelessWidget{
 
         }
         else{
-          pinController.text = pinController.text.length<1?"\$"+pinController.text+buttonText.toString():pinController.text+buttonText.toString();
+          pinController.text = pinController.text.length<1?pinController.text+buttonText.toString():pinController.text+buttonText.toString();
           print(pinController.text.toString());
         }
 
@@ -129,14 +122,7 @@ class KeyPad extends StatelessWidget{
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade700.withOpacity(0.3),
-              spreadRadius: 0.1,
-              blurRadius: 10,
-              offset: Offset(-6, -6), // changes position of shadow
-            ),
-          ],
+
         ),
         child: Center(
           child: Text(buttonText,style: AppStyle.textStyleSFPRO.copyWith(
@@ -161,14 +147,7 @@ class KeyPad extends StatelessWidget{
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade700.withOpacity(0.3),
-              spreadRadius: 0.1,
-              blurRadius: 10,
-              offset: Offset(-6, -6), // changes position of shadow
-            ),
-          ],
+
         ),
         child: Center(
           child:SvgPicture.asset(

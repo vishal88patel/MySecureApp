@@ -186,6 +186,7 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                   },
                                   value: enterAddressController
                                       .selectedState.value,
+                              borderRadius: BorderRadius.circular(10),
                                   items: enterAddressController.stateList.value
                                       .map((selectedType) {
                                     return DropdownMenuItem(
@@ -208,13 +209,30 @@ class EnterAddressDetailScreen extends StatelessWidget {
                               maxLength: 5,
                             ),
                             Spacer(),
-                            AppElevatedButton(
-                              buttonName: 'Next',
-                              onPressed: () {
-                                // Get.toNamed(AppRoutes.personalDetailScreen);
-                                // Get.toNamed(AppRoutes.personalDetailScreen);
-                                enterAddressController.onTapOfNextButton();
-                              },
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: AppElevatedButton(
+                                    buttonName: 'Cancel',
+                                    radius: 5,
+                                    onPressed: () {
+                                   Get.back();
+                                    },
+                                  ),
+                                ),
+                                SizedBox(width: getHorizontalSize(20),),
+                                Expanded(
+                                  child: AppElevatedButton(
+                                    buttonName: 'Next',
+                                    radius: 5,
+                                    onPressed: () {
+                                      // Get.toNamed(AppRoutes.personalDetailScreen);
+                                      // Get.toNamed(AppRoutes.personalDetailScreen);
+                                      enterAddressController.onTapOfNextButton();
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: getVerticalSize(40),

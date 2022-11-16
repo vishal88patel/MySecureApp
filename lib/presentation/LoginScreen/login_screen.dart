@@ -73,6 +73,7 @@ class LoginScreen extends StatelessWidget {
                     Spacer(),
                     AppElevatedButton(
                         buttonName: 'Next',
+                        radius: 5,
                         onPressed: () {
                           loginController.onTapOfButton();
                           // Get.toNamed(AppRoutes.loginEmailScreen);
@@ -92,6 +93,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                     AppElevatedButton(
                         buttonName: 'Continue with Phone',
+                        radius: 5,
                         onPressed: () {
                           // loginController.onTapOfButton();
                            Get.toNamed(AppRoutes.loginEmailScreen);

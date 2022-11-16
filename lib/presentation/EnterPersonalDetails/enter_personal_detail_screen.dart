@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
+import 'package:my_secure_app/Custom%20Widgets/key_pad.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:numeric_keyboard/numeric_keyboard.dart';
 
 class EnterPersonalDetailScreen extends StatelessWidget {
-  var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+  var enterPersonalDetailController = Get.find<EnterBirthDateController>();
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +58,8 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           height: getVerticalSize(57),
                         ),
                         Text(
-                          "Enter your \nPersonal details",
+                          'Enter Your BirthDate',
+                          // "Enter your \nPersonal details",
                           style: AppStyle.textStylePoppinsRegular.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w700,
@@ -66,17 +70,14 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                         ),
                         TextFormField(
                           readOnly: true,
-                          onTap: (){
-                            enterPersonalDetailController.selectBirthDate(context);
-
-                          },
                           style: TextStyle(color: Colors.white),
+                          inputFormatters: [
+FilteringTextInputFormatter.allow('00/00/0000')                          ],
                           decoration: InputDecoration(
-                            hintText: 'Date Of Birth',
+                            hintText: 'DD/MM/YYYY',
                             hintStyle: AppStyle.textStylePoppinsRegular
                                 .copyWith(color: ColorConstant.primaryAppTextF1,
                                 fontWeight: FontWeight.w400,fontSize: getFontSize(16)),
-                            suffixIcon:Icon( Icons.calendar_month,color: ColorConstant.primaryAppTextF1,),
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
                             ),
@@ -84,10 +85,32 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                               borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
                             ),
                           ),
-                          controller:
+                            // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
+
+                        controller:
                           enterPersonalDetailController.dobController,
                         ),
-                        SizedBox(
+                        Spacer(),
+                        Column(
+                          children: [
+                            KeyPad(
+                              pinController: enterPersonalDetailController.dobController,
+                              onChange: (var pin) {
+                                enterPersonalDetailController.dobController.text =
+                                     pin.toString().length==2&&pin.toString().length==4?pin+'/':pin;//
+                                print(
+                                    pin);
+                              },
+                              onNext: () {
+
+                                // enterPersonalDetailController.goNextScreen();
+                              },
+                            ),
+                          ],
+                        )
+
+
+                        /*SizedBox(
                           height: getVerticalSize(43),
                         ),
                         AppTextField(
@@ -108,7 +131,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                         ),
                         SizedBox(
                           height: getVerticalSize(40),
-                        ),
+                        ),*/
                       ],
                     ),
                   ],

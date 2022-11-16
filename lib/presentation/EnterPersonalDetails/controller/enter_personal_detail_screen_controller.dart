@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
@@ -6,10 +7,12 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 
-class EnterPersonalScreenController extends GetxController {
+class EnterBirthDateController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
   DateTime selectedDate = DateTime.now();
+  var text = ''.obs ;
+
 
   @override
   void onReady() {
@@ -34,13 +37,15 @@ class EnterPersonalScreenController extends GetxController {
     } else if (!isAdult(dobController.text)) {
       UIUtils.showSnakBar(
           bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
-    }else if (ssnController.text.isEmpty) {
-      UIUtils.showSnakBar(
-          bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
-    }else if (ssnController.text.length!=9) {
-      UIUtils.showSnakBar(
-          bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
-    } else {
+    }
+    // else if (ssnController.text.isEmpty) {
+    //   UIUtils.showSnakBar(
+    //       bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
+    // }else if (ssnController.text.length!=9) {
+    //   UIUtils.showSnakBar(
+    //       bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
+    // }
+    else {
       Get.toNamed(AppRoutes.personalDetailScreen);
     }
   }
@@ -55,6 +60,9 @@ class EnterPersonalScreenController extends GetxController {
     int dayDiff = today.day - birthDate.day;
 
     return yearDiff > 18 || yearDiff == 18 && monthDiff >= 0 && dayDiff >= 0;
+  }
+  onKeyboardTap(String value) {
+    text.value =text.value + value;
   }
 
   Future<void> selectBirthDate(
@@ -100,5 +108,30 @@ class EnterPersonalScreenController extends GetxController {
 dobController.text=startDate;
 
     }
+  }
+}
+class CustomInputFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(TextEditingValue oldValue, TextEditingValue newValue) {
+    var text = newValue.text;
+
+    if (newValue.selection.baseOffset == 0) {
+      return newValue;
+    }
+
+    var buffer = new StringBuffer();
+    for (int i = 0; i < text.length; i++) {
+      buffer.write(text[i]);
+      var nonZeroIndex = i + 1;
+      if (nonZeroIndex % 2 == 0 && nonZeroIndex != text.length) {
+        buffer.write('/'); // Replace this with anything you want to put after each 4 numbers
+      }
+    }
+
+    var string = buffer.toString();
+    return newValue.copyWith(
+        text: string,
+        selection: new TextSelection.collapsed(offset: string.length)
+    );
   }
 }

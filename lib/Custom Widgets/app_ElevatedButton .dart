@@ -10,10 +10,12 @@ class AppElevatedButton extends StatelessWidget {
   final Color? textColor;
   final Color? buttonColor;
   final FontWeight? fontWeight;
+  final double? radius;
 
   const AppElevatedButton({Key? key,
     required this.buttonName,
-    required this.onPressed, this.textColor, this.fontWeight, this.buttonColor}) : super(key: key);
+    required this.onPressed, this.textColor, this.fontWeight,
+    this.buttonColor, this.radius}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,7 @@ class AppElevatedButton extends StatelessWidget {
       style: ElevatedButton.styleFrom(
        primary:buttonColor?? ColorConstant.primaryWhite,
           minimumSize: const Size.fromHeight(45),
-          shape:const RoundedRectangleBorder(  borderRadius: BorderRadius.zero),
+          shape: RoundedRectangleBorder(  borderRadius: BorderRadius.circular(radius??0)),
        textStyle:  AppStyle.textStylePoppinsRegular
         .copyWith(color: ColorConstant.primaryBlack,
         fontWeight: FontWeight.w700,fontSize: getFontSize(18))),

@@ -4,6 +4,8 @@ import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
+import 'package:my_secure_app/presentation/EnterAddress/enter_address_screen.dart';
+import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
@@ -60,7 +62,9 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                               height: getVerticalSize(57),
                             ),
                             Text(
-                              "Enter your Legal Name",
+                              "What's Your Name?",
+
+                              // "Enter your Legal Name",
                               style: AppStyle.textStylePoppinsRegular.copyWith(
                                   color: ColorConstant.primaryWhite,
                                   fontWeight: FontWeight.w700,
@@ -69,46 +73,77 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                             SizedBox(
                               height: getVerticalSize(100),
                             ),
+
                             AppTextField(
                                 hintText: 'Enter Your First Name',
                                 controller: enterLegelNameController
                                     .firstNameController),
-                            // SizedBox(
-                            //   height: getVerticalSize(43),
-                            // ),
-                            // AppTextField(
-                            //     hintText: 'Enter your middle name',
-                            //     controller: enterLegelNameController
-                            //         .middleNameController),
-                            // SizedBox(
-                            //   height: getVerticalSize(43),
-                            // ),
-                            // AppTextField(
-                            //     hintText: 'Enter your last name',
-                            //     controller: enterLegelNameController
-                            //         .lastNameController),
+                            SizedBox(
+                              height: getVerticalSize(43),
+                            ),
+                            AppTextField(
+                                hintText: 'Enter your middle name',
+                                controller: enterLegelNameController
+                                    .middleNameController),
+
+                            SizedBox(
+                              height: getVerticalSize(43),
+                            ),
+                            AppTextField(
+                                hintText: 'Enter your last name',
+                                controller: enterLegelNameController
+                                    .lastNameController),
                             Spacer(),
-                            AppElevatedButton(
-                              buttonName: 'Next',
-                              onPressed: () {
-                                // Get.toNamed(AppRoutes.personalDetailScreen);
-                                // Get.toNamed(AppRoutes.personalDetailScreen);
-                                // enterLegelNameController.onTapOfNextButton();
-                                if (enterLegelNameController
-                                    .firstNameController.text.isEmpty) {
-                                  UIUtils.showSnakBar(
-                                      bodyText: "Please enter first name",
-                                      headerText: StringConstants.ERROR);
-                                }
-                                else {
-                                  // Get.toNamed(AppRoutes.enterAddressScreen);
-                                  Get.to(
-                                    EnterMiddleNameDetailScreen(),
-                                    transition: Transition.rightToLeft,
-                                    duration: Duration(milliseconds: 500),
-                                  );
-                                }
-                              },
+                            Row(
+                              children: [
+
+                                Expanded(
+                                  child: AppElevatedButton(
+                                    buttonName: 'Cancel',
+                                    radius: 5,
+                                    onPressed: () {
+                                      Get.back();
+                                    },
+                                  ),
+                                ),
+                                SizedBox(width: getHorizontalSize(20),),
+                                Expanded(
+                                  child: AppElevatedButton(
+                                    buttonName: 'Next',
+                                    radius: 5,
+                                    onPressed: () {
+                                      // Get.toNamed(AppRoutes.personalDetailScreen);
+                                      // Get.toNamed(AppRoutes.personalDetailScreen);
+                                      // enterLegelNameController.onTapOfNextButton();
+                                      if (enterLegelNameController
+                                          .firstNameController.text.isEmpty) {
+                                        UIUtils.showSnakBar(
+                                            bodyText: "Please enter first name",
+                                            headerText: StringConstants.ERROR);
+                                      } else if (enterLegelNameController.middleNameController.text.isEmpty) {
+                                        UIUtils.showSnakBar(
+                                            bodyText: "Please enter middle name",
+                                            headerText: StringConstants.ERROR);
+                                      }else if (enterLegelNameController
+                                          .lastNameController.text.isEmpty) {
+                                        UIUtils.showSnakBar(
+                                            bodyText: "Please enter last name",
+                                            headerText: StringConstants.ERROR);
+                                      }
+                                      else {
+                                        Get.toNamed(AppRoutes.enterAddressScreen);
+
+
+                                        // Get.to(
+                                        //   EnterAddressDetailScreen(),
+                                        //   transition: Transition.rightToLeft,
+                                        //   duration: Duration(milliseconds: 500),
+                                        // );
+                                      }
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
                             SizedBox(
                               height: getVerticalSize(40),

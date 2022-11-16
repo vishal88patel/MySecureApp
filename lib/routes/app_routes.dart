@@ -222,7 +222,7 @@ class AppRoutes {
       transitionDuration: Duration(milliseconds: 400),
       page: () => EnterPersonalDetailScreen(),
       bindings: [
-        EnterPersonalScreenBinding(),
+        EnterBirthDateBinding(),
       ],
     ),
 

@@ -24,10 +24,10 @@ class PersonalScreenController extends GetxController {
   var loginController = Get.find<LoginScreenController>();
   var loginEmailController = Get.put(LoginEmailScreenController());
   var createPasswordController = Get.find<CreatePasswordScreenController>();
-  var enterPersonalDetailController = Get.find<EnterPersonalScreenController>();
+  var enterPersonalDetailController = Get.find<EnterBirthDateController>();
   var enterLegalNameController = Get.find<EnterLegalNameScreenController>();
   var enterAddressController = Get.find<EnterAddressScreenController>();
-  // var enterAddressController = Get.find<EnterPersonalScreenController>();
+  // var enterAddressController = Get.find<EnterBirthDateController>();
 
   TextEditingController employmentNameController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();

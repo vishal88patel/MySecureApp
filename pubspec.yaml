@@ -66,6 +66,7 @@ dependencies:
   flutter_vibrate: ^1.3.0
   qr_code_scanner: ^1.0.1
   camera: ^0.10.0+4
+  numeric_keyboard: ^1.1.0
 
 
 
