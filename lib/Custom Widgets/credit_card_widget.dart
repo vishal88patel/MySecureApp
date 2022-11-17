@@ -58,7 +58,7 @@ class CreditCardWidget extends StatelessWidget {
                     children: [
                       Column(crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Card holder name',
+                          Text('Card holder Name',
                               style: AppStyle.textStylePoppinsRegular
                                   .copyWith(color: ColorConstant.primaryWhite,
                                   fontWeight: FontWeight.w400,fontSize: getFontSize(10))),

@@ -48,7 +48,7 @@ class EnterLastNameDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "3/6",
+                              "3/8",
                               style: AppStyle.textStylePoppinsRegular
                                   .copyWith(color: ColorConstant.primaryWhite),
                             ),

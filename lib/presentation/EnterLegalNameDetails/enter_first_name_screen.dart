@@ -51,7 +51,7 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "3/6",
+                                  "3/8",
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(
                                           color: ColorConstant.primaryWhite),
@@ -99,7 +99,7 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
 
                                 Expanded(
                                   child: AppElevatedButton(
-                                    buttonName: 'Cancel',
+                                    buttonName: 'Back',
                                     radius: 5,
                                     onPressed: () {
                                       Get.back();

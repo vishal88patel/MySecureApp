@@ -238,7 +238,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: AppElevatedButton(
-                                            buttonName: 'Cancel',
+                                            buttonName: 'Back',
                                             radius: 5,
                                             onPressed: () {
                                               personalDetailController.onClickOfRegisterButton();
