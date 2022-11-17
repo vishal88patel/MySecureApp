@@ -133,7 +133,7 @@ class PersonalScreenController extends GetxController {
     purposeOfOpeningAcc.value = s;
   }
 
-  void onClickOfRegisterButton() {
+  void onClickOfButton() {
     if (employmentNameController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter employment type",
@@ -146,7 +146,14 @@ class PersonalScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter annual income",
           headerText: StringConstants.ERROR);
-    } else if (purposeOfOpeningAcc.isEmpty) {
+    }  else {
+      // callRegisterApi();
+      Get.toNamed(AppRoutes.purpouseAccountScreen);
+    }
+  }
+
+  void onClickOfRegisterButton() {
+    if (purposeOfOpeningAcc.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter account opening purpose",
           headerText: StringConstants.ERROR);

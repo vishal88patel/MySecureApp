@@ -82,7 +82,7 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                               height: getVerticalSize(43),
                             ),
                             AppTextField(
-                                hintText: 'Enter your middle name',
+                                hintText: 'Enter your Mother''s middle name',
                                 controller: enterLegelNameController
                                     .middleNameController),
 

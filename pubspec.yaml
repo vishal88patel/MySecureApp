@@ -70,6 +70,7 @@ dependencies:
   flutter_multi_formatter: ^2.9.6
   flutter_svprogresshud: ^1.0.0
 
+  dob_input_field: ^2.0.0
 
 
 
