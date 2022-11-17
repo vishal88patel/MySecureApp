@@ -68,7 +68,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           height: getVerticalSize(43),
                         ),
                         TextFormField(
-                          readOnly: true,
+                          readOnly: false,
                           style: TextStyle(color: Colors.white),
                           inputFormatters: [
                                FilteringTextInputFormatter.allow(RegExp(r'[0-9 ]+'))
