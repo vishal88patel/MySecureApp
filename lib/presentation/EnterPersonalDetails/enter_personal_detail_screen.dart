@@ -47,7 +47,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "5/6",
+                              "5/8",
                               style: AppStyle.textStylePoppinsRegular
                                   .copyWith(color: ColorConstant.primaryWhite),
                             ),

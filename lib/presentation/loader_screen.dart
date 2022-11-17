@@ -2,6 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:my_secure_app/App%20Configurations/color_constants.dart';
+import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 
 import '../Custom Widgets/main_custom_background.dart';
@@ -35,16 +38,21 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
       body: MainCutomBackGround(
-          child: RotationTransition(
-            turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
-            child: GradientCircularProgressIndicator(
-              radius: 50,
-              gradientColors: [
-                Colors.white,
-                ColorConstant.skyE8,
-                ColorConstant.blueFF,
-              ],
-              strokeWidth: 10.0,
+          child: Align(
+            alignment: Alignment.topLeft,
+            child: Padding(
+              padding: EdgeInsets.only(top: getVerticalSize(50),left: getHorizontalSize(40)),
+              child: RotationTransition(
+                turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
+                child: GradientCircularProgressIndicator(
+                  radius: 40,
+                  gradientColors: [
+                    Colors.white,
+                    ColorConstant.skyE8,
+                  ],
+                  strokeWidth: 10.0,
+                ),
+              ),
             ),
           ),),
     );

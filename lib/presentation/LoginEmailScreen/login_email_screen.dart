@@ -31,7 +31,7 @@ class LoginEmilScreen extends StatelessWidget {
                        Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
                         children: [
                          Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
-                         Text("1/6",style: AppStyle.textStylePoppinsRegular
+                         Text("1/8",style: AppStyle.textStylePoppinsRegular
                              .copyWith(color: ColorConstant.primaryWhite),),
                             ],
                           ),

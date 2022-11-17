@@ -47,7 +47,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "6/6",
+                                      "6/8",
                                       style: AppStyle.textStylePoppinsRegular
                                           .copyWith(color: ColorConstant.primaryWhite),
                                     ),
