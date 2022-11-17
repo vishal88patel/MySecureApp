@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../App Configurations/color_constants.dart';
@@ -62,8 +63,7 @@ class KeyPad extends StatelessWidget{
                   pinController.text="";
                 }
                 if (pinController.text.length > 1) {
-                  pinController.text = pinController.text
-                      .substring(1, pinController.text.length - 1);
+                  pinController.text = pinController.text.removeLast();
                 }
 
                 onChange(pinController.text);

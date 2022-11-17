@@ -1,7 +1,5 @@
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:my_secure_app/App%20Configurations/image_constants.dart';
+import 'package:get/get.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
@@ -10,6 +8,7 @@ import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../loader_screen.dart';
 import 'controller/login_screen_controller.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -34,7 +33,6 @@ class LoginScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-
                         Text(
                           "1/6",
                           style: AppStyle.textStylePoppinsRegular
@@ -67,16 +65,22 @@ class LoginScreen extends StatelessWidget {
                     ),
                     SizedBox(
                         child: AppTextField(
-                          controller: loginController.emailController,
-                          keyBordType: TextInputType.emailAddress,hintText: "Email",
-                        )),
+                      controller: loginController.emailController,
+                      keyBordType: TextInputType.emailAddress,
+                      hintText: "Email",
+                    )),
                     Spacer(),
                     AppElevatedButton(
                         buttonName: 'Next',
                         radius: 5,
                         onPressed: () {
-                          loginController.onTapOfButton();
-                          // Get.toNamed(AppRoutes.loginEmailScreen);
+                          // loginController.onTapOfButton();
+                          // Get.to(
+                          //   LoaderScreen("",AppRoutes.creatPasswordScreen),
+                          //   transition: Transition.rightToLeft,
+                          //   duration: Duration(milliseconds: 400),
+                          // );
+                          Get.off(()=> LoaderScreen("",AppRoutes.creatPasswordScreen));
                         }),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -96,7 +100,7 @@ class LoginScreen extends StatelessWidget {
                         radius: 5,
                         onPressed: () {
                           // loginController.onTapOfButton();
-                           Get.toNamed(AppRoutes.loginEmailScreen);
+                          Get.toNamed(AppRoutes.loginEmailScreen);
                         }),
                     SizedBox(
                       height: getVerticalSize(36),

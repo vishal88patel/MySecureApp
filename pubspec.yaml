@@ -67,6 +67,8 @@ dependencies:
   qr_code_scanner: ^1.0.1
   camera: ^0.10.0+4
   numeric_keyboard: ^1.1.0
+  flutter_multi_formatter: ^2.9.6
+  flutter_svprogresshud: ^1.0.0
 
 
 
