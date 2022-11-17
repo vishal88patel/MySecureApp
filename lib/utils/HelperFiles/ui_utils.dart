@@ -18,10 +18,11 @@ class UIUtils {
       Get.dialog(
         Container(
           color: Colors.black.withOpacity(0.8),
-          height: Get.size.height / 2.5,
-          width: Get.size.width / 1.25,
+          height: Get.size.height / 4,
+          width: Get.size.width / 3,
           child: Lottie.asset("asset/animations/progressbar.json",
-              height: Get.size.height / 2, width: Get.size.width),
+            height: Get.size.height /4,
+            width: Get.size.width / 3,),
         ),
         barrierDismissible: isCancellable,
       );
