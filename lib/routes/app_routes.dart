@@ -70,6 +70,7 @@ import '../presentation/CreatePasswordScreen/binding/create_password_screen_bind
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
 import '../presentation/EnterAddress/binding/enter_address_screen_binding.dart';
 import '../presentation/EnterLegalNameDetails/binding/enter_legel_name_screen_binding.dart';
+import '../presentation/EnterLegalNameDetails/enter_first_name_screen.dart';
 import '../presentation/EnterPasswordScreen/binding/enter_password_screen_binding.dart';
 import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
@@ -205,7 +206,7 @@ class AppRoutes {
       name: enterLegalNameScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => EnterLegalNameDetailScreen(),
+      page: () => EnterFirstNameDetailScreen(),
       bindings: [
         EnterLegalNameScreenBinding(),
       ],

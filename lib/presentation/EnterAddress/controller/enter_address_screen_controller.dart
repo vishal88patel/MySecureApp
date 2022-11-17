@@ -7,6 +7,7 @@ import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../loader_screen.dart';
 
 class EnterAddressScreenController extends GetxController {
   TextEditingController address01Controller = TextEditingController();
@@ -57,7 +58,8 @@ class EnterAddressScreenController extends GetxController {
     }else if (zipCodeController.text.length!=5) {
       UIUtils.showSnakBar(bodyText: "Please 5 digit zip code", headerText: StringConstants.ERROR);
     } else {
-      Get.toNamed(AppRoutes.enterPersonalDetailScreen);
+      // Get.toNamed(AppRoutes.enterPersonalDetailScreen);
+      Get.to(()=> LoaderScreen(AppRoutes.enterPersonalDetailScreen));
     }
   }
   Future<void> getStateList() async {

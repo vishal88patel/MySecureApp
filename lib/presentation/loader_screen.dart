@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 
 import '../Custom Widgets/main_custom_background.dart';
 
@@ -27,6 +27,7 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
     Future.delayed(Duration(milliseconds: 400), () {
       Get.offNamed(widget.appRoutes.toString());
     });
+
     super.initState();
   }
 
@@ -40,7 +41,8 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
               radius: 50,
               gradientColors: [
                 Colors.white,
-                Colors.red,
+                ColorConstant.skyE8,
+                ColorConstant.blueFF,
               ],
               strokeWidth: 10.0,
             ),

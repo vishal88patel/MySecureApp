@@ -61,8 +61,8 @@ class LoginScreenController extends GetxController {
       print(value);
       if (value['status']) {
         if (value['message'] == "User is not registered.") {
-          // Get.toNamed(AppRoutes.creatPasswordScreen);
-          Get.to(()=> LoaderScreen(AppRoutes.creatPasswordScreen));
+          Get.toNamed(AppRoutes.creatPasswordScreen);
+          //
 
         } else {
           Get.toNamed(
