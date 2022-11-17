@@ -44,7 +44,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "8/6",
+                                          "8/8",
                                           style: AppStyle.textStylePoppinsRegular
                                               .copyWith(color: ColorConstant.primaryWhite),
                                         ),
