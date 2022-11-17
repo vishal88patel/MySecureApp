@@ -241,8 +241,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                             buttonName: 'Back',
                                             radius: 5,
                                             onPressed: () {
-                                              personalDetailController.onClickOfRegisterButton();
-                                              // Get.toNamed(AppRoutes.dashBoardScreen);
+                                              Get.back();                                              // Get.toNamed(AppRoutes.dashBoardScreen);
                                             },
                                           ),
                                         ),
