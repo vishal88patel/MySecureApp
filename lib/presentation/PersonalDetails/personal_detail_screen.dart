@@ -162,7 +162,7 @@ class PersonalDetailScreen extends StatelessWidget {
                             buttonName: 'Back',
                             radius: 5,
                             onPressed: () {
-                              personalDetailController.onClickOfRegisterButton();
+                              Get.back();
                               // Get.toNamed(AppRoutes.dashBoardScreen);
                             },
                           ),
