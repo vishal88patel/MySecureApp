@@ -14,7 +14,11 @@ class PersonalDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
+      backgroundColor: ColorConstant.primaryBlack,
+      body: SingleChildScrollView(
+          child: Container(
+              height: size.height,
+              child: Stack(
       children: [
         MainCutomBackGround(
             child: Padding(
@@ -40,7 +44,7 @@ class PersonalDetailScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "6/6",
+                          "7/6",
                           style: AppStyle.textStylePoppinsRegular
                               .copyWith(color: ColorConstant.primaryWhite),
                         ),
@@ -149,195 +153,32 @@ class PersonalDetailScreen extends StatelessWidget {
                             );
                           }).toList(),
                         )),
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    Text(
-                      "Purpouse Of Opening Account",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryAppTextF1,
-                          fontWeight: FontWeight.w400,
-                          fontSize: getFontSize(16)),
-                    ),
 
-                    SizedBox(
-                      height: getVerticalSize(10),
-                    ),
+                    Spacer(),
                     Row(
                       children: [
-                        Obx(
-                          () => InkWell(
-                            onTap: () {
-                              personalDetailController
-                                  .onTapOfBorroeOrPErsonalLoan("borrow_loan");
+                        Expanded(
+                          child: AppElevatedButton(
+                            buttonName: 'Cancel',
+                            radius: 5,
+                            onPressed: () {
+                              personalDetailController.onClickOfRegisterButton();
+                              // Get.toNamed(AppRoutes.dashBoardScreen);
                             },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: personalDetailController
-                                              .purposeOfOpeningAcc.value ==
-                                          "borrow_loan"
-                                      ? ColorConstant.primaryWhite
-                                      : Colors.transparent,
-                                  border: Border.all(
-                                      color: ColorConstant.primaryAppTextF1)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: getHorizontalSize(16),
-                                    vertical: getVerticalSize(4)),
-                                child: Text('Borrow Loan',
-                                    style: AppStyle.textStylePoppinsRegular
-                                        .copyWith(
-                                            color: personalDetailController
-                                                        .purposeOfOpeningAcc
-                                                        .value ==
-                                                    "borrow_loan"
-                                                ? ColorConstant.primaryBlack
-                                                : ColorConstant
-                                                    .primaryAppTextF1,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: getFontSize(14))),
-                              ),
-                            ),
                           ),
                         ),
-                        SizedBox(
-                          width: getHorizontalSize(11),
-                        ),
-                        Obx(
-                          () => InkWell(
-                            onTap: () {
-                              personalDetailController
-                                  .onTapOfBorroeOrPErsonalLoan(
-                                      "using_wallet_service");
+                        SizedBox(width: getHorizontalSize(20),),
+                        Expanded(
+                          child: AppElevatedButton(
+                            buttonName: 'Next',
+                            radius: 5,
+                            onPressed: () {
+                              personalDetailController.onClickOfButton();
+                              // Get.toNamed(AppRoutes.dashBoardScreen);
                             },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: personalDetailController
-                                              .purposeOfOpeningAcc.value ==
-                                          "using_wallet_service"
-                                      ? ColorConstant.primaryWhite
-                                      : Colors.transparent,
-                                  border: Border.all(
-                                      color: ColorConstant.primaryAppTextF1)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: getHorizontalSize(16),
-                                    vertical: getVerticalSize(4)),
-                                child: Text('Using Wallet Service',
-                                    style: AppStyle.textStylePoppinsRegular
-                                        .copyWith(
-                                            color: personalDetailController
-                                                        .purposeOfOpeningAcc
-                                                        .value ==
-                                                    "using_wallet_service"
-                                                ? ColorConstant.primaryBlack
-                                                : ColorConstant
-                                                    .primaryAppTextF1,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: getFontSize(14))),
-                              ),
-                            ),
                           ),
                         ),
                       ],
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(22),
-                    ),
-                    // Wrap(
-                    //   children:  payment.map((i) =>
-                    //     Row(
-                    //       children: [
-                    //
-                    //         Row(
-                    //           children: [
-                    //             Container(  width: getHorizontalSize(9),
-                    //               height: getVerticalSize(9),
-                    //               decoration: BoxDecoration( color: Colors.transparent,
-                    //                   borderRadius: BorderRadius.circular(100),
-                    //                   border: Border.all(color: ColorConstant.primaryAppTextF1)
-                    //               ),),
-                    //             Text(i),
-                    //           ],
-                    //         ),
-                    //         // Text('Emily Fortuna'),
-                    //         // Text('Filip Hráček'),
-                    //       ],
-                    //     )).toList(),
-                    //
-                    //
-                    // ),
-                    Obx(
-                      () => personalDetailController
-                                  .purposeOfOpeningAcc.value ==
-                              "using_wallet_service" || personalDetailController
-                          .purposeOfOpeningAcc.value ==
-                          ""
-                          ? Container()
-                          : Wrap(
-                              alignment: WrapAlignment.start,
-                              children: personalDetailController.loanList.value
-                                  .map((i) => Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: getVerticalSize(8)),
-                                        child: InkWell(
-                                          onTap: () {
-                                            personalDetailController
-                                                .onTapOnLoanTile(i.id);
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Container(
-                                                width: getHorizontalSize(22),
-                                                height: getVerticalSize(22),
-                                                decoration: BoxDecoration(
-                                                    color: personalDetailController
-                                                                .selectedLoanId
-                                                                .value ==
-                                                            i.id.toString()
-                                                        ? ColorConstant
-                                                            .primaryWhite
-                                                        : Colors.transparent,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100),
-                                                    border: Border.all(
-                                                        color: ColorConstant
-                                                            .primaryAppTextF1)),
-                                              ),
-                                              SizedBox(
-                                                width: getHorizontalSize(7),
-                                              ),
-                                              Text(
-                                                i.name.toString(),
-                                                style: AppStyle
-                                                    .textStylePoppinsRegular
-                                                    .copyWith(
-                                                        color: ColorConstant
-                                                            .primaryAppTextF1,
-                                                        fontSize:
-                                                            getFontSize(14)),
-                                              ),
-                                              SizedBox(
-                                                width: getHorizontalSize(10),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ))
-                                  .toList(),
-                            ),
-                    ),
-                    Spacer(),
-                    AppElevatedButton(
-                      buttonName: 'Register',
-                      onPressed: () {
-                        personalDetailController.onClickOfRegisterButton();
-                        // Get.toNamed(AppRoutes.dashBoardScreen);
-                      },
                     ),
                     SizedBox(
                       height: getVerticalSize(40),
@@ -349,6 +190,6 @@ class PersonalDetailScreen extends StatelessWidget {
           ),
         )),
       ],
-    ));
+    ))));
   }
 }

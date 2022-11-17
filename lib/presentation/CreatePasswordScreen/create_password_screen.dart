@@ -16,7 +16,11 @@ class CreatePasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
+      backgroundColor: ColorConstant.primaryBlack,
+      body: SingleChildScrollView(
+          child: Container(
+              height: size.height,
+              child: Stack(
       children: [
         MainCutomBackGround(
             child: Padding(
@@ -159,6 +163,6 @@ class CreatePasswordScreen extends StatelessWidget {
           ),
         )),
       ],
-    ));
+    ))));
   }
 }

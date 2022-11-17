@@ -24,6 +24,7 @@ import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_legel_nam
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
+import 'package:my_secure_app/presentation/EnterPersonalDetails/ssn_details.dart';
 import 'package:my_secure_app/presentation/ForgetPassScreen/binding/forget_pass_screen_binding.dart';
 import 'package:my_secure_app/presentation/ForgetPassScreen/forget_pass_screen.dart';
 import 'package:my_secure_app/presentation/LoanApprovedScreen/loan_approved_screen.dart';
@@ -38,6 +39,7 @@ import 'package:my_secure_app/presentation/LoginEmailScreen/binding/login_email_
 import 'package:my_secure_app/presentation/LoginEmailScreen/login_email_screen.dart';
 import 'package:my_secure_app/presentation/MoreHelpScreen/binding/more_help_screen_binding.dart';
 import 'package:my_secure_app/presentation/MoreHelpScreen/more_help_screen.dart';
+import 'package:my_secure_app/presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/personal_detail_screen.dart';
 import 'package:my_secure_app/presentation/PinScreen/binding/pin_screen_binding.dart';
@@ -135,6 +137,9 @@ class AppRoutes {
   static String collectDetailScreen = '/collect_detail_screen';
   static String qrCodeScreen = '/qr_code_screen';
   static String loan_approved = '/loan_approved_screen';
+  static String enterSnnDetailScreen = '/enter_Snn_detail_screen';
+  static String purpouseAccountScreen = '/purpouse_account_screen';
+
   static List<GetPage> pages = [
     GetPage(
       name: splashScreen,
@@ -225,12 +230,31 @@ class AppRoutes {
         EnterBirthDateBinding(),
       ],
     ),
+    GetPage(
+      name: enterSnnDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterSNNDetailScreen(),
+      bindings: [
+        EnterBirthDateBinding(),
+      ],
+    ),
 
     GetPage(
       name: personalDetailScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => PersonalDetailScreen(),
+      bindings: [
+        PersonalScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: purpouseAccountScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => PurpouseAccountScreen(),
       bindings: [
         PersonalScreenBinding(),
       ],

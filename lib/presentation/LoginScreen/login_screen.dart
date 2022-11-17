@@ -18,96 +18,102 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        MainCutomBackGround(
-            child: Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: getHorizontalSize(36.0),
-              vertical: getVerticalSize(26)),
-          child: SafeArea(
+        backgroundColor: ColorConstant.primaryBlack,
+        body: SingleChildScrollView(
+          child: Container(
+            height: size.height,
             child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+            MainCutomBackGround(
+                child: Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getHorizontalSize(36.0),
+                  vertical: getVerticalSize(26)),
+              child: SafeArea(
+                child: Stack(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
 
+                            Text(
+                              "1/6",
+                              style: AppStyle.textStylePoppinsRegular
+                                  .copyWith(color: ColorConstant.primaryWhite),
+                            ),
+                          ],
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(57),
+                        ),
                         Text(
-                          "1/6",
-                          style: AppStyle.textStylePoppinsRegular
-                              .copyWith(color: ColorConstant.primaryWhite),
+                          "Give us your \nEmail ID",
+                          style: AppStyle.textStylePoppinsRegular.copyWith(
+                              color: ColorConstant.primaryWhite,
+                              fontWeight: FontWeight.w700,
+                              fontSize: getFontSize(32)),
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(5),
+                        ),
+                        Text(
+                          "To apply, we need your Email ID linked to \nyour app",
+                          style: AppStyle.textStylePoppinsRegular.copyWith(
+                              color: ColorConstant.primaryAppTextF1,
+                              fontWeight: FontWeight.w400,
+                              fontSize: getFontSize(16)),
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(54),
+                        ),
+                        SizedBox(
+                            child: AppTextField(
+                              controller: loginController.emailController,
+                              keyBordType: TextInputType.emailAddress,hintText: "Email",
+                            )),
+                        Spacer(),
+                        AppElevatedButton(
+                            buttonName: 'Next',
+                            radius: 5,
+                            onPressed: () {
+                              loginController.onTapOfButton();
+                              // Get.toNamed(AppRoutes.loginEmailScreen);
+                            }),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                "OR",
+                                style: AppStyle.textStylePoppinsRegular
+                                    .copyWith(color: ColorConstant.primaryWhite),
+                              ),
+                            ],
+                          ),
+                        ),
+                        AppElevatedButton(
+                            buttonName: 'Continue with Phone',
+                            radius: 5,
+                            onPressed: () {
+                              // loginController.onTapOfButton();
+                               Get.toNamed(AppRoutes.loginEmailScreen);
+                            }),
+                        SizedBox(
+                          height: getVerticalSize(36),
                         ),
                       ],
                     ),
-                    SizedBox(
-                      height: getVerticalSize(57),
-                    ),
-                    Text(
-                      "Give us your \nEmail ID",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w700,
-                          fontSize: getFontSize(32)),
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(5),
-                    ),
-                    Text(
-                      "To apply, we need your Email ID linked to \nyour app",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryAppTextF1,
-                          fontWeight: FontWeight.w400,
-                          fontSize: getFontSize(16)),
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(54),
-                    ),
-                    SizedBox(
-                        child: AppTextField(
-                          controller: loginController.emailController,
-                          keyBordType: TextInputType.emailAddress,hintText: "Email",
-                        )),
-                    Spacer(),
-                    AppElevatedButton(
-                        buttonName: 'Next',
-                        radius: 5,
-                        onPressed: () {
-                          loginController.onTapOfButton();
-                          // Get.toNamed(AppRoutes.loginEmailScreen);
-                        }),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            "OR",
-                            style: AppStyle.textStylePoppinsRegular
-                                .copyWith(color: ColorConstant.primaryWhite),
-                          ),
-                        ],
-                      ),
-                    ),
-                    AppElevatedButton(
-                        buttonName: 'Continue with Phone',
-                        radius: 5,
-                        onPressed: () {
-                          // loginController.onTapOfButton();
-                           Get.toNamed(AppRoutes.loginEmailScreen);
-                        }),
-                    SizedBox(
-                      height: getVerticalSize(36),
-                    ),
                   ],
                 ),
-              ],
-            ),
-          ),
-        )),
+              ),
+            )),
       ],
-    ));
+    ),
+          ),
+        ));
   }
 }

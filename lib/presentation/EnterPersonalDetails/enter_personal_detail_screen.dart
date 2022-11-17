@@ -10,7 +10,6 @@ import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
-import 'package:numeric_keyboard/numeric_keyboard.dart';
 
 class EnterPersonalDetailScreen extends StatelessWidget {
   var enterPersonalDetailController = Get.find<EnterBirthDateController>();
@@ -72,7 +71,8 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           readOnly: true,
                           style: TextStyle(color: Colors.white),
                           inputFormatters: [
-FilteringTextInputFormatter.allow('00/00/0000')                          ],
+                               FilteringTextInputFormatter.allow(RegExp(r'[0-9 ]+'))
+                          ],
                           decoration: InputDecoration(
                             hintText: 'DD/MM/YYYY',
                             hintStyle: AppStyle.textStylePoppinsRegular
@@ -97,11 +97,12 @@ FilteringTextInputFormatter.allow('00/00/0000')                          ],
                               pinController: enterPersonalDetailController.dobController,
                               onChange: (var pin) {
                                 enterPersonalDetailController.dobController.text =
-                                     pin.toString().length==2&&pin.toString().length==4?pin+'/':pin;//
+                                     pin;//
                                 print(
                                     pin);
                               },
                               onNext: () {
+                                enterPersonalDetailController.onTapOfNextButton();
 
                                 // enterPersonalDetailController.goNextScreen();
                               },
@@ -110,28 +111,6 @@ FilteringTextInputFormatter.allow('00/00/0000')                          ],
                         )
 
 
-                        /*SizedBox(
-                          height: getVerticalSize(43),
-                        ),
-                        AppTextField(
-                          hintText: 'SNN',
-                          maxLength: 9,
-                          controller:
-                              enterPersonalDetailController.ssnController,
-                          keyBordType: TextInputType.number,
-                        ),
-                        Spacer(),
-                        AppElevatedButton(
-                          buttonName: 'Next',
-                          onPressed: () {
-                            // Get.toNamed(AppRoutes.personalDetailScreen);
-                            // Get.toNamed(AppRoutes.personalDetailScreen);
-                            enterPersonalDetailController.onTapOfNextButton();
-                          },
-                        ),
-                        SizedBox(
-                          height: getVerticalSize(40),
-                        ),*/
                       ],
                     ),
                   ],
