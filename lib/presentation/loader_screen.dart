@@ -1,25 +1,31 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svprogresshud/flutter_svprogresshud.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 import '../Custom Widgets/main_custom_background.dart';
 
 class LoaderScreen extends StatefulWidget {
-  String appRoutes1;
-  String appRoutes2;
-   LoaderScreen(this.appRoutes1,this.appRoutes2) ;
+  String appRoutes;
+
+  LoaderScreen(this.appRoutes);
 
   @override
   State<LoaderScreen> createState() => _LoaderScreenState();
 }
 
-class _LoaderScreenState extends State<LoaderScreen> {
+class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
   @override
   void initState() {
-    Future.delayed(Duration(milliseconds: 400),(){
-
-      Get.toNamed(widget.appRoutes2.toString());
+    _animationController =
+    new AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _animationController.addListener(() => setState(() {}));
+    _animationController.repeat();
+    Future.delayed(Duration(milliseconds: 400), () {
+      Get.offNamed(widget.appRoutes.toString());
     });
     super.initState();
   }
@@ -28,13 +34,71 @@ class _LoaderScreenState extends State<LoaderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: MainCutomBackGround(
-        child: Image.asset(
-          "asset/animations/loader.gif",
+          child: RotationTransition(
+            turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
+            child: GradientCircularProgressIndicator(
+              radius: 50,
+              gradientColors: [
+                Colors.white,
+                Colors.red,
+              ],
+              strokeWidth: 10.0,
+            ),
+          ),),
+    );
+  }
+}
+class GradientCircularProgressIndicator extends StatelessWidget {
+  final double radius;
+  final List<Color> gradientColors;
+  final double strokeWidth;
 
-          height: 125.0,
-          width: 125.0,
-        ),
+  GradientCircularProgressIndicator({
+    required this.radius,
+    required this.gradientColors,
+    this.strokeWidth = 10.0,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return CustomPaint(
+      size: Size.fromRadius(radius),
+      painter: GradientCircularProgressPainter(
+        radius: radius,
+        gradientColors: gradientColors,
+        strokeWidth: strokeWidth,
       ),
     );
+  }
+}
+
+class GradientCircularProgressPainter extends CustomPainter {
+  GradientCircularProgressPainter({
+    required this.radius,
+    required this.gradientColors,
+    required this.strokeWidth,
+  });
+  final double radius;
+  final List<Color> gradientColors;
+  final double strokeWidth;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    size = Size.fromRadius(radius);
+    double offset = strokeWidth / 2;
+    Rect rect = Offset(offset, offset) &
+    Size(size.width - strokeWidth, size.height - strokeWidth);
+    var paint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = strokeWidth;
+    paint.shader =
+        SweepGradient(colors: gradientColors, startAngle: 0.0, endAngle: 2 * pi)
+            .createShader(rect);
+    canvas.drawArc(rect, 0.0, 2 * pi, false, paint);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    return true;
   }
 }

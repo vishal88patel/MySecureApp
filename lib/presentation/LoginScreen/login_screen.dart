@@ -74,13 +74,12 @@ class LoginScreen extends StatelessWidget {
                         buttonName: 'Next',
                         radius: 5,
                         onPressed: () {
-                          // loginController.onTapOfButton();
+                          loginController.onTapOfButton();
                           // Get.to(
                           //   LoaderScreen("",AppRoutes.creatPasswordScreen),
                           //   transition: Transition.rightToLeft,
                           //   duration: Duration(milliseconds: 400),
                           // );
-                          Get.off(()=> LoaderScreen("",AppRoutes.creatPasswordScreen));
                         }),
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),

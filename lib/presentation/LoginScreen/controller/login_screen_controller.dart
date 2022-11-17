@@ -11,6 +11,7 @@ import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../loader_screen.dart';
 
 class LoginScreenController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -60,7 +61,9 @@ class LoginScreenController extends GetxController {
       print(value);
       if (value['status']) {
         if (value['message'] == "User is not registered.") {
-          Get.toNamed(AppRoutes.creatPasswordScreen);
+          // Get.toNamed(AppRoutes.creatPasswordScreen);
+          Get.to(()=> LoaderScreen(AppRoutes.creatPasswordScreen));
+
         } else {
           Get.toNamed(
               AppRoutes.enterPasswordScreen,
