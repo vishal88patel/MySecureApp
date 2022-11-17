@@ -213,7 +213,7 @@ class EnterAddressDetailScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: AppElevatedButton(
-                                    buttonName: 'Cancel',
+                                    buttonName: 'Back',
                                     radius: 5,
                                     onPressed: () {
                                    Get.back();
