@@ -101,7 +101,7 @@ class EnterMiddleNameDetailScreen extends StatelessWidget {
                                 if (enterLegelNameController
                                     .middleNameController.text.isEmpty) {
                                   UIUtils.showSnakBar(
-                                      bodyText: "Please enter middle name",
+                                      bodyText: "Please enter mothers name",
                                       headerText: StringConstants.ERROR);
                                 }
                                 /*else if (lastNameController.text.isEmpty) {

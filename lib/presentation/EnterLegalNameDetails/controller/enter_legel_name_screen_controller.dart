@@ -43,6 +43,7 @@ class EnterLegalNameScreenController extends GetxController {
           headerText: StringConstants.ERROR);
     } else {
       // Get.toNamed(AppRoutes.enterAddressScreen);
+
       Get.to(EnterMiddleNameDetailScreen(),transition: Transition.rightToLeft,duration:   Duration(milliseconds: 500),);
     }
   }

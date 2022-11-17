@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 
 import '../Custom Widgets/main_custom_background.dart';
 
@@ -29,6 +30,7 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
     Future.delayed(Duration(milliseconds: 400), () {
       Get.offNamed(widget.appRoutes.toString());
     });
+
     super.initState();
   }
 

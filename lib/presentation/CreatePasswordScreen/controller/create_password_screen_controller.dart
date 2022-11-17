@@ -8,6 +8,7 @@ import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../loader_screen.dart';
 
 
 
@@ -60,7 +61,8 @@ class CreatePasswordScreenController extends GetxController {
       );
     }else{
       // Get.toNamed(AppRoutes.enterLegalNameScreen);
-      Get.to(EnterFirstNameDetailScreen(),transition: Transition.rightToLeft);
+      Get.to(()=> LoaderScreen(AppRoutes.enterLegalNameScreen));
+      // Get.to(EnterFirstNameDetailScreen(),transition: Transition.rightToLeft);
     }
   }
 

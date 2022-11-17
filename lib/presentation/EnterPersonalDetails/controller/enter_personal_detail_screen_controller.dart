@@ -8,6 +8,8 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import 'package:flutter/services.dart';
 
+import '../../loader_screen.dart';
+
 class EnterBirthDateController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
@@ -41,7 +43,8 @@ class EnterBirthDateController extends GetxController {
           bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
     }
     else {
-      Get.toNamed(AppRoutes.enterSnnDetailScreen);
+      Get.to(()=> LoaderScreen(AppRoutes.enterSnnDetailScreen));
+      // Get.toNamed(AppRoutes.enterSnnDetailScreen);
     }
   }
 
@@ -55,7 +58,9 @@ class EnterBirthDateController extends GetxController {
           bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
     }
     else {
-      Get.toNamed(AppRoutes.personalDetailScreen);
+      // Get.toNamed(AppRoutes.personalDetailScreen);
+      Get.to(()=> LoaderScreen(AppRoutes.personalDetailScreen));
+
     }
   }
 

@@ -66,23 +66,25 @@ class EnterLegalNameDetailScreen extends StatelessWidget {
                           height: getVerticalSize(43),
                         ),
                         AppTextField(
-                            hintText: 'Enter your first name',
+                            hintText: 'First Name',
                             controller: enterLegelNameController
                                 .firstNameController),
                         SizedBox(
                           height: getVerticalSize(43),
                         ),
+
                         AppTextField(
-                            hintText: 'Enter your middle name',
+                            hintText: 'Last Name',
                             controller: enterLegelNameController
-                                .middleNameController),
+                                .lastNameController),
                         SizedBox(
                           height: getVerticalSize(43),
                         ),
                         AppTextField(
-                            hintText: 'Enter your last name',
+                            hintText: 'Mothers Middle Name',
                             controller: enterLegelNameController
-                                .lastNameController),
+                                .middleNameController),
+
                         Spacer(),
                         AppElevatedButton(
                           buttonName: 'Next',
