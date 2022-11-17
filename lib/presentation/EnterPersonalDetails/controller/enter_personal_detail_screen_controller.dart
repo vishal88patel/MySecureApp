@@ -43,7 +43,7 @@ class EnterBirthDateController extends GetxController {
           bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
     }
     else {
-      Get.to(()=> LoaderScreen(AppRoutes.enterSnnDetailScreen));
+      Get.to(()=> LoaderScreen(AppRoutes.enterSnnDetailScreen),transition: Transition.rightToLeft);
       // Get.toNamed(AppRoutes.enterSnnDetailScreen);
     }
   }
@@ -59,7 +59,7 @@ class EnterBirthDateController extends GetxController {
     }
     else {
       // Get.toNamed(AppRoutes.personalDetailScreen);
-      Get.to(()=> LoaderScreen(AppRoutes.personalDetailScreen));
+      Get.to(()=> LoaderScreen(AppRoutes.personalDetailScreen),transition: Transition.rightToLeft);
 
     }
   }

@@ -149,7 +149,7 @@ class PersonalScreenController extends GetxController {
           headerText: StringConstants.ERROR);
     }  else {
       // callRegisterApi();
-      Get.to(()=> LoaderScreen(AppRoutes.purpouseAccountScreen));
+      Get.to(()=> LoaderScreen(AppRoutes.purpouseAccountScreen),transition: Transition.rightToLeft);
 
       // Get.toNamed(AppRoutes.purpouseAccountScreen);
     }

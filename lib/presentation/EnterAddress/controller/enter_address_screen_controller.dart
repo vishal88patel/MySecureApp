@@ -59,7 +59,7 @@ class EnterAddressScreenController extends GetxController {
       UIUtils.showSnakBar(bodyText: "Please 5 digit zip code", headerText: StringConstants.ERROR);
     } else {
       // Get.toNamed(AppRoutes.enterPersonalDetailScreen);
-      Get.to(()=> LoaderScreen(AppRoutes.enterPersonalDetailScreen));
+      Get.to(()=> LoaderScreen(AppRoutes.enterPersonalDetailScreen),transition: Transition.rightToLeft);
     }
   }
   Future<void> getStateList() async {
