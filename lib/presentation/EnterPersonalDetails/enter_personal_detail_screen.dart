@@ -9,6 +9,7 @@ import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/key_pad.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
+import 'package:my_secure_app/presentation/EnterPersonalDetails/nam_pad.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
@@ -74,8 +75,9 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                           readOnly: false,
                           style: TextStyle(color: Colors.white),
                           inputFormatters: [
-                            DateTextFormatter()
+
                           ],
+
                           decoration: InputDecoration(
                             hintText: 'DD/MM/YYYY',
                             hintStyle: AppStyle.textStylePoppinsRegular
@@ -96,18 +98,20 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                         Spacer(),
                         Column(
                           children: [
-                            KeyPad(
-                              pinController: enterPersonalDetailController.dobController,
-                              onChange: (var pin) {
-                                enterPersonalDetailController.dobController.text =
-                                     pin;//
-                                print(
-                                    pin);
-                              },
-                              onNext: () {
-                                enterPersonalDetailController.onTapOfNextButton();
+                            NumPad(
+                            type: 'BIRTHDATE',
+                              controller: enterPersonalDetailController.dobController,
+                              delete: () {
+                                if( enterPersonalDetailController.dobController.text.isNotEmpty){
+                                  enterPersonalDetailController.dobController.text = enterPersonalDetailController.dobController.text
+                                      .substring(0, enterPersonalDetailController.dobController.text.length - 1);
 
-                                // enterPersonalDetailController.goNextScreen();
+                                }
+                              },
+                              // do something with the input numbers
+                              onSubmit: () {
+                                debugPrint('Your code: ${enterPersonalDetailController.dobController.text}');
+                                enterPersonalDetailController.onTapOfNextButton();
                               },
                             ),
                           ],

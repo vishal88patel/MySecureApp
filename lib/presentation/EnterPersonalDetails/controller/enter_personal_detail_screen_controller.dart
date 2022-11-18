@@ -53,7 +53,7 @@ class EnterBirthDateController extends GetxController {
     if (ssnController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
-    }else if (ssnController.text.length!=8) {
+    }else if (ssnController.text.length!=9) {
       UIUtils.showSnakBar(
           bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
     }
