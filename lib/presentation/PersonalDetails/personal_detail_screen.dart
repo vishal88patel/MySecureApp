@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
@@ -67,39 +68,65 @@ class PersonalDetailScreen extends StatelessWidget {
                         hintText: 'Employment status ',
                         controller:
                             personalDetailController.employmentNameController),*/
-                    Obx(() => DropdownButton(
-                          isExpanded: true,
-                          isDense: true,
-                          onChanged: (newValue) {
-                            personalDetailController
-                                .setSelected(newValue.toString());
-                          },
-                          style: new TextStyle(
-                            color: Colors.white,
-                          ),
-                          selectedItemBuilder: (BuildContext context) {
-                            //<-- SEE HERE
-                            return <String>['Car', 'Train', 'Bus', 'Flight']
-                                .map((String value) {
-                              return Text(
-                                personalDetailController.employmentStatus.value,
-                                style: const TextStyle(color: Colors.white),
-                              );
-                            }).toList();
-                          },
-                          value:
-                              personalDetailController.employmentStatus.value,
-                          items: personalDetailController.dropdownTextForStatus
-                              .map((selectedType) {
-                            return DropdownMenuItem(
-                              child: new Text(
-                                selectedType,
-                                style: TextStyle(color: Colors.black),
+
+                    Obx(
+                          ()=> DropdownButton2(
+                        isExpanded: true,
+                        isDense: true,
+                        hint: Text(
+                          'Select Employement Status',
+                          style: AppStyle.textStylePoppinsRegular
+                              .copyWith(color: ColorConstant.primaryAppTextF1,
+                              fontWeight: FontWeight.w400,fontSize: getFontSize(16)),
+                        ),
+                        items: personalDetailController.dropdownTextForStatus.value
+                            .map((item) =>
+                            DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
-                              value: selectedType,
+                            ))
+                            .toList(),
+                        selectedItemBuilder: (BuildContext context) {
+                          //<-- SEE HERE
+                          return <String>[
+                            'Flight',
+                            'Car',
+                            'Train',
+                            'Bus',
+                            'Flight',
+                            'Car',
+                            'Train',
+                            'Bus',
+                            'Flight',
+                          ].map((String value) {
+                            return Text(
+                              personalDetailController.employmentStatus.value,
+                              style: AppStyle.textStylePoppinsRegular
+                                  .copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(16)),
                             );
-                          }).toList(),
-                        )),
+                          }).toList();
+                        },
+                        value:
+                        personalDetailController.employmentStatusDropDownValue,
+                            onChanged: (newValue) {
+                              personalDetailController
+                                  .setSelected(newValue.toString());
+                            },
+                        buttonHeight: 40,
+                        buttonWidth: size.width,
+                        itemHeight: 40,
+                        dropdownMaxHeight: 350,
+                      ),
+
+                    ),
                     Obx(
                         ()=> personalDetailController.showJobTitle.value?SizedBox(
                         height: getVerticalSize(30),
@@ -120,39 +147,66 @@ class PersonalDetailScreen extends StatelessWidget {
                     //       personalDetailController.annualIncomeController,
                     //   keyBordType: TextInputType.number,
                     // ),
-                    Obx(() => DropdownButton(
-                          isExpanded: true,
-                          isDense: true,
-                          onChanged: (newValue) {
-                            personalDetailController
-                                .setAnnualIncome(newValue.toString());
-                          },
-                          style: new TextStyle(
-                            color: Colors.white,
-                          ),
-                          selectedItemBuilder: (BuildContext context) {
-                            //<-- SEE HERE
-                            return <String>['Car', 'Train', 'Bus', 'Flight','bb','trac']
-                                .map((String value) {
-                              return Text(
-                                personalDetailController.setSelectedAnnualIncome.value,
-                                style: const TextStyle(color: Colors.white),
-                              );
-                            }).toList();
-                          },
-                          value:
-                              personalDetailController.setSelectedAnnualIncome.value,
-                          items: personalDetailController.dropdownTextForIncome
-                              .map((selectedType) {
-                            return DropdownMenuItem(
-                              child: new Text(
-                                selectedType,
-                                style: TextStyle(color: Colors.black),
+
+
+                    Obx(
+                          ()=> DropdownButton2(
+                        isExpanded: true,
+                        isDense: true,
+                        hint: Text(
+                          'Select Annual Income',
+                          style: AppStyle.textStylePoppinsRegular
+                              .copyWith(color: ColorConstant.primaryAppTextF1,
+                              fontWeight: FontWeight.w400,fontSize: getFontSize(16)),
+                        ),
+                        items: personalDetailController.dropdownTextForIncome
+                            .map((item) =>
+                            DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
                               ),
-                              value: selectedType,
+                            ))
+                            .toList(),
+                        selectedItemBuilder: (BuildContext context) {
+                          //<-- SEE HERE
+                          return <String>[
+                            'Flight',
+                            'Car',
+                            'Train',
+                            'Bus',
+                            'Flight',
+                            'Car',
+                            'Train',
+                            'Bus',
+                            'Flight',
+                          ].map((String value) {
+                            return Text(
+                              personalDetailController.setSelectedAnnualIncome.value,
+                              style: AppStyle.textStylePoppinsRegular
+                                  .copyWith(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(16)),
                             );
-                          }).toList(),
-                        )),
+                          }).toList();
+                        },
+                        value:
+                        personalDetailController.setSelectedAnnualIncomeDropdown,
+                        onChanged: (newValue) {
+                          personalDetailController
+                              .setAnnualIncome(newValue.toString());
+                        },
+                        buttonHeight: 40,
+                        buttonWidth: size.width,
+                        itemHeight: 40,
+                        dropdownMaxHeight: 350,
+                      ),
+
+                    ),
 
                     Spacer(),
                     Row(

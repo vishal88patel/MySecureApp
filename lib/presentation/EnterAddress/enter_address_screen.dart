@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
@@ -11,7 +12,13 @@ import 'controller/enter_address_screen_controller.dart';
 
 class EnterAddressDetailScreen extends StatelessWidget {
   var enterAddressController = Get.find<EnterAddressScreenController>();
-
+  final List<String> items = [
+    'Item1',
+    'Item2',
+    'Item3',
+    'Item4',
+  ];
+  String? selectedValue;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,117 +94,130 @@ class EnterAddressDetailScreen extends StatelessWidget {
                             SizedBox(
                               height: getVerticalSize(30),
                             ),
-                            Obx(() => DropdownButton(
-                                  isExpanded: true,
-                                  isDense: true,
-                                  onChanged: (newValue) {
-                                    enterAddressController
-                                        .setSelectedState(newValue.toString());
-                                  },
-                                  style: new TextStyle(
-                                    color: Colors.white,
-                                  ),
-                                  selectedItemBuilder: (BuildContext context) {
-                                    //<-- SEE HERE
-                                    return <String>[
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                      'Car',
-                                      'Train',
-                                      'Bus',
-                                      'Flight',
-                                    ].map((String value) {
-                                      return Text(
-                                        enterAddressController
-                                            .selectedState.value,
-                                        style: AppStyle.textStylePoppinsRegular
-                                            .copyWith(
-                                                color: Colors.white,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: getFontSize(16)),
-                                      );
-                                    }).toList();
-                                  },
-                                  value: enterAddressController
-                                      .selectedState.value,
-                              borderRadius: BorderRadius.circular(10),
-                                  items: enterAddressController.stateList.value
-                                      .map((selectedType) {
-                                    return DropdownMenuItem(
-                                      child: new Text(
-                                        selectedType.toString(),
-                                        style: TextStyle(color: Colors.black),
+                            Obx(
+                              ()=> DropdownButton2(
+                                isExpanded: true,
+                                isDense: true,
+                                hint: Text(
+                                  'Select State',
+                                  style: AppStyle.textStylePoppinsRegular
+                                      .copyWith(color: ColorConstant.primaryAppTextF1,
+                                      fontWeight: FontWeight.w400,fontSize: getFontSize(16)),
+                                ),
+                                items: enterAddressController.stateList.value
+                                    .map((item) =>
+                                    DropdownMenuItem<String>(
+                                      value: item,
+                                      child: Text(
+                                        item,
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
                                       ),
-                                      value: selectedType.toString(),
+                                    ))
+                                    .toList(),
+                                selectedItemBuilder: (BuildContext context) {
+                                  //<-- SEE HERE
+                                  return <String>[
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                    'Car',
+                                    'Train',
+                                    'Bus',
+                                    'Flight',
+                                  ].map((String value) {
+                                    return Text(
+                                      enterAddressController
+                                          .selectedState.value,
+                                      style: AppStyle.textStylePoppinsRegular
+                                          .copyWith(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: getFontSize(16)),
                                     );
-                                  }).toList(),
-                                )),
+                                  }).toList();
+                                },
+                                value: enterAddressController.selectedStateFordropdown,
+                                onChanged: (value) {
+                                  // setState(() {
+                                  enterAddressController
+                                      .setSelectedState(value.toString());
+                                  // selectedValue = value as String;
+                                  // });
+                                },
+                                buttonHeight: 40,
+                                buttonWidth: size.width,
+                                itemHeight: 40,
+                                dropdownMaxHeight: 350,
+                              ),
+
+                            ),
                             SizedBox(
                               height: getVerticalSize(30),
                             ),

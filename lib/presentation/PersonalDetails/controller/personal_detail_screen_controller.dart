@@ -35,9 +35,11 @@ class PersonalScreenController extends GetxController {
   TextEditingController annualIncomeController = TextEditingController();
   var purposeOfOpeningAcc = "".obs;
   var employmentStatus = "Employeed".obs;
+  String? employmentStatusDropDownValue;
   var setSelectedAnnualIncome = "Less than 25,000".obs;
-  List dropdownTextForStatus = ['Employeed', 'Retired', 'Disabikity','Self Employed'];
-  List dropdownTextForIncome = ['Less than 25,000', '25,000 - 50,000', '50,000 - 75,000','75,000 - 1,00,000','Greter than 1,00,000'];
+  String? setSelectedAnnualIncomeDropdown;
+  var dropdownTextForStatus = ['Employeed', 'Retired', 'Disabikity','Self Employed'].obs;
+  var dropdownTextForIncome = ['Less than 25,000', '25,000 - 50,000', '50,000 - 75,000','75,000 - 1,00,000','Greter than 1,00,000'].obs;
 
   var loanModel = GetLoanTypeResponseModel().obs;
   var getStatusIncomeResponseModel = GetStatusAndIncomeResponseModel().obs;
@@ -71,6 +73,8 @@ class PersonalScreenController extends GetxController {
   void setSelected(String value){
     employmentStatus.value = value;
     employmentNameController.text=employmentStatus.value;
+    employmentStatusDropDownValue=value;
+    dropdownTextForStatus.refresh();
     if(employmentNameController.text=="Retired" || employmentNameController.text=="Disabikity"){
       showJobTitle.value=false;
     }else{
@@ -81,6 +85,8 @@ class PersonalScreenController extends GetxController {
   void setAnnualIncome(String value){
     setSelectedAnnualIncome.value = value;
     annualIncomeController.text=setSelectedAnnualIncome.value;
+    setSelectedAnnualIncomeDropdown=setSelectedAnnualIncome.value;
+    dropdownTextForIncome.refresh();
   }
 
   Future<void> getLoanTypeApi() async {
@@ -182,7 +188,7 @@ class PersonalScreenController extends GetxController {
             address_1: enterAddressController.address01Controller.text,
             address_2: enterAddressController.address02Controller.text,
             city: enterAddressController.cityController.text,
-            state: enterAddressController.selectedState.value,
+            state: enterAddressController.selectedState!.value,
             zip_code: enterAddressController.zipCodeController.text,
             ssn: enterPersonalDetailController.ssnController.text,
             name: employmentNameController.text,
@@ -205,11 +211,11 @@ class PersonalScreenController extends GetxController {
           address_1: enterAddressController.address01Controller.text,
           address_2: enterAddressController.address02Controller.text,
           city: enterAddressController.cityController.text,
-          state: enterAddressController.selectedState.value,
+          state: enterAddressController.selectedState!.value,
           zip_code: enterAddressController.zipCodeController.text,
           ssn: enterPersonalDetailController.ssnController.text,
           name: employmentNameController.text,
-          job_title: jobTitleController.text,
+          job_title: jobTitleController.text==""?"No Jobe Title":jobTitleController.text,
           annual_income: annualIncomeController.text,
           purpouse_of_opening_account: purposeOfOpeningAcc.value,
           loan_type: selectedLoanId.value,

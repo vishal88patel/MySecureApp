@@ -17,6 +17,7 @@ class EnterAddressScreenController extends GetxController {
   TextEditingController zipCodeController = TextEditingController();
   var stateList=[].obs;
   var selectedState="Select State".obs;
+  String? selectedStateFordropdown;
 
 
   @override
@@ -49,7 +50,7 @@ class EnterAddressScreenController extends GetxController {
     } else if (cityController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter city", headerText: StringConstants.ERROR);
-    } else if (selectedState.isEmpty) {
+    } else if (selectedState.value.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter state", headerText: StringConstants.ERROR);
     } else if (zipCodeController.text.isEmpty) {
@@ -71,9 +72,9 @@ class EnterAddressScreenController extends GetxController {
         .then((value) {
       print(value);
       if (value['status']) {
-        stateList.value.add("Select State");
+
         stateList.value=value['data']??[];
-        selectedState.value=stateList.value[0];
+        // selectedState.value=stateList.value[0];
         print(stateList);
         // loanModel.value = GetLoanTypeResponseModel.fromJson(value);
         // loanList.value = loanModel.value.data ?? [];
@@ -86,5 +87,7 @@ class EnterAddressScreenController extends GetxController {
 
   void setSelectedState(String string) {
     selectedState.value=string;
+    selectedStateFordropdown=string;
+    stateList.refresh();
   }
 }

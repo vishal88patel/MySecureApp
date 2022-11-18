@@ -68,6 +68,7 @@ dependencies:
   camera: ^0.10.0+4
   numeric_keyboard: ^1.1.0
   flutter_multi_formatter: ^2.9.6
+  dropdown_button2: ^1.8.9
 
 
 
