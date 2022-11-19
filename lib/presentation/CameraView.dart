@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:camera/camera.dart';
@@ -5,6 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:my_secure_app/presentation/QrView.dart';
+import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
@@ -16,7 +20,9 @@ import 'UploadDocumentScreen/controller/uplod_document_screen_controller.dart';
 
 class CameraScreen extends StatefulWidget {
   final int? image;
-  const CameraScreen({required this.image}) : super();
+  final String title;
+  const CameraScreen({required this.image,
+    required this.title}) : super();
 
   @override
   CameraScreenState createState() => CameraScreenState();
@@ -36,12 +42,16 @@ class CameraScreenState extends State<CameraScreen>
     if(widget.image==1){
       width=0;
     }
+    if(widget.image==2) {
+      showWelcomeDialouge();
+    }
     super.initState();
   }
 
+
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
-    _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
+    _controller = CameraController(widget.image==1?_cameras![1]:_cameras![0], ResolutionPreset.veryHigh);
     _controller?.initialize().then((_) {
       if (!mounted) {
         return;
@@ -81,39 +91,42 @@ class CameraScreenState extends State<CameraScreen>
       backgroundColor: Theme.of(context).backgroundColor,
       key: _scaffoldKey,
       extendBody: true,
-      body: Stack(
-        children: <Widget>[
-          _buildCameraPreview(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: getVerticalSize(60)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Take A Picture",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getFontSize(30)),
-                    ),
-                  ],
+      body: WillPopScope(
+        onWillPop: () async => widget.image==2?true:false,
+        child: Stack(
+          children: <Widget>[
+            _buildCameraPreview(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(top: getVerticalSize(60)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        widget.title,
+                        style: AppStyle.textStylePoppinsRegular.copyWith(
+                            color: ColorConstant.primaryWhite,
+                            fontWeight: FontWeight.w500,
+                            fontSize: getFontSize(30)),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
 
-            ],
-          ),
-          cameraOverlay(
-              padding: 20, aspectRatio: 1, color: Color(0x90000000))
-        ],
+              ],
+            ),
+            cameraOverlay(
+                padding: 20,image: widget.image!, aspectRatio:1, color: Color(0x90000000))
+          ],
+        ),
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
 
-  Widget cameraOverlay({required double padding, required double aspectRatio, required Color color}) {
+  Widget cameraOverlay({required double padding,required int image, required double aspectRatio, required Color color}) {
     return LayoutBuilder(builder: (context, constraints) {
       double parentAspectRatio = constraints.maxWidth / constraints.maxHeight;
       double horizontalPadding;
@@ -152,9 +165,11 @@ class CameraScreenState extends State<CameraScreen>
                 height: verticalPadding,
                 color: color)),
         Container(
+
           margin: EdgeInsets.symmetric(
               horizontal: horizontalPadding, vertical: verticalPadding),
-          decoration: BoxDecoration(border: Border.all(color: Colors.cyan)),
+          decoration: BoxDecoration(border: Border.all(color: Colors.cyan),
+              ),
         )
       ]);
     });
@@ -171,6 +186,102 @@ class CameraScreenState extends State<CameraScreen>
         ),
       ),
     );
+  }
+
+  Future<void> showWelcomeDialouge() async {
+    await Future.delayed(Duration.zero);
+    Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.0,
+              vertical: getVerticalSize(250)),
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,
+                  colors: [ColorConstant.skyE8, ColorConstant.lightSky]),
+              border: Border.all(
+                // color: kHintColor,
+              ),
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryBlack),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: getVerticalSize(30),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                             Get.back();
+                             Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: getVerticalSize(50),),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child:Text(
+                              textAlign: TextAlign.center,
+                              "The app is requesting camera permission",
+                              style: AppStyle.textStyleSFPRORegular.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: getVerticalSize(50),),
+
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Turn on camera',
+                        radius: 5,
+                        textColor: Color(0xFF08CDA1),
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+
   }
 
   Widget _buildBottomNavigationBar() {
@@ -230,15 +341,30 @@ class CameraScreenState extends State<CameraScreen>
           });
           if(widget.image==1){
             documentController.netImage1.value=file!.path;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const QRViewExample()),
+            );
           }else if(widget.image==2){
             documentController.netImage2.value=file!.path;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const CameraScreen(image: 3,title: 'Scan the back of your\ndriver''s license or state ID',)),
+            );
+
           }else if(widget.image==3){
             documentController.netImage3.value=file!.path;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const CameraScreen(image: 1,title: 'E-KYC Profile Selfie')),
+            );
           }else{
 
           }
           if(file!.path.isNotEmpty){
-            Navigator.pop(context);
           }
           setState(() {});
         }
@@ -273,6 +399,7 @@ class CameraScreenState extends State<CameraScreen>
     if (_controller != null) {
       await _controller!.dispose();
     }
+    log('message ');
     _controller = CameraController(cameraDescription, ResolutionPreset.veryHigh);
     _controller!.addListener(() {
       if (mounted) setState(() {});

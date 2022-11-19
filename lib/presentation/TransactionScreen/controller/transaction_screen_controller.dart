@@ -51,7 +51,7 @@ class TransactionScreenController extends GetxController {
         url: ApiEndPoints.GET_WALLET+"?page=$pageNo")
         .then((value) {
       print(value);
-      if (value['status']) {
+      if (value!=null&&value['status']) {
         walletModel.value = GetWallet.fromJson(value);
         isPin.value= walletModel.value.data!.isPin!;
         lastPage.value= walletModel.value.data!.lastPage!;
@@ -60,6 +60,7 @@ class TransactionScreenController extends GetxController {
         uuid.value= walletModel.value.data!.uuid!??"";
 
       } else {
+        UIUtils.hideProgressDialog();
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
       }

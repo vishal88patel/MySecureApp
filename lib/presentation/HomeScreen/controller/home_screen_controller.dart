@@ -109,7 +109,7 @@ class HomeScreenController extends GetxController {
     } else {
       Get.dialog(
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 200),
+          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(180)),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -172,7 +172,7 @@ class HomeScreenController extends GetxController {
                         ),
                       ],
                     ),
-                   SizedBox(height: 22,),
+                   SizedBox(height: getVerticalSize(22),),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -228,7 +228,7 @@ class HomeScreenController extends GetxController {
   void showVerifyIdentityDialouge() {
     Get.dialog(
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 200),
+        padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(150)),
         child: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(

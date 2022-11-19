@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
@@ -13,7 +14,7 @@ import '../loader_screen.dart';
 import 'controller/uplod_document_screen_controller.dart';
 import 'num_pad_phone_number.dart';
 
-class KycOtpScreen extends StatelessWidget {
+class KYCInfoScreen extends StatelessWidget {
   var documentController = Get.find<UploadDocumentScreenController>();
 
   @override
@@ -53,8 +54,7 @@ class KycOtpScreen extends StatelessWidget {
                                       height: getVerticalSize(30),
                                     ),
                                     Text(
-                                      "Please Enter the code\n"
-                                          "Sent to",
+                                      "Put a face to your info",
                                       style: AppStyle.textStylePoppinsRegular.copyWith(
                                           color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w700,
@@ -63,51 +63,54 @@ class KycOtpScreen extends StatelessWidget {
 
 
                                     SizedBox(
-                                      height: getVerticalSize(54),
+                                      height: getVerticalSize(20),
+                                    ),
+                                    Text(
+                                      "To confirm it's you, we need to collect some photos",
+                                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                    ),
+
+
+                                    SizedBox(
+                                      height: getVerticalSize(40),
+                                    ),
+                                    Lottie.asset(
+                                        'asset/animations/116030-verifired.json',
+                                        // height: 36.0,
                                     ),
                                     SizedBox(
-                                        child: AppTextField(
-                                          controller: documentController.otpController,
-                                          hintText: "Confirmation Code",
-                                          fontSize: 30,
-                                          readOnly: true,
+                                      height: getVerticalSize(60),
+                                    ),
+                                    Text(
+                                      "To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos ",
+                                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                    ),
 
-                                        )),
+
+                                    SizedBox(
+                                      height: getVerticalSize(10),
+                                    ),
+
                                     Spacer(),
-                                    Column(
-                                      children: [
-                                        NumPadPhoneNumber(
-                                          type:'OTP' ,
-                                          controller: documentController.otpController,
-                                          delete: () {
-                                            if( documentController.otpController.text.isNotEmpty){
-                                              documentController.otpController.text = documentController.otpController.text
-                                                  .substring(0, documentController.otpController.text.length - 1);
+                                    AppElevatedButton(
+                                        buttonName: 'Continue',
+                                        radius: 5,
+                                        onPressed: () {
+                                          Get.toNamed(AppRoutes.uploadDocument1);
 
-                                            }
-                                          },
-                                          buttonName: 'Verify OTP',
-                                          // do something with the input numbers
-                                          onSubmit: () {
-                                            documentController.onClickVerifyOtp();
-                                          },
-                                        ),
-                                      ],
-                                    )
-                                    // Spacer(),
-                                    // AppElevatedButton(
-                                    //     buttonName: 'Continue',
-                                    //     radius: 5,
-                                    //     onPressed: () {
-                                    //       Get.toNamed(AppRoutes.uploadDocument1);
-                                    //
-                                    //       // loginController.onTapOfButton();
-                                    //       // Get.to(
-                                    //       //   LoaderScreen("",AppRoutes.creatPasswordScreen),
-                                    //       //   transition: Transition.rightToLeft,
-                                    //       //   duration: Duration(milliseconds: 400),
-                                    //       // );
-                                    //     }),
+                                          // loginController.onTapOfButton();
+                                          // Get.to(
+                                          //   LoaderScreen("",AppRoutes.creatPasswordScreen),
+                                          //   transition: Transition.rightToLeft,
+                                          //   duration: Duration(milliseconds: 400),
+                                          // );
+                                        }),
 
 
                                   ],

@@ -140,11 +140,11 @@ class UploadDocumentScreen2 extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const CameraScreen(image: 2,)),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => const CameraScreen(image: 2,title: 'Scan the front of your\ndriver''s license or state ID',)),
+                              // );
                             },
                             /*onTap: () async {
                               try {
@@ -214,11 +214,11 @@ class UploadDocumentScreen2 extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: (){
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const CameraScreen(image: 3,)),
-                              );
+                              // Navigator.push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //       builder: (context) => const CameraScreen(image: 3,title: 'Scan the back of your\ndriver''s license or state ID',)),
+                              // );
                             },
                             /*onTap: () async {
                               try {
@@ -302,11 +302,11 @@ class UploadDocumentScreen2 extends StatelessWidget {
                       ColorConstant.lightGreen:ColorConstant.lightText,
                       onPressed: () {
                         //scanQR();
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const QRViewExample()),
-                        );
+                        // Navigator.push(
+                        //   context,
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const QRViewExample()),
+                        // );
                       },
                     ),
                   ),
@@ -335,11 +335,11 @@ class UploadDocumentScreen2 extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: (){
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const CameraScreen(image: 1,)),
-                          );
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (context) => const CameraScreen(image: 1,title: 'E-KYC Profile Selfie')),
+                          // );
                         },
                        /* onTap: () async {
                           try {

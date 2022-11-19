@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:my_secure_app/presentation/CameraView.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/api_service.dart';
@@ -105,6 +106,12 @@ class UploadDocumentScreenController extends GetxController {
       Get.toNamed(AppRoutes.kvcOtpNumber);
     }
   }
+
+  void onClickKycInfo() {
+
+      Get.toNamed(AppRoutes.uploadDocument1);
+
+  }
   void onClickVerifyOtp() {
     if (otpController.text.isEmpty || otpController.text.isNull) {
       UIUtils.showSnakBar(
@@ -115,11 +122,11 @@ class UploadDocumentScreenController extends GetxController {
           bodyText: "OTP Should be 4 digit number",
           headerText: StringConstants.ERROR);
     }else{
-            Get.toNamed(AppRoutes.uploadDocument1);
+            Get.toNamed(AppRoutes.kycInfoScreen);
     }
   }
 
-  void onClickOfNextButton() {
+  void onClickOfNextButton(BuildContext context) {
     if (firstNameController.text.isEmpty || firstNameController.text.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Enter First Name",
@@ -152,7 +159,12 @@ class UploadDocumentScreenController extends GetxController {
           bodyText: "Please confirm your details",
           headerText: StringConstants.ERROR);
     } else {
-      Get.toNamed(AppRoutes.uploadDocument2);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const CameraScreen(image: 2,title: 'Scan the front of your\ndriver''s license or state ID',)),
+      );
+      // Get.toNamed(AppRoutes.uploadDocument2);
     }
   }
 
