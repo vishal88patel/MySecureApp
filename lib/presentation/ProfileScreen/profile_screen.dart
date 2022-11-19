@@ -109,7 +109,7 @@ class ProfileScreen extends StatelessWidget {
                   height: getVerticalSize(15),
                 ),
                 ProfileWidget(
-                  name: 'Linked Banks',
+                  name: 'Banking Details',
                   image: 'asset/icons/ic_link.png',
                   onTap: (){
                     Get.toNamed(AppRoutes.myLinkedBankListScreen);

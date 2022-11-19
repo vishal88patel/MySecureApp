@@ -81,6 +81,8 @@ import '../presentation/LoanApprovedScreen/binding/loan_approved_screen_binding.
 import '../presentation/LoanCalculator/loan_calculator_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
+import '../presentation/MyBankAccountListScreen/binding/my_bank_account_list_screen_binding.dart';
+import '../presentation/MyBankAccountListScreen/my_bank_account_list_screen.dart';
 import '../presentation/MyLinkedBankListScreen/binding/my_linked_bank_list_screen_binding.dart';
 import '../presentation/MyLinkedBankListScreen/my_linked_bank_list_screen.dart';
 import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
@@ -110,6 +112,7 @@ class AppRoutes {
   static String personalDetailScreen = '/personal_detail_screen';
   static String bankListScreen = '/bank_list_screen';
   static String myLinkedBankListScreen = '/my_linked_bank_list_screen';
+  static String myBankAccountListScreen = '/my_bank_account_list_screen';
   static String cardDetailScreen = '/card_detail_screen';
   static String accountDetailListScreen = '/account__detail_list_screen';
   static String cardDetailListScreen = '/card_detail_list_screen';
@@ -295,6 +298,15 @@ class AppRoutes {
       page: () => MyLinkedBankListScreen(),
       bindings: [
         MyLinkedBankListScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: myBankAccountListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => MyBankAccountListScreen(),
+      bindings: [
+        MyBankAccountListScreenBinding(),
       ],
     ),
 
