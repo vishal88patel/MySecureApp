@@ -98,7 +98,7 @@ class MyLinkedBankListScreenController extends GetxController {
                   Flexible(
                     child: Text(
                       textAlign: TextAlign.center,
-                      ,
+                      "",
                       style: AppStyle.textStyleSFPRORegular.copyWith(
                           color: ColorConstant.primaryWhite,
                           decoration: TextDecoration.none,
