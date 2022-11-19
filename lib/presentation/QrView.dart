@@ -5,6 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../App Configurations/color_constants.dart';
@@ -124,7 +125,9 @@ class _QRViewExampleState extends State<QRViewExample> {
           counter=1;
           UIUtils.showSnakBar(headerText: "Success",bodyText: "Driving Licence Scan Successfully");
           print("Driving Licence Scan Successfully");
-          Navigator.pop(context);
+          // Navigator.pop(context);
+          Get.toNamed(AppRoutes.uploadDocument2);
+
         }
       });
     });

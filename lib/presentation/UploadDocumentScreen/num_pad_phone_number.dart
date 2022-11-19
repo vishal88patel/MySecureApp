@@ -13,6 +13,7 @@ class NumPadPhoneNumber extends StatelessWidget {
   final TextEditingController controller;
   final Function delete;
   final Function onSubmit;
+  final String buttonName;
 
   const NumPadPhoneNumber({
     Key? key,
@@ -21,6 +22,7 @@ class NumPadPhoneNumber extends StatelessWidget {
     required this.onSubmit,
     required this.controller,
     required this.type,
+    required this.buttonName,
   }) : super(key: key);
 
   @override
@@ -132,7 +134,7 @@ class NumPadPhoneNumber extends StatelessWidget {
 
               ),
               child: Center(
-                child: Text("Next",style: AppStyle.textStyleSFPRO.copyWith(
+                child: Text(buttonName,style: AppStyle.textStyleSFPRO.copyWith(
                     color: ColorConstant.primaryWhite,
                     fontWeight: FontWeight.w500,
                     fontSize: getFontSize(18)),),

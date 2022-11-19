@@ -288,7 +288,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                     AppElevatedButton(
                       buttonName: 'Next',
                       onPressed: () {
-                        documentController.onClickOfNextButton();
+                        documentController.onClickOfNextButton(context);
                       },
                     ),
                     SizedBox(

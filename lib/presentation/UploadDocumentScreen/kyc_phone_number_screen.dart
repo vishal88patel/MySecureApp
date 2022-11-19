@@ -40,12 +40,20 @@ class KycPgoneNymberScreen extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.start,
                                       children: [
-                                        Icon(Icons.close,color: ColorConstant.primaryWhite,)
+
+                                        InkWell(
+                                            onTap:(){
+                                              Get.back();
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.only(right: 10,bottom: 10),
+                                              child: Icon(Icons.close,color: ColorConstant.primaryWhite,),
+                                            ))
                                       ],
                                     ),
                                     
                                     SizedBox(
-                                      height: getVerticalSize(40),
+                                      height: getVerticalSize(30),
                                     ),
                                     Text(
                                       "Confirm your phone \n number",
@@ -83,6 +91,7 @@ class KycPgoneNymberScreen extends StatelessWidget {
 
                                             }
                                           },
+                                          buttonName: 'Get Otp',
                                           // do something with the input numbers
                                           onSubmit: () {
                                             documentController.onClickGetOtp();
