@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,10 +32,13 @@ class UploadDocumentScreenController extends GetxController {
   var imageUrll = "".obs;
   var userName = "".obs;
   var isVerified = "0".obs;
+  var isAgree = false.obs;
   LoginResponseModel? loginResponseModel = LoginResponseModel();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController mobileController = TextEditingController();
+  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController otpController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
@@ -51,23 +55,68 @@ class UploadDocumentScreenController extends GetxController {
     super.onInit();
   }
 
+  void isAgreeCheckBox(){
+    isAgree.value=!isAgree.value;
+  }
+
   Future<void> getStoredData() async {
     loginResponseModel =
         (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
-    userName.value = loginResponseModel!.data!.firstName! + " " + loginResponseModel!.data!.lastName.toString();
+    userName.value = loginResponseModel!.data!.firstName! +
+        " " +
+        loginResponseModel!.data!.lastName.toString();
 
-    firstNameController.text=loginResponseModel!.data!.firstName.isNull?"":loginResponseModel!.data!.firstName!;
-    lastNameController.text=loginResponseModel!.data!.lastName.isNull?"":loginResponseModel!.data!.lastName!;
-    mobileController.text=loginResponseModel!.data!.mobile.isNull?"":loginResponseModel!.data!.mobile!;
-    dobController.text=loginResponseModel!.data!.dateOfBirth.isNull?"":loginResponseModel!.data!.dateOfBirth!;
-    ssnController.text=loginResponseModel!.data!.ssn.isNull?"":loginResponseModel!.data!.ssn!;
-    emailController.text=loginResponseModel!.data!.email.isNull?"":loginResponseModel!.data!.email!;
-    isVerified.value=PrefUtils.getString(StringConstants.IS_KYC_DONE);
+    firstNameController.text = loginResponseModel!.data!.firstName.isNull
+        ? ""
+        : loginResponseModel!.data!.firstName!;
+    lastNameController.text = loginResponseModel!.data!.lastName.isNull
+        ? ""
+        : loginResponseModel!.data!.lastName!;
+    mobileController.text = loginResponseModel!.data!.mobile.isNull
+        ? ""
+        : loginResponseModel!.data!.mobile!;
+    dobController.text = loginResponseModel!.data!.dateOfBirth.isNull
+        ? ""
+        : loginResponseModel!.data!.dateOfBirth!;
+    ssnController.text = loginResponseModel!.data!.ssn.isNull
+        ? ""
+        : loginResponseModel!.data!.ssn!;
+    emailController.text = loginResponseModel!.data!.email.isNull
+        ? ""
+        : loginResponseModel!.data!.email!;
+    isVerified.value = PrefUtils.getString(StringConstants.IS_KYC_DONE);
   }
 
   @override
   void onClose() {
     super.onClose();
+  }
+
+  void onClickGetOtp() {
+    if (phoneNumberController.text.isEmpty || phoneNumberController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter Mobile Number",
+          headerText: StringConstants.ERROR);
+    } else if (phoneNumberController.text.length != 17) {
+      UIUtils.showSnakBar(
+          bodyText: "Mobile Number Should be 11 digit number",
+          headerText: StringConstants.ERROR);
+    }else{
+      Get.toNamed(AppRoutes.kvcOtpNumber);
+    }
+  }
+  void onClickVerifyOtp() {
+    if (otpController.text.isEmpty || otpController.text.isNull) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter Valid OTP",
+          headerText: StringConstants.ERROR);
+    } else if (otpController.text.length != 4) {
+      UIUtils.showSnakBar(
+          bodyText: "OTP Should be 4 digit number",
+          headerText: StringConstants.ERROR);
+    }else{
+            Get.toNamed(AppRoutes.uploadDocument1);
+    }
   }
 
   void onClickOfNextButton() {
@@ -80,13 +129,6 @@ class UploadDocumentScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Last Name",
           headerText: StringConstants.ERROR);
-    } else if (mobileController.text.isEmpty || mobileController.text.isNull) {
-      UIUtils.showSnakBar(
-          bodyText: "Please Enter Mobile Number",
-          headerText: StringConstants.ERROR);
-    }else if (mobileController.text.length!=11) {
-      UIUtils.showSnakBar(
-          bodyText: "Mobile Number Should be 11 digit number", headerText: StringConstants.ERROR);
     } else if (emailController.text.isEmpty || emailController.text.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Email", headerText: StringConstants.ERROR);
@@ -96,13 +138,19 @@ class UploadDocumentScreenController extends GetxController {
           headerText: StringConstants.ERROR);
     } else if (!isAdult(dobController.text)) {
       UIUtils.showSnakBar(
-          bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
-    }else if (ssnController.text.isEmpty) {
+          bodyText: "Under 18 year old are not eligible for register",
+          headerText: StringConstants.ERROR);
+    } else if (ssnController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
-    }else if (ssnController.text.length!=9) {
+    } else if (ssnController.text.length != 9) {
       UIUtils.showSnakBar(
-          bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
+          bodyText: "SSN Should be 9 digit number",
+          headerText: StringConstants.ERROR);
+    }else if (!isAgree.value) {
+      UIUtils.showSnakBar(
+          bodyText: "Please confirm your details",
+          headerText: StringConstants.ERROR);
     } else {
       Get.toNamed(AppRoutes.uploadDocument2);
     }
@@ -158,19 +206,19 @@ class UploadDocumentScreenController extends GetxController {
   }
 
   void scanData(String? fName, String? lName, String? dateOfBirth) {
-    if (fName?.toLowerCase().trim()!=firstNameController.text.toLowerCase().trim()) {
+    if (fName?.toLowerCase().trim() !=
+        firstNameController.text.toLowerCase().trim()) {
       UIUtils.showSnakBar(
           bodyText: "Profile details and licence details not match",
           headerText: StringConstants.ERROR);
-    } else if (lName?.toLowerCase().trim()!=lastNameController.text.toLowerCase().trim()) {
+    } else if (lName?.toLowerCase().trim() !=
+        lastNameController.text.toLowerCase().trim()) {
       UIUtils.showSnakBar(
           bodyText: "Last Name is Not match With Driving Licence Last Name",
           headerText: StringConstants.ERROR);
-
-    }else{
+    } else {
       callKycApi();
     }
-
   }
 
   callKycApi() async {
@@ -240,21 +288,21 @@ class UploadDocumentScreenController extends GetxController {
   }
 
   Future<void> selectBirthDate(
-      BuildContext context,
-      ) async {
+    BuildContext context,
+  ) async {
     final DateTime? picked = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: DateTime(1900, 8),
       lastDate: DateTime.now(),
-      builder: (context, child){
+      builder: (context, child) {
         return Theme(
           data: ThemeData.dark().copyWith(
               colorScheme: const ColorScheme.dark(
                   onPrimary: Colors.black, // selected text color
                   onSurface: Colors.white, // default text color
                   primary: Colors.white // circle color
-              ),
+                  ),
               dialogBackgroundColor: Colors.black,
               textButtonTheme: TextButtonThemeData(
                   style: TextButton.styleFrom(
@@ -274,13 +322,12 @@ class UploadDocumentScreenController extends GetxController {
           child: child!,
         );
       },
-
     );
     if (picked != null && picked != selectedDate) {
       final DateFormat formatter = DateFormat('dd-MM-yyyy');
       final String startDate = formatter.format(picked);
-      dobController.text=startDate;
-
+      dobController.text = startDate;
+      log('startDate $startDate');
     }
   }
 

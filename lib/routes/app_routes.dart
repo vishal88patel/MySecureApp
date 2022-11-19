@@ -48,6 +48,8 @@ import 'package:my_secure_app/presentation/ProgressScreen/progress_screen.dart';
 import 'package:my_secure_app/presentation/QrCodeScreen/qrCode_screen.dart';
 import 'package:my_secure_app/presentation/SuccessScreen/binding/success_screen_binding.dart';
 import 'package:my_secure_app/presentation/SuccessScreen/success_screen.dart';
+import 'package:my_secure_app/presentation/UploadDocumentScreen/kyc_otp_screen.dart';
+import 'package:my_secure_app/presentation/UploadDocumentScreen/kyc_phone_number_screen.dart';
 import '../presentation/AddBankProceedScreen/add_bank_proceed_screen.dart';
 import '../presentation/AddBankProceedScreen/binding/add_bank_proceed_screen_binding.dart';
 import '../presentation/AmountNumPadScreen/amount_num_pad_screen.dart';
@@ -140,6 +142,9 @@ class AppRoutes {
   static String loan_approved = '/loan_approved_screen';
   static String enterSnnDetailScreen = '/enter_Snn_detail_screen';
   static String purpouseAccountScreen = '/purpouse_account_screen';
+  static String kvcPhoneNumber = '/kvc_phone_number';
+  static String kvcOtpNumber = '/kvc_otp_number';
+
 
   static List<GetPage> pages = [
     GetPage(
@@ -454,6 +459,26 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => UploadDocumentScreen1(),
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kvcPhoneNumber,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycPgoneNymberScreen(),
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kvcOtpNumber,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycOtpScreen(),
       bindings: [
         UploadDocumentScreenBinding(),
       ],

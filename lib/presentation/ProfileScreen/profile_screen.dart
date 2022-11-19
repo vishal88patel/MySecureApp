@@ -144,7 +144,9 @@ class ProfileScreen extends StatelessWidget {
                     name: 'KYC',
                     image: 'asset/icons/document_icon.png',
                     onTap: () {
-                      Get.toNamed(AppRoutes.uploadDocument1);
+                      Get.toNamed(AppRoutes.kvcPhoneNumber);
+
+                      // Get.toNamed(AppRoutes.uploadDocument1);
                     }),
                 SizedBox(
                   height: getVerticalSize(15),

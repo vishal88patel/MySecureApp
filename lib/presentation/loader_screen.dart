@@ -29,9 +29,19 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
     Future.delayed(Duration(milliseconds: 1000), () {
       Get.offNamed(widget.appRoutes.toString());
     });
-
+    _animationController.repeat(max: 1);
+    _animationController.forward();
     super.initState();
   }
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
