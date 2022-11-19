@@ -63,7 +63,7 @@ class UploadDocumentScreen2 extends StatelessWidget {
                 SizedBox(
                   height: getVerticalSize(27),
                 ),
-                Row(
+             /*   Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
@@ -113,7 +113,7 @@ class UploadDocumentScreen2 extends StatelessWidget {
                       ],
                     ),
                   ],
-                ),
+                ),*/
                 SizedBox(
                   height: getVerticalSize(28),
                 ),

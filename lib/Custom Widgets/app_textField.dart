@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
@@ -8,9 +9,12 @@ class AppTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyBordType;
   final String? hintText;
+  final double? fontSize;
   final Widget? suffixIcon;
   final bool isObsecure;
+  final bool? readOnly;
   final int? maxLength;
+  final List<TextInputFormatter>? inputFormatters;
 
   const AppTextField({Key? key,
     this.controller,
@@ -18,22 +22,24 @@ class AppTextField extends StatelessWidget {
     this.suffixIcon,
     this.maxLength,
     this.keyBordType=TextInputType.text,
-    this.isObsecure=false,
+    this.isObsecure=false, this.fontSize, this.inputFormatters, this.readOnly,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       controller: controller,
+      readOnly:readOnly??false ,
       keyboardType: keyBordType,
       style: TextStyle(color: ColorConstant.primaryWhite),
       obscureText: isObsecure,
       maxLength: maxLength,
+      inputFormatters:inputFormatters ,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppStyle.textStylePoppinsRegular
             .copyWith(color: ColorConstant.primaryAppTextF1,
-            fontWeight: FontWeight.w400,fontSize: getFontSize(16)),
+            fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??16)),
         suffixIcon: suffixIcon,
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),

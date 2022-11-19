@@ -24,7 +24,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
     return Scaffold(
         body: SingleChildScrollView(
           child: Container(
-              height: size.height*1.05,
+              height: size.height*1.20,
             child: MainCutomBackGround(
                 child: Padding(
       padding: EdgeInsets.symmetric(
@@ -60,7 +60,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(27),
                     ),
-                    Row(
+                   /* Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
@@ -114,7 +114,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                     ),
                     SizedBox(
                       height: getVerticalSize(28),
-                    ),
+                    ),*/
                     Padding(
                       padding: EdgeInsets.only(left: getHorizontalSize(10)),
                       child: Text(
@@ -148,7 +148,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(20),
                     ),
-                    Padding(
+                  /*  Padding(
                       padding: EdgeInsets.only(left:getHorizontalSize(10),right: getHorizontalSize(10)),
                       child: AppTextField(
                         keyBordType: TextInputType.number,
@@ -156,7 +156,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                           maxLength: 11,
                           controller: documentController
                               .mobileController),
-                    ),
+                    ),*/
 
                     Padding(
                       padding: EdgeInsets.only(left:getHorizontalSize(10),right: getHorizontalSize(10)),
@@ -209,7 +209,8 @@ class UploadDocumentScreen1 extends StatelessWidget {
                       height: getVerticalSize(20),
                     ),
                     Padding(
-                      padding: EdgeInsets.only(left: getHorizontalSize(10),right: getHorizontalSize(10)),
+                      padding: EdgeInsets.only(left: getHorizontalSize(10),
+                          right: getHorizontalSize(10)),
                       child: Obx(()=>
                          Row(
                           children: [
@@ -262,7 +263,28 @@ class UploadDocumentScreen1 extends StatelessWidget {
                         ),
                       ),
                     ),
+
                     Spacer(),
+                    Row(
+                      children: [
+                        Obx(()
+                        => IconButton(onPressed: (){
+                          documentController.isAgreeCheckBox();
+                        },
+                            icon: Icon(documentController.isAgree.value
+                                ?Icons.check_box:Icons.check_box_outline_blank,
+                              color: Colors.white,)),
+                        ),
+                        Text(
+                          "Please confirm your details",
+                          style: AppStyle.textStylePoppinsRegular.copyWith(
+                              color: ColorConstant.primaryWhite,
+                              fontWeight: FontWeight.w500,
+                              fontSize: getFontSize(20)),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: getVerticalSize(10),),
                     AppElevatedButton(
                       buttonName: 'Next',
                       onPressed: () {

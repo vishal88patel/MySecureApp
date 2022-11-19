@@ -88,7 +88,7 @@ class ProfileScreenController extends GetxController {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                            height: 50,width: 150,
+                            height: 50,width:  getHorizontalSize(150),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: AppElevatedButton(buttonName: 'NO',
@@ -104,7 +104,7 @@ class ProfileScreenController extends GetxController {
                             width: 8,
                           ),
                           Container(
-                            height: 50,width: 150,
+                            height: 50,width: getHorizontalSize(150),
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(100),
                               child: AppElevatedButton(buttonName: 'YES',
