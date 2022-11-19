@@ -22,17 +22,14 @@ class ProfileScreen extends StatelessWidget {
         body: MainCutomBackGround(
             child: Padding(
       padding: EdgeInsets.symmetric(
-          horizontal: getHorizontalSize(20.0), vertical: getVerticalSize(26)),
+          horizontal: getHorizontalSize(20.0), vertical: getVerticalSize(20)),
       child: SafeArea(
         child: Stack(
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(
-                  Icons.arrow_back,
-                  color: ColorConstant.primaryWhite,
-                ),
+
                 SizedBox(
                   height: getVerticalSize(27),
                 ),
@@ -105,12 +102,19 @@ class ProfileScreen extends StatelessWidget {
                     name: 'Personal Details',
                     image: 'asset/icons/person_icon.png',
                     onTap: () {
-                      // Get.toNamed(AppRoutes.userPersonalScreen);
-                      UIUtils.showSnakBar(
-                        headerText: StringConstants.ERROR,
-                        bodyText: "this will update soon",
-                      );
+                      Get.toNamed(AppRoutes.userPersonalScreen);
+
                     }),
+                SizedBox(
+                  height: getVerticalSize(15),
+                ),
+                ProfileWidget(
+                  name: 'Linked Banks',
+                  image: 'asset/icons/ic_link.png',
+                  onTap: (){
+                    Get.toNamed(AppRoutes.myLinkedBankListScreen);
+                  },
+                ),
                 SizedBox(
                   height: getVerticalSize(15),
                 ),
@@ -156,6 +160,7 @@ class ProfileScreen extends StatelessWidget {
                     Get.toNamed(AppRoutes.supportScreen);
                   },
                 ),
+
                 Spacer(),
                 AppElevatedButton(
                   buttonName: 'Signout',

@@ -12,12 +12,15 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/ui_utils.dart';
+import '../DashboardScreen/controller/dashboard_screen_controller.dart';
 import '../HomeScreen/controller/home_screen_controller.dart';
 import '../QrView2.dart';
 import 'controller/transaction_screen_controller.dart';
 
 class TransactionScreen extends StatelessWidget {
   var transactionController = Get.put(TransactionScreenController());
+  var dashBoardController = Get.find<DashBoarScreenController>();
+
   var homeController = Get.put(HomeScreenController());
 
   Future<void> scanQR() async {
@@ -55,20 +58,28 @@ class TransactionScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.arrow_back,
-                          color: ColorConstant.primaryWhite,
-                        ),
-                        InkWell(
-                          onTap: () {},
-                          child: Image.asset(
-                            'asset/icons/notification_icon.png',
-                            height: getVerticalSize(20),
-                            width: getHorizontalSize(16),
-                          ),
-                        )
+                        dashBoardController.selectedIndex.value!=1?  InkWell(
+                            onTap: () {
+                              Navigator.pop(context);
+                            },
+                            child: Icon(
+                              Icons.arrow_back,
+                              color: ColorConstant.primaryWhite,
+                            )):Container(),
+                        SizedBox(width: 12,),
+                        Text("My Wallet",
+                            style: AppStyle.textStylePoppinsRegular.copyWith(
+                                color: ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w600,
+                                fontSize: getFontSize(18))),
+                        /*InkWell(
+                                  onTap: (){ Get.toNamed(AppRoutes.homeScreen);
+                                  },
+                                  child: Image.asset('asset/icons/notification_icon.png',
+                                    height: getVerticalSize(20),width: getHorizontalSize(16),),
+                                )*/
                       ],
                     ),
                     SizedBox(

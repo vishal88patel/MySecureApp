@@ -237,6 +237,7 @@ class PersonalScreenController extends GetxController {
         PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
         PrefUtils.setString(StringConstants.IS_KYC_DONE, loginResponseModel.data!.is_kyc.toString());
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
+        PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE, true);
         Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
       } else {
         UIUtils.showSnakBar(

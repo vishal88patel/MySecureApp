@@ -30,7 +30,7 @@ class ProfileWidget extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Image.asset(image,width: getHorizontalSize(17),height: getVerticalSize(17),),
+                  Image.asset(image,width: getHorizontalSize(22),height: getVerticalSize(22),),
                   // Icon(Icons.person,   size: getSize(25),
                   //   color: ColorConstant.primaryWhite.withOpacity(0.20),),
                   SizedBox(width: getHorizontalSize(14),),

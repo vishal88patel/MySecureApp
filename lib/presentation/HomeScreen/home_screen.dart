@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/dashboard_widget.dart';
@@ -9,6 +10,8 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'package:shimmer/shimmer.dart';
+
+import '../../Custom Widgets/app_ElevatedButton .dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
@@ -88,7 +91,7 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                     GestureDetector(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(AppRoutes.notificationScreen);
                       },
                       child: Stack(children: <Widget>[
@@ -201,6 +204,74 @@ class HomeScreen extends StatelessWidget {
                               onTap: () {},
                             ),
                           ],
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(25),
+                        ),
+                        GestureDetector(
+                          onTap: () async {},
+                          child: Container(
+                            width: size.width,
+                            height: size.height / 3,
+                            padding: EdgeInsets.only(right: 16),
+                            decoration: BoxDecoration(
+                                color: ColorConstant.primaryWhite,
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(23))),
+                            child: Column(
+                              children: [
+                                SizedBox(height: 12,),
+                                SvgPicture.asset(
+                                  "asset/icons/security-checked.svg",
+                                  color: Colors.blue,
+                                ),
+                                Padding(
+                                  padding:
+                                  const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
+                                  child: Text(
+                                    "Verify your idenditity",
+                                    style: AppStyle.textStylePoppinsRegular.copyWith(
+                                        color: ColorConstant.primaryBlack,
+                                        fontWeight: FontWeight.w600,
+                                        decoration: TextDecoration.none,
+                                        fontSize: getFontSize(24)),
+                                  ),
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Flexible(
+                                      child: Text(
+                                        textAlign: TextAlign.center,
+                                        "Enable blockchain withdrawals and deposits to external wallets.",
+                                        style: AppStyle.textStyleSFPRORegular.copyWith(
+                                            color: ColorConstant.primaryBlack,
+                                            decoration: TextDecoration.none,
+                                            fontWeight: FontWeight.w300,
+                                            fontSize: getFontSize(20)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 40,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                                  child: AppElevatedButton(
+                                    buttonName: 'Get Started',
+                                    radius: 5,
+                                    textColor: Colors.blue,
+                                    onPressed: () {
+                                      Get.back();
+                                      // Get.toNamed(AppRoutes.dashBoardScreen);
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                         SizedBox(
                           height: getVerticalSize(25),
