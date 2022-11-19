@@ -14,11 +14,14 @@ import '../../LinkBankListScreen/model/bank_list_response_model.dart';
 
 
 class BankListScreenController extends GetxController {
+  TextEditingController searchController=TextEditingController();
   var bankListModel=BankListResponseModel().obs;
   RxList mainBankList=[].obs;
+  RxList searchBankList=[].obs;
   var pageNumber=1.obs;
   var lastPage=0.obs;
   var bankScript="".obs;
+  var showSearch=false.obs;
   late ScrollController controller;
 
   @override
@@ -28,13 +31,31 @@ class BankListScreenController extends GetxController {
 
   @override
   void onInit() {
+    searchController.addListener((){
+      print("value: ${searchController.text}");
+      if(searchController.text.isNotEmpty){
+        showSearch.value=true;
+        callSearchApi(searchController.text);
+      }else{
+        showSearch.value=false;
+      }
+
+
+    });
     controller = ScrollController()..addListener(_scrollListener);
     callGetBankListApi(pageNo: pageNumber.value);
     super.onInit();
   }
+  @override
+  void dispose() {
+    searchController.dispose();
+    super.dispose();
+  }
+
 
   @override
   void onClose() {
+    searchController.dispose();
     super.onClose();
   }
 
@@ -73,5 +94,28 @@ class BankListScreenController extends GetxController {
         callGetBankListApi(pageNo: pageNumber.value);
       }
     }
+  }
+
+  Future<void> callSearchApi(String text) async {
+    ApiService()
+        .callGetApi(
+        body: await getBankApiBody(),
+    headerWithToken: true,
+    showLoader:false,
+    url: ApiEndPoints.GET_BANKLIST+"?search=$text")
+        .then((value) {
+    print(value);
+    if (value['status']) {
+      searchBankList.value.clear();
+    bankListModel.value = BankListResponseModel.fromJson(value);
+    lastPage.value= bankListModel.value.data!.lastPage!;
+    bankScript.value= bankListModel.value.data!.bankStript!;
+    searchBankList.addAll(bankListModel.value.data!.banks??[]);
+    searchBankList.refresh();
+    } else {
+    UIUtils.showSnakBar(
+    bodyText: value['message'], headerText: StringConstants.ERROR);
+    }
+    });
   }
 }

@@ -13,7 +13,7 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
 
-class MyLinkedBankListScreenController extends GetxController {
+class MyBankAccountListScreenController extends GetxController {
   var getLinkedBankModel = GrtLinkedBank().obs;
 
   @override
@@ -23,7 +23,7 @@ class MyLinkedBankListScreenController extends GetxController {
 
   @override
   void onInit() {
-    // callGetLinkedBankApi();
+    callGetLinkedBankApi();
     super.onInit();
   }
 
