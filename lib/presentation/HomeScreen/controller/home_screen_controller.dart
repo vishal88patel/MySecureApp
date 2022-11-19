@@ -8,6 +8,7 @@ import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../App Configurations/color_constants.dart';
 import '../../../Custom Widgets/app_ElevatedButton .dart';
+import '../../../routes/app_routes.dart';
 import '../../../theme/app_style.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
@@ -105,20 +106,19 @@ class HomeScreenController extends GetxController {
   }
 
   Future<void> showWelcomeDialouge() async {
-    if (PrefUtils.getBool(StringConstants.SHOW_WELCOME_DISLOUGE) ?? false) {
-    } else {
+    if (PrefUtils.getBool(StringConstants.SHOW_WELCOME_DISLOUGE)) {
       Get.dialog(
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 200),
           child: Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                begin: Alignment.topRight,
+                  begin: Alignment.topRight,
                   end: Alignment.bottomLeft,
                   colors: [ColorConstant.skyE8, ColorConstant.lightSky]),
               border: Border.all(
-                  // color: kHintColor,
-                  ),
+                // color: kHintColor,
+              ),
               borderRadius: BorderRadius.circular(25),
             ),
             child: Padding(
@@ -159,7 +159,7 @@ class HomeScreenController extends GetxController {
                       children: [
                         Flexible(
                           child: Obx(
-                            () => Text(
+                                () => Text(
                               textAlign: TextAlign.center,
                               "Hi " + homePageHeadeName.value,
                               style: AppStyle.textStyleSFPRORegular.copyWith(
@@ -172,7 +172,7 @@ class HomeScreenController extends GetxController {
                         ),
                       ],
                     ),
-                   SizedBox(height: 22,),
+                    SizedBox(height: 22,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -181,14 +181,14 @@ class HomeScreenController extends GetxController {
                         children: [
                           Flexible(
                             child:Text(
-                                textAlign: TextAlign.center,
-                                    "Welcome to MySecure App. Thanks For the Creating an Account!!!",
-                                style: AppStyle.textStyleSFPRORegular.copyWith(
-                                    color: ColorConstant.primaryWhite,
-                                    decoration: TextDecoration.none,
-                                    fontWeight: FontWeight.w300,
-                                    fontSize: getFontSize(18)),
-                              ),
+                              textAlign: TextAlign.center,
+                              "Welcome to MySecure App. Thanks For the Creating an Account!!!",
+                              style: AppStyle.textStyleSFPRORegular.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
 
                           ),
                         ],
@@ -222,6 +222,8 @@ class HomeScreenController extends GetxController {
           showVerifyIdentityDialouge();
         });
       });
+    } else {
+
     }
   }
 
@@ -325,6 +327,12 @@ class HomeScreenController extends GetxController {
       ),
 
       barrierDismissible: false,
-    );
+    ).then((value) {
+
+      Future.delayed(Duration(milliseconds: 500), () {
+        PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
+        Get.toNamed(AppRoutes.kvcPhoneNumber);
+      });
+    });
   }
 }
