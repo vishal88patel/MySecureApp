@@ -1,5 +1,6 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'dart:io';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
@@ -75,6 +76,7 @@ class CardDetailScreen extends StatelessWidget {
                         Container(
                           width: MediaQuery.of(context).size.width/1.5,
                           child: TextFormField(
+
                             controller: cardDetailController.cardNumberController,
                             keyboardType: TextInputType.number,
                             style: TextStyle(color: ColorConstant.primaryWhite),
@@ -114,15 +116,17 @@ class CardDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Container(
+                            width: MediaQuery.of(context).size.width / 2.5,
                             child: AppTextField(
                               keyBordType: TextInputType.datetime,
                               hintText: 'Exp month & year*',
                               maxLength: 5,
                               controller:
                                   cardDetailController.expDateController,
-                            ),
-
-                            width: MediaQuery.of(context).size.width / 2.5),
+                              inputFormatters: [
+                                CardFormatter(sample:'00/00',separator:'/')
+                              ],
+                            )),
                         SizedBox(
                           width: getHorizontalSize(15),
                         ),
@@ -319,5 +323,35 @@ class CardDetailScreen extends StatelessWidget {
         )),
       ),
     ));
+  }
+}
+class CardFormatter extends TextInputFormatter {
+  final String sample;
+  final String separator;
+
+  CardFormatter({
+    required this.sample,
+    required this.separator,
+  });
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.text.length > 0) {
+      if (newValue.text.length > oldValue.text.length) {
+        if (newValue.text.length > sample.length) return oldValue;
+        if (newValue.text.length < sample.length &&
+            sample[newValue.text.length - 1] == separator) {
+          return TextEditingValue(
+            text:
+            '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
+            selection: TextSelection.collapsed(
+              offset: newValue.selection.end + 1,
+            ),
+          );
+        }
+      }
+    }
+    return newValue;
   }
 }
