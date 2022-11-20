@@ -5,6 +5,7 @@ import 'package:lottie/lottie.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
+import 'package:my_secure_app/presentation/UploadDocumentScreen/controller/kyc_loader_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
@@ -16,6 +17,7 @@ import 'num_pad_phone_number.dart';
 
 class KYCLoadingScreen extends StatelessWidget {
   var documentController = Get.put(UploadDocumentScreenController());
+  var kycController = Get.find<KycLoaderController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +39,7 @@ class KYCLoadingScreen extends StatelessWidget {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Row(
+                                /*Row(
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     InkWell(
@@ -53,7 +55,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                           ),
                                         ))
                                   ],
-                                ),
+                                ),*/
                                 SizedBox(
                                   height: getVerticalSize(30),
                                 ),
@@ -68,119 +70,135 @@ class KYCLoadingScreen extends StatelessWidget {
                                 SizedBox(
                                   height: getVerticalSize(40),
                                 ),
-                                Row(
-                                  children: [
-                                    Lottie.asset(
-                                        'asset/animations/loadingAndComplit.json',
-                                        height: 24.0,
-                                        repeat: false),
-                                    SizedBox(
-                                      width: getVerticalSize(6),
-                                    ),
-                                    Text(
-                                      "Uploading Your Photos",
-                                      style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(20)),
-                                    ),
-                                  ],
+                                Obx(()=>
+                                   Row(
+                                    children: [
+                                      documentController.progress1.value?Lottie.asset(
+                                          'asset/animations/green_tick.json',
+                                          height: 30.0,
+                                          repeat: false):Lottie.asset(
+                                          'asset/animations/green_loader.json',
+                                          height: 30.0,
+                                          repeat: true),
+                                      SizedBox(
+                                        width: getVerticalSize(6),
+                                      ),
+                                      Text(
+                                        "Uploading Your Photos",
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: getFontSize(20)),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: getVerticalSize(20),
                                 ),
-                                Row(
-                                  children: [
-                                    Lottie.asset(
-                                        'asset/animations/loadingAndComplit.json',
-                                        height: 24.0,
-                                        repeat: false),
-                                    SizedBox(
-                                      width: getVerticalSize(6),
-                                    ),
-                                    Text(
-                                      "Checking for errors",
-                                      style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(20)),
-                                    ),
-                                  ],
+                                Obx(()=>
+                                 Row(
+                                    children: [
+                                      documentController.progress2.value?Lottie.asset(
+                                          'asset/animations/green_tick.json',
+                                          height: 30.0,
+                                          repeat: false):Lottie.asset(
+                                          'asset/animations/green_loader.json',
+                                          height: 30.0,
+                                          repeat: true),
+                                      SizedBox(
+                                        width: getVerticalSize(6),
+                                      ),
+                                      Text(
+                                        "Checking for errors",
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: getFontSize(20)),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: getVerticalSize(20),
                                 ),
-                                Row(
-                                  children: [
-                                    Lottie.asset(
-                                        'asset/animations/loadingAndComplit.json',
-                                        height: 24.0,
-                                        repeat: false),
-                                    SizedBox(
-                                      width: getVerticalSize(6),
-                                    ),
-                                    Text(
-                                      "Sending your data for verification",
-                                      style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(20)),
-                                    ),
-                                  ],
+                                Obx(()=> Row(
+                                    children: [
+                                      documentController.progress3.value?Lottie.asset(
+                                          'asset/animations/green_tick.json',
+                                          height: 30.0,
+                                          repeat: false):Lottie.asset(
+                                          'asset/animations/green_loader.json',
+                                          height: 30.0,
+                                          repeat: true),
+                                      SizedBox(
+                                        width: getVerticalSize(6),
+                                      ),
+                                      Text(
+                                        "Sending your data for verification",
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: getFontSize(20)),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: getVerticalSize(20),
                                 ),
-                                Row(
-                                  children: [
-                                    Lottie.asset(
-                                        'asset/animations/loadingAndComplit.json',
-                                        height: 24.0,
-                                        repeat: false),
-                                    SizedBox(
-                                      width: getVerticalSize(6),
-                                    ),
-                                    Text(
-                                      "Verifying you",
-                                      style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(20)),
-                                    ),
-                                  ],
+                                Obx(()=>Row(
+                                    children: [
+                                      documentController.progress4.value?Lottie.asset(
+                                          'asset/animations/green_tick.json',
+                                          height: 30.0,
+                                          repeat: false):Lottie.asset(
+                                          'asset/animations/green_loader.json',
+                                          height: 30.0,
+                                          repeat: true),
+                                      SizedBox(
+                                        width: getVerticalSize(6),
+                                      ),
+                                      Text(
+                                        "Verifying you",
+                                        style: AppStyle.textStylePoppinsRegular
+                                            .copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: getFontSize(20)),
+                                      ),
+                                    ],
+                                  ),
                                 ),
                                 SizedBox(
                                   height: getVerticalSize(20),
                                 ),
                                 Spacer(),
-                                Text(
-                                  "Thank you.Your verification data has been successfully submitted.You'll get the results shortly",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(
-                                          color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(18)),
+                                Obx(()=>
+                                documentController.progress4.value?Text(
+                                    "Thank you.Your verification data has been successfully submitted.You'll get the results shortly",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(
+                                            color: ColorConstant.primaryWhite,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: getFontSize(18)),
+                                  ):Container(),
                                 ),
                                 SizedBox(
                                   height: getVerticalSize(20),
                                 ),
-                                AppElevatedButton(
-                                    buttonName: 'Continue',
-                                    radius: 5,
-                                    onPressed: () {
-                                      //Get.toNamed(AppRoutes.uploadDocument1);
-
-                                      // loginController.onTapOfButton();
-                                      // Get.to(
-                                      //   LoaderScreen("",AppRoutes.creatPasswordScreen),
-                                      //   transition: Transition.rightToLeft,
-                                      //   duration: Duration(milliseconds: 400),
-                                      // );
-                                    }),
+                                Obx(()=>
+                                documentController.progress4.value?AppElevatedButton(
+                                      buttonName: 'Continue',
+                                      radius: 5,
+                                      onPressed: () {
+                                        Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                            arguments: {"bottomTabCount": 0});
+                                      }):Container(),
+                                ),
                               ],
                             ),
                           ],

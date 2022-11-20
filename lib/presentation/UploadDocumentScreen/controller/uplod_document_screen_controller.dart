@@ -49,6 +49,10 @@ class UploadDocumentScreenController extends GetxController {
   String verificationIDRecived = '';
   TextEditingController textEditingController =  TextEditingController(text: "");
 
+  var progress1 = false.obs;
+  var progress2 = false.obs;
+  var progress3 = false.obs;
+  var progress4 = false.obs;
 
 
   @override
@@ -58,6 +62,7 @@ class UploadDocumentScreenController extends GetxController {
 
   @override
   void onInit() {
+
     getStoredData();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
@@ -65,6 +70,18 @@ class UploadDocumentScreenController extends GetxController {
 
   void isAgreeCheckBox(){
     isAgree.value=!isAgree.value;
+  }
+
+  void progress(){
+    Future.delayed(Duration(milliseconds: 2000), () {
+      progress1.value=true;
+      Future.delayed(Duration(milliseconds: 2000), () {
+        progress2.value=true;
+        Future.delayed(Duration(milliseconds: 2000), () {
+          progress3.value=true;
+        });
+      });
+    });
   }
 
   Future<void> getStoredData() async {
@@ -135,10 +152,9 @@ String number = phoneNumberController.text.replaceAll('(', '')
   }
 
   void onClickKycInfo() {
-
       Get.toNamed(AppRoutes.uploadDocument1);
-
   }
+
   void onClickVerifyOtp(BuildContext context) async{
     if (otpController.text.isEmpty || otpController.text.isNull) {
       UIUtils.showSnakBar(
@@ -226,56 +242,13 @@ String number = phoneNumberController.text.replaceAll('(', '')
           bodyText: "Please Scan Your Driving Licence",
           headerText: StringConstants.ERROR);
     } else {
-      const start1 = "DCS";
-      const end1 = "DDE";
-      final startIndex1 = qrCodeResult.value.indexOf(start1);
-      final endIndex1 =
-          qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
-      firstName.value =
-          qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
-
-      const start2 = "DAC";
-      const end2 = "DDF";
-      final startIndex2 = qrCodeResult.value.indexOf(start2);
-      final endIndex2 =
-          qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
-      lastName.value =
-          qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
-
-      const start3 = "DBB";
-      const end3 = "DBA";
-      final startIndex3 = qrCodeResult.value.indexOf(start3);
-      final endIndex3 =
-          qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
-      dob.value =
-          qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
-      print(firstName.value + "," + lastName.value + "," + dob.value);
-
-      scanData(firstName.value, lastName.value, dob.value);
-    }
-  }
-
-  void scanData(String? fName, String? lName, String? dateOfBirth) {
-    if (fName?.toLowerCase().trim() !=
-        firstNameController.text.toLowerCase().trim()) {
-      UIUtils.showSnakBar(
-          bodyText: "Profile details and licence details not match",
-          headerText: StringConstants.ERROR);
-    } else if (lName?.toLowerCase().trim() !=
-        lastNameController.text.toLowerCase().trim()) {
-      UIUtils.showSnakBar(
-          bodyText: "Last Name is Not match With Driving Licence Last Name",
-          headerText: StringConstants.ERROR);
-    } else {
       callKycApi();
     }
   }
 
 
-
-
-
   callKycApi() async {
+    progress();
     UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -312,12 +285,12 @@ String number = phoneNumberController.text.replaceAll('(', '')
 
     if (response.statusCode == 200) {
       UIUtils.hideProgressDialog();
+      progress4.value=true;
       UIUtils.showSnakBar(
           bodyText: "KYC has been completed successfully",
           headerText: StringConstants.SUCCESS);
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
-      Get.offAllNamed(AppRoutes.dashBoardScreen,
-          arguments: {"bottomTabCount": 0});
+
     } else {
       UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(

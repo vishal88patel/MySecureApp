@@ -69,8 +69,8 @@ class KYCInfoScreen extends StatelessWidget {
                                       "To confirm it's you, we need to collect some photos",
                                       style: AppStyle.textStylePoppinsRegular.copyWith(
                                           color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(20)),
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: getFontSize(22)),
                                     ),
 
 
@@ -85,10 +85,10 @@ class KYCInfoScreen extends StatelessWidget {
                                       height: getVerticalSize(60),
                                     ),
                                     Text(
-                                      "To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos To confirm it's you, we need to collect some photos ",
+                                      "we need to collect some information and photos To confirm it's your account,Here is a some steps for verification please follow and submit information.",
                                       style: AppStyle.textStylePoppinsRegular.copyWith(
                                           color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w700,
+                                          fontWeight: FontWeight.w500,
                                           fontSize: getFontSize(20)),
                                     ),
 

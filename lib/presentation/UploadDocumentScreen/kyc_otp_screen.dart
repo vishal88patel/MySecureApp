@@ -53,8 +53,7 @@ class KycOtpScreen extends StatelessWidget {
                                       height: getVerticalSize(30),
                                     ),
                                     Text(
-                                      "Please Enter the code\n"
-                                          "Sent to",
+                                      "Please Enter the otp code\n",
                                       style: AppStyle.textStylePoppinsRegular.copyWith(
                                           color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w700,

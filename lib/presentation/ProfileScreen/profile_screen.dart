@@ -86,7 +86,7 @@ class ProfileScreen extends StatelessWidget {
                   height: getVerticalSize(30),
                 ),
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(100),
+                  borderRadius: BorderRadius.circular(8),
                   child: AppElevatedButton(
                     buttonName: 'Invite Friends, Get \$10',
                     buttonColor: ColorConstant.skyE8,

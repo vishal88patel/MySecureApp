@@ -7,6 +7,7 @@ import 'package:my_secure_app/presentation/BankDetailScreen/bank_detail_screen.d
 import 'package:my_secure_app/presentation/BankListScreen/bank_list_screen.dart';
 import 'package:my_secure_app/presentation/BankListScreen/binding/bank_list_screen_binding.dart';
 import 'package:my_secure_app/presentation/BankProceedScreen/bank_proceed_screen.dart';
+import 'package:my_secure_app/presentation/CameraView.dart';
 import 'package:my_secure_app/presentation/CardDetailListScreen/binding/card_detail_list_screen_binding.dart';
 import 'package:my_secure_app/presentation/CardDetailListScreen/card_detail_list_screen.dart';
 import 'package:my_secure_app/presentation/CardDetailScreen/binding/card_detail_screen_binding.dart';
@@ -94,6 +95,7 @@ import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
 import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
+import '../presentation/UploadDocumentScreen/binding/kyc_loader_screen_binding.dart';
 import '../presentation/UploadDocumentScreen/kyc_loading_screen.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen1.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen2.dart';
@@ -157,6 +159,7 @@ class AppRoutes {
   static String kvcOtpNumber = '/kvc_otp_number';
   static String kycInfoScreen = '/kyc_info_screen';
   static String kycLoadingScreen = '/kyc_loading_screen';
+  static String cameraScreen = '/camera_screen';
 
 
   static List<GetPage> pages = [
@@ -524,6 +527,16 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KYCLoadingScreen(),
+      bindings: [
+        KycLoaderScreenBinding()
+      ]
+    ),
+
+    GetPage(
+      name: cameraScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CameraScreen(image: 1, title: "E-KYC Profile Selfie"),
 
     ),
 
