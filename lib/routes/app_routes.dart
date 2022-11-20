@@ -69,6 +69,8 @@ import 'package:my_secure_app/presentation/UploadDocumentScreen/binding/uplod_do
 import 'package:my_secure_app/presentation/UploadDocumentScreen/uplod_document_screen.dart';
 import 'package:my_secure_app/presentation/UserPersonalScreen/binding/user_personal_screen_binding.dart';
 import 'package:my_secure_app/presentation/UserPersonalScreen/user_personal_screen.dart';
+import '../presentation/CashOutAmountNumPadScreen/binding/cash_amount_amount_num_pad_screen_binding.dart';
+import '../presentation/CashOutAmountNumPadScreen/cash_out_amount_num_pad_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
 import '../presentation/EnterAddress/binding/enter_address_screen_binding.dart';
@@ -121,6 +123,7 @@ class AppRoutes {
   static String cardListScreen = '/card_list_screen';
   static String bankDetailScreen = '/bank_detail_screen';
   static String amountNumPadScreen = '/amount_num_pad_screen';
+  static String cashOutAmountNumPadScreen = '/cash_out_amount_num_pad_screen';
   static String progressScreen = '/progress_screen';
   static String successScreen = '/success_screen';
   static String pinScreen = '/pin_screen';
@@ -541,6 +544,15 @@ class AppRoutes {
       page: () => AmountNumPadScreen(),
       bindings: [
         AmountNumPadScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: cashOutAmountNumPadScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CashOutAmountNumPadScreen(),
+      bindings: [
+        CashOutAmountNumPadScreenBinding(),
       ],
     ),
 
