@@ -19,10 +19,14 @@ class CreditCardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return  Stack(alignment: Alignment.center,
       children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(15),
-          child: Image.asset('asset/card_image.png',
-            fit: BoxFit.cover,),
+        Container(
+          height: 250,width: size.width,
+          decoration: BoxDecoration(
+            color: Colors.black,
+            borderRadius: BorderRadius.circular(15),
+
+          ),
+
         ),
         Positioned(
           top: getVerticalSize(25),

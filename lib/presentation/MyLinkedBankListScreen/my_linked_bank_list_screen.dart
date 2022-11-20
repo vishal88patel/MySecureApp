@@ -111,40 +111,45 @@ class MyLinkedBankListScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    Container(
-                      height: 100,
-                      width: size.width,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: getVerticalSize(6.5)),
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: ColorConstant.primaryAppTextF1
-                                  .withOpacity(0.1),
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Row(
-                            children: [
-                              SizedBox(
-                                width: 12,
-                              ),
-                              Container(
-                                  height: 40,
-                                  width: 40,
-                                  decoration: BoxDecoration(
-                                      borderRadius:
-                                          BorderRadius.all(Radius.circular(12)),
-                                      color: ColorConstant.primaryAppTextF1),
-                                  child: Icon(Icons.add)),
-                              SizedBox(
-                                width: 12,
-                              ),
-                              Text("My Cards",
-                                  style: AppStyle.textStylePoppinsRegular
-                                      .copyWith(
-                                          color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: getFontSize(18))),
-                            ],
+                    InkWell(
+                      onTap: (){
+                        Get.toNamed(AppRoutes.cardListScreen);
+                      },
+                      child: Container(
+                        height: 100,
+                        width: size.width,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              vertical: getVerticalSize(6.5)),
+                          child: Container(
+                            decoration: BoxDecoration(
+                                color: ColorConstant.primaryAppTextF1
+                                    .withOpacity(0.1),
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Row(
+                              children: [
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Container(
+                                    height: 40,
+                                    width: 40,
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.all(Radius.circular(12)),
+                                        color: ColorConstant.primaryAppTextF1),
+                                    child: Icon(Icons.add)),
+                                SizedBox(
+                                  width: 12,
+                                ),
+                                Text("My Cards",
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(
+                                            color: ColorConstant.primaryWhite,
+                                            fontWeight: FontWeight.w600,
+                                            fontSize: getFontSize(18))),
+                              ],
+                            ),
                           ),
                         ),
                       ),

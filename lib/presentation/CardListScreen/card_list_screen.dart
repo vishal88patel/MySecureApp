@@ -6,6 +6,7 @@ import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
+import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
 import 'controller/card_list_screen_controller.dart';
 
@@ -41,7 +42,7 @@ class CardListScreen extends StatelessWidget {
                               color: ColorConstant.primaryWhite,
                             )),
                         SizedBox(width: 12,),
-                        Text("My Linked Bank",
+                        Text("My Linked Cards",
                             style: AppStyle.textStylePoppinsRegular.copyWith(
                                 color: ColorConstant.primaryWhite,
                                 fontWeight: FontWeight.w600,
@@ -104,7 +105,21 @@ class CardListScreen extends StatelessWidget {
                                 })
                             : Container(),
                       ),
-                    )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Add More Cards',
+                        radius: 5,
+                        onPressed: () {
+                          // bankListController.showBankInfoBottomsheet();
+                          Get.toNamed(AppRoutes.cardDetailScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(25),
+                    ),
                   ],
                 ),
               ],
