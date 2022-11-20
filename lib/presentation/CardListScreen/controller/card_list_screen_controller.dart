@@ -20,7 +20,7 @@ class CardListScreenController extends GetxController {
 
   @override
   void onInit() {
-    callGetBankListApi(pageNo: 0);
+    callGetBankListApi();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -30,7 +30,7 @@ class CardListScreenController extends GetxController {
     super.onClose();
   }
 
-  Future<void> callGetBankListApi({required int pageNo}) async {
+  Future<void> callGetBankListApi() async {
     ApiService()
         .callGetApi(
         body: await getCardApiBody(),
