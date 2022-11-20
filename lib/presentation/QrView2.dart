@@ -14,7 +14,7 @@ import 'TransactionScreen/controller/transaction_screen_controller.dart';
 import 'UploadDocumentScreen/controller/uplod_document_screen_controller.dart';
 
 class QRViewExample2 extends StatefulWidget {
-  const QRViewExample2({Key? key}) : super(key: key);
+  const QRViewExample2({Key? key, }) : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _QRViewExample2State();

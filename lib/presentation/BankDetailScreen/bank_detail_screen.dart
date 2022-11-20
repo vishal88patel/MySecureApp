@@ -113,15 +113,26 @@ class BankDetailScreen extends StatelessWidget {
                                               .copyWith(color: ColorConstant.skyE8,
                                               fontWeight: FontWeight.w500,fontSize: getFontSize(60))),
                                   ),
-                                  Lottie.asset('asset/animations/16271-payment-successful.json',
-                                     height: getVerticalSize(400)),
+                                  Lottie.asset('asset/animations/98621-success-status.json',
+                                     height: getVerticalSize(200)),
 
 
-                                  /* Text('Amount Transferred Successfully',
+                                   Text('My SecureApp transaction for',
                                       style: AppStyle.textStylePoppinsRegular
-                                          .copyWith(color: ColorConstant.primaryAppTextF1,
-                                          fontWeight: FontWeight.w400,fontSize: getFontSize(22))),
-*/
+                                          .copyWith(color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w400,fontSize: getFontSize(22)),textAlign: TextAlign.center,),
+                                  Text(
+                                      '\$ ${pinScreenController.amount.value} '
+                                    ,
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.skyE8,
+                                        fontWeight: FontWeight.bold,fontSize: getFontSize(30)),textAlign: TextAlign.center,),
+                                  Text(
+
+                                      'initiated successfully ',
+                                    style: AppStyle.textStylePoppinsRegular
+                                        .copyWith(color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w400,fontSize: getFontSize(22)),textAlign: TextAlign.center,),
                                 ],
                               ),
                             ),

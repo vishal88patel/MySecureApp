@@ -107,9 +107,9 @@ class KeyPad extends StatelessWidget{
   buttonWidget(String buttonText,BuildContext context) {
     return InkWell(
       onTap:(){
-        if(pinController.text.length<1){
-          pinController.text +="\$";
-        }
+        // if(pinController.text.length<1){
+        //   pinController.text +="\$";
+        // }
         if(pinController.text.length>=8){
 
         }

@@ -16,8 +16,10 @@ class AmountNumPadScreenController extends GetxController {
   var uuid="".obs;
   var email="".obs;
   var name="".obs;
+  var balance=''.obs;
   var profile_pic="".obs;
   var isPin=0.obs;
+  var isAmountAvailable= true.obs;
   @override
   void onReady() {
     super.onReady();
@@ -26,6 +28,19 @@ class AmountNumPadScreenController extends GetxController {
   @override
   void onInit() {
     getArguments();
+    amountController.addListener(() {
+      Get.closeAllSnackbars();
+      if (int.parse(balance.value) >= int.parse(amountController.text)) {
+        Get.closeCurrentSnackbar();
+        isAmountAvailable.value = true;
+      } else {
+        Get.closeAllSnackbars();
+        UIUtils.showSnakBar(
+            headerText: StringConstants.ERROR,
+            bodyText: "Amount is not available");
+        isAmountAvailable.value = false;
+      }
+    });
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -42,6 +57,8 @@ class AmountNumPadScreenController extends GetxController {
       name.value = arguments['NAME'] ?? '';
       profile_pic.value = arguments['IMAGE'] ?? '';
       isPin.value = arguments['IS_PIN'] ?? '';
+      balance.value = arguments['amount']??'';
+
     }
   }
 

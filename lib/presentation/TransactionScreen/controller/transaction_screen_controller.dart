@@ -100,6 +100,7 @@ class TransactionScreenController extends GetxController {
           "NAME":uuidModel.value.data?.name,
           "IMAGE":uuidModel.value.data?.profilePhotoUrl,
           "UUID_ID":uuid.value,
+          "amount" :walletModel.value.data!.walletBalance
         });
       } else {
         UIUtils.showSnakBar(
