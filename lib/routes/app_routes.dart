@@ -92,6 +92,8 @@ import '../presentation/NotificationScreen/binding/notification_screen_binding.d
 import '../presentation/NotificationScreen/notification_screen.dart';
 import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
 import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
+import '../presentation/SelectBankScreen/binding/select_bank_list_screen_binding.dart';
+import '../presentation/SelectBankScreen/select_bank_list_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/UploadDocumentScreen/kyc_loading_screen.dart';
@@ -116,6 +118,7 @@ class AppRoutes {
   static String personalDetailScreen = '/personal_detail_screen';
   static String bankListScreen = '/bank_list_screen';
   static String myLinkedBankListScreen = '/my_linked_bank_list_screen';
+  static String selectBankListScreen = '/select_bank_list_screen';
   static String myBankAccountListScreen = '/my_bank_account_list_screen';
   static String cardDetailScreen = '/card_detail_screen';
   static String accountDetailListScreen = '/account__detail_list_screen';
@@ -305,6 +308,15 @@ class AppRoutes {
       page: () => MyLinkedBankListScreen(),
       bindings: [
         MyLinkedBankListScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: selectBankListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => SelectBankBankListScreen(),
+      bindings: [
+        SelectBankListScreenBinding(),
       ],
     ),
     GetPage(
