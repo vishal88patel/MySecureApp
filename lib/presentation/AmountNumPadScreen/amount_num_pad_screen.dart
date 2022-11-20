@@ -176,32 +176,16 @@ class AmountNumPadScreen extends StatelessWidget {
               ),
               Column(
                 children: [
-                  Container(
-                      height: MediaQuery.of(context).size.height / 2,
-                      decoration: BoxDecoration(
-                        color: ColorConstant.darkBlue,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade500.withOpacity(0.3),
-                            spreadRadius: 0.1,
-                            blurRadius: 10,
-                            offset:
-                                Offset(-1, -4), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: KeyPad(
-                        pinController: amountNumPadController.amountController,
-                        onChange: (String pin) {
-                          amountNumPadController.amountController.text =
-                              _userPrefix + pin;
-                          print(
-                              '${amountNumPadController.amountController.text}');
-                        },
-                        onNext: () {
-                          amountNumPadController.goNextScreen();
-                        },
-                      )),
+                  KeyPad(
+                    pinController: amountNumPadController.amountController,
+                    onChange: (String pin) {
+                      amountNumPadController.amountController.text =
+                          _userPrefix + pin;
+                     },
+                    onNext: () {
+                      amountNumPadController.goNextScreen();
+                    },
+                  ),
                 ],
               )
             ],
