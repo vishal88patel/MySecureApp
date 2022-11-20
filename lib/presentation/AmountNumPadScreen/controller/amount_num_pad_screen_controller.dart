@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/utils/ConstantsFiles/string_constants.dart';
+import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
@@ -44,13 +46,19 @@ class AmountNumPadScreenController extends GetxController {
   }
 
   void goNextScreen(){
-    Get.toNamed(AppRoutes.pinScreen,arguments: {
-      "IS_PIN":isPin.value,
-      "EMAIL":email.value,
-      "NAME":name.value,
-      "IMAGE":profile_pic.value,
-      "UUID_ID":uuid.value,
-      "AMOUNT":amountController.text,
-    });
+    if (amountController.text.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please enter amount",
+          headerText: StringConstants.ERROR);
+    } else {
+      Get.toNamed(AppRoutes.pinScreen, arguments: {
+        "IS_PIN": isPin.value,
+        "EMAIL": email.value,
+        "NAME": name.value,
+        "IMAGE": profile_pic.value,
+        "UUID_ID": uuid.value,
+        "AMOUNT": amountController.text.trim().replaceAll('\$', ''),
+      });
+    }
   }
 }

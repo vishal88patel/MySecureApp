@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
@@ -30,16 +31,6 @@ class BankDetailScreen extends StatelessWidget {
                       children: [
                         Column(crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row( mainAxisAlignment : MainAxisAlignment.spaceBetween,
-                              children: [
-                                Icon(Icons.arrow_back, color: ColorConstant.primaryWhite,),
-                                InkWell(
-                                  // onTap: (){ Get.toNamed(AppRoutes.cardDetailScreen);
-                                  // },
-                                  child: Image.asset('asset/icons/notification_icon.png',
-                                    height: getVerticalSize(20),width: getHorizontalSize(16),),
-                                )],
-                            ),
                             SizedBox(height: getVerticalSize(44),),
                             Container(
                               decoration: BoxDecoration(
@@ -112,21 +103,25 @@ class BankDetailScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            SizedBox(height: getVerticalSize(85),),
+                            SizedBox(height: getVerticalSize(50),),
                             Center(
                               child: Column(crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Obx(()=>
-                                    Text('${pinScreenController.amount.value}'.toString(),
-                                        style: AppStyle.textStylePoppinsRegular
-                                            .copyWith(color: ColorConstant.skyE8,
-                                            fontWeight: FontWeight.w500,fontSize: getFontSize(60))),
+                                      Text('\$ ${pinScreenController.amount.value}'.toString(),
+                                          style: AppStyle.textStylePoppinsRegular
+                                              .copyWith(color: ColorConstant.skyE8,
+                                              fontWeight: FontWeight.w500,fontSize: getFontSize(60))),
                                   ),
-                                  Text('Amount Transferred Successfully',
+                                  Lottie.asset('asset/animations/16271-payment-successful.json',
+                                     height: getVerticalSize(400)),
+
+
+                                  /* Text('Amount Transferred Successfully',
                                       style: AppStyle.textStylePoppinsRegular
                                           .copyWith(color: ColorConstant.primaryAppTextF1,
                                           fontWeight: FontWeight.w400,fontSize: getFontSize(22))),
-
+*/
                                 ],
                               ),
                             ),
@@ -146,14 +141,7 @@ class BankDetailScreen extends StatelessWidget {
                                       bottomLeft: Radius.circular(10),
                                       bottomRight: Radius.circular(10)
                                   ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.shade700.withOpacity(0.3),
-                                      spreadRadius: 0.1,
-                                      blurRadius: 10,
-                                      offset: Offset(-6, -6), // changes position of shadow
-                                    ),
-                                  ],
+
                                 ),
                                 child: Center(
                                   child: Text("Done",style: AppStyle.textStyleSFPRO.copyWith(

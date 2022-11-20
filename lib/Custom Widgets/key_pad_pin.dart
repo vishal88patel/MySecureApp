@@ -75,14 +75,7 @@ class KeyPadPin extends StatelessWidget{
                     bottomLeft: Radius.circular(10),
                     bottomRight: Radius.circular(10)
                 ),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.grey.shade700.withOpacity(0.3),
-                    spreadRadius: 0.1,
-                    blurRadius: 10,
-                    offset: Offset(-6, -6), // changes position of shadow
-                  ),
-                ],
+
               ),
               child: Center(
                 child: Text("Next",style: AppStyle.textStyleSFPRO.copyWith(
@@ -120,14 +113,7 @@ class KeyPadPin extends StatelessWidget{
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade700.withOpacity(0.3),
-              spreadRadius: 0.1,
-              blurRadius: 10,
-              offset: Offset(-6, -6), // changes position of shadow
-            ),
-          ],
+
         ),
         child: Center(
           child: Text(buttonText,style: AppStyle.textStyleSFPRO.copyWith(
@@ -152,14 +138,7 @@ class KeyPadPin extends StatelessWidget{
               bottomLeft: Radius.circular(10),
               bottomRight: Radius.circular(10)
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade700.withOpacity(0.3),
-              spreadRadius: 0.1,
-              blurRadius: 10,
-              offset: Offset(-6, -6), // changes position of shadow
-            ),
-          ],
+
         ),
         child: Center(
           child:SvgPicture.asset(
