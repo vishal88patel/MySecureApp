@@ -92,6 +92,7 @@ import '../presentation/ProgressScreen/binding/progress_screen_binding.dart';
 import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
+import '../presentation/UploadDocumentScreen/kyc_loading_screen.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen1.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen2.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
@@ -152,6 +153,7 @@ class AppRoutes {
   static String kvcPhoneNumber = '/kvc_phone_number';
   static String kvcOtpNumber = '/kvc_otp_number';
   static String kycInfoScreen = '/kyc_info_screen';
+  static String kycLoadingScreen = '/kyc_loading_screen';
 
 
   static List<GetPage> pages = [
@@ -495,9 +497,7 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KYCInfoScreen(),
-      bindings: [
-        UploadDocumentScreenBinding(),
-      ],
+
     ),
 
     GetPage(
@@ -505,9 +505,7 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KycPgoneNymberScreen(),
-      bindings: [
-        UploadDocumentScreenBinding(),
-      ],
+
     ),
 
     GetPage(
@@ -515,9 +513,15 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KycOtpScreen(),
-      bindings: [
-        UploadDocumentScreenBinding(),
-      ],
+
+    ),
+
+    GetPage(
+      name: kycLoadingScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KYCLoadingScreen(),
+
     ),
 
     GetPage(
