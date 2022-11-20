@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -44,6 +45,12 @@ class UploadDocumentScreenController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
   DateTime selectedDate = DateTime.now();
+  FirebaseAuth auth = FirebaseAuth.instance;
+  String verificationIDRecived = '';
+  TextEditingController textEditingController =  TextEditingController(text: "");
+
+
+
   @override
   void onReady() {
     super.onReady();
@@ -93,7 +100,7 @@ class UploadDocumentScreenController extends GetxController {
     super.onClose();
   }
 
-  void onClickGetOtp() {
+  void onClickGetOtp(BuildContext context) async{
     if (phoneNumberController.text.isEmpty || phoneNumberController.text.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Mobile Number",
@@ -103,6 +110,26 @@ class UploadDocumentScreenController extends GetxController {
           bodyText: "Mobile Number Should be 11 digit number",
           headerText: StringConstants.ERROR);
     }else{
+      log('sdfkksafkakksfh1 ${ phoneNumberController.text}');
+String number = phoneNumberController.text.replaceAll('(', '')
+    .replaceAll(')', '').
+     replaceAll('-', '').replaceRange(5, 7, '');
+      log('sdfkksafkakksfh ${ number}');
+      auth.verifyPhoneNumber(
+          phoneNumber: phoneNumberController.text,
+          verificationCompleted: (PhoneAuthCredential credential) async {
+            await auth
+                .signInWithCredential(credential)
+                .then((value) => print('You are logged in successfully'));
+          },
+          verificationFailed: (FirebaseAuthException exception) {
+            print('exception.message ${exception.message}');
+          },
+          codeSent: (String verificationID, int? resendToken) {
+            verificationIDRecived = verificationID;
+
+          },
+          codeAutoRetrievalTimeout: (String verificationID) {});
       Get.toNamed(AppRoutes.kvcOtpNumber);
     }
   }
@@ -112,17 +139,28 @@ class UploadDocumentScreenController extends GetxController {
       Get.toNamed(AppRoutes.uploadDocument1);
 
   }
-  void onClickVerifyOtp() {
+  void onClickVerifyOtp(BuildContext context) async{
     if (otpController.text.isEmpty || otpController.text.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Valid OTP",
           headerText: StringConstants.ERROR);
-    } else if (otpController.text.length != 4) {
+    } else if (otpController.text.length != 6) {
       UIUtils.showSnakBar(
-          bodyText: "OTP Should be 4 digit number",
+          bodyText: "OTP Should be 6 digit number",
           headerText: StringConstants.ERROR);
     }else{
-            Get.toNamed(AppRoutes.kycInfoScreen);
+      print('OTP number ${otpController.text}');
+
+    PhoneAuthCredential credential = PhoneAuthProvider.credential(
+          verificationId: verificationIDRecived, smsCode:otpController.text);
+      FocusScope.of(context).requestFocus(new FocusNode());
+
+      await auth.signInWithCredential(credential).then((value) {
+        if(value.user!.uid.isNotEmpty){
+          Get.toNamed(AppRoutes.kycInfoScreen);}
+          print('Your are logged in  successfully ${value} ');});
+
+
     }
   }
 
@@ -232,6 +270,10 @@ class UploadDocumentScreenController extends GetxController {
       callKycApi();
     }
   }
+
+
+
+
 
   callKycApi() async {
     UIUtils.showProgressDialog(isCancellable: false);

@@ -94,7 +94,7 @@ class KycPgoneNymberScreen extends StatelessWidget {
                                           buttonName: 'Get Otp',
                                           // do something with the input numbers
                                           onSubmit: () {
-                                            documentController.onClickGetOtp();
+                                            documentController.onClickGetOtp(context);
                                           },
                                         ),
                                       ],

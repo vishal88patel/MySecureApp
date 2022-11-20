@@ -104,6 +104,7 @@ class EnterPasswordScreen extends StatelessWidget {
 
                     Spacer(),
                     AppElevatedButton(
+                      radius: 5,
                       buttonName: 'Next',
                       onPressed: () {
                         enterPasswordController.onTapOfNextButton();
@@ -115,6 +116,7 @@ class EnterPasswordScreen extends StatelessWidget {
                       height: getVerticalSize(30),
                     ),
                     AppElevatedButton(
+                      radius: 5,
                       buttonName: 'Forget Password',
                       onPressed: () {
                         enterPasswordController.onTapOfForgetPassButton();

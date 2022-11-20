@@ -72,6 +72,7 @@ class ForgetPassScreen extends StatelessWidget {
                         )),
                     Spacer(),
                     AppElevatedButton(
+                        radius: 5,
                         buttonName: 'Confirm',
                         onPressed: () {
                           forgetPassController.onTapOfButton();
