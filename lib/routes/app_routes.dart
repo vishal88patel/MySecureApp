@@ -70,6 +70,8 @@ import 'package:my_secure_app/presentation/UploadDocumentScreen/binding/uplod_do
 import 'package:my_secure_app/presentation/UploadDocumentScreen/uplod_document_screen.dart';
 import 'package:my_secure_app/presentation/UserPersonalScreen/binding/user_personal_screen_binding.dart';
 import 'package:my_secure_app/presentation/UserPersonalScreen/user_personal_screen.dart';
+import '../presentation/CardDetailScreen/binding/card_loader_screen_binding.dart';
+import '../presentation/CardDetailScreen/card_loading_screen.dart';
 import '../presentation/CashOutAmountNumPadScreen/binding/cash_amount_amount_num_pad_screen_binding.dart';
 import '../presentation/CashOutAmountNumPadScreen/cash_out_amount_num_pad_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
@@ -123,6 +125,7 @@ class AppRoutes {
   static String selectBankListScreen = '/select_bank_list_screen';
   static String myBankAccountListScreen = '/my_bank_account_list_screen';
   static String cardDetailScreen = '/card_detail_screen';
+  static String cardLoaderScreen = '/card_loading_screen';
   static String accountDetailListScreen = '/account__detail_list_screen';
   static String cardDetailListScreen = '/card_detail_list_screen';
   static String cardListScreen = '/card_list_screen';
@@ -339,6 +342,16 @@ class AppRoutes {
       page: () => CardDetailScreen(),
       bindings: [
         CardScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cardLoaderScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CardLoadingScreen(),
+      bindings: [
+        CardLoaderScreenBinding(),
       ],
     ),
 
