@@ -1,9 +1,11 @@
 import 'dart:convert';
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:my_secure_app/presentation/CameraView2.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
@@ -40,7 +42,7 @@ class CardScreenController extends GetxController {
     super.onClose();
   }
 
-  void onClickOfAddCardButton() {
+  void onClickOfAddCardButton(BuildContext context) {
     if (nameController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter card holder name",
@@ -61,7 +63,8 @@ class CardScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter CVV",
           headerText: StringConstants.ERROR);
-    } else if (netImage1.toString().isEmpty) {
+    }
+  /*  else if (netImage1.toString().isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please Select Card Front Image",
           headerText: StringConstants.ERROR);
@@ -69,9 +72,16 @@ class CardScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Select Card Back Image",
           headerText: StringConstants.ERROR);
-    } else {
+    } */
+    else {
       checkCardType(cardNumberController.text);
-      // Get.toNamed(AppRoutes.personalDetailScreen);
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const CameraScreen2(
+              image: 1,title: 'Scan the front of your card',
+            )),
+      );
     }
   }
 

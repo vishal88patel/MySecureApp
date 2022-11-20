@@ -87,6 +87,7 @@ class EnterLastNameDetailScreen extends StatelessWidget {
                                 .lastNameController),
                         Spacer(),
                         AppElevatedButton(
+                          radius: 5,
                           buttonName: 'Next',
                           onPressed: () {
                             // Get.toNamed(AppRoutes.personalDetailScreen);

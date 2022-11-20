@@ -89,6 +89,7 @@ class EnterMiddleNameDetailScreen extends StatelessWidget {
                             Spacer(),
                             AppElevatedButton(
                               buttonName: 'Next',
+                              radius: 5,
                               onPressed: () {
                                 // Get.toNamed(AppRoutes.personalDetailScreen);
                                 // Get.toNamed(AppRoutes.personalDetailScreen);

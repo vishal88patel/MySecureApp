@@ -47,7 +47,7 @@ class LoginEmilScreen extends StatelessWidget {
                        SizedBox(height: getVerticalSize(54),),
                        AppTextField(keyBordType: TextInputType.number,maxLength:11,hintText: "Phone Number",controller:loginEmailnController.phoneController,),
                        Spacer(),
-                       AppElevatedButton(
+                       AppElevatedButton(radius: 5,
                            buttonName: 'Next',
                            onPressed: () {
                              loginEmailnController.onTapOfButton();
@@ -66,7 +66,7 @@ class LoginEmilScreen extends StatelessWidget {
                            ],
                          ),
                        ),
-                       AppElevatedButton(
+                       AppElevatedButton(radius: 5,
                            buttonName: 'Continue with Email',
                            onPressed: () {
                              Navigator.pop(context);

@@ -162,19 +162,20 @@ class CardDetailScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(
-                      height: getVerticalSize(28),
+                      height: getVerticalSize(50),
                     ),
-                    Text(
-                      "Scan card",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w600,
-                          fontSize: getFontSize(26)),
+                    AppElevatedButton(
+                      buttonName: 'Please Scan Your Card',
+                      radius: 5,buttonColor: ColorConstant.blue26,
+                      textColor: ColorConstant.primaryWhite,
+                      onPressed: () {
+                        cardDetailController.onClickOfAddCardButton(context);
+                                    },
                     ),
                     SizedBox(
                       height: getVerticalSize(26),
                     ),
-                    Row(
+                 /*   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Column(
@@ -302,14 +303,15 @@ class CardDetailScreen extends StatelessWidget {
                           ],
                         ),
                       ],
-                    ),
-                    Spacer(),
+                    ),*/
+                   /* Spacer(),
                     AppElevatedButton(
                       buttonName: 'Next',
+                      radius: 5,
                       onPressed: () {
                         cardDetailController.onClickOfAddCardButton();
                       },
-                    ),
+                    ),*/
                     SizedBox(
                       height: getVerticalSize(36),
                     ),

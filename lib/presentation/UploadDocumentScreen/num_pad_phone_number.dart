@@ -134,7 +134,9 @@ class NumPadPhoneNumber extends StatelessWidget {
 
               ),
               child: Center(
-                child: Text(buttonName,style: AppStyle.textStyleSFPRO.copyWith(
+                child: Text(
+
+                  buttonName,style: AppStyle.textStyleSFPRO.copyWith(
                     color: ColorConstant.primaryWhite,
                     fontWeight: FontWeight.w500,
                     fontSize: getFontSize(18)),),
@@ -158,32 +160,32 @@ buttonWidget(
   return InkWell(
     onTap:(){
       if(type=='PHONE'){
-      if(controller.text.length<=16) {
-        if (controller.text.length <= 0) {
-          controller.text += '+';
-        }
-        controller.text += number.toString();
-        if (controller.text.length == 2) {
-          controller.text += ' ';
-        }
-        if (controller.text.length == 3) {
-          controller.text += '(';
-        }
-        if (controller.text.length == 7) {
-          controller.text += ')';
-        }
-        if (controller.text.length == 8) {
-          controller.text += ' ';
-        }
-        if (controller.text.length == 12) {
-          controller.text += '-';
-        }
-        log('message5 ${controller.text}');
-      }}
+        if(controller.text.length<=16) {
+          if (controller.text.length <= 0) {
+            controller.text += '+';
+          }
+          controller.text += number.toString();
+          if (controller.text.length == 2) {
+            controller.text += ' ';
+          }
+          if (controller.text.length == 3) {
+            controller.text += '(';
+          }
+          if (controller.text.length == 7) {
+            controller.text += ')';
+          }
+          if (controller.text.length == 8) {
+            controller.text += ' ';
+          }
+          if (controller.text.length == 12) {
+            controller.text += '-';
+          }
+          log('message5 ${controller.text}');
+        }}
       if(type=='OTP'){
-        if(controller.text.length <=3){
-        controller.text += number;
-      }}
+        if(controller.text.length <=5){
+          controller.text += number;
+        }}
     } ,
     child: Container(
       height: MediaQuery.of(context).size.height/18,

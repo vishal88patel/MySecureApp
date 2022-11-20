@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
@@ -17,7 +18,8 @@ import 'UploadDocumentScreen/controller/uplod_document_screen_controller.dart';
 
 class CameraScreen2 extends StatefulWidget {
   final int? image;
-  const CameraScreen2({required this.image}) : super();
+  final String? title;
+  const CameraScreen2({required this.image,required this.title}) : super();
 
   @override
   CameraScreen2State createState() => CameraScreen2State();
@@ -92,7 +94,7 @@ class CameraScreen2State extends State<CameraScreen2>
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      "Take A Picture",
+                      widget.title!,
                       style: AppStyle.textStylePoppinsRegular.copyWith(
                           color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w500,
@@ -229,13 +231,22 @@ class CameraScreen2State extends State<CameraScreen2>
           });
           if(widget.image==1){
             cardDetailController.netImage1.value=file!.path;
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const CameraScreen2(
+                    image: 2,title: 'Scan the back of your card',
+                  )),
+            );
           }else if(widget.image==2){
             cardDetailController.netImage2.value=file!.path;
+            Get.toNamed(AppRoutes.personalDetailScreen);
+
           }else{
 
           }
           if(file!.path.isNotEmpty){
-            Navigator.pop(context);
+            // Navigator.pop(context);
           }
           setState(() {});
         }

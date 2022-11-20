@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "849138110745",
+    "project_id": "mysequreapp-5fc1f",
+    "storage_bucket": "mysequreapp-5fc1f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:849138110745:android:cfb4494f2bf68e15903588",
+        "android_client_info": {
+          "package_name": "com.example.my_secure_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "849138110745-cnj41krudql4gvqhjaljnmdvss8r3obs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAC0PgxH-WFcLDxr8JjTrFym1n-qoFK8qE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "849138110745-cnj41krudql4gvqhjaljnmdvss8r3obs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

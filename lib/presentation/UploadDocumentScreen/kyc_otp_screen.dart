@@ -89,7 +89,7 @@ class KycOtpScreen extends StatelessWidget {
                                           buttonName: 'Verify OTP',
                                           // do something with the input numbers
                                           onSubmit: () {
-                                            documentController.onClickVerifyOtp();
+                                            documentController.onClickVerifyOtp(  context);
                                           },
                                         ),
                                       ],

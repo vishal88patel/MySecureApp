@@ -394,6 +394,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                 SizedBox(
                                   height: getVerticalSize(50),
                                   child: AppElevatedButton(
+                                    radius: 5,
                                     buttonName: 'Process to Loan',
                                     textColor: ColorConstant.primaryBlack,
                                     fontWeight: FontWeight.w700,
