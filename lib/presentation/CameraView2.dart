@@ -240,7 +240,7 @@ class CameraScreen2State extends State<CameraScreen2>
             );
           }else if(widget.image==2){
             cardDetailController.netImage2.value=file!.path;
-            Get.toNamed(AppRoutes.personalDetailScreen);
+            Get.toNamed(AppRoutes.cardLoaderScreen);
 
           }else{
 
