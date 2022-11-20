@@ -36,7 +36,7 @@ class CashOutAmountNumPadScreenController extends GetxController {
         Get.closeAllSnackbars();
         UIUtils.showSnakBar(
             headerText: StringConstants.ERROR,
-            bodyText: "AMount is not available");
+            bodyText: "Amount is not available");
         isAmountAvailable.value = false;
       }
     });
