@@ -18,17 +18,15 @@ import '../theme/app_style.dart';
 import '../utils/HelperFiles/math_utils.dart';
 import 'UploadDocumentScreen/controller/uplod_document_screen_controller.dart';
 
-class CameraScreen extends StatefulWidget {
-  final int? image;
-  final String title;
-  const CameraScreen({required this.image,
-    required this.title}) : super();
+class CameraScreen3 extends StatefulWidget {
+
+  const CameraScreen3() : super();
 
   @override
-  CameraScreenState createState() => CameraScreenState();
+  CameraScreen3State createState() => CameraScreen3State();
 }
 
-class CameraScreenState extends State<CameraScreen>
+class CameraScreen3State extends State<CameraScreen3>
     with AutomaticKeepAliveClientMixin {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
@@ -39,19 +37,14 @@ class CameraScreenState extends State<CameraScreen>
   @override
   void initState() {
     _initCamera();
-    if(widget.image==1){
-      width=0;
-    }
-    if(widget.image==2) {
-      showWelcomeDialouge();
-    }
+
     super.initState();
   }
 
 
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
-    _controller = CameraController(widget.image==1?_cameras![1]:_cameras![0], ResolutionPreset.veryHigh);
+    _controller = CameraController(_cameras![1], ResolutionPreset.veryHigh);
     _controller?.initialize().then((_) {
       if (!mounted) {
         return;
@@ -92,33 +85,16 @@ class CameraScreenState extends State<CameraScreen>
       key: _scaffoldKey,
       extendBody: true,
       body: WillPopScope(
-        onWillPop: () async => widget.image==2?true:false,
+        onWillPop: () async =>false,
         child: Stack(
           children: <Widget>[
-            _buildCameraPreview(),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(top: getVerticalSize(60)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        widget.title,
-                        style: AppStyle.textStylePoppinsRegular.copyWith(
-                            color: ColorConstant.primaryWhite,
-                            fontWeight: FontWeight.w500,
-                            fontSize: getFontSize(30)),
-                      ),
-                    ],
-                  ),
-                ),
-
-              ],
+            CustomPaint(
+              foregroundPainter: Paint(),
+              child: _buildCameraPreview(),
             ),
-            cameraOverlay(
-                padding: 20,image: widget.image!, aspectRatio:1, color: Color(0x90000000))
+            ClipPath(
+                clipper: Clip(),
+                child:_buildCameraPreview(),),
           ],
         ),
       ),
@@ -126,54 +102,6 @@ class CameraScreenState extends State<CameraScreen>
     );
   }
 
-  Widget cameraOverlay({required double padding,required int image, required double aspectRatio, required Color color}) {
-    return LayoutBuilder(builder: (context, constraints) {
-      double parentAspectRatio = constraints.maxWidth / constraints.maxHeight;
-      double horizontalPadding;
-      double verticalPadding;
-
-      if (parentAspectRatio < aspectRatio) {
-        horizontalPadding = padding;
-        verticalPadding = (constraints.maxHeight -
-            ((constraints.maxWidth - width * padding) / aspectRatio)) /
-            2;
-      } else {
-        verticalPadding = padding;
-        horizontalPadding = (constraints.maxWidth -
-            ((constraints.maxHeight - 2 * padding) * aspectRatio)) /
-            2;
-      }
-      return Stack(fit: StackFit.expand, children: [
-        Align(
-            alignment: Alignment.centerLeft,
-            child: Container(width: horizontalPadding, color: color)),
-        Align(
-            alignment: Alignment.centerRight,
-            child: Container(width: horizontalPadding, color: color)),
-        Align(
-            alignment: Alignment.topCenter,
-            child: Container(
-                margin: EdgeInsets.only(
-                    left: horizontalPadding, right: horizontalPadding),
-                height: verticalPadding,
-                color: color)),
-        Align(
-            alignment: Alignment.bottomCenter,
-            child: Container(
-                margin: EdgeInsets.only(
-                    left: horizontalPadding, right: horizontalPadding),
-                height: verticalPadding,
-                color: color)),
-        Container(
-
-          margin: EdgeInsets.symmetric(
-              horizontal: horizontalPadding, vertical: verticalPadding),
-          decoration: BoxDecoration(border: Border.all(color: Colors.cyan),
-              ),
-        )
-      ]);
-    });
-  }
   Widget _buildCameraPreview() {
     final size = MediaQuery.of(context).size;
     return ClipRect(
@@ -311,7 +239,7 @@ class CameraScreenState extends State<CameraScreen>
                 ),
               ),
             ),
-            widget.image==1?InkWell(
+            InkWell(
               onTap: (){
                 _onCameraSwitch();
               },
@@ -322,7 +250,7 @@ class CameraScreenState extends State<CameraScreen>
                   color:Colors.white,
                 ),
               ),
-            ):Container(height: 40,width: 40,),
+            )
 
           ],
         ),
@@ -339,30 +267,9 @@ class CameraScreenState extends State<CameraScreen>
           setState(() {
             imageFile = file;
           });
-          if(widget.image==1){
             documentController.netImage1.value=file!.path;
             Get.toNamed(AppRoutes.kycLoadingScreen);
-          }else if(widget.image==2){
-            documentController.netImage2.value=file!.path;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const CameraScreen(image: 3,title: 'Scan the back of your\ndriver''s license or state ID',)),
-            );
-
-          }else if(widget.image==3){
-            documentController.netImage3.value=file!.path;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const QRViewExample()),
-            );
-
-
-          }else{
-
-          }
-          if(file!.path.isNotEmpty){
+          if(file.path.isNotEmpty){
           }
           setState(() {});
         }
@@ -425,4 +332,33 @@ class CameraScreenState extends State<CameraScreen>
 
   @override
   bool get wantKeepAlive => true;
+}
+
+class Paint extends CustomPainter{
+  @override
+  void paint(Canvas canvas, Size size) {
+    canvas.drawColor(Colors.grey.withOpacity(0.7), BlendMode.dstOut);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) {
+    // TODO: implement shouldRepaint
+    return true;
+  }
+
+}
+class Clip extends CustomClipper<Path>{
+  @override
+  getClip(Size size) {
+    print(size);
+    Path path = Path()
+      ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(25, size.height/5.5, size.width-50, size.height/1.75), Radius.circular(100000)));
+    return path;
+  }
+
+  @override
+  bool shouldReclip(oldClipper) {
+    // TODO: implement shouldReclip
+    return true;
+  }
 }

@@ -12,12 +12,12 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../loader_screen.dart';
-import 'controller/uplod_document_screen_controller.dart';
-import 'num_pad_phone_number.dart';
+import 'controller/card_detail_screen_controller.dart';
+import 'controller/card_loader_screen_controller.dart';
 
-class KYCLoadingScreen extends StatelessWidget {
-  var documentController = Get.put(UploadDocumentScreenController());
-  var kycController = Get.find<KycLoaderController>();
+class CardLoadingScreen extends StatelessWidget {
+  var cardLoaderController = Get.find<CardLoaderController>();
+  var cardController = Get.find<CardScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +73,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                 Obx(()=>
                                    Row(
                                     children: [
-                                      documentController.progress1.value?Lottie.asset(
+                                      cardController.progress1.value?Lottie.asset(
                                           'asset/animations/green_tick.json',
                                           height: 30.0,
                                           repeat: false):Lottie.asset(
@@ -100,7 +100,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                 Obx(()=>
                                  Row(
                                     children: [
-                                      documentController.progress2.value?Lottie.asset(
+                                      cardController.progress2.value?Lottie.asset(
                                           'asset/animations/green_tick.json',
                                           height: 30.0,
                                           repeat: false):Lottie.asset(
@@ -126,7 +126,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                 ),
                                 Obx(()=> Row(
                                     children: [
-                                      documentController.progress3.value?Lottie.asset(
+                                      cardController.progress3.value?Lottie.asset(
                                           'asset/animations/green_tick.json',
                                           height: 30.0,
                                           repeat: false):Lottie.asset(
@@ -152,7 +152,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                 ),
                                 Obx(()=>Row(
                                     children: [
-                                      documentController.progress4.value?Lottie.asset(
+                                      cardController.progress4.value?Lottie.asset(
                                           'asset/animations/green_tick.json',
                                           height: 30.0,
                                           repeat: false):Lottie.asset(
@@ -178,8 +178,8 @@ class KYCLoadingScreen extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 Obx(()=>
-                                documentController.progress4.value?Text(
-                                    "Thank you.Your verification data has been successfully submitted.You'll get the results shortly",
+                                cardController.progress4.value?Text(
+                                    "Thank you.Your card data has been successfully submitted.You'll get the results shortly",
                                     style: AppStyle.textStylePoppinsRegular
                                         .copyWith(
                                             color: ColorConstant.primaryWhite,
@@ -191,7 +191,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                   height: getVerticalSize(20),
                                 ),
                                 Obx(()=>
-                                documentController.progress4.value?AppElevatedButton(
+                                cardController.progress4.value?AppElevatedButton(
                                       buttonName: 'Continue',
                                       radius: 5,
                                       onPressed: () {

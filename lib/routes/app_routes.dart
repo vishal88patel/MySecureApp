@@ -7,6 +7,7 @@ import 'package:my_secure_app/presentation/BankDetailScreen/bank_detail_screen.d
 import 'package:my_secure_app/presentation/BankListScreen/bank_list_screen.dart';
 import 'package:my_secure_app/presentation/BankListScreen/binding/bank_list_screen_binding.dart';
 import 'package:my_secure_app/presentation/BankProceedScreen/bank_proceed_screen.dart';
+import 'package:my_secure_app/presentation/CameraView.dart';
 import 'package:my_secure_app/presentation/CardDetailListScreen/binding/card_detail_list_screen_binding.dart';
 import 'package:my_secure_app/presentation/CardDetailListScreen/card_detail_list_screen.dart';
 import 'package:my_secure_app/presentation/CardDetailScreen/binding/card_detail_screen_binding.dart';
@@ -69,6 +70,8 @@ import 'package:my_secure_app/presentation/UploadDocumentScreen/binding/uplod_do
 import 'package:my_secure_app/presentation/UploadDocumentScreen/uplod_document_screen.dart';
 import 'package:my_secure_app/presentation/UserPersonalScreen/binding/user_personal_screen_binding.dart';
 import 'package:my_secure_app/presentation/UserPersonalScreen/user_personal_screen.dart';
+import '../presentation/CardDetailScreen/binding/card_loader_screen_binding.dart';
+import '../presentation/CardDetailScreen/card_loading_screen.dart';
 import '../presentation/CashOutAmountNumPadScreen/binding/cash_amount_amount_num_pad_screen_binding.dart';
 import '../presentation/CashOutAmountNumPadScreen/cash_out_amount_num_pad_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
@@ -96,6 +99,7 @@ import '../presentation/SelectBankScreen/binding/select_bank_list_screen_binding
 import '../presentation/SelectBankScreen/select_bank_list_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
+import '../presentation/UploadDocumentScreen/binding/kyc_loader_screen_binding.dart';
 import '../presentation/UploadDocumentScreen/kyc_loading_screen.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen1.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen2.dart';
@@ -121,6 +125,7 @@ class AppRoutes {
   static String selectBankListScreen = '/select_bank_list_screen';
   static String myBankAccountListScreen = '/my_bank_account_list_screen';
   static String cardDetailScreen = '/card_detail_screen';
+  static String cardLoaderScreen = '/card_loading_screen';
   static String accountDetailListScreen = '/account__detail_list_screen';
   static String cardDetailListScreen = '/card_detail_list_screen';
   static String cardListScreen = '/card_list_screen';
@@ -160,6 +165,7 @@ class AppRoutes {
   static String kvcOtpNumber = '/kvc_otp_number';
   static String kycInfoScreen = '/kyc_info_screen';
   static String kycLoadingScreen = '/kyc_loading_screen';
+  static String cameraScreen = '/camera_screen';
 
 
   static List<GetPage> pages = [
@@ -336,6 +342,16 @@ class AppRoutes {
       page: () => CardDetailScreen(),
       bindings: [
         CardScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cardLoaderScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CardLoadingScreen(),
+      bindings: [
+        CardLoaderScreenBinding(),
       ],
     ),
 
@@ -536,6 +552,16 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KYCLoadingScreen(),
+      bindings: [
+        KycLoaderScreenBinding()
+      ]
+    ),
+
+    GetPage(
+      name: cameraScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CameraScreen(image: 1, title: "E-KYC Profile Selfie"),
 
     ),
 

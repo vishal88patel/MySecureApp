@@ -26,6 +26,12 @@ class CardScreenController extends GetxController {
   var netImage2 = "".obs;
   var cardTypeImage = "".obs;
 
+
+  var progress1 = false.obs;
+  var progress2 = false.obs;
+  var progress3 = false.obs;
+  var progress4 = false.obs;
+
   @override
   void onReady() {
     super.onReady();
@@ -33,6 +39,7 @@ class CardScreenController extends GetxController {
 
   @override
   void onInit() {
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -40,6 +47,17 @@ class CardScreenController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+  void progress(){
+    Future.delayed(Duration(milliseconds: 1000), () {
+      progress1.value=true;
+      Future.delayed(Duration(milliseconds: 1000), () {
+        progress2.value=true;
+        Future.delayed(Duration(milliseconds: 1000), () {
+          progress3.value=true;
+        });
+      });
+    });
   }
 
   void onClickOfAddCardButton(BuildContext context) {
@@ -74,7 +92,7 @@ class CardScreenController extends GetxController {
           headerText: StringConstants.ERROR);
     } */
     else {
-      checkCardType(cardNumberController.text);
+      //checkCardType(cardNumberController.text);
       Navigator.push(
         context,
         MaterialPageRoute(
@@ -203,6 +221,7 @@ class CardScreenController extends GetxController {
   }
 
   Future<void> callAddCardApi(String type) async {
+    progress();
     UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -232,12 +251,12 @@ class CardScreenController extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
+      progress4.value=true;
       UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(
           bodyText: "Card Added Successfully",
           headerText: StringConstants.SUCCESS);
-      Get.offAllNamed(AppRoutes.dashBoardScreen,
-          arguments: {"bottomTabCount": 0});
+
     } else {
       UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(

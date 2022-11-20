@@ -15,7 +15,7 @@ import '../loader_screen.dart';
 import 'controller/uplod_document_screen_controller.dart';
 
 class KycPgoneNymberScreen extends StatelessWidget {
-  var documentController = Get.find<UploadDocumentScreenController>();
+  var documentController = Get.put(UploadDocumentScreenController());
 
   @override
   Widget build(BuildContext context) {
