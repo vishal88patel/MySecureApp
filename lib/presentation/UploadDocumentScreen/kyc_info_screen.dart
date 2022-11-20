@@ -94,7 +94,7 @@ class KYCInfoScreen extends StatelessWidget {
 
 
                                     SizedBox(
-                                      height: getVerticalSize(10),
+                                      height: getVerticalSize(9),
                                     ),
 
                                     Spacer(),

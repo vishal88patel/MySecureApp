@@ -264,7 +264,9 @@ class UploadDocumentScreen1 extends StatelessWidget {
                       ),
                     ),
 
-                    Spacer(),
+                    SizedBox(
+                      height: getVerticalSize(40),
+                    ),
                     Row(
                       children: [
                         Obx(()
@@ -276,7 +278,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                               color: Colors.white,)),
                         ),
                         Text(
-                          "Please confirm your details",
+                          "These are certified details",
                           style: AppStyle.textStylePoppinsRegular.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w500,

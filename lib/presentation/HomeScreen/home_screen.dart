@@ -209,70 +209,87 @@ class HomeScreen extends StatelessWidget {
                           height: getVerticalSize(25),
                         ),
                         Obx(
-    ()=> homeController.showNotiFiBadge.value?GestureDetector(
-                            onTap: () async {},
-                            child: Container(
-                              width: size.width,
-                              height: size.height / 3,
-                              padding: EdgeInsets.only(right: 16),
-                              decoration: BoxDecoration(
-                                  color: ColorConstant.primaryWhite,
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(23))),
-                              child: Column(
-                                children: [
-                                  SizedBox(height: 12,),
-                                  SvgPicture.asset(
-                                    "asset/icons/security-checked.svg",
-                                    color: Colors.blue,
-                                  ),
-                                  Padding(
-                                    padding:
-                                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-                                    child: Text(
-                                      "Verify your idenditity",
-                                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                                          color: ColorConstant.primaryBlack,
-                                          fontWeight: FontWeight.w600,
-                                          decoration: TextDecoration.none,
-                                          fontSize: getFontSize(24)),
-                                    ),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: [
-                                      Flexible(
-                                        child: Text(
-                                          textAlign: TextAlign.center,
-                                          "Enable blockchain withdrawals and deposits to external wallets.",
-                                          style: AppStyle.textStyleSFPRORegular.copyWith(
-                                              color: ColorConstant.primaryBlack,
-                                              decoration: TextDecoration.none,
-                                              fontWeight: FontWeight.w300,
-                                              fontSize: getFontSize(20)),
+                          () => homeController.showNotiFiBadge.value
+                              ? GestureDetector(
+                                  onTap: () async {},
+                                  child: Container(
+                                    width: size.width,
+                                    height: size.height / 3,
+                                    padding: EdgeInsets.only(right: 16),
+                                    decoration: BoxDecoration(
+                                        color: ColorConstant.primaryWhite,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(23))),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 12,
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: 40,
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                                    child: AppElevatedButton(
-                                      buttonName: 'Get Started',
-                                      radius: 5,
-                                      textColor: Colors.blue,
-                                      onPressed: () {
-                                        Get.toNamed(AppRoutes.kvcPhoneNumber);
-                                      },
+                                        SvgPicture.asset(
+                                          "asset/icons/security-checked.svg",
+                                          color: Colors.blue,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12.0, vertical: 8),
+                                          child: Text(
+                                            "Verify your idenditity",
+                                            style: AppStyle
+                                                .textStylePoppinsRegular
+                                                .copyWith(
+                                                    color: ColorConstant
+                                                        .primaryBlack,
+                                                    fontWeight: FontWeight.w600,
+                                                    decoration:
+                                                        TextDecoration.none,
+                                                    fontSize: getFontSize(24)),
+                                          ),
+                                        ),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Flexible(
+                                              child: Text(
+                                                textAlign: TextAlign.center,
+                                                "Enable blockchain withdrawals and deposits to external wallets.",
+                                                style: AppStyle
+                                                    .textStyleSFPRORegular
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryBlack,
+                                                        decoration:
+                                                            TextDecoration.none,
+                                                        fontWeight:
+                                                            FontWeight.w300,
+                                                        fontSize:
+                                                            getFontSize(20)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                        SizedBox(
+                                          height: 40,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 22.0),
+                                          child: AppElevatedButton(
+                                            buttonName: 'Get Started',
+                                            radius: 5,
+                                            textColor: Colors.blue,
+                                            onPressed: () {
+                                              Get.toNamed(
+                                                  AppRoutes.kvcPhoneNumber);
+                                            },
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
-                                ],
-                              ),
-                            ),
-                          ):SizedBox(),
+                                )
+                              : SizedBox(),
                         ),
                         SizedBox(
                           height: getVerticalSize(25),
