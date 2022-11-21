@@ -92,7 +92,7 @@ class CameraScreenState extends State<CameraScreen>
       key: _scaffoldKey,
       extendBody: true,
       body: WillPopScope(
-        onWillPop: () async => widget.image==2?true:false,
+        onWillPop: () async => true,
         child: Stack(
           children: <Widget>[
             _buildCameraPreview(),

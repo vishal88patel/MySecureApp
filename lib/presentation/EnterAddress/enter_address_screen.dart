@@ -52,7 +52,7 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "4/8",
+                                  "5/9",
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(
                                           color: ColorConstant.primaryWhite),

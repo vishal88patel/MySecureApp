@@ -46,7 +46,7 @@ class CreatePasswordScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "2/8",
+                          "2/9",
                           style: AppStyle.textStylePoppinsRegular
                               .copyWith(color: ColorConstant.primaryWhite),
                         ),

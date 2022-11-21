@@ -89,13 +89,19 @@ class MyLinkedBankListScreen extends StatelessWidget {
                                   width: 12,
                                 ),
                                 Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(12)),
-                                        color: ColorConstant.primaryAppTextF1),
-                                    child: Icon(Icons.add)),
+                                  padding: EdgeInsets.all(12),
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: ColorConstant.primaryAppTextF1,
+                                      borderRadius:
+                                      BorderRadius.circular(10)),
+                                  child: SvgPicture.asset(
+                                    "asset/icons/ic_bank.svg",
+                                    color: ColorConstant.blue26,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
                                 SizedBox(
                                   width: 12,
                                 ),
@@ -132,13 +138,19 @@ class MyLinkedBankListScreen extends StatelessWidget {
                                   width: 12,
                                 ),
                                 Container(
-                                    height: 40,
-                                    width: 40,
-                                    decoration: BoxDecoration(
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(12)),
-                                        color: ColorConstant.primaryAppTextF1),
-                                    child: Icon(Icons.add)),
+                                  padding: EdgeInsets.all(12),
+                                  width: 50,
+                                  height: 50,
+                                  decoration: BoxDecoration(
+                                      color: ColorConstant.primaryAppTextF1,
+                                      borderRadius:
+                                      BorderRadius.circular(10)),
+                                  child: SvgPicture.asset(
+                                    "asset/icons/ic_card.svg",
+                                    color: ColorConstant.blue26,
+                                    fit: BoxFit.contain,
+                                  ),
+                                ),
                                 SizedBox(
                                   width: 12,
                                 ),

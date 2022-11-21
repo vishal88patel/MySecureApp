@@ -85,7 +85,7 @@ class CameraScreen3State extends State<CameraScreen3>
       key: _scaffoldKey,
       extendBody: true,
       body: WillPopScope(
-        onWillPop: () async =>false,
+        onWillPop: () async =>true,
         child: Stack(
           children: <Widget>[
             CustomPaint(

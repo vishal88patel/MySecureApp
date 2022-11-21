@@ -23,15 +23,18 @@ class DashBoardScreen extends StatelessWidget {
     return Scaffold(
       extendBody: true,
       body: Obx(
-        ()=> IndexedStack(
-          index: dashBoardController.selectedIndex.value,
-          children: [
-            HomeScreen(),
-            TransactionScreen(),
-            LinkBankListScreen(),
-            LoanCalculatorScreen(),
-            ProfileScreen()
-          ],
+        ()=> WillPopScope(
+          onWillPop: dashBoardController.onWillPop,
+          child: IndexedStack(
+            index: dashBoardController.selectedIndex.value,
+            children: [
+              HomeScreen(),
+              TransactionScreen(),
+              LinkBankListScreen(),
+              LoanCalculatorScreen(),
+              ProfileScreen()
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: Obx(

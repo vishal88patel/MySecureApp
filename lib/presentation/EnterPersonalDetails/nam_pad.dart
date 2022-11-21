@@ -1,8 +1,10 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
+import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
@@ -116,28 +118,11 @@ class NumPad extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          InkWell(
-            onTap:() => onSubmit(),
-            child: Container(
-              height: MediaQuery.of(context).size.height/16,
-              width: MediaQuery.of(context).size.width/1.2,
-              decoration: BoxDecoration(
-                color: ColorConstant.blue26,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10),
-                    bottomLeft: Radius.circular(10),
-                    bottomRight: Radius.circular(10)
-                ),
+          AppElevatedButton(
+            buttonName: 'Next',
+            radius: 5,
 
-              ),
-              child: Center(
-                child: Text("Next",style: AppStyle.textStyleSFPRO.copyWith(
-                    color: ColorConstant.primaryWhite,
-                    fontWeight: FontWeight.w500,
-                    fontSize: getFontSize(18)),),
-              ),
-            ),
+            onPressed: () => onSubmit(),
           )
 
         ],
@@ -155,6 +140,7 @@ buttonWidget(
       required TextEditingController controller}) {
   return InkWell(
     onTap:(){
+      HapticFeedback.lightImpact();
       if(type=='BIRTHDATE'){
       if(controller.text.length<=9){
         controller.text += number.toString();
@@ -178,7 +164,7 @@ buttonWidget(
       height: MediaQuery.of(context).size.height/18,
       width: MediaQuery.of(context).size.width/4.75,
       decoration: BoxDecoration(
-        color: ColorConstant.blue26,
+        color: ColorConstant.primaryWhite,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
@@ -189,7 +175,7 @@ buttonWidget(
       ),
       child: Center(
         child: Text(number.toString(),style: AppStyle.textStyleSFPRO.copyWith(
-            color: ColorConstant.primaryWhite,
+            color: ColorConstant.darkBlue,
             fontWeight: FontWeight.w500,
             fontSize: getFontSize(24)),),
       ),
@@ -204,7 +190,7 @@ iconButtonWidget({required BuildContext context,required VoidCallback function})
       height: MediaQuery.of(context).size.height/18,
       width: MediaQuery.of(context).size.width/4.75,
       decoration:  BoxDecoration(
-        color: ColorConstant.blue26,
+        color: ColorConstant.primaryWhite,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
             topRight: Radius.circular(10),
@@ -217,7 +203,7 @@ iconButtonWidget({required BuildContext context,required VoidCallback function})
         child:SvgPicture.asset(
           'asset/back_space.svg',
           fit: BoxFit.cover,
-          color: ColorConstant.primaryWhite,
+          color: ColorConstant.darkBlue,
           height: 18,
           width: 21,
         ),

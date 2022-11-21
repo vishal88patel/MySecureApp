@@ -11,6 +11,8 @@ class EnterLegalNameScreenController extends GetxController {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController middleNameController = TextEditingController();
+  TextEditingController secureTagController = TextEditingController();
+
 
 
   @override
