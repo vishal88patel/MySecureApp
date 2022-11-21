@@ -56,7 +56,7 @@ class KycPgoneNymberScreen extends StatelessWidget {
                                       height: getVerticalSize(30),
                                     ),
                                     Text(
-                                      "Confirm your phone \n number",
+                                      "Confirm Your Phone \nNumber",
                                       style: AppStyle.textStylePoppinsRegular.copyWith(
                                           color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w700,
@@ -69,10 +69,10 @@ class KycPgoneNymberScreen extends StatelessWidget {
                                     ),
                                      SizedBox(
                                         child: AppTextField(
-
+                                          keyBordType: TextInputType.emailAddress,
                                           controller: documentController.phoneNumberController,
                                           hintText: "Mobile number",
-                                          fontSize: 30,
+                                          fontSize: getFontSize(26),
                                           readOnly: true,
 
 
@@ -98,10 +98,39 @@ class KycPgoneNymberScreen extends StatelessWidget {
                                           },
                                         ),
                                       ],
-                                    )
+                                    ),
+                                    SizedBox(
+                                      height: getVerticalSize(16),
+                                    ),
+                                    InkWell(
+                                      onTap:(){
+                                        Get.toNamed(AppRoutes.kycEmail);
+                                      },
+                                      child: Container(
+                                        height: MediaQuery.of(context).size.height/16,
+                                        width: MediaQuery.of(context).size.width/1.2,
+                                        decoration: BoxDecoration(
+                                          color: ColorConstant.blue26,
+                                          borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(10),
+                                              topRight: Radius.circular(10),
+                                              bottomLeft: Radius.circular(10),
+                                              bottomRight: Radius.circular(10)
+                                          ),
 
-
-
+                                        ),
+                                        child: Center(
+                                          child: Text(
+                                            "Continue With Email",style: AppStyle.textStyleSFPRO.copyWith(
+                                              color: ColorConstant.primaryWhite,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: getFontSize(18)),),
+                                        ),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: getVerticalSize(16),
+                                    ),
                                   ],
                                 ),
                               ],

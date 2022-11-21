@@ -53,24 +53,38 @@ class QrCodeScreen extends StatelessWidget {
               ),
               SizedBox(height: getVerticalSize(50),),
 
-              Text('UserName ',
-                  style: AppStyle.textStylePoppinsRegular
-                      .copyWith(
-                      color:
-                      ColorConstant.primaryWhite,
-                      fontWeight: FontWeight.w500,
-                      fontSize: getFontSize(30))),
-              SizedBox(height: getVerticalSize(100),),
-
-              Container(
-                color: Colors.white,
-                child: QrImage(
-                  data: qrController.uuid.value,
-                  version: QrVersions.auto,
-                  size: 200.0,
+              Obx(()=>
+                  Row(
+                    mainAxisAlignment:MainAxisAlignment.center,
+                    children: [
+                      Text(qrController.userName.value.toTitleCase(),
+                          style: AppStyle.textStylePoppinsRegular
+                              .copyWith(
+                              color:
+                              ColorConstant.primaryWhite,
+                              fontWeight: FontWeight.w500,
+                              fontSize: getFontSize(30))),
+                      SizedBox(width: getHorizontalSize(4),),
+                      Image.asset(
+                        'asset/verified.png',
+                        color: ColorConstant.lightGreen,
+                        height: getVerticalSize(24),
+                        width: getHorizontalSize(24),
+                      ),
+                    ],
+                  ),
+              ),
+              SizedBox(height: getVerticalSize(80),),
+              Obx(()=>
+               Container(
+                  color: Colors.white,
+                  child: QrImage(
+                    data: qrController.uuid.value,
+                    version: QrVersions.auto,
+                    size: 200.0,
+                  ),
                 ),
               ),
-
               SizedBox(height: getVerticalSize(50),),
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -81,13 +95,15 @@ class QrCodeScreen extends StatelessWidget {
                           ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w500,
                           fontSize: getFontSize(20))),
-                  Text('abcefg111@okAxis',
-                      style: AppStyle.textStylePoppinsRegular
-                          .copyWith(
-                          color:
-                          ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getFontSize(20))),
+                  Obx(()=>
+                     Text(qrController.upiId.value+"@mysecure",
+                        style: AppStyle.textStylePoppinsRegular
+                            .copyWith(
+                            color:
+                            ColorConstant.primaryWhite,
+                            fontWeight: FontWeight.w500,
+                            fontSize: getFontSize(20))),
+                  ),
                 ],
               ),
 
@@ -99,10 +115,10 @@ class QrCodeScreen extends StatelessWidget {
                       ColorConstant.primaryWhite,
                       fontWeight: FontWeight.w500,
                       fontSize: getFontSize(20))),
-              
+
               Spacer(),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40),vertical: getHorizontalSize(10)),
+                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
                 child: InkWell(
                   onTap: () {
                     Navigator.push(
@@ -151,6 +167,7 @@ class QrCodeScreen extends StatelessWidget {
                   ),
                 ),
               ),
+              SizedBox(height: getVerticalSize(42),),
             ],
           ),
         ));

@@ -15,6 +15,7 @@ import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
+import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import 'package:http/http.dart' as http;
 
@@ -44,16 +45,18 @@ class UploadDocumentScreenController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
+  TextEditingController emailVerifyController = TextEditingController();
   DateTime selectedDate = DateTime.now();
   FirebaseAuth auth = FirebaseAuth.instance;
   String verificationIDRecived = '';
-  TextEditingController textEditingController =  TextEditingController(text: "");
+  TextEditingController textEditingController = TextEditingController(text: "");
 
   var progress1 = false.obs;
   var progress2 = false.obs;
   var progress3 = false.obs;
   var progress4 = false.obs;
 
+  var kycFrom = 2.obs;
 
   @override
   void onReady() {
@@ -62,23 +65,22 @@ class UploadDocumentScreenController extends GetxController {
 
   @override
   void onInit() {
-
     getStoredData();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
 
-  void isAgreeCheckBox(){
-    isAgree.value=!isAgree.value;
+  void isAgreeCheckBox() {
+    isAgree.value = !isAgree.value;
   }
 
-  void progress(){
+  void progress() {
     Future.delayed(Duration(milliseconds: 2000), () {
-      progress1.value=true;
+      progress1.value = true;
       Future.delayed(Duration(milliseconds: 2000), () {
-        progress2.value=true;
+        progress2.value = true;
         Future.delayed(Duration(milliseconds: 2000), () {
-          progress3.value=true;
+          progress3.value = true;
         });
       });
     });
@@ -117,8 +119,9 @@ class UploadDocumentScreenController extends GetxController {
     super.onClose();
   }
 
-  void onClickGetOtp(BuildContext context) async{
-    if (phoneNumberController.text.isEmpty || phoneNumberController.text.isNull) {
+  void onClickGetOtp(BuildContext context) async {
+    if (phoneNumberController.text.isEmpty ||
+        phoneNumberController.text.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Mobile Number",
           headerText: StringConstants.ERROR);
@@ -126,12 +129,14 @@ class UploadDocumentScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Mobile Number Should be 11 digit number",
           headerText: StringConstants.ERROR);
-    }else{
-      log('sdfkksafkakksfh1 ${ phoneNumberController.text}');
-String number = phoneNumberController.text.replaceAll('(', '')
-    .replaceAll(')', '').
-     replaceAll('-', '').replaceRange(5, 7, '');
-      log('sdfkksafkakksfh ${ number}');
+    } else {
+      log('sdfkksafkakksfh1 ${phoneNumberController.text}');
+      String number = phoneNumberController.text
+          .replaceAll('(', '')
+          .replaceAll(')', '')
+          .replaceAll('-', '')
+          .replaceRange(5, 7, '');
+      log('sdfkksafkakksfh ${number}');
       auth.verifyPhoneNumber(
           phoneNumber: phoneNumberController.text,
           verificationCompleted: (PhoneAuthCredential credential) async {
@@ -144,7 +149,6 @@ String number = phoneNumberController.text.replaceAll('(', '')
           },
           codeSent: (String verificationID, int? resendToken) {
             verificationIDRecived = verificationID;
-
           },
           codeAutoRetrievalTimeout: (String verificationID) {});
       Get.toNamed(AppRoutes.kvcOtpNumber);
@@ -152,30 +156,34 @@ String number = phoneNumberController.text.replaceAll('(', '')
   }
 
   void onClickKycInfo() {
-      Get.toNamed(AppRoutes.uploadDocument1);
+    Get.toNamed(AppRoutes.uploadDocument1);
   }
 
-  void onClickVerifyOtp(BuildContext context) async{
+  void onClickVerifyOtp(BuildContext context) async {
     if (otpController.text.isEmpty || otpController.text.isNull) {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Valid OTP",
           headerText: StringConstants.ERROR);
-    } else if (otpController.text.length != 6) {
+    } else if (otpController.text.length!=6 && otpController.text.length!=4) {
       UIUtils.showSnakBar(
-          bodyText: "OTP Should be 6 digit number",
+          bodyText: "OTP Should be 4 or 6 digit number",
           headerText: StringConstants.ERROR);
-    }else{
-      print('OTP number ${otpController.text}');
+    } else {
+      if(kycFrom==1){
+        verifyOtpEmailApi("1");
+      }else{
+        print('OTP number ${otpController.text}');
+        PhoneAuthCredential credential = PhoneAuthProvider.credential(
+            verificationId: verificationIDRecived, smsCode: otpController.text);
+        FocusScope.of(context).requestFocus(new FocusNode());
+        await auth.signInWithCredential(credential).then((value) {
+          if (value.user!.uid.isNotEmpty) {
+            verifyOtpEmailApi("2");
 
-    PhoneAuthCredential credential = PhoneAuthProvider.credential(
-          verificationId: verificationIDRecived, smsCode:otpController.text);
-      FocusScope.of(context).requestFocus(new FocusNode());
-
-      await auth.signInWithCredential(credential).then((value) {
-        if(value.user!.uid.isNotEmpty){
-          Get.toNamed(AppRoutes.kycInfoScreen);}
-          print('Your are logged in  successfully ${value} ');});
-
+          }
+          print('Your are logged in  successfully ${value} ');
+        });
+      }
 
     }
   }
@@ -208,7 +216,7 @@ String number = phoneNumberController.text.replaceAll('(', '')
       UIUtils.showSnakBar(
           bodyText: "SSN Should be 9 digit number",
           headerText: StringConstants.ERROR);
-    }else if (!isAgree.value) {
+    } else if (!isAgree.value) {
       UIUtils.showSnakBar(
           bodyText: "Please confirm your details",
           headerText: StringConstants.ERROR);
@@ -216,7 +224,11 @@ String number = phoneNumberController.text.replaceAll('(', '')
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => const CameraScreen(image: 2,title: 'Scan the front of your\ndriver''s license or state ID',)),
+            builder: (context) => const CameraScreen(
+                  image: 2,
+                  title:
+                      'Scan the front of your\ndriver' 's license or state ID',
+                )),
       );
       // Get.toNamed(AppRoutes.uploadDocument2);
     }
@@ -245,7 +257,6 @@ String number = phoneNumberController.text.replaceAll('(', '')
       callKycApi();
     }
   }
-
 
   callKycApi() async {
     progress();
@@ -285,12 +296,11 @@ String number = phoneNumberController.text.replaceAll('(', '')
 
     if (response.statusCode == 200) {
       UIUtils.hideProgressDialog();
-      progress4.value=true;
+      progress4.value = true;
       UIUtils.showSnakBar(
           bodyText: "KYC has been completed successfully",
           headerText: StringConstants.SUCCESS);
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
-
     } else {
       UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(
@@ -369,5 +379,75 @@ String number = phoneNumberController.text.replaceAll('(', '')
     int dayDiff = today.day - birthDate.day;
 
     return yearDiff > 18 || yearDiff == 18 && monthDiff >= 0 && dayDiff >= 0;
+  }
+
+  void onTapOfSendOtpEmailButton() {
+    if (emailVerifyController.text.isEmpty) {
+      UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please enter email",
+      );
+    } else if (emailVerifyController.text.isNotEmpty) {
+      if (RegexPatterns.emailRegex.hasMatch(emailVerifyController.text) ==
+          false) {
+        UIUtils.showSnakBar(
+          headerText: StringConstants.ERROR,
+          bodyText: "Please enter Valid email",
+        );
+      } else {
+        sendOtpEmailApi();
+      }
+    } else {}
+  }
+
+  Future<void> sendOtpEmailApi() async {
+    ApiService()
+        .callPostApi(
+            body: await getBodyEmail(emailVerifyController.text),
+            headerWithToken: true,
+            url: ApiEndPoints.SEND_OTP_ON_EMAIL)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        kycFrom.value=1;
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.SUCCESS);
+        Get.toNamed(AppRoutes.kvcOtpNumber);
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<FormData> getBodyEmail(String text) async {
+    final form = FormData({"email": text});
+    print(form.toString());
+    return form;
+  }
+
+  Future<void> verifyOtpEmailApi(String type) async {
+    ApiService()
+        .callPostApi(
+        body: await getBodyVerifyOtp(type,otpController.text.toString()),
+        headerWithToken: true,
+        url: ApiEndPoints.VERIFY_OTP_OF_EMAIL)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.SUCCESS);
+        Get.toNamed(AppRoutes.kycInfoScreen);
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<FormData> getBodyVerifyOtp(String type,String otp) async {
+    final form = FormData({"type": type,"otp":otp});
+    print(form.toString());
+    return form;
   }
 }
