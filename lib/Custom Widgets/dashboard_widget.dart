@@ -37,7 +37,7 @@ class DashboardWidget extends StatelessWidget {
             Positioned(
               top: getVerticalSize(70),
               bottom: 0,
-              left: getHorizontalSize(40),
+              left: getHorizontalSize(60),
               child: Column(
                 children: [
                   Image.asset(

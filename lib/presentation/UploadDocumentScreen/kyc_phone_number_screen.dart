@@ -81,53 +81,36 @@ class KycPgoneNymberScreen extends StatelessWidget {
                                     Spacer(),
                                     Column(
                                       children: [
-                                        NumPadPhoneNumber(
-                                          type:'PHONE' ,
-                                          controller: documentController.phoneNumberController,
-                                          delete: () {
-                                            if( documentController.phoneNumberController.text.isNotEmpty){
-                                              documentController.phoneNumberController.text = documentController.phoneNumberController.text
-                                                  .substring(0, documentController.phoneNumberController.text.length - 1);
+                                        Obx(
+                                        ()=> NumPadPhoneNumber(
+                                            type:'PHONE' ,
+                                            controller: documentController.phoneNumberController,
+                                            delete: () {
+                                              if( documentController.phoneNumberController.text.isNotEmpty){
+                                                documentController.phoneNumberController.text = documentController.phoneNumberController.text
+                                                    .substring(0, documentController.phoneNumberController.text.length - 1);
 
-                                            }
-                                          },
-                                          buttonName: 'Get OTP',
-                                          // do something with the input numbers
-                                          onSubmit: () {
-                                            documentController.onClickGetOtp(context);
-                                          },
+                                              }
+                                            },
+                                            buttonName: 'Get OTP',
+                                            isLoading: documentController.isLoaderShow.value,
+                                            // do something with the input numbers
+                                            onSubmit: () {
+                                              documentController.onClickGetOtp(context);
+                                            },
+                                          ),
                                         ),
                                       ],
                                     ),
                                     SizedBox(
                                       height: getVerticalSize(16),
                                     ),
-                                    InkWell(
-                                      onTap:(){
+                                    AppElevatedButton(
+                                      radius: 5,
+                                      buttonName: 'Continue With Email',
+                                      onPressed: (){
                                         Get.toNamed(AppRoutes.kycEmail);
-                                      },
-                                      child: Container(
-                                        height: MediaQuery.of(context).size.height/16,
-                                        width: MediaQuery.of(context).size.width/1.2,
-                                        decoration: BoxDecoration(
-                                          color: ColorConstant.blue26,
-                                          borderRadius: BorderRadius.only(
-                                              topLeft: Radius.circular(10),
-                                              topRight: Radius.circular(10),
-                                              bottomLeft: Radius.circular(10),
-                                              bottomRight: Radius.circular(10)
-                                          ),
-
-                                        ),
-                                        child: Center(
-                                          child: Text(
-                                            "Continue With Email",style: AppStyle.textStyleSFPRO.copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(18)),),
-                                        ),
-                                      ),
-                                    ),
+                                      }),
                                     SizedBox(
                                       height: getVerticalSize(16),
                                     ),

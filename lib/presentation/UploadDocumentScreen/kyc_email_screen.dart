@@ -77,67 +77,23 @@ class KycEmailScreen extends StatelessWidget {
                                   readOnly: false,
                                 )),
                                 Spacer(),
-                                InkWell(
-                                  onTap: () {
-                                    FocusManager.instance.primaryFocus
-                                        ?.unfocus();
-                                    documentController.onTapOfSendOtpEmailButton();
-                                  },
-                                  child: Container(
-                                    height:
-                                        MediaQuery.of(context).size.height / 16,
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.2,
-                                    decoration: BoxDecoration(
-                                      color: ColorConstant.blue26,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "Get Otp",
-                                        style: AppStyle.textStyleSFPRO.copyWith(
-                                            color: ColorConstant.primaryWhite,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: getFontSize(18)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                AppElevatedButton(
+                                    radius: 5,
+                                    buttonName:  "Get OTP",
+                                    onPressed: (){
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                      documentController.onTapOfSendOtpEmailButton();
+                                    }),
                                 SizedBox(
                                   height: getVerticalSize(16),
                                 ),
-                                InkWell(
-                                  onTap: () {
-                                    Get.toNamed(AppRoutes.kvcPhoneNumber);
-                                  },
-                                  child: Container(
-                                    height:
-                                        MediaQuery.of(context).size.height / 16,
-                                    width:
-                                        MediaQuery.of(context).size.width / 1.2,
-                                    decoration: BoxDecoration(
-                                      color: ColorConstant.blue26,
-                                      borderRadius: BorderRadius.only(
-                                          topLeft: Radius.circular(10),
-                                          topRight: Radius.circular(10),
-                                          bottomLeft: Radius.circular(10),
-                                          bottomRight: Radius.circular(10)),
-                                    ),
-                                    child: Center(
-                                      child: Text(
-                                        "Continue With Phone Number",
-                                        style: AppStyle.textStyleSFPRO.copyWith(
-                                            color: ColorConstant.primaryWhite,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: getFontSize(18)),
-                                      ),
-                                    ),
-                                  ),
-                                ),
+                                AppElevatedButton(
+                                    radius: 5,
+                                    buttonName:   "Continue With Phone Number",
+                                    onPressed: (){
+                                      Get.toNamed(AppRoutes.kvcPhoneNumber);
+                                    }),
                                 SizedBox(
                                   height: getVerticalSize(16),
                                 ),
