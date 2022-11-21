@@ -101,6 +101,7 @@ import '../presentation/SelectBankScreen/select_bank_list_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/UploadDocumentScreen/binding/kyc_loader_screen_binding.dart';
+import '../presentation/UploadDocumentScreen/kyc_email_screen.dart';
 import '../presentation/UploadDocumentScreen/kyc_loading_screen.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen1.dart';
 import '../presentation/UploadDocumentScreen/uplod_document_screen2.dart';
@@ -163,6 +164,7 @@ class AppRoutes {
   static String enterSnnDetailScreen = '/enter_Snn_detail_screen';
   static String purpouseAccountScreen = '/purpouse_account_screen';
   static String kvcPhoneNumber = '/kvc_phone_number';
+  static String kycEmail = '/kvc_email';
   static String kvcOtpNumber = '/kvc_otp_number';
   static String kycInfoScreen = '/kyc_info_screen';
   static String kycLoadingScreen = '/kyc_loading_screen';
@@ -540,7 +542,9 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KYCInfoScreen(),
-
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
     ),
 
     GetPage(
@@ -548,7 +552,19 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KycPgoneNymberScreen(),
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
+    ),
 
+    GetPage(
+      name: kycEmail,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycEmailScreen(),
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
     ),
 
     GetPage(
@@ -556,7 +572,9 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KycOtpScreen(),
-
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
     ),
 
     GetPage(

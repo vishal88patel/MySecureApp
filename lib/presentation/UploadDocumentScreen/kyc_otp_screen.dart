@@ -70,7 +70,6 @@ class KycOtpScreen extends StatelessWidget {
                                           hintText: "Confirmation Code",
                                           fontSize: 30,
                                           readOnly: true,
-
                                         )),
                                     Spacer(),
                                     Column(
@@ -88,7 +87,7 @@ class KycOtpScreen extends StatelessWidget {
                                           buttonName: 'Verify OTP',
                                           // do something with the input numbers
                                           onSubmit: () {
-                                            documentController.onClickVerifyOtp(  context);
+                                            documentController.onClickVerifyOtp(context);
                                           },
                                         ),
                                       ],
