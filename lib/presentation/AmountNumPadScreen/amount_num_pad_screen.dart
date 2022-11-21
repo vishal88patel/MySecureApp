@@ -7,14 +7,18 @@ import 'package:my_secure_app/App%20Configurations/image_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
+import 'package:my_secure_app/presentation/CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
+import 'package:my_secure_app/utils/ConstantsFiles/string_constants.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/key_pad.dart';
 import 'controller/amount_num_pad_screen_controller.dart';
 
 class AmountNumPadScreen extends StatelessWidget {
+
   var amountNumPadController = Get.find<AmountNumPadScreenController>();
 
   final String _userPrefix = "\$";
@@ -121,16 +125,38 @@ class AmountNumPadScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Text("Please Enter Amount",
+             /* Text("Please Enter Amount",
                     style: AppStyle.textStylePoppinsRegular
                         .copyWith(
                         color: ColorConstant.lightText,
                         fontWeight: FontWeight.w400,
-                        fontSize: getFontSize(20))),
-              Container(
-                width: MediaQuery.of(context).size.width / 1.5,
-                height: getVerticalSize(70),
-                child: TextFormField(
+                        fontSize: getFontSize(20))),*/
+              Text(
+                "Please Enter Amount",
+                style: AppStyle.textStyleSFPRO.copyWith(
+                    color: ColorConstant.skyE8,
+                    fontWeight: FontWeight.bold,
+                    fontSize: getFontSize(20)),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(() => Text(
+                    "\$" + amountNumPadController.balance!.value + " " +
+                        "AVAILABLE",
+                    style: AppStyle.textStyleSFPRO.copyWith(
+                        color: ColorConstant.skyE8,
+                        fontWeight: FontWeight.w400,
+                        fontSize: getFontSize(18)),
+                  )),
+                ],
+              ),
+          Container(
+            width: MediaQuery.of(context).size.width / 2,
+            height: getVerticalSize(70),
+            child: Obx(()
+                => TextFormField(
                   inputFormatters: [
                     FilteringTextInputFormatter.allow(RegExp(r'^\d+\.?\d{0,2}'))
                   ],
@@ -150,58 +176,59 @@ class AmountNumPadScreen extends StatelessWidget {
                             offset: amountNumPadController
                                 .amountController.text.length));
                   },
+
                   focusNode: AlwaysDisabledFocusNode(),
                   style: AppStyle.textStyleSFPRO.copyWith(
-                      color: ColorConstant.skyE8,
+                      color: amountNumPadController.isAmountAvailable.value
+                          ? ColorConstant.skyE8
+                          : ColorConstant.grey77,
                       fontWeight: FontWeight.w400,
                       fontSize: getFontSize(60)),
                   decoration: InputDecoration(
+                      prefix: Text(
+                        "\$",
+                        style: AppStyle.textStyleSFPRO.copyWith(
+                            color:
+                            amountNumPadController.isAmountAvailable.value
+                                ? ColorConstant.skyE8
+                                : ColorConstant.grey77,
+                            fontWeight: FontWeight.w400,
+                            fontSize: getFontSize(60)),
+                      ),
                     errorStyle: TextStyle(height: 0),
-                    hintText: "\$",
+                    hintText: "  \$ 0",
                     hintStyle: AppStyle.textStyleSFPRO.copyWith(
                         color: ColorConstant.skyE8,
                         fontWeight: FontWeight.w400,
                         fontSize: getFontSize(60)),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: ColorConstant.underLine, width: 3),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: ColorConstant.underLine, width: 3),
-                    ),
+                    border: InputBorder.none
+
                   ),
                   cursorColor: ColorConstant.primaryAppTextF1,
                 ),
-              ),
+              )),
               Column(
                 children: [
-                  Container(
-                      height: MediaQuery.of(context).size.height / 2,
-                      decoration: BoxDecoration(
-                        color: ColorConstant.darkBlue,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade500.withOpacity(0.3),
-                            spreadRadius: 0.1,
-                            blurRadius: 10,
-                            offset:
-                                Offset(-1, -4), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: KeyPad(
-                        pinController: amountNumPadController.amountController,
-                        onChange: (String pin) {
-                          amountNumPadController.amountController.text =
-                              _userPrefix + pin;
-                          print(
-                              '${amountNumPadController.amountController.text}');
-                        },
-                        onNext: () {
+                  KeyPad(
+                    pinController: amountNumPadController.amountController,
+                    onChange: (String pin) {
+                      amountNumPadController.amountController.text =
+                          _userPrefix + pin;
+                     },
+                    onNext: () {
+
+                      if (amountNumPadController.isAmountAvailable.value) {
+                        if (amountNumPadController.amountController.text ==
+                            "" && amountNumPadController.amountController.text=='0') {
+                          UIUtils.showSnakBar(
+                              bodyText: "Please Enter Amount",
+                              headerText: StringConstants.ERROR);
+                        } else {
                           amountNumPadController.goNextScreen();
-                        },
-                      )),
+                        }
+                      }
+                    },
+                  ),
                 ],
               )
             ],

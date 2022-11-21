@@ -56,6 +56,7 @@ class KeyPad extends StatelessWidget{
               iconButtonWidget(context, () {
                 print(pinController.text.length.toString());
                 print(pinController.text.toString());
+
                 if(pinController.text.length-1==1){
                   pinController.text="";
                 }
@@ -65,8 +66,12 @@ class KeyPad extends StatelessWidget{
                 if (pinController.text.length > 1) {
                   pinController.text = pinController.text.removeLast();
                 }
-
-                onChange(pinController.text);
+                // if( pinController.text.isNotEmpty){
+                //   pinController.text = pinController.text
+                //       .substring(0, pinController.text.length - 1);
+                //
+                // }
+                // onChange(pinController.text);
               }),
             ],
           ),
@@ -102,11 +107,15 @@ class KeyPad extends StatelessWidget{
   buttonWidget(String buttonText,BuildContext context) {
     return InkWell(
       onTap:(){
+        // if(pinController.text.length<1){
+        //   pinController.text +="\$";
+        // }
         if(pinController.text.length>=8){
 
         }
         else{
-          pinController.text = pinController.text.length<1?pinController.text+buttonText.toString():pinController.text+buttonText.toString();
+          pinController.text = pinController.text.length<1?pinController.text
+              +buttonText.toString():pinController.text+buttonText.toString();
           print(pinController.text.toString());
         }
 

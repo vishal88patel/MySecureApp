@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/theme/app_style.dart';
+import 'package:my_secure_app/utils/ConstantsFiles/string_constants.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/key_pad.dart';
@@ -50,7 +52,6 @@ class CashOutAmountNumPadScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: Container(
-
                     child: Padding(
                       padding: const EdgeInsets.all(12.0),
                       child: Column(
@@ -96,9 +97,7 @@ class CashOutAmountNumPadScreen extends StatelessWidget {
                     ],
                     controller: amountNumPadController.amountController,
                     maxLines: 1,
-                    onChanged: (value) {
-
-                    },
+                    onChanged: (value) {},
                     focusNode: AlwaysDisabledFocusNode(),
                     style: AppStyle.textStyleSFPRO.copyWith(
                         color: amountNumPadController.isAmountAvailable.value
@@ -113,7 +112,6 @@ class CashOutAmountNumPadScreen extends StatelessWidget {
                           color: ColorConstant.skyE8,
                           fontWeight: FontWeight.w400,
                           fontSize: getFontSize(40)),
-
                       prefix: Text(
                         "\$",
                         style: AppStyle.textStyleSFPRO.copyWith(
@@ -144,9 +142,16 @@ class CashOutAmountNumPadScreen extends StatelessWidget {
                       //     '${amountNumPadController.amountController.text}');
                     },
                     onNext: () {
-                      if(amountNumPadController.isAmountAvailable.value){
-                        amountNumPadController.showaccountSelectTypeBottomsheet();
-
+                      if (amountNumPadController.isAmountAvailable.value) {
+                        if (amountNumPadController.amountController.text ==
+                            "") {
+                          UIUtils.showSnakBar(
+                              bodyText: "Please Enter Amount",
+                              headerText: StringConstants.ERROR);
+                        } else {
+                          amountNumPadController
+                              .showaccountSelectTypeBottomsheet();
+                        }
                       }
                       // amountNumPadController.goNextScreen();
                     },

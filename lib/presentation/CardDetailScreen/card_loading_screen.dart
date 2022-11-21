@@ -31,7 +31,7 @@ class CardLoadingScreen extends StatelessWidget {
                     MainCutomBackGround(
                         child: Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: getHorizontalSize(36.0),
+                          horizontal: getHorizontalSize(32.0),
                           vertical: getVerticalSize(26)),
                       child: SafeArea(
                         child: Stack(

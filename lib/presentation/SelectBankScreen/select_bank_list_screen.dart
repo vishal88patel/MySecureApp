@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -87,7 +88,7 @@ class SelectBankBankListScreen extends StatelessWidget {
                                         (BuildContext context, int index) {
                                       return InkWell(
                                         onTap: () {
-                                          onTapOfListile();
+                                          onTapOfListile(context);
 
                                         },
                                         child: Padding(
@@ -269,7 +270,7 @@ class SelectBankBankListScreen extends StatelessWidget {
                                               vertical: getVerticalSize(6.5)),
                                           child: InkWell(
                                             onTap: () {
-                                              onTapOfListile();
+                                              onTapOfListile(context);
                                             },
                                             child: CreditCardWidget(
                                                 cardHolderName:
@@ -317,14 +318,22 @@ class SelectBankBankListScreen extends StatelessWidget {
     ));
   }
 
-  void onTapOfListile() {
+  void onTapOfListile(BuildContext context) {
     UIUtils.showProgressDialog(isCancellable: true);
     Future.delayed(Duration(milliseconds: 3000), () {
       UIUtils.hideProgressDialog();
-      UIUtils.showSnakBar(
-          headerText: StringConstants.ERROR,
-          bodyText:
-              "Something went wrong. we cannot process this transaction due to technical issue!!!");
-    });
+      AwesomeDialog(
+          context: context,
+          dialogType: DialogType.ERROR,
+          animType: AnimType.RIGHSLIDE,
+          headerAnimationLoop: false,
+          title: 'Error',
+          desc:
+          'Something went wrong. we cannot process this transaction due to technical issue!!!',
+          btnOkOnPress: () {},
+          btnOkIcon: Icons.cancel,
+          btnOkColor: Colors.red)
+        ..show();
+     });
   }
 }

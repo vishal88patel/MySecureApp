@@ -8,6 +8,7 @@ import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/key_pad_pin.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
+import 'package:my_secure_app/presentation/loader_screen.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
@@ -134,7 +135,9 @@ class PinScreen extends StatelessWidget {
 
               SizedBox(height: getVerticalSize(20),),
               Obx(
-                    () => Text(pinScreenController.isPin.value==0?"Please Set Your Pin":"Please Enter Your Pin",
+                    () => Text(pinScreenController.isPin.value==0
+                        ?"Please Set Your Pin"
+                        :"Please Enter Your Pin",
                     style: AppStyle.textStylePoppinsRegular
                         .copyWith(
                         color: ColorConstant.lightText,
@@ -183,29 +186,25 @@ class PinScreen extends StatelessWidget {
               SizedBox(height: getVerticalSize(100),),
               Column(
                 children: [
-                  Container(
-                      height: MediaQuery.of(context).size.height / 2,
-                      decoration: BoxDecoration(
-                        color: ColorConstant.darkBlue,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey.shade500.withOpacity(0.3),
-                            spreadRadius: 0.1,
-                            blurRadius: 10,
-                            offset:
-                                Offset(-1, -4), // changes position of shadow
-                          ),
-                        ],
-                      ),
-                      child: KeyPadPin(
-                        pinController: pinScreenController.pinController,
-                        onChange: (String pin) {
+                  KeyPadPin(
+                    pinController: pinScreenController.pinController,
+                    onChange: (String pin) {
 
-                        },
-                        onNext: () {
-                          Get.toNamed(AppRoutes.bankDetailScreen);
-                        },
-                      )),
+                    },
+                    onNext: () {
+                      Get.to(
+                              () => LoaderScreen(
+                            AppRoutes.bankDetailScreen,
+                          ),
+                          transition: Transition.rightToLeft);
+                      // Get.to(
+                      //   LoaderScreen(AppRoutes.bankDetailScreen),
+                      //   transition: Transition.rightToLeft,
+                      //   duration: Duration(milliseconds: 400),
+                      // );
+                      // Get.toNamed(AppRoutes.bankDetailScreen);
+                    },
+                  ),
                 ],
               )
             ],

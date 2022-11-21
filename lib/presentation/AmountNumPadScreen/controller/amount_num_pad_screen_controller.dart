@@ -2,6 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/utils/ConstantsFiles/string_constants.dart';
+import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
@@ -14,8 +16,10 @@ class AmountNumPadScreenController extends GetxController {
   var uuid="".obs;
   var email="".obs;
   var name="".obs;
+  var balance=''.obs;
   var profile_pic="".obs;
   var isPin=0.obs;
+  var isAmountAvailable= true.obs;
   @override
   void onReady() {
     super.onReady();
@@ -24,6 +28,19 @@ class AmountNumPadScreenController extends GetxController {
   @override
   void onInit() {
     getArguments();
+    amountController.addListener(() {
+      Get.closeAllSnackbars();
+      if (int.parse(balance.value) >= int.parse(amountController.text)) {
+        Get.closeCurrentSnackbar();
+        isAmountAvailable.value = true;
+      } else {
+        Get.closeAllSnackbars();
+        UIUtils.showSnakBar(
+            headerText: StringConstants.ERROR,
+            bodyText: "Amount is not available");
+        isAmountAvailable.value = false;
+      }
+    });
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -40,17 +57,25 @@ class AmountNumPadScreenController extends GetxController {
       name.value = arguments['NAME'] ?? '';
       profile_pic.value = arguments['IMAGE'] ?? '';
       isPin.value = arguments['IS_PIN'] ?? '';
+      balance.value = arguments['amount']??'';
+
     }
   }
 
   void goNextScreen(){
-    Get.toNamed(AppRoutes.pinScreen,arguments: {
-      "IS_PIN":isPin.value,
-      "EMAIL":email.value,
-      "NAME":name.value,
-      "IMAGE":profile_pic.value,
-      "UUID_ID":uuid.value,
-      "AMOUNT":amountController.text,
-    });
+    if (amountController.text.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please enter amount",
+          headerText: StringConstants.ERROR);
+    } else {
+      Get.toNamed(AppRoutes.pinScreen, arguments: {
+        "IS_PIN": isPin.value,
+        "EMAIL": email.value,
+        "NAME": name.value,
+        "IMAGE": profile_pic.value,
+        "UUID_ID": uuid.value,
+        "AMOUNT": amountController.text.trim().replaceAll('\$', ''),
+      });
+    }
   }
 }

@@ -307,11 +307,13 @@ class TransactionScreen extends StatelessWidget {
                                 Expanded(
                                   child: InkWell(
                                     onTap: () {
+
                                       Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (
-                                                context) => const QRViewExample2()),
+                                                context) =>  QRViewExample2(
+                                                )),
                                       );
                                     },
                                     child: Container(
