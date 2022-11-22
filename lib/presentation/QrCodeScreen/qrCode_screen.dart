@@ -82,6 +82,10 @@ class QrCodeScreen extends StatelessWidget {
                     data: qrController.uuid.value,
                     version: QrVersions.auto,
                     size: 200.0,
+                    embeddedImage: AssetImage('assets/app_icon.png'),
+                    embeddedImageStyle: QrEmbeddedImageStyle(
+                      size: Size(80, 80),
+                    ),
                   ),
                 ),
               ),
@@ -127,47 +131,31 @@ class QrCodeScreen extends StatelessWidget {
                           builder: (context) => const QRViewExample2()),
                     );
                   },
-                  child: Container(
-                    decoration: BoxDecoration(
-                        color: ColorConstant.blue26,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: getVerticalSize(22)),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text('Open Scanner',
-                              style: AppStyle.textStylePoppinsRegular
-                                  .copyWith(
-                                  color:
-                                  ColorConstant.primaryWhite,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: getFontSize(20))),
-                          SizedBox(
-                            width: getHorizontalSize(12),
-                          ),
-                          DottedBorder(
-                              color: ColorConstant.skyE8,
-                              strokeWidth: 1,
-                              borderType: BorderType.Circle,
-                              radius: Radius.circular(100),
-                              child: Container(
-                                height: getVerticalSize(26),
-                                width: getHorizontalSize(26),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: Image.asset(
-                                      'asset/scan_image.png'),
-                                ),
-                              ))
-                        ],
-                      ),
+                  child: InkWell(
+                    onTap: (){
+                      Get.back();
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                            'asset/scan_icon.png',color: ColorConstant.skyE8,width: getHorizontalSize(36)),
+                        SizedBox(
+                          height: getHorizontalSize(12),
+                        ),
+                        Text('Scan',
+                            style: AppStyle.textStylePoppinsRegular
+                                .copyWith(
+                                color:
+                                ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w500,
+                                fontSize: getFontSize(20))),
+                      ],
                     ),
                   ),
                 ),
               ),
-              SizedBox(height: getVerticalSize(42),),
+              SizedBox(height: getVerticalSize(54),),
             ],
           ),
         ));

@@ -112,7 +112,7 @@ class KycEmailScreen extends StatelessWidget {
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Get.toNamed(AppRoutes.kvcPhoneNumber);
+                                    Get.back();
                                   },
                                   child: Container(
                                     height:

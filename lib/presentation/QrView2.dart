@@ -8,6 +8,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../App Configurations/color_constants.dart';
+import '../routes/app_routes.dart';
 import '../theme/app_style.dart';
 import '../utils/HelperFiles/math_utils.dart';
 import 'TransactionScreen/controller/transaction_screen_controller.dart';
@@ -47,42 +48,69 @@ class _QRViewExample2State extends State<QRViewExample2> {
         children: [
           Column(
             children: <Widget>[
-              Expanded(child: _buildQrView(context)),
+              Expanded(child: Padding(
+                padding:  EdgeInsets.only(bottom:getVerticalSize(50)),
+                child: _buildQrView(context),
+              )),
             ],
           ),
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+
               Padding(
-                padding: EdgeInsets.only(top: getVerticalSize(60)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Scan Qr Code",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getFontSize(30)),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: getVerticalSize(50)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                padding: EdgeInsets.only(top: getVerticalSize(60),left:getVerticalSize(16) ),
+                child:Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     InkWell(
-                      onTap: (){Navigator.pop(context);},
+                      onTap:(){
+                        Navigator.pop(context);
+                      },
                       child: Icon(
-                        Icons.cancel,
-                        color: Colors.white,
-                        size: getVerticalSize(80),
+                        Icons.arrow_back,
+                        color: ColorConstant.primaryWhite,
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.only(right: getHorizontalSize(25.0)),
+                      child: Text("Scan QR Code",
+                          style: AppStyle.textStylePoppinsRegular
+                              .copyWith(
+                              color: ColorConstant.primaryWhite,
+                              fontWeight: FontWeight.w600,
+                              fontSize: getFontSize(20))),
+                    ),
+                    Container(width: 24,)
                   ],
-                ),
+                )
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height/5,
+                  color: Colors.white,
+                  child:InkWell(
+                    onTap: (){
+                      Get.toNamed(AppRoutes.qrCodeScreen, arguments: {
+                        'UUID_ID': transactionController.uuid.value,
+                      });
+                    },
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset('asset/scan_image.png',width: getHorizontalSize(50),),
+                        SizedBox(
+                          height: getVerticalSize(14),
+                        ),
+                        Text("MY CODE",
+                            style: AppStyle.textStylePoppinsRegular
+                                .copyWith(
+                                color: ColorConstant.skyE8,
+                                fontWeight: FontWeight.w600,
+                                fontSize: getFontSize(18))),
+                      ],
+                    )
+                  )
               ),
             ],
           )
@@ -100,9 +128,9 @@ class _QRViewExample2State extends State<QRViewExample2> {
       key: qrKey,
       onQRViewCreated: _onQRViewCreated,
       overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
+          borderColor:ColorConstant.skyE8,
           borderRadius: 10,
-          borderLength: 30,
+          borderLength: MediaQuery.of(context).size.width/2.25,
           borderWidth: 10,
           cutOutHeight:MediaQuery.of(context).size.width/1.2,
           cutOutWidth: MediaQuery.of(context).size.width/1.2,
