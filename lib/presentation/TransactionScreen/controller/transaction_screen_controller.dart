@@ -61,8 +61,8 @@ class TransactionScreenController extends GetxController {
 
       } else {
         UIUtils.hideProgressDialog();
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
+        // UIUtils.showSnakBar(
+        //     bodyText: value['message']??'', headerText: StringConstants.ERROR);
       }
     });
   }

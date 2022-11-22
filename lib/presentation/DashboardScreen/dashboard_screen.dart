@@ -24,7 +24,7 @@ class DashBoardScreen extends StatelessWidget {
       extendBody: true,
       body: Obx(
         ()=> WillPopScope(
-          onWillPop: dashBoardController.onWillPop,
+          onWillPop: ()=>dashBoardController.showLogOutDialouge(),
           child: IndexedStack(
             index: dashBoardController.selectedIndex.value,
             children: [

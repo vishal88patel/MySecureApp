@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
@@ -141,6 +142,8 @@ buttonWidget(
       required TextEditingController controller}) {
   return InkWell(
     onTap:(){
+      HapticFeedback.lightImpact();
+
       if(type=='PHONE'){
         if(controller.text.length<=16) {
           if (controller.text.length <= 0) {

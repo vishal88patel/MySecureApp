@@ -79,6 +79,8 @@ class KycOtpScreen extends StatelessWidget {
                                             type:'OTP' ,
                                             controller: documentController.otpController,
                                             delete: () {
+                                              HapticFeedback.lightImpact();
+
                                               if( documentController.otpController.text.isNotEmpty){
                                                 documentController.otpController.text = documentController.otpController.text
                                                     .substring(0, documentController.otpController.text.length - 1);

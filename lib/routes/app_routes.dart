@@ -53,6 +53,7 @@ import 'package:my_secure_app/presentation/SuccessScreen/success_screen.dart';
 import 'package:my_secure_app/presentation/UploadDocumentScreen/kyc_info_screen.dart';
 import 'package:my_secure_app/presentation/UploadDocumentScreen/kyc_otp_screen.dart';
 import 'package:my_secure_app/presentation/UploadDocumentScreen/kyc_phone_number_screen.dart';
+import 'package:my_secure_app/presentation/UploadDocumentScreen/otp_successfully_verifed_screen.dart';
 import '../presentation/AddBankProceedScreen/add_bank_proceed_screen.dart';
 import '../presentation/AddBankProceedScreen/binding/add_bank_proceed_screen_binding.dart';
 import '../presentation/AmountNumPadScreen/amount_num_pad_screen.dart';
@@ -170,6 +171,7 @@ class AppRoutes {
   static String kycLoadingScreen = '/kyc_loading_screen';
   static String cameraScreen = '/camera_screen';
   static String enterSecureTagScreen = '/enter_secure_tag_screen';
+  static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
 
 
   static List<GetPage> pages = [
@@ -572,6 +574,16 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => KycOtpScreen(),
+      bindings: [
+        UploadDocumentScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: otpVerifySuccessfullyScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => OtpVerifySuccessfully(),
       bindings: [
         UploadDocumentScreenBinding(),
       ],

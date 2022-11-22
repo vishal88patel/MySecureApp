@@ -85,4 +85,5 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation platform('com.google.firebase:firebase-bom:31.1.0')
     implementation 'com.google.firebase:firebase-analytics'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
 }

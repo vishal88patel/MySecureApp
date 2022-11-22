@@ -86,6 +86,8 @@ class KycPgoneNymberScreen extends StatelessWidget {
                                             type:'PHONE' ,
                                             controller: documentController.phoneNumberController,
                                             delete: () {
+                                              HapticFeedback.lightImpact();
+
                                               if( documentController.phoneNumberController.text.isNotEmpty){
                                                 documentController.phoneNumberController.text = documentController.phoneNumberController.text
                                                     .substring(0, documentController.phoneNumberController.text.length - 1);

@@ -451,7 +451,7 @@ class UploadDocumentScreenController extends GetxController {
       if (value['status']) {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.SUCCESS);
-        Get.toNamed(AppRoutes.kycInfoScreen);
+        Get.toNamed(AppRoutes.otpVerifySuccessfullyScreen);
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

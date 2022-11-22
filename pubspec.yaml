@@ -74,6 +74,8 @@ dependencies:
   cloud_firestore: ^3.4.1
   firebase_storage: ^10.3.3
   awesome_dialog: ^3.0.2
+  barcode_scanner: ^3.2.3
+
 
 
 

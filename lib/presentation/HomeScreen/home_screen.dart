@@ -7,6 +7,7 @@ import 'package:my_secure_app/Custom%20Widgets/dashboard_widget.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
 import 'package:my_secure_app/presentation/DashboardScreen/controller/dashboard_screen_controller.dart';
 import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
+import 'package:my_secure_app/presentation/TransactionScreen/controller/transaction_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
@@ -16,6 +17,8 @@ import '../../Custom Widgets/app_ElevatedButton .dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
+  var transactionController = Get.put(TransactionScreenController());
+
   var dashBoardController = Get.find<DashBoarScreenController>();
 
 
@@ -130,7 +133,7 @@ class HomeScreen extends StatelessWidget {
                           height: getVerticalSize(40),
                         ),
                         SizedBox(
-                          height: getVerticalSize(270),
+                          height: getVerticalSize(190),
                           child: ListView(
                             shrinkWrap: true,
                             physics:const  BouncingScrollPhysics(),
@@ -138,85 +141,96 @@ class HomeScreen extends StatelessWidget {
                             scrollDirection: Axis.horizontal,
                             children: [
                               SizedBox(width:getHorizontalSize(40)),
-                              DashboardWidget(
-                                image: 'asset/blue_card_image.png',
-                                icon: 'asset/icons/walle_tbalance.png',
-                                title: 'Wallet Balance',
-                                onTap: () {
-                                  dashBoardController.onTapOfBottomnavigation(1);
-                                },
-                                child:Padding(
-                                  padding:  EdgeInsets.only(top: getVerticalSize(10)),
-                                  child: Text(
-                                    '\$1000',
-                                    style: AppStyle.textStylePoppinsRegular.copyWith(
-                                        color: ColorConstant.blue62,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: getFontSize(14)),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ) ,
+                              Obx(()=>
+                                 DashboardWidget(
+                                  image: 'asset/blue_card_image.png',
+                                  icon: 'asset/icons/walle_tbalance.png',
+                                  title: 'Wallet Balance',
+                                  onTap: () {
+                                    dashBoardController.onTapOfBottomnavigation(1);
+                                  },
+                                  child:Padding(
+                                    padding:  EdgeInsets.only(top: getVerticalSize(2)),
+                                    child: Text(
+                                      '\$ ${transactionController.balance}',
+                                      style: AppStyle.textStylePoppinsRegular.copyWith(
+                                          color: ColorConstant.blue62,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(14)),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ) ,
+                                ),
                               ),
                               Stack(
                                 clipBehavior: Clip.none,
                                 children: [
-                                  DashboardWidget(
-                                    image: 'asset/purple_card_image.png',
-                                    icon: 'asset/icons/bank_icon.png',
-                                    title: homeController
-                                        .getLinkedBankModel
-                                        .value.data !=
-                                        null
-                                        && int.parse(homeController
-                                        .getLinkedBankModel
-                                        .value
-                                        .data!
-                                        .length
-                                        .toString()) >=1
-                                        ? "          My Bank          ":'         Link Bank         ',
-                                    onTap: () {
-                                      Get.offAllNamed(AppRoutes.dashBoardScreen,
-                                          arguments: {"bottomTabCount": 2});
-                                    },
-                                    child:homeController
-                                        .getLinkedBankModel
-                                        .value.data !=
-                                        null
-                                        && int.parse(homeController
-                                            .getLinkedBankModel
-                                            .value
-                                            .data!
-                                            .length
-                                            .toString()) == 0
-                                        ?const SizedBox() :Row(
-                                      children: [
-                                        Text(
-                                          'Axis bank',
-                                          style: AppStyle.textStylePoppinsRegular.copyWith(
-                                              color: ColorConstant.blue62,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(14)),
-                                          textAlign: TextAlign.center,
-                                        ) ,
-                                        homeController
-                                            .getLinkedBankModel
-                                            .value.data !=
-                                            null
-                                            && int.parse(homeController
-                                            .getLinkedBankModel
-                                            .value
-                                            .data!
-                                            .length
-                                            .toString()) >=1
-                                           ? Text(
-                                         '   >',
-                                          style: AppStyle.textStylePoppinsRegular.copyWith(
-                                              color: ColorConstant.blue62,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(20)),
-                                          textAlign: TextAlign.center,
-                                        ) :SizedBox(),
-                                      ],
+                                  Obx(()=> DashboardWidget(
+                                      image: 'asset/purple_card_image.png',
+                                      icon: 'asset/icons/bank_icon.png',
+                                      title: homeController
+                                          .getLinkedBankModel
+                                          .value.data !=
+                                          null
+                                          && int.parse(homeController
+                                          .getLinkedBankModel
+                                          .value
+                                          .data!
+                                          .length
+                                          .toString()) >=1
+                                          ? "          My Bank          "
+                                          :'         Link Bank         ',
+                                      onTap: () {
+                                        Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                            arguments: {"bottomTabCount": 2});
+                                      },
+                                      child:homeController
+                                          .getLinkedBankModel
+                                          .value.data !=
+                                          null
+                                          && int.parse(homeController
+                                              .getLinkedBankModel
+                                              .value
+                                              .data!
+                                              .length
+                                              .toString()) == 0
+                                          ?const SizedBox() :Row(
+                                        children: [
+                                          Text(
+                                            homeController
+                                                .getLinkedBankModel
+                                                .value
+                                                .data==null?'':
+                                            homeController
+                                                .getLinkedBankModel
+                                                .value
+                                                .data![0].bankName??'',
+                                            style: AppStyle.textStylePoppinsRegular.copyWith(
+                                                color: ColorConstant.blue62,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: getFontSize(14)),
+                                            textAlign: TextAlign.center,
+                                          ) ,
+                                          homeController
+                                              .getLinkedBankModel
+                                              .value.data !=
+                                              null
+                                              && int.parse(homeController
+                                              .getLinkedBankModel
+                                              .value
+                                              .data!
+                                              .length
+                                              .toString()) >=1
+                                             ? Text(
+                                           '   >',
+                                            style: AppStyle.textStylePoppinsRegular.copyWith(
+                                                color: ColorConstant.blue62,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: getFontSize(20)),
+                                            textAlign: TextAlign.center,
+                                          ) :SizedBox(),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   Obx(
@@ -401,26 +415,30 @@ class HomeScreen extends StatelessWidget {
                                                       fontSize: getFontSize(24)),
                                             ),
                                           ),
+                                          SizedBox(height: getVerticalSize(10),),
                                           Row(
                                             mainAxisAlignment:
                                                 MainAxisAlignment.center,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Flexible(
-                                                child: Text(
-                                                  textAlign: TextAlign.center,
-                                                  "To Enable Wallet withdrawal and deposits to complete your KYC",
-                                                  style: AppStyle
-                                                      .textStyleSFPRORegular
-                                                      .copyWith(
-                                                          color: ColorConstant
-                                                              .primaryBlack,
-                                                          decoration:
-                                                              TextDecoration.none,
-                                                          fontWeight:
-                                                              FontWeight.w300,
-                                                          fontSize:
-                                                              getFontSize(20)),
+                                                child: Padding(
+                                                  padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(5)),
+                                                  child: Text(
+                                                    textAlign: TextAlign.center,
+                                                    "To Enable Wallet withdrawal and deposits to complete your KYC",
+                                                    style: AppStyle
+                                                        .textStyleSFPRORegular
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .primaryBlack,
+                                                            decoration:
+                                                                TextDecoration.none,
+                                                            fontWeight:
+                                                                FontWeight.w300,
+                                                            fontSize:
+                                                                getFontSize(20)),
+                                                  ),
                                                 ),
                                               ),
                                             ],
