@@ -329,7 +329,7 @@ class SelectBankBankListScreen extends StatelessWidget {
           headerAnimationLoop: false,
           title: 'Error',
           desc:
-          'Something went wrong. we cannot process this transaction due to technical issue!!!',
+          'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
           btnOkOnPress: () {},
           btnOkIcon: Icons.cancel,
           btnOkColor: Colors.red)

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -11,8 +12,9 @@ import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../PersonalDetails/model/get_loan_type_response_model.dart';
-import '../amount_dialog.dart';
 import '../Amount_radial_screen.dart';
+import '../amount_dialog.dart';
+import '../select_loan_type_screen.dart';
 
 class LoanCalculatorScreenController extends GetxController {
   var loanModel = GetLoanTypeResponseModel().obs;
@@ -52,8 +54,8 @@ class LoanCalculatorScreenController extends GetxController {
   TextEditingController cityController = TextEditingController();
   TextEditingController stateController = TextEditingController();
   TextEditingController zipCodeController = TextEditingController();
-  var stateList=[].obs;
-  var selectedState="Select State".obs;
+  var stateList = [].obs;
+  var selectedState = "Select State".obs;
   String? selectedStateFordropdown;
 
   @override
@@ -64,7 +66,7 @@ class LoanCalculatorScreenController extends GetxController {
   @override
   void onInit() {
     getStoredData();
-    Future.delayed(Duration(milliseconds: 50),(){
+    Future.delayed(Duration(milliseconds: 50), () {
       getStateList();
     });
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
@@ -140,6 +142,24 @@ class LoanCalculatorScreenController extends GetxController {
     if (selectedLoan.value == "Please select loan") {
       UIUtils.showSnakBar(
           bodyText: "Please select loan", headerText: StringConstants.ERROR);
+    } /*else if (selectedLoanAmount.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Select Amount", headerText: StringConstants.ERROR);
+    } else if (selectedLoanTenure.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Select Loan Tenure",
+          headerText: StringConstants.ERROR);
+    } */else {
+      // getLoanCalculationApi();
+      // Get.toNamed(AppRoutes.loanStepScreen);
+      Get.to(AmountRadialScreen());
+    }
+  }
+
+  void onClickOfProcessToLoanFinalStep() {
+    if (selectedLoan.value == "Please select loan") {
+      UIUtils.showSnakBar(
+          bodyText: "Please select loan", headerText: StringConstants.ERROR);
     } else if (selectedLoanAmount.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please Select Amount", headerText: StringConstants.ERROR);
@@ -148,6 +168,9 @@ class LoanCalculatorScreenController extends GetxController {
           bodyText: "Please Select Loan Tenure",
           headerText: StringConstants.ERROR);
     } else {
+      if(int.parse(selectedLoanAmount.value)> 50000){
+        selectedLoan.value="Business Loan";
+      };
       getLoanCalculationApi();
       // Get.toNamed(AppRoutes.loanStepScreen);
       // Get.to(AmountRadialScreen());
@@ -249,7 +272,8 @@ class LoanCalculatorScreenController extends GetxController {
           headerText: StringConstants.ERROR);
     } else if (!isAdult(dobController.text)) {
       UIUtils.showSnakBar(
-          bodyText: "Under 18 year old are not eligible for loan", headerText: StringConstants.ERROR);
+          bodyText: "Under 18 year old are not eligible for loan",
+          headerText: StringConstants.ERROR);
     } else {
       Get.toNamed(AppRoutes.loanSsnScreen);
     }
@@ -259,11 +283,11 @@ class LoanCalculatorScreenController extends GetxController {
     if (ssnController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
-    }else if (ssnController.text.length!=9) {
+    } else if (ssnController.text.length != 9) {
       UIUtils.showSnakBar(
-          bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
-    }
-    else {
+          bodyText: "SSN Should be 9 digit number",
+          headerText: StringConstants.ERROR);
+    } else {
       Get.toNamed(AppRoutes.loanAddressScreen);
     }
   }
@@ -280,21 +304,23 @@ class LoanCalculatorScreenController extends GetxController {
     } else if (cityController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter city", headerText: StringConstants.ERROR);
-    } else if (selectedState.value=="Select State") {
+    } else if (selectedState.value == "Select State") {
       UIUtils.showSnakBar(
           bodyText: "Please enter state", headerText: StringConstants.ERROR);
     } else if (zipCodeController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter zipcode", headerText: StringConstants.ERROR);
-    }else if (zipCodeController.text.length!=5) {
-      UIUtils.showSnakBar(bodyText: "Please 5 digit zip code", headerText: StringConstants.ERROR);
+    } else if (zipCodeController.text.length != 5) {
+      UIUtils.showSnakBar(
+          bodyText: "Please 5 digit zip code",
+          headerText: StringConstants.ERROR);
     } else {
       Get.dialog(
         CustomDialog(
           description:
-          "Based on your profile and documents you are eligible for loan upto ${"\$$maximumAvailableLoan"}.Thank you",
+              "Based on your profile and documents you are eligible for loan upto ${"\$$maximumAvailableLoan"}.Thank you",
           onPressed: () {
-
+            Get.to(SelectLoanTypeScreen());
           },
         ),
       );
@@ -317,14 +343,13 @@ class LoanCalculatorScreenController extends GetxController {
   Future<void> getStateList() async {
     ApiService()
         .callGetApi(
-        body: FormData({}),
-        headerWithToken: false,
-        url: ApiEndPoints.GET_STATE)
+            body: FormData({}),
+            headerWithToken: false,
+            url: ApiEndPoints.GET_STATE)
         .then((value) {
       print(value);
       if (value['status']) {
-
-        stateList.value=value['data']??[];
+        stateList.value = value['data'] ?? [];
         // selectedState.value=stateList.value[0];
         print(stateList);
         // loanModel.value = GetLoanTypeResponseModel.fromJson(value);
@@ -337,9 +362,8 @@ class LoanCalculatorScreenController extends GetxController {
   }
 
   void setSelectedState(String string) {
-    selectedState.value=string;
-    selectedStateFordropdown=string;
+    selectedState.value = string;
+    selectedStateFordropdown = string;
     stateList.refresh();
   }
-
 }

@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
@@ -20,8 +21,8 @@ class AmountRadialScreen extends StatefulWidget {
 class _AmountRadialScreenState extends State<AmountRadialScreen> {
   var loanCalculatorController = Get.find<LoanCalculatorScreenController>();
 
-  double _volumeValue = 0;
-
+  double _volumeValue = 100;
+ bool showInfoDialouge=true;
   Future<void> onVolumeChanged(double value) async {
     if (await Vibrate.canVibrate) {
       Vibrate.vibrate();
@@ -29,6 +30,19 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
     setState(() {
       loanCalculatorController.selectedLoanAmount.value =
           value.round().toString();
+      if(value.round()>50000){
+        if(showInfoDialouge){
+        AwesomeDialog(
+            context: context,
+            dialogType: DialogType.info,
+            animType: AnimType.rightSlide,
+            title: 'Info',
+            desc: 'Loan Above \$ 50000 will be Converted to Business Loan',
+            btnCancelOnPress: () {},
+      btnOkOnPress: () {},
+      )..show();
+        showInfoDialouge=false;
+      }}
       _volumeValue = value;
     });
   }
@@ -102,7 +116,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                 child: SfRadialGauge(axes: <RadialAxis>[
                                   RadialAxis(
 
-                                      minimum: 0,
+                                      minimum: 100,
                                       startAngle: 270,
                                       endAngle: 260,
                                       interval: 10,
@@ -111,7 +125,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                           .maximumAvailableLoan.value
                                           .toDouble(),
                                       showLabels: true,
-                                      showTicks: false,
+                                      showTicks: true,
                                       radiusFactor: 0.7,
                                       axisLineStyle: AxisLineStyle(
                                           cornerStyle:
@@ -321,7 +335,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                 fontWeight: FontWeight.w700,
                                 onPressed: () {
                                   loanCalculatorController
-                                      .onClickOfProcessToLoan();
+                                      .onClickOfProcessToLoanFinalStep();
                                   // Get.toNamed(AppRoutes.loanStepScreen);
                                   // Get.offAllNamed(AppRoutes.dashBoardScreen);
                                   // Get.toNamed(AppRoutes.successScreen);

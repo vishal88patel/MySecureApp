@@ -15,7 +15,8 @@ import '../loader_screen.dart';
 import 'controller/loan_calculator_screen_controller.dart';
 
 class LoanDobScreen extends StatelessWidget {
-  var loanCalculatorController = Get.put(LoanCalculatorScreenController());
+  // var loanCalculatorController = Get.put(LoanCalculatorScreenController());
+  var loanCalculatorController = Get.find<LoanCalculatorScreenController>();
 
   @override
   Widget build(BuildContext context) {
