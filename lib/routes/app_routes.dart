@@ -715,7 +715,7 @@ class AppRoutes {
       name: loanCalculatorScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => LoanCalculatorScreen(),
+      page: () => ApplyLoanInfoScreen(),
       bindings: [
         LoanCalculatorScreenBinding(),
       ],
