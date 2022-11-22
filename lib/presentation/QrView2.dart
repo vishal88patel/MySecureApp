@@ -98,14 +98,14 @@ class _QRViewExample2State extends State<QRViewExample2> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset('asset/scan_image.png',width: getHorizontalSize(50),),
+                        Image.asset('asset/scan_image.png',width: getHorizontalSize(50),color: ColorConstant.primaryBlack,),
                         SizedBox(
                           height: getVerticalSize(14),
                         ),
                         Text("MY CODE",
                             style: AppStyle.textStylePoppinsRegular
                                 .copyWith(
-                                color: ColorConstant.skyE8,
+                                color: ColorConstant.primaryBlack,
                                 fontWeight: FontWeight.w600,
                                 fontSize: getFontSize(18))),
                       ],

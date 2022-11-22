@@ -26,8 +26,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
   Future<void> onVolumeChanged(double value) async {
     if (await Vibrate.canVibrate) {
       Vibrate.vibrate();
-    }
-    ;
+    };
     setState(() {
       loanCalculatorController.selectedLoanAmount.value =
           value.round().toString();
