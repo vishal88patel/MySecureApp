@@ -156,8 +156,10 @@ class CashOutAmountNumPadScreen extends StatelessWidget {
                       // amountNumPadController.goNextScreen();
                     },
                   ),
+                  SizedBox(height: getVerticalSize(36),)
                 ],
-              )
+              ),
+
             ],
           ),
         ));

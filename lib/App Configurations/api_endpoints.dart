@@ -23,5 +23,6 @@ class ApiEndPoints {
   static String SEND_OTP_ON_EMAIL = BASE_URL + "/auth/sendOTP";
   static String VERIFY_OTP_OF_EMAIL = BASE_URL + "/auth/verifyOTP";
   static String GET_PROFILE = BASE_URL + "/auth/getProfile";
+  static String WITHDRAW_ERROR = BASE_URL + "/withdrawalAmount";
 
 }

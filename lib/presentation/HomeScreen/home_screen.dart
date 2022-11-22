@@ -270,7 +270,7 @@ class HomeScreen extends StatelessWidget {
                               DashboardWidget(
                                 image: 'asset/sky_card_image.png',
                                 icon: 'asset/icons/bush_icon.png',
-                                title: 'Boost Cibil Score',
+                                title: 'Boost Civil Score',
                                 onTap: () {},
                               ),
 
