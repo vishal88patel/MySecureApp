@@ -467,6 +467,11 @@ class TransactionScreen extends StatelessWidget {
                                                 .value[index]
                                                 .createdAt ??
                                             "",
+                                        transactionStatus: transactionController
+                                                .transactionList
+                                                .value[index]
+                                                .status ??
+                                            "",
                                         image: 'asset/icons/Apple_icon.png'),
                                   );
                                 }

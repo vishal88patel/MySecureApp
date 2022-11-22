@@ -137,7 +137,7 @@ class AccountDetailListScreen extends StatelessWidget {
                                   itemBuilder: (BuildContext context,int index) {
                                     return Padding(
                                       padding:  EdgeInsets.symmetric(vertical: getVerticalSize(6.5)),
-                                      child:const AccountDetailListWidget(
+                                      child: AccountDetailListWidget(
                                           name: 'Your Bank Name ',
                                           price: '-\$5.00',
                                           time: '2:45 PM  | Oct  13  2019',

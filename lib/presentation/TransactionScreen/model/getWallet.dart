@@ -49,7 +49,7 @@ class Data {
     currentPage = json['currentPage'];
     lastPage = json['lastPage'];
     walletBalance = json['wallet_balance'];
-    uuid = json['uuid']??"";
+    uuid = json['uuid'];
     if (json['userTransaction'] != null) {
       userTransaction = <UserTransaction>[];
       json['userTransaction'].forEach((v) {
@@ -79,11 +79,17 @@ class UserTransaction {
   int? id;
   String? amount;
   String? notes;
-  int? createdAt;
+  String? createdAt;
   String? status;
+  String? transactionStatus;
 
   UserTransaction(
-      {this.id, this.amount, this.notes, this.createdAt, this.status});
+      {this.id,
+        this.amount,
+        this.notes,
+        this.createdAt,
+        this.status,
+        this.transactionStatus});
 
   UserTransaction.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -91,6 +97,7 @@ class UserTransaction {
     notes = json['notes'];
     createdAt = json['created_At'];
     status = json['status'];
+    transactionStatus = json['transactionStatus'];
   }
 
   Map<String, dynamic> toJson() {
@@ -100,6 +107,7 @@ class UserTransaction {
     data['notes'] = this.notes;
     data['created_At'] = this.createdAt;
     data['status'] = this.status;
+    data['transactionStatus'] = this.transactionStatus;
     return data;
   }
 }

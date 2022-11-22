@@ -9,6 +9,7 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../PersonalDetails/model/get_loan_type_response_model.dart';
+import '../Amount_radial_screen.dart';
 
 class LoanCalculatorScreenController extends GetxController {
   var loanModel = GetLoanTypeResponseModel().obs;
@@ -127,6 +128,7 @@ class LoanCalculatorScreenController extends GetxController {
     } else {
       getLoanCalculationApi();
       // Get.toNamed(AppRoutes.loanStepScreen);
+      // Get.to(AmountRadialScreen());
     }
   }
 
