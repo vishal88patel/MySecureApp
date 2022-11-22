@@ -15,7 +15,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    PrefUtils.setString(StringConstants.IS_KYC_DONE,"1");
+    // PrefUtils.setString(StringConstants.IS_KYC_DONE,"1");
     return Scaffold(
       body: MainCutomBackGround(
         child: Image.asset(

@@ -52,50 +52,9 @@ class _QRViewExampleState extends State<QRViewExample> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          Column(
-            children: <Widget>[
-              Expanded(child: _buildQrView(context)),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: getVerticalSize(60)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Scan Qr Code",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getFontSize(30)),
-                    ),
-                  ],
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(bottom: getVerticalSize(50)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    InkWell(
-                      onTap: (){Navigator.pop(context);},
-                      child: Icon(
-                        Icons.cancel,
-                        color: Colors.white,
-                        size: getVerticalSize(80),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          )
-        ],
+      backgroundColor: Colors.black,
+      body: Container(
+        child: Center(child: CircularProgressIndicator(),),
       ),
     );
   }
