@@ -72,7 +72,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                         ),
                         TextFormField(
                           keyboardType: TextInputType.number,
-                          readOnly: false,
+                          readOnly: true,
                           style: TextStyle(color: Colors.white),
                           inputFormatters: [
 

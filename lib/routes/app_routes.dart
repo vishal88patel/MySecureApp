@@ -86,7 +86,14 @@ import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoanApprovedScreen/binding/loan_approved_screen_binding.dart';
+import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
+import '../presentation/LoanCalculator/loan_address_screen.dart';
 import '../presentation/LoanCalculator/loan_calculator_screen.dart';
+import '../presentation/LoanCalculator/loan_dob_screen.dart';
+import '../presentation/LoanCalculator/loan_email_screen.dart';
+import '../presentation/LoanCalculator/loan_fname_screen.dart';
+import '../presentation/LoanCalculator/loan_lname_screen.dart';
+import '../presentation/LoanCalculator/loan_ssn_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/MyBankAccountListScreen/binding/my_bank_account_list_screen_binding.dart';
@@ -143,6 +150,14 @@ class AppRoutes {
   static String addBankProceedScreen = '/add_bank_procees_screen';
   static String dashBoardScreen = '/dashboard_screen';
   static String loanCalculatorScreen = '/loan_calculator_screen';
+  static String loanInfoScreen = '/loan_info_screen';
+  static String loanFnameScreen = '/loan_fname_screen';
+  static String loanLnameScreen = '/loan_lname_screen';
+  static String loanEmailScreen = '/loan_email_screen';
+  static String loanDobScreen = '/loan_dob_screen';
+  static String loanSsnScreen = '/loan_ssn_screen';
+  static String loanAddressScreen = '/loan_address_screen';
+
 
   static String homeScreen = '/home_screen';
   static String profileScreen = '/profile_screen';
@@ -705,6 +720,74 @@ class AppRoutes {
         LoanCalculatorScreenBinding(),
       ],
     ),
+
+    GetPage(
+      name: loanInfoScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => ApplyLoanInfoScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanFnameScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanFnameScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: loanLnameScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanLnameScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: loanEmailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanEmailScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: loanDobScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanDobScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: loanSsnScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanSsnScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: loanAddressScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanAddressScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+
+
     GetPage(
       name: webviewPage,
       transition: Transition.rightToLeft,

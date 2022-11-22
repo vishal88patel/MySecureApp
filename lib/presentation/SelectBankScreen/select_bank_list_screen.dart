@@ -9,6 +9,7 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../Custom Widgets/credit_card_widget.dart';
+import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import 'controller/select_bank_list_screen_controller.dart';
 
@@ -319,6 +320,7 @@ class SelectBankBankListScreen extends StatelessWidget {
   }
 
   void onTapOfListile(BuildContext context) {
+    bankListController.WithdrawErrorApi();
     UIUtils.showProgressDialog(isCancellable: true);
     Future.delayed(Duration(milliseconds: 3000), () {
       UIUtils.hideProgressDialog();
@@ -329,7 +331,7 @@ class SelectBankBankListScreen extends StatelessWidget {
           headerAnimationLoop: false,
           title: 'Error',
           desc:
-          'Something went wrong. we cannot process this transaction due to technical issue!!!',
+          'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
           btnOkOnPress: () {},
           btnOkIcon: Icons.cancel,
           btnOkColor: Colors.red)

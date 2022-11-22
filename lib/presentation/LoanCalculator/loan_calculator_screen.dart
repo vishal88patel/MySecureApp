@@ -4,12 +4,12 @@ import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:my_secure_app/presentation/LoanCalculator/select_loan_type_screen.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 import '../../Custom Widgets/dash_widget.dart';
-import '../../Custom Widgets/support_widget.dart';
 import '../../routes/app_routes.dart';
 import 'controller/loan_calculator_screen_controller.dart';
 
@@ -56,7 +56,7 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
               child: Container(
                 height: size.height - 85,
                 child: Obx(
-                    ()=> loanCalculatorController.isKycDone.value
+                  () => loanCalculatorController.isKycDone.value
                       ? SingleChildScrollView(
                           child: Padding(
                             padding: const EdgeInsets.all(16.0),
@@ -72,8 +72,10 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                       color: ColorConstant.primaryWhite,
                                     ),
                                     InkWell(
-                                      // onTap: (){ Get.toNamed(AppRoutes.cardDetailScreen);
-                                      // },
+                                      onTap: () {
+                                        // Get.toNamed(AppRoutes.cardDetailScreen);
+                                        Get.to(SelectLoanTypeScreen());
+                                      },
                                       child: Image.asset(
                                         'asset/icons/notification_icon.png',
                                         height: getVerticalSize(20),
@@ -97,10 +99,11 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                 ),
                                 Text(
                                   "Select the amount needed and the reimbursement period",
-                                  style: AppStyle.textStyleSFPRORegular.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(16)),
+                                  style: AppStyle.textStyleSFPRORegular
+                                      .copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: getFontSize(16)),
                                 ),
                                 SizedBox(
                                   height: getVerticalSize(18),
@@ -142,30 +145,35 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                                 child: Row(
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
-                                                  mainAxisSize: MainAxisSize.min,
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
                                                   children: [
                                                     Container(
                                                       width:
                                                           getHorizontalSize(18),
-                                                      height: getVerticalSize(18),
+                                                      height:
+                                                          getVerticalSize(18),
                                                       decoration: BoxDecoration(
                                                           color: loanCalculatorController
                                                                       .selectedLoanId
                                                                       .value ==
-                                                                  i.id.toString()
+                                                                  i.id
+                                                                      .toString()
                                                               ? ColorConstant
                                                                   .primaryWhite
                                                               : Colors
                                                                   .transparent,
                                                           borderRadius:
                                                               BorderRadius
-                                                                  .circular(100),
+                                                                  .circular(
+                                                                      100),
                                                           border: Border.all(
                                                               color: ColorConstant
                                                                   .primaryAppTextF1)),
                                                     ),
                                                     SizedBox(
-                                                      width: getHorizontalSize(7),
+                                                      width:
+                                                          getHorizontalSize(7),
                                                     ),
                                                     Text(
                                                       i.name.toString(),
@@ -208,7 +216,8 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                           showTicks: false,
                                           radiusFactor: 0.7,
                                           axisLineStyle: AxisLineStyle(
-                                              cornerStyle: CornerStyle.bothCurve,
+                                              cornerStyle:
+                                                  CornerStyle.bothCurve,
                                               color: Colors.black12,
                                               thickness: 15),
                                           pointers: <GaugePointer>[
@@ -252,16 +261,19 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                                       style: AppStyle
                                                           .textStyleSFPRORegular
                                                           .copyWith(
-                                                              color: ColorConstant
-                                                                  .divider,
+                                                              color:
+                                                                  ColorConstant
+                                                                      .divider,
                                                               fontWeight:
-                                                                  FontWeight.w400,
+                                                                  FontWeight
+                                                                      .w400,
                                                               fontSize:
                                                                   getFontSize(
                                                                       16)),
                                                     ),
                                                     SizedBox(
-                                                      height: getVerticalSize(8),
+                                                      height:
+                                                          getVerticalSize(8),
                                                     ),
                                                     Text(
                                                       "\$" +
@@ -271,38 +283,45 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                                       style: AppStyle
                                                           .textStyleSFPROBold
                                                           .copyWith(
-                                                              color: ColorConstant
-                                                                  .divider,
+                                                              color:
+                                                                  ColorConstant
+                                                                      .divider,
                                                               fontWeight:
-                                                                  FontWeight.w700,
+                                                                  FontWeight
+                                                                      .w700,
                                                               fontSize:
                                                                   getFontSize(
                                                                       24)),
                                                     ),
                                                     SizedBox(
-                                                      height: getVerticalSize(8),
+                                                      height:
+                                                          getVerticalSize(8),
                                                     ),
                                                     DotWidget(
                                                       dashColor: ColorConstant
                                                           .primaryWhite,
                                                       totalWidth:
-                                                          getHorizontalSize(120),
+                                                          getHorizontalSize(
+                                                              120),
                                                       dashHeight: 1,
                                                       dashWidth: 2,
                                                       emptyWidth: 2,
                                                     ),
                                                     SizedBox(
-                                                      height: getVerticalSize(8),
+                                                      height:
+                                                          getVerticalSize(8),
                                                     ),
                                                     Text(
                                                       "@ ${loanCalculatorController.interestRate}% Per Year",
                                                       style: AppStyle
                                                           .textStyleSFPRORegular
                                                           .copyWith(
-                                                              color: ColorConstant
-                                                                  .divider,
+                                                              color:
+                                                                  ColorConstant
+                                                                      .divider,
                                                               fontWeight:
-                                                                  FontWeight.w400,
+                                                                  FontWeight
+                                                                      .w400,
                                                               fontSize:
                                                                   getFontSize(
                                                                       14)),
@@ -349,13 +368,15 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                                                     50))),
                                                     child: Padding(
                                                       padding: EdgeInsets.only(
-                                                          left: getHorizontalSize(
-                                                              20),
+                                                          left:
+                                                              getHorizontalSize(
+                                                                  20),
                                                           right:
                                                               getHorizontalSize(
                                                                   20),
-                                                          top: getHorizontalSize(
-                                                              10),
+                                                          top:
+                                                              getHorizontalSize(
+                                                                  10),
                                                           bottom:
                                                               getHorizontalSize(
                                                                   10)),
@@ -374,7 +395,8 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                                                   : ColorConstant
                                                                       .primaryWhite,
                                                               fontWeight:
-                                                                  FontWeight.w400,
+                                                                  FontWeight
+                                                                      .w400,
                                                               fontSize:
                                                                   getFontSize(
                                                                       16)),
@@ -422,31 +444,42 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
                                 height: getVerticalSize(54),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(18.0),
-                                child: InkWell(
-                                  onTap: (){
-                                    Get.toNamed(AppRoutes.uploadDocument1);
-                                  },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        color: ColorConstant.blue26,
-                                        borderRadius: BorderRadius.circular(100)
-                                    ),
-                                    child: Padding(
-                                      padding:  EdgeInsets.symmetric(
-                                          horizontal: getHorizontalSize(15),
-                                          vertical: getVerticalSize(12)),
-                                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Text('Please Complete Your Kyc First',
-                                              style: AppStyle.textStylePoppinsRegular
-                                                  .copyWith(color: ColorConstant.primaryWhite,
-                                                  fontWeight: FontWeight.w500,fontSize: getFontSize(16))),
+                                  padding: const EdgeInsets.all(18.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      Get.toNamed(AppRoutes.uploadDocument1);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: ColorConstant.blue26,
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: getHorizontalSize(15),
+                                            vertical: getVerticalSize(12)),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                                'Please Complete Your Kyc First',
+                                                style:
+                                                    AppStyle
+                                                        .textStylePoppinsRegular
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .primaryWhite,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize:
+                                                                getFontSize(
+                                                                    16))),
                                           ],
+                                        ),
                                       ),
-                                    ),),
-                                )
-                              ),
+                                    ),
+                                  )),
                             ],
                           ),
                         ),

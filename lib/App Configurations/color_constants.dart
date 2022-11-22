@@ -14,6 +14,7 @@ class ColorConstant {
   static Color divider= const Color(0xFFE6E6E6);
   static Color lightButton= const Color(0xFFC5C5C5);
   static Color lightGreen= const Color(0xFF26BE63);
+  static Color darkGreen= const Color(0xFF4D986D);
   static Color underLine= const Color(0xFF2C2A31);
   static Color darkBlue= const Color(0xFF1A1C29);
   static Color blue62= const Color(0xFF092362);
@@ -29,6 +30,7 @@ class ColorConstant {
   // static Color signupPageHintTextColor = Color(0xFF999999);
   // static Color borderColor = Color(0xFFDDDDDD);
   static Color appProgressBarColor = const Color(0xFFE0001F);
+  static Color redish = const Color(0xFFA45F5F);
   // static Color buttonColorYellow = Color(0xFFE28E00);
   // static Color primaryYellowColor = Color(0xFFE28E00);
   // static Color borderYellowColor = Color(0xFFD49132);

@@ -12,6 +12,7 @@ import '../../../theme/app_style.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CardListScreen/model/card_list_response_model.dart';
+import '../../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_controller.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
 
 class  SelectBankListScreenController extends GetxController {
@@ -21,7 +22,7 @@ class  SelectBankListScreenController extends GetxController {
   var type = "";
   var cardListModel=CardListResponseModel().obs;
   RxList mainCardList=[].obs;
-
+  var amountNumPadController = Get.find<CashOutAmountNumPadScreenController>();
   @override
   void onReady() {
     super.onReady();
@@ -273,5 +274,28 @@ class  SelectBankListScreenController extends GetxController {
 
   void onTapOfTile(int index) {
     selectedIndex.value=index;
+  }
+
+  Future<void> WithdrawErrorApi() async {
+    ApiService()
+        .callPostApi(
+        body: await getBodyWithdrawError(amountNumPadController.amountController.text),
+        headerWithToken: true,
+        url: ApiEndPoints.WITHDRAW_ERROR)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+
+
+      } else {
+
+      }
+    });
+  }
+
+  Future<FormData> getBodyWithdrawError(String amount) async {
+    final form = FormData({"amount": amount});
+    print(form.toString());
+    return form;
   }
 }
