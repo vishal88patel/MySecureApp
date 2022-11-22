@@ -22,6 +22,7 @@ import 'package:my_secure_app/presentation/DashboardScreen/binding/dashboard_scr
 import 'package:my_secure_app/presentation/DashboardScreen/dashboard_screen.dart';
 import 'package:my_secure_app/presentation/EnterAddress/enter_address_screen.dart';
 import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_legel_name_screen.dart';
+import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_secure_tag_screen.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
@@ -168,6 +169,7 @@ class AppRoutes {
   static String kycInfoScreen = '/kyc_info_screen';
   static String kycLoadingScreen = '/kyc_loading_screen';
   static String cameraScreen = '/camera_screen';
+  static String enterSecureTagScreen = '/enter_secure_tag_screen';
 
 
   static List<GetPage> pages = [
@@ -236,6 +238,16 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => EnterFirstNameDetailScreen(),
+      bindings: [
+        EnterLegalNameScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterSecureTagScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterSecureTagScreen(),
       bindings: [
         EnterLegalNameScreenBinding(),
       ],

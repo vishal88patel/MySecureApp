@@ -45,7 +45,7 @@ class PersonalDetailScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "7/8",
+                          "8/9",
                           style: AppStyle.textStylePoppinsRegular
                               .copyWith(color: ColorConstant.primaryWhite),
                         ),
@@ -135,6 +135,15 @@ class PersonalDetailScreen extends StatelessWidget {
                     Obx(
                       ()=> personalDetailController.showJobTitle.value?AppTextField(
                         hintText: 'Job Title',
+                        controller: personalDetailController.jobTitleController,
+                      ):Container(),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(21),
+                    ),
+                    Obx(
+                          ()=> personalDetailController.nameOfBusinessTitle.value?AppTextField(
+                        hintText: 'Name Of Business',
                         controller: personalDetailController.jobTitleController,
                       ):Container(),
                     ),

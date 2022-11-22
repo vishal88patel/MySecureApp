@@ -36,6 +36,8 @@ class UploadDocumentScreenController extends GetxController {
   var userName = "".obs;
   var isVerified = "0".obs;
   var isAgree = false.obs;
+  var isLoaderShow = false.obs;
+
   LoginResponseModel? loginResponseModel = LoginResponseModel();
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
@@ -130,6 +132,7 @@ class UploadDocumentScreenController extends GetxController {
           bodyText: "Mobile Number Should be 11 digit number",
           headerText: StringConstants.ERROR);
     } else {
+      isLoaderShow.value=true;
       log('sdfkksafkakksfh1 ${phoneNumberController.text}');
       String number = phoneNumberController.text
           .replaceAll('(', '')
@@ -151,7 +154,15 @@ class UploadDocumentScreenController extends GetxController {
             verificationIDRecived = verificationID;
           },
           codeAutoRetrievalTimeout: (String verificationID) {});
-      Get.toNamed(AppRoutes.kvcOtpNumber);
+      // UIUtils.showProgressDialog(isCancellable: false);
+      Future.delayed(Duration(milliseconds: 2500),(){
+        // UIUtils.hideProgressDialog();
+        UIUtils.showSnakBar(bodyText: 'OTP Sent Successfully',headerText: StringConstants.SUCCESS);
+        isLoaderShow.value=false;
+
+        Get.toNamed(AppRoutes.kvcOtpNumber);
+
+      });
     }
   }
 
@@ -172,6 +183,8 @@ class UploadDocumentScreenController extends GetxController {
       if(kycFrom==1){
         verifyOtpEmailApi("1");
       }else{
+        isLoaderShow.value=true;
+
         print('OTP number ${otpController.text}');
         PhoneAuthCredential credential = PhoneAuthProvider.credential(
             verificationId: verificationIDRecived, smsCode: otpController.text);
@@ -179,6 +192,7 @@ class UploadDocumentScreenController extends GetxController {
         await auth.signInWithCredential(credential).then((value) {
           if (value.user!.uid.isNotEmpty) {
             verifyOtpEmailApi("2");
+            isLoaderShow.value=false;
 
           }
           print('Your are logged in  successfully ${value} ');
@@ -428,7 +442,7 @@ class UploadDocumentScreenController extends GetxController {
 
   Future<void> verifyOtpEmailApi(String type) async {
     ApiService()
-        .callPostApi(
+        .callPostApi(showLoader: false,
         body: await getBodyVerifyOtp(type,otpController.text.toString()),
         headerWithToken: true,
         url: ApiEndPoints.VERIFY_OTP_OF_EMAIL)

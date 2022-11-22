@@ -23,7 +23,7 @@ class DashboardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding:  EdgeInsets.only(right:getHorizontalSize(25)),
+      padding:  EdgeInsets.only(right:getHorizontalSize(40)),
       child: InkWell(
         onTap: (){
           onTap.call();
@@ -32,16 +32,16 @@ class DashboardWidget extends StatelessWidget {
           children: [
             Image.asset(
               image.toString(),
-              height: getVerticalSize(210),
+              height: getVerticalSize(240),
             ),
             Positioned(
               top: getVerticalSize(70),
               bottom: 0,
-              left: getHorizontalSize(40),
+              left: getHorizontalSize(60),
               child: Column(
                 children: [
                   Image.asset(
-                    icon.toString(),
+                    icon.toString(),color: ColorConstant.darkBlue,
                     height: getVerticalSize(34.8),
                     width: getHorizontalSize(34.8),
                   ),

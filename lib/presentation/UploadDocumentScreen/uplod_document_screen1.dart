@@ -205,7 +205,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                           controller: documentController
                               .ssnController),
                     ),
-                    SizedBox(
+                   /* SizedBox(
                       height: getVerticalSize(20),
                     ),
                     Padding(
@@ -262,7 +262,7 @@ class UploadDocumentScreen1 extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ),
+                    ),*/
 
                     SizedBox(
                       height: getVerticalSize(40),

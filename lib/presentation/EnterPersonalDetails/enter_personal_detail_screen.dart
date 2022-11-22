@@ -50,7 +50,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "5/8",
+                              "6/9",
                               style: AppStyle.textStylePoppinsRegular
                                   .copyWith(color: ColorConstant.primaryWhite),
                             ),
@@ -102,6 +102,8 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                             type: 'BIRTHDATE',
                               controller: enterPersonalDetailController.dobController,
                               delete: () {
+                                HapticFeedback.lightImpact();
+
                                 if( enterPersonalDetailController.dobController.text.isNotEmpty){
                                   enterPersonalDetailController.dobController.text = enterPersonalDetailController.dobController.text
                                       .substring(0, enterPersonalDetailController.dobController.text.length - 1);

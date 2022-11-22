@@ -82,7 +82,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ],
                 ),
-                SizedBox(
+               /* SizedBox(
                   height: getVerticalSize(30),
                 ),
                 ClipRRect(
@@ -94,7 +94,7 @@ class ProfileScreen extends StatelessWidget {
                       Get.toNamed(AppRoutes.uploadDocument1);
                     },
                   ),
-                ),
+                ),*/
                 SizedBox(
                   height: getVerticalSize(54),
                 ),

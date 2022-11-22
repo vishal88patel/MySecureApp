@@ -74,21 +74,25 @@ class KycOtpScreen extends StatelessWidget {
                                     Spacer(),
                                     Column(
                                       children: [
-                                        NumPadPhoneNumber(
-                                          type:'OTP' ,
-                                          controller: documentController.otpController,
-                                          delete: () {
-                                            if( documentController.otpController.text.isNotEmpty){
-                                              documentController.otpController.text = documentController.otpController.text
-                                                  .substring(0, documentController.otpController.text.length - 1);
+                                        Obx(()
+                                          => NumPadPhoneNumber(
+                                            type:'OTP' ,
+                                            controller: documentController.otpController,
+                                            delete: () {
+                                              if( documentController.otpController.text.isNotEmpty){
+                                                documentController.otpController.text = documentController.otpController.text
+                                                    .substring(0, documentController.otpController.text.length - 1);
 
-                                            }
-                                          },
-                                          buttonName: 'Verify OTP',
-                                          // do something with the input numbers
-                                          onSubmit: () {
-                                            documentController.onClickVerifyOtp(context);
-                                          },
+                                              }
+                                            },
+                                            buttonName: 'Verify OTP',
+                                            isLoading: documentController.isLoaderShow.value,
+
+                                            // do something with the input numbers
+                                            onSubmit: () {
+                                              documentController.onClickVerifyOtp(context);
+                                            },
+                                          ),
                                         ),
                                       ],
                                     )

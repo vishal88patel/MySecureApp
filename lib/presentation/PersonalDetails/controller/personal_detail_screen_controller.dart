@@ -36,18 +36,19 @@ class PersonalScreenController extends GetxController {
   var purposeOfOpeningAcc = "".obs;
   var employmentStatus = "Employeed".obs;
   String? employmentStatusDropDownValue;
-  var setSelectedAnnualIncome = "Less than 25,000".obs;
+  var setSelectedAnnualIncome = "Less than \$25,000".obs;
   String? setSelectedAnnualIncomeDropdown;
-  var dropdownTextForStatus = ['Employeed', 'Retired', 'Disabikity','Self Employed'].obs;
-  var dropdownTextForIncome = ['Less than 25,000', '25,000 - 50,000', '50,000 - 75,000','75,000 - 1,00,000','Greter than 1,00,000'].obs;
-
+  var dropdownTextForStatus = ['Employeed', 'Retired', 'Disability','Self Employed'].obs;
+  var dropdownTextForIncome = ['Less than \$25,000', '\$25,000 - \$50,000',
+    '\$50,000 - \$75,000','\$75,000 - \$1,00,000','Greter than \$1,00,000'].obs;
   var loanModel = GetLoanTypeResponseModel().obs;
   var getStatusIncomeResponseModel = GetStatusAndIncomeResponseModel().obs;
   EmployeementStatus statusIncomeObject = EmployeementStatus();
-
   var selectedLoanId = "1".obs;
   var loanList = [].obs;
   var showJobTitle = true.obs;
+  var nameOfBusinessTitle = true.obs;
+
 
   String device_type = "";
 
@@ -75,13 +76,30 @@ class PersonalScreenController extends GetxController {
     employmentNameController.text=employmentStatus.value;
     employmentStatusDropDownValue=value;
     dropdownTextForStatus.refresh();
-    if(employmentNameController.text=="Retired" || employmentNameController.text=="Disabikity"){
+    // Employeed', 'Retired', 'Disability','Self Employed
+    if(employmentNameController.text=="Retired"||
+        employmentNameController.text=="Disability" ){
       showJobTitle.value=false;
-    }else{
+      nameOfBusinessTitle.value=false;
+    }if(employmentNameController.text=="Self Employed"){
+      nameOfBusinessTitle.value=true;
+    }
+    if(employmentNameController.text=="Employeed"){
       showJobTitle.value=true;
+      nameOfBusinessTitle.value=false;
+    }
+    // if(employmentNameController.text=="Disability"){
+    //   nameOfBusinessTitle.value=true;
+    //   showJobTitle.value=false;
+    //
+    // }
+    else{
+      // showJobTitle.value=true;
+      // nameOfBusinessTitle.value=true;
 
     }
   }
+
   void setAnnualIncome(String value){
     setSelectedAnnualIncome.value = value;
     annualIncomeController.text=setSelectedAnnualIncome.value;

@@ -11,11 +11,12 @@ class AppElevatedButton extends StatelessWidget {
   final Color? buttonColor;
   final FontWeight? fontWeight;
   final double? radius;
+  final bool? isLoading;
 
   const AppElevatedButton({Key? key,
     required this.buttonName,
     required this.onPressed, this.textColor, this.fontWeight,
-    this.buttonColor, this.radius}) : super(key: key);
+    this.buttonColor, this.radius, this.isLoading=false}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,9 +30,13 @@ class AppElevatedButton extends StatelessWidget {
         .copyWith(color: ColorConstant.primaryBlack,
         fontWeight: FontWeight.w700,fontSize: getFontSize(18))),
 
-     child: Text(buttonName.toString(),style:  AppStyle.textStylePoppinsRegular
+     child:!isLoading!? Text(buttonName.toString(),style:  AppStyle.textStylePoppinsRegular
          .copyWith(color:textColor?? ColorConstant.primaryBlack,
-         fontWeight:fontWeight?? FontWeight.w700,fontSize: getFontSize(16)),),
+         fontWeight:fontWeight?? FontWeight.w700,fontSize: getFontSize(16)),)
+      :SizedBox(
+         height: getVerticalSize(30),
+         width: getVerticalSize(30),
+         child: CircularProgressIndicator(color: ColorConstant.darkBlue,strokeWidth:2,)),
     );
   }
 }

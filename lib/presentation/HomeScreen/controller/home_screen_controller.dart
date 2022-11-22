@@ -291,7 +291,7 @@ class HomeScreenController extends GetxController {
                       Flexible(
                         child: Text(
                           textAlign: TextAlign.center,
-                          "Enable blockchain withdrawals and deposits to external wallets.",
+                          "To Enable Wallet withdrawal and deposits to complete your KYC",
                           style: AppStyle.textStyleSFPRORegular.copyWith(
                               color: ColorConstant.primaryWhite,
                               decoration: TextDecoration.none,

@@ -5,6 +5,7 @@ import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/Custom%20Widgets/main_custom_background.dart';
 import 'package:my_secure_app/presentation/EnterAddress/enter_address_screen.dart';
+import 'package:my_secure_app/presentation/loader_screen.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
@@ -51,7 +52,7 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "3/8",
+                                  "3/9",
                                   style: AppStyle.textStylePoppinsRegular
                                       .copyWith(
                                           color: ColorConstant.primaryWhite),
@@ -82,17 +83,18 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                               height: getVerticalSize(43),
                             ),
                             AppTextField(
-                                hintText: 'Enter your Mother''s middle name',
+                                hintText: 'Enter your last name',
                                 controller: enterLegelNameController
-                                    .middleNameController),
+                                    .lastNameController),
 
                             SizedBox(
                               height: getVerticalSize(43),
                             ),
                             AppTextField(
-                                hintText: 'Enter your last name',
+                                hintText: 'Enter your Mother''s middle name',
                                 controller: enterLegelNameController
-                                    .lastNameController),
+                                    .middleNameController),
+
                             Spacer(),
                             Row(
                               children: [
@@ -131,7 +133,10 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                                             headerText: StringConstants.ERROR);
                                       }
                                       else {
-                                        Get.toNamed(AppRoutes.enterAddressScreen);
+                                        Get.to(()=>
+                                            LoaderScreen(AppRoutes.enterSecureTagScreen),transition: Transition.rightToLeft);
+
+
 
 
                                         // Get.to(

@@ -48,7 +48,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "6/8",
+                                      "7/9",
                                       style: AppStyle.textStylePoppinsRegular
                                           .copyWith(color: ColorConstant.primaryWhite),
                                     ),
@@ -98,6 +98,8 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                       type: 'SNN',
                                       controller: enterPersonalDetailController.ssnController,
                                       delete: () {
+                                        HapticFeedback.lightImpact();
+
                                         if( enterPersonalDetailController.ssnController.text.isNotEmpty){
                                           enterPersonalDetailController.ssnController.text = enterPersonalDetailController.ssnController.text
                                               .substring(0, enterPersonalDetailController.ssnController.text.length - 1);

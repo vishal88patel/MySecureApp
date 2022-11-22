@@ -130,14 +130,14 @@ class HomeScreen extends StatelessWidget {
                           height: getVerticalSize(40),
                         ),
                         SizedBox(
-                          height: getVerticalSize(250),
+                          height: getVerticalSize(270),
                           child: ListView(
                             shrinkWrap: true,
                             physics:const  BouncingScrollPhysics(),
                             padding: EdgeInsets.symmetric(vertical: getVerticalSize(15)),
                             scrollDirection: Axis.horizontal,
                             children: [
-                              SizedBox(width:getHorizontalSize(25)),
+                              SizedBox(width:getHorizontalSize(40)),
                               DashboardWidget(
                                 image: 'asset/blue_card_image.png',
                                 icon: 'asset/icons/walle_tbalance.png',
@@ -409,7 +409,7 @@ class HomeScreen extends StatelessWidget {
                                               Flexible(
                                                 child: Text(
                                                   textAlign: TextAlign.center,
-                                                  "Enable blockchain withdrawals and deposits to external wallets.",
+                                                  "To Enable Wallet withdrawal and deposits to complete your KYC",
                                                   style: AppStyle
                                                       .textStyleSFPRORegular
                                                       .copyWith(
@@ -434,7 +434,8 @@ class HomeScreen extends StatelessWidget {
                                             child: AppElevatedButton(
                                               buttonName: 'Get Started',
                                               radius: 5,
-                                              textColor: Colors.blue,
+                                              buttonColor: ColorConstant.skyE8,
+                                              textColor: ColorConstant.darkBlue,
                                               onPressed: () {
                                                 Get.toNamed(
                                                     AppRoutes.kvcPhoneNumber);
