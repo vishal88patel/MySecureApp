@@ -127,7 +127,6 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                   minimum: 100,
                                   startAngle: 270,
                                   endAngle: 260,
-                                  minorTicksPerInterval: 100,
                                   maximum: loanCalculatorController
                                       .maximumAvailableLoan.value
                                       .toDouble(),
