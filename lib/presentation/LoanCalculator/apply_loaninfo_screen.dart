@@ -71,8 +71,8 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                       if(homeC.showNotiFiBadge.value){
                                         homeC.showVerifyIdentityDialouge();
                                       }else{
-                                        // Get.toNamed(AppRoutes.loanFnameScreen);
-                                        Get.to(AmountRadialScreen());
+                                        Get.toNamed(AppRoutes.loanFnameScreen);
+                                        // Get.to(AmountRadialScreen());
                                       }
                                       // Get.to(SelectLoanTypeScreen());
                                       // loginController.onTapOfButton();
