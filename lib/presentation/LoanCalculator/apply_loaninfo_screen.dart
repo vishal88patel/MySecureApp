@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:my_secure_app/presentation/LoanCalculator/select_loan_type_screen.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
@@ -9,11 +10,13 @@ import '../../Custom Widgets/main_custom_background.dart';
 import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
+import '../HomeScreen/controller/home_screen_controller.dart';
 import 'amount_dialog.dart';
 import 'controller/loan_calculator_screen_controller.dart';
 
 class ApplyLoanInfoScreen extends StatelessWidget {
   var loanCalculatorController = Get.put(LoanCalculatorScreenController());
+  var homeC = Get.put(HomeScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +67,12 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                     buttonName: 'Proceed',
                                     radius: 5,
                                     onPressed: () {
-                                      Get.toNamed(AppRoutes.loanFnameScreen);
+                                      if(homeC.showNotiFiBadge.value){
+                                        homeC.showVerifyIdentityDialouge();
+                                      }else{
+                                        Get.toNamed(AppRoutes.loanFnameScreen);
+                                      }
+                                      // Get.to(SelectLoanTypeScreen());
                                       // loginController.onTapOfButton();
                                       // Get.to(
                                       //   LoaderScreen("",AppRoutes.creatPasswordScreen),

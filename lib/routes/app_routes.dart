@@ -94,6 +94,7 @@ import '../presentation/LoanCalculator/loan_email_screen.dart';
 import '../presentation/LoanCalculator/loan_fname_screen.dart';
 import '../presentation/LoanCalculator/loan_lname_screen.dart';
 import '../presentation/LoanCalculator/loan_ssn_screen.dart';
+import '../presentation/LoanCalculator/select_loan_type_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/MyBankAccountListScreen/binding/my_bank_account_list_screen_binding.dart';
@@ -715,7 +716,7 @@ class AppRoutes {
       name: loanCalculatorScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => ApplyLoanInfoScreen(),
+      page: () => LoanCalculatorScreen(),
       bindings: [
         LoanCalculatorScreenBinding(),
       ],
@@ -725,7 +726,7 @@ class AppRoutes {
       name: loanInfoScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => ApplyLoanInfoScreen(),
+      page: () => SelectLoanTypeScreen(),
       bindings: [
         LoanCalculatorScreenBinding(),
       ],

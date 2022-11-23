@@ -17,7 +17,8 @@ class SelectLoanTypeScreen extends StatefulWidget {
 }
 
 class _SelectLoanTypeScreenState extends State<SelectLoanTypeScreen> {
-  var loanCalculatorController = Get.find<LoanCalculatorScreenController>();
+  // var loanCalculatorController = Get.find<LoanCalculatorScreenController>();
+  var loanCalculatorController =  Get.put(LoanCalculatorScreenController());
 
   double _volumeValue = 0;
 
