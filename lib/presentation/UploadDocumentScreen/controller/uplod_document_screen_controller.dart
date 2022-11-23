@@ -149,6 +149,8 @@ class UploadDocumentScreenController extends GetxController {
           },
           verificationFailed: (FirebaseAuthException exception) {
             print('exception.message ${exception.message}');
+            UIUtils.showSnakBar(bodyText: "Verification Failed",headerText: StringConstants.ERROR);
+            isLoaderShow.value=false;
           },
           codeSent: (String verificationID, int? resendToken) {
             verificationIDRecived = verificationID;
@@ -189,14 +191,19 @@ class UploadDocumentScreenController extends GetxController {
         PhoneAuthCredential credential = PhoneAuthProvider.credential(
             verificationId: verificationIDRecived, smsCode: otpController.text);
         FocusScope.of(context).requestFocus(new FocusNode());
-        await auth.signInWithCredential(credential).then((value) {
+
+        await auth.signInWithCredential(credential).then((value){
           if (value.user!.uid.isNotEmpty) {
             verifyOtpEmailApi("2");
             isLoaderShow.value=false;
 
           }
-          print('Your are logged in  successfully ${value} ');
+          print('Your are logged in  successfully  ');
+        }).catchError((e){
+          UIUtils.showSnakBar(bodyText: "Otp is Incorrect",headerText: StringConstants.ERROR);
+          isLoaderShow.value=false;
         });
+
       }
 
     }

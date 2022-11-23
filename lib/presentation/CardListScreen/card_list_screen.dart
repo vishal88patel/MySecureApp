@@ -73,8 +73,8 @@ class CardListScreen extends StatelessWidget {
                                         vertical: getVerticalSize(6.5)),
                                     child: InkWell(
                                       onTap: () {
-                                        Get.toNamed(
-                                            AppRoutes.cardDetailListScreen);
+                                        // Get.toNamed(
+                                        //     AppRoutes.cardDetailListScreen);
                                       },
                                       child: CreditCardWidget(
                                           cardHolderName: cardListController

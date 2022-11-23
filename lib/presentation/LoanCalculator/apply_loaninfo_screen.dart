@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:lottie/lottie.dart';
+import 'package:my_secure_app/presentation/LoanCalculator/Amount_radial_screen.dart';
 import 'package:my_secure_app/presentation/LoanCalculator/select_loan_type_screen.dart';
 
 import '../../App Configurations/color_constants.dart';
@@ -70,7 +71,8 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                       if(homeC.showNotiFiBadge.value){
                                         homeC.showVerifyIdentityDialouge();
                                       }else{
-                                        Get.toNamed(AppRoutes.loanFnameScreen);
+                                        // Get.toNamed(AppRoutes.loanFnameScreen);
+                                        Get.to(AmountRadialScreen());
                                       }
                                       // Get.to(SelectLoanTypeScreen());
                                       // loginController.onTapOfButton();
