@@ -11,6 +11,7 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 import '../../PersonalDetails/model/get_loan_type_response_model.dart';
 import '../Amount_radial_screen.dart';
 import '../amount_dialog.dart';
@@ -18,6 +19,7 @@ import '../select_loan_type_screen.dart';
 
 class LoanCalculatorScreenController extends GetxController {
   var loanModel = GetLoanTypeResponseModel().obs;
+  LoginResponseModel? loginResponseModel = LoginResponseModel();
   var loanList = [].obs;
   var loanTenuteList = [
     LoanModel(
@@ -65,6 +67,7 @@ class LoanCalculatorScreenController extends GetxController {
 
   @override
   void onInit() {
+    getStoredDataa();
     getStoredData();
     Future.delayed(Duration(milliseconds: 50), () {
       getStateList();
@@ -82,6 +85,43 @@ class LoanCalculatorScreenController extends GetxController {
     } else {
       isKycDone.value = false;
     }
+  }
+
+  Future<void> getStoredDataa() async {
+    loginResponseModel =
+    (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+
+    firstNameController.text = loginResponseModel!.data!.firstName.isNull
+        ? ""
+        : loginResponseModel!.data!.firstName!;
+    lastNameController.text = loginResponseModel!.data!.lastName.isNull
+        ? ""
+        : loginResponseModel!.data!.lastName!;
+    emailController.text = loginResponseModel!.data!.email.isNull
+        ? ""
+        : loginResponseModel!.data!.email!;
+    phoneController.text = loginResponseModel!.data!.mobile.isNull
+        ? ""
+        : loginResponseModel!.data!.mobile!;
+
+    ssnController.text = loginResponseModel!.data!.ssn.isNull
+        ? ""
+        : loginResponseModel!.data!.ssn!;
+    address01Controller.text = loginResponseModel!.data!.address1.isNull
+        ? ""
+        : loginResponseModel!.data!.address1!;
+    address02Controller.text = loginResponseModel!.data!.address2.isNull
+        ? ""
+        : loginResponseModel!.data!.address2!;
+    cityController.text = loginResponseModel!.data!.city.isNull
+        ? ""
+        : loginResponseModel!.data!.city!;
+    zipCodeController.text = loginResponseModel!.data!.zipCode.isNull
+        ? ""
+        : loginResponseModel!.data!.zipCode!;
+    selectedState.value=loginResponseModel!.data!.state.isNull
+        ? ""
+        : loginResponseModel!.data!.state!;
   }
 
   @override

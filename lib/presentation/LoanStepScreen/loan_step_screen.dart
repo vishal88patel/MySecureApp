@@ -57,7 +57,7 @@ class LoanStepScreen extends StatelessWidget {
                       height: getVerticalSize(20),
                     ),
                     Text(
-                      "Loan setp before you withdraw",
+                      "Loan setup before you withdraw",
                       style: AppStyle.textStylePoppinsRegular.copyWith(
                           color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w700,
@@ -201,7 +201,7 @@ class LoanStepScreen extends StatelessWidget {
                             style: AppStyle.textStylePoppinsRegular.copyWith(
                                 color: ColorConstant.primaryWhite,
                                 fontWeight: FontWeight.w500,
-                                fontSize: getFontSize(14)),
+                                fontSize: getFontSize(18)),
                           ),
                         ),
                       ],
