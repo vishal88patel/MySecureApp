@@ -8,6 +8,7 @@ import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
@@ -107,6 +108,11 @@ class LoanCalculatorScreenController extends GetxController {
     ssnController.text = loginResponseModel!.data!.ssn.isNull
         ? ""
         : loginResponseModel!.data!.ssn!;
+
+    dobController.text = loginResponseModel!.data!.dateOfBirth.isNull
+        ? ""
+        : dateConverter(loginResponseModel!.data!.dateOfBirth!.toString());
+
     address01Controller.text = loginResponseModel!.data!.address1.isNull
         ? ""
         : loginResponseModel!.data!.address1!;

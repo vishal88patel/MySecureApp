@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 Size size = WidgetsBinding.instance.window.physicalSize /
     WidgetsBinding.instance.window.devicePixelRatio;
@@ -40,5 +41,13 @@ double getSize(double px) {
 extension StringCasingExtension on String {
   String toCapitalized() => length > 0 ?'${this[0].toUpperCase()}${substring(1).toLowerCase()}':'';
   String toTitleCase() => replaceAll(RegExp(' +'), ' ').split(' ').map((str) => str.toCapitalized()).join(' ');
+}
+
+String dateConverter(String date){
+  var inputFormat = DateFormat('yyyy-MM-dd');
+  var date1 = inputFormat.parse(date);
+  var outputFormat = DateFormat('dd/MM/yyyy');
+  var date2 = outputFormat.format(date1);
+  return date2.toString();
 }
 

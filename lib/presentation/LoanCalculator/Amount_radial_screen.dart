@@ -19,17 +19,19 @@ class AmountRadialScreen extends StatefulWidget {
 }
 
 class _AmountRadialScreenState extends State<AmountRadialScreen> {
-  var loanCalculatorController = Get.find<LoanCalculatorScreenController>();
+  var loanCalculatorController = Get.put(LoanCalculatorScreenController());
 
-  double _volumeValue = 100;
+  double _volumeValue = 500;
   bool showInfoDialouge=true;
+  double amountBy=500;
+  double amountTotal=500;
+  double amountInto=0;
   Future<void> onVolumeChanged(double value) async {
     if (await Vibrate.canVibrate) {
       Vibrate.vibrate();
     };
     setState(() {
-      loanCalculatorController.selectedLoanAmount.value =
-          value.round().toString();
+
       if(value.round()>50000){
         if(showInfoDialouge){
           AwesomeDialog(
@@ -43,7 +45,13 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
           )..show();
           showInfoDialouge=false;
         }}
-      _volumeValue = value;
+
+      amountInto=value/amountBy;
+      if(value>500){
+        amountTotal=amountInto.toInt()*500;
+        _volumeValue = amountTotal;
+      }
+      loanCalculatorController.selectedLoanAmount.value = _volumeValue.toString();
     });
   }
 
