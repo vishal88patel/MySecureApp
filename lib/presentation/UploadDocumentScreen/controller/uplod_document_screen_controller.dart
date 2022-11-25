@@ -281,7 +281,7 @@ class UploadDocumentScreenController extends GetxController {
 
   callKycApi() async {
     progress();
-    UIUtils.showProgressDialog(isCancellable: false);
+  //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
       'Authorization':
@@ -316,14 +316,14 @@ class UploadDocumentScreenController extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
-      UIUtils.hideProgressDialog();
+   //   UIUtils.hideProgressDialog();
       progress4.value = true;
       UIUtils.showSnakBar(
           bodyText: "KYC has been completed successfully",
           headerText: StringConstants.SUCCESS);
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
     } else {
-      UIUtils.hideProgressDialog();
+    //  UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(
           bodyText: responseData['message'],
           headerText: StringConstants.SUCCESS);
@@ -390,7 +390,7 @@ class UploadDocumentScreenController extends GetxController {
   }
 
   bool isAdult(String birthDateString) {
-    String datePattern = "dd-MM-yyyy";
+    String datePattern = "dd/MM/yyyy";
 
     DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
     DateTime today = DateTime.now();

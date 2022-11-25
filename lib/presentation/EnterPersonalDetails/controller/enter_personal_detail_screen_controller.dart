@@ -66,7 +66,7 @@ class EnterBirthDateController extends GetxController {
 
 
   bool isAdult(String birthDateString) {
-    String datePattern = "dd-MM-yyyy";
+    String datePattern = "dd/MM/yyyy";
 
     DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
     DateTime today = DateTime.now();
