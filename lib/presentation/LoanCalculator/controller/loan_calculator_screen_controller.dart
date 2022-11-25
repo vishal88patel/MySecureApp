@@ -214,7 +214,7 @@ class LoanCalculatorScreenController extends GetxController {
           bodyText: "Please Select Loan Tenure",
           headerText: StringConstants.ERROR);
     } else {
-      if(int.parse(selectedLoanAmount.value)> 50000){
+      if(double.parse(selectedLoanAmount.value).toInt()> 50000){
         selectedLoan.value="Business Loan";
       };
       getLoanCalculationApi();
@@ -227,7 +227,7 @@ class LoanCalculatorScreenController extends GetxController {
     ApiService()
         .callPostApi(
             body: await getRegisterBody(
-                amount: selectedLoanAmount.value,
+                amount: double.parse(selectedLoanAmount.value).toInt().toString(),
                 loan_type: selectedLoan.value,
                 month: selectedLoanTenureId.value.toString(),
                 type: "1"),
