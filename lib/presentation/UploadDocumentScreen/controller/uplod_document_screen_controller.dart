@@ -14,6 +14,7 @@ import '../../../ApiServices/network_info.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
@@ -106,7 +107,7 @@ class UploadDocumentScreenController extends GetxController {
         : loginResponseModel!.data!.mobile!;
     dobController.text = loginResponseModel!.data!.dateOfBirth.isNull
         ? ""
-        : loginResponseModel!.data!.dateOfBirth!;
+        : dateConverter(loginResponseModel!.data!.dateOfBirth!.toString());
     ssnController.text = loginResponseModel!.data!.ssn.isNull
         ? ""
         : loginResponseModel!.data!.ssn!;
@@ -382,7 +383,7 @@ class UploadDocumentScreenController extends GetxController {
       },
     );
     if (picked != null && picked != selectedDate) {
-      final DateFormat formatter = DateFormat('dd-MM-yyyy');
+      final DateFormat formatter = DateFormat('dd/MM/yyyy');
       final String startDate = formatter.format(picked);
       dobController.text = startDate;
       log('startDate $startDate');
