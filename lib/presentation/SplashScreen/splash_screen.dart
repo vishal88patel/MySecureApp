@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:my_secure_app/App%20Configurations/image_constants.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/main_custom_background.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/pref_utils.dart';

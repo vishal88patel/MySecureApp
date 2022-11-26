@@ -37,7 +37,7 @@ class AppTextField extends StatelessWidget {
       inputFormatters:inputFormatters ,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppStyle.textStylePoppinsRegular
+        hintStyle: AppStyle.DmSansFont
             .copyWith(color: ColorConstant.primaryAppTextF1,
             fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??16)),
         suffixIcon: suffixIcon,

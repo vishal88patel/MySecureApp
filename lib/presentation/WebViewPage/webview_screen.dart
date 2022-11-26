@@ -34,7 +34,7 @@ class WebviewScreen extends StatelessWidget {
         title: Obx(
           () => Text(
             webviewController.appBarName.value,
-            style: AppStyle.textStylePoppinsRegular.copyWith(
+            style: AppStyle.DmSansFont.copyWith(
               fontWeight: FontWeight.bold,
               color: ColorConstant.primaryBlack,
               fontSize: getVerticalSize(21),

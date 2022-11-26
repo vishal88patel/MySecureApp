@@ -11,7 +11,6 @@ import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
-import '../../loader_screen.dart';
 
 class LoginScreenController extends GetxController {
   TextEditingController emailController = TextEditingController();

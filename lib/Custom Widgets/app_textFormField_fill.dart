@@ -27,7 +27,7 @@ class AppTextFormFieldFill extends StatelessWidget {
     return TextFormField(
       keyboardType: keyBordType,
       controller: controller,
-      style:  AppStyle.textStylePoppinsRegular.copyWith(color: ColorConstant.primaryWhite),
+      style:  AppStyle.DmSansFont.copyWith(color: ColorConstant.primaryWhite),
       decoration: InputDecoration(
         isDense: true,
         prefixIcon: prefixIcon != null
@@ -41,7 +41,7 @@ class AppTextFormFieldFill extends StatelessWidget {
                 width: getHorizontalSize(0),
               ),
         suffixText: suffixText,
-        suffixStyle: AppStyle.textStylePoppinsRegular.copyWith(
+        suffixStyle: AppStyle.DmSansFont.copyWith(
             color: ColorConstant.primaryAppTextF1,
             fontWeight: FontWeight.w700,
             fontSize: getFontSize(20)),
@@ -52,7 +52,7 @@ class AppTextFormFieldFill extends StatelessWidget {
             color: ColorConstant.primaryWhite,
           ),
         ),
-        hintStyle: AppStyle.textStylePoppinsRegular.copyWith(
+        hintStyle: AppStyle.DmSansFont.copyWith(
             color: ColorConstant.primaryAppTextF1,
             fontWeight: FontWeight.w400,
             fontSize: getFontSize(16)),

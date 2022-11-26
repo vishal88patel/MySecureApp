@@ -104,25 +104,12 @@ flutter:
   assets:
     - asset/
     - asset/icons/
-    - asset/main_background_images/
     - asset/animations/
 
   fonts:
-    - family: SFPRO
+    - family: DmSans
       fonts:
-        - asset: asset/fonts/SFPRO/sf-pro-text-regular.ttf
-        - asset: asset/fonts/SFPRO/sf-pro-text-light.ttf
-          weight: 300
-        - asset: asset/fonts/SFPRO/SF-Pro-Text-Bold.otf
-          weight: 700
-
-    - family: Poppins
-      fonts:
-        - asset: asset/fonts/Popins/poppins.regular.ttf
-        - asset: asset/fonts/Popins/poppins.light.ttf
-          weight: 300
-        - asset: asset/fonts/Popins/poppins.bold.ttf
-          weight: 700
+        - asset: asset/fonts/DmSans/DMSans-Regular.ttf
 
 
 
