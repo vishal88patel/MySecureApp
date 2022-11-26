@@ -30,7 +30,7 @@ class SplashScreenController extends GetxController {
     if (loginResponseModel != null &&
         loginResponseModel.data!.token!.isNotEmpty) {
       Future.delayed(Duration(milliseconds: 1000), () {
-        Get.offAllNamed(AppRoutes.dashBoardScreen,
+        Get.offAllNamed(AppRoutes.loginScreen,
             arguments: {"bottomTabCount": 0});
       });
     } else {

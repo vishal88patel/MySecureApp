@@ -31,24 +31,25 @@ class AppTextField extends StatelessWidget {
       controller: controller,
       readOnly:readOnly??false ,
       keyboardType: keyBordType,
-      style: TextStyle(color: ColorConstant.primaryWhite),
+      style: TextStyle(color: ColorConstant.grey8F),
       obscureText: isObsecure,
       maxLength: maxLength,
       inputFormatters:inputFormatters ,
       decoration: InputDecoration(
         hintText: hintText,
         hintStyle: AppStyle.DmSansFont
-            .copyWith(color: ColorConstant.primaryAppTextF1,
+            .copyWith(
+            color: ColorConstant.grey8F,
             fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??16)),
         suffixIcon: suffixIcon,
         enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+          borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
         ),
         focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+          borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
         ),
       ),
-      cursorColor: ColorConstant.primaryAppTextF1,
+      cursorColor: ColorConstant.grey8F,
     );
   }
 }

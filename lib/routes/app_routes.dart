@@ -1,4 +1,15 @@
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
+import 'package:my_secure_app/presentation/CreatePasswordScreen/create_password_screen.dart';
+import 'package:my_secure_app/presentation/EnterAddress/binding/enter_address_screen_binding.dart';
+import 'package:my_secure_app/presentation/EnterAddress/enter_address_screen.dart';
+import 'package:my_secure_app/presentation/EnterLegalNameDetails/binding/enter_legel_name_screen_binding.dart';
+import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_first_name_screen.dart';
+import 'package:my_secure_app/presentation/EnterLegalNameDetails/enter_secure_tag_screen.dart';
+import 'package:my_secure_app/presentation/EnterPasswordScreen/binding/enter_password_screen_binding.dart';
+import 'package:my_secure_app/presentation/EnterPasswordScreen/enter_password_screen.dart';
+import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
+import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
@@ -108,6 +119,66 @@ class AppRoutes {
       page: () => WebviewScreen(),
       bindings: [
         WbviewScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterPasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterPasswordScreen(),
+      bindings: [
+        EnterPasswordScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: creatPasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CreatePasswordScreen(),
+      bindings: [
+        CreatePasswordScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterLegalNameScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterFirstNameDetailScreen(),
+      bindings: [
+        EnterLegalNameScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterSecureTagScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterSecureTagScreen(),
+      bindings: [
+        EnterLegalNameScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterAddressScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterAddressDetailScreen(),
+      bindings: [
+        EnterAddressScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterPersonalDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterPersonalDetailScreen(),
+      bindings: [
+        EnterBirthDateBinding(),
       ],
     ),
 

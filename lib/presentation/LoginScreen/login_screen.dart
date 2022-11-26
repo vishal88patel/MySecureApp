@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
@@ -15,7 +16,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.primaryBlack,
+      backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
         child: Container(
         height: size.height,
@@ -24,84 +25,95 @@ class LoginScreen extends StatelessWidget {
         SafeArea(
           child: Stack(
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        "1/9",
-                        style: AppStyle.DmSansFont
-                            .copyWith(color: ColorConstant.primaryWhite),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: getVerticalSize(57),
-                  ),
-                  Text(
-                    "Give us your \nEmail ID",
-                    style: AppStyle.DmSansFont.copyWith(
-                        color: ColorConstant.primaryWhite,
-                        fontWeight: FontWeight.w700,
-                        fontSize: getFontSize(32)),
-                  ),
-                  SizedBox(
-                    height: getVerticalSize(5),
-                  ),
-                  Text(
-                    "To apply, we need your Email ID linked to \nyour app",
-                    style: AppStyle.DmSansFont.copyWith(
-                        color: ColorConstant.primaryAppTextF1,
-                        fontWeight: FontWeight.w400,
-                        fontSize: getFontSize(16)),
-                  ),
-                  SizedBox(
-                    height: getVerticalSize(54),
-                  ),
-                  SizedBox(
-                      child: AppTextField(
-                        controller: loginController.emailController,
-                        keyBordType: TextInputType.emailAddress,
-                        hintText: "Email",
-                      )),
-                  Spacer(),
-                  AppElevatedButton(
-                      buttonName: 'Next',
-                      radius: 5,
-                      onPressed: () {
-                        loginController.onTapOfButton();
-                        // Get.to(
-                        //   LoaderScreen("",AppRoutes.creatPasswordScreen),
-                        //   transition: Transition.rightToLeft,
-                        //   duration: Duration(milliseconds: 400),
-                        // );
-                      }),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "OR",
-                          style: AppStyle.DmSansFont
-                              .copyWith(color: ColorConstant.primaryWhite),
-                        ),
-                      ],
+              Padding(
+                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: getVerticalSize(10),
                     ),
-                  ),
-                  AppElevatedButton(
-                      buttonName: 'Continue with Phone',
-                      radius: 5,
-                      onPressed: () {
-                        // loginController.onTapOfButton();
-                        Get.toNamed(AppRoutes.loginEmailScreen);
-                      }),
-                  SizedBox(
-                    height: getVerticalSize(36),
-                  ),
-                ],
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                       InkWell(
+                         onTap: (){
+                           Get.back();
+                         },
+                         child: Container(
+                           decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                               border: Border.all(color: ColorConstant.backBorder)),
+                           padding: EdgeInsets.all(10),
+                           child: Icon(Icons.arrow_back_ios_new_outlined),
+                         ),
+                       ),
+                        Text(
+                          "Give us your Email ID",
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.darkBlue,
+                              fontWeight: FontWeight.w700,
+                              fontSize: getFontSize(20)),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.transparent)),
+                          padding: EdgeInsets.all(10),
+                          child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                        ),                      ],
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(57),
+                    ),
+                    Center(
+                      child: SvgPicture.asset(
+                        "asset/icons/splash_image.svg",
+
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(40),
+                    ),
+
+                    SizedBox(
+                      height: getVerticalSize(5),
+                    ),
+                    Text(
+                      "To apply, we need your Email ID linked to \nyour app",
+                      style: AppStyle.DmSansFont.copyWith(
+                          color: ColorConstant.grey8F,
+                          fontWeight: FontWeight.w400,
+                          fontSize: getFontSize(18)),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(54),
+                    ),
+                    SizedBox(
+                        child: AppTextField(
+                          controller: loginController.emailController,
+                          keyBordType: TextInputType.emailAddress,
+                          hintText: "Email",
+                        )),
+                    SizedBox(
+                      height: getVerticalSize(54),
+                    ),
+                    AppElevatedButton(
+                        buttonName: 'Next',
+                        textColor: ColorConstant.primaryWhite,
+                        onPressed: () {
+                          loginController.onTapOfButton();
+                          // Get.to(
+                          //   LoaderScreen("",AppRoutes.creatPasswordScreen),
+                          //   transition: Transition.rightToLeft,
+                          //   duration: Duration(milliseconds: 400),
+                          // );
+                        }),
+
+                    SizedBox(
+                      height: getVerticalSize(36),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
