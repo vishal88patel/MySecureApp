@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'Screen1.dart';
 
@@ -35,7 +36,8 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Column(
         children: [
-          Expanded(
+          Container(
+            height: 200,
             child: PageView.builder(
                 scrollDirection: Axis.horizontal,
                 onPageChanged: (value){
@@ -120,7 +122,7 @@ class Slider extends StatelessWidget {
           children: [
 
             // image given in slider
-            Image(image: AssetImage(image!)),
+            SvgPicture.asset(image!),
             SizedBox(height: 25),
           ],
         ),

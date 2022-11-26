@@ -96,7 +96,7 @@ class LoginScreen extends StatelessWidget {
                       radius: 5,
                       onPressed: () {
                         // loginController.onTapOfButton();
-                        Get.toNamed(AppRoutes.loginEmailScreen);
+                        // Get.toNamed(AppRoutes.loginEmailScreen);
                       }),
                   SizedBox(
                     height: getVerticalSize(36),
