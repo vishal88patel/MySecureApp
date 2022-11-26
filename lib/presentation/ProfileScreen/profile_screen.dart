@@ -29,7 +29,6 @@ class ProfileScreen extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 SizedBox(
                   height: getVerticalSize(27),
                 ),

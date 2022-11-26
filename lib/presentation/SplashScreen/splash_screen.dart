@@ -17,11 +17,11 @@ class SplashScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     // PrefUtils.setString(StringConstants.IS_KYC_DONE,"1");
     return Scaffold(
-      body: MainCutomBackGround(
-        child: Image.asset(
-          "asset/splash_image.png",
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
+      backgroundColor: ColorConstant.primaryDarkGreen,
+      body: Center(
+        child: SvgPicture.asset(
+          "asset/icons/splash_image.svg",
+
           fit: BoxFit.fill,
         ),
       ),

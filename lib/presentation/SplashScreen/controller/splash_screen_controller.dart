@@ -21,7 +21,7 @@ class SplashScreenController extends GetxController {
 
   @override
   void onInit() {
-    changeRoute();
+    // changeRoute();
 
     super.onInit();
   }
