@@ -1,10 +1,8 @@
 import 'package:get/get.dart';
-import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
-import '../presentation/DashBoardScreen/dashboard_screen.dart';
-import '../presentation/HomeScreen/binding/home_screen_binding.dart';
-import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
+import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
+import '../presentation/OnBoardingScreen/onboarding_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
@@ -16,6 +14,7 @@ class AppRoutes {
   static String splashScreen = '/splash_screen';
   static String loginScreen = '/login_screen';
   static String webviewPage = '/webView_page';
+  static String onBoardingScreen = '/onBoarding_screen';
   static String dashBoardScreen = '/dashboard_page';
   static String homeScreen = '/home_screen';
 
@@ -27,6 +26,16 @@ class AppRoutes {
       page: () => SplashScreen(),
       bindings: [
         SplashScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: onBoardingScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => OnBoardingScreen(),
+      bindings: [
+        OnBoardingScreenBinding(),
       ],
     ),
 
