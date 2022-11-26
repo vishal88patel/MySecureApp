@@ -24,6 +24,7 @@ class ColorConstant {
   static Color appProgressBarColor = const Color(0xFFE0001F);
   static Color redish = const Color(0xFFA45F5F);
   static Color primaryDarkGreen = const Color(0xFF105D38);
+  static Color primaryOrange = const Color(0xFFFFAE58);
 
 
   // new ui screen color

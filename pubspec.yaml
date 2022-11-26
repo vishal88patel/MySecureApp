@@ -75,6 +75,7 @@ dependencies:
   firebase_storage: ^10.3.3
   awesome_dialog: ^3.0.2
   barcode_scanner: ^3.2.3
+  curved_navigation_bar: ^1.0.3
 
 
 

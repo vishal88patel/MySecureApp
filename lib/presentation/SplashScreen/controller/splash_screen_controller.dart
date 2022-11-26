@@ -34,8 +34,8 @@ class SplashScreenController extends GetxController {
       // });
     } else {
       Future.delayed(Duration(milliseconds: 1000), () {
-        // Get.offAllNamed(AppRoutes.loginScreen);
-        // Get.offAll(HomeScreen());
+        Get.offAllNamed(AppRoutes.dashBoardScreen,
+            arguments: {"bottomTabCount": 0});
       });
     }
   }
