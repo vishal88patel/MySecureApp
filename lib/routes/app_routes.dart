@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
+import '../presentation/DashBoardScreen/dashboard_screen.dart';
+import '../presentation/HomeScreen/binding/home_screen_binding.dart';
+import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
