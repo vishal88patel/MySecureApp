@@ -56,6 +56,7 @@ class OnBoardingScreen extends StatelessWidget {
                   onBoardingController.currentPage.value = value;
                   print(onBoardingController.currentPage.value);
                 },
+                controller: onBoardingController.pageController,
                 itemCount: onBoardingData.length,
                 itemBuilder: (context, index) => OnBoardingContent(
                   image: onBoardingData[index]["image"],
@@ -123,7 +124,18 @@ class OnBoardingScreen extends StatelessWidget {
                                 buttonColor: ColorConstant.primaryLightGreen,
                                 radius: 16,
                                 onPressed: () {
+                                  onBoardingController.  pageController.nextPage(
+                                      duration: Duration(milliseconds: 250),
+                                      curve: Curves.easeIn
+                                  );
+                                  if(onBoardingController.currentPage.value==0){
+                                    onBoardingController.currentPage.value = 1;
 
+                                  }else if(onBoardingController.currentPage.value==1){
+                                    onBoardingController.currentPage.value = 2;
+                                  }else if(onBoardingController.currentPage.value==2){
+                                    onBoardingController.onTapOfGetStartedButton();
+                                  }
                                 },
                               ),
                             ),
