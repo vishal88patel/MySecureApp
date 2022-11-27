@@ -1,4 +1,6 @@
 
+import 'package:flutter/material.dart';
+
 class OnBoardingContent extends StatelessWidget {
   const OnBoardingContent({
     this.text,
