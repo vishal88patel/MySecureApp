@@ -119,7 +119,9 @@ class OnBoardingScreen extends StatelessWidget {
                             ),
                             Spacer(),
                             Obx(()=>AppElevatedButton(
-                                buttonName: onBoardingController.currentPage.value==2?"Get Started":"Next",
+                                buttonName: onBoardingController.currentPage.value==2
+                                    ?"Get Started"
+                                    :"Next",
                                 textColor: Colors.white,
                                 buttonColor: ColorConstant.primaryLightGreen,
                                 radius: 16,

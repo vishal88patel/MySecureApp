@@ -11,6 +11,8 @@ import 'package:my_secure_app/presentation/EnterPasswordScreen/enter_password_sc
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/ssn_details.dart';
+import 'package:my_secure_app/presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
+import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/personal_detail_screen.dart';
@@ -249,6 +251,16 @@ class AppRoutes {
         page: () => PurpouseAccountScreen(),
       bindings: [
         PersonalScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: onBoardingScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => OnBoardingScreen(),
+      bindings: [
+        OnBoardingScreenBinding(),
       ],
     ),
 

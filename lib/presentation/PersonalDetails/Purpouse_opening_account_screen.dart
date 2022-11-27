@@ -22,8 +22,8 @@ class PurpouseAccountScreen extends StatelessWidget {
                   children: [
                     Padding(
                           padding: EdgeInsets.symmetric(
-                              horizontal: getHorizontalSize(36.0),
-                              vertical: getVerticalSize(26)),
+                              horizontal: getHorizontalSize(20.0),
+                              vertical: getVerticalSize(20)),
                           child: SafeArea(
                             child: Stack(
                               children: [
@@ -235,14 +235,18 @@ class PurpouseAccountScreen extends StatelessWidget {
                                                           .value ==
                                                           i.id.toString()
                                                           ? ColorConstant
-                                                          .darkBlue
+                                                          .buttonGreen
                                                           : Colors.transparent,
                                                       borderRadius:
                                                       BorderRadius.circular(
                                                           100),
                                                       border: Border.all(
-                                                          color: ColorConstant
-                                                              .darkBlue)),
+                                                          color: personalDetailController
+                                                              .selectedLoanId
+                                                              .value ==
+                                                              i.id.toString()?
+                                                          ColorConstant
+                                                              .buttonGreen:Colors.black)),
                                                 ),
                                                 SizedBox(
                                                   width: getHorizontalSize(7),
