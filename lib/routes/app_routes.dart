@@ -14,6 +14,12 @@ import 'package:my_secure_app/presentation/EnterPersonalDetails/ssn_details.dart
 import 'package:my_secure_app/presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/personal_detail_screen.dart';
+import '../presentation/AuthOptionScreen/auth_option_screen.dart';
+import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
+import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
+import '../presentation/DashBoardScreen/dashboard_screen.dart';
+import '../presentation/HomeScreen/binding/home_screen_binding.dart';
+import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
@@ -78,6 +84,10 @@ class AppRoutes {
   static String uploadDocument2= '/upload_document2';
   static String linkBankListScreen= '/link_bank_list_screen';
   static String webviewPage = '/webView_page';
+  static String onBoardingScreen = '/onBoarding_screen';
+  static String dashBoardScreen = '/dashboard_page';
+  static String homeScreen = '/home_screen';
+  static String authOptionScreen = '/auth_option_screen';
   static String collectDetailScreen = '/collect_detail_screen';
   static String qrCodeScreen = '/qr_code_screen';
   static String loan_approved = '/loan_approved_screen';
@@ -113,6 +123,25 @@ class AppRoutes {
         LoginScreenBinding(),
       ],
     ),
+    GetPage(
+      name: dashBoardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => DashBoardScreen(),
+      bindings: [
+        DashBoardScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: authOptionScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => AuthOptionScreen(),
+      bindings: [
+        AuthOptionScreenBinding(),
+      ],
+    ),
 
 
 
@@ -123,6 +152,15 @@ class AppRoutes {
       page: () => WebviewScreen(),
       bindings: [
         WbviewScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: homeScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => HomeScreen(),
+      bindings: [
+        HomeScreenBinding(),
       ],
     ),
 

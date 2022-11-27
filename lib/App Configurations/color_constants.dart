@@ -29,6 +29,11 @@ class ColorConstant {
   static Color redish = const Color(0xFFA45F5F);
   static Color primaryDarkGreen = const Color(0xFF105D38);
   static Color backBorder = const Color(0xFF030319).withOpacity(0.1);
+  static Color primaryOrange = const Color(0xFFFFAE58);
+  static Color secondaryDarkGreen = const Color(0xFF709E88);
+  static Color primaryLightGreen = const Color(0xFF4CD080);
+  static Color naturalBlack = const Color(0xFF030319);
+  static Color naturalGrey = const Color(0xFF8F92A1);
 
 
   // new ui screen color
