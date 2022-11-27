@@ -5,6 +5,8 @@ import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
+import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
+import '../presentation/NotificationScreen/notification_screen.dart';
 import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
 import '../presentation/OnBoardingScreen/onboarding_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
@@ -21,6 +23,7 @@ class AppRoutes {
   static String onBoardingScreen = '/onBoarding_screen';
   static String dashBoardScreen = '/dashboard_page';
   static String homeScreen = '/home_screen';
+  static String notificationScreen = '/notification_screen';
 
   static List<GetPage> pages = [
     GetPage(
@@ -83,6 +86,15 @@ class AppRoutes {
       ],
     ),
 
+    GetPage(
+      name: notificationScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => NotificationScreen(),
+      bindings: [
+        NotificationScreenBinding(),
+      ],
+    ),
 
 
   ];
