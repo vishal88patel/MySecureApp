@@ -60,16 +60,16 @@ class LoginScreenController extends GetxController {
       print(value);
       if (value['status']) {
         if (value['message'] == "User is not registered.") {
-          // Get.toNamed(AppRoutes.creatPasswordScreen);
+          Get.toNamed(AppRoutes.creatPasswordScreen);
           //
 
         } else {
-          // Get.toNamed(
-          //     AppRoutes.enterPasswordScreen,
-          //     arguments: {
-          //       "email": emailController.text,
-          //       "phone":""
-          //     });
+          Get.toNamed(
+              AppRoutes.enterPasswordScreen,
+              arguments: {
+                "email": emailController.text,
+                "phone":""
+              });
         }
       } else {
         UIUtils.showSnakBar(

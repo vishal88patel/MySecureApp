@@ -23,16 +23,16 @@ class AppElevatedButton extends StatelessWidget {
     return ElevatedButton(
      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-       primary:buttonColor?? ColorConstant.primaryWhite,
+       primary:buttonColor?? ColorConstant.buttonGreen,
           minimumSize: const Size.fromHeight(54),
-          shape: RoundedRectangleBorder(  borderRadius: BorderRadius.circular(radius??0)),
+          shape: RoundedRectangleBorder(  borderRadius: BorderRadius.circular(radius??16)),
        textStyle:  AppStyle.DmSansFont
-        .copyWith(color: ColorConstant.primaryBlack,
-        fontWeight: FontWeight.w500,fontSize: getFontSize(20))),
+        .copyWith(color: ColorConstant.primaryWhite,
+        fontWeight: FontWeight.w700,fontSize: getFontSize(18))),
 
      child:!isLoading!? Text(buttonName.toString(),style:  AppStyle.DmSansFont
-         .copyWith(color:textColor?? ColorConstant.primaryBlack,
-         fontWeight:fontWeight?? FontWeight.w500,fontSize: getFontSize(20)),)
+         .copyWith(color:textColor?? ColorConstant.primaryWhite,
+         fontWeight:fontWeight?? FontWeight.w700,fontSize: getFontSize(16)),)
       :SizedBox(
          height: getVerticalSize(30),
          width: getVerticalSize(30),

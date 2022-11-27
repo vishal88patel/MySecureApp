@@ -40,16 +40,6 @@ class AppRoutes {
     ),
 
     GetPage(
-      name: onBoardingScreen,
-      transition: Transition.rightToLeft,
-      transitionDuration: Duration(milliseconds: 400),
-      page: () => OnBoardingScreen(),
-      bindings: [
-        OnBoardingScreenBinding(),
-      ],
-    ),
-
-    GetPage(
       name: loginScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -100,6 +90,45 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: enterPasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterPasswordScreen(),
+      bindings: [
+        EnterPasswordScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: creatPasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CreatePasswordScreen(),
+      bindings: [
+        CreatePasswordScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterLegalNameScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterFirstNameDetailScreen(),
+      bindings: [
+        EnterLegalNameScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterSecureTagScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterSecureTagScreen(),
+      bindings: [
+        EnterLegalNameScreenBinding(),
+      ],
+    ),
+    GetPage(
       name: notificationScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -109,6 +138,55 @@ class AppRoutes {
       ],
     ),
 
+    GetPage(
+      name: enterAddressScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterAddressDetailScreen(),
+      bindings: [
+        EnterAddressScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterPersonalDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterPersonalDetailScreen(),
+      bindings: [
+        EnterBirthDateBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterSnnDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterSNNDetailScreen(),
+      bindings: [
+        EnterBirthDateBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: personalDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => PersonalDetailScreen(),
+      bindings: [
+        PersonalScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: purpouseAccountScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+        page: () => PurpouseAccountScreen(),
+      bindings: [
+        PersonalScreenBinding(),
+      ],
+    ),
 
   ];
 }

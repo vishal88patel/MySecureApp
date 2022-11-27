@@ -1,10 +1,5 @@
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
-import '../../App Configurations/color_constants.dart';
-import '../../theme/app_style.dart';
+import 'package:flutter/material.dart';
 
 class OnBoardingContent extends StatelessWidget {
   const OnBoardingContent({
