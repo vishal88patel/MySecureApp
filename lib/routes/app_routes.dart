@@ -85,8 +85,6 @@ class AppRoutes {
   static String linkBankListScreen= '/link_bank_list_screen';
   static String webviewPage = '/webView_page';
   static String onBoardingScreen = '/onBoarding_screen';
-  static String dashBoardScreen = '/dashboard_page';
-  static String homeScreen = '/home_screen';
   static String authOptionScreen = '/auth_option_screen';
   static String collectDetailScreen = '/collect_detail_screen';
   static String qrCodeScreen = '/qr_code_screen';
