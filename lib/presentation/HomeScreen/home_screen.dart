@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
 import 'package:my_secure_app/presentation/HomeScreen/widget/payment_list_widget.dart';
+import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
@@ -28,11 +29,13 @@ class HomeScreen extends StatelessWidget {
             AppAppBar(
               title: " ",
               icon1: "asset/icons/ic_app_logo.svg",
-              icon2: "asset/icons/ic_setting_black.svg",
+              icon2: "asset/icons/ic_notification.svg",
               onPressedIcon1: () {
                 Get.back();
               },
-              onPressedIcon2: () {},
+              onPressedIcon2: () {
+                Get.toNamed(AppRoutes.notificationScreen);
+              },
             ),
             Padding(
               padding: EdgeInsets.only(

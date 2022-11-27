@@ -126,15 +126,20 @@ class OnBoardingScreen extends StatelessWidget {
                                 buttonColor: ColorConstant.primaryLightGreen,
                                 radius: 16,
                                 onPressed: () {
-                                  onBoardingController.  pageController.nextPage(
-                                      duration: Duration(milliseconds: 250),
-                                      curve: Curves.easeIn
-                                  );
+
                                   if(onBoardingController.currentPage.value==0){
                                     onBoardingController.currentPage.value = 1;
+                                    onBoardingController.  pageController.nextPage(
+                                        duration: Duration(milliseconds: 250),
+                                        curve: Curves.easeIn
+                                    );
 
                                   }else if(onBoardingController.currentPage.value==1){
                                     onBoardingController.currentPage.value = 2;
+                                    onBoardingController.  pageController.nextPage(
+                                        duration: Duration(milliseconds: 250),
+                                        curve: Curves.easeIn
+                                    );
                                   }else if(onBoardingController.currentPage.value==2){
                                     onBoardingController.onTapOfGetStartedButton();
                                   }

@@ -13,7 +13,7 @@ class PaymentListWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: getVerticalSize(120), width: getHorizontalSize(90),
+      height: getVerticalSize(122.5), width: getHorizontalSize(90),
     child: Column(crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(

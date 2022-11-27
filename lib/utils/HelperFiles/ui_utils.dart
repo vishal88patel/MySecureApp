@@ -18,14 +18,14 @@ class UIUtils {
     if (!isProgressVisible) {
       Get.dialog(
         Padding(
-          padding: const EdgeInsets.all(155),
+          padding: const EdgeInsets.all(165),
           child: Container(
             height: 50,
             width: 50,
             child: LoadingIndicator(
                 indicatorType: Indicator.lineSpinFadeLoader, /// Required, The loading type of the widget
                 colors:  [ColorConstant.buttonGreen],       /// Optional, The color collections
-                strokeWidth: 2,                     /// Optional, The stroke of the line, only applicable to widget which contains line
+                strokeWidth: 1,                     /// Optional, The stroke of the line, only applicable to widget which contains line
                 backgroundColor: Colors.transparent,     /// Optional, Background of the widget
                 pathBackgroundColor: Colors.transparent,   /// Optional, the stroke backgroundColor
             )

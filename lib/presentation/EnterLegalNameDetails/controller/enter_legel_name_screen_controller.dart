@@ -22,6 +22,7 @@ class EnterLegalNameScreenController extends GetxController {
 
   @override
   void onInit() {
+    secureTagController = TextEditingController(text: '\$');
     super.onInit();
   }
 
