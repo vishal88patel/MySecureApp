@@ -15,6 +15,8 @@ import 'package:my_secure_app/presentation/OnBoardingScreen/onboarding_screen.da
 import 'package:my_secure_app/presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/personal_detail_screen.dart';
+import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
+import 'package:my_secure_app/presentation/statistic/statistic.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
@@ -103,6 +105,8 @@ class AppRoutes {
   static String cameraScreen = '/camera_screen';
   static String enterSecureTagScreen = '/enter_secure_tag_screen';
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
+  static String statisticScreen = '/statistic_screen';
+
 
 
   static List<GetPage> pages = [
@@ -272,6 +276,16 @@ class AppRoutes {
         page: () => NotificationScreen(),
       bindings: [
         NotificationScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: statisticScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => StatisticScreen(),
+      bindings: [
+        StatisticScreenBinding(),
       ],
     ),
 
