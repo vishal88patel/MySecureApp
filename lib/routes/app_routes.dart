@@ -23,6 +23,8 @@ import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
+import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
+import '../presentation/NotificationScreen/notification_screen.dart';
 import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
@@ -260,6 +262,16 @@ class AppRoutes {
         page: () => OnBoardingScreen(),
       bindings: [
         OnBoardingScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: notificationScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+        page: () => NotificationScreen(),
+      bindings: [
+        NotificationScreenBinding(),
       ],
     ),
 

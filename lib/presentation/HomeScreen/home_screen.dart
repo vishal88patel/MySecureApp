@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,6 @@ import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
-import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 
@@ -39,17 +37,21 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Hello User",
-                          style: AppStyle.textStyleDMSANS.copyWith(
-                              color: ColorConstant.naturalBlack,
-                              fontWeight: FontWeight.w700,
-                              fontSize: getFontSize(22)),
-                          overflow: TextOverflow.ellipsis,
+                        Obx(
+                          () => Text(
+                            "Hello ${homeController.homePageHeadeName.value}",
+                            style: AppStyle.textStyleDMSANS.copyWith(
+                                color: ColorConstant.naturalBlack,
+                                fontWeight: FontWeight.w700,
+                                fontSize: getFontSize(22)),
+                            overflow: TextOverflow.ellipsis,
+                          ),
                         ),
                         Text(
                           "Welcome to MySecureApp",
@@ -61,18 +63,26 @@ class HomeScreen extends StatelessWidget {
                         ),
                       ],
                     ),
+                    Text(
+                      "\$15,901",
+                      style: AppStyle.DmSansFont.copyWith(
+                          color: ColorConstant.naturalBlack,
+                          fontWeight: FontWeight.w700,
+                          fontSize: getFontSize(22)),
+                      overflow: TextOverflow.ellipsis,
+                    ),
                   ],
                 ),
                 SizedBox(
                   height: getVerticalSize(30),
                 ),
                 Container(
-                    height: getVerticalSize(100),
-                    width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
-                      color: ColorConstant.primaryLightGreen,
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
-                    ),
+                  height: getVerticalSize(100),
+                  width: MediaQuery.of(context).size.width,
+                  decoration: BoxDecoration(
+                    color: ColorConstant.primaryLightGreen,
+                    borderRadius: BorderRadius.all(Radius.circular(16)),
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
@@ -165,94 +175,82 @@ class HomeScreen extends StatelessWidget {
                 ),
                 Container(
                   height: size.height / 6.5,
-                  child: Obx(() => homeController
-                      .homeModel.value.data !=
-                      null
+                  child: Obx(() => homeController.homeModel.value.data != null
                       ? SizedBox(
-                    height: getVerticalSize(135),
-                    child: ListView.builder(
-                      physics: BouncingScrollPhysics(),
-                      itemCount: homeController
-                          .homeModel.value.data!.topOffer!.length,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, pagePosition) {
-                        return GestureDetector(
-                          onTap: () async {},
-                          child: Container(
-                            width: size.width / 2,
-                            padding: EdgeInsets.only(right: 16),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.all(
-                                  Radius.circular(
-                                      getHorizontalSize(15))),
-                              child: Image.network(
-                                homeController
-                                    .homeModel
-                                    .value
-                                    .data!
-                                    .topOffer![pagePosition],
-                                fit: BoxFit.cover,
-                              ),
-                            ),
+                          height: getVerticalSize(135),
+                          child: ListView.builder(
+                            physics: BouncingScrollPhysics(),
+                            itemCount: homeController
+                                .homeModel.value.data!.topOffer!.length,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, pagePosition) {
+                              return GestureDetector(
+                                onTap: () async {},
+                                child: Container(
+                                  width: size.width / 2,
+                                  padding: EdgeInsets.only(right: 16),
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.all(
+                                        Radius.circular(getHorizontalSize(15))),
+                                    child: Image.network(
+                                      homeController.homeModel.value.data!
+                                          .topOffer![pagePosition],
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            },
                           ),
-                        );
-                      },
-                    ),
-                  )
+                        )
                       : Row(
-                    children: [
-                      Expanded(
-                        child: Shimmer.fromColors(
-                          baseColor:
-                          ColorConstant.shimmerBaseColor,
-                          highlightColor:
-                          ColorConstant.shimmerHighlightColor,
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal:
-                                  getHorizontalSize(10)),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                        getHorizontalSize(15))),
+                          children: [
+                            Expanded(
+                              child: Shimmer.fromColors(
+                                baseColor: ColorConstant.shimmerBaseColor,
+                                highlightColor:
+                                    ColorConstant.shimmerHighlightColor,
                                 child: Container(
-                                  height: getVerticalSize(350),
-                                  color:
-                                  ColorConstant.primaryWhite,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: getHorizontalSize(10)),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(
+                                              getHorizontalSize(15))),
+                                      child: Container(
+                                        height: getVerticalSize(350),
+                                        color: ColorConstant.primaryWhite,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Shimmer.fromColors(
-                          baseColor:
-                          ColorConstant.shimmerBaseColor,
-                          highlightColor:
-                          ColorConstant.shimmerHighlightColor,
-                          child: Container(
-                            child: Padding(
-                              padding: EdgeInsets.symmetric(
-                                  horizontal:
-                                  getHorizontalSize(10)),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(
-                                        getHorizontalSize(15))),
+                            Expanded(
+                              child: Shimmer.fromColors(
+                                baseColor: ColorConstant.shimmerBaseColor,
+                                highlightColor:
+                                    ColorConstant.shimmerHighlightColor,
                                 child: Container(
-                                  height: getVerticalSize(350),
-                                  color:
-                                  ColorConstant.primaryWhite,
+                                  child: Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: getHorizontalSize(10)),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(
+                                              getHorizontalSize(15))),
+                                      child: Container(
+                                        height: getVerticalSize(350),
+                                        color: ColorConstant.primaryWhite,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )),
+                          ],
+                        )),
                 ),
               ],
             ),

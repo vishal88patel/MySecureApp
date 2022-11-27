@@ -46,13 +46,13 @@ class AuthOptionScreen extends StatelessWidget {
                     buttonColor: ColorConstant.primaryLightGreen,
                     radius: 16,
                     onPressed: () {
-
+                      Get.toNamed(AppRoutes.loginScreen);
                     },
                   ),
                 ),
                 TextButton(
                   onPressed: (){
-                    Get.offAllNamed(AppRoutes.loginScreen);
+                    Get.toNamed(AppRoutes.loginScreen);
                   },
                   child: Text("Sign Up",style:  AppStyle.DmSansFont
                       .copyWith(color:Colors.white,

@@ -5,6 +5,7 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../HomeScreen/home_screen.dart';
+import '../NotificationScreen/notification_screen.dart';
 import 'controller/dashboard_screen_controller.dart';
 
 class DashBoardScreen extends StatelessWidget {
@@ -22,7 +23,7 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               HomeScreen(),
               HomeScreen(),
-              HomeScreen(),
+              NotificationScreen(),
               HomeScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),
@@ -64,7 +65,7 @@ class DashBoardScreen extends StatelessWidget {
                         : SvgPicture.asset(
                             "asset/icons/ic_home.svg",
                             color: ColorConstant.primaryDarkGreen,
-                            height: getVerticalSize(32),
+                            height: getVerticalSize(26),
                           ),
                   ),
                 ),
@@ -85,7 +86,7 @@ class DashBoardScreen extends StatelessWidget {
                         : SvgPicture.asset(
                             "asset/icons/ic_wallet.svg",
                             color: ColorConstant.primaryDarkGreen,
-                            height: getVerticalSize(32),
+                            height: getVerticalSize(26),
                           ),
                   ),
                 ),
@@ -104,7 +105,7 @@ class DashBoardScreen extends StatelessWidget {
                       : SvgPicture.asset(
                           "asset/icons/ic_notification.svg",
                           color: ColorConstant.primaryDarkGreen,
-                          height: getVerticalSize(32),
+                          height: getVerticalSize(26),
                         ),
                 ),
               ),
@@ -124,7 +125,7 @@ class DashBoardScreen extends StatelessWidget {
                         : SvgPicture.asset(
                             "asset/icons/ic_profile.svg",
                             color: ColorConstant.primaryDarkGreen,
-                            height: getVerticalSize(32),
+                            height: getVerticalSize(26),
                           ),
                   ),
                 ),
