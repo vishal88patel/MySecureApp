@@ -22,8 +22,8 @@ class DashBoardScreen extends StatelessWidget {
             index: dashBoardController.selectedIndex.value,
             children: [
               HomeScreen(),
-              HomeScreen(),
-              NotificationScreen(),
+              // HomeScreen(),
+              // NotificationScreen(),
               // HomeScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),
@@ -47,7 +47,7 @@ class DashBoardScreen extends StatelessWidget {
         shape: CircularNotchedRectangle(),
         notchMargin: 7,
         child: Container(
-          height: 60,
+          height: 65,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -99,14 +99,14 @@ class DashBoardScreen extends StatelessWidget {
                   },
                   child: dashBoardController.selectedIndex.value == 2
                       ? SvgPicture.asset(
-                          "asset/icons/ic_notification_selected.svg",
+                          "asset/icons/ic_bitcoin.svg",
                           color: ColorConstant.primaryDarkGreen,
                           height: getVerticalSize(32),
                         )
                       : SvgPicture.asset(
-                          "asset/icons/ic_notification.svg",
+                          "asset/icons/ic_bitcoin.svg",
                           color: ColorConstant.primaryDarkGreen,
-                          height: getVerticalSize(26),
+                          height: getVerticalSize(30),
                         ),
                 ),
               ),
@@ -115,7 +115,7 @@ class DashBoardScreen extends StatelessWidget {
                 child: Obx(
                   () => GestureDetector(
                     onTap: () {
-                      // dashBoardController.onTapOfBottomnavigation(3);
+                      dashBoardController.onTapOfBottomnavigation(3);
                     },
                     child: dashBoardController.selectedIndex.value == 3
                         ? SvgPicture.asset(
