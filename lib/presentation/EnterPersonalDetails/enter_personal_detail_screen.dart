@@ -90,7 +90,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                                       ],
 
                                       decoration: InputDecoration(
-                                        hintText: 'DD/MM/YYYY',
+                                        hintText: 'MM/DD/YYYY',
                                         hintStyle: AppStyle.DmSansFont.copyWith(
                                             color: ColorConstant.primaryWhite,
                                             fontWeight: FontWeight.w400,

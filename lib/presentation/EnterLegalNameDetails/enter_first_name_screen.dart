@@ -110,7 +110,7 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                                   height: getVerticalSize(43),
                                 ),
                                 AppTextField(
-                                    hintText: 'Enter your Mother''s middle name',
+                                    hintText: 'Enter your Mother''s Maiden name',
                                     controller: enterLegelNameController
                                         .middleNameController),
                                 SizedBox(
@@ -126,7 +126,7 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                                             headerText: StringConstants.ERROR);
                                       } else if (enterLegelNameController.middleNameController.text.isEmpty) {
                                         UIUtils.showSnakBar(
-                                            bodyText: "Please enter middle name",
+                                            bodyText: "Please enter Mother''s Maiden name",
                                             headerText: StringConstants.ERROR);
                                       }else if (enterLegelNameController
                                           .lastNameController.text.isEmpty) {

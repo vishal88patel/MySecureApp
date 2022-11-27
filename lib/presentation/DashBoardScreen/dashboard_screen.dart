@@ -24,7 +24,7 @@ class DashBoardScreen extends StatelessWidget {
               HomeScreen(),
               HomeScreen(),
               NotificationScreen(),
-              HomeScreen(),
+              // HomeScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),
               // ApplyLoanInfoScreen(),
@@ -114,7 +114,7 @@ class DashBoardScreen extends StatelessWidget {
                 child: Obx(
                   () => GestureDetector(
                     onTap: () {
-                      dashBoardController.onTapOfBottomnavigation(3);
+                      // dashBoardController.onTapOfBottomnavigation(3);
                     },
                     child: dashBoardController.selectedIndex.value == 3
                         ? SvgPicture.asset(
