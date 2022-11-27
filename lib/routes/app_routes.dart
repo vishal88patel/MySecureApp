@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import '../presentation/AuthOptionScreen/auth_option_screen.dart';
+import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
 import '../presentation/DashBoardScreen/dashboard_screen.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
@@ -24,6 +26,7 @@ class AppRoutes {
   static String dashBoardScreen = '/dashboard_page';
   static String homeScreen = '/home_screen';
   static String notificationScreen = '/notification_screen';
+  static String authOptionScreen = '/auth_option_screen';
 
   static List<GetPage> pages = [
     GetPage(
@@ -62,6 +65,16 @@ class AppRoutes {
       page: () => DashBoardScreen(),
       bindings: [
         DashBoardScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: authOptionScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => AuthOptionScreen(),
+      bindings: [
+        AuthOptionScreenBinding(),
       ],
     ),
 
