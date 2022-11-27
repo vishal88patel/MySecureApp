@@ -34,6 +34,8 @@ class ColorConstant {
   static Color primaryLightGreen = const Color(0xFF4CD080);
   static Color naturalBlack = const Color(0xFF030319);
   static Color naturalGrey = const Color(0xFF8F92A1);
+  static Color skyF6 = const Color(0xFFF6FAFD);
+  static Color greyBD = const Color(0xFFBDBDBD);
 
 
   // new ui screen color

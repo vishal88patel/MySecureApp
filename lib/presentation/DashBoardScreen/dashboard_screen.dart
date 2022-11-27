@@ -34,6 +34,7 @@ class DashBoardScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+
         backgroundColor: ColorConstant.primaryOrange,
         child: Center(
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
@@ -79,12 +80,12 @@ class DashBoardScreen extends StatelessWidget {
                     },
                     child: dashBoardController.selectedIndex.value == 1
                         ? SvgPicture.asset(
-                            "asset/icons/ic_wallet_selected.svg",
+                            "asset/icons/ic_statistic_selected.svg",
                             color: ColorConstant.primaryDarkGreen,
                             height: getVerticalSize(32),
                           )
                         : SvgPicture.asset(
-                            "asset/icons/ic_wallet.svg",
+                            "asset/icons/ic_statistic.svg",
                             color: ColorConstant.primaryDarkGreen,
                             height: getVerticalSize(26),
                           ),
