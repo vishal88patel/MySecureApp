@@ -11,8 +11,7 @@ import 'package:my_secure_app/presentation/EnterPasswordScreen/enter_password_sc
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/ssn_details.dart';
-import 'package:my_secure_app/presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
-import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
+import 'package:my_secure_app/presentation/OnBoardingScreen/onboarding_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/PersonalDetails/personal_detail_screen.dart';
@@ -24,10 +23,7 @@ import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
-import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
-import '../presentation/NotificationScreen/notification_screen.dart';
 import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
-import '../presentation/OnBoardingScreen/onboarding_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
@@ -255,6 +251,15 @@ class AppRoutes {
         page: () => PurpouseAccountScreen(),
       bindings: [
         PersonalScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: onBoardingScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+        page: () => OnBoardingScreen(),
+      bindings: [
+        OnBoardingScreenBinding(),
       ],
     ),
 
