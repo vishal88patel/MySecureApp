@@ -10,6 +10,10 @@ import 'package:my_secure_app/presentation/EnterPasswordScreen/binding/enter_pas
 import 'package:my_secure_app/presentation/EnterPasswordScreen/enter_password_screen.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import 'package:my_secure_app/presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
+import 'package:my_secure_app/presentation/EnterPersonalDetails/ssn_details.dart';
+import 'package:my_secure_app/presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
+import 'package:my_secure_app/presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
+import 'package:my_secure_app/presentation/PersonalDetails/personal_detail_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
@@ -182,7 +186,35 @@ class AppRoutes {
       ],
     ),
 
+    GetPage(
+      name: enterSnnDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterSNNDetailScreen(),
+      bindings: [
+        EnterBirthDateBinding(),
+      ],
+    ),
 
+    GetPage(
+      name: personalDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => PersonalDetailScreen(),
+      bindings: [
+        PersonalScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: purpouseAccountScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+        page: () => PurpouseAccountScreen(),
+      bindings: [
+        PersonalScreenBinding(),
+      ],
+    ),
 
   ];
 }

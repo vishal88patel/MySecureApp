@@ -28,9 +28,13 @@ class NumPad extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+          color: ColorConstant.primaryWhite,
+          borderRadius: BorderRadius.only(topRight: Radius.circular(32),topLeft: Radius.circular(32))
+      ),
       child: Column(
         children: [
-          const SizedBox(height: 20),
+           SizedBox(height: getVerticalSize(50)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             // implement the number keys (from 0 to 9) with the NumberButton widget
@@ -51,7 +55,12 @@ class NumPad extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: getVerticalSize(10)),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+            child: Divider(),
+          ),
+          SizedBox(height: getVerticalSize(10)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -75,7 +84,12 @@ class NumPad extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: getVerticalSize(10)),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+            child: Divider(),
+          ),
+          SizedBox(height: getVerticalSize(10)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -98,7 +112,12 @@ class NumPad extends StatelessWidget {
               ),
             ],
           ),
-          const SizedBox(height: 20),
+          SizedBox(height: getVerticalSize(10)),
+          Padding(
+            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+            child: Divider(),
+          ),
+          SizedBox(height: getVerticalSize(10)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -118,11 +137,14 @@ class NumPad extends StatelessWidget {
           ),
           const SizedBox(height: 20),
 
-          AppElevatedButton(
-            buttonName: 'Next',
-
-            onPressed: () => onSubmit(),
-          )
+          // Padding(
+          //   padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+          //   child: AppElevatedButton(
+          //     buttonName: 'Next',
+          //
+          //     onPressed: () => onSubmit(),
+          //   ),
+          // )
 
         ],
       ),
@@ -160,9 +182,9 @@ buttonWidget(
       }
     } ,
     child: Container(
-     /* height: MediaQuery.of(context).size.height/18,
+      height: MediaQuery.of(context).size.height/18,
       width: MediaQuery.of(context).size.width/4.75,
-      decoration: BoxDecoration(
+      /* decoration: BoxDecoration(
         color: ColorConstant.primaryWhite,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
@@ -188,9 +210,9 @@ iconButtonWidget({required BuildContext context,required VoidCallback function})
   return InkWell(
     onTap: function,
     child: Container(
-     /* height: MediaQuery.of(context).size.height/18,
+      height: MediaQuery.of(context).size.height/18,
       width: MediaQuery.of(context).size.width/4.75,
-      decoration:  BoxDecoration(
+      /* decoration:  BoxDecoration(
         color: ColorConstant.primaryWhite,
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(10),
