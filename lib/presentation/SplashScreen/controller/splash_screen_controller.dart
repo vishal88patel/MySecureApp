@@ -25,32 +25,23 @@ class SplashScreenController extends GetxController {
   }
 
   Future changeRoute() async {
-    Future.delayed(Duration(milliseconds: 1000), () {
-      // Get.offAllNamed(AppRoutes.loginScreen);
-      // Get.offAll(HomeScreen());
-      // Get.offAllNamed(AppRoutes.dashBoardScreen,
-      //     arguments: {"bottomTabCount": 0});
-      Get.offAllNamed(AppRoutes.onBoardingScreen);
-      // Get.offAll(HomeScreen());
-    });
+    LoginResponseModel? loginResponseModel =
+        (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+    if (loginResponseModel != null &&
+        loginResponseModel.data!.token!.isNotEmpty) {
+      Future.delayed(Duration(milliseconds: 1000), () {
+        Get.offAllNamed(AppRoutes.loginScreen,
+            arguments: {"bottomTabCount": 0});
+      });
+    } else {
+      Future.delayed(Duration(milliseconds: 1000), () {
+        // Get.offAllNamed(AppRoutes.loginScreen);
+        // Get.offAll(HomeScreen());
+        // Get.offAllNamed(AppRoutes.dashBoardScreen,
+        //     arguments: {"bottomTabCount": 0});
+         Get.offAllNamed(AppRoutes.onBoardingScreen);
+        // Get.offAll(HomeScreen());
+      });
+    }
   }
-    // LoginResponseModel? loginResponseModel =
-    //     (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
-    // if (loginResponseModel != null &&
-    //     loginResponseModel.data!.token!.isNotEmpty) {
-    //   Future.delayed(Duration(milliseconds: 1000), () {
-    //     Get.offAllNamed(AppRoutes.loginScreen,
-    //         arguments: {"bottomTabCount": 0});
-    //   });
-    // } else {
-    //   Future.delayed(Duration(milliseconds: 1000), () {
-    //     // Get.offAllNamed(AppRoutes.loginScreen);
-    //     // Get.offAll(HomeScreen());
-    //     // Get.offAllNamed(AppRoutes.dashBoardScreen,
-    //     //     arguments: {"bottomTabCount": 0});
-    //      Get.offAllNamed(AppRoutes.onBoardingScreen);
-    //     // Get.offAll(HomeScreen());
-    //   });
-    // }
-  }
-
+}
