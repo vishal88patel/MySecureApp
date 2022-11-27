@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../HomeScreen/home_screen.dart';
@@ -40,7 +41,7 @@ class DashBoardScreen extends StatelessWidget {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
-        color: Colors.redAccent,
+        color: Colors.white,
         shape: CircularNotchedRectangle(),
         notchMargin: 7,
         child: Container(
@@ -48,44 +49,49 @@ class DashBoardScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Obx(
-                () => InkWell(
-                  onTap: () {
-                    dashBoardController.onTapOfBottomnavigation(0);
-                  },
-                  child: dashBoardController.selectedIndex.value == 0
-                      ? SvgPicture.asset(
-                          "asset/icons/ic_home_selected.svg",
-                          color: ColorConstant.primaryDarkGreen,
-                          height: 26,
-                        )
-                      : SvgPicture.asset(
-                          "asset/icons/ic_home.svg",
-                          color: ColorConstant.primaryDarkGreen,
-                          height: 26,
-                        ),
+              Padding(
+                padding: EdgeInsets.only(left:getHorizontalSize(30)),
+                child: Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      dashBoardController.onTapOfBottomnavigation(0);
+                    },
+                    child: dashBoardController.selectedIndex.value == 0
+                        ? SvgPicture.asset(
+                            "asset/icons/ic_home_selected.svg",
+                            height: getVerticalSize(32),
+                          )
+                        : SvgPicture.asset(
+                            "asset/icons/ic_home.svg",
+                            color: ColorConstant.primaryDarkGreen,
+                            height: getVerticalSize(32),
+                          ),
+                  ),
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.only(right:getHorizontalSize(100)),
+                child: Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      dashBoardController.onTapOfBottomnavigation(1);
+                    },
+                    child: dashBoardController.selectedIndex.value == 1
+                        ? SvgPicture.asset(
+                            "asset/icons/ic_wallet_selected.svg",
+                            color: ColorConstant.primaryDarkGreen,
+                            height: getVerticalSize(32),
+                          )
+                        : SvgPicture.asset(
+                            "asset/icons/ic_wallet.svg",
+                            color: ColorConstant.primaryDarkGreen,
+                            height: getVerticalSize(32),
+                          ),
+                  ),
                 ),
               ),
               Obx(
-                () => InkWell(
-                  onTap: () {
-                    dashBoardController.onTapOfBottomnavigation(1);
-                  },
-                  child: dashBoardController.selectedIndex.value == 1
-                      ? SvgPicture.asset(
-                          "asset/icons/ic_wallet_selected.svg",
-                          color: ColorConstant.primaryDarkGreen,
-                          height: 26,
-                        )
-                      : SvgPicture.asset(
-                          "asset/icons/ic_wallet.svg",
-                          color: ColorConstant.primaryDarkGreen,
-                          height: 26,
-                        ),
-                ),
-              ),
-              Obx(
-                () => InkWell(
+                () => GestureDetector(
                   onTap: () {
                     dashBoardController.onTapOfBottomnavigation(2);
                   },
@@ -93,31 +99,34 @@ class DashBoardScreen extends StatelessWidget {
                       ? SvgPicture.asset(
                           "asset/icons/ic_notification_selected.svg",
                           color: ColorConstant.primaryDarkGreen,
-                          height: 26,
+                          height: getVerticalSize(32),
                         )
                       : SvgPicture.asset(
                           "asset/icons/ic_notification.svg",
                           color: ColorConstant.primaryDarkGreen,
-                          height: 26,
+                          height: getVerticalSize(32),
                         ),
                 ),
               ),
-              Obx(
-                () => InkWell(
-                  onTap: () {
-                    dashBoardController.onTapOfBottomnavigation(3);
-                  },
-                  child: dashBoardController.selectedIndex.value == 3
-                      ? SvgPicture.asset(
-                          "asset/icons/ic_profile_selected.svg",
-                          color: ColorConstant.primaryDarkGreen,
-                          height: 26,
-                        )
-                      : SvgPicture.asset(
-                          "asset/icons/ic_profile.svg",
-                          color: ColorConstant.primaryDarkGreen,
-                          height: 26,
-                        ),
+              Padding(
+                padding: EdgeInsets.only(right:getHorizontalSize(30)),
+                child: Obx(
+                  () => GestureDetector(
+                    onTap: () {
+                      dashBoardController.onTapOfBottomnavigation(3);
+                    },
+                    child: dashBoardController.selectedIndex.value == 3
+                        ? SvgPicture.asset(
+                            "asset/icons/ic_profile_selected.svg",
+                            color: ColorConstant.primaryDarkGreen,
+                            height: getVerticalSize(32),
+                          )
+                        : SvgPicture.asset(
+                            "asset/icons/ic_profile.svg",
+                            color: ColorConstant.primaryDarkGreen,
+                            height: getVerticalSize(32),
+                          ),
+                  ),
                 ),
               ),
             ],

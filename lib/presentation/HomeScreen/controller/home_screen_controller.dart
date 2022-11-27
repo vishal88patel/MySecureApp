@@ -36,7 +36,7 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     // getStoredData();
-    // callHomePageApi();
+     callHomePageApi();
 
     super.onInit();
   }
