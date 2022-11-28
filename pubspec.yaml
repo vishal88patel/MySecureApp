@@ -79,6 +79,7 @@ dependencies:
   easy_loader: ^2.0.0
   loading_indicator: ^3.1.0
   fl_chart: ^0.55.2
+  d_chart: ^0.1.0
 
 
 
