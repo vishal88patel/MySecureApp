@@ -38,6 +38,8 @@ class ColorConstant {
   static Color naturalGrey2 = const Color(0xFFF2F2F2);
   static Color naturalGrey3 = const Color(0xFFBDBDBD);
   static Color brandYellow = const Color(0xFFFFAE58);
+  static Color skyF6 = const Color(0xFFF6FAFD);
+  static Color greyBD = const Color(0xFFBDBDBD);
 
 
   // new ui screen color

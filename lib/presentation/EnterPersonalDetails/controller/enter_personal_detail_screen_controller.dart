@@ -37,8 +37,11 @@ class EnterBirthDateController extends GetxController {
           bodyText: "Please enter Date of Birth",
           headerText: StringConstants.ERROR);
       // } else if (!isAdult(dobController.text)) {
-    } else if (!isAdult(dobController.text)) {
+    } else if (dobController.text=="00/00/0000") {
 
+      UIUtils.showSnakBar(
+          bodyText: "Pleas enter valid birth date", headerText: StringConstants.ERROR);
+    }else if (!isAdult(dobController.text)) {
       UIUtils.showSnakBar(
           bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
     }

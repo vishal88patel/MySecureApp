@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/statistic/statistic.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../HomeScreen/home_screen.dart';
+import '../NotificationScreen/notification_screen.dart';
 import 'controller/dashboard_screen_controller.dart';
 
 class DashBoardScreen extends StatelessWidget {
@@ -21,8 +23,8 @@ class DashBoardScreen extends StatelessWidget {
             index: dashBoardController.selectedIndex.value,
             children: [
               HomeScreen(),
-              HomeScreen(),
-              HomeScreen(),
+              StatisticScreen(),
+              NotificationScreen(),
               HomeScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),
@@ -33,6 +35,7 @@ class DashBoardScreen extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+
         backgroundColor: ColorConstant.primaryOrange,
         child: Center(
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
@@ -45,7 +48,7 @@ class DashBoardScreen extends StatelessWidget {
         shape: CircularNotchedRectangle(),
         notchMargin: 7,
         child: Container(
-          height: 60,
+          height: 65,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -64,7 +67,7 @@ class DashBoardScreen extends StatelessWidget {
                         : SvgPicture.asset(
                             "asset/icons/ic_home.svg",
                             color: ColorConstant.primaryDarkGreen,
-                            height: getVerticalSize(32),
+                            height: getVerticalSize(26),
                           ),
                   ),
                 ),
@@ -78,14 +81,14 @@ class DashBoardScreen extends StatelessWidget {
                     },
                     child: dashBoardController.selectedIndex.value == 1
                         ? SvgPicture.asset(
-                            "asset/icons/ic_wallet_selected.svg",
+                            "asset/icons/ic_statistic_selected.svg",
                             color: ColorConstant.primaryDarkGreen,
                             height: getVerticalSize(32),
                           )
                         : SvgPicture.asset(
-                            "asset/icons/ic_wallet.svg",
+                            "asset/icons/ic_statistic.svg",
                             color: ColorConstant.primaryDarkGreen,
-                            height: getVerticalSize(32),
+                            height: getVerticalSize(26),
                           ),
                   ),
                 ),
@@ -97,14 +100,14 @@ class DashBoardScreen extends StatelessWidget {
                   },
                   child: dashBoardController.selectedIndex.value == 2
                       ? SvgPicture.asset(
-                          "asset/icons/ic_notification_selected.svg",
+                          "asset/icons/ic_bitcoin.svg",
                           color: ColorConstant.primaryDarkGreen,
                           height: getVerticalSize(32),
                         )
                       : SvgPicture.asset(
-                          "asset/icons/ic_notification.svg",
+                          "asset/icons/ic_bitcoin.svg",
                           color: ColorConstant.primaryDarkGreen,
-                          height: getVerticalSize(32),
+                          height: getVerticalSize(30),
                         ),
                 ),
               ),
@@ -124,7 +127,7 @@ class DashBoardScreen extends StatelessWidget {
                         : SvgPicture.asset(
                             "asset/icons/ic_profile.svg",
                             color: ColorConstant.primaryDarkGreen,
-                            height: getVerticalSize(32),
+                            height: getVerticalSize(26),
                           ),
                   ),
                 ),

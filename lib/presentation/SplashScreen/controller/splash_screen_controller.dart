@@ -16,6 +16,7 @@ class SplashScreenController extends GetxController {
   void onInit() {
     changeRoute();
 
+
     super.onInit();
   }
 
@@ -30,16 +31,16 @@ class SplashScreenController extends GetxController {
     if (loginResponseModel != null &&
         loginResponseModel.data!.token!.isNotEmpty) {
       Future.delayed(Duration(milliseconds: 1000), () {
-        Get.offAllNamed(AppRoutes.loginScreen,
+        Get.offAllNamed(AppRoutes.dashBoardScreen,
             arguments: {"bottomTabCount": 0});
       });
     } else {
       Future.delayed(Duration(milliseconds: 1000), () {
-         Get.offAllNamed(AppRoutes.scanPasswordScreen);
-        //Get.offAll(HomeScreen());
+        // Get.offAllNamed(AppRoutes.loginScreen);
+        // Get.offAll(HomeScreen());
         // Get.offAllNamed(AppRoutes.dashBoardScreen,
         //     arguments: {"bottomTabCount": 0});
-         // Get.offAllNamed(AppRoutes.onBoardingScreen);
+         Get.offAllNamed(AppRoutes.onBoardingScreen);
         // Get.offAll(HomeScreen());
       });
     }

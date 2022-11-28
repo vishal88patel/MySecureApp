@@ -10,73 +10,99 @@
 10-- dont show default loan -- done
 
 
- Scaffold(
-      floatingActionButton: FloatingActionButton(
-        //Floating action button on Scaffold
-        onPressed: () {
-          //code to execute on button press
-        },
-        child: Container(
-          height: 50,
-          width: 50,
-          child: SvgPicture.asset("asset/icons/ic_scan.svg"),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: ColorConstant.primaryOrange,
-          ),
-        ), //icon inside button
-      ),
 
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      //floating action button position to center
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: ColorConstant.primaryDarkGreen,
+        body: Column(
+          children: [
+            SizedBox(
+              height: getVerticalSize(16),
+            ),
+            AppAppBar(
+              title:"Notification",
+              icon1: "asset/icons/ic_back.svg",
+              icon2: "asset/icons/ic_setting.svg",
+              onPressedIcon1: (){
+                Get.back();
+              },
+              onPressedIcon2: (){},
+            ),
+            Expanded(
+              child: Card(
+                margin: const EdgeInsets.symmetric(horizontal: 0),
+                color: ColorConstant.primaryWhite,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(36),
+                      topRight: Radius.circular(36)),
+                ),
+                child: Container(
+                  width:MediaQuery.of(context).size.width,
+                  child:ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: 15,
+                      physics: const BouncingScrollPhysics(),
+                      itemBuilder:
+                          (BuildContext context, int index) {
+                        return InkWell(
+                          onTap: () {
 
-      bottomNavigationBar: BottomAppBar(
-        //bottom navigation bar on scaffold
-        color: Colors.redAccent,
-        shape: CircularNotchedRectangle(),
-        //shape of notch
-        notchMargin: 7,
-        //notche margin between floating button and bottom appbar
-        child: Container(
-          height: 60,
-          color: ColorConstant.primaryWhite,
-          child: Row(
-            //children inside bottom appbar
-            mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              IconButton(
-                icon: Icon(
-                  Icons.menu,
-                  color: Colors.white,
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20),top:getVerticalSize(12),bottom: getVerticalSize(12) ),
+                            child: Row(
+                              children: [
+                                SvgPicture.asset(
+                                  "asset/icons/ic_row_notification.svg",
+                                  fit: BoxFit.fill,
+                                ),
+                                Padding(
+                                  padding: EdgeInsets.only(left:getHorizontalSize(18)),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Notification write here",
+                                        style: AppStyle.textStyleDMSANS.copyWith(
+                                            color: ColorConstant.naturalBlack,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: getFontSize(20)),
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                      SizedBox(height: getVerticalSize(4),),
+                                      Text(
+                                        "10:00 AM",
+                                        style: AppStyle.textStyleDMSANS.copyWith(
+                                            color: ColorConstant.naturalGrey,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: getFontSize(16)),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Spacer(),
+                                Padding(
+                                  padding: EdgeInsets.only(right:getHorizontalSize(10)),
+                                  child: Text(
+                                    "Info",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryLightGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(16)),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        );
+                      })
                 ),
-                onPressed: () {},
               ),
-              IconButton(
-                icon: Icon(
-                  Icons.search,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.print,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-              IconButton(
-                icon: Icon(
-                  Icons.people,
-                  color: Colors.white,
-                ),
-                onPressed: () {},
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-
+            ),
+          ],
+        ));
+  }
 

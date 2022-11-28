@@ -24,7 +24,7 @@ class PersonalDetailScreen extends StatelessWidget {
       children: [
          Padding(
           padding: EdgeInsets.symmetric(
-              horizontal: getHorizontalSize(36.0),
+              horizontal: getHorizontalSize(20.0),
               vertical: getVerticalSize(26)),
           child: SafeArea(
             child: Stack(

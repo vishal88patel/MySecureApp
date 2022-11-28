@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/routes/app_routes.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
@@ -45,13 +46,18 @@ class AuthOptionScreen extends StatelessWidget {
                     buttonColor: ColorConstant.primaryLightGreen,
                     radius: 16,
                     onPressed: () {
-
+                      Get.toNamed(AppRoutes.loginScreen);
                     },
                   ),
                 ),
-                Text("Sign Up",style:  AppStyle.DmSansFont
-                    .copyWith(color:Colors.white,
-                    fontWeight: FontWeight.w500,fontSize: getFontSize(20)),)
+                TextButton(
+                  onPressed: (){
+                    Get.toNamed(AppRoutes.loginScreen);
+                  },
+                  child: Text("Sign Up",style:  AppStyle.DmSansFont
+                      .copyWith(color:Colors.white,
+                      fontWeight: FontWeight.w500,fontSize: getFontSize(20)),),
+                )
               ],
             ),
           ))

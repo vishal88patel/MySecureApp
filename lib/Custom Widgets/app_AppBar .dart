@@ -9,6 +9,7 @@ class AppAppBar extends StatelessWidget {
   final String title;
   final String icon1;
   final String icon2;
+  final Color? titleColor;
   final void Function() onPressedIcon1;
   final void Function() onPressedIcon2;
 
@@ -16,7 +17,7 @@ class AppAppBar extends StatelessWidget {
   const AppAppBar({Key? key,
     required this.title,
     required this.icon1, required this.icon2, required this.onPressedIcon1,
-    required this.onPressedIcon2}) : super(key: key);
+    required this.onPressedIcon2,  this.titleColor}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class AppAppBar extends StatelessWidget {
               Text(
                 title.toString(),
                 style: AppStyle.textStyleDMSANS.copyWith(
-                    color: ColorConstant.primaryWhite,
+                    color: titleColor??ColorConstant.primaryWhite,
                     fontWeight: FontWeight.w700,
                     fontSize: getFontSize(24)),
               ),
