@@ -38,138 +38,546 @@ class ProfileScreen extends StatelessWidget {
                         fit: BoxFit.cover,
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.topCenter,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: 40,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "My Profile",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontSize: getFontSize(28),
-                                      fontWeight: FontWeight.bold),
-                                ),
-                                Container(
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                          color: ColorConstant.primaryAppTextF1,
-                                        ),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(10))),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: SvgPicture.asset(
-                                          "asset/icons/ic_scab.svg"),
-                                    ))
-                              ],
-                            ),
-                          ),
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Padding(
-                              padding: EdgeInsets.all(12),
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  ClipRRect(
-                                    borderRadius: BorderRadius.circular(
-                                      getHorizontalSize(
-                                        100.00,
-                                      ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.topCenter,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 40,
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Text(
+                                      "My Profile",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontSize: getFontSize(24),
+                                          fontWeight: FontWeight.bold),
                                     ),
-                                    child: Image.asset(
-                                      "asset/icons/ic_avatar.png",
-                                      height: getSize(
-                                        130.00,
-                                      ),
-                                      width: getSize(
-                                        130.00,
-                                      ),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      left: 24,
-                                      bottom: 4,
-                                    ),
-                                    child: Column(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          "Bianca Cooper",
-                                          overflow: TextOverflow.ellipsis,
-                                          textAlign: TextAlign.left,
-                                          style: AppStyle.DmSansFont.copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontSize: getFontSize(28),
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                            top: 7,
-                                            right: 10,
-                                          ),
-                                          child: Text(
-                                            "(480) 555-0103",
-                                            overflow: TextOverflow.ellipsis,
-                                            textAlign: TextAlign.left,
-                                            style: AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant
-                                                    .primaryAppTextF1,
-                                                fontSize: getFontSize(25),
-                                                fontWeight: FontWeight.normal),
-                                          ),
-                                        ),
-                                        Align(
-                                          alignment: Alignment.center,
-                                          child: Padding(
-                                            padding: EdgeInsets.only(
-                                              top: 3,
-                                              right: 6,
+                                    Container(
+                                        decoration: BoxDecoration(
+                                            border: Border.all(
+                                              color: ColorConstant
+                                                  .primaryAppTextF1,
                                             ),
-                                            child: Text(
-                                              "bianca@example.com",
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: SvgPicture.asset(
+                                              "asset/icons/ic_scab.svg"),
+                                        ))
+                                  ],
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding: EdgeInsets.all(12),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                          getHorizontalSize(
+                                            100.00,
+                                          ),
+                                        ),
+                                        child: Image.asset(
+                                          "asset/icons/ic_avatar.png",
+                                          height: getSize(
+                                            130.00,
+                                          ),
+                                          width: getSize(
+                                            130.00,
+                                          ),
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 24,
+                                          bottom: 4,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Bianca Cooper",
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
                                               style:
                                                   AppStyle.DmSansFont.copyWith(
                                                       color: ColorConstant
-                                                          .primaryAppTextF1,
-                                                      fontSize: getFontSize(25),
-                                                      fontWeight: FontWeight.normal),
+                                                          .primaryWhite,
+                                                      fontSize: getFontSize(28),
+                                                      fontWeight:
+                                                          FontWeight.bold),
                                             ),
-                                          ),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                top: 7,
+                                                right: 10,
+                                              ),
+                                              child: Text(
+                                                "(480) 555-0103",
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.left,
+                                                style: AppStyle.DmSansFont
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryAppTextF1,
+                                                        fontSize:
+                                                            getFontSize(20),
+                                                        fontWeight:
+                                                            FontWeight.normal),
+                                              ),
+                                            ),
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                  top: 3,
+                                                  right: 6,
+                                                ),
+                                                child: Text(
+                                                  "bianca@example.com",
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.left,
+                                                  style: AppStyle.DmSansFont
+                                                      .copyWith(
+                                                          color: ColorConstant
+                                                              .primaryAppTextF1,
+                                                          fontSize:
+                                                              getFontSize(20),
+                                                          fontWeight: FontWeight
+                                                              .normal),
+                                                ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(24),
+                        ),
+                        Card(
+                          margin: const EdgeInsets.symmetric(horizontal: 0),
+                          color: ColorConstant.naturalGrey2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: getHorizontalSize(270),
+                                height: getVerticalSize(20),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Card(
+                          margin: const EdgeInsets.symmetric(horizontal: 0),
+                          color: ColorConstant.brandYellow,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(20),
+                                topRight: Radius.circular(20)),
+                          ),
+                          child: Column(
+                            children: [
+                              Container(
+                                width: getHorizontalSize(310),
+                                height: getVerticalSize(20),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Expanded(
+                          child: Card(
+                            margin: const EdgeInsets.symmetric(horizontal: 0),
+                            color: ColorConstant.primaryLightGreen,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(20),
+                                  topRight: Radius.circular(20)),
+                            ),
+                            child: Column(
+                              children: [
+                                Container(
+                                  width: getHorizontalSize(350),
+                                  child: Padding(
+                                    padding:  EdgeInsets.only(left: getHorizontalSize(20),
+                                        right: getHorizontalSize(20),top: getVerticalSize(20)),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Balance",
+                                              style: AppStyle.textStyleDMSANS.copyWith(
+                                                  color: ColorConstant.primaryWhite,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: getFontSize(18)),
+                                            ),
+                                            SvgPicture.asset(
+                                              "asset/icons/ic_card_logo.svg",
+                                              fit: BoxFit.fill,
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          "\$26,968.00",
+                                          style: AppStyle.textStyleDMSANS.copyWith(
+                                              color: ColorConstant.primaryWhite,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: getFontSize(28)),
+                                        ),
+                                        SizedBox(height: getHorizontalSize(8),),
+                                        Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              "asset/icons/ic_chip.svg",
+                                              fit: BoxFit.fill,
+                                            ),
+                                            SizedBox(width: getHorizontalSize(12),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(12),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(12),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(6),),
+                                            Container(
+                                              height: getVerticalSize(6),
+                                              width: getVerticalSize(6),
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  shape: BoxShape.circle
+                                              ),
+                                            ),
+                                            SizedBox(width: getHorizontalSize(12),),
+                                            Text(
+                                              "3765",
+                                              style: AppStyle.textStyleDMSANS.copyWith(
+                                                  color: ColorConstant.primaryWhite,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: getFontSize(20)),
+                                            ),
+                                          ],
                                         ),
                                       ],
                                     ),
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ],
                 ),
               ),
+              Padding(
+                padding:  EdgeInsets.only(top:getVerticalSize(35),left: getHorizontalSize(30),right: getHorizontalSize(34)),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "asset/icons/ic_profile_selected.svg",
+                              fit: BoxFit.fill,
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                              child: Text(
+                                "Personal",
+                                style: AppStyle.textStyleDMSANS
+                                    .copyWith(
+                                    color: ColorConstant
+                                        .naturalBlack,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                    fontSize:
+                                    getFontSize(20)),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SvgPicture.asset(
+                          "asset/icons/ic_right_arrow.svg",
+                          fit: BoxFit.fill,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(36),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "asset/icons/ic_lock.svg",
+                              fit: BoxFit.fill,
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                              child: Text(
+                                "Privacy & Security",
+                                style: AppStyle.textStyleDMSANS
+                                    .copyWith(
+                                    color: ColorConstant
+                                        .naturalBlack,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                    fontSize:
+                                    getFontSize(20)),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SvgPicture.asset(
+                          "asset/icons/ic_right_arrow.svg",
+                          fit: BoxFit.fill,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(36),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "asset/icons/ic_offer.svg",
+                              fit: BoxFit.fill,
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                              child: Text(
+                                "Offers & Rewards",
+                                style: AppStyle.textStyleDMSANS
+                                    .copyWith(
+                                    color: ColorConstant
+                                        .naturalBlack,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                    fontSize:
+                                    getFontSize(20)),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SvgPicture.asset(
+                          "asset/icons/ic_right_arrow.svg",
+                          fit: BoxFit.fill,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(36),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "asset/icons/ic_helpp.svg",
+                              fit: BoxFit.fill,
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                              child: Text(
+                                "Help",
+                                style: AppStyle.textStyleDMSANS
+                                    .copyWith(
+                                    color: ColorConstant
+                                        .naturalBlack,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                    fontSize:
+                                    getFontSize(20)),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SvgPicture.asset(
+                          "asset/icons/ic_right_arrow.svg",
+                          fit: BoxFit.fill,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(36),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SvgPicture.asset(
+                              "asset/icons/ic_logoutt.svg",
+                              fit: BoxFit.fill,
+                            ),
+                            Padding(
+                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                              child: Text(
+                                "Logout",
+                                style: AppStyle.textStyleDMSANS
+                                    .copyWith(
+                                    color: ColorConstant
+                                        .naturalBlack,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                    fontSize:
+                                    getFontSize(20)),
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        SvgPicture.asset(
+                          "asset/icons/ic_right_arrow.svg",
+                          fit: BoxFit.fill,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
               // Container(
               //   width: double.infinity,
               //   decoration: AppDecoration.fillWhiteA700,
