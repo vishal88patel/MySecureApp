@@ -6,7 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
 import 'package:my_secure_app/presentation/HomeScreen/widget/payment_list_widget.dart';
+import 'package:my_secure_app/presentation/statistic/chart2.dart';
 import 'package:my_secure_app/presentation/statistic/controller/statistic_screen_controller.dart';
+import 'package:my_secure_app/presentation/widget/imageCommonView.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
@@ -222,7 +224,169 @@ class _StatisticScreenState extends State<StatisticScreen> {
                     ],
                   ),
                 ),
+                SizedBox(height: getVerticalSize(30),  ),
+                ChartWeeklyScreen(),
                 SizedBox(height: getVerticalSize(50),),
+                Padding(
+                    padding: EdgeInsets.only(top: getVerticalSize(27),
+                        left: getHorizontalSize(20),right:  getHorizontalSize(20)),
+                    child: Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment:
+                              CrossAxisAlignment.start,
+                              mainAxisAlignment:
+                              MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                    padding: EdgeInsets.only(right: 9),
+                                    child:  Text(
+                                      'Category Chart',
+                                      style: AppStyle.textStyleDMSANS.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(24)),
+                                    ),),
+                                SizedBox(height: getVerticalSize(10),),
+                                Text(
+                                  'Last 7 days expenses',
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: ColorConstant.grey8F,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: getFontSize(20)),
+                                ),
+                              ]),
+                          Text(
+                            '-\$312.00',
+                            style: AppStyle.textStyleDMSANS.copyWith(
+                                color: ColorConstant.primaryBlack,
+                                fontWeight: FontWeight.w700,
+                                fontSize: getFontSize(24)),
+                          ),
+                        ])),
+                SizedBox(height: getVerticalSize(30),),
+
+                Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                        height: getSize(200.00),
+                        width: getSize(200.00),
+                        decoration: BoxDecoration(
+                          color: ColorConstant.primaryWhite,
+                          borderRadius: BorderRadius.circular(100)
+                        ),
+                        child: Stack(
+                            alignment: Alignment.centerLeft,
+                            children: [
+
+                              Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                      height: getSize(200.00),
+                                      width: getSize(200.00),
+                                      child:
+                                      CircularProgressIndicator(
+                                          value: 0.3,
+                                          backgroundColor:
+                                          Colors.teal,
+                                          strokeWidth: 20,
+                                          color: Colors.green))),
+                              Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Container(
+                                      height: getSize(200.00),
+                                      width: getSize(200.00),
+                                      child:
+                                      CircularProgressIndicator(
+                                          value: 0.7,
+                                          strokeWidth: 20,
+                                          backgroundColor:
+                                         Colors.green,
+                                          color: Colors.orange)))
+                            ]))),
+                Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                        padding:
+                        EdgeInsets.only(left: 15, top: 24, right: 15),
+                        child: Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.start,
+                            crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Container(
+                                  height: getSize(6.00),
+                                  width: getSize(6.00),
+                                  margin:
+                                  EdgeInsets.only(top: 6, bottom: 8),
+                                  decoration: BoxDecoration(
+                                      color: ColorConstant.primaryOrange,
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          getHorizontalSize(
+                                              3.00)))),
+                              Padding(
+                                  padding:  EdgeInsets.only(
+                                      left: 8, top: 1, bottom: 1),
+                                  child: Text(
+                                    'Transportation',
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryOrange,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),),
+                              Container(
+                                  height: getSize(6.00),
+                                  width: getSize(6.00),
+                                  margin:  EdgeInsets.only(
+                                      left: 32, top: 6, bottom: 8),
+                                  decoration: BoxDecoration(
+                                      color: ColorConstant.buttonGreen,
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          getHorizontalSize(
+                                              3.00)))),
+                              Padding(
+                                  padding:
+                                  EdgeInsets.only(left: 8, top: 1),
+                                  child: Text(
+                                    'Shopping',
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.buttonGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),),
+                              Container(
+                                  height: getSize(6.00),
+                                  width: getSize(6.00),
+                                  margin:  EdgeInsets.only(
+                                      left: 32, top: 6, bottom: 8),
+                                  decoration: BoxDecoration(
+                                      color:ColorConstant.darkGreen,
+                                      borderRadius:
+                                      BorderRadius.circular(
+                                          getHorizontalSize(
+                                              3.00)))),
+                              Padding(
+                                  padding:
+                                  EdgeInsets.only(left: 8, bottom: 1),
+                                  child: Text(
+                                    'Coffee',
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.darkGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
+                              ) ]))),
+                SizedBox(height: getVerticalSize(50),),
+
 
               ],
             ),

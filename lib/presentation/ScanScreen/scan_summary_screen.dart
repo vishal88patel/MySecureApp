@@ -3,6 +3,7 @@ import 'dart:ffi';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:my_secure_app/presentation/ScanScreen/scan_password_screen.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../../App Configurations/color_constants.dart';
@@ -13,7 +14,7 @@ import '../../utils/HelperFiles/ui_utils.dart';
 import 'controller/scan_screen_controller.dart';
 
 class ScanSummaryScreen extends StatelessWidget {
-  var scanController = Get.put(ScanScreenController());
+  // var scanController = Get.put(ScanScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -208,7 +209,9 @@ class ScanSummaryScreen extends StatelessWidget {
                         textColor: Colors.white,
                         buttonColor: ColorConstant.primaryLightGreen,
                         radius: 16,
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(ScanPasswordScreen());
+                        },
                       ),
                       SizedBox(
                         height: getVerticalSize(32),

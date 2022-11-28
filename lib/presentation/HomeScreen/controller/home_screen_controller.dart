@@ -92,7 +92,7 @@ class HomeScreenController extends GetxController {
       print(value);
       if (value['status'] ?? false) {
         getLinkedBankModel.value = GrtLinkedBank.fromJson(value);
-        showWelcomeDialouge();
+        // showWelcomeDialouge();
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

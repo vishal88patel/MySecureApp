@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
+import 'package:my_secure_app/presentation/ScanScreen/scan_success_screen.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
@@ -117,7 +118,9 @@ class ScanPasswordScreen extends StatelessWidget {
                             textColor: Colors.white,
                             buttonColor: ColorConstant.primaryLightGreen,
                             radius: 16,
-                            onPressed: () {},
+                            onPressed: () {
+                              Get.to(ScanSuccessScreen());
+                            },
                           ),
                           SizedBox(
                             height: getVerticalSize(36),
