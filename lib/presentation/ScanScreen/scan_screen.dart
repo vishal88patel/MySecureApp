@@ -3,6 +3,9 @@ import 'dart:ffi';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:my_secure_app/presentation/ScanScreen/scan_password_screen.dart';
+import 'package:my_secure_app/presentation/ScanScreen/scan_success_screen.dart';
+import 'package:my_secure_app/presentation/ScanScreen/scan_summary_screen.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../../App Configurations/color_constants.dart';
@@ -37,6 +40,12 @@ class _ScanScreenState extends State<ScanScreen> {
       controller?.resumeCamera();
     });
   }
+  @override
+  void dispose() {
+    controller?.dispose();
+    super.dispose();
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -143,7 +152,8 @@ class _ScanScreenState extends State<ScanScreen> {
           counter=1;
           if(scanController.qrCodeResult.value!=null && scanController.qrCodeResult.value.isNotEmpty){
             UIUtils.showSnakBar(headerText: "Success",bodyText: "Qr Code Scan Successfully");
-            //scanController.callGetUuidApi();
+            // scanController.callGetUuidApi();
+            Get.to(ScanSummaryScreen());
           }else{
             UIUtils.showSnakBar(headerText: "Error",bodyText: "Qr Code not valid please scan with valid document");
           }
