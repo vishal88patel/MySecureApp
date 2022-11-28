@@ -6,7 +6,7 @@ class ColorConstant {
   static Color  primaryWhite = const Color(0xFFffffff);
   static Color  backgroundColor = const Color(0xFFF0F0F0);
   static Color primaryBlack= const Color(0xFF0D0D0D);
-  static Color primaryAppTextF1= const Color(0xFFEAE8F1).withOpacity(0.36);
+  static Color primaryAppTextF1= const Color(0xFFF2F2F2);
   static Color blue26= const Color(0xFF181A26);
   static Color skyE8= const Color(0xFF27EBE8);
   static Color grey8F= const Color(0xFF8F92A1);

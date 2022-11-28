@@ -7,6 +7,7 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import '../../App Configurations/color_constants.dart';
 import '../HomeScreen/home_screen.dart';
 import '../NotificationScreen/notification_screen.dart';
+import '../profileScreen/profile_screen.dart';
 import 'controller/dashboard_screen_controller.dart';
 
 class DashBoardScreen extends StatelessWidget {
@@ -25,7 +26,7 @@ class DashBoardScreen extends StatelessWidget {
               HomeScreen(),
               StatisticScreen(),
               NotificationScreen(),
-              HomeScreen(),
+              ProfileScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),
               // ApplyLoanInfoScreen(),
