@@ -45,7 +45,7 @@ class EnterPasswordScreenController extends GetxController {
     super.onClose();
   }
   void onTapOfForgetPassButton() {
-    Get.toNamed(AppRoutes.forgetPassScreen);
+    //Get.toNamed(AppRoutes.forgetPassScreen);
   }
 
   void onTapOfNextButton() {
