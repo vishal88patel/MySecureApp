@@ -21,6 +21,7 @@ import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
 import '../presentation/NotificationScreen/notification_screen.dart';
+import '../presentation/OnBoardingScreen/onBoarding_screen.dart';
 import '../presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import '../presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import '../presentation/PersonalDetails/personal_detail_screen.dart';
@@ -33,6 +34,8 @@ import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
+import '../presentation/statistic/binding/statistic_screen_binding.dart';
+import '../presentation/statistic/statistic.dart';
 
 
 class AppRoutes {
@@ -93,14 +96,14 @@ class AppRoutes {
   static String webviewPage = '/webView_page';
   static String onBoardingScreen = '/onBoarding_screen';
   static String authOptionScreen = '/auth_option_screen';
-  static String enterPasswordScreen = '/enter_password_screen';
-  static String creatPasswordScreen = '/creat_password_screen';
-  static String enterLegalNameScreen = '/enter_legal_name_screen';
+  //static String enterPasswordScreen = '/enter_password_screen';
+  //static String creatPasswordScreen = '/creat_password_screen';
+  //static String enterLegalNameScreen = '/enter_legal_name_screen';
   static String enterSecureTagScreen = '/enter_secureTag_screen';
-  static String enterAddressScreen = '/enter_address_screen';
-  static String enterPersonalDetailScreen = '/enter_personal_detail_screen';
+  //static String enterAddressScreen = '/enter_address_screen';
+ // static String enterPersonalDetailScreen = '/enter_personal_detail_screen';
   static String enterSnnDetailScreen = '/enter_snn_detail_screen';
-  static String personalDetailScreen = '/personal_detail_screen';
+  //static String personalDetailScreen = '/personal_detail_screen';
   static String purpouseAccountScreen = '/purpouse_account_screen';
   static String scanScreen = '/scan_screen';
   static String scanSummaryScreen = '/scan_summary_screen';
@@ -108,15 +111,15 @@ class AppRoutes {
   static String collectDetailScreen = '/collect_detail_screen';
   static String qrCodeScreen = '/qr_code_screen';
   static String loan_approved = '/loan_approved_screen';
-  static String enterSnnDetailScreen = '/enter_Snn_detail_screen';
-  static String purpouseAccountScreen = '/purpouse_account_screen';
+ // static String enterSnnDetailScreen = '/enter_Snn_detail_screen';
+//  static String purpouseAccountScreen = '/purpouse_account_screen';
   static String kvcPhoneNumber = '/kvc_phone_number';
   static String kycEmail = '/kvc_email';
   static String kvcOtpNumber = '/kvc_otp_number';
   static String kycInfoScreen = '/kyc_info_screen';
   static String kycLoadingScreen = '/kyc_loading_screen';
   static String cameraScreen = '/camera_screen';
-  static String enterSecureTagScreen = '/enter_secure_tag_screen';
+ // static String enterSecureTagScreen = '/enter_secure_tag_screen';
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
 
