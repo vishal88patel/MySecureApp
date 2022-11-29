@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 class StatisticScreenController extends GetxController {
 
+  var isIncomeExpense = 0.obs;
 
   @override
   void onReady() {
@@ -19,6 +20,10 @@ class StatisticScreenController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  incomeExpense (var index){
+    isIncomeExpense.value = index;
   }
 
 }
