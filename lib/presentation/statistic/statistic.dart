@@ -6,8 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
 import 'package:my_secure_app/presentation/HomeScreen/widget/payment_list_widget.dart';
-import 'package:my_secure_app/presentation/statistic/chart2.dart';
+import 'package:my_secure_app/presentation/statistic/widgets/chart2.dart';
 import 'package:my_secure_app/presentation/statistic/controller/statistic_screen_controller.dart';
+import 'package:my_secure_app/presentation/statistic/widgets/recent_expenses_widget.dart';
 import 'package:my_secure_app/presentation/widget/imageCommonView.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -31,7 +32,7 @@ class StatisticScreen extends StatefulWidget {
 }
 
 class _StatisticScreenState extends State<StatisticScreen> {
-  // var homeController = Get.put(StatisticScreenController());
+  var homeController = Get.put(StatisticScreenController());
   final Color barBackgroundColor = const Color(0xff72d8bf);
   final Duration animDuration = const Duration(milliseconds: 250);
 
@@ -226,9 +227,74 @@ class _StatisticScreenState extends State<StatisticScreen> {
                 ),
                 SizedBox(height: getVerticalSize(30),  ),
                 ChartWeeklyScreen(),
-                SizedBox(height: getVerticalSize(50),),
+                SizedBox(height: getVerticalSize(30),),
                 Padding(
-                    padding: EdgeInsets.only(top: getVerticalSize(27),
+                  padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: ColorConstant.naturalGrey.withOpacity(0.10)
+                    ),
+                    padding: EdgeInsets.symmetric(vertical: getVerticalSize(5)
+                        ,horizontal: getHorizontalSize(5)),
+                    child: Obx(()=>
+                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: (){
+                              homeController.incomeExpense(1);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: homeController.isIncomeExpense.value==1
+                                      ?ColorConstant.primaryWhite:Colors.transparent
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(50),
+                                            vertical: getVerticalSize(15)),
+                                child: Text(
+                                  "Income",
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color:homeController.isIncomeExpense.value==1
+                                          ? ColorConstant.darkGreen: ColorConstant.greyBD,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(20)),
+                                ),
+                              ),
+                            ),
+                          ),
+                          InkWell(
+                            onTap: (){
+                              homeController.incomeExpense(2);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(50),
+                                  color: homeController.isIncomeExpense.value==2
+                                      ?ColorConstant.primaryWhite:Colors.transparent
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40),
+                                    vertical: getVerticalSize(15)),
+                                child: Text(
+                                  "Expenses",
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: homeController.isIncomeExpense.value==2
+                                          ? ColorConstant.darkGreen: ColorConstant.greyBD,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(20)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                    padding: EdgeInsets.only(top: getVerticalSize(20),
                         left: getHorizontalSize(20),right:  getHorizontalSize(20)),
                     child: Row(
                         mainAxisAlignment:
@@ -269,7 +335,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 fontSize: getFontSize(24)),
                           ),
                         ])),
-                SizedBox(height: getVerticalSize(30),),
+                SizedBox(height: getVerticalSize(40),),
 
                 Align(
                     alignment: Alignment.center,
@@ -313,7 +379,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                     alignment: Alignment.center,
                     child: Padding(
                         padding:
-                        EdgeInsets.only(left: 15, top: 24, right: 15),
+                        EdgeInsets.only(left: 15, top: 50, right: 15),
                         child: Row(
                             mainAxisAlignment:
                             MainAxisAlignment.start,
@@ -385,6 +451,25 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                         fontSize: getFontSize(18)),
                                   ),
                               ) ]))),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: getVerticalSize(30)
+                      ,horizontal: getHorizontalSize(20)),
+                  child: Text(
+                    'Recent Expenses',
+                    style: AppStyle.textStyleDMSANS.copyWith(
+                        color: ColorConstant.primaryBlack,
+                        fontWeight: FontWeight.w700,
+                        fontSize: getFontSize(24)),
+                  ),
+                ),
+                ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context,int index) {
+                    return const RecentExpenses();
+                  }
+                ),
                 SizedBox(height: getVerticalSize(50),),
 
 

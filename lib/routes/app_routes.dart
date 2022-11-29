@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
+import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
+import 'package:my_secure_app/presentation/statistic/statistic.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
