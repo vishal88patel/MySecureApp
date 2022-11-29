@@ -24,6 +24,7 @@ import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
 import '../presentation/NotificationScreen/notification_screen.dart';
+import '../presentation/OnBoardingScreen/onBoarding_screen.dart';
 import '../presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import '../presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import '../presentation/PersonalDetails/personal_detail_screen.dart';
@@ -36,6 +37,8 @@ import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
+import '../presentation/statistic/binding/statistic_screen_binding.dart';
+import '../presentation/statistic/statistic.dart';
 
 
 class AppRoutes {

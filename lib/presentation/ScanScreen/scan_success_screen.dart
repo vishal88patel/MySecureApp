@@ -1,53 +1,362 @@
-import 'dart:ffi';
-
+import 'package:dotted_line/dotted_line.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
-import 'package:qr_code_scanner/qr_code_scanner.dart';
+
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_AppBar .dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
+import '../../Custom Widgets/appbar_image_1.dart';
+import '../../Custom Widgets/common_image_view.dart';
 import '../../theme/app_style.dart';
-import '../../utils/HelperFiles/ui_utils.dart';
 import 'controller/scan_screen_controller.dart';
 
-class ScanSummaryScreen extends StatelessWidget {
+class ScanSuccessScreen extends StatelessWidget {
   var scanController = Get.put(ScanScreenController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.primaryDarkGreen,
-        body: Column(
-          children: [
-            SizedBox(
-              height: getVerticalSize(26),
-            ),
-            SizedBox(
-              height: getVerticalSize(26),
-            ),
-            Padding(
-              padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Payment Receipt",
-                    style: AppStyle.textStyleDMSANS.copyWith(
-                        color: ColorConstant.primaryWhite,
-                        fontWeight: FontWeight.w700,
-                        fontSize: getFontSize(24)),
+      backgroundColor: ColorConstant.primaryDarkGreen,
+      body: Column(
+        children: [
+          SizedBox(
+            height: 40,
+          ),
+          Container(
+            width: size.width,
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                AppbarImage1(
+                  height: getVerticalSize(
+                    120.00,
                   ),
-                ],
+                  width: getHorizontalSize(
+                    359.00,
+                  ),
+                  imagePath: "asset/icons/img_ribbons_1.png",
+                ),
+                Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Text(
+                    "Payment Receipt",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.left,
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.primaryWhite,
+                        fontSize: getFontSize(28)),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            width: size.width,
+            child: SingleChildScrollView(
+              child: Container(
+                height: getVerticalSize(
+                  750.00,
+                ),
+                child: Stack(
+                  alignment: Alignment.topCenter,
+                  children: [
+                    Align(
+                      alignment: Alignment.center,
+                      child: CommonImageView(
+                        svgPath: "asset/icons/img_subtract.svg",
+                        height: getVerticalSize(
+                          750.00,
+                        ),
+                        width: getHorizontalSize(
+                          370.00,
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: 64,
+                                right: 64,
+                              ),
+                              child: CommonImageView(
+                                svgPath: "asset/icons/img_checkmark.svg",
+                                height: getSize(
+                                  100.00,
+                                ),
+                                width: getSize(
+                                  100.00,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: 64,
+                                top: 16,
+                                right: 64,
+                              ),
+                              child: Text(
+                                "Payment Success",
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.primaryBlack,
+                                    fontSize: getFontSize(28),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.only(left: 28, right: 28, top: 10),
+                              child: Flexible(
+                                child: Text(
+                                  "Your payment for Starbucks Coffee has been successfully done",
+                                  textAlign: TextAlign.center,
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.greyTextColor,
+                                      fontSize: getFontSize(20),
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.only(left: 28, right: 28, top: 10),
+                              child: Text(
+                                "Total Payment",
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.greyTextColor,
+                                    fontSize: getFontSize(20),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                  left: 28, right: 28, top: 10, bottom: 5),
+                              child: Text(
+                                "\$132.00",
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.primaryBlack,
+                                    fontSize: getFontSize(28),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          SizedBox(height: 30,),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(left: 38.0, right: 38),
+                              child: DottedLine(
+                                  dashColor: ColorConstant.greyTextColor),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.centerLeft,
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.only(top: 15, right: 10, left: 40),
+                              child: Text(
+                                "Payment for ",
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.greyTextColor,
+                                    fontSize: getFontSize(20),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Container(
+                              margin:
+                                  EdgeInsets.only(top: 12, left: 40, right: 40),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFF2F2F2),
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(16)),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.max,
+                                children: [
+                                  Card(
+                                    clipBehavior: Clip.antiAlias,
+                                    elevation: 0,
+                                    margin: EdgeInsets.only(
+                                      left: 16,
+                                      top: 17,
+                                      bottom: 16,
+                                    ),
+                                    color: ColorConstant.primaryWhite,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(6)),
+                                    ),
+                                    child: Container(
+                                      height: getSize(
+                                        48.00,
+                                      ),
+                                      width: getSize(
+                                        48.00,
+                                      ),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(6)),
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: SvgPicture.asset(
+                                                "asset/icons/ic_starbucks.svg"),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                      left: 16,
+                                      top: 18,
+                                      bottom: 16,
+                                    ),
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                            right: 10,
+                                          ),
+                                          child: Text(
+                                            "Starbucks Coffee",
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.primaryBlack,
+                                                fontSize: getFontSize(20),
+                                                fontWeight: FontWeight.bold),
+                                          ),
+                                        ),
+                                        Container(
+                                          width: getHorizontalSize(
+                                            179.00,
+                                          ),
+                                          margin: EdgeInsets.only(
+                                            top: 3,
+                                          ),
+                                          child: Row(
+
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Text(
+                                                "Dec 2, 2020 ",
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.left,
+                                                style: AppStyle.DmSansFont.copyWith(
+                                                    color: ColorConstant.greyTextColor,
+                                                    fontSize: getFontSize(14),
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              Text(
+                                                ".",
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.left,
+                                                style: AppStyle.DmSansFont.copyWith(
+                                                    color: ColorConstant.greyTextColor,
+                                                    fontSize: getFontSize(14),
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+                                              Text(
+                                                " 3:02 PM",
+                                                overflow: TextOverflow.ellipsis,
+                                                textAlign: TextAlign.left,
+                                                style: AppStyle.DmSansFont.copyWith(
+                                                    color: ColorConstant.greyTextColor,
+                                                    fontSize: getFontSize(14),
+                                                    fontWeight: FontWeight.bold),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 40.0,right: 40,top: 12),
+                            child: AppElevatedButton(
+                              buttonName: "Done",
+                              textColor: Colors.white,
+                              buttonColor: ColorConstant.primaryLightGreen,
+                              radius: 16,
+                              onPressed: () {},
+                            ),
+                          ),
+                          Align(
+                            alignment: Alignment.center,
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: 64,
+                                top: 25,
+                                right: 64,
+                              ),
+                              child: Text(
+                                "Pay again",
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.left,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.primaryDarkGreen,
+                                    fontSize: getFontSize(14),
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(
-              height: getVerticalSize(24),
-            ),
-            SizedBox(height: getVerticalSize(40)),
-
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }

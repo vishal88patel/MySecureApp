@@ -7,6 +7,8 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 import '../../App Configurations/color_constants.dart';
 import '../HomeScreen/home_screen.dart';
 import '../NotificationScreen/notification_screen.dart';
+import '../ScanScreen/scan_screen.dart';
+import '../profileScreen/profile_screen.dart';
 import 'controller/dashboard_screen_controller.dart';
 
 class DashBoardScreen extends StatelessWidget {
@@ -24,8 +26,9 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               HomeScreen(),
               StatisticScreen(),
+              ScanScreen(),
               NotificationScreen(),
-              HomeScreen(),
+              ProfileScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),
               // ApplyLoanInfoScreen(),
@@ -40,7 +43,9 @@ class DashBoardScreen extends StatelessWidget {
         child: Center(
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
-        onPressed: () {  },
+        onPressed: () {
+          dashBoardController.onTapOfBottomnavigation(2);
+        },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
@@ -96,9 +101,9 @@ class DashBoardScreen extends StatelessWidget {
               Obx(
                 () => GestureDetector(
                   onTap: () {
-                    dashBoardController.onTapOfBottomnavigation(2);
+                    dashBoardController.onTapOfBottomnavigation(3);
                   },
-                  child: dashBoardController.selectedIndex.value == 2
+                  child: dashBoardController.selectedIndex.value == 3
                       ? SvgPicture.asset(
                           "asset/icons/ic_bitcoin.svg",
                           color: ColorConstant.primaryDarkGreen,
@@ -116,9 +121,9 @@ class DashBoardScreen extends StatelessWidget {
                 child: Obx(
                   () => GestureDetector(
                     onTap: () {
-                      dashBoardController.onTapOfBottomnavigation(3);
+                      dashBoardController.onTapOfBottomnavigation(4);
                     },
-                    child: dashBoardController.selectedIndex.value == 3
+                    child: dashBoardController.selectedIndex.value == 4
                         ? SvgPicture.asset(
                             "asset/icons/ic_profile_selected.svg",
                             color: ColorConstant.primaryDarkGreen,
