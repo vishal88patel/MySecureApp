@@ -33,12 +33,16 @@ class PersonalScreenController extends GetxController {
   TextEditingController employmentNameController = TextEditingController();
   TextEditingController jobTitleController = TextEditingController();
   TextEditingController annualIncomeController = TextEditingController();
+  TextEditingController businessNameController = TextEditingController();
   var purposeOfOpeningAcc = "".obs;
   var employmentStatus = "Employeed".obs;
   String? employmentStatusDropDownValue;
   var setSelectedAnnualIncome = "Less than \$25,000".obs;
+  var setSelectedGender = "".obs;
   String? setSelectedAnnualIncomeDropdown;
+  String? setSelectedForGender;
   var dropdownTextForStatus = ['Employeed', 'Retired', 'Disability','Self Employed'].obs;
+  var dropdownTextForGender = ['Male', 'Female', 'Other'].obs;
   var dropdownTextForIncome = ['Less than \$25,000', '\$25,000 - \$50,000',
     '\$50,000 - \$75,000','\$75,000 - \$1,00,000','Greter than \$1,00,000'].obs;
   var loanModel = GetLoanTypeResponseModel().obs;
@@ -106,6 +110,12 @@ class PersonalScreenController extends GetxController {
     setSelectedAnnualIncomeDropdown=setSelectedAnnualIncome.value;
     dropdownTextForIncome.refresh();
   }
+  void setGender(String value){
+    setSelectedGender.value = value;
+    // annualIncomeController.text=setSelectedAnnualIncome.value;
+    setSelectedForGender=setSelectedGender.value;
+    dropdownTextForGender.refresh();
+  }
 
   Future<void> getLoanTypeApi() async {
     ApiService()
@@ -171,6 +181,10 @@ class PersonalScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter annual income",
           headerText: StringConstants.ERROR);
+    }else if (setSelectedGender.isEmpty || setSelectedGender=="") {
+      UIUtils.showSnakBar(
+          bodyText: "Please Select Gender",
+          headerText: StringConstants.ERROR);
     }  else {
       // callRegisterApi();
       Get.to(()=> LoaderScreen(AppRoutes.purpouseAccountScreen),transition: Transition.rightToLeft);
@@ -204,7 +218,7 @@ class PersonalScreenController extends GetxController {
             mobile: loginEmailController.phoneController.text.isEmpty?"":loginEmailController.phoneController.text,
             password: createPasswordController.confirmPassController.text,
             address_1: enterAddressController.address01Controller.text,
-            address_2: enterAddressController.address02Controller.text,
+            address_2: enterAddressController.address02Controller.text??"",
             city: enterAddressController.cityController.text,
             state: enterAddressController.selectedState!.value,
             zip_code: enterAddressController.zipCodeController.text,
@@ -227,7 +241,7 @@ class PersonalScreenController extends GetxController {
           mobile: loginEmailController.phoneController.text.isEmpty?"":loginEmailController.phoneController.text,
           password: createPasswordController.confirmPassController.text,
           address_1: enterAddressController.address01Controller.text,
-          address_2: enterAddressController.address02Controller.text,
+          address_2: enterAddressController.address02Controller.text??"",
           city: enterAddressController.cityController.text,
           state: enterAddressController.selectedState!.value,
           zip_code: enterAddressController.zipCodeController.text,

@@ -164,7 +164,7 @@ class PersonalDetailScreen extends StatelessWidget {
                     Obx(
                           ()=> personalDetailController.nameOfBusinessTitle.value?AppTextField(
                         hintText: 'Name Of Business',
-                        controller: personalDetailController.jobTitleController,
+                        controller: personalDetailController.businessNameController,
                       ):Container(),
                     ),
                     SizedBox(
@@ -229,6 +229,66 @@ class PersonalDetailScreen extends StatelessWidget {
                         onChanged: (newValue) {
                           personalDetailController
                               .setAnnualIncome(newValue.toString());
+                        },
+                        buttonHeight: 40,
+                        buttonWidth: size.width,
+                        itemHeight: 40,
+                        dropdownMaxHeight: 350,
+                      ),
+
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(40),
+                    ),
+
+
+
+                    Obx(
+                          ()=> DropdownButton2(
+                        isExpanded: true,
+                        isDense: true,
+                        hint: Text(
+                          'Select Gender',
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.grey8F,
+                              fontWeight: FontWeight.w400,
+                              fontSize: getFontSize(16)),
+                          ),
+                        items: personalDetailController.dropdownTextForGender
+                            .map((item) =>
+                            DropdownMenuItem<String>(
+                              value: item,
+                              child: Text(
+                                item,
+                                style: const TextStyle(
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ))
+                            .toList(),
+                        selectedItemBuilder: (BuildContext context) {
+                          //<-- SEE HERE
+                          return <String>[
+                            'Flight',
+                            'Car',
+                            'Train',
+
+                          ].map((String value) {
+                            return Text(
+                              personalDetailController.setSelectedGender.value,
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.grey8F,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(16)),
+
+                            );
+                          }).toList();
+                        },
+                        value:
+                        personalDetailController.setSelectedForGender,
+                        onChanged: (newValue) {
+                          personalDetailController
+                              .setGender(newValue.toString());
                         },
                         buttonHeight: 40,
                         buttonWidth: size.width,
