@@ -97,7 +97,7 @@ class PersonalDetailScreen extends StatelessWidget {
                           style: AppStyle.DmSansFont.copyWith(
                               color: ColorConstant.grey8F,
                               fontWeight: FontWeight.w400,
-                              fontSize: getFontSize(16)),
+                              fontSize: getFontSize(20)),
                           ),
                         items: personalDetailController.dropdownTextForStatus.value
                             .map((item) =>
@@ -106,7 +106,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               child: Text(
                                 item,
                                 style: const TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 17,
                                 ),
                               ),
                             ))
@@ -129,7 +129,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               style: AppStyle.DmSansFont.copyWith(
                                   color: ColorConstant.grey8F,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: getFontSize(16)),
+                                  fontSize: getFontSize(20)),
 
                             );
                           }).toList();
@@ -187,7 +187,7 @@ class PersonalDetailScreen extends StatelessWidget {
                           style: AppStyle.DmSansFont.copyWith(
                               color: ColorConstant.grey8F,
                               fontWeight: FontWeight.w400,
-                              fontSize: getFontSize(16)),
+                              fontSize: getFontSize(20)),
                           ),
                         items: personalDetailController.dropdownTextForIncome
                             .map((item) =>
@@ -196,7 +196,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               child: Text(
                                 item,
                                 style: const TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 17,
                                 ),
                               ),
                             ))
@@ -219,7 +219,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               style: AppStyle.DmSansFont.copyWith(
                                   color: ColorConstant.grey8F,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: getFontSize(16)),
+                                  fontSize: getFontSize(20)),
 
                             );
                           }).toList();
@@ -252,7 +252,7 @@ class PersonalDetailScreen extends StatelessWidget {
                           style: AppStyle.DmSansFont.copyWith(
                               color: ColorConstant.grey8F,
                               fontWeight: FontWeight.w400,
-                              fontSize: getFontSize(16)),
+                              fontSize: getFontSize(20)),
                           ),
                         items: personalDetailController.dropdownTextForGender
                             .map((item) =>
@@ -261,7 +261,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               child: Text(
                                 item,
                                 style: const TextStyle(
-                                  fontSize: 14,
+                                  fontSize: 17,
                                 ),
                               ),
                             ))
@@ -279,7 +279,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               style: AppStyle.DmSansFont.copyWith(
                                   color: ColorConstant.grey8F,
                                   fontWeight: FontWeight.w400,
-                                  fontSize: getFontSize(16)),
+                                  fontSize: getFontSize(20)),
 
                             );
                           }).toList();

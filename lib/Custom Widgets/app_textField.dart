@@ -31,7 +31,7 @@ class AppTextField extends StatelessWidget {
       controller: controller,
       readOnly:readOnly??false ,
       keyboardType: keyBordType,
-      style: TextStyle(color: ColorConstant.grey8F),
+      style: TextStyle(color: ColorConstant.grey8F,fontSize: getFontSize(20)),
       obscureText: isObsecure,
       maxLength: maxLength,
       inputFormatters:inputFormatters ,
@@ -40,7 +40,7 @@ class AppTextField extends StatelessWidget {
         hintStyle: AppStyle.DmSansFont
             .copyWith(
             color: ColorConstant.grey8F,
-            fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??16)),
+            fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??20)),
         suffixIcon: suffixIcon,
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
