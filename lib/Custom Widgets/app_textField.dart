@@ -32,7 +32,7 @@ class AppTextField extends StatelessWidget {
       readOnly:readOnly??false ,
 
       keyboardType: keyBordType,
-      style: TextStyle(color: ColorConstant.grey8F,fontSize: getFontSize(fontSize??16)),
+      style: TextStyle(color: ColorConstant.grey8F,fontSize: getFontSize(fontSize??20)),
       obscureText: isObsecure,
       maxLength: maxLength,
       inputFormatters:inputFormatters ,

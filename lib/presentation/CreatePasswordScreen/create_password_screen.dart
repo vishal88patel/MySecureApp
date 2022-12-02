@@ -43,7 +43,7 @@ class CreatePasswordScreen extends StatelessWidget {
                                       child: Container(
                                         decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
                                             border: Border.all(color: ColorConstant.backBorder)),
-                                        padding: EdgeInsets.all(10),
+                                        padding: EdgeInsets.all(6),
                                         child: Icon(Icons.arrow_back_ios_new_outlined),
                                       ),
                                     ),

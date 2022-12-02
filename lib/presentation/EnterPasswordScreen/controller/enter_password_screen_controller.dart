@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -16,6 +17,7 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 class EnterPasswordScreenController extends GetxController {
   TextEditingController passController = TextEditingController();
   String email="";
+  String token="";
   String phone="";
   String device_type="";
   String device_id="";
@@ -29,6 +31,7 @@ class EnterPasswordScreenController extends GetxController {
 
   @override
   void onInit() {
+    getFcmToken();
     getArguments();
     checkDeviceType();
     super.onInit();
@@ -87,7 +90,7 @@ class EnterPasswordScreenController extends GetxController {
       "mobile":phone,
       "password": password,
       "device_id": await PlatformDeviceId.getDeviceId,
-      "fcm_token": "empty",
+      "fcm_token": token,
       "devicy_type": device_type,
     });
     return form;
@@ -103,5 +106,10 @@ class EnterPasswordScreenController extends GetxController {
     } else {
       device_type = "Android";
     }
+  }
+
+  Future<void> getFcmToken() async {
+    token = (await FirebaseMessaging.instance.getToken())!;
+    print(token);
   }
 }
