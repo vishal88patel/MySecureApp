@@ -38,11 +38,7 @@ class AppTextField extends StatelessWidget {
       inputFormatters:inputFormatters ,
       decoration: InputDecoration(
         hintText: hintText,
-        labelStyle:  AppStyle.DmSansFont
-            .copyWith(
-            color: ColorConstant.grey8F,
-            fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??16)),
-        labelText: hintText,
+
         hintStyle: AppStyle.DmSansFont
             .copyWith(
             color: ColorConstant.grey8F,
