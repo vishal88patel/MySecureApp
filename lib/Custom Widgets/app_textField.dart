@@ -30,13 +30,19 @@ class AppTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       readOnly:readOnly??false ,
+
       keyboardType: keyBordType,
-      style: TextStyle(color: ColorConstant.grey8F),
+      style: TextStyle(color: ColorConstant.grey8F,fontSize: getFontSize(fontSize??16)),
       obscureText: isObsecure,
       maxLength: maxLength,
       inputFormatters:inputFormatters ,
       decoration: InputDecoration(
         hintText: hintText,
+        labelStyle:  AppStyle.DmSansFont
+            .copyWith(
+            color: ColorConstant.grey8F,
+            fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??16)),
+        labelText: hintText,
         hintStyle: AppStyle.DmSansFont
             .copyWith(
             color: ColorConstant.grey8F,

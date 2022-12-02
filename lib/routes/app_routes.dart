@@ -2,6 +2,18 @@ import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
 import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
 import 'package:my_secure_app/presentation/statistic/statistic.dart';
+import 'package:my_secure_app/presentation/topAddCard1/binding/top_add_card1_screen_binding.dart';
+import 'package:my_secure_app/presentation/topAddCard1/top_add_card1_screen.dart';
+import 'package:my_secure_app/presentation/topAddCardConfirm/binding/top_add_card_confirm_screen_binding.dart';
+import 'package:my_secure_app/presentation/topAddCardConfirm/top_add_card_confirm_screen.dart';
+import 'package:my_secure_app/presentation/topAddCardFill/binding/top_add_card_fill_screen_binding.dart';
+import 'package:my_secure_app/presentation/topAddCardFill/top_add_card_fill_screen.dart';
+import 'package:my_secure_app/presentation/topSelectionMode/binding/top_selection_mode_screen_binding.dart';
+import 'package:my_secure_app/presentation/topSelectionMode/top_selection_mode_screen.dart';
+import 'package:my_secure_app/presentation/topWithCreditCard/binding/top_with_credit_card_binding.dart';
+import 'package:my_secure_app/presentation/topWithCreditCard/top_with_credit_card_screen.dart';
+import 'package:my_secure_app/presentation/topYourCreditCard/binding/top_add_card_fill_screen_binding.dart';
+import 'package:my_secure_app/presentation/topYourCreditCard/top_your_credit_card_screen.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
@@ -116,7 +128,12 @@ class AppRoutes {
   static String cameraScreen = '/camera_screen';
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
-
+  static String topSelectionModeScreen = '/top_selection_mode_screen';
+  static String topAddCard1Screen = '/top_add_card1_screen';
+  static String topAddCardFillScreen = '/top_add_card_fill_screen';
+  static String topYourCreditCardScreen = '/top_your_credit_card_screen';
+  static String topWithCreditCardScreen = '/top_with_credit_card_screen';
+  static String topAddCardConfirmScreen = '/top_add_card_confirm_screen';
 
 
   static List<GetPage> pages = [
@@ -325,6 +342,66 @@ class AppRoutes {
       page: () => ScanPasswordScreen(),
       bindings: [
         ScanScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topSelectionModeScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopSelectionModeScreen(),
+      bindings: [
+        TopSelectionModeBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topAddCard1Screen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopAddCard1Screen(),
+      bindings: [
+        TopAddCard1Binding(),
+      ],
+    ),
+
+    GetPage(
+      name: topAddCardFillScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopAddCardFillScreen(),
+      bindings: [
+        TopAddCardFillBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topYourCreditCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopYourCreditCardScreen(),
+      bindings: [
+        TopYourCreditCardBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topWithCreditCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopWithCreditCardScreen(),
+      bindings: [
+        TTopWithCreditCardBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topAddCardConfirmScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopAddCardConfirmScreen(),
+      bindings: [
+        TopAddCardConfirmBinding(),
       ],
     ),
 

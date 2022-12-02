@@ -22,7 +22,7 @@ class HomeScreenController extends GetxController {
   LoginResponseModel? loginResponseModel = LoginResponseModel();
   var homeModel = HomePageResponseModel().obs;
   var getLinkedBankModel = GrtLinkedBank().obs;
-  var homePageHeadeName = "".obs;
+  var homePageHeadeName = "user".obs;
   var profilePicture = "".obs;
   var showNotiFiBadge = false.obs;
 
@@ -35,8 +35,8 @@ class HomeScreenController extends GetxController {
 
   @override
   void onInit() {
-    getStoredData();
-     callHomePageApi();
+   /* getStoredData();
+     callHomePageApi();*/
 
     super.onInit();
   }
