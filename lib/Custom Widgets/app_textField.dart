@@ -22,7 +22,7 @@ class AppTextField extends StatelessWidget {
     this.suffixIcon,
     this.maxLength,
     this.keyBordType=TextInputType.text,
-    this.isObsecure=false, this.fontSize, this.inputFormatters, this.readOnly,
+    this.isObsecure=false, this.fontSize=20, this.inputFormatters, this.readOnly,
   }) : super(key: key);
 
   @override

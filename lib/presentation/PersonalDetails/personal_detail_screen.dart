@@ -37,14 +37,19 @@ class PersonalDetailScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
-                          onTap: (){
+                          onTap: () {
                             Get.back();
                           },
                           child: Container(
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                border: Border.all(color: ColorConstant.backBorder)),
-                            padding: EdgeInsets.all(10),
-                            child: Icon(Icons.arrow_back_ios_new_outlined),
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(12),
+                                border: Border.all(
+                                    color:
+                                    ColorConstant.backBorder)),
+                            padding: EdgeInsets.all(6),
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,size: 22,),
                           ),
                         ),
                         Text(
@@ -106,7 +111,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               child: Text(
                                 item,
                                 style: const TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 16,
                                 ),
                               ),
                             ))
@@ -196,7 +201,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               child: Text(
                                 item,
                                 style: const TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 16,
                                 ),
                               ),
                             ))
@@ -261,7 +266,7 @@ class PersonalDetailScreen extends StatelessWidget {
                               child: Text(
                                 item,
                                 style: const TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 16,
                                 ),
                               ),
                             ))
