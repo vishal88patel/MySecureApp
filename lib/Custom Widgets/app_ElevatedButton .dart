@@ -24,7 +24,7 @@ class AppElevatedButton extends StatelessWidget {
      onPressed: onPressed,
       style: ElevatedButton.styleFrom(
        primary:buttonColor?? ColorConstant.buttonGreen,
-          minimumSize: const Size.fromHeight(54),
+          minimumSize: const Size.fromHeight(47),
           shape: RoundedRectangleBorder(  borderRadius: BorderRadius.circular(radius??16)),
        textStyle:  AppStyle.DmSansFont
         .copyWith(color: ColorConstant.primaryWhite,

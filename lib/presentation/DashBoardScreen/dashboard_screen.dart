@@ -5,6 +5,7 @@ import 'package:my_secure_app/presentation/statistic/statistic.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../BitCoinScreen/bitcoin_screen.dart';
 import '../HomeScreen/home_screen.dart';
 import '../NotificationScreen/notification_screen.dart';
 import '../ScanScreen/scan_screen.dart';
@@ -27,7 +28,7 @@ class DashBoardScreen extends StatelessWidget {
               HomeScreen(),
               StatisticScreen(),
               ScanScreen(),
-              NotificationScreen(),
+              BitCoinScreen(),
               ProfileScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),

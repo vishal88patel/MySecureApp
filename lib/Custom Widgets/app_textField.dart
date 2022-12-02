@@ -46,7 +46,7 @@ class AppTextField extends StatelessWidget {
         hintStyle: AppStyle.DmSansFont
             .copyWith(
             color: ColorConstant.grey8F,
-            fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??16)),
+            fontWeight: FontWeight.w400,fontSize: getFontSize(fontSize??20)),
         suffixIcon: suffixIcon,
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
