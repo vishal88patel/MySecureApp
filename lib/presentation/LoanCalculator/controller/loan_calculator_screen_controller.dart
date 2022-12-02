@@ -370,7 +370,7 @@ class LoanCalculatorScreenController extends GetxController {
           bodyText: "Please 5 digit zip code",
           headerText: StringConstants.ERROR);
     } else {
-      /*Get.dialog(
+      Get.dialog(
         CustomDialog(
           description:
               "Based on your profile and documents you are eligible for loan upto ${"\$$maximumAvailableLoan"}.Thank you",
@@ -378,7 +378,7 @@ class LoanCalculatorScreenController extends GetxController {
             Get.to(SelectLoanTypeScreen());
           },
         ),
-      );*/
+      );
     }
   }
 
