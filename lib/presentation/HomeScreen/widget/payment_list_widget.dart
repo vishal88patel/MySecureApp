@@ -6,36 +6,41 @@ import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 class PaymentListWidget extends StatelessWidget {
   final String title;
   final String iconName;
+  final void Function()? onTap;
   const PaymentListWidget({Key? key,
     required this.title,
+     this.onTap,
     required this.iconName}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: getVerticalSize(122.5), width: getHorizontalSize(90),
-    child: Column(crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            // height: getVerticalSize(60), width: getVerticalSize(60),
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),
-              color: ColorConstant.skyF6 ),
-            child: Padding(
-              padding: const EdgeInsets.all(18),
-              child: Image.asset(iconName, height: getVerticalSize(28), width: getVerticalSize(28),
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: getVerticalSize(122.5), width: getHorizontalSize(90),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              // height: getVerticalSize(60), width: getVerticalSize(60),
+              decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),
+                color: ColorConstant.skyF6 ),
+              child: Padding(
+                padding: const EdgeInsets.all(18),
+                child: Image.asset(iconName, height: getVerticalSize(28), width: getVerticalSize(28),
+                ),
               ),
             ),
-          ),
-          SizedBox(height: getVerticalSize(10),),
-          Text(
-            title,
-            style: AppStyle.textStyleDMSANS.copyWith(
-                color: ColorConstant.naturalBlack,
-                fontWeight: FontWeight.w400,
-                fontSize: getFontSize(15)),
-            maxLines: 2, textAlign: TextAlign.center,
-          ),
-        ],
+            SizedBox(height: getVerticalSize(10),),
+            Text(
+              title,
+              style: AppStyle.textStyleDMSANS.copyWith(
+                  color: ColorConstant.naturalBlack,
+                  fontWeight: FontWeight.w400,
+                  fontSize: getFontSize(15)),
+              maxLines: 2, textAlign: TextAlign.center,
+            ),
+          ],
+        ),
       ),
     );
   }

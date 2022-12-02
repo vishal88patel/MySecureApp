@@ -72,8 +72,7 @@ class TopAddCardFillScreen extends StatelessWidget {
                                     topLeft: Radius.circular(32),
                                     topRight: Radius.circular(32),
                                   )
-                              ),child:SingleChildScrollView(
-                                child: Column(
+                              ),child: Column(
                                 children: [
                                   SizedBox(height: getVerticalSize(20),),
                                   Container(
@@ -316,7 +315,7 @@ class TopAddCardFillScreen extends StatelessWidget {
 
                                 ],
                             ),
-                              ),
+
                             ),
                           )
                         ],
