@@ -6,8 +6,11 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 
 import '../../utils/HelperFiles/math_utils.dart';
+import 'controller/profile_screen_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
+  var profileScreenController = Get.put(ProfileScreenController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -551,37 +554,42 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(36),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "asset/icons/ic_logoutt.svg",
-                              fit: BoxFit.fill,
-                            ),
-                            Padding(
-                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                              child: Text(
-                                "Logout",
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .naturalBlack,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(20)),
+                    InkWell(
+                      onTap: (){
+                        profileScreenController.showLogOutDialouge();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                "asset/icons/ic_logoutt.svg",
+                                fit: BoxFit.fill,
                               ),
-                            ),
-                          ],
-                        ),
+                              Padding(
+                                padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                                child: Text(
+                                  "Logout",
+                                  style: AppStyle.textStyleDMSANS
+                                      .copyWith(
+                                      color: ColorConstant
+                                          .naturalBlack,
+                                      fontWeight:
+                                      FontWeight.w500,
+                                      fontSize:
+                                      getFontSize(20)),
+                                ),
+                              ),
+                            ],
+                          ),
 
-                        SvgPicture.asset(
-                          "asset/icons/ic_right_arrow.svg",
-                          fit: BoxFit.fill,
-                        ),
-                      ],
+                          SvgPicture.asset(
+                            "asset/icons/ic_right_arrow.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

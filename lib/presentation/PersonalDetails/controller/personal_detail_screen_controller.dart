@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/LoginEmailScreen/controller/login_email_screen_controller.dart';
@@ -22,6 +23,8 @@ import '../model/get_loan_type_response_model.dart';
 import 'get_status_income_response_model.dart';
 
 class PersonalScreenController extends GetxController {
+  String token="";
+
   var loginController = Get.find<LoginScreenController>();
   var loginEmailController = Get.put(LoginEmailScreenController());
   var createPasswordController = Get.find<CreatePasswordScreenController>();
@@ -63,7 +66,7 @@ class PersonalScreenController extends GetxController {
 
   @override
   void onInit() {
-
+    getFcmToken();
     employmentNameController.text=setSelectedAnnualIncome.value;
     annualIncomeController.text=setSelectedAnnualIncome.value;
     checkDeviceType();
@@ -232,7 +235,7 @@ class PersonalScreenController extends GetxController {
             last_name: enterLegalNameController.lastNameController.text,
             date_of_birth:enterPersonalDetailController.dobController.text,
           device_id: await PlatformDeviceId.getDeviceId,
-          fcm_token: "empty",
+          fcm_token: token,
           devicy_type: device_type,
           middle_name: enterLegalNameController.middleNameController.text,
         ):await getRegisterBody(
@@ -255,7 +258,7 @@ class PersonalScreenController extends GetxController {
           last_name: enterLegalNameController.lastNameController.text,
           date_of_birth:enterPersonalDetailController.dobController.text,
           device_id: await PlatformDeviceId.getDeviceId,
-          fcm_token: "empty",
+          fcm_token: token,
           devicy_type: device_type,
           middle_name: enterLegalNameController.middleNameController.text,
         ),
@@ -384,5 +387,8 @@ class PersonalScreenController extends GetxController {
     } else {
       device_type = "Android";
     }
+  }
+  Future<void> getFcmToken() async {
+    token = (await FirebaseMessaging.instance.getToken())!;
   }
 }

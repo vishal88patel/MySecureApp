@@ -110,5 +110,6 @@ class EnterPasswordScreenController extends GetxController {
 
   Future<void> getFcmToken() async {
     token = (await FirebaseMessaging.instance.getToken())!;
+    print(token);
   }
 }
