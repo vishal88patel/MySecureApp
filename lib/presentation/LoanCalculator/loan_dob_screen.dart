@@ -52,8 +52,8 @@ class LoanDobScreen extends StatelessWidget {
                                           child: Container(
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
                                                 border: Border.all(color: ColorConstant.primaryWhite.withOpacity(0.3))),
-                                            padding: EdgeInsets.all(10),
-                                            child: Icon(Icons.arrow_back_ios_new_outlined,color: ColorConstant.primaryWhite,),
+                                            padding: EdgeInsets.all(6),
+                                            child: Icon(Icons.arrow_back_ios_new_outlined,color: ColorConstant.primaryWhite,size: 22,),
                                           ),
                                         ),
                                         Text(
@@ -92,8 +92,7 @@ class LoanDobScreen extends StatelessWidget {
                                           controller: loanCalculatorController.dobController,
                                           keyBordType: TextInputType.text,
                                           hintText: 'DD/MM/YYYY',
-
-                                          readOnly:loanCalculatorController.isedit.value? false:true,
+                                          readOnly:loanCalculatorController.isedit.value? true:false,
                                           suffixIcon: IconButton(
                                             icon: Icon(Icons.edit,
                                                 color:ColorConstant.grey8F,
@@ -129,17 +128,22 @@ class LoanDobScreen extends StatelessWidget {
                                     controller: loanCalculatorController.dobController,
                                     delete: () {
                                       HapticFeedback.lightImpact();
+                                      if(loanCalculatorController.isedit.value){
+                                        if( loanCalculatorController.dobController.text.isNotEmpty){
+                                          loanCalculatorController.dobController.text = loanCalculatorController.dobController.text
+                                              .substring(0, loanCalculatorController.dobController.text.length - 1);
 
-                                      if( loanCalculatorController.dobController.text.isNotEmpty){
-                                        loanCalculatorController.dobController.text = loanCalculatorController.dobController.text
-                                            .substring(0, loanCalculatorController.dobController.text.length - 1);
-
+                                        }
                                       }
+
                                     },
                                     // do something with the input numbers
                                     onSubmit: () {
-                                      debugPrint('Your code: ${loanCalculatorController.dobController.text}');
-                                      loanCalculatorController.onClickOfDob();
+                                      if(loanCalculatorController.isedit.value){
+                                        debugPrint('Your code: ${loanCalculatorController.dobController.text}');
+                                        loanCalculatorController.onClickOfDob();
+                                      }
+
                                     },
                                   ),
                                 ],
