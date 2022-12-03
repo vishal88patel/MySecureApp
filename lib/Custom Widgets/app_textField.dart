@@ -22,7 +22,7 @@ class AppTextField extends StatelessWidget {
     this.suffixIcon,
     this.maxLength,
     this.keyBordType=TextInputType.text,
-    this.isObsecure=false, this.fontSize, this.inputFormatters, this.readOnly,
+    this.isObsecure=false, this.fontSize=20, this.inputFormatters, this.readOnly,
   }) : super(key: key);
 
   @override
@@ -30,13 +30,15 @@ class AppTextField extends StatelessWidget {
     return TextFormField(
       controller: controller,
       readOnly:readOnly??false ,
+
       keyboardType: keyBordType,
-      style: TextStyle(color: ColorConstant.grey8F,fontSize: getFontSize(20)),
+      style: TextStyle(color: ColorConstant.grey8F,fontSize: getFontSize(fontSize??20)),
       obscureText: isObsecure,
       maxLength: maxLength,
       inputFormatters:inputFormatters ,
       decoration: InputDecoration(
         hintText: hintText,
+
         hintStyle: AppStyle.DmSansFont
             .copyWith(
             color: ColorConstant.grey8F,

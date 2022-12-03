@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
+import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 
 import '../../utils/HelperFiles/math_utils.dart';
+import 'controller/profile_screen_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
+  var profileScreenController = Get.put(ProfileScreenController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -403,37 +408,43 @@ class ProfileScreen extends StatelessWidget {
                 padding:  EdgeInsets.only(top:getVerticalSize(35),left: getHorizontalSize(30),right: getHorizontalSize(34)),
                 child: Column(
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "asset/icons/ic_profile_selected.svg",
-                              fit: BoxFit.fill,
-                            ),
-                            Padding(
-                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                              child: Text(
-                                "Personal",
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .naturalBlack,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(20)),
-                              ),
-                            ),
-                          ],
-                        ),
+                    InkWell(
+                      onTap:(){
+                        Get.toNamed(AppRoutes.topSelectionModeScreen);
 
-                        SvgPicture.asset(
-                          "asset/icons/ic_right_arrow.svg",
-                          fit: BoxFit.fill,
-                        ),
-                      ],
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                "asset/icons/ic_profile_selected.svg",
+                                fit: BoxFit.fill,
+                              ),
+                              Padding(
+                                padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                                child: Text(
+                                  "Personal",
+                                  style: AppStyle.textStyleDMSANS
+                                      .copyWith(
+                                      color: ColorConstant
+                                          .naturalBlack,
+                                      fontWeight:
+                                      FontWeight.w500,
+                                      fontSize:
+                                      getFontSize(20)),
+                                ),
+                              ),
+                            ],
+                          ),
+
+                          SvgPicture.asset(
+                            "asset/icons/ic_right_arrow.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      ),
                     ),
                     SizedBox(
                       height: getVerticalSize(36),
@@ -543,37 +554,42 @@ class ProfileScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(36),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "asset/icons/ic_logoutt.svg",
-                              fit: BoxFit.fill,
-                            ),
-                            Padding(
-                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                              child: Text(
-                                "Logout",
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .naturalBlack,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(20)),
+                    InkWell(
+                      onTap: (){
+                        profileScreenController.showLogOutDialouge();
+                      },
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                "asset/icons/ic_logoutt.svg",
+                                fit: BoxFit.fill,
                               ),
-                            ),
-                          ],
-                        ),
+                              Padding(
+                                padding:  EdgeInsets.only(left: getHorizontalSize(14)),
+                                child: Text(
+                                  "Logout",
+                                  style: AppStyle.textStyleDMSANS
+                                      .copyWith(
+                                      color: ColorConstant
+                                          .naturalBlack,
+                                      fontWeight:
+                                      FontWeight.w500,
+                                      fontSize:
+                                      getFontSize(20)),
+                                ),
+                              ),
+                            ],
+                          ),
 
-                        SvgPicture.asset(
-                          "asset/icons/ic_right_arrow.svg",
-                          fit: BoxFit.fill,
-                        ),
-                      ],
+                          SvgPicture.asset(
+                            "asset/icons/ic_right_arrow.svg",
+                            fit: BoxFit.fill,
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

@@ -4,6 +4,18 @@ import 'package:my_secure_app/presentation/KycStep1ModuleScreen/kyc_step1_data_s
 import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
 import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
 import 'package:my_secure_app/presentation/statistic/statistic.dart';
+import 'package:my_secure_app/presentation/topAddCard1/binding/top_add_card1_screen_binding.dart';
+import 'package:my_secure_app/presentation/topAddCard1/top_add_card1_screen.dart';
+import 'package:my_secure_app/presentation/topAddCardConfirm/binding/top_add_card_confirm_screen_binding.dart';
+import 'package:my_secure_app/presentation/topAddCardConfirm/top_add_card_confirm_screen.dart';
+import 'package:my_secure_app/presentation/topAddCardFill/binding/top_add_card_fill_screen_binding.dart';
+import 'package:my_secure_app/presentation/topAddCardFill/top_add_card_fill_screen.dart';
+import 'package:my_secure_app/presentation/topSelectionMode/binding/top_selection_mode_screen_binding.dart';
+import 'package:my_secure_app/presentation/topSelectionMode/top_selection_mode_screen.dart';
+import 'package:my_secure_app/presentation/topWithCreditCard/binding/top_with_credit_card_binding.dart';
+import 'package:my_secure_app/presentation/topWithCreditCard/top_with_credit_card_screen.dart';
+import 'package:my_secure_app/presentation/topYourCreditCard/binding/top_add_card_fill_screen_binding.dart';
+import 'package:my_secure_app/presentation/topYourCreditCard/top_your_credit_card_screen.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
@@ -47,7 +59,17 @@ import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
 import '../presentation/statistic/binding/statistic_screen_binding.dart';
+import '../presentation/LoanCalculator/binding/loan_calculator_screen_binding.dart';
 import '../presentation/statistic/statistic.dart';
+import '../presentation/LoanCalculator/loan_fname_screen.dart';
+import '../presentation/LoanCalculator/loan_lname_screen.dart';
+import '../presentation/LoanCalculator/loan_dob_screen.dart';
+import '../presentation/LoanCalculator/loan_email_screen.dart';
+import '../presentation/LoanCalculator/loan_ssn_screen.dart';
+import '../presentation/LoanCalculator/loan_address_screen.dart';
+import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
+
+
 
 
 class AppRoutes {
@@ -89,6 +111,7 @@ class AppRoutes {
   static String loanDobScreen = '/loan_dob_screen';
   static String loanSsnScreen = '/loan_ssn_screen';
   static String loanAddressScreen = '/loan_address_screen';
+  static String loanApplyInfoScreen = '/loan_apply_info_screen';
 
 
   static String homeScreen = '/home_screen';
@@ -125,6 +148,12 @@ class AppRoutes {
   static String cameraScreen = '/camera_screen';
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
+  static String topSelectionModeScreen = '/top_selection_mode_screen';
+  static String topAddCard1Screen = '/top_add_card1_screen';
+  static String topAddCardFillScreen = '/top_add_card_fill_screen';
+  static String topYourCreditCardScreen = '/top_your_credit_card_screen';
+  static String topWithCreditCardScreen = '/top_with_credit_card_screen';
+  static String topAddCardConfirmScreen = '/top_add_card_confirm_screen';
   static String kycEmailScreen = '/kyc_email_screen';
   static String kycPhoneScreen = '/kyc_phone_screen';
   static String kycOtpScreen = '/kyc_otp_screen';
@@ -399,6 +428,136 @@ class AppRoutes {
       page: () => KYCLoadingScreen(),
       bindings: [
         KycLoaderScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topSelectionModeScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopSelectionModeScreen(),
+      bindings: [
+        TopSelectionModeBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topAddCard1Screen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopAddCard1Screen(),
+      bindings: [
+        TopAddCard1Binding(),
+      ],
+    ),
+
+    GetPage(
+      name: topAddCardFillScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopAddCardFillScreen(),
+      bindings: [
+        TopAddCardFillBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topYourCreditCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopYourCreditCardScreen(),
+      bindings: [
+        TopYourCreditCardBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topWithCreditCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopWithCreditCardScreen(),
+      bindings: [
+        TTopWithCreditCardBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topAddCardConfirmScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopAddCardConfirmScreen(),
+      bindings: [
+        TopAddCardConfirmBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanFnameScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanFnameScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanLnameScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanLnameScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanEmailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanEmailScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanDobScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanDobScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanSsnScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanSsnScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanAddressScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanAddressScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanApplyInfoScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => ApplyLoanInfoScreen(),
+      bindings: [
+        LoanCalculatorScreenBinding(),
       ],
     ),
 

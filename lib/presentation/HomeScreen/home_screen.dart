@@ -166,8 +166,12 @@ class HomeScreen extends StatelessWidget {
                     height: getVerticalSize(30),
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:const [
-                      PaymentListWidget(title: 'Apply For Loan', iconName: 'asset/icons/EXE_Icon.png',),
+                    children: [
+                      PaymentListWidget(title: 'Apply For Loan',
+                        iconName: 'asset/icons/EXE_Icon.png',onTap: (){
+
+                            Get.toNamed(AppRoutes.loanApplyInfoScreen);
+                          }),
                       PaymentListWidget(title: 'Boost Credit Score', iconName: 'asset/icons/EXE_Icon.png',),
                       PaymentListWidget(title: 'Link Bank', iconName: 'asset/icons/EXE_Icon.png',),
                       PaymentListWidget(title: 'Link Card', iconName: 'asset/icons/EXE_Icon.png',),

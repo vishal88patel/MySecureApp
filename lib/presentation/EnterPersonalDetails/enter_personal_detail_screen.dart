@@ -40,15 +40,19 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
+
                                         InkWell(
-                                          onTap: (){
+                                          onTap: () {
                                             Get.back();
                                           },
                                           child: Container(
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(12),
                                                 border: Border.all(color: ColorConstant.primaryWhite.withOpacity(0.3))),
-                                            padding: EdgeInsets.all(10),
-                                            child: Icon(Icons.arrow_back_ios_new_outlined,color: ColorConstant.primaryWhite,),
+                                            padding: EdgeInsets.all(6),
+                                            child: Icon(
+                                              Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.primaryWhite),
                                           ),
                                         ),
                                         Text(
