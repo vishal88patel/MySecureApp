@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/KycModuleScreen/kyc_email_screen.dart';
+import 'package:my_secure_app/presentation/KycStep1ModuleScreen/kyc_step1_data_screen.dart';
 import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
 import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
 import 'package:my_secure_app/presentation/statistic/statistic.dart';
@@ -20,6 +22,13 @@ import '../presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
 import '../presentation/EnterPersonalDetails/ssn_details.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
+import '../presentation/KycModuleScreen/binding/kyc_screen_binding.dart';
+import '../presentation/KycModuleScreen/kyc_otp_screen.dart';
+import '../presentation/KycModuleScreen/kyc_otp_success_screen.dart';
+import '../presentation/KycModuleScreen/kyc_phone_screen.dart';
+import '../presentation/KycStep1ModuleScreen/binding/kyc_loader_screen_binding.dart';
+import '../presentation/KycStep1ModuleScreen/binding/kyc_step1_screen_binding.dart';
+import '../presentation/KycStep1ModuleScreen/kyc_loading_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
@@ -116,6 +125,11 @@ class AppRoutes {
   static String cameraScreen = '/camera_screen';
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
+  static String kycEmailScreen = '/kyc_email_screen';
+  static String kycPhoneScreen = '/kyc_phone_screen';
+  static String kycOtpScreen = '/kyc_otp_screen';
+  static String kycOtpSuccessScreen = '/kyc_otp_success_screen';
+  static String kycStep1DataScreen = '/kyc_step1_data_screen';
 
 
 
@@ -325,6 +339,66 @@ class AppRoutes {
       page: () => ScanPasswordScreen(),
       bindings: [
         ScanScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kycEmailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycEmailScreen(),
+      bindings: [
+        KycScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kycPhoneScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycPhoneScreen(),
+      bindings: [
+        KycScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kycOtpScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycOtpScreen(),
+      bindings: [
+        KycScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kycOtpSuccessScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycOtpSuccessScreen(),
+      bindings: [
+        KycScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kycStep1DataScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycStep1Screen(),
+      bindings: [
+        KycStep1ScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kycLoadingScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KYCLoadingScreen(),
+      bindings: [
+        KycLoaderScreenBinding(),
       ],
     ),
 

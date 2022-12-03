@@ -177,8 +177,12 @@ class HomeScreen extends StatelessWidget {
                     height: getVerticalSize(15),
                   ),
                   Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children:const [
-                      PaymentListWidget(title: 'Kyc', iconName: 'asset/icons/EXE_Icon.png',),
+                    children: [
+                      InkWell(
+                        onTap: (){
+                          Get.toNamed(AppRoutes.kycStep1DataScreen);
+                        },
+                          child: PaymentListWidget(title: 'Kyc', iconName: 'asset/icons/EXE_Icon.png',),),
                       PaymentListWidget(title: 'Cash Card', iconName: 'asset/icons/EXE_Icon.png',),
                       PaymentListWidget(title: 'Cash Out', iconName: 'asset/icons/EXE_Icon.png',),
                       PaymentListWidget(title: 'Live Chat', iconName: 'asset/icons/EXE_Icon.png',),

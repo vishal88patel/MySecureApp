@@ -12,10 +12,11 @@ class AppElevatedButton extends StatelessWidget {
   final FontWeight? fontWeight;
   final double? radius;
   final bool? isLoading;
+  final double? fontSize;
 
   const AppElevatedButton({Key? key,
     required this.buttonName,
-    required this.onPressed, this.textColor, this.fontWeight,
+    required this.onPressed, this.textColor, this.fontWeight,this.fontSize,
     this.buttonColor, this.radius, this.isLoading=false}) : super(key: key);
 
   @override
@@ -28,11 +29,11 @@ class AppElevatedButton extends StatelessWidget {
           shape: RoundedRectangleBorder(  borderRadius: BorderRadius.circular(radius??16)),
        textStyle:  AppStyle.DmSansFont
         .copyWith(color: ColorConstant.primaryWhite,
-        fontWeight: FontWeight.w700,fontSize: getFontSize(20))),
+        fontWeight: FontWeight.w700,fontSize: getFontSize(fontSize??20))),
 
      child:!isLoading!? Text(buttonName.toString(),style:  AppStyle.DmSansFont
          .copyWith(color:textColor?? ColorConstant.primaryWhite,
-         fontWeight:fontWeight?? FontWeight.w700,fontSize: getFontSize(20)),)
+         fontWeight:fontWeight?? FontWeight.w700,fontSize: getFontSize(fontSize??20)),)
       :SizedBox(
          height: getVerticalSize(30),
          width: getVerticalSize(30),
