@@ -208,12 +208,16 @@ class KycStep1ScreenController extends GetxController {
   }
 
   void progress() {
+    progress1.value = true;
     Future.delayed(Duration(milliseconds: 1000), () {
-      progress1.value = true;
+      progress2.value = true;
       Future.delayed(Duration(milliseconds: 1000), () {
-        progress2.value = true;
+        progress3.value = true;
         Future.delayed(Duration(milliseconds: 1000), () {
-          progress3.value = true;
+          progress4.value = true;
+          UIUtils.showSnakBar(
+              bodyText: "KYC has been completed successfully",
+              headerText: StringConstants.SUCCESS);
         });
       });
     });
@@ -263,7 +267,8 @@ class KycStep1ScreenController extends GetxController {
   }
 
   callKycStep1IdApi() async {
-    progress();
+
+
     //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -300,10 +305,8 @@ class KycStep1ScreenController extends GetxController {
 
     if (response.statusCode == 200) {
       //   UIUtils.hideProgressDialog();
-      progress4.value = true;
-      UIUtils.showSnakBar(
-          bodyText: "KYC has been completed successfully",
-          headerText: StringConstants.SUCCESS);
+      progress();
+
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
     } else {
       //  UIUtils.hideProgressDialog();
@@ -314,7 +317,7 @@ class KycStep1ScreenController extends GetxController {
   }
 
   callKycStep1PassApi() async {
-    progress();
+
     //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -346,10 +349,8 @@ class KycStep1ScreenController extends GetxController {
 
     if (response.statusCode == 200) {
       //   UIUtils.hideProgressDialog();
-      progress4.value = true;
-      UIUtils.showSnakBar(
-          bodyText: "KYC has been completed successfully",
-          headerText: StringConstants.SUCCESS);
+      progress();
+
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
     } else {
       //  UIUtils.hideProgressDialog();
@@ -360,7 +361,7 @@ class KycStep1ScreenController extends GetxController {
   }
 
   callKycStep2Api() async {
-    progress();
+
     //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -373,7 +374,7 @@ class KycStep1ScreenController extends GetxController {
 
     request.headers.addAll(headers);
     request.fields['kyc_status'] = "2";
-    request.files.add(await http.MultipartFile.fromPath("selfi_with_document", netImage4.value));
+    request.files.add(await http.MultipartFile.fromPath("selfi_with_document", netImage5.value));
 
     var response = await request.send();
 
@@ -383,10 +384,8 @@ class KycStep1ScreenController extends GetxController {
 
     if (response.statusCode == 200) {
       //   UIUtils.hideProgressDialog();
-      progress4.value = true;
-      UIUtils.showSnakBar(
-          bodyText: "KYC has been completed successfully",
-          headerText: StringConstants.SUCCESS);
+      progress();
+
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
     } else {
       //  UIUtils.hideProgressDialog();
