@@ -31,6 +31,8 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   var kycStep1Controller = Get.find<KycStep1ScreenController>();
   var fname = "";
   var lname = "";
+  var dobData = "";
+  var dob = "";
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
 
@@ -119,6 +121,12 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
           bodyText: "Last Name is Not match With Driving Licence Last Name",
           headerText: StringConstants.ERROR);
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+    } else if (dobData.toLowerCase().trim().toString() !=
+        kycStep1Controller.dobController.text.replaceAll("/", "").toString()) {
+      UIUtils.showSnakBar(
+          bodyText: "Birth Date is Not match With Driving Licence Birth Date",
+          headerText: StringConstants.ERROR);
+      Get.offAllNamed(AppRoutes.kycStep1DataScreen);
     } else {
       UIUtils.showSnakBar(headerText: "Success",bodyText: "Driving Licence Scan Successfully");
       //controller.stopCamera();
@@ -168,12 +176,17 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         const end1 = "DDE";
         const start2 = "DAC";
         const end2 = "DDF";
+        const start3 = "DBB";
+        const end3 = "DBA";
         final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
         final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
+        final startIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(start3);
         final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
         final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
+        final endIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
         lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
         fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
+        dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
         if(fname.isNotEmpty && lname.isNotEmpty){
           scanDataa(fname,lname);
         }}
