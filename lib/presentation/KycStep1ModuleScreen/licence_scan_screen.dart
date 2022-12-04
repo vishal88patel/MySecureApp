@@ -108,7 +108,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       });
     });
   }
-  void scanDataa(String? fName, String? lName) {
+  void scanDataa(String? fName, String? lName,String dobData) {
     if (fName?.toLowerCase().trim() !=
         kycStep1Controller.firstNameController.text.toLowerCase().trim()) {
       UIUtils.showSnakBar(
@@ -134,7 +134,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => SelfieScreen()),
+              builder: (context) => SelfieScreen(image: 1,)),
         );
       });
 
@@ -188,7 +188,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
         dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
         if(fname.isNotEmpty && lname.isNotEmpty){
-          scanDataa(fname,lname);
+          scanDataa(fname,lname,dobData);
         }}
     });
   }

@@ -39,19 +39,14 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
   @override
   void initState() {
     _initCamera();
-    if(widget.image==1){
 
-    }
-    if(widget.image==2) {
-      //showWelcomeDialouge();
-    }
     super.initState();
   }
 
 
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
-    _controller = CameraController(widget.image==1?_cameras![1]:_cameras![0], ResolutionPreset.veryHigh);
+    _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
     _controller?.initialize().then((_) {
       if (!mounted) {
         return;
@@ -354,18 +349,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                 ),
               ),
             ),
-            widget.image==1?InkWell(
-              onTap: (){
-                _onCameraSwitch();
-              },
-              child: Center(
-                child: Icon(
-                  Icons.cameraswitch_outlined,
-                  size: 50.0,
-                  color:Colors.white,
-                ),
-              ),
-            ):Container(height: 40,width: 40,),
+            Container(height: 40,width: 40,),
 
           ],
         ),
@@ -382,10 +366,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
           setState(() {
             imageFile = file;
           });
-          if(widget.image==1){
-            kycStep1Controller.netImage1.value=file!.path;
-            Get.toNamed(AppRoutes.kycLoadingScreen);
-          }else if(widget.image==2){
+           if(widget.image==2){
             kycStep1Controller.netImage2.value=file!.path;
             Navigator.push(
               context,
@@ -400,8 +381,6 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
               MaterialPageRoute(
                   builder: (context) => const LicenceScanScreen()),
             );
-
-
           }else{
 
           }

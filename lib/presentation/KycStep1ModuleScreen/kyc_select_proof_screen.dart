@@ -13,7 +13,7 @@ import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/pref_utils.dart';
 import '../KycSelectStep/controller/kyc_select_step_screen_controller.dart';
 import 'front_back_licence_screen.dart';
-import 'front_state_id_screen.dart';
+import 'front_passport_screen.dart';
 
 class KycSelectProofScreen extends StatelessWidget {
   @override
@@ -160,9 +160,9 @@ class KycSelectProofScreen extends StatelessWidget {
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                FrontStateIdCameraScreen(
+                                                FrontPassportCameraScreen(
                                                   title: 'Passport',
-                                                  image: "5",
+                                                  image: 4,
                                                 )),
                                       );
                                     },

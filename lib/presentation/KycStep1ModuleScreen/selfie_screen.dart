@@ -15,8 +15,8 @@ import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 
 class SelfieScreen extends StatefulWidget {
-
-  const SelfieScreen() : super();
+  final int? image;
+  const SelfieScreen({required this.image}) : super();
 
   @override
   SelfieScreenState createState() => SelfieScreenState();
@@ -27,7 +27,7 @@ class SelfieScreenState extends State<SelfieScreen>
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var kycStep1Controller = Get.find<KycStep1ScreenController>();
+  var kycStep1Controller = Get.put(KycStep1ScreenController());
   int width=6;
   XFile? imageFile;
   @override
@@ -101,13 +101,18 @@ class SelfieScreenState extends State<SelfieScreen>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SvgPicture.asset(
-                        "asset/icons/ic_back.svg",
-                        fit: BoxFit.fill,
-                        color: Colors.white,
+                      InkWell(
+                        onTap:(){
+                          Navigator.pop(context);
+                        },
+                        child: SvgPicture.asset(
+                          "asset/icons/ic_back.svg",
+                          fit: BoxFit.fill,
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
-                        "KYC Selfie",
+                        widget.image==1?"KYC Selfie":"Selfie with Document",
                         style: AppStyle.textStyleDMSANS.copyWith(
                             color: ColorConstant.primaryWhite,
                             fontWeight: FontWeight.w700,
@@ -199,9 +204,20 @@ class SelfieScreenState extends State<SelfieScreen>
           setState(() {
             imageFile = file;
           });
-          kycStep1Controller.netImage1.value=file!.path;
-            Get.toNamed(AppRoutes.kycLoadingScreen);
-          if(file.path.isNotEmpty){
+          if(widget.image==1){
+            kycStep1Controller.netImage1.value=file!.path;
+            Get.toNamed(AppRoutes.kycLoadingScreen,arguments: {
+              "API_TYPE": 1
+            });
+
+          }else if(widget.image==5){
+            kycStep1Controller.netImage5.value=file!.path;
+            Get.toNamed(AppRoutes.kycLoadingScreen,arguments: {
+              "API_TYPE": 3
+            });
+          }
+          else{
+
           }
           setState(() {});
         }
