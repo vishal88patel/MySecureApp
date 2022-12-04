@@ -24,12 +24,9 @@ class LoginResponseModel {
 
 class Data {
   int? id;
-  int? is_kyc;
   String? name;
   String? email;
   String? emailVerifiedAt;
-  String? twoFactorConfirmedAt;
-  String? currentTeamId;
   String? profilePhotoPath;
   String? createdAt;
   String? updatedAt;
@@ -47,18 +44,35 @@ class Data {
   String? lastName;
   String? dateOfBirth;
   String? loanType;
+  String? balance;
+  String? uuid;
+  String? deviceId;
+  String? fcmToken;
+  String? devicyType;
+  String? pin;
+  String? deletedAt;
+  String? middleName;
+  String? licenceFront;
+  String? licenceBack;
+  String? licenceJson;
+  dynamic? loanBalance;
+  String? isEmailVerify;
+  String? isMobileVerify;
+  String? otp;
+  String? passportImage;
+  String? selfiWithDocument;
+  String? kycStatus;
+  String? kycType;
+  String? cashtag;
   String? token;
-  String? profilePhotoUrl;
+  dynamic? isKyc;
   String? privacyPolicy;
 
   Data(
       {this.id,
-      this.is_kyc,
         this.name,
         this.email,
         this.emailVerifiedAt,
-        this.twoFactorConfirmedAt,
-        this.currentTeamId,
         this.profilePhotoPath,
         this.createdAt,
         this.updatedAt,
@@ -76,17 +90,35 @@ class Data {
         this.lastName,
         this.dateOfBirth,
         this.loanType,
+        this.balance,
+        this.uuid,
+        this.deviceId,
+        this.fcmToken,
+        this.devicyType,
+        this.pin,
+        this.deletedAt,
+        this.middleName,
+        this.licenceFront,
+        this.licenceBack,
+        this.licenceJson,
+        this.loanBalance,
+        this.isEmailVerify,
+        this.isMobileVerify,
+        this.otp,
+        this.passportImage,
+        this.selfiWithDocument,
+        this.kycStatus,
+        this.kycType,
+        this.cashtag,
         this.token,
-        this.privacyPolicy,
-        this.profilePhotoUrl});
+        this.isKyc,
+        this.privacyPolicy});
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
     emailVerifiedAt = json['email_verified_at'];
-    twoFactorConfirmedAt = json['two_factor_confirmed_at'];
-    currentTeamId = json['current_team_id'];
     profilePhotoPath = json['profile_photo_path'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
@@ -98,16 +130,35 @@ class Data {
     zipCode = json['zip_code'];
     ssn = json['ssn'];
     jobTitle = json['job_title'];
-    privacyPolicy = json['privacyPolicy'];
     annualIncome = json['annual_income'];
     purpouseOfOpeningAccount = json['purpouse_of_opening_account'];
     firstName = json['first_name'];
     lastName = json['last_name'];
     dateOfBirth = json['date_of_birth'];
     loanType = json['loan_type'];
+    balance = json['balance'];
+    uuid = json['uuid'];
+    deviceId = json['device_id'];
+    fcmToken = json['fcm_token'];
+    devicyType = json['devicy_type'];
+    pin = json['pin'];
+    deletedAt = json['deleted_at'];
+    middleName = json['middle_name'];
+    licenceFront = json['licence_front'];
+    licenceBack = json['licence_back'];
+    licenceJson = json['licence_json'];
+    loanBalance = json['loan_balance'];
+    isEmailVerify = json['is_email_verify'];
+    isMobileVerify = json['is_mobile_verify'];
+    otp = json['otp'];
+    passportImage = json['passport_image'];
+    selfiWithDocument = json['selfi_with_document'];
+    kycStatus = json['kyc_status'];
+    kycType = json['kyc_type'];
+    cashtag = json['cashtag'];
     token = json['token'];
-    profilePhotoUrl = json['profile_photo_url'];
-    is_kyc = json['is_kyc'];
+    isKyc = json['is_kyc'];
+    privacyPolicy = json['privacyPolicy'];
   }
 
   Map<String, dynamic> toJson() {
@@ -116,14 +167,11 @@ class Data {
     data['name'] = this.name;
     data['email'] = this.email;
     data['email_verified_at'] = this.emailVerifiedAt;
-    data['two_factor_confirmed_at'] = this.twoFactorConfirmedAt;
-    data['current_team_id'] = this.currentTeamId;
     data['profile_photo_path'] = this.profilePhotoPath;
     data['created_at'] = this.createdAt;
     data['updated_at'] = this.updatedAt;
     data['mobile'] = this.mobile;
     data['address1'] = this.address1;
-    data['privacyPolicy'] = this.privacyPolicy;
     data['address2'] = this.address2;
     data['city'] = this.city;
     data['state'] = this.state;
@@ -136,9 +184,29 @@ class Data {
     data['last_name'] = this.lastName;
     data['date_of_birth'] = this.dateOfBirth;
     data['loan_type'] = this.loanType;
+    data['balance'] = this.balance;
+    data['uuid'] = this.uuid;
+    data['device_id'] = this.deviceId;
+    data['fcm_token'] = this.fcmToken;
+    data['devicy_type'] = this.devicyType;
+    data['pin'] = this.pin;
+    data['deleted_at'] = this.deletedAt;
+    data['middle_name'] = this.middleName;
+    data['licence_front'] = this.licenceFront;
+    data['licence_back'] = this.licenceBack;
+    data['licence_json'] = this.licenceJson;
+    data['loan_balance'] = this.loanBalance;
+    data['is_email_verify'] = this.isEmailVerify;
+    data['is_mobile_verify'] = this.isMobileVerify;
+    data['otp'] = this.otp;
+    data['passport_image'] = this.passportImage;
+    data['selfi_with_document'] = this.selfiWithDocument;
+    data['kyc_status'] = this.kycStatus;
+    data['kyc_type'] = this.kycType;
+    data['cashtag'] = this.cashtag;
     data['token'] = this.token;
-    data['profile_photo_url'] = this.profilePhotoUrl;
-    data['is_kyc'] = this.is_kyc;
+    data['is_kyc'] = this.isKyc;
+    data['privacyPolicy'] = this.privacyPolicy;
     return data;
   }
 }

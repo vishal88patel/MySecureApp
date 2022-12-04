@@ -38,7 +38,7 @@ class LoanCalculatorScreenController extends GetxController {
   ].obs;
   var selectedLoanId = "".obs;
   var selectedLoanTenureId = 0.obs;
-  var maximumAvailableLoan = 500000.obs;
+  var maximumAvailableLoan = 0.obs;
   var interestRate = "".obs;
   var selectedLoanTenure = "".obs;
   var selectedLoan = "Please select loan".obs;

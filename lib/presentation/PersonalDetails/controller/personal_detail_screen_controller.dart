@@ -264,6 +264,7 @@ class PersonalScreenController extends GetxController {
                     devicy_type: device_type,
                     middle_name:
                         enterLegalNameController.middleNameController.text,
+              cashtag: enterLegalNameController.secureTagController.text
                   )
                 : await getRegisterBody(
                     type: loginController.emailController.text.isEmpty
@@ -301,6 +302,7 @@ class PersonalScreenController extends GetxController {
                     devicy_type: device_type,
                     middle_name:
                         enterLegalNameController.middleNameController.text,
+                cashtag: enterLegalNameController.secureTagController.text
                   ),
             headerWithToken: false,
             url: ApiEndPoints.REGISTER)
@@ -314,7 +316,7 @@ class PersonalScreenController extends GetxController {
         PrefUtils.setString(StringConstants.AUTH_TOKEN,
             loginResponseModel.data!.token.toString());
         PrefUtils.setString(StringConstants.IS_KYC_DONE,
-            loginResponseModel.data!.is_kyc.toString());
+            loginResponseModel.data!.isKyc.toString());
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
         PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE, true);
         Get.offAllNamed(AppRoutes.dashBoardScreen,
@@ -349,6 +351,7 @@ class PersonalScreenController extends GetxController {
     required String fcm_token,
     required String devicy_type,
     required String middle_name,
+    required String cashtag,
   }) async {
     final form = FormData({
       "type": type,
@@ -372,6 +375,7 @@ class PersonalScreenController extends GetxController {
       "fcm_token": fcm_token,
       "devicy_type": devicy_type,
       "middle_name": middle_name,
+      "cashtag": cashtag,
     });
     return form;
   }
@@ -399,6 +403,7 @@ class PersonalScreenController extends GetxController {
     required String fcm_token,
     required String devicy_type,
     required String middle_name,
+    required String cashtag,
   }) async {
     final form = FormData({
       "type": type,
@@ -422,6 +427,7 @@ class PersonalScreenController extends GetxController {
       "fcm_token": fcm_token,
       "devicy_type": devicy_type,
       "middle_name": middle_name,
+      "cashtag": cashtag,
     });
     return form;
   }

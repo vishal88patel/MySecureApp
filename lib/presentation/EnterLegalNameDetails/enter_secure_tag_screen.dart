@@ -115,9 +115,10 @@ class EnterSecureTagScreen extends StatelessWidget {
                                           bodyText: "Please enter your SecureTag",
                                           headerText: StringConstants.ERROR);
                                     } else {
-                                      Get.to(()=>
-                                          LoaderScreen(AppRoutes.enterAddressScreen),
-                                          transition: Transition.rightToLeft);
+                                      enterLegelNameController.  checkCashTagValidation();
+                                      // Get.to(()=>
+                                      //     LoaderScreen(AppRoutes.enterAddressScreen),
+                                      //     transition: Transition.rightToLeft);
 
                                     }
                                   },

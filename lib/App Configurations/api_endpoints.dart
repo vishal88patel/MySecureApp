@@ -2,6 +2,7 @@ class ApiEndPoints {
 
   static String BASE_URL = "https://adminsecure.thriftyspends.com/api";
   static String CHECK_USER = BASE_URL + "/auth/checkUser";
+  static String CHECK_CASHTAG_VALIDATION = BASE_URL + "/auth/checkCashtag";
   static String LOGIN = BASE_URL + "/auth/login";
   static String REGISTER = BASE_URL + "/auth/register";
   static String LOGOUT = BASE_URL + "/auth/logout";
