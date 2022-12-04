@@ -183,7 +183,11 @@ class KYCLoadingScreen extends StatelessWidget {
                           kycStep1Controller.progress4.value?AppElevatedButton(
                                 buttonName: 'Continue',
                                 onPressed: () {
-                                  Get.offAndToNamed(AppRoutes.kycSelectStepScreen);
+                                  if(kycStep1Controller.step2==false);
+                                 // Get.offAndToNamed(AppRoutes.kycSelectStepScreen);
+                                  else{
+                                    Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
+                                  }
                                 }):Container(),
                           ),
                         ],

@@ -48,6 +48,7 @@ class KycStep1ScreenController extends GetxController {
   var isVerified = "0".obs;
   var readOnly = true.obs;
   var isAgree = false.obs;
+  var step2 = false.obs;
   DateTime selectedDate = DateTime.now();
 
 
@@ -385,8 +386,8 @@ class KycStep1ScreenController extends GetxController {
     if (response.statusCode == 200) {
       //   UIUtils.hideProgressDialog();
       progress();
-
-      PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+      step2.value=true;
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "2");
     } else {
       //  UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(

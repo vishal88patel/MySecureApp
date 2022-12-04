@@ -12,7 +12,11 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
+import '../../App Configurations/color_constants.dart';
+import '../../Custom Widgets/app_ElevatedButton .dart';
+import '../../theme/app_style.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
+import '../../utils/HelperFiles/math_utils.dart';
 import 'selfie_screen.dart';
 
 
@@ -53,12 +57,84 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      body: Container(
-        child: Center(child: CircularProgressIndicator(),),
+      body: WillPopScope(
+        onWillPop: () => showBackDialog(),
+        child: Container(
+          child: Center(child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen),),
+        ),
       ),
     );
   }
+  Future<bool> showBackDialog() async {
+    return await Get.dialog(
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+        child: Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Wrap(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: ColorConstant.primaryWhite,
+                      borderRadius: const BorderRadius.all(Radius.circular(8))),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 15, bottom: 20),
+                  constraints: const BoxConstraints(minWidth: 200),
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: Text(
+                            "Are you sure,\n you want to cancel this process?",
+                            textAlign: TextAlign.center,
+                            style: AppStyle.DmSansFont
+                                .copyWith(fontSize: 18,color: ColorConstant.darkBlue),
 
+                          )),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'NO',
+                              radius: 5,
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              onPressed: () {
+                                Get.back();
+                              },),
+                          ),
+
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'YES',
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              radius: 5,
+                              onPressed: () {
+                                Get.back();
+                                Get.back();
+                                Get.back();
+                              },),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+    );
+  }
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
     var scanArea = MediaQuery.of(context).size.width/1.2;

@@ -120,23 +120,25 @@ class KycScreenController extends GetxController {
                 .then((value) => print('You are logged in successfully'));
           },
           verificationFailed: (FirebaseAuthException exception) {
+            UIUtils.hideProgressDialog();
             print('exception.message ${exception.message}');
             UIUtils.showSnakBar(bodyText: "Verification Failed",headerText: StringConstants.ERROR);
             isLoaderShow.value=false;
           },
           codeSent: (String verificationID, int? resendToken) {
             verificationIDRecived = verificationID;
+            Future.delayed(Duration(milliseconds: 2500),(){
+              // UIUtils.hideProgressDialog();
+              UIUtils.showSnakBar(bodyText: 'OTP Sent Successfully',headerText: StringConstants.SUCCESS);
+              isLoaderShow.value=false;
+              UIUtils.hideProgressDialog();
+              Get.toNamed(AppRoutes.kycOtpScreen);
+
+            });
           },
           codeAutoRetrievalTimeout: (String verificationID) {});
       // UIUtils.showProgressDialog(isCancellable: false);
-      Future.delayed(Duration(milliseconds: 2500),(){
-        // UIUtils.hideProgressDialog();
-        UIUtils.showSnakBar(bodyText: 'OTP Sent Successfully',headerText: StringConstants.SUCCESS);
-        isLoaderShow.value=false;
-        UIUtils.hideProgressDialog();
-        Get.toNamed(AppRoutes.kycOtpScreen);
 
-      });
     }
   }
 
@@ -169,8 +171,10 @@ class KycScreenController extends GetxController {
           }
           print('Your are logged in  successfully  ');
         }).catchError((e){
+          UIUtils.hideProgressDialog();
           UIUtils.showSnakBar(bodyText: "Otp is Incorrect",headerText: StringConstants.ERROR);
           isLoaderShow.value=false;
+
         });
 
       }

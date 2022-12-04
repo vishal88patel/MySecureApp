@@ -81,7 +81,7 @@ class SelfieScreenState extends State<SelfieScreen>
       key: _scaffoldKey,
       extendBody: true,
       body: WillPopScope(
-        onWillPop: () async =>true,
+        onWillPop: () => showBackDialog(),
         child: Stack(
           children: <Widget>[
             CustomPaint(
@@ -134,7 +134,77 @@ class SelfieScreenState extends State<SelfieScreen>
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
+  Future<bool> showBackDialog() async {
+    return await Get.dialog(
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+        child: Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Wrap(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: ColorConstant.primaryWhite,
+                      borderRadius: const BorderRadius.all(Radius.circular(8))),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 15, bottom: 20),
+                  constraints: const BoxConstraints(minWidth: 200),
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: Text(
+                            "Are you sure,\n you want to cancel this process?",
+                            textAlign: TextAlign.center,
+                            style: AppStyle.DmSansFont
+                                .copyWith(fontSize: 18,color: ColorConstant.darkBlue),
 
+                          )),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'NO',
+                              radius: 5,
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              onPressed: () {
+                                Get.back();
+                              },),
+                          ),
+
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'YES',
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              radius: 5,
+                              onPressed: () {
+                                Get.back();
+                                Get.back();
+                                Get.back();
+                                Get.back();
+                              },),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+    );
+  }
   Widget _buildCameraPreview() {
     final size = MediaQuery.of(context).size;
     return ClipRect(

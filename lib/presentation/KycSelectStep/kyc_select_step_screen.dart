@@ -6,6 +6,7 @@ import 'package:my_secure_app/Custom%20Widgets/app_AppBar%20.dart';
 import 'package:my_secure_app/presentation/widget/select_mode_widget.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
+import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
@@ -86,7 +87,10 @@ class KycSelectStepScreen extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Get.toNamed(AppRoutes.kycStep1DataScreen);
+                                      if(kycSelectStepController.isVerified == "0"){
+                                        Get.toNamed(AppRoutes.kycStep1DataScreen);
+                                      }
+
                                     },
                                     child: Obx(()=>Padding(
                                         padding: EdgeInsets.symmetric(
@@ -194,6 +198,8 @@ class KycSelectStepScreen extends StatelessWidget {
                                                 image: 5,
                                               )),
                                         );
+                                      }else{
+                                        UIUtils.showSnakBar(headerText: "Please Complete KYC Level 1");
                                       }
                                     },
                                     child: Obx(()=>
@@ -244,30 +250,47 @@ class KycSelectStepScreen extends StatelessWidget {
                                                 ),
                                                 kycSelectStepController
                                                             .isVerified ==
-                                                        "1"
+                                                        "2"
                                                     ? Row(
                                                         children: [
-                                                          Text(
-                                                            "continue",
+                                                          kycSelectStepController.isVerified=="2"?Text(
+                                                            "completed",
                                                             style: AppStyle
                                                                 .textStyleDMSANS
                                                                 .copyWith(
+                                                                color: ColorConstant
+                                                                    .primaryLightGreen,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w500,
+                                                                fontSize:
+                                                                getFontSize(
+                                                                    16)),
+                                                          ):Row(
+                                                            children: [
+                                                              Text(
+                                                                "continue",
+                                                                style: AppStyle
+                                                                    .textStyleDMSANS
+                                                                    .copyWith(
                                                                     color: ColorConstant
                                                                         .primaryLightGreen,
                                                                     fontWeight:
-                                                                        FontWeight
-                                                                            .w500,
+                                                                    FontWeight
+                                                                        .w500,
                                                                     fontSize:
-                                                                        getFontSize(
-                                                                            16)),
-                                                          ),
-                                                          Icon(
-                                                            Icons
-                                                                .arrow_forward_ios,
-                                                            color: ColorConstant
-                                                                .primaryLightGreen,
-                                                            size: getVerticalSize(
-                                                                20),
+                                                                    getFontSize(
+                                                                        16)),
+                                                              ),
+                                                              Icon(
+                                                                Icons
+                                                                    .arrow_forward_ios,
+                                                                color: ColorConstant
+                                                                    .primaryLightGreen,
+                                                                size: getVerticalSize(
+                                                                    20),
+                                                              ),
+                                                            ],
                                                           )
                                                         ],
                                                       )

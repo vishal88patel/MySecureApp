@@ -11,6 +11,7 @@ import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
@@ -44,17 +45,199 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
 
 
   Future<void> _initCamera() async {
-    _cameras = await availableCameras();
-    _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
-    _controller?.initialize().then((_) {
-      if (!mounted) {
-        return;
-      }
-      _controller!.setFlashMode(FlashMode.off);
-      setState(() {});
-    });
-  }
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.microphone,
+    ].request();
 
+    if (statuses[Permission.camera]==PermissionStatus.denied || statuses[Permission.microphone]==PermissionStatus.denied) {
+      Navigator.pop(context);
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(325)),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryDarkGreen),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.isDialogOpen == true) Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 22,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child:Text(
+                              textAlign: TextAlign.center,
+                              "Please Allow Camera And Microphone Permission",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Navigator.pop(context);
+                          openAppSettings();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    }
+    else if(statuses[Permission.camera]==PermissionStatus.permanentlyDenied || statuses[Permission.microphone]==PermissionStatus.permanentlyDenied){
+      Navigator.pop(context);
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(325)),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryDarkGreen),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.isDialogOpen == true) Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 22,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child:Text(
+                              textAlign: TextAlign.center,
+                              "Please Allow Camera And Microphone Permission",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          if (Get.isDialogOpen == true) Get.back();
+                          openAppSettings();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    }
+    else if (statuses[Permission.camera]==PermissionStatus.granted && statuses[Permission.microphone]==PermissionStatus.granted) {
+      _cameras = await availableCameras();
+      _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
+      _controller?.initialize().then((_) {
+        if (!mounted) {
+          return;
+        }
+        _controller!.setFlashMode(FlashMode.off);
+        setState(() {});
+      });
+    }
+  }
   @override
   void dispose() {
     _controller?.dispose();
@@ -86,7 +269,7 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
       key: _scaffoldKey,
       extendBody: true,
       body: WillPopScope(
-        onWillPop: () async => true,
+        onWillPop: () => showBackDialog(),
         child: Stack(
           children: [
             _buildCameraPreview(),
@@ -431,6 +614,75 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
 
   void showInSnackBar(String message) {
     UIUtils.showSnakBar(headerText: "",bodyText: message.toString());
+  }
+  Future<bool> showBackDialog() async {
+    return await Get.dialog(
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+        child: Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Wrap(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: ColorConstant.primaryWhite,
+                      borderRadius: const BorderRadius.all(Radius.circular(8))),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 15, bottom: 20),
+                  constraints: const BoxConstraints(minWidth: 200),
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: Text(
+                            "Are you sure,\n you want to cancel this process?",
+                            textAlign: TextAlign.center,
+                            style: AppStyle.DmSansFont
+                                .copyWith(fontSize: 18,color: ColorConstant.darkBlue),
+
+                          )),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'NO',
+                              radius: 5,
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              onPressed: () {
+                                Get.back();
+                              },),
+                          ),
+
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'YES',
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              radius: 5,
+                              onPressed: () {
+                                  Get.back();
+                                  Get.back();
+                              },),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+    );
   }
 
   void logError(String code, String message) =>
