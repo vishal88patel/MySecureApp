@@ -134,6 +134,7 @@ class LoanCalculatorScreenController extends GetxController {
     selectedState.value=loginResponseModel!.data!.state.isNull
         ? ""
         : loginResponseModel!.data!.state!;
+    setSelectedState(loginResponseModel!.data!.state!);
   }
 
   @override
@@ -176,7 +177,7 @@ class LoanCalculatorScreenController extends GetxController {
         .then((value) {
       print(value);
       if (value['status']) {
-        maximumAvailableLoan.value = int.parse(value['data']['loanBalance']);
+        maximumAvailableLoan.value = 30000;
         interestRate.value = value['data']['loanIntrest'].toString();
       } else {
         UIUtils.showSnakBar(
@@ -188,25 +189,16 @@ class LoanCalculatorScreenController extends GetxController {
   void onTapOnLoanTenure(int id, String name) {
     selectedLoanTenureId.value = id;
     selectedLoanTenure.value = name;
+
+        loanTenuteList.refresh();
   }
 
   void onClickOfProcessToLoan() {
     if (selectedLoan.value == "Please select loan") {
       UIUtils.showSnakBar(
           bodyText: "Please select loan", headerText: StringConstants.ERROR);
-    } /*else if (selectedLoanAmount.isEmpty) {
-      UIUtils.showSnakBar(
-          bodyText: "Please Select Amount", headerText: StringConstants.ERROR);
-    } else if (selectedLoanTenure.isEmpty) {
-      UIUtils.showSnakBar(
-          bodyText: "Please Select Loan Tenure",
-          headerText: StringConstants.ERROR);
-    } */else {
-      // getLoanCalculationApi();
-      // Get.toNamed(AppRoutes.loanStepScreen);
-
-
-      // Get.to(AmountRadialScreen());
+    }else {
+      Get.to(AmountRadialScreen());
     }
   }
 
@@ -306,7 +298,7 @@ class LoanCalculatorScreenController extends GetxController {
         headerText: StringConstants.ERROR,
         bodyText: "Please enter Valid Email",
       );
-    } else if (phoneController.text.isEmpty) {
+    }/* else if (phoneController.text.isEmpty) {
       UIUtils.showSnakBar(
         headerText: StringConstants.ERROR,
         bodyText: "Please Enter Phone Number",
@@ -315,7 +307,7 @@ class LoanCalculatorScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Phone Number Should be 11 digit Number",
           headerText: StringConstants.ERROR);
-    } else {
+    }*/ else {
       Get.toNamed(AppRoutes.loanDobScreen);
     }
   }
@@ -375,7 +367,7 @@ class LoanCalculatorScreenController extends GetxController {
           description:
               "Based on your profile and documents you are eligible for loan upto ${"\$$maximumAvailableLoan"}.Thank you",
           onPressed: () {
-            Get.to(SelectLoanTypeScreen());
+            Get.to(()=>SelectLoanTypeScreen());
           },
         ),
       );

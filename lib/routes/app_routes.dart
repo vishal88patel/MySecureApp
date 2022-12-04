@@ -44,6 +44,10 @@ import '../presentation/KycSelectStep/binding/kyc_select_step_screen_binding.dar
 import '../presentation/KycStep1ModuleScreen/binding/kyc_loader_screen_binding.dart';
 import '../presentation/KycStep1ModuleScreen/binding/kyc_step1_screen_binding.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_loading_screen.dart';
+import '../presentation/LoanApprovedScreen/binding/loan_approved_screen_binding.dart';
+import '../presentation/LoanApprovedScreen/loan_approved_screen.dart';
+import '../presentation/LoanStepScreen/binding/loan_step_screen_binding.dart';
+import '../presentation/LoanStepScreen/loan_step_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
@@ -57,6 +61,9 @@ import '../presentation/ScanScreen/scan_password_screen.dart';
 import '../presentation/ScanScreen/scan_screen.dart';
 import '../presentation/ScanScreen/scan_summary_screen.dart';
 import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
+import '../presentation/SelectLoanTypeScreen/binding/select_loan_type_screen_binding.dart';
+import '../presentation/SelectLoanTypeScreen/controller/select_loan_type_screen_controller.dart';
+import '../presentation/LoanCalculator/select_loan_type_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
@@ -71,6 +78,9 @@ import '../presentation/LoanCalculator/loan_email_screen.dart';
 import '../presentation/LoanCalculator/loan_ssn_screen.dart';
 import '../presentation/LoanCalculator/loan_address_screen.dart';
 import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
+import 'package:my_secure_app/presentation/topAddCard1/card_loading_screen.dart';
+import 'package:my_secure_app/presentation/topAddCard1/binding/card_loader_screen_binding.dart';
+
 
 
 
@@ -114,6 +124,7 @@ class AppRoutes {
   static String loanDobScreen = '/loan_dob_screen';
   static String loanSsnScreen = '/loan_ssn_screen';
   static String loanAddressScreen = '/loan_address_screen';
+  static String selectLoanTypeScreen = '/select_loan_type_screen';
   static String loanApplyInfoScreen = '/loan_apply_info_screen';
 
 
@@ -276,7 +287,15 @@ class AppRoutes {
         EnterAddressScreenBinding(),
       ],
     ),
-
+    GetPage(
+      name: loanStepScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanStepScreen(),
+      bindings: [
+        LoanStepScreenBinding(),
+      ],
+    ),
     GetPage(
       name: enterPersonalDetailScreen,
       transition: Transition.rightToLeft,
@@ -468,6 +487,16 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: cardLoaderScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CardLoadingScreen(),
+      bindings: [
+        CardLoaderScreenBinding(),
+      ],
+    ),
+
+    GetPage(
       name: topAddCardFillScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -566,6 +595,15 @@ class AppRoutes {
         LoanCalculatorScreenBinding(),
       ],
     ),
+ // GetPage(
+ //      name: selectLoanTypeScreen,
+ //      transition: Transition.rightToLeft,
+ //      transitionDuration: Duration(milliseconds: 400),
+ //      page: () => SelectLoanTypeScreen(),
+ //      bindings: [
+ //        SelectLoanTypeScreenBinding(),
+ //      ],
+ //    ),
 
     GetPage(
       name: loanApplyInfoScreen,
@@ -576,6 +614,17 @@ class AppRoutes {
         LoanCalculatorScreenBinding(),
       ],
     ),
+    GetPage(
+      name: loan_approved,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanApprovedScreen(),
+      bindings: [
+        LoanApprovedScreenBinding(),
+      ],
+    ),
+
+
 
 
 

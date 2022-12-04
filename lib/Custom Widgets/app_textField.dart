@@ -14,6 +14,7 @@ class AppTextField extends StatelessWidget {
   final bool isObsecure;
   final bool? readOnly;
   final int? maxLength;
+  final void Function(String)? onChanged;
   final List<TextInputFormatter>? inputFormatters;
 
   const AppTextField({Key? key,
@@ -21,6 +22,7 @@ class AppTextField extends StatelessWidget {
     this.hintText,
     this.suffixIcon,
     this.maxLength,
+    this.onChanged,
     this.keyBordType=TextInputType.text,
     this.isObsecure=false, this.fontSize=20, this.inputFormatters, this.readOnly,
   }) : super(key: key);
@@ -35,6 +37,7 @@ class AppTextField extends StatelessWidget {
       style: TextStyle(color: ColorConstant.grey8F,fontSize: getFontSize(fontSize??20)),
       obscureText: isObsecure,
       maxLength: maxLength,
+      onChanged:onChanged ,
       inputFormatters:inputFormatters ,
       decoration: InputDecoration(
         hintText: hintText,

@@ -7,7 +7,7 @@ import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/presentation/widget/select_mode_widget.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
-
+import 'package:flutter/services.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
@@ -21,6 +21,7 @@ class TopAddCard1Screen extends StatelessWidget {
   Widget build(BuildContext context) {
     // PrefUtils.setString(StringConstants.IS_KYC_DONE,"1");
     return Scaffold(
+
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
@@ -88,20 +89,58 @@ class TopAddCard1Screen extends StatelessWidget {
                                   child: Column(crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       AppTextField(fontSize: 18,
+                                          controller: topAddCard1ScreenController.nameController,
                                           hintText: 'Cardholder Name',),
                                       SizedBox(height: getVerticalSize(20),),
-                                      AppTextField(fontSize: 18,
-                                        hintText: 'Card Number',),
+                                      Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          SizedBox(
+                                            width: MediaQuery.of(context).size.width/1.5,
+                                            child: AppTextField(fontSize: 18,
+                                              keyBordType: TextInputType.number,
+                                              onChanged: (text){
+                                                topAddCard1ScreenController.checkCardImage(text);
+
+                                              },
+                                              inputFormatters: [
+                                                LengthLimitingTextInputFormatter(16),
+                                              ],
+                                              controller: topAddCard1ScreenController.cardNumberController,
+                                              hintText: 'Card Number',),
+                                          ),
+                                          Obx(()=>
+                                          topAddCard1ScreenController.cardTypeImage.value.isNotEmpty?Container(
+                                               color:topAddCard1ScreenController.cardTypeImage.value=='asset/icons/Visa_image.png'?
+                                               Colors.black:Colors.transparent,
+                                              height: getVerticalSize(30),
+                                              width: getHorizontalSize(45),
+                                              child: Image.asset(topAddCard1ScreenController.cardTypeImage.value)):Container(width: 10,height: 10,),
+                                          )
+                                        ],
+                                      ),
                                       SizedBox(height: getVerticalSize(20),),
                                       Row(
                                         children: [
                                           Expanded(
-                                            child: AppTextField(fontSize: 18,
+                                            child: AppTextField(
+                                              fontSize: 18,
+                                              keyBordType:TextInputType.datetime,
+                                              inputFormatters: [
+                                                CardFormatter(sample:'00/00',separator:'/')
+                                              ],
+                                              controller:
+                                              topAddCard1ScreenController.expDateController,
                                               hintText: 'Expiry Date',),
                                           ),
                                           SizedBox(width: getHorizontalSize(10),),
                                           Expanded(
                                             child: AppTextField(fontSize: 18,
+                                              inputFormatters: [
+                                                LengthLimitingTextInputFormatter(3),
+                                              ],
+                                              controller: topAddCard1ScreenController.cvvController,
+
+                                              keyBordType: TextInputType.number,
                                               hintText: '3-digit CVV',),
                                           ),
                                         ],
@@ -112,7 +151,8 @@ class TopAddCard1Screen extends StatelessWidget {
                                 ),
                                 SelectModeWidget(
                                   onTap: (){
-                                    Get.toNamed(AppRoutes.topAddCardFillScreen);
+                                    topAddCard1ScreenController.onClickOfAddCardButton(context);
+                                    // Get.toNamed(AppRoutes.topAddCardFillScreen);
                                   },
                                   verticalPadding: 20,
                                   iconV: 45,
@@ -132,5 +172,37 @@ class TopAddCard1Screen extends StatelessWidget {
                     ),
                   ],
                 ))));
+  }
+}
+
+
+class CardFormatter extends TextInputFormatter {
+  final String sample;
+  final String separator;
+
+  CardFormatter({
+    required this.sample,
+    required this.separator,
+  });
+
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    if (newValue.text.length > 0) {
+      if (newValue.text.length > oldValue.text.length) {
+        if (newValue.text.length > sample.length) return oldValue;
+        if (newValue.text.length < sample.length &&
+            sample[newValue.text.length - 1] == separator) {
+          return TextEditingValue(
+            text:
+            '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
+            selection: TextSelection.collapsed(
+              offset: newValue.selection.end + 1,
+            ),
+          );
+        }
+      }
+    }
+    return newValue;
   }
 }
