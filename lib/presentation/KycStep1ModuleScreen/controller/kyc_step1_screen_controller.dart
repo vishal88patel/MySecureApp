@@ -387,6 +387,9 @@ class KycStep1ScreenController extends GetxController {
       //   UIUtils.hideProgressDialog();
       progress();
       step2.value=true;
+      UIUtils.showSnakBar(
+          bodyText: "KYC has been completed successfully",
+          headerText: StringConstants.SUCCESS);
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "2");
     } else {
       //  UIUtils.hideProgressDialog();

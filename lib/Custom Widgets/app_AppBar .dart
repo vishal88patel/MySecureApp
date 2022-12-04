@@ -36,6 +36,7 @@ class AppAppBar extends StatelessWidget {
                 child: SvgPicture.asset(
                   icon1.toString(),
                   fit: BoxFit.fill,
+                  height: getVerticalSize(42),
                 ),
               ),
               Text(
@@ -50,13 +51,14 @@ class AppAppBar extends StatelessWidget {
                 child: SvgPicture.asset(
                   icon2.toString(),
                   fit: BoxFit.fill,
+                  height: getVerticalSize(24),
                 ),
               ),
             ],
           ),
         ),
         SizedBox(
-          height: getVerticalSize(24),
+          height: getVerticalSize(28),
         ),
       ],
     );

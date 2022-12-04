@@ -282,7 +282,7 @@ class SelfieScreenState extends State<SelfieScreen>
 
           }else if(widget.image==5){
             kycStep1Controller.netImage5.value=file!.path;
-            Get.toNamed(AppRoutes.kycLoadingScreen,arguments: {
+            Get.toNamed(AppRoutes.kycselfieLoadingScreen,arguments: {
               "API_TYPE": 3
             });
           }

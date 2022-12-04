@@ -93,7 +93,7 @@ class KycSelectProofScreen extends StatelessWidget {
                                             builder: (context) =>
                                                 const FrontBackLicenceCameraScreen(
                                                   image: 2,
-                                                  title:"Scan the front image of Driving Licence",
+                                                  title:"Scan the front image of\n Driving Licence",
                                                 )),
                                       );
                                     },

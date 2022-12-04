@@ -292,6 +292,7 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
                           "asset/icons/ic_back.svg",
                           fit: BoxFit.fill,
                           color: Colors.white,
+                          height: getVerticalSize(42),
                         ),
                       ),
                       Text(

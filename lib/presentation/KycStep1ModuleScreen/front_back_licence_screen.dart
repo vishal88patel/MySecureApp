@@ -295,6 +295,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                           "asset/icons/ic_back.svg",
                           fit: BoxFit.fill,
                           color: Colors.white,
+                          height: getVerticalSize(42),
                         ),
                       ),
                       Text(
@@ -329,7 +330,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.title,
+                          widget.title,textAlign: TextAlign.center,
                           style: AppStyle.textStyleDMSANS.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w500,
@@ -556,7 +557,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const FrontBackLicenceCameraScreen(image: 3,title: 'Scan the back  image of Driving Licence',)),
+                  builder: (context) => const FrontBackLicenceCameraScreen(image: 3,title: 'Scan the back  image of\n Driving Licence',)),
             );
 
           }else if(widget.image==3){
