@@ -7,7 +7,9 @@ import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
+import 'package:my_secure_app/utils/ConstantsFiles/string_constants.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:my_secure_app/utils/HelperFiles/pref_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../loader_screen.dart';
@@ -182,9 +184,12 @@ class KYCLoadingScreen extends StatelessWidget {
                           Obx(()=>
                           kycStep1Controller.progress4.value?AppElevatedButton(
                                 buttonName: 'Continue',
-                                onPressed: () {
-                                  if(kycStep1Controller.step2==false);
-                                 // Get.offAndToNamed(AppRoutes.kycSelectStepScreen);
+                                onPressed: () async {
+                                  var kk=await PrefUtils.getString(StringConstants.IS_KYC_DONE);
+                                  if(kk=="1" && kk!="2"){
+                                   kycLoaderController. showKycDialouge();
+
+                                  }
                                   else{
                                     Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
                                   }

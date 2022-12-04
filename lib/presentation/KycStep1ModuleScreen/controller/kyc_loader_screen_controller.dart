@@ -9,6 +9,7 @@ import '../../../Custom Widgets/app_ElevatedButton .dart';
 import '../../../routes/app_routes.dart';
 import '../../../theme/app_style.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
+import '../selfie_screen.dart';
 import 'kyc_step1_screen_controller.dart';
 
 class KycLoaderController extends GetxController {
@@ -24,13 +25,6 @@ class KycLoaderController extends GetxController {
   @override
   void onInit() {
     getArguments();
-    if (apiType.value == 1) {
-      kycStep1Controller.onClickOfSubmitIdButton();
-    } else if (apiType.value == 2) {
-      kycStep1Controller.onClickOfSubmitPassButton();
-    } else if (apiType.value == 3) {
-      kycStep1Controller.onClickOfSubmitStep2Button();
-    }
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
@@ -44,6 +38,14 @@ class KycLoaderController extends GetxController {
   getArguments() {
     if (arguments != null) {
       apiType.value = arguments['API_TYPE'];
+      if (apiType.value == 1) {
+        kycStep1Controller.onClickOfSubmitIdButton();
+      } else if (apiType.value == 2) {
+        kycStep1Controller.onClickOfSubmitPassButton();
+      } else if (apiType.value == 3) {
+        kycStep1Controller.onClickOfSubmitStep2Button();
+      }
+
     }
   }
 
@@ -119,6 +121,10 @@ class KycLoaderController extends GetxController {
                                 buttonColor: ColorConstant.primaryDarkGreen,
                                 onPressed: () {
                                   Get.back();
+                                  Get.to(()=>SelfieScreen(
+                                    image: 5,
+                                  ));
+
                                 },),
                             ),
                           ),

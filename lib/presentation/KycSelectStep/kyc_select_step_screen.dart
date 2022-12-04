@@ -249,6 +249,58 @@ class KycSelectStepScreen extends StatelessWidget {
                                                   ],
                                                 ),
                                                 kycSelectStepController
+                                                    .isVerified =="0"?Icon(
+                                                  Icons.lock,
+                                                  color: ColorConstant
+                                                      .primaryLightGreen,
+                                                  size: getVerticalSize(30),
+                                                ):kycSelectStepController
+                                                    .isVerified =="1"?Row(
+                                                  children: [
+                                                    Text(
+                                                      "continue",
+                                                      style: AppStyle
+                                                          .textStyleDMSANS
+                                                          .copyWith(
+                                                          color: ColorConstant
+                                                              .primaryLightGreen,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w500,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              16)),
+                                                    ),
+                                                    Icon(
+                                                      Icons
+                                                          .arrow_forward_ios,
+                                                      color: ColorConstant
+                                                          .primaryLightGreen,
+                                                      size: getVerticalSize(
+                                                          20),
+                                                    ),
+                                                  ],
+                                                ):kycSelectStepController
+                                                    .isVerified =="2"?Text(
+                                                  "completed",
+                                                  style: AppStyle
+                                                      .textStyleDMSANS
+                                                      .copyWith(
+                                                      color: ColorConstant
+                                                          .primaryLightGreen,
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w500,
+                                                      fontSize:
+                                                      getFontSize(
+                                                          16)),
+                                                ):Icon(
+                                                  Icons.lock,
+                                                  color: ColorConstant
+                                                      .primaryLightGreen,
+                                                  size: getVerticalSize(30),
+                                                ),
+                                               /* kycSelectStepController
                                                             .isVerified ==
                                                         "2"
                                                     ? Row(
@@ -266,7 +318,8 @@ class KycSelectStepScreen extends StatelessWidget {
                                                                 fontSize:
                                                                 getFontSize(
                                                                     16)),
-                                                          ):Row(
+                                                          ):
+                                                          Row(
                                                             children: [
                                                               Text(
                                                                 "continue",
@@ -299,7 +352,7 @@ class KycSelectStepScreen extends StatelessWidget {
                                                         color: ColorConstant
                                                             .primaryLightGreen,
                                                         size: getVerticalSize(30),
-                                                      ),
+                                                      ),*/
                                               ]),
                                         ),
                                       ),

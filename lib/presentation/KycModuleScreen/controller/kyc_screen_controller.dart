@@ -127,7 +127,7 @@ class KycScreenController extends GetxController {
           },
           codeSent: (String verificationID, int? resendToken) {
             verificationIDRecived = verificationID;
-            Future.delayed(Duration(milliseconds: 2500),(){
+            Future.delayed(Duration(milliseconds: 1500),(){
               // UIUtils.hideProgressDialog();
               UIUtils.showSnakBar(bodyText: 'OTP Sent Successfully',headerText: StringConstants.SUCCESS);
               isLoaderShow.value=false;
