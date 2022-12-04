@@ -1,5 +1,7 @@
+import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_secure_app/presentation/LoanApprovedScreen/controller/loan_approved_screen_controller.dart';
@@ -7,7 +9,9 @@ import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../Custom Widgets/appbar_image_1.dart';
+import '../../Custom Widgets/common_image_view.dart';
 
 class LoanApprovedScreen extends StatelessWidget {
   var loanApprovedController = Get.find<LoanApprovedSScreenController>();
@@ -15,314 +19,340 @@ class LoanApprovedScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.primaryDarkGreen,
-        body: Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: size.width,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  AppbarImage1(
-                    height: getVerticalSize(
-                      120.00,
-                    ),
-                    width: getHorizontalSize(
-                      359.00,
-                    ),
-                    imagePath: "asset/icons/img_ribbons_1.png",
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(24),
-                    child: Text(
-                      "Payment Receipt",
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontSize: getFontSize(28)),
-                    ),
-                  ),
-                ],
+      backgroundColor: ColorConstant.primaryDarkGreen,
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              SizedBox(
+                height: 40,
               ),
-            ),
-            Container(
-                height: size.height / 1.2,
-                width: getHorizontalSize(370),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
-                    )),
-                child: CustomPaint(
-                  painter: TicketPainter(
-                    borderColor: ColorConstant.primaryBlack,
-                    bgColor: ColorConstant.primaryWhite,
+              Container(
+                width: size.width,
+                child: Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Text(
+                    "Payment Receipt",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.primaryWhite,
+                        fontSize: getFontSize(28)),
                   ),
-                  child: Stack(
-                    children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(getVerticalSize(15)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(15.0),
-                                    child: Image.asset(
-                                      "asset/icons/doller_card.png",
-                                      height: 220,
-                                      fit: BoxFit.cover,
-                                    )),
-                                SizedBox(
-                                  height: getVerticalSize(30),
-                                ),
-                                Text(
-                                  "Name",
-                                  style: AppStyle.DmSansFont
-                                      .copyWith(
-                                      color: ColorConstant.lightText,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(18)),
-                                ),
-                                Obx(
-                                      () => Text(
-                                    loanApprovedController.HeadeName.value,
-                                    style: AppStyle.DmSansFont
-                                        .copyWith(
-                                        color:
-                                        ColorConstant.primaryBlack,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: getFontSize(24)),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(30),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        /* Text(
-                                              "Date",
-                                              style: AppStyle
-                                                  .DmSansFont
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .lightText,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize:
-                                                          getFontSize(18)),
-                                            ),
-                                            Text(
-                                              "21 Dec 2021",
-                                              style: AppStyle.textStyleSFPROBold
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .primaryBlack,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize:
-                                                          getFontSize(24)),
-                                            ),
-                                            SizedBox(
-                                              height: getVerticalSize(30),
-                                            ),*/
-                                        Text(
-                                          "Loan Type",
-                                          style: AppStyle
-                                              .DmSansFont
-                                              .copyWith(
-                                              color: ColorConstant
-                                                  .lightText,
-                                              fontWeight:
-                                              FontWeight.w400,
-                                              fontSize:
-                                              getFontSize(18)),
-                                        ),
-                                        Obx(
-                                              () => Text(
-                                            loanApprovedController.loan_type
-                                                .toString(),
-                                            style: AppStyle
-                                                .DmSansFont
-                                                .copyWith(
-                                                color: ColorConstant
-                                                    .primaryBlack,
-                                                fontWeight:
-                                                FontWeight.w700,
-                                                fontSize:
-                                                getFontSize(24)),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        /*Text(
-                                              "TIme",
-                                              style: AppStyle
-                                                  .DmSansFont
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .lightText,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize:
-                                                          getFontSize(18)),
-                                            ),
-                                            Text(
-                                              "07:00 PM",
-                                              style: AppStyle.textStyleSFPROBold
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .primaryBlack,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize:
-                                                          getFontSize(24)),
-                                            ),
-                                            SizedBox(
-                                              height: getVerticalSize(30),
-                                            ),*/
-                                        Text(
-                                          "Amount ",
-                                          style: AppStyle
-                                              .DmSansFont
-                                              .copyWith(
-                                              color: ColorConstant
-                                                  .lightText,
-                                              fontWeight:
-                                              FontWeight.w400,
-                                              fontSize:
-                                              getFontSize(18)),
-                                        ),
-                                        Obx(
-                                              () => Text(
-                                            "\$" +
-                                                loanApprovedController
-                                                    .loanCalModel
-                                                    .value
-                                                    .data!
-                                                    .loanAmount
-                                                    .toString(),
-                                            style: AppStyle
-                                                .DmSansFont
-                                                .copyWith(
-                                                color: ColorConstant
-                                                    .primaryBlack,
-                                                fontWeight:
-                                                FontWeight.w700,
-                                                fontSize:
-                                                getFontSize(24)),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(15),
-                                ),
-                              ],
+                ),
+              ),
+              Container(
+                width: size.width,
+                child: SingleChildScrollView(
+                  child: Container(
+                    height: getVerticalSize(
+                      750.00,
+                    ),
+                    child: Stack(
+                      alignment: Alignment.topCenter,
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: CommonImageView(
+                            svgPath: "asset/icons/img_subtract.svg",
+                            height: getVerticalSize(
+                              750.00,
+                            ),
+                            width: getHorizontalSize(
+                              370.00,
                             ),
                           ),
-                          Column(
+                        ),
+                        Align(
+                          alignment: Alignment.center,
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
-                                width: getHorizontalSize(340),
-                                height: getVerticalSize(1),
-                                color: ColorConstant.divider,
-                              ),
-                              SizedBox(
-                                height: getVerticalSize(40),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      "Congratulations,",
-                                      style: AppStyle.DmSansFont
-                                          .copyWith(
-                                          color:
-                                          ColorConstant.lightGreen,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(16)),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 64,
+                                    right: 64,
+                                  ),
+                                  child: CommonImageView(
+                                    svgPath: "asset/icons/img_checkmark.svg",
+                                    height: getSize(
+                                      100.00,
+                                    ),
+                                    width: getSize(
+                                      100.00,
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 64,
+                                    top: 16,
+                                    right: 64,
+                                  ),
+                                  child: Text(
+                                    "Congratulations",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.primaryLightGreen,
+                                        fontSize: getFontSize(28),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding:
+                                  EdgeInsets.only(left: 28, right: 28, top: 10),
+                                  child: Flexible(
                                     child: Text(
-                                      textAlign: TextAlign.center,
                                       "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
-                                      style: AppStyle.DmSansFont
-                                          .copyWith(
-                                          color: ColorConstant
-                                              .primaryBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(16)),
+
+                                      textAlign: TextAlign.center,
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.greyTextColor,
+                                          fontSize: getFontSize(20),
+                                          fontWeight: FontWeight.bold),
                                     ),
                                   ),
-                                ],
+                                ),
                               ),
-                              SizedBox(
-                                height: getVerticalSize(60),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding:
+                                  EdgeInsets.only(left: 28, right: 28, top: 10),
+                                  child: Text(
+                                    "Total Amount",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.greyTextColor,
+                                        fontSize: getFontSize(20),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                      left: 28, right: 28, top: 10, bottom: 5),
+                                  child: Obx(
+                                      ()=> Text(
+                                      "\$" +
+                                    loanApprovedController
+                                        .loanCalModel
+                                        .value
+                                        .data!
+                                        .loanAmount
+                                        .toString(),
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontSize: getFontSize(28),
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 30,),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.only(left: 38.0, right: 38),
+                                  child: DottedLine(
+                                      dashColor: ColorConstant.greyTextColor),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Padding(
+                                  padding:
+                                  EdgeInsets.only(top: 15, right: 10, left: 40),
+                                  child: Text(
+                                    "Payment to ",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.greyTextColor,
+                                        fontSize: getFontSize(20),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Container(
+                                  margin:
+                                  EdgeInsets.only(top: 12, left: 40, right: 40),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xFFF2F2F2),
+                                    borderRadius:
+                                    BorderRadius.all(Radius.circular(16)),
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Card(
+                                        clipBehavior: Clip.antiAlias,
+                                        elevation: 0,
+                                        margin: EdgeInsets.only(
+                                          left: 16,
+                                          top: 17,
+                                          bottom: 16,
+                                        ),
+                                        color: ColorConstant.primaryWhite,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                          BorderRadius.all(Radius.circular(6)),
+                                        ),
+                                        child: Container(
+                                          height: getSize(
+                                            48.00,
+                                          ),
+                                          width: getSize(
+                                            48.00,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                                Radius.circular(6)),
+                                          ),
+                                          child: Stack(
+                                            children: [
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: SvgPicture.asset(
+                                                    "asset/icons/ic_starbucks.svg"),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                          left: 16,
+                                          top: 18,
+                                          bottom: 16,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                right: 10,
+                                              ),
+                                              child: Obx(
+                                                ()=> Text(
+                                                  loanApprovedController.HeadeName.value,
+                                                  overflow: TextOverflow.ellipsis,
+                                                  textAlign: TextAlign.left,
+                                                  style: AppStyle.DmSansFont.copyWith(
+                                                      color: ColorConstant.primaryBlack,
+                                                      fontSize: getFontSize(20),
+                                                      fontWeight: FontWeight.bold),
+                                                ),
+                                              ),
+                                            ),
+                                            Container(
+                                              width: getHorizontalSize(
+                                                179.00,
+                                              ),
+                                              margin: EdgeInsets.only(
+                                                top: 3,
+                                              ),
+                                              child: Row(
+
+                                                crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                                mainAxisSize: MainAxisSize.max,
+                                                children: [
+                                                  Obx(
+                                                  ()=> Text(
+                                                      loanApprovedController.loan_type
+                                                          .toString(),
+                                                      overflow: TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.left,
+                                                      style: AppStyle.DmSansFont.copyWith(
+                                                          color: ColorConstant.greyTextColor,
+                                                          fontSize: getFontSize(14),
+                                                          fontWeight: FontWeight.bold),
+                                                    ),
+                                                  ),
+
+
+                                                ],
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Image.asset(
-                                      "asset/icons/barcode_image.jpeg"),
+                                padding: const EdgeInsets.only(left: 40.0,right: 40,top: 12),
+                                child: AppElevatedButton(
+                                  buttonName: "Go To Wallet",
+                                  textColor: Colors.white,
+                                  buttonColor: ColorConstant.primaryLightGreen,
+                                  radius: 16,
+                                  onPressed: () {},
                                 ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Positioned(
-                        top: 190,
-                        right: 10,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Lottie.asset('asset/animations/approved_anim.json',height: 80),
-                            Transform.rotate(
-                              angle: 0.6,
-                              child: Image.asset(
-                                "asset/icons/approved_sign.png",
-                                height: 70,
-                                width: 200,
                               ),
-                            ),
-
-                          ],
+                              Align(
+                                alignment: Alignment.center,
+                                child: Padding(
+                                  padding: EdgeInsets.only(
+                                    left: 64,
+                                    top: 25,
+                                    right: 64,
+                                  ),
+                                  child: Text(
+                                    "Thank you",
+                                    overflow: TextOverflow.ellipsis,
+                                    textAlign: TextAlign.left,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.primaryDarkGreen,
+                                        fontSize: getFontSize(14),
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
-                      )
-                    ],
+                      ],
+                    ),
                   ),
-                )),
-          ],
-        ));
+                ),
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset('asset/animations/partyyy.json', height: 300,width: MediaQuery.of(context).size.width),
+            ],
+          ),
+        ],
+      ),
+    );
   }
 }
 

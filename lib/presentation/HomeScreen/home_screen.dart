@@ -174,7 +174,9 @@ class HomeScreen extends StatelessWidget {
                           }),
                       PaymentListWidget(title: 'Boost Credit Score', iconName: 'asset/icons/EXE_Icon.png',),
                       PaymentListWidget(title: 'Link Bank', iconName: 'asset/icons/EXE_Icon.png',),
-                      PaymentListWidget(title: 'Link Card', iconName: 'asset/icons/EXE_Icon.png',),
+                      PaymentListWidget(title: 'Link Card', iconName: 'asset/icons/EXE_Icon.png',onTap:() {
+                      Get.toNamed(AppRoutes.topAddCard1Screen);
+                      }),
                     ],
                   ),
                   SizedBox(

@@ -22,82 +22,161 @@ class ApplyLoanInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorConstant.backgroundColor,
-        body: SingleChildScrollView(
-            child: Container(
-                height: size.height,
-                child: Stack(
-                  children: [
-                   Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: getHorizontalSize(26.0),
-                          vertical: getVerticalSize(26)),
-                      child: SafeArea(
-                        child: Stack(
-                          children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: getVerticalSize(30),
-                                ),
-                                Center(
-                                  child: Text(
-                                    "Online Digital Loan",
+        body: Obx(
+            ()=> loanCalculatorController.isKycDone.value?SingleChildScrollView(
+              child: Container(
+                  height: size.height,
+                  child: Stack(
+                    children: [
+                     Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getHorizontalSize(26.0),
+                            vertical: getVerticalSize(26)),
+                        child: SafeArea(
+                          child: Stack(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: getVerticalSize(30),
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      "Online Digital Loan",
+                                      style: AppStyle.DmSansFont
+                                          .copyWith(
+                                          color: ColorConstant.darkBlue,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: getFontSize(32)),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    "Thanks for making an interest in loan please proceed with the details.",
                                     style: AppStyle.DmSansFont
                                         .copyWith(
                                         color: ColorConstant.darkBlue,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: getFontSize(32)),
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: getFontSize(20)),
                                   ),
-                                ),
-                                Spacer(),
-                                Text(
-                                  "Thanks for making an interest in loan please proceed with the details.",
-                                  style: AppStyle.DmSansFont
-                                      .copyWith(
-                                      color: ColorConstant.darkBlue,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(20)),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(50),
-                                ),
-                                AppElevatedButton(
-                                    buttonName: 'Proceed',
-                                    radius: 5,
-                                    onPressed: () {
-                                      if(homeC.showNotiFiBadge.value){
-                                        homeC.showVerifyIdentityDialouge();
-                                      }else{
-                                        Get.toNamed(AppRoutes.loanFnameScreen);
-                                        // Get.to(AmountRadialScreen());
-                                      }
+                                  SizedBox(
+                                    height: getVerticalSize(50),
+                                  ),
+                                  AppElevatedButton(
+                                      buttonName: 'Proceed',
+                                      radius: 5,
+                                      onPressed: () {
+                                        if(homeC.showNotiFiBadge.value){
+                                          homeC.showVerifyIdentityDialouge();
+                                        }else{
+                                          Get.toNamed(AppRoutes.loanFnameScreen);
+                                          // Get.to(AmountRadialScreen());
+                                        }
 
-                                    }),
-                                SizedBox(
-                                  height: getVerticalSize(20),
-                                ),
-                              ],
-                            ),
-                          ],
+                                      }),
+                                  SizedBox(
+                                    height: getVerticalSize(20),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Lottie.asset('asset/animations/loan_wallet.json',
-                                height: MediaQuery.of(context).size.height/2,
-                              repeat: true
-                            ),
-                          ],
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Lottie.asset('asset/animations/loan_wallet.json',
+                                  height: MediaQuery.of(context).size.height/2,
+                                repeat: true
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ))):
+            SingleChildScrollView(
+              child: Container(
+                  height: size.height,
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getHorizontalSize(26.0),
+                            vertical: getVerticalSize(26)),
+                        child: SafeArea(
+                          child: Stack(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: getVerticalSize(30),
+                                  ),
+                                  Center(
+                                    child: Text(
+                                      "Online Digital Loan",
+                                      style: AppStyle.DmSansFont
+                                          .copyWith(
+                                          color: ColorConstant.darkBlue,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(32)),
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  Text(
+                                    "Thanks for making an interest in loan please proceed with the details.",
+                                    style: AppStyle.DmSansFont
+                                        .copyWith(
+                                        color: ColorConstant.darkBlue,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(20)),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(50),
+                                  ),
+                                  AppElevatedButton(
+                                      buttonName: 'Proceed',
+                                      radius: 5,
+                                      onPressed: () {
+                                        if(homeC.showNotiFiBadge.value){
+                                          homeC.showVerifyIdentityDialouge();
+                                        }else{
+                                          Get.toNamed(AppRoutes.loanFnameScreen);
+                                          // Get.to(AmountRadialScreen());
+                                        }
+
+                                      }),
+                                  SizedBox(
+                                    height: getVerticalSize(20),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ],
-                    ),
-                  ],
-                ))));
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Lottie.asset('asset/animations/loan_wallet.json',
+                                  height: MediaQuery.of(context).size.height/2,
+                                  repeat: true
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ))),
+        ));
   }
 }

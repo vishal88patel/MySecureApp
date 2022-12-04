@@ -23,7 +23,7 @@ import '../model/get_loan_type_response_model.dart';
 import 'get_status_income_response_model.dart';
 
 class PersonalScreenController extends GetxController {
-  String token="";
+  String token = "";
 
   var loginController = Get.find<LoginScreenController>();
   var loginEmailController = Get.put(LoginEmailScreenController());
@@ -31,6 +31,7 @@ class PersonalScreenController extends GetxController {
   var enterPersonalDetailController = Get.find<EnterBirthDateController>();
   var enterLegalNameController = Get.find<EnterLegalNameScreenController>();
   var enterAddressController = Get.find<EnterAddressScreenController>();
+
   // var enterAddressController = Get.find<EnterBirthDateController>();
 
   TextEditingController employmentNameController = TextEditingController();
@@ -40,14 +41,20 @@ class PersonalScreenController extends GetxController {
   var purposeOfOpeningAcc = "".obs;
   var employmentStatus = "Employeed".obs;
   String? employmentStatusDropDownValue;
-  var setSelectedAnnualIncome = "Less than \$25,000".obs;
+  var setSelectedAnnualIncome = "".obs;
   var setSelectedGender = "".obs;
   String? setSelectedAnnualIncomeDropdown;
   String? setSelectedForGender;
-  var dropdownTextForStatus = ['Employeed', 'Retired', 'Disability','Self Employed'].obs;
+  var dropdownTextForStatus =
+      ['Employeed', 'Retired', 'Disability', 'Self Employed'].obs;
   var dropdownTextForGender = ['Male', 'Female', 'Other'].obs;
-  var dropdownTextForIncome = ['Less than \$25,000', '\$25,000 - \$50,000',
-    '\$50,000 - \$75,000','\$75,000 - \$1,00,000','Greter than \$1,00,000'].obs;
+  var dropdownTextForIncome = [
+    'Less than \$25,000',
+    '\$25,000 - \$50,000',
+    '\$50,000 - \$75,000',
+    '\$75,000 - \$1,00,000',
+    'Greter than \$1,00,000'
+  ].obs;
   var loanModel = GetLoanTypeResponseModel().obs;
   var getStatusIncomeResponseModel = GetStatusAndIncomeResponseModel().obs;
   EmployeementStatus statusIncomeObject = EmployeementStatus();
@@ -55,7 +62,6 @@ class PersonalScreenController extends GetxController {
   var loanList = [].obs;
   var showJobTitle = true.obs;
   var nameOfBusinessTitle = true.obs;
-
 
   String device_type = "";
 
@@ -67,8 +73,8 @@ class PersonalScreenController extends GetxController {
   @override
   void onInit() {
     getFcmToken();
-    employmentNameController.text=setSelectedAnnualIncome.value;
-    annualIncomeController.text=setSelectedAnnualIncome.value;
+    employmentNameController.text = setSelectedAnnualIncome.value;
+    annualIncomeController.text = setSelectedAnnualIncome.value;
     checkDeviceType();
     getLoanTypeApi();
     super.onInit();
@@ -78,45 +84,49 @@ class PersonalScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  void setSelected(String value){
+
+  void setSelected(String value) {
     employmentStatus.value = value;
-    employmentNameController.text=employmentStatus.value;
-    employmentStatusDropDownValue=value;
+    employmentNameController.text = employmentStatus.value;
+    employmentStatusDropDownValue = value;
     dropdownTextForStatus.refresh();
     // Employeed', 'Retired', 'Disability','Self Employed
-    if(employmentNameController.text=="Retired"||
-        employmentNameController.text=="Disability" ){
-      showJobTitle.value=false;
-      nameOfBusinessTitle.value=false;
-    }if(employmentNameController.text=="Self Employed"){
-      nameOfBusinessTitle.value=true;
+    if (employmentNameController.text == "Retired" ||
+        employmentNameController.text == "Disability") {
+      showJobTitle.value = false;
+      nameOfBusinessTitle.value = false;
     }
-    if(employmentNameController.text=="Employeed"){
-      showJobTitle.value=true;
-      nameOfBusinessTitle.value=false;
+    if (employmentNameController.text == "Self Employed") {
+      nameOfBusinessTitle.value = true;
+      showJobTitle.value = false;
+    }
+    if (employmentNameController.text == "Employeed") {
+      showJobTitle.value = true;
+      nameOfBusinessTitle.value = false;
     }
     // if(employmentNameController.text=="Disability"){
     //   nameOfBusinessTitle.value=true;
     //   showJobTitle.value=false;
     //
     // }
-    else{
+    else {
       // showJobTitle.value=true;
       // nameOfBusinessTitle.value=true;
 
     }
   }
 
-  void setAnnualIncome(String value){
+  void setAnnualIncome(String value) {
     setSelectedAnnualIncome.value = value;
-    annualIncomeController.text=setSelectedAnnualIncome.value;
-    setSelectedAnnualIncomeDropdown=setSelectedAnnualIncome.value;
+    annualIncomeController.text = setSelectedAnnualIncome.value;
+    setSelectedAnnualIncomeDropdown = setSelectedAnnualIncome.value;
     dropdownTextForIncome.refresh();
   }
-  void setGender(String value){
+
+  void setGender(String value) {
     setSelectedGender.value = value;
     // annualIncomeController.text=setSelectedAnnualIncome.value;
-    setSelectedForGender=setSelectedGender.value;
+    setSelectedForGender = setSelectedGender.value;
     dropdownTextForGender.refresh();
   }
 
@@ -180,17 +190,19 @@ class PersonalScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter job title",
           headerText: StringConstants.ERROR);
-    } else if (annualIncomeController.text.isEmpty) {
+    } else if (setSelectedAnnualIncome.isEmpty || setSelectedAnnualIncome == "") {
       UIUtils.showSnakBar(
           bodyText: "Please enter annual income",
           headerText: StringConstants.ERROR);
-    }else if (setSelectedGender.isEmpty || setSelectedGender=="") {
+    } else if (setSelectedGender.isEmpty || setSelectedGender == "") {
       UIUtils.showSnakBar(
-          bodyText: "Please Select Gender",
-          headerText: StringConstants.ERROR);
-    }  else {
-      // callRegisterApi();
-      Get.to(()=> LoaderScreen(AppRoutes.purpouseAccountScreen),transition: Transition.rightToLeft);
+          bodyText: "Please Select Gender", headerText: StringConstants.ERROR);
+    }else if (nameOfBusinessTitle.value && businessNameController.text.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Select Name Of Business", headerText: StringConstants.ERROR);
+    } else {
+      Get.to(() => LoaderScreen(AppRoutes.purpouseAccountScreen),
+          transition: Transition.rightToLeft);
 
       // Get.toNamed(AppRoutes.purpouseAccountScreen);
     }
@@ -215,65 +227,100 @@ class PersonalScreenController extends GetxController {
   Future<void> callRegisterApi() async {
     ApiService()
         .callPostApi(
-        body: loginController.emailController.text.isEmpty? await getRegisterBody2(
-            type: loginController.emailController.text.isEmpty?"2":"1",
-            email: loginController.emailController.text.isEmpty?"":loginController.emailController.text,
-            mobile: loginEmailController.phoneController.text.isEmpty?"":loginEmailController.phoneController.text,
-            password: createPasswordController.confirmPassController.text,
-            address_1: enterAddressController.address01Controller.text,
-            address_2: enterAddressController.address02Controller.text??"",
-            city: enterAddressController.cityController.text,
-            state: enterAddressController.selectedState!.value,
-            zip_code: enterAddressController.zipCodeController.text,
-            ssn: enterPersonalDetailController.ssnController.text,
-            name: employmentNameController.text,
-            job_title: jobTitleController.text==""?"No Jobe Title":jobTitleController.text,
-            annual_income: annualIncomeController.text,
-            purpouse_of_opening_account: purposeOfOpeningAcc.value,
-            loan_type: selectedLoanId.value,
-            first_name: enterLegalNameController.firstNameController.text,
-            last_name: enterLegalNameController.lastNameController.text,
-            date_of_birth:enterPersonalDetailController.dobController.text,
-          device_id: await PlatformDeviceId.getDeviceId,
-          fcm_token: token,
-          devicy_type: device_type,
-          middle_name: enterLegalNameController.middleNameController.text,
-        ):await getRegisterBody(
-          type: loginController.emailController.text.isEmpty?"2":"1",
-          email: loginController.emailController.text.isEmpty?"":loginController.emailController.text,
-          mobile: loginEmailController.phoneController.text.isEmpty?"":loginEmailController.phoneController.text,
-          password: createPasswordController.confirmPassController.text,
-          address_1: enterAddressController.address01Controller.text,
-          address_2: enterAddressController.address02Controller.text??"",
-          city: enterAddressController.cityController.text,
-          state: enterAddressController.selectedState!.value,
-          zip_code: enterAddressController.zipCodeController.text,
-          ssn: enterPersonalDetailController.ssnController.text,
-          name: employmentNameController.text,
-          job_title: jobTitleController.text==""?"No Jobe Title":jobTitleController.text,
-          annual_income: annualIncomeController.text,
-          purpouse_of_opening_account: purposeOfOpeningAcc.value,
-          loan_type: selectedLoanId.value,
-          first_name: enterLegalNameController.firstNameController.text,
-          last_name: enterLegalNameController.lastNameController.text,
-          date_of_birth:enterPersonalDetailController.dobController.text,
-          device_id: await PlatformDeviceId.getDeviceId,
-          fcm_token: token,
-          devicy_type: device_type,
-          middle_name: enterLegalNameController.middleNameController.text,
-        ),
-        headerWithToken: false,
-        url: ApiEndPoints.REGISTER)
+            body: loginController.emailController.text.isEmpty
+                ? await getRegisterBody2(
+                    type: loginController.emailController.text.isEmpty
+                        ? "2"
+                        : "1",
+                    email: loginController.emailController.text.isEmpty
+                        ? ""
+                        : loginController.emailController.text,
+                    mobile: loginEmailController.phoneController.text.isEmpty
+                        ? ""
+                        : loginEmailController.phoneController.text,
+                    password:
+                        createPasswordController.confirmPassController.text,
+                    address_1: enterAddressController.address01Controller.text,
+                    address_2:
+                        enterAddressController.address02Controller.text ?? "",
+                    city: enterAddressController.cityController.text,
+                    state: enterAddressController.selectedState!.value,
+                    zip_code: enterAddressController.zipCodeController.text,
+                    ssn: enterPersonalDetailController.ssnController.text,
+                    name: employmentNameController.text,
+                    job_title: jobTitleController.text == ""
+                        ? "No Jobe Title"
+                        : jobTitleController.text,
+                    annual_income: annualIncomeController.text,
+                    purpouse_of_opening_account: purposeOfOpeningAcc.value,
+                    loan_type: selectedLoanId.value,
+                    first_name:
+                        enterLegalNameController.firstNameController.text,
+                    last_name: enterLegalNameController.lastNameController.text,
+                    date_of_birth:
+                        enterPersonalDetailController.dobController.text,
+                    device_id: await PlatformDeviceId.getDeviceId,
+                    fcm_token: token,
+                    devicy_type: device_type,
+                    middle_name:
+                        enterLegalNameController.middleNameController.text,
+              cashtag: enterLegalNameController.secureTagController.text
+                  )
+                : await getRegisterBody(
+                    type: loginController.emailController.text.isEmpty
+                        ? "2"
+                        : "1",
+                    email: loginController.emailController.text.isEmpty
+                        ? ""
+                        : loginController.emailController.text,
+                    mobile: loginEmailController.phoneController.text.isEmpty
+                        ? ""
+                        : loginEmailController.phoneController.text,
+                    password:
+                        createPasswordController.confirmPassController.text,
+                    address_1: enterAddressController.address01Controller.text,
+                    address_2:
+                        enterAddressController.address02Controller.text ?? "",
+                    city: enterAddressController.cityController.text,
+                    state: enterAddressController.selectedState!.value,
+                    zip_code: enterAddressController.zipCodeController.text,
+                    ssn: enterPersonalDetailController.ssnController.text,
+                    name: employmentNameController.text,
+                    job_title: jobTitleController.text == ""
+                        ? "No Jobe Title"
+                        : jobTitleController.text,
+                    annual_income: annualIncomeController.text,
+                    purpouse_of_opening_account: purposeOfOpeningAcc.value,
+                    loan_type: selectedLoanId.value,
+                    first_name:
+                        enterLegalNameController.firstNameController.text,
+                    last_name: enterLegalNameController.lastNameController.text,
+                    date_of_birth:
+                        enterPersonalDetailController.dobController.text,
+                    device_id: await PlatformDeviceId.getDeviceId,
+                    fcm_token: token,
+                    devicy_type: device_type,
+                    middle_name:
+                        enterLegalNameController.middleNameController.text,
+                cashtag: enterLegalNameController.secureTagController.text
+                  ),
+            headerWithToken: false,
+            url: ApiEndPoints.REGISTER)
         .then((value) {
       print(value);
       if (value['status']) {
-        UIUtils.showSnakBar(bodyText: value['message'], headerText: StringConstants.SUCCESS);
-        LoginResponseModel loginResponseModel =LoginResponseModel.fromJson(value);
-        PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
-        PrefUtils.setString(StringConstants.IS_KYC_DONE, loginResponseModel.data!.is_kyc.toString());
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.SUCCESS);
+        LoginResponseModel loginResponseModel =
+            LoginResponseModel.fromJson(value);
+        PrefUtils.setString(StringConstants.AUTH_TOKEN,
+            loginResponseModel.data!.token.toString());
+        PrefUtils.setString(StringConstants.IS_KYC_DONE,
+            loginResponseModel.data!.isKyc.toString());
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
         PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE, true);
-        Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
+        Get.offAllNamed(AppRoutes.dashBoardScreen,
+            arguments: {"bottomTabCount": 0});
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
@@ -304,9 +351,10 @@ class PersonalScreenController extends GetxController {
     required String fcm_token,
     required String devicy_type,
     required String middle_name,
+    required String cashtag,
   }) async {
     final form = FormData({
-      "type":type,
+      "type": type,
       "email": email,
       "address_1": address_1,
       "address_2": address_2,
@@ -322,11 +370,12 @@ class PersonalScreenController extends GetxController {
       "loan_type": loan_type,
       "first_name": first_name,
       "last_name": last_name,
-      "date_of_birth":date_of_birth,
+      "date_of_birth": date_of_birth,
       "device_id": device_id,
       "fcm_token": fcm_token,
       "devicy_type": devicy_type,
       "middle_name": middle_name,
+      "cashtag": cashtag,
     });
     return form;
   }
@@ -354,9 +403,10 @@ class PersonalScreenController extends GetxController {
     required String fcm_token,
     required String devicy_type,
     required String middle_name,
+    required String cashtag,
   }) async {
     final form = FormData({
-      "type":type,
+      "type": type,
       "mobile": mobile,
       "address_1": address_1,
       "address_2": address_2,
@@ -372,11 +422,12 @@ class PersonalScreenController extends GetxController {
       "loan_type": loan_type,
       "first_name": first_name,
       "last_name": last_name,
-      "date_of_birth":date_of_birth,
+      "date_of_birth": date_of_birth,
       "device_id": device_id,
       "fcm_token": fcm_token,
       "devicy_type": devicy_type,
       "middle_name": middle_name,
+      "cashtag": cashtag,
     });
     return form;
   }
@@ -388,6 +439,7 @@ class PersonalScreenController extends GetxController {
       device_type = "Android";
     }
   }
+
   Future<void> getFcmToken() async {
     token = (await FirebaseMessaging.instance.getToken())!;
   }

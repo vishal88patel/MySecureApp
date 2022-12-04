@@ -43,7 +43,7 @@ class LoanApprovedSScreenController extends GetxController {
     if (arguments != null) {
       loanCalModel.value = arguments['loanCalModel'];
       loan_type.value = arguments['loan_type'];
-      // getoNext();
+      getoNext();
     }
   }
 
@@ -54,7 +54,7 @@ class LoanApprovedSScreenController extends GetxController {
 
   void getoNext() {
     Future.delayed(Duration(milliseconds: 5000), () {
-      Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":1});
+      Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
 
     });
   }

@@ -73,7 +73,7 @@ class EnterPasswordScreenController extends GetxController {
             bodyText: value['message'],headerText: StringConstants.SUCCESS);
         LoginResponseModel loginResponseModel =LoginResponseModel.fromJson(value);
         PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
-        PrefUtils.setString(StringConstants.IS_KYC_DONE, loginResponseModel.data!.is_kyc.toString());
+        PrefUtils.setString(StringConstants.IS_KYC_DONE, loginResponseModel.data!.isKyc.toString());
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
         Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
       } else {

@@ -37,14 +37,19 @@ class PurpouseAccountScreen extends StatelessWidget {
                                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                       children: [
                                         InkWell(
-                                          onTap: (){
+                                          onTap: () {
                                             Get.back();
                                           },
                                           child: Container(
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                                border: Border.all(color: ColorConstant.backBorder)),
-                                            padding: EdgeInsets.all(10),
-                                            child: Icon(Icons.arrow_back_ios_new_outlined),
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(12),
+                                                border: Border.all(
+                                                    color:
+                                                    ColorConstant.backBorder)),
+                                            padding: EdgeInsets.all(6),
+                                            child: Icon(
+                                              Icons.arrow_back_ios_new_outlined,size: 22,),
                                           ),
                                         ),
                                         Text(
@@ -102,6 +107,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                                     .onTapOfBorroeOrPErsonalLoan("borrow_loan");
                                               },
                                               child: Container(
+
                                                 decoration: BoxDecoration(
                                                   borderRadius: BorderRadius.all(Radius.circular(10)),
                                                     color: personalDetailController
@@ -118,7 +124,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                                 child: Padding(
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: getHorizontalSize(16),
-                                                      vertical: getVerticalSize(4)),
+                                                      vertical: getVerticalSize(12)),
                                                   child: Text('Borrow Loan',
                                                       textAlign: TextAlign.center,
 
@@ -132,7 +138,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                                               : ColorConstant
                                                               .darkBlue,
                                                           fontWeight: FontWeight.w400,
-                                                          fontSize: getFontSize(14))),
+                                                          fontSize: getFontSize(16))),
                                                 ),
                                               ),
                                             ),
@@ -167,7 +173,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                                 child: Padding(
                                                   padding: EdgeInsets.symmetric(
                                                       horizontal: getHorizontalSize(16),
-                                                      vertical: getVerticalSize(4)),
+                                                      vertical: getVerticalSize(12)),
                                                   child: Text('Using Wallet Service',
                                                       textAlign: TextAlign.center,
                                                       style: AppStyle.DmSansFont
@@ -180,7 +186,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                                               : ColorConstant
                                                               .darkBlue,
                                                           fontWeight: FontWeight.w400,
-                                                          fontSize: getFontSize(14))),
+                                                          fontSize: getFontSize(16))),
                                                 ),
                                               ),
                                             ),
