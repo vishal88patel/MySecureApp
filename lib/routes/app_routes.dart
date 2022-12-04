@@ -66,6 +66,9 @@ import '../presentation/LoanCalculator/loan_email_screen.dart';
 import '../presentation/LoanCalculator/loan_ssn_screen.dart';
 import '../presentation/LoanCalculator/loan_address_screen.dart';
 import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
+import 'package:my_secure_app/presentation/topAddCard1/card_loading_screen.dart';
+import 'package:my_secure_app/presentation/topAddCard1/binding/card_loader_screen_binding.dart';
+
 
 
 
@@ -393,6 +396,16 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: cardLoaderScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CardLoadingScreen(),
+      bindings: [
+        CardLoaderScreenBinding(),
+      ],
+    ),
+
+    GetPage(
       name: topAddCardFillScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -519,6 +532,8 @@ class AppRoutes {
         LoanApprovedScreenBinding(),
       ],
     ),
+
+
 
   ];
 }
