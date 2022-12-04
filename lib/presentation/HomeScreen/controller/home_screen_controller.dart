@@ -22,21 +22,21 @@ class HomeScreenController extends GetxController {
   LoginResponseModel? loginResponseModel = LoginResponseModel();
   var homeModel = HomePageResponseModel().obs;
   var getLinkedBankModel = GrtLinkedBank().obs;
-  var homePageHeadeName = "user".obs;
+  var homePageHeadeName = "".obs;
   var profilePicture = "".obs;
   var showNotiFiBadge = false.obs;
 
   @override
   void onReady() {
-    // WidgetsBinding.instance
-    //     .addPostFrameCallback((_) => showWelcomeDialouge());
+    WidgetsBinding.instance
+        .addPostFrameCallback((_) => showWelcomeDialouge());
     super.onReady();
   }
 
   @override
   void onInit() {
-   /* getStoredData();
-     callHomePageApi();*/
+    getStoredData();
+     callHomePageApi();
 
     super.onInit();
   }
@@ -112,13 +112,6 @@ class HomeScreenController extends GetxController {
           padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 200),
           child: Container(
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [ColorConstant.skyE8, ColorConstant.lightSky]),
-              border: Border.all(
-                // color: kHintColor,
-              ),
               borderRadius: BorderRadius.circular(25),
             ),
             child: Padding(
@@ -126,7 +119,7 @@ class HomeScreenController extends GetxController {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
-                    color: ColorConstant.primaryBlack),
+                    color: ColorConstant.primaryDarkGreen),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -202,7 +195,7 @@ class HomeScreenController extends GetxController {
                       child: AppElevatedButton(
                         buttonName: 'Ok',
                         radius: 5,
-                        textColor: Color(0xFF08CDA1),
+                        textColor: Colors.white,
                         onPressed: () {
                           Get.back();
                           // Get.toNamed(AppRoutes.dashBoardScreen);
@@ -233,11 +226,6 @@ class HomeScreenController extends GetxController {
         padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 200),
         child: Container(
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [ColorConstant.skyE8, ColorConstant.lightSky]),
-            border: Border.all(
-              // color: kHintColor,
-            ),
             borderRadius: BorderRadius.circular(25),
           ),
           child: Padding(
@@ -245,7 +233,7 @@ class HomeScreenController extends GetxController {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
-                  color: ColorConstant.primaryBlack),
+                  color: ColorConstant.primaryDarkGreen),
               child:Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -278,7 +266,7 @@ class HomeScreenController extends GetxController {
                     child: Text(
                       "Verify your idenditity",
                       style: AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant.primaryBlack,
+                          color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w600,
                           decoration: TextDecoration.none,
                           fontSize: getFontSize(24)),
@@ -312,7 +300,7 @@ class HomeScreenController extends GetxController {
                     child: AppElevatedButton(
                       buttonName: 'Get Started',
                       radius: 5,
-                      textColor: Color(0xFF08CDA1),
+                      textColor: Colors.white,
                       onPressed: () {
                         Get.back();
                         // Get.toNamed(AppRoutes.dashBoardScreen);
@@ -331,7 +319,7 @@ class HomeScreenController extends GetxController {
 
       Future.delayed(Duration(milliseconds: 500), () {
         PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
-        // Get.toNamed(AppRoutes.kvcPhoneNumber);
+        Get.toNamed(AppRoutes.kycEmailScreen);
       });
     });
   }
