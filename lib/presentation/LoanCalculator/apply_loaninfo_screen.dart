@@ -67,12 +67,9 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                       buttonName: 'Proceed',
                                       radius: 5,
                                       onPressed: () {
-                                        if(homeC.showNotiFiBadge.value){
-                                          homeC.showVerifyIdentityDialouge();
-                                        }else{
                                           Get.toNamed(AppRoutes.loanFnameScreen);
                                           // Get.to(AmountRadialScreen());
-                                        }
+
 
                                       }),
                                   SizedBox(
@@ -130,7 +127,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                   ),
                                   Spacer(),
                                   Text(
-                                    "Thanks for making an interest in loan please proceed with the details.",
+                                    "Please Complete your kyc to preoceed with your loan application",
                                     style: AppStyle.DmSansFont
                                         .copyWith(
                                         color: ColorConstant.darkBlue,
@@ -141,15 +138,10 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                     height: getVerticalSize(50),
                                   ),
                                   AppElevatedButton(
-                                      buttonName: 'Proceed',
+                                      buttonName: 'Proceed to Kyc',
                                       radius: 5,
                                       onPressed: () {
-                                        if(homeC.showNotiFiBadge.value){
-                                          homeC.showVerifyIdentityDialouge();
-                                        }else{
-                                          Get.toNamed(AppRoutes.loanFnameScreen);
-                                          // Get.to(AmountRadialScreen());
-                                        }
+                                        Get.toNamed(AppRoutes.kycEmailScreen);
 
                                       }),
                                   SizedBox(
