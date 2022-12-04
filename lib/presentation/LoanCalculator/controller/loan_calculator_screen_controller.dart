@@ -177,7 +177,7 @@ class LoanCalculatorScreenController extends GetxController {
         .then((value) {
       print(value);
       if (value['status']) {
-        maximumAvailableLoan.value = 30000;
+        maximumAvailableLoan.value = int.parse(value['data']['loanBalance']);
         interestRate.value = value['data']['loanIntrest'].toString();
       } else {
         UIUtils.showSnakBar(

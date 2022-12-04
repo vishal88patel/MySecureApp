@@ -58,14 +58,14 @@ class DashBoardScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(left:getHorizontalSize(30)),
-                child: Obx(
-                  () => GestureDetector(
-                    onTap: () {
-                      dashBoardController.onTapOfBottomnavigation(0);
-                    },
-                    child: dashBoardController.selectedIndex.value == 0
+              InkWell(
+                onTap: () {
+                  dashBoardController.onTapOfBottomnavigation(0);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(left:getHorizontalSize(30)),
+                  child: Obx(
+                    () => dashBoardController.selectedIndex.value == 0
                         ? SvgPicture.asset(
                             "asset/icons/ic_home_selected.svg",
                             height: getVerticalSize(32),
@@ -78,14 +78,14 @@ class DashBoardScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(right:getHorizontalSize(100)),
-                child: Obx(
-                  () => GestureDetector(
-                    onTap: () {
-                      dashBoardController.onTapOfBottomnavigation(1);
-                    },
-                    child: dashBoardController.selectedIndex.value == 1
+              InkWell(
+                onTap: () {
+                  dashBoardController.onTapOfBottomnavigation(1);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(right:getHorizontalSize(100)),
+                  child: Obx(
+                    () => dashBoardController.selectedIndex.value == 1
                         ? SvgPicture.asset(
                             "asset/icons/ic_statistic_selected.svg",
                             color: ColorConstant.primaryDarkGreen,
@@ -99,12 +99,12 @@ class DashBoardScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Obx(
-                () => GestureDetector(
-                  onTap: () {
-                    dashBoardController.onTapOfBottomnavigation(3);
-                  },
-                  child: dashBoardController.selectedIndex.value == 3
+              InkWell(
+                onTap: () {
+                  dashBoardController.onTapOfBottomnavigation(3);
+                },
+                child: Obx(
+                  () => dashBoardController.selectedIndex.value == 3
                       ? SvgPicture.asset(
                           "asset/icons/ic_bitcoin.svg",
                           color: ColorConstant.primaryDarkGreen,
@@ -117,14 +117,14 @@ class DashBoardScreen extends StatelessWidget {
                         ),
                 ),
               ),
-              Padding(
-                padding: EdgeInsets.only(right:getHorizontalSize(30)),
-                child: Obx(
-                  () => GestureDetector(
-                    onTap: () {
-                      dashBoardController.onTapOfBottomnavigation(4);
-                    },
-                    child: dashBoardController.selectedIndex.value == 4
+              InkWell(
+                onTap: () {
+                  dashBoardController.onTapOfBottomnavigation(4);
+                },
+                child: Padding(
+                  padding: EdgeInsets.only(right:getHorizontalSize(30)),
+                  child: Obx(
+                    () => dashBoardController.selectedIndex.value == 4
                         ? SvgPicture.asset(
                             "asset/icons/ic_profile_selected.svg",
                             color: ColorConstant.primaryDarkGreen,
