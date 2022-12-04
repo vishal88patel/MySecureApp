@@ -7,10 +7,10 @@ import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
 import 'kyc_step1_screen_controller.dart';
 
-
-
 class KycLoaderController extends GetxController {
   var kycStep1Controller = Get.find<KycStep1ScreenController>();
+  var arguments = Get.arguments;
+  var apiType = 0.obs;
 
   @override
   void onReady() {
@@ -19,7 +19,15 @@ class KycLoaderController extends GetxController {
 
   @override
   void onInit() {
-    kycStep1Controller.onClickOfSubmitButton();
+    getArguments();
+    if (apiType.value == 1) {
+      kycStep1Controller.onClickOfSubmitIdButton();
+    } else if (apiType.value == 2) {
+      kycStep1Controller.onClickOfSubmitPassButton();
+    } else if (apiType.value == 3) {
+      kycStep1Controller.onClickOfSubmitStep2Button();
+    }
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -29,4 +37,9 @@ class KycLoaderController extends GetxController {
     super.onClose();
   }
 
+  getArguments() {
+    if (arguments != null) {
+      apiType.value = arguments['API_TYPE'];
+    }
+  }
 }

@@ -36,11 +36,11 @@ class KycStep1ScreenController extends GetxController {
   File? profileImage;
   File? licenceImageFront;
   File? licenceImageBack;
-  var netImage1 = "".obs;
-  var netImage2 = "".obs;
-  var netImage3 = "".obs;
-  var netImage4 = "".obs;
-  var netImage5 = "".obs;
+  var netImage1 = "".obs; //profile
+  var netImage2 = "".obs; //licence_front
+  var netImage3 = "".obs; //licence_back
+  var netImage4 = "".obs; //passport
+  var netImage5 = "".obs; //selfie_with_document
   var qrCodeResult = "".obs;
   var firstName = "".obs;
   var lastName = "".obs;
@@ -218,7 +218,7 @@ class KycStep1ScreenController extends GetxController {
       });
     });
   }
-  void onClickOfSubmitButton() {
+  void onClickOfSubmitIdButton() {
     if (netImage1.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please Click Your E-KYC Profile Selfie",
@@ -238,11 +238,31 @@ class KycStep1ScreenController extends GetxController {
           bodyText: "Please Scan Your Driving Licence",
           headerText: StringConstants.ERROR);
     } else {
-      callKycApi();
+      callKycStep1IdApi();
     }
   }
 
-  callKycApi() async {
+  void onClickOfSubmitPassButton() {
+    if (netImage4.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Click Your E-KYC Profile Selfie",
+          headerText: StringConstants.ERROR);
+    } else {
+      callKycStep1PassApi();
+    }
+  }
+
+  void onClickOfSubmitStep2Button() {
+    if (netImage5.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Click Your E-KYC Profile Selfie",
+          headerText: StringConstants.ERROR);
+    } else {
+      callKycStep2Api();
+    }
+  }
+
+  callKycStep1IdApi() async {
     progress();
     //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
@@ -261,21 +281,21 @@ class KycStep1ScreenController extends GetxController {
     request.fields['email'] = emailController.text;
     request.fields['mobile'] = "";
     request.fields['ssn'] = ssnController.text;
+    request.fields['kyc_status'] = "1";
+    request.fields['kyc_type'] = "1";
     request.fields['date_of_birth'] = dobController.text;
-    request.fields['licence_json'] =
-    "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
+    request.fields['licence_json'] = "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
 
-    request.files
-        .add(await http.MultipartFile.fromPath("profile", netImage1.value));
+    request.files.add(await http.MultipartFile.fromPath("profile", netImage1.value));
 
-    request.files.add(
-        await http.MultipartFile.fromPath("licence_front", netImage2.value));
+    request.files.add(await http.MultipartFile.fromPath("licence_front", netImage2.value));
 
-    request.files.add(
-        await http.MultipartFile.fromPath("licence_back", netImage3.value));
+    request.files.add(await http.MultipartFile.fromPath("licence_back", netImage3.value));
+
     var response = await request.send();
 
     var responsed = await http.Response.fromStream(response);
+
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
@@ -293,18 +313,87 @@ class KycStep1ScreenController extends GetxController {
     }
   }
 
-  Future<FormData> getKycBody({
-    required String profile,
-    required String licence_front,
-    required String licence_back,
-    required String licence_json,
-  }) async {
-    final form = FormData({
-      "profile": profile,
-      "licence_front": licence_front,
-      "licence_back": licence_back,
-      "licence_json": licence_json,
-    });
-    return form;
+  callKycStep1PassApi() async {
+    progress();
+    //  UIUtils.showProgressDialog(isCancellable: false);
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization':
+      'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
+    };
+
+    var request =
+    http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
+
+    request.headers.addAll(headers);
+
+    request.fields['first_name'] = firstNameController.text;
+    request.fields['last_name'] = lastNameController.text;
+    request.fields['email'] = emailController.text;
+    request.fields['mobile'] = "";
+    request.fields['ssn'] = ssnController.text;
+    request.fields['kyc_status'] = "1";
+    request.fields['kyc_type'] = "2";
+    request.fields['date_of_birth'] = dobController.text;
+
+    request.files.add(await http.MultipartFile.fromPath("passport_image", netImage4.value));
+
+    var response = await request.send();
+
+    var responsed = await http.Response.fromStream(response);
+
+    final responseData = json.decode(responsed.body);
+
+    if (response.statusCode == 200) {
+      //   UIUtils.hideProgressDialog();
+      progress4.value = true;
+      UIUtils.showSnakBar(
+          bodyText: "KYC has been completed successfully",
+          headerText: StringConstants.SUCCESS);
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+    } else {
+      //  UIUtils.hideProgressDialog();
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.SUCCESS);
+    }
   }
+
+  callKycStep2Api() async {
+    progress();
+    //  UIUtils.showProgressDialog(isCancellable: false);
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization':
+      'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
+    };
+
+    var request =
+    http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
+
+    request.headers.addAll(headers);
+    request.fields['kyc_status'] = "2";
+    request.files.add(await http.MultipartFile.fromPath("selfi_with_document", netImage4.value));
+
+    var response = await request.send();
+
+    var responsed = await http.Response.fromStream(response);
+
+    final responseData = json.decode(responsed.body);
+
+    if (response.statusCode == 200) {
+      //   UIUtils.hideProgressDialog();
+      progress4.value = true;
+      UIUtils.showSnakBar(
+          bodyText: "KYC has been completed successfully",
+          headerText: StringConstants.SUCCESS);
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+    } else {
+      //  UIUtils.hideProgressDialog();
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.SUCCESS);
+    }
+  }
+
 }

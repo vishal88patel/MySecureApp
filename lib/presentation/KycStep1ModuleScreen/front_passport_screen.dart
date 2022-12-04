@@ -19,17 +19,17 @@ import '../../utils/HelperFiles/math_utils.dart';
 import 'licence_scan_screen.dart';
 
 
-class FrontStateIdCameraScreen extends StatefulWidget {
+class FrontPassportCameraScreen extends StatefulWidget {
   final String title;
-  final String image;
-  const FrontStateIdCameraScreen({
+  final int image;
+  const FrontPassportCameraScreen({
     required this.title, required this.image}) : super();
 
   @override
-  FrontStateIdCameraScreenState createState() => FrontStateIdCameraScreenState();
+  FrontPassportCameraScreenState createState() => FrontPassportCameraScreenState();
 }
 
-class FrontStateIdCameraScreenState extends State<FrontStateIdCameraScreen> with AutomaticKeepAliveClientMixin {
+class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> with AutomaticKeepAliveClientMixin {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -365,12 +365,13 @@ class FrontStateIdCameraScreenState extends State<FrontStateIdCameraScreen> with
           setState(() {
             imageFile = file;
           });
-          if(widget.image=="4"){
+          if(widget.image==4){
             kycStep1Controller.netImage4.value=file!.path;
-            Get.toNamed(AppRoutes.kycLoadingScreen);
-          }else if(widget.image=="5"){
-            kycStep1Controller.netImage5.value=file!.path;
-            Get.toNamed(AppRoutes.kycLoadingScreen);
+            Get.toNamed(AppRoutes.kycLoadingScreen,arguments: {
+              "API_TYPE": 2
+            });
+          }else{
+
           }
 
 
