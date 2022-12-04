@@ -27,7 +27,7 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               HomeScreen(),
               StatisticScreen(),
-              HomeScreen(),
+              ScanScreen(),
               BitCoinScreen(),
               ProfileScreen(),
               // TransactionScreen(),
@@ -58,7 +58,7 @@ class DashBoardScreen extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   dashBoardController.onTapOfBottomnavigation(0);
                 },
@@ -78,7 +78,7 @@ class DashBoardScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   dashBoardController.onTapOfBottomnavigation(1);
                 },
@@ -99,7 +99,7 @@ class DashBoardScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   dashBoardController.onTapOfBottomnavigation(3);
                 },
@@ -117,7 +117,7 @@ class DashBoardScreen extends StatelessWidget {
                         ),
                 ),
               ),
-              InkWell(
+              GestureDetector(
                 onTap: () {
                   dashBoardController.onTapOfBottomnavigation(4);
                 },
