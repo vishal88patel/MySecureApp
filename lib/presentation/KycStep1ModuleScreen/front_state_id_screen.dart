@@ -16,20 +16,20 @@ import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import 'QrView.dart';
+import 'licence_scan_screen.dart';
 
 
-class CameraScreen extends StatefulWidget {
-  final int? image;
+class FrontStateIdCameraScreen extends StatefulWidget {
   final String title;
-  const CameraScreen({required this.image,
-    required this.title}) : super();
+  final String image;
+  const FrontStateIdCameraScreen({
+    required this.title, required this.image}) : super();
 
   @override
-  CameraScreenState createState() => CameraScreenState();
+  FrontStateIdCameraScreenState createState() => FrontStateIdCameraScreenState();
 }
 
-class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClientMixin {
+class FrontStateIdCameraScreenState extends State<FrontStateIdCameraScreen> with AutomaticKeepAliveClientMixin {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -39,19 +39,13 @@ class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClien
   @override
   void initState() {
     _initCamera();
-    if(widget.image==1){
-
-    }
-    if(widget.image==2) {
-      //showWelcomeDialouge();
-    }
     super.initState();
   }
 
 
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
-    _controller = CameraController(widget.image==1?_cameras![1]:_cameras![0], ResolutionPreset.veryHigh);
+    _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
     _controller?.initialize().then((_) {
       if (!mounted) {
         return;
@@ -96,7 +90,7 @@ class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClien
         child: Stack(
           children: [
             _buildCameraPreview(),
-            cameraOverlay(padding: 2,image: widget.image!, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
+            cameraOverlay(padding: 2, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
             Column(
               children: [
                 SizedBox(
@@ -107,13 +101,18 @@ class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClien
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SvgPicture.asset(
-                        "asset/icons/ic_back.svg",
-                        fit: BoxFit.fill,
-                        color: Colors.white,
+                      InkWell(
+                        onTap:(){
+                          Get.back();
+                        },
+                        child: SvgPicture.asset(
+                          "asset/icons/ic_back.svg",
+                          fit: BoxFit.fill,
+                          color: Colors.white,
+                        ),
                       ),
                       Text(
-                        "Driving Licence",
+                        widget.title,
                         style: AppStyle.textStyleDMSANS.copyWith(
                             color: ColorConstant.primaryWhite,
                             fontWeight: FontWeight.w700,
@@ -144,7 +143,7 @@ class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClien
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.title,
+                          "Scan the front image of ${widget.title}",
                           style: AppStyle.textStyleDMSANS.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w500,
@@ -164,7 +163,7 @@ class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClien
     );
   }
 
-  Widget cameraOverlay({required double padding,required int image, required double aspectRatio, required Color color}) {
+  Widget cameraOverlay({required double padding, required double aspectRatio, required Color color}) {
     return LayoutBuilder(builder: (context, constraints) {
       double parentAspectRatio = constraints.maxWidth / constraints.maxHeight;
       double horizontalPadding;
@@ -349,18 +348,7 @@ class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClien
                 ),
               ),
             ),
-            widget.image==1?InkWell(
-              onTap: (){
-                _onCameraSwitch();
-              },
-              child: Center(
-                child: Icon(
-                  Icons.cameraswitch_outlined,
-                  size: 50.0,
-                  color:Colors.white,
-                ),
-              ),
-            ):Container(height: 40,width: 40,),
+            Container(height: 40,width: 40,),
 
           ],
         ),
@@ -377,29 +365,15 @@ class CameraScreenState extends State<CameraScreen> with AutomaticKeepAliveClien
           setState(() {
             imageFile = file;
           });
-          if(widget.image==1){
-            kycStep1Controller.netImage1.value=file!.path;
+          if(widget.image=="4"){
+            kycStep1Controller.netImage4.value=file!.path;
             Get.toNamed(AppRoutes.kycLoadingScreen);
-          }else if(widget.image==2){
-            kycStep1Controller.netImage2.value=file!.path;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const CameraScreen(image: 3,title: 'Scan the back of your\ndriver''s license or state ID',)),
-            );
-
-          }else if(widget.image==3){
-            kycStep1Controller.netImage3.value=file!.path;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const QRViewExample()),
-            );
-
-
-          }else{
-
+          }else if(widget.image=="5"){
+            kycStep1Controller.netImage5.value=file!.path;
+            Get.toNamed(AppRoutes.kycLoadingScreen);
           }
+
+
           if(file!.path.isNotEmpty){
           }
           setState(() {});

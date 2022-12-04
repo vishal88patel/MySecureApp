@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/KycModuleScreen/kyc_email_screen.dart';
+import 'package:my_secure_app/presentation/KycSelectStep/controller/kyc_select_step_screen_controller.dart';
+import 'package:my_secure_app/presentation/KycSelectStep/kyc_select_step_screen.dart';
 import 'package:my_secure_app/presentation/KycStep1ModuleScreen/kyc_step1_data_screen.dart';
 import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
 import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
@@ -38,6 +40,7 @@ import '../presentation/KycModuleScreen/binding/kyc_screen_binding.dart';
 import '../presentation/KycModuleScreen/kyc_otp_screen.dart';
 import '../presentation/KycModuleScreen/kyc_otp_success_screen.dart';
 import '../presentation/KycModuleScreen/kyc_phone_screen.dart';
+import '../presentation/KycSelectStep/binding/kyc_select_step_screen_binding.dart';
 import '../presentation/KycStep1ModuleScreen/binding/kyc_loader_screen_binding.dart';
 import '../presentation/KycStep1ModuleScreen/binding/kyc_step1_screen_binding.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_loading_screen.dart';
@@ -144,7 +147,6 @@ class AppRoutes {
   static String kycEmail = '/kvc_email';
   static String kvcOtpNumber = '/kvc_otp_number';
   static String kycInfoScreen = '/kyc_info_screen';
-  static String kycLoadingScreen = '/kyc_loading_screen';
   static String cameraScreen = '/camera_screen';
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
@@ -159,6 +161,8 @@ class AppRoutes {
   static String kycOtpScreen = '/kyc_otp_screen';
   static String kycOtpSuccessScreen = '/kyc_otp_success_screen';
   static String kycStep1DataScreen = '/kyc_step1_data_screen';
+  static String kycLoadingScreen = '/kyc_loading_screen';
+  static String kycSelectStepScreen = '/kyc_select_step_screen';
 
 
 
@@ -432,6 +436,18 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: kycSelectStepScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycSelectStepScreen(),
+      bindings: [
+        KycSelectStepBinding(),
+      ],
+    ),
+
+
+
+    GetPage(
       name: topSelectionModeScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -560,6 +576,8 @@ class AppRoutes {
         LoanCalculatorScreenBinding(),
       ],
     ),
+
+
 
   ];
 }

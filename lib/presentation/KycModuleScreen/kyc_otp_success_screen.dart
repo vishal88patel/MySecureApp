@@ -100,7 +100,7 @@ class KycOtpSuccessScreen extends StatelessWidget {
                             child: AppElevatedButton(
                               buttonName: 'Continue',
                               onPressed: () {
-
+                                Get.toNamed(AppRoutes.kycSelectStepScreen);
                               },
                             ),
                           ),

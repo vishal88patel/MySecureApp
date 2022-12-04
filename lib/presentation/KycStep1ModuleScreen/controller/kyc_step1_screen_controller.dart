@@ -19,7 +19,8 @@ import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../LoginScreen/models/login_response_model.dart';
-import '../CameraView.dart';
+import '../front_back_licence_screen.dart';
+import '../kyc_select_proof_screen.dart';
 
 
 
@@ -38,6 +39,8 @@ class KycStep1ScreenController extends GetxController {
   var netImage1 = "".obs;
   var netImage2 = "".obs;
   var netImage3 = "".obs;
+  var netImage4 = "".obs;
+  var netImage5 = "".obs;
   var qrCodeResult = "".obs;
   var firstName = "".obs;
   var lastName = "".obs;
@@ -186,15 +189,21 @@ class KycStep1ScreenController extends GetxController {
           bodyText: "Please confirm your details",
           headerText: StringConstants.ERROR);
     } else {
+
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => const CameraScreen(
+            builder: (context) => KycSelectProofScreen()),
+      );
+     /* Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => const FrontBackLicenceCameraScreen(
               image: 2,
               title:
               'Scan the front of your\ndriver' 's license or state ID',
             )),
-      );
+      );*/
     }
   }
 

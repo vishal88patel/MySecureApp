@@ -13,17 +13,17 @@ import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../utils/ConstantsFiles/string_constants.dart';
-import 'CameraView3.dart';
+import 'selfie_screen.dart';
 
 
-class QRViewExample extends StatefulWidget {
-  const QRViewExample({Key? key}) : super(key: key);
+class LicenceScanScreen extends StatefulWidget {
+  const LicenceScanScreen({Key? key}) : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => _QRViewExampleState();
+  State<StatefulWidget> createState() => _LicenceScanScreenState();
 }
 
-class _QRViewExampleState extends State<QRViewExample> {
+class _LicenceScanScreenState extends State<LicenceScanScreen> {
   Barcode? result;
   QRViewController? controller;
   int? counter=0;
@@ -126,7 +126,7 @@ class _QRViewExampleState extends State<QRViewExample> {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => CameraScreen3()),
+              builder: (context) => SelfieScreen()),
         );
       });
 

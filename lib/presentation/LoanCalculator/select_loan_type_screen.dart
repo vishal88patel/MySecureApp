@@ -34,12 +34,18 @@ class _SelectLoanTypeScreenState extends State<SelectLoanTypeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
+
+/*  @override
+  Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.red,
         body: Stack(
           children: [
             Container(color: Colors.white),
-           /* Positioned(
+           *//* Positioned(
                 top: 0,
                 right: 0,
                 child:
@@ -48,7 +54,7 @@ class _SelectLoanTypeScreenState extends State<SelectLoanTypeScreen> {
                 bottom: 0,
                 left: 0,
                 child:
-                Image.asset("asset/main_background_images/Polygon 2.png")),*/
+                Image.asset("asset/main_background_images/Polygon 2.png")),*//*
             SafeArea(
               child: Container(
                 height: size.height,
@@ -256,5 +262,5 @@ class _SelectLoanTypeScreenState extends State<SelectLoanTypeScreen> {
             )
           ],
         ));
-  }
+  }*/
 }

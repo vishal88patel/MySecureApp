@@ -14,15 +14,15 @@ import '../../App Configurations/color_constants.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 
-class CameraScreen3 extends StatefulWidget {
+class SelfieScreen extends StatefulWidget {
 
-  const CameraScreen3() : super();
+  const SelfieScreen() : super();
 
   @override
-  CameraScreen3State createState() => CameraScreen3State();
+  SelfieScreenState createState() => SelfieScreenState();
 }
 
-class CameraScreen3State extends State<CameraScreen3>
+class SelfieScreenState extends State<SelfieScreen>
     with AutomaticKeepAliveClientMixin {
   CameraController? _controller;
   List<CameraDescription>? _cameras;

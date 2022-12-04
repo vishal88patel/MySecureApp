@@ -184,7 +184,7 @@ class HomeScreen extends StatelessWidget {
                     children: [
                       InkWell(
                         onTap: (){
-                          Get.toNamed(AppRoutes.kycStep1DataScreen);
+                          Get.toNamed(AppRoutes.kycEmailScreen);
                         },
                           child: PaymentListWidget(title: 'Kyc', iconName: 'asset/icons/EXE_Icon.png',),),
                       PaymentListWidget(title: 'Cash Card', iconName: 'asset/icons/EXE_Icon.png',),
