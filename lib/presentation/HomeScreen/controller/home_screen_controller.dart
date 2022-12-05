@@ -17,6 +17,7 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../LoginScreen/models/login_response_model.dart';
 import '../model/get_linked_bank.dart';
 import '../model/home_page_response_model.dart';
+import '../../NotificationScreen/Model/notification_response_model.dart';
 
 class HomeScreenController extends GetxController {
   LoginResponseModel? loginResponseModel = LoginResponseModel();
@@ -36,7 +37,7 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     getStoredData();
-     callHomePageApi();
+     // callHomePageApi();
 
     super.onInit();
   }
@@ -71,7 +72,7 @@ class HomeScreenController extends GetxController {
             url: ApiEndPoints.HOME_PAGE_API)
         .then((value) {
       print(value);
-      if (value['status'] ?? false) {
+      if (value!=null && value['status'] ?? false) {
         homeModel.value = HomePageResponseModel.fromJson(value);
         callGetLinkedBankApi();
       } else {
@@ -80,6 +81,7 @@ class HomeScreenController extends GetxController {
       }
     });
   }
+
 
   Future<void> callGetLinkedBankApi() async {
     ApiService()

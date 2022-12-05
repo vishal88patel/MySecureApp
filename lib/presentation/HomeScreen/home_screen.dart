@@ -9,9 +9,12 @@ import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
+import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
+  var dashBoardController = Get.find<DashBoardScreenController>();
+
 
   @override
   Widget build(BuildContext context) {
