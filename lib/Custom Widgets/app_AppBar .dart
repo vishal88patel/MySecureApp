@@ -27,7 +27,7 @@ class AppAppBar extends StatelessWidget {
           height: getVerticalSize(26),
         ),
         Padding(
-          padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
+          padding: EdgeInsets.only(left: getHorizontalSize(22),right: getHorizontalSize(22)),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -252,11 +252,11 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
         return Container();
       }
     } else {
-      return const Center(
+      return Center(
         child: SizedBox(
           width: 32,
           height: 32,
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(color:ColorConstant.primaryDarkGreen),
         ),
       );
     }

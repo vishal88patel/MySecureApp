@@ -3,9 +3,12 @@ import 'dart:io';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/theme/app_style.dart';
+import 'package:permission_handler/permission_handler.dart';
 import '../App Configurations/color_constants.dart';
+import '../Custom Widgets/app_ElevatedButton .dart';
 import '../utils/HelperFiles/math_utils.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
@@ -40,6 +43,188 @@ class CameraScreen2State extends State<CameraScreen2>
   }
 
   Future<void> _initCamera() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.microphone,
+    ].request();
+
+    if (statuses[Permission.camera]==PermissionStatus.denied || statuses[Permission.microphone]==PermissionStatus.denied) {
+      Navigator.pop(context);
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(325)),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryDarkGreen),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.isDialogOpen == true) Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 22,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child:Text(
+                              textAlign: TextAlign.center,
+                              "Please Allow Camera And Microphone Permission",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Navigator.pop(context);
+                          openAppSettings();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    }
+    else if(statuses[Permission.camera]==PermissionStatus.permanentlyDenied || statuses[Permission.microphone]==PermissionStatus.permanentlyDenied){
+      Navigator.pop(context);
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(325)),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryDarkGreen),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.isDialogOpen == true) Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 22,),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child:Text(
+                              textAlign: TextAlign.center,
+                              "Please Allow Camera And Microphone Permission",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          if (Get.isDialogOpen == true) Get.back();
+                          openAppSettings();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    }
+    else if (statuses[Permission.camera]==PermissionStatus.granted && statuses[Permission.microphone]==PermissionStatus.granted) {
     _cameras = await availableCameras();
     _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
     _controller?.initialize().then((_) {
@@ -49,6 +234,7 @@ class CameraScreen2State extends State<CameraScreen2>
       _controller!.setFlashMode(FlashMode.off);
       setState(() {});
     });
+  }
   }
 
   @override
@@ -65,11 +251,11 @@ class CameraScreen2State extends State<CameraScreen2>
         return Container();
       }
     } else {
-      return const Center(
+      return Center(
         child: SizedBox(
           width: 32,
           height: 32,
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(color:ColorConstant.primaryDarkGreen),
         ),
       );
     }
@@ -81,38 +267,161 @@ class CameraScreen2State extends State<CameraScreen2>
       backgroundColor: Theme.of(context).backgroundColor,
       key: _scaffoldKey,
       extendBody: true,
-      body: Stack(
-        children: <Widget>[
-          _buildCameraPreview(),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(top: getVerticalSize(60)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
+      body: WillPopScope(
+        onWillPop: () => showBackDialog(),
+        child: Stack(
+          children: <Widget>[
+            _buildCameraPreview(),
+            cameraOverlay(padding: 2, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
+            Column(
+              children: [
+                SizedBox(
+                  height: getVerticalSize(52),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      InkWell(
+                        onTap:(){
+                          showBackDialog();
+                        },
+                        child: SvgPicture.asset(
+                          "asset/icons/ic_back.svg",
+                          fit: BoxFit.fill,
+                          color: Colors.white,
+                          height: getVerticalSize(42),
+                        ),
+                      ),
+                      Text(
+                        "Card",
+                        style: AppStyle.textStyleDMSANS.copyWith(
+                            color: ColorConstant.primaryWhite,
+                            fontWeight: FontWeight.w700,
+                            fontSize: getFontSize(24)),
+                      ),
+                      SvgPicture.asset(
+                        "asset/icons/ic_back.svg",
+                        fit: BoxFit.fill,
+                        color: Colors.transparent,
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: getVerticalSize(16),
+                ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      widget.title!,
-                      style: AppStyle.textStyleDMSANS.copyWith(
-                          color: ColorConstant.primaryBlack,
-                          fontWeight: FontWeight.w600,
-                          fontSize: getFontSize(30)),
+                    Center(
+                      child: SvgPicture.asset(
+                        "asset/icons/splash_image.svg",
+                        height: getVerticalSize(100),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          widget.title.toString(),
+                          style: AppStyle.textStyleDMSANS.copyWith(
+                              color: ColorConstant.primaryWhite,
+                              fontWeight: FontWeight.w500,
+                              fontSize: getFontSize(24)),
+                        ),
+                      ],
                     ),
                   ],
                 ),
-              ),
-
-            ],
-          ),
-          cameraOverlay(
-              padding: 20, aspectRatio: 1, color: Color(0x90000000))
-        ],
+              ],
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: _buildBottomNavigationBar(),
     );
   }
+  Future<bool> showBackDialog() async {
+    return await Get.dialog(
+      Padding(
+        padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+        child: Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Wrap(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: ColorConstant.primaryWhite,
+                      borderRadius: const BorderRadius.all(Radius.circular(8))),
+                  margin: const EdgeInsets.only(bottom: 20),
+                  padding: const EdgeInsets.only(
+                      left: 20, right: 20, top: 15, bottom: 20),
+                  constraints: const BoxConstraints(minWidth: 200),
+                  child: Column(
+                    children: [
+                      Container(
+                          padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                          child: Text(
+                            "Are you sure,\n you want to cancel this process?",
+                            textAlign: TextAlign.center,
+                            style: AppStyle.DmSansFont
+                                .copyWith(fontSize: 18,color: ColorConstant.darkBlue),
 
+                          )),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'NO',
+                              radius: 5,
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              onPressed: () {
+                                Get.back();
+                              },),
+                          ),
+
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Expanded(
+                            child: AppElevatedButton(buttonName: 'YES',
+                              buttonColor: ColorConstant.primaryDarkGreen,
+                              radius: 5,
+                              onPressed: () {
+                              if(widget.image==1){
+                                Get.back();
+                                Get.back();
+                              }else if(widget.image==2){
+                                Get.back();
+                                Get.back();
+                                Get.back();
+                              }
+                              else{
+                                Get.back();
+                              }
+                              },),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+    );
+  }
   Widget cameraOverlay({required double padding, required double aspectRatio, required Color color}) {
     return LayoutBuilder(builder: (context, constraints) {
       double parentAspectRatio = constraints.maxWidth / constraints.maxHeight;
@@ -122,7 +431,7 @@ class CameraScreen2State extends State<CameraScreen2>
       if (parentAspectRatio < aspectRatio) {
         horizontalPadding = padding;
         verticalPadding = (constraints.maxHeight -
-            ((constraints.maxWidth - width * padding) / aspectRatio)) /
+            ((constraints.maxWidth - 60 * padding) / aspectRatio)) /
             2;
       } else {
         verticalPadding = padding;

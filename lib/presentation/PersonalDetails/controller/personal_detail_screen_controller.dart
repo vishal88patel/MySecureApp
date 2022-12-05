@@ -242,7 +242,7 @@ class PersonalScreenController extends GetxController {
                         createPasswordController.confirmPassController.text,
                     address_1: enterAddressController.address01Controller.text,
                     address_2:
-                        enterAddressController.address02Controller.text ?? "",
+                        enterAddressController.address02Controller.text.isEmpty ? "":enterAddressController.address02Controller.text,
                     city: enterAddressController.cityController.text,
                     state: enterAddressController.selectedState!.value,
                     zip_code: enterAddressController.zipCodeController.text,
@@ -279,8 +279,7 @@ class PersonalScreenController extends GetxController {
                     password:
                         createPasswordController.confirmPassController.text,
                     address_1: enterAddressController.address01Controller.text,
-                    address_2:
-                        enterAddressController.address02Controller.text ?? "",
+                    address_2: enterAddressController.address02Controller.text.isEmpty ? "":enterAddressController.address02Controller.text,
                     city: enterAddressController.cityController.text,
                     state: enterAddressController.selectedState!.value,
                     zip_code: enterAddressController.zipCodeController.text,

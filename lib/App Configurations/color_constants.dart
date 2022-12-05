@@ -37,6 +37,7 @@ class ColorConstant {
   static Color naturalGrey = const Color(0xFF8F92A1);
   static Color naturalGrey2 = const Color(0xFFF2F2F2);
   static Color naturalGrey3 = const Color(0xFFBDBDBD);
+  static Color naturalGrey4 = const Color(0xFF6D6D6D);
   static Color brandYellow = const Color(0xFFFFAE58);
   static Color skyF6 = const Color(0xFFF6FAFD);
   static Color greyBD = const Color(0xFFBDBDBD);
