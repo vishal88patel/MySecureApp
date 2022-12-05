@@ -57,12 +57,16 @@ class TopAddCard1Controller extends GetxController {
     super.onClose();
   }
   void progress(){
+    progress1.value=true;
     Future.delayed(Duration(milliseconds: 1000), () {
-      progress1.value=true;
+      progress2.value=true;
       Future.delayed(Duration(milliseconds: 1000), () {
-        progress2.value=true;
+        progress3.value=true;
         Future.delayed(Duration(milliseconds: 1000), () {
-          progress3.value=true;
+          progress4.value=true;
+          UIUtils.showSnakBar(
+              bodyText: "Card Added Successfully",
+              headerText: StringConstants.SUCCESS);
         });
       });
     });
@@ -230,7 +234,6 @@ class TopAddCard1Controller extends GetxController {
   }
 
   Future<void> callAddCardApi(String type) async {
-    progress();
     UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -260,11 +263,9 @@ class TopAddCard1Controller extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
-      progress4.value=true;
+      progress();
       UIUtils.hideProgressDialog();
-      UIUtils.showSnakBar(
-          bodyText: "Card Added Successfully",
-          headerText: StringConstants.SUCCESS);
+
 
     } else {
       UIUtils.hideProgressDialog();

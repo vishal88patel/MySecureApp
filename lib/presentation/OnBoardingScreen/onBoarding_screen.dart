@@ -20,7 +20,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.primaryDarkGreen,
+        backgroundColor: ColorConstant.primaryWhite,
         body: Column(
           children: [
             SizedBox(
@@ -34,12 +34,12 @@ class OnBoardingScreen extends StatelessWidget {
                       right: getHorizontalSize(16), top: getVerticalSize(20)),
                   child: InkWell(
                     onTap: (){
-
+                      onBoardingController.onTapOfGetStartedButton();
                     },
                     child: Text(
                       "Skip",
                       style: AppStyle.textStyleDMSANS.copyWith(
-                          color: ColorConstant.primaryWhite,
+                          color: ColorConstant.naturalGrey4,
                           fontWeight: FontWeight.w500,
                           fontSize: getFontSize(20)),
                     ),
@@ -77,84 +77,74 @@ class OnBoardingScreen extends StatelessWidget {
                   SizedBox(
                     height: getVerticalSize(36),
                   ),
-                  Card(
-                    margin: const EdgeInsets.symmetric(horizontal: 0),
-                    color: ColorConstant.primaryWhite,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(36),
-                          topRight: Radius.circular(36)),
-                    ),
-                    child: Container(
-                      height: MediaQuery.of(context).size.height/3,
-                      width:MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SizedBox(
-                              height: MediaQuery.of(context).size.height/16,
-                            ),
-                            Obx(()=>
+                  Container(
+                    height: MediaQuery.of(context).size.height/3,
+                    width:MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height/20,
+                          ),
+                          Obx(()=>
                               Text(
-                                onBoardingController.currentPage.value==1?"Safest Platform":onBoardingController.currentPage.value==2?"Pay Anything":"Fastest Payment",
+                                onBoardingController.currentPage.value==1?"Scan & Pay":onBoardingController.currentPage.value==2?"Pay Anything":"Loan",
                                 style: AppStyle.textStyleDMSANS.copyWith(
                                     color: ColorConstant.naturalBlack,
                                     fontWeight: FontWeight.w700,
                                     fontSize: getFontSize(32)),
                               ),
-                            ),
-                            SizedBox(
-                              height: getVerticalSize(10),
-                            ),
-                            Obx(()=>Text(
-                                onBoardingController.currentPage.value==1?"Multiple verification and face ID makes your account more safely":onBoardingController.currentPage.value==2?"Supports many types of payments and pay without being complicated":"QR code scanning technology makes your payment process more faster",
-                                textAlign: TextAlign.center,
-                                style: AppStyle.textStyleDMSANS.copyWith(
-                                    color: ColorConstant.naturalGrey,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: getFontSize(22)),
-                              ),
-                            ),
-                            Spacer(),
-                            Obx(()=>AppElevatedButton(
-                                buttonName: onBoardingController.currentPage.value==2
-                                    ?"Get Started"
-                                    :"Next",
-                                textColor: Colors.white,
-                                buttonColor: ColorConstant.primaryLightGreen,
-                                radius: 16,
-                                onPressed: () {
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(10),
+                          ),
+                          Obx(()=>Text(
+                            onBoardingController.currentPage.value==1?"Makes easier for users to pay for their purchases by scanning the QR code":onBoardingController.currentPage.value==2?"Supports many types of payments and pay without being complicated":"Making it easier for users to make an informed decision about their loan",
+                            textAlign: TextAlign.center,
+                            style: AppStyle.textStyleDMSANS.copyWith(
+                                color: ColorConstant.naturalGrey,
+                                fontWeight: FontWeight.w400,
+                                fontSize: getFontSize(22)),
+                          ),
+                          ),
+                          Spacer(),
+                          Obx(()=>AppElevatedButton(
+                            buttonName: onBoardingController.currentPage.value==2
+                                ?"Get Started"
+                                :"Next",
+                            textColor: Colors.white,
+                            buttonColor: ColorConstant.primaryLightGreen,
+                            radius: 16,
+                            onPressed: () {
 
-                                  if(onBoardingController.currentPage.value==0){
-                                    onBoardingController.currentPage.value = 1;
-                                    onBoardingController.  pageController.nextPage(
-                                        duration: Duration(milliseconds: 250),
-                                        curve: Curves.easeIn
-                                    );
+                              if(onBoardingController.currentPage.value==0){
+                                onBoardingController.currentPage.value = 1;
+                                onBoardingController.  pageController.nextPage(
+                                    duration: Duration(milliseconds: 250),
+                                    curve: Curves.easeIn
+                                );
 
-                                  }else if(onBoardingController.currentPage.value==1){
-                                    onBoardingController.currentPage.value = 2;
-                                    onBoardingController.  pageController.nextPage(
-                                        duration: Duration(milliseconds: 250),
-                                        curve: Curves.easeIn
-                                    );
-                                  }else if(onBoardingController.currentPage.value==2){
-                                    onBoardingController.onTapOfGetStartedButton();
-                                  }
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              height: getVerticalSize(32),
-                            ),
-                          ],
-                        ),
+                              }else if(onBoardingController.currentPage.value==1){
+                                onBoardingController.currentPage.value = 2;
+                                onBoardingController.  pageController.nextPage(
+                                    duration: Duration(milliseconds: 250),
+                                    curve: Curves.easeIn
+                                );
+                              }else if(onBoardingController.currentPage.value==2){
+                                onBoardingController.onTapOfGetStartedButton();
+                              }
+                            },
+                          ),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(60),
+                          ),
+                        ],
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -169,15 +159,15 @@ class OnBoardingScreen extends StatelessWidget {
       height: getHorizontalSize(12),
       width:  getHorizontalSize(12),
       decoration: BoxDecoration(
-        color: ColorConstant.primaryDarkGreen,
-          border: Border.all(color: Colors.white,width: 1.0),
+        color: ColorConstant.primaryWhite,
+          border: Border.all(color: ColorConstant.primaryLightGreen,width: 1.0),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
-        padding: EdgeInsets.all(1.0),
+        padding: EdgeInsets.all(1.5),
         child: Container(
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: ColorConstant.primaryLightGreen,
             borderRadius: BorderRadius.circular(10),
           ),
         ),
@@ -187,7 +177,7 @@ class OnBoardingScreen extends StatelessWidget {
       height: getHorizontalSize(8),
       width:  getHorizontalSize(8),
       decoration: BoxDecoration(
-        color: ColorConstant.secondaryDarkGreen,
+        color: ColorConstant.naturalGrey3,
         borderRadius: BorderRadius.circular(10),
       ),
     ),

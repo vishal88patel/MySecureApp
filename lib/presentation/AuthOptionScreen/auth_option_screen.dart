@@ -29,15 +29,18 @@ class AuthOptionScreen extends StatelessWidget {
             color: ColorConstant.primaryDarkGreen,
             child: Column(
               children: [
-                Text(
-                  "A new way to pay anything more faster",
-                  textAlign: TextAlign.center,
-                  style: AppStyle.textStyleDMSANS.copyWith(
-                      color: ColorConstant.primaryWhite,
-                      fontWeight: FontWeight.w700,
-                      fontSize: getFontSize(36)),
+                Padding(
+                  padding: EdgeInsets.only(left: getHorizontalSize(16),right: getHorizontalSize(16)),
+                  child: Text(
+                    "A new way to pay anything more faster",
+                    textAlign: TextAlign.center,
+                    style: AppStyle.textStyleDMSANS.copyWith(
+                        color: ColorConstant.primaryWhite,
+                        fontWeight: FontWeight.w700,
+                        fontSize: getFontSize(36)),
+                  ),
                 ),
-                SizedBox(height: 12,),
+                SizedBox(height: getVerticalSize(24)),
                 Padding(
                   padding: const EdgeInsets.all(18.0),
                   child: AppElevatedButton(

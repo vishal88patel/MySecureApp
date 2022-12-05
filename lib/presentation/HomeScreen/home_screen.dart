@@ -28,7 +28,7 @@ class HomeScreen extends StatelessWidget {
                 AppAppBar(
                   title: " ",
                   icon1: "asset/icons/ic_app_logo.svg",
-                  icon2: "asset/icons/ic_notification.svg",
+                  icon2: "asset/icons/ic_home_notification.svg",
                   onPressedIcon1: () {
                     Get.back();
                   },
@@ -171,21 +171,21 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           PaymentListWidget(
                               title: 'Apply For Loan',
-                              iconName: 'asset/icons/EXE_Icon.png',
+                              iconName: 'asset/icons/ic_loan_home.png',
                               onTap: () {
                                 Get.toNamed(AppRoutes.loanApplyInfoScreen);
                               }),
                           PaymentListWidget(
                             title: 'Boost Credit Score',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_credit.png',
                           ),
                           PaymentListWidget(
                             title: 'Link Bank',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_link_bank_home.png',
                           ),
                           PaymentListWidget(
                               title: 'Link Card',
-                              iconName: 'asset/icons/EXE_Icon.png',
+                              iconName: 'asset/icons/ic_link_card_home.png',
                               onTap: () {
                                 Get.toNamed(AppRoutes.topAddCard1Screen);
                               }),
@@ -202,21 +202,21 @@ class HomeScreen extends StatelessWidget {
                               Get.toNamed(AppRoutes.kycSelectStepScreen);
                             },
                             child: PaymentListWidget(
-                              title: 'Kyc',
-                              iconName: 'asset/icons/EXE_Icon.png',
+                              title: 'Identity Verification',
+                              iconName: 'asset/icons/ic_verification_home.png',
                             ),
                           ),
                           PaymentListWidget(
                             title: 'Cash Card',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_cash_card_home.png',
                           ),
                           PaymentListWidget(
                             title: 'Cash Out',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_cashout_home.png',
                           ),
                           PaymentListWidget(
                             title: 'Live Chat',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_live-chat_home.png',
                           ),
                         ],
                       ),
