@@ -51,7 +51,7 @@ class AppAppBar extends StatelessWidget {
                 child: SvgPicture.asset(
                   icon2.toString(),
                   fit: BoxFit.fill,
-                  height: getVerticalSize(24),
+                  height: getVerticalSize(40),
                 ),
               ),
             ],
