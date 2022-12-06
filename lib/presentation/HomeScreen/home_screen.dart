@@ -8,13 +8,11 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import '../NotificationScreen/controller/notification_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
   var notificationController = Get.find<NotificationScreenController>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -62,28 +60,39 @@ class HomeScreen extends StatelessWidget {
                                 SvgPicture.asset(
                                   "asset/icons/ic_home_notification.svg",
                                   fit: BoxFit.fill,
-
                                   height: getVerticalSize(30),
                                 ),
                                 Obx(
-                                    ()=> notificationController.globalNotificationCount.value==0?Container():     Positioned(
-                                    top: -10,right: -5,
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.red,
-                                          shape: BoxShape.circle),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
-                                        child: Obx(
-                                            ()=> Text(
-                                            notificationController.globalNotificationCount.value.toString(),
-                                            style: AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant.primaryWhite,fontSize: 12),
+                                  () => notificationController
+                                              .globalNotificationCount.value ==
+                                          0
+                                      ? Container()
+                                      : Positioned(
+                                          top: -10,
+                                          right: -5,
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: Colors.red,
+                                                shape: BoxShape.circle),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.all(6.0),
+                                              child: Obx(
+                                                () => Text(
+                                                  notificationController
+                                                      .globalNotificationCount
+                                                      .value
+                                                      .toString(),
+                                                  style: AppStyle.DmSansFont
+                                                      .copyWith(
+                                                          color: ColorConstant
+                                                              .primaryWhite,
+                                                          fontSize: 12),
+                                                ),
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  ),
                                 )
                               ],
                             ),
@@ -193,21 +202,26 @@ class HomeScreen extends StatelessWidget {
                               "asset/icons/ic_divider.svg",
                               fit: BoxFit.fill,
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  "asset/icons/ic_history.svg",
-                                  fit: BoxFit.fill,
-                                ),
-                                Text(
-                                  "History",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                                ),
-                              ],
+                            InkWell(
+                              onTap: () {
+                                Get.toNamed(AppRoutes.historyScreen);
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    "asset/icons/ic_history.svg",
+                                    fit: BoxFit.fill,
+                                  ),
+                                  Text(
+                                    "History",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
+                                ],
+                              ),
                             ),
                           ],
                         ),

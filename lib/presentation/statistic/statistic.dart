@@ -467,7 +467,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemCount: 5,
                   itemBuilder: (BuildContext context,int index) {
-                    return const RecentExpenses();
+                    return  RecentExpenses();
                   }
                 ),
                 SizedBox(height: getVerticalSize(50),),

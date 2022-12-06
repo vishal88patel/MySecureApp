@@ -34,6 +34,8 @@ import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
 import '../presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import '../presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
 import '../presentation/EnterPersonalDetails/ssn_details.dart';
+import '../presentation/HistoryScreen/binding/history_screen_binding.dart';
+import '../presentation/HistoryScreen/history_screen.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/KycModuleScreen/binding/kyc_screen_binding.dart';
@@ -118,6 +120,7 @@ class AppRoutes {
   static String bankProceedScreen = '/bank_procees_screen';
   static String addBankProceedScreen = '/add_bank_procees_screen';
   static String dashBoardScreen = '/dashboard_screen';
+  static String historyScreen = '/history_screen';
   static String loanCalculatorScreen = '/loan_calculator_screen';
   static String loanInfoScreen = '/loan_info_screen';
   static String loanFnameScreen = '/loan_fname_screen';
@@ -207,6 +210,15 @@ class AppRoutes {
       page: () => DashBoardScreen(),
       bindings: [
         DashBoardScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: historyScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => HistoryScreen(),
+      bindings: [
+        HistoryScreenBinding(),
       ],
     ),
 
