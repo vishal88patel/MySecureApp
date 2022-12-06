@@ -11,6 +11,7 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../LoginScreen/models/login_response_model.dart';
+import '../../NotificationScreen/controller/notification_screen_controller.dart';
 
 class DashBoardScreenController extends GetxController {
   var selectedIndex = 0.obs;
@@ -39,6 +40,7 @@ class DashBoardScreenController extends GetxController {
 
 
   void getArguments() {
+    Get.put(NotificationScreenController());
     if (arguments != null) {
       selectedIndex.value = arguments['bottomTabCount'] ?? 0;
     }

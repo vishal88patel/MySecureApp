@@ -6,12 +6,15 @@ import 'package:my_secure_app/presentation/HomeScreen/widget/payment_list_widget
 import 'package:my_secure_app/routes/app_routes.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
+import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
+import '../NotificationScreen/controller/notification_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
+  var notificationController = Get.find<NotificationScreenController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -25,16 +28,73 @@ class HomeScreen extends StatelessWidget {
                 SizedBox(
                   height: getVerticalSize(16),
                 ),
-                AppAppBar(
-                  title: " ",
-                  icon1: "asset/icons/ic_app_logo.svg",
-                  icon2: "asset/icons/ic_notification.svg",
-                  onPressedIcon1: () {
-                    Get.back();
-                  },
-                  onPressedIcon2: () {
-                    Get.toNamed(AppRoutes.notificationScreen);
-                  },
+                Column(
+                  children: [
+                    SizedBox(
+                      height: getVerticalSize(26),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: getHorizontalSize(22),
+                          right: getHorizontalSize(22)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          SvgPicture.asset(
+                            "asset/icons/ic_app_logo.svg",
+                            fit: BoxFit.fill,
+                            height: getVerticalSize(42),
+                          ),
+                          Text(
+                            " ",
+                            style: AppStyle.textStyleDMSANS.copyWith(
+                                color: ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w700,
+                                fontSize: getFontSize(24)),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              Get.toNamed(AppRoutes.notificationScreen);
+                            },
+                            child: Stack(
+                              clipBehavior: Clip.none,
+                              children: [
+                                SvgPicture.asset(
+                                  "asset/icons/ic_home_notification.svg",
+                                  fit: BoxFit.fill,
+
+                                  height: getVerticalSize(30),
+                                ),
+                                Obx(
+                                    ()=> notificationController.globalNotificationCount.value==0?Container():     Positioned(
+                                    top: -10,right: -5,
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          color: Colors.red,
+                                          shape: BoxShape.circle),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(6.0),
+                                        child: Obx(
+                                            ()=> Text(
+                                            notificationController.globalNotificationCount.value.toString(),
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.primaryWhite,fontSize: 12),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(28),
+                    ),
+                  ],
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -171,21 +231,21 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           PaymentListWidget(
                               title: 'Apply For Loan',
-                              iconName: 'asset/icons/EXE_Icon.png',
+                              iconName: 'asset/icons/ic_loan_home.png',
                               onTap: () {
                                 Get.toNamed(AppRoutes.loanApplyInfoScreen);
                               }),
                           PaymentListWidget(
                             title: 'Boost Credit Score',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_credit.png',
                           ),
                           PaymentListWidget(
                             title: 'Link Bank',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_link_bank_home.png',
                           ),
                           PaymentListWidget(
                               title: 'Link Card',
-                              iconName: 'asset/icons/EXE_Icon.png',
+                              iconName: 'asset/icons/ic_link_card_home.png',
                               onTap: () {
                                 Get.toNamed(AppRoutes.topAddCard1Screen);
                               }),
@@ -202,21 +262,21 @@ class HomeScreen extends StatelessWidget {
                               Get.toNamed(AppRoutes.kycSelectStepScreen);
                             },
                             child: PaymentListWidget(
-                              title: 'Kyc',
-                              iconName: 'asset/icons/EXE_Icon.png',
+                              title: 'Identity Verification',
+                              iconName: 'asset/icons/ic_verification_home.png',
                             ),
                           ),
                           PaymentListWidget(
                             title: 'Cash Card',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_cash_card_home.png',
                           ),
                           PaymentListWidget(
                             title: 'Cash Out',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_cashout_home.png',
                           ),
                           PaymentListWidget(
                             title: 'Live Chat',
-                            iconName: 'asset/icons/EXE_Icon.png',
+                            iconName: 'asset/icons/ic_live-chat_home.png',
                           ),
                         ],
                       ),

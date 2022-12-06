@@ -103,7 +103,7 @@ class TopAddCard1Screen extends StatelessWidget {
 
                                               },
                                               inputFormatters: [
-                                                LengthLimitingTextInputFormatter(16),
+                                                  CardFormatter(sample:'0000 0000 0000 0000',separator:' '),
                                               ],
                                               controller: topAddCard1ScreenController.cardNumberController,
                                               hintText: 'Card Number',),
@@ -151,6 +151,8 @@ class TopAddCard1Screen extends StatelessWidget {
                                 ),
                                 SelectModeWidget(
                                   onTap: (){
+                                    FocusManager.instance.primaryFocus
+                                        ?.unfocus();
                                     topAddCard1ScreenController.onClickOfAddCardButton(context);
                                     // Get.toNamed(AppRoutes.topAddCardFillScreen);
                                   },

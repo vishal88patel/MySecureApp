@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
@@ -27,17 +28,27 @@ class CardLoadingScreen extends StatelessWidget {
                 height: size.height,
                 child: Stack(
                   children: [
+                    Image.asset('asset/icons/background_image.png',
+                        fit: BoxFit.cover,width: double.infinity),
                 Padding(
                       padding: EdgeInsets.symmetric(
-                          horizontal: getHorizontalSize(32.0),
-                          vertical: getVerticalSize(26)),
+                          horizontal: getHorizontalSize(36),
+                          vertical: getVerticalSize(36)),
                       child: SafeArea(
                         child: Stack(
                           children: [
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                       
+                                SizedBox(
+                                  height: getVerticalSize(52),
+                                ),
+                                Center(
+                                  child: SvgPicture.asset(
+                                    "asset/icons/splash_image.svg",
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
                                 SizedBox(
                                   height: getVerticalSize(30),
                                 ),
@@ -45,7 +56,7 @@ class CardLoadingScreen extends StatelessWidget {
                                   "Please Wait...",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
-                                          color: ColorConstant.primaryBlack,
+                                          color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w700,
                                           fontSize: getFontSize(32)),
                                 ),
@@ -70,7 +81,7 @@ class CardLoadingScreen extends StatelessWidget {
                                         "Uploading Your Photos",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                                color: ColorConstant.primaryBlack,
+                                                color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),
@@ -97,7 +108,7 @@ class CardLoadingScreen extends StatelessWidget {
                                         "Checking for errors",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                                color: ColorConstant.primaryBlack,
+                                                color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),
@@ -123,7 +134,7 @@ class CardLoadingScreen extends StatelessWidget {
                                         "Sending your data for verification",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                                color: ColorConstant.primaryBlack,
+                                                color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),
@@ -149,7 +160,7 @@ class CardLoadingScreen extends StatelessWidget {
                                         "Verifying you",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                                color: ColorConstant.primaryBlack,
+                                                color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),
@@ -165,7 +176,7 @@ class CardLoadingScreen extends StatelessWidget {
                                     "Thank you.Your card data has been successfully submitted.You'll get the results shortly",
                                     style: AppStyle.textStyleDMSANS
                                         .copyWith(
-                                            color: ColorConstant.primaryBlack,
+                                            color: ColorConstant.primaryWhite,
                                             fontWeight: FontWeight.w500,
                                             fontSize: getFontSize(18)),
                                   ):Container(),
