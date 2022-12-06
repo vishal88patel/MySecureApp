@@ -174,13 +174,15 @@ class CardLoadingScreen extends StatelessWidget {
                                   height: getVerticalSize(20),
                                 ),
                                 Obx(()=>
-                                cardController.progress4.value?AppElevatedButton(
+                                // cardController.progress4.value?
+                                AppElevatedButton(
                                       buttonName: 'Continue',
                                       radius: 5,
                                       onPressed: () {
-                                        Get.offAllNamed(AppRoutes.dashBoardScreen,
-                                            arguments: {"bottomTabCount": 0});
-                                      }):Container(),
+                                      Get.toNamed(AppRoutes.myLinkedBankListScreen);
+
+                                      })
+                                        // : Container(),
                                 ),
                               ],
                             ),

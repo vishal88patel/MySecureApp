@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/CardListScreen/binding/card_list_screen_binding.dart';
+import 'package:my_secure_app/presentation/CardListScreen/card_list_screen.dart';
 import 'package:my_secure_app/presentation/KycModuleScreen/kyc_email_screen.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/controller/kyc_select_step_screen_controller.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/kyc_select_step_screen.dart';
@@ -82,6 +84,9 @@ import '../presentation/LoanCalculator/loan_address_screen.dart';
 import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
 import 'package:my_secure_app/presentation/topAddCard1/card_loading_screen.dart';
 import 'package:my_secure_app/presentation/topAddCard1/binding/card_loader_screen_binding.dart';
+import 'package:my_secure_app/presentation/MyLinkedBankListScreen/my_linked_bank_list_screen.dart';
+import 'package:my_secure_app/presentation/MyLinkedBankListScreen/binding/my_linked_bank_list_screen_binding.dart';
+import 'package:my_secure_app/presentation/MyLinkedBankListScreen/binding/my_linked_bank_list_screen_binding.dart';
 
 
 
@@ -637,9 +642,25 @@ class AppRoutes {
       ],
     ),
 
+    GetPage(
+      name: myLinkedBankListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => MyLinkedBankListScreen(),
+      bindings: [
+        MyLinkedBankListScreenBinding(),
+      ],
+    ),
 
-
-
+    GetPage(
+      name: cardListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CardListScreen(),
+      bindings: [
+        CardListScreenBinding(),
+      ],
+    )
 
   ];
 }
