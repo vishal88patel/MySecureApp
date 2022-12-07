@@ -5,6 +5,10 @@ import 'package:my_secure_app/presentation/KycModuleScreen/kyc_email_screen.dart
 import 'package:my_secure_app/presentation/KycSelectStep/controller/kyc_select_step_screen_controller.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/kyc_select_step_screen.dart';
 import 'package:my_secure_app/presentation/KycStep1ModuleScreen/kyc_step1_data_screen.dart';
+import 'package:my_secure_app/presentation/LinkCardAndBank/binding/link_card_bank_screen_binding.dart';
+import 'package:my_secure_app/presentation/LinkCardAndBank/link_card_bank_screen.dart';
+import 'package:my_secure_app/presentation/MyBankAccountListScreen/binding/my_bank_account_list_screen_binding.dart';
+import 'package:my_secure_app/presentation/MyBankAccountListScreen/my_bank_account_list_screen.dart';
 import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
 import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
 import 'package:my_secure_app/presentation/statistic/statistic.dart';
@@ -141,6 +145,7 @@ class AppRoutes {
   static String loanAddressScreen = '/loan_address_screen';
   static String selectLoanTypeScreen = '/select_loan_type_screen';
   static String loanApplyInfoScreen = '/loan_apply_info_screen';
+  static String linkCardBankScreen = '/link_card_bank_screen';
 
 
   static String homeScreen = '/home_screen';
@@ -699,7 +704,27 @@ class AppRoutes {
       bindings: [
         CardListScreenBinding(),
       ],
-    )
+    ),
+
+    GetPage(
+      name: linkCardBankScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LinkCardBankScreen(),
+      bindings: [
+        LinkCardBankBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: myBankAccountListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => MyBankAccountListScreen(),
+      bindings: [
+        MyBankAccountListScreenBinding(),
+      ],
+    ),
 
   ];
 }
