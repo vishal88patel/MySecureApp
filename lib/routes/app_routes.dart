@@ -5,6 +5,10 @@ import 'package:my_secure_app/presentation/KycModuleScreen/kyc_email_screen.dart
 import 'package:my_secure_app/presentation/KycSelectStep/controller/kyc_select_step_screen_controller.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/kyc_select_step_screen.dart';
 import 'package:my_secure_app/presentation/KycStep1ModuleScreen/kyc_step1_data_screen.dart';
+import 'package:my_secure_app/presentation/LinkCardAndBank/binding/link_card_bank_screen_binding.dart';
+import 'package:my_secure_app/presentation/LinkCardAndBank/link_card_bank_screen.dart';
+import 'package:my_secure_app/presentation/MyBankAccountListScreen/binding/my_bank_account_list_screen_binding.dart';
+import 'package:my_secure_app/presentation/MyBankAccountListScreen/my_bank_account_list_screen.dart';
 import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
 import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
 import 'package:my_secure_app/presentation/statistic/statistic.dart';
@@ -72,6 +76,8 @@ import '../presentation/SelectLoanTypeScreen/controller/select_loan_type_screen_
 import '../presentation/LoanCalculator/select_loan_type_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
+import '../presentation/TopMyCardScreen/binding/top_my_card_screen_binding.dart';
+import '../presentation/TopMyCardScreen/top_my_card_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
 import '../presentation/statistic/binding/statistic_screen_binding.dart';
@@ -139,6 +145,7 @@ class AppRoutes {
   static String loanAddressScreen = '/loan_address_screen';
   static String selectLoanTypeScreen = '/select_loan_type_screen';
   static String loanApplyInfoScreen = '/loan_apply_info_screen';
+  static String linkCardBankScreen = '/link_card_bank_screen';
 
 
   static String homeScreen = '/home_screen';
@@ -175,6 +182,7 @@ class AppRoutes {
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
   static String topSelectionModeScreen = '/top_selection_mode_screen';
+  static String topMyCardScreen = '/top_my_card_screen';
   static String topAddCard1Screen = '/top_add_card1_screen';
   static String topEditCard1Screen = '/top_edit_card1_screen';
   static String topAddCardFillScreen = '/top_add_card_fill_screen';
@@ -511,6 +519,16 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: topMyCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopMyCardScreen(),
+      bindings: [
+        TopMyCardScreenBinding(),
+      ],
+    ),
+
+    GetPage(
       name: topAddCard1Screen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -686,7 +704,27 @@ class AppRoutes {
       bindings: [
         CardListScreenBinding(),
       ],
-    )
+    ),
+
+    GetPage(
+      name: linkCardBankScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LinkCardBankScreen(),
+      bindings: [
+        LinkCardBankBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: myBankAccountListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => MyBankAccountListScreen(),
+      bindings: [
+        MyBankAccountListScreenBinding(),
+      ],
+    ),
 
   ];
 }

@@ -93,7 +93,11 @@ class CardListScreen extends StatelessWidget {
                                                 .value[index]
                                                 .holderName
                                                 .toString(),
-                                            index: index,
+                                            cardType: cardListController
+                                                .mainCardList
+                                                .value[index]
+                                                .cardType
+                                                .toString(),
                                             cardNumber: cardListController
                                                 .mainCardList
                                                 .value[index]

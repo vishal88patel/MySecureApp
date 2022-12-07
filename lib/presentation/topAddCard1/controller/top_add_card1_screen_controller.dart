@@ -35,10 +35,7 @@ class TopAddCard1Controller extends GetxController {
   var cardTypeImage = "".obs;
 
 
-  var progress1 = false.obs;
-  var progress2 = false.obs;
-  var progress3 = false.obs;
-  var progress4 = false.obs;
+
 
   @override
   void onReady() {
@@ -56,21 +53,7 @@ class TopAddCard1Controller extends GetxController {
   void onClose() {
     super.onClose();
   }
-  void progress(){
-    progress1.value=true;
-    Future.delayed(Duration(milliseconds: 1000), () {
-      progress2.value=true;
-      Future.delayed(Duration(milliseconds: 1000), () {
-        progress3.value=true;
-        Future.delayed(Duration(milliseconds: 1000), () {
-          progress4.value=true;
-          UIUtils.showSnakBar(
-              bodyText: "Card Added Successfully",
-              headerText: StringConstants.SUCCESS);
-        });
-      });
-    });
-  }
+
 
   void onClickOfAddCardButton(BuildContext context) {
     if (nameController.text.isEmpty) {
@@ -141,81 +124,6 @@ class TopAddCard1Controller extends GetxController {
     });
   }*/
 
-  Future<FormData> getRegisterBody({
-    required String holder_name,
-    required String card_number,
-    required String expire_year,
-    required String expire_month,
-    required String cvv,
-    required String card_type,
-  }) async {
-    final form = FormData({
-      "holder_name": holder_name,
-      "card_number": card_number,
-      "expire_year": expire_year,
-      "expire_month": expire_month,
-      "cvv": cvv,
-      "card_type": card_type,
-    });
-    return form;
-  }
-
-  void checkCardType(String number) {
-    var type = detectCCType(number);
-    // assert(type == CreditCardType.visa);
-    switch (type) {
-      case CreditCardType.visa:
-        callAddCardApi("visa");
-        break;
-
-      case CreditCardType.mastercard:
-        callAddCardApi("mastercard");
-
-        break;
-      case CreditCardType.discover:
-        callAddCardApi("discover");
-
-        break;
-
-      case CreditCardType.dinersclub:
-        callAddCardApi("dinersclub");
-
-        break;
-
-      case CreditCardType.jcb:
-        callAddCardApi("jcb");
-
-        break;
-
-      case CreditCardType.unionpay:
-        callAddCardApi("unionpay");
-
-        break;
-
-      case CreditCardType.maestro:
-        callAddCardApi("maestro");
-
-        break;
-
-      case CreditCardType.mir:
-        callAddCardApi("mir");
-
-        break;
-
-      case CreditCardType.elo:
-        callAddCardApi("elo");
-
-        break;
-
-      default:
-        UIUtils.showSnakBar(
-          headerText: StringConstants.ERROR,
-          bodyText: "Please enter Valid card",
-        );
-        break;
-    }
-  }
-
   void checkCardImage(String number) {
     var type = detectCCType(number);
 
@@ -233,46 +141,5 @@ class TopAddCard1Controller extends GetxController {
     }
   }
 
-  Future<void> callAddCardApi(String type) async {
-    UIUtils.showProgressDialog(isCancellable: false);
-    final headers = {
-      'Content-Type': 'application/json',
-      'Authorization':
-      'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
-    };
-
-    var request =
-    http.MultipartRequest('POST', Uri.parse(ApiEndPoints.SAVE_CREDITCARD));
-
-    request.headers.addAll(headers);
-    request.fields['holder_name'] = nameController.text;
-    request.fields['card_number'] = cardNumberController.text;
-    request.fields['expire_year'] = expDateController.text.split("/")[1];
-    request.fields['expire_month'] = expDateController.text.split("/")[0];
-    request.fields['cvv'] = cvvController.text;
-    request.fields['card_type'] = type;
-
-    request.files.add(
-        await http.MultipartFile.fromPath("card_front", netImage1.value));
-
-    request.files.add(
-        await http.MultipartFile.fromPath("card_back", netImage2.value));
-    var response = await request.send();
-
-    var responsed = await http.Response.fromStream(response);
-    final responseData = json.decode(responsed.body);
-    print(responseData.toString());
-    if (response.statusCode == 200) {
-      progress();
-      UIUtils.hideProgressDialog();
-
-
-    } else {
-      UIUtils.hideProgressDialog();
-      UIUtils.showSnakBar(
-          bodyText: responseData['message'],
-          headerText: StringConstants.SUCCESS);
-    }
-  }
 
 }
