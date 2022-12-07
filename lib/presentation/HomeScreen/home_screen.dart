@@ -182,21 +182,26 @@ class HomeScreen extends StatelessWidget {
                               "asset/icons/ic_divider.svg",
                               fit: BoxFit.fill,
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  "asset/icons/ic_topUp.svg",
-                                  fit: BoxFit.fill,
-                                ),
-                                Text(
-                                  "Top Up",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                                ),
-                              ],
+                            InkWell(
+                              onTap: (){
+                                Get.toNamed(AppRoutes.topWithCreditCardScreen);
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    "asset/icons/ic_topUp.svg",
+                                    fit: BoxFit.fill,
+                                  ),
+                                  Text(
+                                    "Top Up",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
+                                ],
+                              ),
                             ),
                             SvgPicture.asset(
                               "asset/icons/ic_divider.svg",

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:my_secure_app/App%20Configurations/color_constants.dart';
+import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
+import 'package:my_secure_app/presentation/profileScreen/widget/profile_op_widget.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 
@@ -9,6 +11,7 @@ import '../../utils/HelperFiles/math_utils.dart';
 import 'controller/profile_screen_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
+  var homeController = Get.put(HomeScreenController());
   var profileScreenController = Get.put(ProfileScreenController());
 
   @override
@@ -124,7 +127,7 @@ class ProfileScreen extends StatelessWidget {
                                               MainAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Bianca Cooper",
+                                              homeController.homePageHeadeName.value,
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
                                               style:
@@ -135,13 +138,14 @@ class ProfileScreen extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold),
                                             ),
+                                            if(homeController.loginResponseModel!.data!.mobile!=null)
                                             Padding(
                                               padding: EdgeInsets.only(
                                                 top: 7,
                                                 right: 10,
                                               ),
                                               child: Text(
-                                                "(480) 555-0103",
+                                                  homeController.loginResponseModel!.data!.mobile??'',
                                                 overflow: TextOverflow.ellipsis,
                                                 textAlign: TextAlign.left,
                                                 style: AppStyle.DmSansFont
@@ -154,6 +158,7 @@ class ProfileScreen extends StatelessWidget {
                                                             FontWeight.normal),
                                               ),
                                             ),
+                                            if(homeController.loginResponseModel!.data!.email!=null)
                                             Align(
                                               alignment: Alignment.center,
                                               child: Padding(
@@ -162,7 +167,7 @@ class ProfileScreen extends StatelessWidget {
                                                   right: 6,
                                                 ),
                                                 child: Text(
-                                                  "bianca@example.com",
+                                                  homeController.loginResponseModel!.data!.email??'',
                                                   overflow:
                                                       TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
@@ -408,189 +413,48 @@ class ProfileScreen extends StatelessWidget {
                 padding:  EdgeInsets.only(top:getVerticalSize(35),left: getHorizontalSize(30),right: getHorizontalSize(34)),
                 child: Column(
                   children: [
-                    InkWell(
-                      onTap:(){
+
+                    ProfileOptionWidget(
+                      onTap: (){
                         Get.toNamed(AppRoutes.topSelectionModeScreen);
-
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                "asset/icons/ic_profile_selected.svg",
-                                fit: BoxFit.fill,
-                              ),
-                              Padding(
-                                padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                                child: Text(
-                                  "Personal",
-                                  style: AppStyle.textStyleDMSANS
-                                      .copyWith(
-                                      color: ColorConstant
-                                          .naturalBlack,
-                                      fontWeight:
-                                      FontWeight.w500,
-                                      fontSize:
-                                      getFontSize(20)),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          SvgPicture.asset(
-                            "asset/icons/ic_right_arrow.svg",
-                            fit: BoxFit.fill,
-                          ),
-                        ],
-                      ),
+                      icon: "asset/icons/ic_profile_selected.svg",
+                      title: 'Personal',
                     ),
-                    SizedBox(
-                      height: getVerticalSize(36),
+                    ProfileOptionWidget(
+                      onTap: (){
+                        Get.toNamed(AppRoutes.linkCardBankScreen);
+                      },
+                      icon: "asset/icons/ic_profile_selected.svg",
+                      title: 'Banking Details',
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "asset/icons/ic_lock.svg",
-                              fit: BoxFit.fill,
-                            ),
-                            Padding(
-                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                              child: Text(
-                                "Privacy & Security",
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .naturalBlack,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(20)),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SvgPicture.asset(
-                          "asset/icons/ic_right_arrow.svg",
-                          fit: BoxFit.fill,
-                        ),
-                      ],
+                    ProfileOptionWidget(
+                      onTap: (){
+                      },
+                      icon: "asset/icons/ic_lock.svg",
+                      title: 'Privacy & Security',
                     ),
-                    SizedBox(
-                      height: getVerticalSize(36),
+                    ProfileOptionWidget(
+                      onTap: (){
+                      },
+                      icon: "asset/icons/ic_offer.svg",
+                      title: 'Offers & Rewards',
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "asset/icons/ic_offer.svg",
-                              fit: BoxFit.fill,
-                            ),
-                            Padding(
-                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                              child: Text(
-                                "Offers & Rewards",
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .naturalBlack,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(20)),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SvgPicture.asset(
-                          "asset/icons/ic_right_arrow.svg",
-                          fit: BoxFit.fill,
-                        ),
-                      ],
+                    ProfileOptionWidget(
+                      onTap: (){
+                      },
+                      icon: "asset/icons/ic_helpp.svg",
+                      title: 'Help',
                     ),
-                    SizedBox(
-                      height: getVerticalSize(36),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            SvgPicture.asset(
-                              "asset/icons/ic_helpp.svg",
-                              fit: BoxFit.fill,
-                            ),
-                            Padding(
-                              padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                              child: Text(
-                                "Help",
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .naturalBlack,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(20)),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SvgPicture.asset(
-                          "asset/icons/ic_right_arrow.svg",
-                          fit: BoxFit.fill,
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(36),
-                    ),
-                    InkWell(
+                    ProfileOptionWidget(
                       onTap: (){
                         profileScreenController.showLogOutDialouge();
                       },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                "asset/icons/ic_logoutt.svg",
-                                fit: BoxFit.fill,
-                              ),
-                              Padding(
-                                padding:  EdgeInsets.only(left: getHorizontalSize(14)),
-                                child: Text(
-                                  "Logout",
-                                  style: AppStyle.textStyleDMSANS
-                                      .copyWith(
-                                      color: ColorConstant
-                                          .naturalBlack,
-                                      fontWeight:
-                                      FontWeight.w500,
-                                      fontSize:
-                                      getFontSize(20)),
-                                ),
-                              ),
-                            ],
-                          ),
-
-                          SvgPicture.asset(
-                            "asset/icons/ic_right_arrow.svg",
-                            fit: BoxFit.fill,
-                          ),
-                        ],
-                      ),
+                      icon: "asset/icons/ic_logoutt.svg",
+                      title: 'Logout',
                     ),
+
+
                   ],
                 ),
               )
