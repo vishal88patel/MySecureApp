@@ -83,6 +83,9 @@ import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
 import 'package:my_secure_app/presentation/topAddCard1/card_loading_screen.dart';
 import 'package:my_secure_app/presentation/topAddCard1/binding/card_loader_screen_binding.dart';
 
+import '../presentation/topEditCardConfirm/binding/top_edit_card_confirm_screen_binding.dart';
+import '../presentation/topEditCardConfirm/top_edit_card_confirm_screen.dart';
+
 
 
 
@@ -165,6 +168,7 @@ class AppRoutes {
   static String statisticScreen = '/statistic_screen';
   static String topSelectionModeScreen = '/top_selection_mode_screen';
   static String topAddCard1Screen = '/top_add_card1_screen';
+  static String topEditCard1Screen = '/top_edit_card1_screen';
   static String topAddCardFillScreen = '/top_add_card_fill_screen';
   static String topYourCreditCardScreen = '/top_your_credit_card_screen';
   static String topWithCreditCardScreen = '/top_with_credit_card_screen';
@@ -496,6 +500,16 @@ class AppRoutes {
       page: () => TopAddCard1Screen(),
       bindings: [
         TopAddCard1Binding(),
+      ],
+    ),
+
+    GetPage(
+      name: topEditCard1Screen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopEditCardConfirmScreen(),
+      bindings: [
+        TopEditCardConfirmBinding(),
       ],
     ),
 

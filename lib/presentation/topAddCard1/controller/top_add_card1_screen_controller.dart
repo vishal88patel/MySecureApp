@@ -261,7 +261,7 @@ class TopAddCard1Controller extends GetxController {
 
     var responsed = await http.Response.fromStream(response);
     final responseData = json.decode(responsed.body);
-
+    print(responseData.toString());
     if (response.statusCode == 200) {
       progress();
       UIUtils.hideProgressDialog();
