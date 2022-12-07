@@ -7,13 +7,9 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../Model/notification_response_model.dart';
 
-
-
 class NotificationScreenController extends GetxController {
   var notificationModel = NotificationResponseModel().obs;
-var globalNotificationCount=0.obs;
-
-
+  var globalNotificationCount = 0.obs;
 
   @override
   void onReady() {
@@ -31,29 +27,30 @@ var globalNotificationCount=0.obs;
   void onClose() {
     super.onClose();
   }
+
   Future<void> callNotificationApi() async {
     ApiService()
         .callGetApi(
-        body: await getNotificationBody(),
-        headerWithToken: true,
-        showLoader: false,
-        url: ApiEndPoints.Gwt_NOTIFICATION_API)
+            body: await getNotificationBody(),
+            headerWithToken: true,
+            showLoader: false,
+            url: ApiEndPoints.Gwt_NOTIFICATION_API)
         .then((value) {
       print(value);
-      if (value!=null && value['status'] ?? false) {
+      if (value != null && value['status'] ?? false) {
         notificationModel.value = NotificationResponseModel.fromJson(value);
-        globalNotificationCount.value=notificationModel.value.data!.length;
+        globalNotificationCount.value = notificationModel.value.data!.length;
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
   }
+
   Future<FormData> getNotificationBody() async {
     final form = FormData({});
     return form;
   }
-
 
   onClickOfNotificationTile(String routeName) {
     switch (routeName) {
@@ -61,11 +58,29 @@ var globalNotificationCount=0.obs;
         Get.offAllNamed(AppRoutes.dashBoardScreen,
             arguments: {"bottomTabCount": 2});
         break;
-      case "PI":
-      // do something else
+      case "WELCOME":
+        Get.offAllNamed(AppRoutes.dashBoardScreen,
+            arguments: {"bottomTabCount": 0});
+        break;
+
+      case "LOAN_APPROVED":
+        Get.toNamed(AppRoutes.historyScreen);
+        break;
+
+      case "BANK_LINK":
+        Get.offAllNamed(AppRoutes.dashBoardScreen,
+            arguments: {"bottomTabCount": 0});
+        break;
+      case "CARD_LINK":
+        Get.offAllNamed(AppRoutes.dashBoardScreen,
+            arguments: {"bottomTabCount": 0});
+        break;
+      case "KYC_CHECK":
+        Get.toNamed(AppRoutes.kycSelectStepScreen);
+        break;
+      case "LOAN_GET":
+        Get.toNamed(AppRoutes.loanApplyInfoScreen);
         break;
     }
   }
-
-
 }

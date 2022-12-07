@@ -13,6 +13,7 @@ import '../../App Configurations/color_constants.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/pref_utils.dart';
+import 'package:intl/intl.dart';
 import 'controller/top_with_credit_card_controller.dart';
 
 class TopWithCreditCardScreen extends StatelessWidget {
@@ -190,12 +191,15 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Text(
-                                          "\$26,968.00",
-                                          style: AppStyle.textStyleDMSANS.copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(28)),
+                                        Obx(()=>
+                                           Text(
+                                            NumberFormat.currency(name: '\$ ').format(int.parse(topWithCreditCardScreenController.balance.value)),
+                                            // "\$26,968.00",
+                                            style: AppStyle.textStyleDMSANS.copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: getFontSize(28)),
+                                          ),
                                         ),
                                         SizedBox(height: getHorizontalSize(15),),
                                         Row(
@@ -314,7 +318,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                             ),
                                             SizedBox(width: getHorizontalSize(12),),
                                             Text(
-                                              "3765",
+                                              '3711',
                                               style: AppStyle.textStyleDMSANS.copyWith(
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w500,
@@ -368,13 +372,16 @@ class TopWithCreditCardScreen extends StatelessWidget {
                     SizedBox(height: getVerticalSize(15),),
 
                     TextFormField(textAlign: TextAlign.center,
+                      controller: topWithCreditCardScreenController.amountController,
                       decoration: InputDecoration(
+
                         hintText: 'Amount',
                         hintStyle: AppStyle.DmSansFont
                             .copyWith(
                             color: ColorConstant.grey8F,
 
                             fontWeight: FontWeight.w400,fontSize: getFontSize(30)),
+
                         enabledBorder: UnderlineInputBorder(
                           borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
                         ),
@@ -388,6 +395,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                           color: ColorConstant.naturalBlack,
                           fontWeight: FontWeight.w700,fontSize: getFontSize(30)),
                     ),
+
                     SizedBox(height: getVerticalSize(20),),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
@@ -462,7 +470,8 @@ class TopWithCreditCardScreen extends StatelessWidget {
                         buttonName: 'Top Up Now',
                         textColor: ColorConstant.primaryWhite,
                         onPressed: () {
-                          Get.toNamed(AppRoutes.topAddCard1Screen);
+                          topWithCreditCardScreenController.onNext();
+
                           // Get.to(
                           //   LoaderScreen("",AppRoutes.creatPasswordScreen),
                           //   transition: Transition.rightToLeft,

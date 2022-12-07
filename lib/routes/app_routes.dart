@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/CardListScreen/binding/card_list_screen_binding.dart';
+import 'package:my_secure_app/presentation/CardListScreen/card_list_screen.dart';
 import 'package:my_secure_app/presentation/KycModuleScreen/kyc_email_screen.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/controller/kyc_select_step_screen_controller.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/kyc_select_step_screen.dart';
@@ -34,6 +36,8 @@ import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
 import '../presentation/EnterPersonalDetails/binding/enter_personal_detail_screen_binding.dart';
 import '../presentation/EnterPersonalDetails/enter_personal_detail_screen.dart';
 import '../presentation/EnterPersonalDetails/ssn_details.dart';
+import '../presentation/HistoryScreen/binding/history_screen_binding.dart';
+import '../presentation/HistoryScreen/history_screen.dart';
 import '../presentation/HomeScreen/binding/home_screen_binding.dart';
 import '../presentation/HomeScreen/home_screen.dart';
 import '../presentation/KycModuleScreen/binding/kyc_screen_binding.dart';
@@ -82,6 +86,9 @@ import '../presentation/LoanCalculator/loan_address_screen.dart';
 import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
 import 'package:my_secure_app/presentation/topAddCard1/card_loading_screen.dart';
 import 'package:my_secure_app/presentation/topAddCard1/binding/card_loader_screen_binding.dart';
+import 'package:my_secure_app/presentation/MyLinkedBankListScreen/my_linked_bank_list_screen.dart';
+import 'package:my_secure_app/presentation/MyLinkedBankListScreen/binding/my_linked_bank_list_screen_binding.dart';
+import 'package:my_secure_app/presentation/MyLinkedBankListScreen/binding/my_linked_bank_list_screen_binding.dart';
 
 import '../presentation/topEditCardConfirm/binding/top_edit_card_confirm_screen_binding.dart';
 import '../presentation/topEditCardConfirm/top_edit_card_confirm_screen.dart';
@@ -121,6 +128,7 @@ class AppRoutes {
   static String bankProceedScreen = '/bank_procees_screen';
   static String addBankProceedScreen = '/add_bank_procees_screen';
   static String dashBoardScreen = '/dashboard_screen';
+  static String historyScreen = '/history_screen';
   static String loanCalculatorScreen = '/loan_calculator_screen';
   static String loanInfoScreen = '/loan_info_screen';
   static String loanFnameScreen = '/loan_fname_screen';
@@ -211,6 +219,15 @@ class AppRoutes {
       page: () => DashBoardScreen(),
       bindings: [
         DashBoardScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: historyScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => HistoryScreen(),
+      bindings: [
+        HistoryScreenBinding(),
       ],
     ),
 
@@ -651,9 +668,25 @@ class AppRoutes {
       ],
     ),
 
+    GetPage(
+      name: myLinkedBankListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => MyLinkedBankListScreen(),
+      bindings: [
+        MyLinkedBankListScreenBinding(),
+      ],
+    ),
 
-
-
+    GetPage(
+      name: cardListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CardListScreen(),
+      bindings: [
+        CardListScreenBinding(),
+      ],
+    )
 
   ];
 }

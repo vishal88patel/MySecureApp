@@ -165,6 +165,21 @@ class TopAddCard1Screen extends StatelessWidget {
                                   icon: 'asset/icons/im_scan_card.png',
                                 ),
 
+                                  SizedBox(height: 50,),
+
+                                SelectModeWidget(
+                                  onTap: (){
+                                    // topAddCard1ScreenController.onClickOfAddCardButton(context);
+                                    Get.toNamed(AppRoutes.myLinkedBankListScreen);
+                                  },
+                                  verticalPadding: 20,
+                                  iconV: 45,
+                                  iconW: 45,
+                                  fontWeight: FontWeight.w700,
+                                  color: ColorConstant.buttonGreen.withOpacity(0.1),
+                                  title: 'continue',
+                                  icon: 'asset/icons/im_scan_card.png',
+                                ),
                               ],
                             ),
                             ),

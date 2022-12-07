@@ -68,7 +68,6 @@ class NotificationScreen extends StatelessWidget {
                                       .notificationModel.value.data !=
                                   null
                               ? ListView.builder(
-                                  shrinkWrap: true,
                                   itemCount: notificationController
                                       .notificationModel.value.data!.length,
                                   physics: const BouncingScrollPhysics(),
@@ -101,29 +100,28 @@ class NotificationScreen extends StatelessWidget {
                                                       CrossAxisAlignment.start,
                                                   mainAxisAlignment:
                                                       MainAxisAlignment.start,
+                                                  mainAxisSize: MainAxisSize.min,
                                                   children: [
                                                     Container(
                                                       width: size.width / 1.7,
-                                                      child: Flexible(
-                                                        child: Text(
-                                                          notificationController
-                                                              .notificationModel
-                                                              .value
-                                                              .data![index]
-                                                              .title
-                                                              .toString(),
-                                                          style: AppStyle
-                                                              .textStyleDMSANS
-                                                              .copyWith(
-                                                                  color: ColorConstant
-                                                                      .naturalBlack,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          16)),
-                                                        ),
+                                                      child: Text(
+                                                        notificationController
+                                                            .notificationModel
+                                                            .value
+                                                            .data![index]
+                                                            .title
+                                                            .toString(),
+                                                        style: AppStyle
+                                                            .textStyleDMSANS
+                                                            .copyWith(
+                                                                color: ColorConstant
+                                                                    .naturalBlack,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                fontSize:
+                                                                    getFontSize(
+                                                                        16)),
                                                       ),
                                                     ),
                                                     SizedBox(
