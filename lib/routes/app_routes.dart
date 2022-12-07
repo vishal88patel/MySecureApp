@@ -72,6 +72,8 @@ import '../presentation/SelectLoanTypeScreen/controller/select_loan_type_screen_
 import '../presentation/LoanCalculator/select_loan_type_screen.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
+import '../presentation/TopMyCardScreen/binding/top_my_card_screen_binding.dart';
+import '../presentation/TopMyCardScreen/top_my_card_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
 import '../presentation/statistic/binding/statistic_screen_binding.dart';
@@ -175,6 +177,7 @@ class AppRoutes {
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
   static String topSelectionModeScreen = '/top_selection_mode_screen';
+  static String topMyCardScreen = '/top_my_card_screen';
   static String topAddCard1Screen = '/top_add_card1_screen';
   static String topEditCard1Screen = '/top_edit_card1_screen';
   static String topAddCardFillScreen = '/top_add_card_fill_screen';
@@ -507,6 +510,16 @@ class AppRoutes {
       page: () => TopSelectionModeScreen(),
       bindings: [
         TopSelectionModeBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topMyCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopMyCardScreen(),
+      bindings: [
+        TopMyCardScreenBinding(),
       ],
     ),
 

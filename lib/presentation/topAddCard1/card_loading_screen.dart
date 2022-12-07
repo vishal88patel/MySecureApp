@@ -6,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:my_secure_app/presentation/topAddCard1/controller/top_add_card1_screen_controller.dart';
 import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
+import 'package:my_secure_app/presentation/topEditCardConfirm/controller/top_edit_card_confirm_screen_controller.dart';
 import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
@@ -15,7 +16,7 @@ import 'controller/card_loader_screen_controller.dart';
 
 class CardLoadingScreen extends StatelessWidget {
   var cardLoaderController = Get.find<CardLoaderController>();
-  var cardController = Get.put(TopAddCard1Controller());
+  var cardController = Get.put(TopEditCardConfirmController());
 
   // var cardController = Get.find<TopAddCard1Controller>();
 
@@ -185,15 +186,13 @@ class CardLoadingScreen extends StatelessWidget {
                                   height: getVerticalSize(20),
                                 ),
                                 Obx(()=>
-                                // cardController.progress4.value?
+                                 cardController.progress4.value?
                                 AppElevatedButton(
                                       buttonName: 'Continue',
                                       radius: 5,
                                       onPressed: () {
-                                      Get.toNamed(AppRoutes.myLinkedBankListScreen);
-
-                                      })
-                                        // : Container(),
+                                        Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
+                                      }) : Container(),
                                 ),
                               ],
                             ),

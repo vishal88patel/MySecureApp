@@ -23,9 +23,6 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: getVerticalSize(16),
-                ),
                 Column(
                   children: [
                     SizedBox(
@@ -60,6 +57,7 @@ class HomeScreen extends StatelessWidget {
                                 SvgPicture.asset(
                                   "asset/icons/ic_home_notification.svg",
                                   fit: BoxFit.fill,
+                                  color: ColorConstant.primaryDarkGreen,
                                   height: getVerticalSize(30),
                                 ),
                                 Obx(
@@ -167,14 +165,17 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 SvgPicture.asset(
                                   "asset/icons/ic_transfer.svg",
+                                  height: getVerticalSize(28),
+                                  width: getVerticalSize(28),
                                   fit: BoxFit.fill,
                                 ),
+                                SizedBox(height: getVerticalSize(10),),
                                 Text(
                                   "Transfer",
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
+                                      fontSize: getFontSize(16)),
                                 ),
                               ],
                             ),
@@ -187,14 +188,17 @@ class HomeScreen extends StatelessWidget {
                               children: [
                                 SvgPicture.asset(
                                   "asset/icons/ic_topUp.svg",
+                                  height: getVerticalSize(28),
+                                  width: getVerticalSize(28),
                                   fit: BoxFit.fill,
                                 ),
+                                SizedBox(height: getVerticalSize(10),),
                                 Text(
                                   "Top Up",
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
+                                      fontSize: getFontSize(16)),
                                 ),
                               ],
                             ),
@@ -212,16 +216,42 @@ class HomeScreen extends StatelessWidget {
                                   SvgPicture.asset(
                                     "asset/icons/ic_history.svg",
                                     fit: BoxFit.fill,
+                                    height: getVerticalSize(28),
+                                    width: getVerticalSize(28),
                                   ),
+                                  SizedBox(height: getVerticalSize(10),),
                                   Text(
                                     "History",
                                     style: AppStyle.textStyleDMSANS.copyWith(
                                         color: ColorConstant.primaryWhite,
                                         fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
+                                        fontSize: getFontSize(16)),
                                   ),
                                 ],
                               ),
+                            ),
+                            SvgPicture.asset(
+                              "asset/icons/ic_divider.svg",
+                              fit: BoxFit.fill,
+                            ),
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                SvgPicture.asset(
+                                  "asset/icons/ic_req_money.svg",
+                                  height: getVerticalSize(22),
+                                  width: getVerticalSize(22),
+                                  fit: BoxFit.fill,
+                                ),
+                                SizedBox(height: getVerticalSize(10),),
+                                Text(
+                                  "Request \nMoney",
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(16)),
+                                ),
+                              ],
                             ),
                           ],
                         ),
@@ -251,7 +281,7 @@ class HomeScreen extends StatelessWidget {
                               }),
                           PaymentListWidget(
                             title: 'Boost Credit Score',
-                            iconName: 'asset/icons/ic_credit.png',
+                            iconName: 'asset/icons/ic_boost_home.png',
                           ),
                           PaymentListWidget(
                             title: 'Link Bank',
@@ -261,7 +291,8 @@ class HomeScreen extends StatelessWidget {
                               title: 'Link Card',
                               iconName: 'asset/icons/ic_link_card_home.png',
                               onTap: () {
-                                Get.toNamed(AppRoutes.topAddCard1Screen);
+                                Get.toNamed(AppRoutes.topMyCardScreen);
+                               // Get.toNamed(AppRoutes.topAddCard1Screen);
                               }),
                         ],
                       ),
@@ -277,7 +308,7 @@ class HomeScreen extends StatelessWidget {
                             },
                             child: PaymentListWidget(
                               title: 'Identity Verification',
-                              iconName: 'asset/icons/ic_verification_home.png',
+                              iconName: 'asset/icons/ic_kyc_home.png',
                             ),
                           ),
                           PaymentListWidget(
@@ -286,11 +317,11 @@ class HomeScreen extends StatelessWidget {
                           ),
                           PaymentListWidget(
                             title: 'Cash Out',
-                            iconName: 'asset/icons/ic_cashout_home.png',
+                            iconName: 'asset/icons/ic_cash_out_home.png',
                           ),
                           PaymentListWidget(
                             title: 'Live Chat',
-                            iconName: 'asset/icons/ic_live-chat_home.png',
+                            iconName: 'asset/icons/ic_live_chat_home.png',
                           ),
                         ],
                       ),

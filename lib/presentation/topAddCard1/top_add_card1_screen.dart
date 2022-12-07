@@ -100,7 +100,6 @@ class TopAddCard1Screen extends StatelessWidget {
                                               keyBordType: TextInputType.number,
                                               onChanged: (text){
                                                 topAddCard1ScreenController.checkCardImage(text);
-
                                               },
                                               inputFormatters: [
                                                   CardFormatter(sample:'0000 0000 0000 0000',separator:' '),
@@ -149,6 +148,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                SizedBox(height: getVerticalSize(12),),
                                 SelectModeWidget(
                                   onTap: (){
                                     FocusManager.instance.primaryFocus
@@ -167,7 +167,7 @@ class TopAddCard1Screen extends StatelessWidget {
 
                                   SizedBox(height: 50,),
 
-                                SelectModeWidget(
+                               /* SelectModeWidget(
                                   onTap: (){
                                     // topAddCard1ScreenController.onClickOfAddCardButton(context);
                                     Get.toNamed(AppRoutes.myLinkedBankListScreen);
@@ -179,7 +179,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                   color: ColorConstant.buttonGreen.withOpacity(0.1),
                                   title: 'continue',
                                   icon: 'asset/icons/im_scan_card.png',
-                                ),
+                                ),*/
                               ],
                             ),
                             ),
