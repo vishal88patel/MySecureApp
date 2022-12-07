@@ -10,6 +10,8 @@ import '../Model/notification_response_model.dart';
 class NotificationScreenController extends GetxController {
   var notificationModel = NotificationResponseModel().obs;
   var globalNotificationCount = 0.obs;
+  RxList list = [].obs;
+  var isLoading =false.obs;
 
   @override
   void onReady() {
@@ -29,17 +31,20 @@ class NotificationScreenController extends GetxController {
   }
 
   Future<void> callNotificationApi() async {
+    isLoading.value=true;
     ApiService()
         .callGetApi(
-            body: await getNotificationBody(),
-            headerWithToken: true,
-            showLoader: false,
-            url: ApiEndPoints.Gwt_NOTIFICATION_API)
+        body: await getNotificationBody(),
+        headerWithToken: true,
+        showLoader: false,
+        url: ApiEndPoints.Gwt_NOTIFICATION_API)
         .then((value) {
       print(value);
-      if (value != null && value['status'] ?? false) {
+      if (value != null && value['status']!=null && value['status']?? false) {
+        isLoading.value=false;
         notificationModel.value = NotificationResponseModel.fromJson(value);
         globalNotificationCount.value = notificationModel.value.data!.length;
+        list.addAll( notificationModel.value.data??[]);
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
@@ -83,4 +88,22 @@ class NotificationScreenController extends GetxController {
         break;
     }
   }
+
+  Future<void> clearNotification() async {
+    ApiService()
+        .callPostApi(
+        body: await getBody(),
+        headerWithToken: true,
+        showLoader: false,
+        url: ApiEndPoints.CLEAR_NOTIFICATION)
+        .then((value) {
+    });
+  }
+
+  Future<FormData> getBody() async {
+    final form = FormData({});
+
+    return form;
+  }
+
 }
