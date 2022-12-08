@@ -8,11 +8,14 @@ import 'package:my_secure_app/routes/app_routes.dart';
 import 'package:my_secure_app/theme/app_style.dart';
 
 import '../../utils/HelperFiles/math_utils.dart';
+import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import 'controller/profile_screen_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
   var profileScreenController = Get.put(ProfileScreenController());
+  var dashBoardController = Get.find<DashBoardScreenController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -264,12 +267,14 @@ class ProfileScreen extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Text(
-                                          "\$26,968.00",
-                                          style: AppStyle.textStyleDMSANS.copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(28)),
+                                        Obx(
+                                          ()=>dashBoardController.UserBalance.value==""?Container(): Text(
+                                            "\$${dashBoardController.UserBalance.value}",
+                                            style: AppStyle.textStyleDMSANS.copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: getFontSize(28)),
+                                          ),
                                         ),
                                         SizedBox(height: getHorizontalSize(8),),
                                         Row(

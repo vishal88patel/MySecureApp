@@ -18,7 +18,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="my_secure_app"
+        android:label="My Secure App"
         android:requestLegacyExternalStorage="true"
         tools:replace="android:theme"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">

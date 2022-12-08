@@ -44,6 +44,7 @@ class NotificationScreenController extends GetxController {
         isLoading.value=false;
         notificationModel.value = NotificationResponseModel.fromJson(value);
         globalNotificationCount.value = notificationModel.value.data!.length;
+        list.clear();
         list.addAll( notificationModel.value.data??[]);
       } else {
         UIUtils.showSnakBar(

@@ -64,12 +64,17 @@ class TopMyCardScreen extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       fontSize: getFontSize(24)),
                                 ),
-                                Text(
-                                  "See all",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryLightGreen,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
+                                InkWell(
+                                  onTap: (){
+                                    Get.toNamed(AppRoutes.cardListScreen);
+                                  },
+                                  child: Text(
+                                    "See My all Cards",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryLightGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
                                 ),
                               ],
                             ),
