@@ -53,7 +53,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                 child: Text(
                                   "Fill in the fields below or use camera \nphone to scan card",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.naturalGrey,
+                                      color: ColorConstant.primaryWhite,
                                       fontWeight:FontWeight.w400,
                                       fontSize:getFontSize(22)),
                                 ),
@@ -100,7 +100,6 @@ class TopAddCard1Screen extends StatelessWidget {
                                               keyBordType: TextInputType.number,
                                               onChanged: (text){
                                                 topAddCard1ScreenController.checkCardImage(text);
-
                                               },
                                               inputFormatters: [
                                                   CardFormatter(sample:'0000 0000 0000 0000',separator:' '),
@@ -149,6 +148,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
+                                SizedBox(height: getVerticalSize(12),),
                                 SelectModeWidget(
                                   onTap: (){
                                     FocusManager.instance.primaryFocus
@@ -165,9 +165,9 @@ class TopAddCard1Screen extends StatelessWidget {
                                   icon: 'asset/icons/im_scan_card.png',
                                 ),
 
-                                /*  SizedBox(height: 50,),
+                                  SizedBox(height: 50,),
 
-                                SelectModeWidget(
+                               /* SelectModeWidget(
                                   onTap: (){
                                     // topAddCard1ScreenController.onClickOfAddCardButton(context);
                                     Get.toNamed(AppRoutes.myLinkedBankListScreen);
