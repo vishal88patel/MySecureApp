@@ -430,6 +430,15 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     ProfileOptionWidget(
                       onTap: (){
+
+                        String webLink =
+                        profileScreenController.loginResponseModel!.data!.privacyPolicy.toString();
+                        print(
+                            "Webview Link in Daily Horoscope Page :- " + webLink);
+                        Get.toNamed(AppRoutes.webviewPage, arguments: {
+                          "webLink": webLink,
+                          "appBarName": "Privacy Policy",
+                        });
                       },
                       icon: "asset/icons/ic_lock.svg",
                       title: 'Privacy & Security',
@@ -442,7 +451,9 @@ class ProfileScreen extends StatelessWidget {
                     ),
                     ProfileOptionWidget(
                       onTap: (){
-                      },
+                        Get.toNamed(AppRoutes.supportScreen);
+
+                        },
                       icon: "asset/icons/ic_helpp.svg",
                       title: 'Help',
                     ),

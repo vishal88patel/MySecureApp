@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:my_secure_app/presentation/CardListScreen/binding/card_list_screen_binding.dart';
 import 'package:my_secure_app/presentation/CardListScreen/card_list_screen.dart';
+import 'package:my_secure_app/presentation/FaqScreen/binding/faq_screen_binding.dart';
+import 'package:my_secure_app/presentation/FaqScreen/faq_screen.dart';
 import 'package:my_secure_app/presentation/KycModuleScreen/kyc_email_screen.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/controller/kyc_select_step_screen_controller.dart';
 import 'package:my_secure_app/presentation/KycSelectStep/kyc_select_step_screen.dart';
@@ -10,6 +12,8 @@ import 'package:my_secure_app/presentation/LinkCardAndBank/link_card_bank_screen
 import 'package:my_secure_app/presentation/MyBankAccountListScreen/binding/my_bank_account_list_screen_binding.dart';
 import 'package:my_secure_app/presentation/MyBankAccountListScreen/my_bank_account_list_screen.dart';
 import 'package:my_secure_app/presentation/OnBoardingScreen/onBoarding_screen.dart';
+import 'package:my_secure_app/presentation/SupportScreen/binding/support_screen_binding.dart';
+import 'package:my_secure_app/presentation/SupportScreen/support_screen.dart';
 import 'package:my_secure_app/presentation/statistic/binding/statistic_screen_binding.dart';
 import 'package:my_secure_app/presentation/statistic/statistic.dart';
 import 'package:my_secure_app/presentation/topAddCard1/binding/top_add_card1_screen_binding.dart';
@@ -710,6 +714,26 @@ class AppRoutes {
       page: () => MyBankAccountListScreen(),
       bindings: [
         MyBankAccountListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: supportScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => SupportScreen(),
+      bindings: [
+        SupportScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: faqScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => FaqScreen(),
+      bindings: [
+        FaqScreenBinding(),
       ],
     ),
 
