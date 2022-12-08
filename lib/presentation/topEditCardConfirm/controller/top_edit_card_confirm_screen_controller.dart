@@ -140,10 +140,7 @@ class TopEditCardConfirmController extends GetxController {
         break;
 
       default:
-        UIUtils.showSnakBar(
-          headerText: StringConstants.ERROR,
-          bodyText: "Please enter Valid card",
-        );
+        callAddCardApi("any");
         break;
     }
   }

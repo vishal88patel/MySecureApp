@@ -165,7 +165,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                   icon: 'asset/icons/im_scan_card.png',
                                 ),
 
-                                /*  SizedBox(height: 50,),
+                                  SizedBox(height: 50,),
 
                                /* SelectModeWidget(
                                   onTap: (){
