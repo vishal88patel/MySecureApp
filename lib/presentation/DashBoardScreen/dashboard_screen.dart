@@ -8,12 +8,15 @@ import '../../App Configurations/color_constants.dart';
 import '../BitCoinScreen/bitcoin_screen.dart';
 import '../HomeScreen/home_screen.dart';
 import '../NotificationScreen/notification_screen.dart';
+import '../ScanScreen/controller/scan_screen_controller.dart';
 import '../ScanScreen/scan_screen.dart';
 import '../profileScreen/profile_screen.dart';
 import 'controller/dashboard_screen_controller.dart';
 
 class DashBoardScreen extends StatelessWidget {
   var dashBoardController = Get.find<DashBoardScreenController>();
+  var scanController = Get.put(ScanScreenController());
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,8 +30,7 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               HomeScreen(),
               StatisticScreen(),
-              // ScanScreen(),
-              BitCoinScreen(),
+              ScanScreen(),
               BitCoinScreen(),
               ProfileScreen(),
               // TransactionScreen(),
@@ -46,6 +48,7 @@ class DashBoardScreen extends StatelessWidget {
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
         onPressed: () {
+          scanController.cameraStart();
           dashBoardController.onTapOfBottomnavigation(2);
         },
       ),
@@ -61,6 +64,7 @@ class DashBoardScreen extends StatelessWidget {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
+                  scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(0);
                 },
                 child: Padding(
@@ -81,6 +85,7 @@ class DashBoardScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
+                  scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(1);
                 },
                 child: Padding(
@@ -101,7 +106,9 @@ class DashBoardScreen extends StatelessWidget {
                 ),
               ),
               GestureDetector(
+
                 onTap: () {
+                  scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(3);
                 },
                 child: Obx(
@@ -120,6 +127,7 @@ class DashBoardScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
+                  scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(4);
                 },
                 child: Padding(

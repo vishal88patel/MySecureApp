@@ -20,11 +20,13 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
-  var scanController = Get.put(ScanScreenController());
+  // var scanController = Get.put(ScanScreenController());
+  var scanController = Get.find<ScanScreenController>();
+
 
   Barcode? result;
 
-  QRViewController? controller;
+
 
   int? counter=0;
 
@@ -33,16 +35,11 @@ class _ScanScreenState extends State<ScanScreen> {
   @override
   void initState() {
     super.initState();
-    cameraStart();
   }
-  Future<void> cameraStart() async {
-    Future.delayed(Duration(milliseconds: 100), () {
-      controller?.resumeCamera();
-    });
-  }
+
   @override
   void dispose() {
-    controller?.dispose();
+    // controller?.dispose();
     super.dispose();
   }
 
@@ -141,7 +138,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
   void _onQRViewCreated(QRViewController controller) {
     setState(() {
-      this.controller = controller;
+      this.scanController.controller = controller;
     });
     controller.scannedDataStream.listen((scanData) {
       setState(() {
