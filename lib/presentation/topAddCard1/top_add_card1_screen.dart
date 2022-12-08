@@ -53,7 +53,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                 child: Text(
                                   "Fill in the fields below or use camera \nphone to scan card",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.naturalGrey,
+                                      color: ColorConstant.primaryWhite,
                                       fontWeight:FontWeight.w400,
                                       fontSize:getFontSize(22)),
                                 ),
