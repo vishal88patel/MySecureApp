@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/presentation/CardListScreen/CreditCardWidget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
+import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
+import '../../utils/HelperFiles/math_utils.dart';
+import '../../utils/HelperFiles/ui_utils.dart';
+import 'CreditCardWidget.dart';
 import 'controller/card_list_screen_controller.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
+
 
 class CardListScreen extends StatelessWidget {
   var cardListController = Get.find<CardListScreenController>();

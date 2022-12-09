@@ -2,11 +2,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/presentation/topEditCardConfirm/controller/top_edit_card_confirm_screen_controller.dart';
+import 'package:secureapp/presentation/topEditCardConfirm/controller/top_edit_card_confirm_screen_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/network_info.dart';
 import '../../../routes/app_routes.dart';
-import 'package:my_secure_app/presentation/topAddCard1/controller/top_add_card1_screen_controller.dart';
+import 'package:secureapp/presentation/topAddCard1/controller/top_add_card1_screen_controller.dart';
 
 
 

@@ -1,6 +1,6 @@
 import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:secureapp/utils/HelperFiles/math_utils.dart';
 
 
 class ChartWeeklyScreen extends StatefulWidget {

@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/presentation/LoginScreen/models/login_response_model.dart';
+import 'package:secureapp/presentation/LoginScreen/models/login_response_model.dart';
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';

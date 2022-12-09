@@ -1,27 +1,21 @@
 import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/App%20Configurations/image_constants.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_AppBar%20.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
-import 'package:my_secure_app/presentation/widget/select_mode_widget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/theme/app_style.dart';
+import 'package:secureapp/Custom%20Widgets/app_AppBar%20.dart';
+import 'package:secureapp/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secureapp/Custom%20Widgets/app_textField.dart';
+import 'package:secureapp/routes/app_routes.dart';
+import 'package:secureapp/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import '../../utils/HelperFiles/pref_utils.dart';
-import '../topAddCard1/controller/top_add_card1_screen_controller.dart';
 import 'controller/top_edit_card_confirm_screen_controller.dart';
 
 class TopEditCardConfirmScreen extends StatelessWidget {
   var topAddCardConfirmScreenController =
       Get.find<TopEditCardConfirmController>();
-  var cardTypeImage="".obs;
+  var cardTypeImage = "".obs;
 
   @override
   Widget build(BuildContext context) {
@@ -68,381 +62,401 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                           Padding(
                             padding: EdgeInsets.only(top: getVerticalSize(200)),
                             child: Container(
-                                width: double.infinity,
-                                decoration: BoxDecoration(
-                                    color: ColorConstant.primaryWhite,
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(32),
-                                      topRight: Radius.circular(32),
-                                    )),
-                                child:
-                                    Column(
-                                      children: [
-                                        SizedBox(
-                                          height: getVerticalSize(20),
-                                        ),
-                                        Container(
-                                          height: getVerticalSize(7),
-                                          width: getHorizontalSize(60),
-                                          decoration: BoxDecoration(
-                                              color: ColorConstant.greyBD,
-                                              borderRadius:
-                                                  BorderRadius.circular(50)),
-                                        ),
-                                        SizedBox(
-                                          height: getVerticalSize(20),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: getHorizontalSize(20)),
-                                          child: Card(
-                                            margin: const EdgeInsets.symmetric(
-                                                horizontal: 0),
-                                            color: ColorConstant.naturalGrey2,
-                                            elevation: 0,
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(16)),
-                                            child: Stack(
-                                              children: [
-                                                Image.asset('asset/icons/credit_card.png'),
-                                                Positioned(
-                                                  top: getVerticalSize(20),
-                                                  child: SizedBox(
-                                                    width: size.width,
-                                                    child: Padding(
-                                                      padding: EdgeInsets.symmetric(
-                                                          horizontal: getHorizontalSize(50),
-                                                          vertical: getVerticalSize(10)),
-                                                      child: Column(
-                                                        crossAxisAlignment:
-                                                        CrossAxisAlignment.start,
-                                                        mainAxisSize: MainAxisSize.max,
-                                                        children: [
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment.end,
-                                                            children: [
-                                                              Obx(
-                                                          ()=> Image.asset(
-                                                                  checkCardImage(topAddCardConfirmScreenController
-                                                                      .cardNumber.value,),
-                                                                  height:
-                                                                  getVerticalSize(35.34),
-                                                                  width:
-                                                                  getHorizontalSize(50.1),
-                                                                ),
-                                                              ),
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: ColorConstant.primaryWhite,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(32),
+                                    topRight: Radius.circular(32),
+                                  )),
+                              child: Column(
+                                children: [
+                                  SizedBox(
+                                    height: getVerticalSize(20),
+                                  ),
+                                  Container(
+                                    height: getVerticalSize(7),
+                                    width: getHorizontalSize(60),
+                                    decoration: BoxDecoration(
+                                        color: ColorConstant.greyBD,
+                                        borderRadius:
+                                            BorderRadius.circular(50)),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(20),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        horizontal: getHorizontalSize(20)),
+                                    child: Card(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 0),
+                                      color: ColorConstant.naturalGrey2,
+                                      elevation: 0,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(16)),
+                                      child: Stack(
+                                        children: [
+                                          Image.asset(
+                                              'asset/icons/credit_card.png'),
+                                          Positioned(
+                                            top: getVerticalSize(10),
+                                            child: SizedBox(
+                                              width: size.width,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        getHorizontalSize(50),
+                                                    ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Obx(
+                                                          () => Image.asset(
+                                                            checkCardImage(
+                                                              topAddCardConfirmScreenController
+                                                                  .cardNumber
+                                                                  .value,
+                                                            ),
+                                                            height:
+                                                                getVerticalSize(
+                                                                    35.34),
+                                                            width:
+                                                                getHorizontalSize(
+                                                                    50.1),
+                                                          ),
+                                                        ),
 
-                                                              // Image.asset('asset/icons/Visa_image.png',
-                                                              //   height: getVerticalSize(13.66),
-                                                              //   width: getHorizontalSize(43.54),),
-                                                            ],
-                                                          ),
-                                                          SizedBox(
-                                                            height: getVerticalSize(20),
-                                                          ),
-                                                          Obx(
-                                                              ()=> Text(
-                                                                topAddCardConfirmScreenController
-                                                                    .cardNumber.value.toString(),
-                                                                style: AppStyle.DmSansFont
-                                                                    .copyWith(
+                                                        // Image.asset('asset/icons/Visa_image.png',
+                                                        //   height: getVerticalSize(13.66),
+                                                        //   width: getHorizontalSize(43.54),),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          getVerticalSize(20),
+                                                    ),
+                                                    Obx(
+                                                      () => Text(
+                                                          topAddCardConfirmScreenController
+                                                              .cardNumber.value
+                                                              .toString(),
+                                                          style: AppStyle
+                                                                  .DmSansFont
+                                                              .copyWith(
+                                                                  color: ColorConstant
+                                                                      .primaryWhite,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontSize:
+                                                                      getFontSize(
+                                                                          25))),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 50,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                'Card Holder Name',
+                                                                style: AppStyle.DmSansFont.copyWith(
                                                                     color: ColorConstant
                                                                         .primaryWhite,
                                                                     fontWeight:
-                                                                    FontWeight.w500,
+                                                                        FontWeight
+                                                                            .w500,
                                                                     fontSize:
-                                                                    getFontSize(34))),
-                                                          ),
-                                                          SizedBox(
-                                                            height: getVerticalSize(40),
-                                                          ),
-                                                          Row(
-                                                            mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                            children: [
-                                                              Column(
-                                                                crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .start,
-                                                                children: [
-                                                                  Text('Card Holder Name',
-                                                                      style: AppStyle
-                                                                          .DmSansFont
-                                                                          .copyWith(
-                                                                          color: ColorConstant
-                                                                              .primaryWhite,
-                                                                          fontWeight:
+                                                                        getFontSize(
+                                                                            14))),
+                                                            Obx(
+                                                              () => Text(
+                                                                  topAddCardConfirmScreenController
+                                                                      .cardName
+                                                                      .value,
+                                                                  style: AppStyle.DmSansFont.copyWith(
+                                                                      color: ColorConstant
+                                                                          .primaryWhite,
+                                                                      letterSpacing:
+                                                                          0.55,
+                                                                      fontWeight:
                                                                           FontWeight
                                                                               .w500,
-                                                                          fontSize:
+                                                                      fontSize:
                                                                           getFontSize(
-                                                                              14))),
-                                                                  Obx(
-                                                                      ()=> Text(
-                                                                        topAddCardConfirmScreenController
-                                                                            .cardName.value,
-                                                                        style: AppStyle
-                                                                            .DmSansFont
-                                                                            .copyWith(
-                                                                            color: ColorConstant
-                                                                                .primaryWhite,
-                                                                            letterSpacing:
-                                                                            0.55,
-                                                                            fontWeight:
-                                                                            FontWeight
-                                                                                .w500,
-                                                                            fontSize:
-                                                                            getFontSize(
-                                                                                22))),
-                                                                  ),
-                                                                ],
+                                                                              20))),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        SizedBox(
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  70),
+                                                        ),
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text('Expiry Date',
+                                                                style: AppStyle.DmSansFont.copyWith(
+                                                                    color: ColorConstant
+                                                                        .primaryWhite,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontSize:
+                                                                        getFontSize(
+                                                                            14))),
+                                                            Obx(
+                                                              () => Text(
+                                                                  topAddCardConfirmScreenController
+                                                                      .cardDate
+                                                                      .value,
+                                                                  style: AppStyle.DmSansFont.copyWith(
+                                                                      color: ColorConstant
+                                                                          .primaryWhite,
+                                                                      letterSpacing:
+                                                                          0.55,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                              20))),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(20),
+                                  ),
+                                  Padding(
+                                    padding: EdgeInsets.only(
+                                        right: getHorizontalSize(20)),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            FocusManager.instance.primaryFocus
+                                                ?.unfocus();
+                                            if (topAddCardConfirmScreenController
+                                                    .readOnly.value ==
+                                                true) {
+                                              topAddCardConfirmScreenController
+                                                  .readOnly.value = false;
+                                            } else {
+                                              topAddCardConfirmScreenController
+                                                  .readOnly.value = true;
+                                            }
+                                          },
+                                          child: Obx(
+                                            () => Container(
+                                              height: getHorizontalSize(40),
+                                              decoration: BoxDecoration(
+                                                color: ColorConstant
+                                                    .primaryLightGreen,
+                                                borderRadius:
+                                                    BorderRadius.circular(12),
+                                              ),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left: getHorizontalSize(10),
+                                                    right:
+                                                        getHorizontalSize(10)),
+                                                child:
+                                                    topAddCardConfirmScreenController
+                                                            .readOnly.value
+                                                        ? Row(
+                                                            children: [
+                                                              Icon(
+                                                                Icons.edit,
+                                                                size: 14,
+                                                                color: Colors
+                                                                    .white,
                                                               ),
                                                               SizedBox(
                                                                 width:
-                                                                getHorizontalSize(70),
+                                                                    getHorizontalSize(
+                                                                        6),
                                                               ),
-                                                              Column(
-                                                                crossAxisAlignment:
-                                                                CrossAxisAlignment
-                                                                    .center,
-                                                                children: [
-                                                                  Text('Expiry Date',
-                                                                      style: AppStyle
-                                                                          .DmSansFont
-                                                                          .copyWith(
-                                                                          color: ColorConstant
-                                                                              .primaryWhite,
-                                                                          fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                          fontSize:
-                                                                          getFontSize(
-                                                                              14))),
-                                                                  Obx(
-                                                                      ()=> Text(topAddCardConfirmScreenController
-                                                                        .cardDate.value,
-                                                                        style: AppStyle
-                                                                            .DmSansFont
-                                                                            .copyWith(
-                                                                            color: ColorConstant
-                                                                                .primaryWhite,
-                                                                            letterSpacing:
-                                                                            0.55,
-                                                                            fontWeight:
-                                                                            FontWeight
-                                                                                .w500,
-                                                                            fontSize:
-                                                                            getFontSize(
-                                                                                22))),
-                                                                  ),
-                                                                ],
+                                                              Text(
+                                                                "Edit",
+                                                                style: AppStyle.textStyleDMSANS.copyWith(
+                                                                    color: ColorConstant
+                                                                        .primaryWhite,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontSize:
+                                                                        getFontSize(
+                                                                            18)),
                                                               ),
                                                             ],
+                                                          )
+                                                        : Icon(
+                                                            Icons.close,
+                                                            size: 20,
+                                                            color: Colors.white,
                                                           ),
-                                                        ],
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ),
-
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        SizedBox(
-                                          height: getVerticalSize(20),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.only(
-                                              right: getHorizontalSize(20)),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.end,
-                                            children: [
-                                              InkWell(
-                                                onTap: () {
-                                                  FocusManager.instance.primaryFocus
-                                                      ?.unfocus();
-                                                  if (topAddCardConfirmScreenController
-                                                          .readOnly.value ==
-                                                      true) {
-                                                    topAddCardConfirmScreenController
-                                                        .readOnly.value = false;
-                                                  } else {
-                                                    topAddCardConfirmScreenController
-                                                        .readOnly.value = true;
-                                                  }
-                                                },
-                                                child: Obx(
-                                                  () => Container(
-                                                    height: getHorizontalSize(40),
-                                                    decoration: BoxDecoration(
-                                                      color: ColorConstant
-                                                          .primaryLightGreen,
-                                                      borderRadius:
-                                                          BorderRadius.circular(12),
-                                                    ),
-                                                    child: Padding(
-                                                      padding: EdgeInsets.only(
-                                                          left: getHorizontalSize(10),
-                                                          right:
-                                                              getHorizontalSize(10)),
-                                                      child:
-                                                          topAddCardConfirmScreenController
-                                                                  .readOnly.value
-                                                              ? Row(
-                                                                  children: [
-                                                                    Icon(
-                                                                      Icons.edit,
-                                                                      size: 14,
-                                                                      color: Colors
-                                                                          .white,
-                                                                    ),
-                                                                    SizedBox(
-                                                                      width:
-                                                                          getHorizontalSize(
-                                                                              6),
-                                                                    ),
-                                                                    Text(
-                                                                      "Edit",
-                                                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                                                          color: ColorConstant
-                                                                              .primaryWhite,
-                                                                          fontWeight:
-                                                                              FontWeight
-                                                                                  .w500,
-                                                                          fontSize:
-                                                                              getFontSize(
-                                                                                  18)),
-                                                                    ),
-                                                                  ],
-                                                                )
-                                                              : Icon(
-                                                                  Icons.close,
-                                                                  size: 20,
-                                                                  color: Colors.white,
-                                                                ),
-                                                    ),
-                                                  ),
-                                                ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                        Obx(
-                                          () => Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal: getHorizontalSize(20)),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                AppTextField(
-                                                  fontSize: 18,
-                                                  controller:
-                                                      topAddCardConfirmScreenController
-                                                          .nameController,
-                                                  readOnly:
-                                                      topAddCardConfirmScreenController
-                                                          .readOnly.value,
-                                                  onChanged: (value) => {
-                                                    topAddCardConfirmScreenController.cardName.value=value
-                                                  },
-                                                  keyBordType: TextInputType.text,
-                                                  hintText: 'Cardholder Name',
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(20),
-                                                ),
-                                                AppTextField(
-                                                  fontSize: 18,
-                                                  controller:
-                                                      topAddCardConfirmScreenController
-                                                          .cardNumberController,
-                                                  inputFormatters: [
-                                                    CardFormatter(sample:'0000 0000 0000 0000',separator:' '),
-                                                  ],
-                                                  keyBordType: TextInputType.number,
-                                                  readOnly:
-                                                      topAddCardConfirmScreenController
-                                                          .readOnly.value,
-                                                  onChanged: (value) => {
-                                                    topAddCardConfirmScreenController.cardNumber.value=value
-                                                  },
-                                                  hintText: 'Card Number',
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(20),
-                                                ),
-                                                Row(
-                                                  children: [
-                                                    Expanded(
-                                                      child: AppTextField(
-                                                        fontSize: 18,
-                                                        controller:
-                                                            topAddCardConfirmScreenController
-                                                                .expDateController,
-                                                        inputFormatters: [
-                                                          CardFormatter(sample:'00/00',separator:'/')
-                                                        ],
-                                                        keyBordType: TextInputType.datetime,
-                                                        readOnly:
-                                                            topAddCardConfirmScreenController
-                                                                .readOnly.value,
-                                                        onChanged: (value) => {
-                                                          topAddCardConfirmScreenController.cardDate.value=value
-                                                        },
-                                                        hintText: 'Expiry Date',
-                                                      ),
-                                                    ),
-                                                    SizedBox(
-                                                      width: getHorizontalSize(10),
-                                                    ),
-                                                    Expanded(
-                                                      child: AppTextField(
-                                                        fontSize: 18,
-                                                        controller:
-                                                            topAddCardConfirmScreenController
-                                                                .cvvController,
-                                                        keyBordType: TextInputType.number,
-                                                        inputFormatters: [
-                                                          LengthLimitingTextInputFormatter(3),
-                                                        ],
-                                                        readOnly:
-                                                            topAddCardConfirmScreenController
-                                                                .readOnly.value,
-                                                        hintText: '3-digit CVV',
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(60),
-                                                ),
-                                                AppElevatedButton(
-                                                    buttonName: 'Confirm',
-                                                    textColor:
-                                                        ColorConstant.primaryWhite,
-                                                    onPressed: () {
-                                                      topAddCardConfirmScreenController.onClickOfAddCardButton(context);
-                                                     /* Get.toNamed(
-                                                          AppRoutes.cardLoaderScreen);*/
-                                                      // Get.toNamed(AppRoutes.topAddCardConfirmScreen);
-                                                      // Get.to(
-                                                      //   LoaderScreen("",AppRoutes.creatPasswordScreen),
-                                                      //   transition: Transition.rightToLeft,
-                                                      //   duration: Duration(milliseconds: 400),
-                                                      // );
-                                                    }),
-                                              ],
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
+                                  ),
+                                  Obx(
+                                    () => Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: getHorizontalSize(20)),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          AppTextField(
+                                            fontSize: 18,
+                                            controller:
+                                                topAddCardConfirmScreenController
+                                                    .nameController,
+                                            readOnly:
+                                                topAddCardConfirmScreenController
+                                                    .readOnly.value,
+                                            onChanged: (value) => {
+                                              topAddCardConfirmScreenController
+                                                  .cardName.value = value
+                                            },
+                                            keyBordType: TextInputType.text,
+                                            hintText: 'Cardholder Name',
+                                          ),
+                                          SizedBox(
+                                            height: getVerticalSize(20),
+                                          ),
+                                          AppTextField(
+                                            fontSize: 18,
+                                            controller:
+                                                topAddCardConfirmScreenController
+                                                    .cardNumberController,
+                                            inputFormatters: [
+                                              CardFormatter(
+                                                  sample: '0000 0000 0000 0000',
+                                                  separator: ' '),
+                                            ],
+                                            keyBordType: TextInputType.number,
+                                            readOnly:
+                                                topAddCardConfirmScreenController
+                                                    .readOnly.value,
+                                            onChanged: (value) => {
+                                              topAddCardConfirmScreenController
+                                                  .cardNumber.value = value
+                                            },
+                                            hintText: 'Card Number',
+                                          ),
+                                          SizedBox(
+                                            height: getVerticalSize(20),
+                                          ),
+                                          Row(
+                                            children: [
+                                              Expanded(
+                                                child: AppTextField(
+                                                  fontSize: 18,
+                                                  controller:
+                                                      topAddCardConfirmScreenController
+                                                          .expDateController,
+                                                  inputFormatters: [
+                                                    CardFormatter(
+                                                        sample: '00/00',
+                                                        separator: '/')
+                                                  ],
+                                                  keyBordType:
+                                                      TextInputType.datetime,
+                                                  readOnly:
+                                                      topAddCardConfirmScreenController
+                                                          .readOnly.value,
+                                                  onChanged: (value) => {
+                                                    topAddCardConfirmScreenController
+                                                        .cardDate.value = value
+                                                  },
+                                                  hintText: 'Expiry Date',
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: getHorizontalSize(10),
+                                              ),
+                                              Expanded(
+                                                child: AppTextField(
+                                                  fontSize: 18,
+                                                  controller:
+                                                      topAddCardConfirmScreenController
+                                                          .cvvController,
+                                                  keyBordType:
+                                                      TextInputType.number,
+                                                  inputFormatters: [
+                                                    LengthLimitingTextInputFormatter(
+                                                        3),
+                                                  ],
+                                                  readOnly:
+                                                      topAddCardConfirmScreenController
+                                                          .readOnly.value,
+                                                  hintText: '3-digit CVV',
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: getVerticalSize(60),
+                                          ),
+                                          AppElevatedButton(
+                                              buttonName: 'Confirm',
+                                              textColor:
+                                                  ColorConstant.primaryWhite,
+                                              onPressed: () {
+                                                topAddCardConfirmScreenController
+                                                    .onClickOfAddCardButton(
+                                                        context);
+                                                /* Get.toNamed(
+                                                          AppRoutes.cardLoaderScreen);*/
+                                                // Get.toNamed(AppRoutes.topAddCardConfirmScreen);
+                                                // Get.to(
+                                                //   LoaderScreen("",AppRoutes.creatPasswordScreen),
+                                                //   transition: Transition.rightToLeft,
+                                                //   duration: Duration(milliseconds: 400),
+                                                // );
+                                              }),
+                                        ],
+                                      ),
                                     ),
+                                  ),
+                                ],
+                              ),
+                            ),
                           )
                         ],
                       ),
@@ -450,6 +464,7 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                   ],
                 ))));
   }
+
   String checkCardImage(String number) {
     var type = detectCCType(number);
 
@@ -462,7 +477,7 @@ class TopEditCardConfirmScreen extends StatelessWidget {
         return "asset/icons/master_card_back.png";
         break;
       default:
-    return "";
+        return "";
         break;
     }
   }

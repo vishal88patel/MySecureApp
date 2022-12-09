@@ -7,9 +7,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:my_secure_app/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
+import 'package:secureapp/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
+import 'package:secureapp/routes/app_routes.dart';
+import 'package:secureapp/utils/HelperFiles/ui_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 import '../../App Configurations/color_constants.dart';

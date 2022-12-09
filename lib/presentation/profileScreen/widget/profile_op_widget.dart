@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/theme/app_style.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:secureapp/App%20Configurations/color_constants.dart';
+import 'package:secureapp/theme/app_style.dart';
+import 'package:secureapp/utils/HelperFiles/math_utils.dart';
 
 class ProfileOptionWidget extends StatelessWidget {
   final void Function() onTap;

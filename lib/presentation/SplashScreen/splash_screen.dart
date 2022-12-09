@@ -1,7 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:my_secure_app/App%20Configurations/image_constants.dart';
+import 'package:secureapp/App%20Configurations/image_constants.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';

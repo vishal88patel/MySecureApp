@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
+import 'package:secureapp/routes/app_routes.dart';
 
+import 'App Configurations/color_constants.dart';
 import 'initial_bindings.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(

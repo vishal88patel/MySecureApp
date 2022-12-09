@@ -2,10 +2,10 @@
 // import 'package:flutter/services.dart';
 // import 'package:flutter_svg/svg.dart';
 // import 'package:get/get.dart';
-// import 'package:my_secure_app/theme/app_style.dart';
-// import 'package:my_secure_app/utils/ConstantsFiles/string_constants.dart';
-// import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
-// import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
+// import 'package:secureapp/theme/app_style.dart';
+// import 'package:secureapp/utils/ConstantsFiles/string_constants.dart';
+// import 'package:secureapp/utils/HelperFiles/math_utils.dart';
+// import 'package:secureapp/utils/HelperFiles/ui_utils.dart';
 //
 // import '../../App Configurations/color_constants.dart';
 // import 'controller/cash_out_amount_num_pad_screen_controller.dart';

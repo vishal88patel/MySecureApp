@@ -4,12 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:my_secure_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
-import 'package:my_secure_app/presentation/EnterPersonalDetails/nam_pad.dart';
-import 'package:my_secure_app/theme/app_style.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:secureapp/App%20Configurations/color_constants.dart';
+import 'package:secureapp/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secureapp/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
+import 'package:secureapp/presentation/EnterPersonalDetails/nam_pad.dart';
+import 'package:secureapp/theme/app_style.dart';
+import 'package:secureapp/utils/HelperFiles/math_utils.dart';
 
 class EnterPersonalDetailScreen extends StatelessWidget {
   var enterPersonalDetailController = Get.find<EnterBirthDateController>();

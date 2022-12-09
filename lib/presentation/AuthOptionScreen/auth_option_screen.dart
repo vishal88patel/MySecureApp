@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
+import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import 'controller/auth_option_screen_controller.dart';

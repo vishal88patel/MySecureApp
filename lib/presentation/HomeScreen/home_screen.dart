@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
-import 'package:my_secure_app/presentation/HomeScreen/widget/payment_list_widget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
+import 'package:secureapp/presentation/HomeScreen/controller/home_screen_controller.dart';
+import 'package:secureapp/presentation/HomeScreen/widget/payment_list_widget.dart';
+import 'package:secureapp/routes/app_routes.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
