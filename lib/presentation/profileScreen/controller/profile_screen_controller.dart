@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:my_secure_app/presentation/LoginScreen/models/login_response_model.dart';
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
@@ -15,8 +16,18 @@ import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 
 class ProfileScreenController extends GetxController {
+  LoginResponseModel? loginResponseModel=LoginResponseModel();
+  var homePageHeadeName="".obs;
+  var profilePicture="".obs;
 
 
+  @override
+  void onInit() {
+    getStoredData();
+
+
+    super.onInit();
+  }
   @override
   void onReady() {
     super.onReady();
@@ -137,6 +148,13 @@ class ProfileScreenController extends GetxController {
   Future<FormData> getLogOutBody() async {
     final form = FormData({});
     return form;
+  }
+
+  Future<void> getStoredData() async {
+    loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+    homePageHeadeName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
+    profilePicture.value=loginResponseModel!.data!.profilePhotoPath.toString();
+
   }
 
 }

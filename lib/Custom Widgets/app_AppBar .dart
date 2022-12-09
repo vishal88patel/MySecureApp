@@ -9,6 +9,8 @@ class AppAppBar extends StatelessWidget {
   final String title;
   final String icon1;
   final String icon2;
+  final double? top;
+  final double? bottom;
   final Color? titleColor;
   final void Function() onPressedIcon1;
   final void Function() onPressedIcon2;
@@ -17,14 +19,14 @@ class AppAppBar extends StatelessWidget {
   const AppAppBar({Key? key,
     required this.title,
     required this.icon1, required this.icon2, required this.onPressedIcon1,
-    required this.onPressedIcon2,  this.titleColor}) : super(key: key);
+    required this.onPressedIcon2,  this.titleColor, this.top, this.bottom}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         SizedBox(
-          height: getVerticalSize(26),
+          height: getVerticalSize(top??26),
         ),
         Padding(
           padding: EdgeInsets.only(left: getHorizontalSize(22),right: getHorizontalSize(22)),
@@ -58,7 +60,7 @@ class AppAppBar extends StatelessWidget {
           ),
         ),
         SizedBox(
-          height: getVerticalSize(28),
+          height: getVerticalSize(bottom??28),
         ),
       ],
     );

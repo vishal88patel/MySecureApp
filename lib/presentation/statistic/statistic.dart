@@ -53,9 +53,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(
-                  height: getVerticalSize(16),
-                ),
+
                 AppAppBar(
                   title: "Statistic",
                   icon1: "asset/icons/Back.svg",
