@@ -4,7 +4,8 @@ import 'package:my_secure_app/theme/app_style.dart';
 import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
 
 class SelectModeWidget extends StatelessWidget {
-  final String icon;
+  final String? icon;
+  final bool? isIcon;
   final String title;
   final void Function() onTap;
   final Color? color;
@@ -13,11 +14,15 @@ class SelectModeWidget extends StatelessWidget {
   final double? iconW;
   final FontWeight? fontWeight;
   const SelectModeWidget({Key? key,
-    required this.icon,
+     this.icon,
     required this.title,
     required this.onTap,
      this.color,
-    this.verticalPadding, this.iconV, this.iconW,  this.fontWeight}) : super(key: key);
+    this.verticalPadding,
+    this.iconV,
+    this.iconW,
+    this.fontWeight,
+    this.isIcon=true}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +43,14 @@ class SelectModeWidget extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Image.asset(icon,
-                      height: getVerticalSize(iconV??35),width: getHorizontalSize(iconW??35),),
-                    SizedBox(width: getHorizontalSize(15),),
+                    if(isIcon!)
+                    Row(
+                      children: [
+                        Image.asset(icon??'',
+                          height: getVerticalSize(iconV??35),width: getHorizontalSize(iconW??35),),
+                        SizedBox(width: getHorizontalSize(15),),
+                      ],
+                    ),
                     Text(title,
                       style: AppStyle.textStyleDMSANS.copyWith(
                           color: ColorConstant.naturalBlack,
