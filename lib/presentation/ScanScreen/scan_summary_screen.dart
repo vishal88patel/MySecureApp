@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -16,7 +17,14 @@ import '../../utils/HelperFiles/ui_utils.dart';
 import 'controller/scan_screen_controller.dart';
 
 class ScanSummaryScreen extends StatelessWidget {
-   var scanController = Get.find<ScanScreenController>();
+  var scanController = Get.find<ScanScreenController>();
+
+  var items = [
+    'Cash Card',
+    'Bank',
+    'Credit Card',
+    'Wallet',
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,143 +47,155 @@ class ScanSummaryScreen extends StatelessWidget {
                   },
                   onPressedIcon2: () {},
                 ),
-                SizedBox(height: getVerticalSize(40),),
+                SizedBox(
+                  height: getVerticalSize(40),
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: ColorConstant.primaryWhite,
-                    borderRadius: BorderRadius.all(Radius.circular(24)),
-                  ),
-                  child: Obx(
-                        () => ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: Image.network(
-                        scanController.image.value,
-                        height: getVerticalSize(80),
-                        width: getVerticalSize(80),
-                        loadingBuilder: (BuildContext context,
-                            Widget child,
-                            ImageChunkEvent? loadingProgress) {
-                          if (loadingProgress == null) return child;
-                          return Center(
-                            child: CircularProgressIndicator(
-                              value: loadingProgress
-                                  .expectedTotalBytes !=
-                                  null
-                                  ? loadingProgress
-                                  .cumulativeBytesLoaded /
-                                  loadingProgress
-                                      .expectedTotalBytes!
-                                  : null,
-                            ),
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(height: getVerticalSize(20),),
-                Obx(()=>
-                   Text(
-                    scanController.name.value,
-                    style: AppStyle.textStyleDMSANS.copyWith(
+                    Container(
+                      decoration: BoxDecoration(
                         color: ColorConstant.primaryWhite,
-                        fontWeight: FontWeight.w700,
-                        fontSize: getFontSize(28)),
-                  ),
-                ),
-                SizedBox(height: getVerticalSize(12),),
-                Obx(()=>
-                    Text(
-                    scanController.date.value,
-                    style: AppStyle.textStyleDMSANS.copyWith(
-                        color: ColorConstant.brandYellow,
-                        fontWeight: FontWeight.w500,
-                        fontSize: getFontSize(18)),
-                  ),
-                ),
-                SizedBox(height: getVerticalSize(44),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      "\$",
-                      style: AppStyle.textStyleDMSANS.copyWith(
-                          color: ColorConstant.brandYellow,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getFontSize(40)),
-                    ),
-                    SizedBox(width: getHorizontalSize(2)),
-                    SizedBox(
-                      width: getHorizontalSize(250),
-                      child: TextFormField(
-                        controller: scanController.amountController,
-                        readOnly:false,
-                        keyboardType: TextInputType.number,
-                        style: TextStyle(color: ColorConstant.primaryWhite,fontSize: getFontSize(40)),
-                        onChanged: (value){
-
-                        },
-                        decoration: InputDecoration(
-                          hintText: "Enter Amount",
-                          hintStyle: AppStyle.DmSansFont
-                              .copyWith(
-                              color: ColorConstant.grey8F,
-                              fontWeight: FontWeight.w400,fontSize: getFontSize(40)),
-                          enabledBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
-                          ),
-                          focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
+                        borderRadius: BorderRadius.all(Radius.circular(24)),
+                      ),
+                      child: Obx(
+                        () => ClipRRect(
+                          borderRadius: BorderRadius.circular(16),
+                          child: Image.network(
+                            scanController.image.value,
+                            height: getVerticalSize(80),
+                            width: getVerticalSize(80),
+                            loadingBuilder: (BuildContext context, Widget child,
+                                ImageChunkEvent? loadingProgress) {
+                              if (loadingProgress == null) return child;
+                              return Center(
+                                child: CircularProgressIndicator(
+                                  value: loadingProgress.expectedTotalBytes !=
+                                          null
+                                      ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                      : null,
+                                ),
+                              );
+                            },
                           ),
                         ),
-                        cursorColor: ColorConstant.grey8F,
                       ),
                     ),
-                  ],
-                ),
-                SizedBox(height: getVerticalSize(24),),
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: getHorizontalSize(20),
-                      right: getHorizontalSize(20)),
-                  child: Container(
-                    height: getVerticalSize(80),
-                    decoration: BoxDecoration(
-                      color: ColorConstant.thirdDarkGreen,
-                      borderRadius: BorderRadius.all(Radius.circular(16)),
+                    SizedBox(
+                      height: getVerticalSize(20),
                     ),
-                    child: Padding(
+                    Obx(
+                      () => Text(
+                        scanController.name.value,
+                        style: AppStyle.textStyleDMSANS.copyWith(
+                            color: ColorConstant.primaryWhite,
+                            fontWeight: FontWeight.w700,
+                            fontSize: getFontSize(28)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(12),
+                    ),
+                    Obx(
+                      () => Text(
+                        scanController.date.value,
+                        style: AppStyle.textStyleDMSANS.copyWith(
+                            color: ColorConstant.brandYellow,
+                            fontWeight: FontWeight.w500,
+                            fontSize: getFontSize(18)),
+                      ),
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(44),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "\$",
+                          style: AppStyle.textStyleDMSANS.copyWith(
+                              color: ColorConstant.brandYellow,
+                              fontWeight: FontWeight.w500,
+                              fontSize: getFontSize(40)),
+                        ),
+                        SizedBox(width: getHorizontalSize(2)),
+                        SizedBox(
+                          width: getHorizontalSize(250),
+                          child: TextFormField(
+                            controller: scanController.amountController,
+                            readOnly: false,
+                            keyboardType: TextInputType.number,
+                            style: TextStyle(
+                                color: ColorConstant.primaryWhite,
+                                fontSize: getFontSize(40)),
+                            onChanged: (value) {},
+                            decoration: InputDecoration(
+                              hintText: "Enter Amount",
+                              hintStyle: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.grey8F,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(40)),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorConstant.grey8F.withOpacity(0.5),
+                                    width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorConstant.grey8F.withOpacity(0.5),
+                                    width: 1),
+                              ),
+                            ),
+                            cursorColor: ColorConstant.grey8F,
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: getVerticalSize(24),
+                    ),
+                    Padding(
                       padding: EdgeInsets.only(
-                          left: getHorizontalSize(25),
-                          right: getHorizontalSize(25)),
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            SvgPicture.asset(
-                              "asset/icons/ic_i_icon.svg",
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
-                              child: Text("Payment fee \$2 has been applied",
-                                  style: AppStyle.textStyleDMSANS
-                                      .copyWith(
-                                      color: ColorConstant
-                                          .primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18))),
-                            ),
-                          ]),
+                          left: getHorizontalSize(20),
+                          right: getHorizontalSize(20)),
+                      child: Container(
+                        height: getVerticalSize(80),
+                        decoration: BoxDecoration(
+                          color: ColorConstant.thirdDarkGreen,
+                          borderRadius: BorderRadius.all(Radius.circular(16)),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.only(
+                              left: getHorizontalSize(25),
+                              right: getHorizontalSize(25)),
+                          child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                SvgPicture.asset(
+                                  "asset/icons/ic_i_icon.svg",
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 8.0),
+                                  child: Text(
+                                      "Payment fee \$2 has been applied",
+                                      style: AppStyle.textStyleDMSANS.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(18))),
+                                ),
+                              ]),
+                        ),
+                      ),
                     ),
-                  ),
-                ),
                   ],
                 ),
                 Spacer(),
                 Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 0, vertical: 0),
                   color: ColorConstant.primaryWhite,
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.only(
@@ -194,7 +214,7 @@ class ScanSummaryScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
-                            height: MediaQuery.of(context).size.height / 16,
+                            height: MediaQuery.of(context).size.height / 18,
                           ),
                           Text(
                             "Choose Method",
@@ -207,89 +227,19 @@ class ScanSummaryScreen extends StatelessWidget {
                             height: getVerticalSize(20),
                           ),
                           Container(
-                            height: getVerticalSize(80),
                             decoration: BoxDecoration(
-                              color: ColorConstant.naturalGrey2,
+                              color: ColorConstant.thirdDarkGreen,
                               borderRadius: BorderRadius.all(Radius.circular(16)),
                             ),
                             child: Padding(
-                              padding: EdgeInsets.only(
-                                  left: getHorizontalSize(20),
-                                  right: getHorizontalSize(30)),
-                              child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: ColorConstant.primaryWhite,
-                                        borderRadius:
-                                            BorderRadius.all(Radius.circular(6)),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(6.0),
-                                        child: SvgPicture.asset(
-                                          "asset/icons/ic_app_logo.svg",
-                                          width: getHorizontalSize(40),
-                                        ),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(left: 14.0),
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Container(
-                                            height:50,
-
-                                            child: Obx(()=>
-                                               DropdownButtonHideUnderline(
-                                                child: DropdownButton2(
-                                                  isExpanded: true,
-                                                  isDense: true,
-                                                  hint: Text(
-                                                    'Select Method',
-                                                    style: TextStyle(
-                                                      fontSize: 14,
-                                                      color: Theme
-                                                          .of(context)
-                                                          .hintColor,
-                                                    ),
-                                                  ),
-                                                  items: scanController.items.value
-                                                      .map((item) =>
-                                                      DropdownMenuItem<String>(
-                                                        value: item,
-                                                        child: Text(
-                                                          item,
-                                                          style: const TextStyle(
-                                                            fontSize: 18,
-                                                          ),
-                                                        ),
-                                                      ))
-                                                      .toList(),
-                                                  value: scanController.selectedMethod.value,
-                                                  onChanged: (value) {
-                                                      scanController.setSelected(value.toString());
-
-                                                  },
-                                                  buttonHeight: 40,
-                                                  buttonWidth: size.width/2,
-                                                  itemHeight: 40,
-                                                  dropdownMaxHeight: 350,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    SvgPicture.asset(
-                                      "asset/icons/ic_down_arrow.svg",
-                                    ),
-                                  ]),
+                              padding: EdgeInsets.all(4.0),
+                              child: Container(
+                                child: CustomDropdown(
+                                  hintText: 'Select Payment Method',
+                                  items: items,
+                                  controller: scanController.jobRoleCtrl,
+                                ),
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -301,7 +251,7 @@ class ScanSummaryScreen extends StatelessWidget {
                             buttonColor: ColorConstant.primaryLightGreen,
                             radius: 16,
                             onPressed: () {
-                              Get.to(ScanPasswordScreen());
+scanController.processToPay();
                             },
                           ),
                           SizedBox(

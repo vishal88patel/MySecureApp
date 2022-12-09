@@ -9,6 +9,7 @@ import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../Custom Widgets/appbar_image_1.dart';
 import '../../Custom Widgets/common_image_view.dart';
+import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import 'controller/scan_screen_controller.dart';
 
@@ -110,9 +111,9 @@ class ScanSuccessScreen extends StatelessWidget {
                                 child: Padding(
                                   padding:
                                       EdgeInsets.only(left: 28, right: 28, top: 10),
-                                  child: Flexible(
-                                    child: Text(
-                                      "Your payment for Starbucks Coffee has been successfully done",
+                                  child: Obx(()=>
+                                     Text(
+                                      "Your payment to "+scanController.name.value+" has been succesfully done",
                                       textAlign: TextAlign.center,
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.greyTextColor,
@@ -144,7 +145,7 @@ class ScanSuccessScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       left: 28, right: 28, top: 10, bottom: 5),
                                   child: Text(
-                                    "\$132.00",
+                                    "\$"+scanController.amountController.text,
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.DmSansFont.copyWith(
@@ -222,8 +223,29 @@ class ScanSuccessScreen extends StatelessWidget {
                                             children: [
                                               Align(
                                                 alignment: Alignment.center,
-                                                child: SvgPicture.asset(
-                                                    "asset/icons/ic_starbucks.svg"),
+                                                child:  Obx(
+                                                      () => ClipRRect(
+                                                    borderRadius: BorderRadius.circular(16),
+                                                    child: Image.network(
+                                                      scanController.image.value,
+                                                      height: getVerticalSize(80),
+                                                      width: getVerticalSize(80),
+                                                      loadingBuilder: (BuildContext context, Widget child,
+                                                          ImageChunkEvent? loadingProgress) {
+                                                        if (loadingProgress == null) return child;
+                                                        return Center(
+                                                          child: CircularProgressIndicator(
+                                                            value: loadingProgress.expectedTotalBytes !=
+                                                                null
+                                                                ? loadingProgress.cumulativeBytesLoaded /
+                                                                loadingProgress.expectedTotalBytes!
+                                                                : null,
+                                                          ),
+                                                        );
+                                                      },
+                                                    ),
+                                                  ),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -247,7 +269,7 @@ class ScanSuccessScreen extends StatelessWidget {
                                                 right: 10,
                                               ),
                                               child: Text(
-                                                "Starbucks Coffee",
+                                                scanController.name.value,
                                                 overflow: TextOverflow.ellipsis,
                                                 textAlign: TextAlign.left,
                                                 style: AppStyle.DmSansFont.copyWith(
@@ -270,7 +292,7 @@ class ScanSuccessScreen extends StatelessWidget {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    "Dec 2, 2020 ",
+                                                    scanController.date.value,
                                                     overflow: TextOverflow.ellipsis,
                                                     textAlign: TextAlign.left,
                                                     style: AppStyle.DmSansFont.copyWith(
@@ -278,25 +300,6 @@ class ScanSuccessScreen extends StatelessWidget {
                                                         fontSize: getFontSize(14),
                                                         fontWeight: FontWeight.bold),
                                                   ),
-                                                  Text(
-                                                    ".",
-                                                    overflow: TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle.DmSansFont.copyWith(
-                                                        color: ColorConstant.greyTextColor,
-                                                        fontSize: getFontSize(14),
-                                                        fontWeight: FontWeight.bold),
-                                                  ),
-                                                  Text(
-                                                    " 3:02 PM",
-                                                    overflow: TextOverflow.ellipsis,
-                                                    textAlign: TextAlign.left,
-                                                    style: AppStyle.DmSansFont.copyWith(
-                                                        color: ColorConstant.greyTextColor,
-                                                        fontSize: getFontSize(14),
-                                                        fontWeight: FontWeight.bold),
-                                                  ),
-
                                                 ],
                                               ),
                                             ),
@@ -314,7 +317,10 @@ class ScanSuccessScreen extends StatelessWidget {
                                   textColor: Colors.white,
                                   buttonColor: ColorConstant.primaryLightGreen,
                                   radius: 16,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                        arguments: {"bottomTabCount": 0});
+                                  },
                                 ),
                               ),
                               Align(
@@ -325,14 +331,21 @@ class ScanSuccessScreen extends StatelessWidget {
                                     top: 25,
                                     right: 64,
                                   ),
-                                  child: Text(
-                                    "Pay again",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.DmSansFont.copyWith(
-                                        color: ColorConstant.primaryDarkGreen,
-                                        fontSize: getFontSize(14),
-                                        fontWeight: FontWeight.bold),
+                                  child: InkWell(
+                                    onTap: (){
+                                      scanController.cameraStart();
+                                      Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                          arguments: {"bottomTabCount": 0});
+                                    },
+                                    child: Text(
+                                      "Pay again",
+                                      overflow: TextOverflow.ellipsis,
+                                      textAlign: TextAlign.left,
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryDarkGreen,
+                                          fontSize: getFontSize(14),
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   ),
                                 ),
                               ),

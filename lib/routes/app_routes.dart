@@ -201,6 +201,7 @@ class AppRoutes {
   static String kycLoadingScreen = '/kyc_loading_screen';
   static String kycselfieLoadingScreen = '/kyc_selfie_loading_screen';
   static String kycSelectStepScreen = '/kyc_select_step_screen';
+  static String scanSuccessScreen = '/scan_success_screen';
 
 
 

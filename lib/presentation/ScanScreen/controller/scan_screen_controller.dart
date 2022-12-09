@@ -9,6 +9,8 @@ import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../HistoryScreen/Model/getUuidDetail.dart';
+import '../scan_password_screen.dart';
+import '../scan_success_screen.dart';
 
 
 
@@ -18,20 +20,13 @@ class ScanScreenController extends GetxController {
   var passIsObsecure = true.obs;
   QRViewController? controller;
   var uuidModel=GetUuidDetail().obs;
-  var items = [
-    'Item 1',
-    'Item 2',
-    'Item 3',
-    'Item 4',
-    'Item 5',
-  ].obs;
+  final jobRoleCtrl = TextEditingController();
   var uuid="".obs;
-  var selectedMethod="Item 1".obs;
   var date="".obs;
   var isPin=0.obs;
-  var email="ravibhai@gmail.com".obs;
-  var name="ravi bhai".obs;
-  var image="https://adminsecure.thriftyspends.com/images/avatars/1.png".obs;
+  var email="".obs;
+  var name="".obs;
+  var image="".obs;
   TextEditingController amountController = TextEditingController();
 
   @override
@@ -54,14 +49,33 @@ class ScanScreenController extends GetxController {
 
   @override
   void onClose() {
-    controller?.dispose();
+    controller?.stopCamera();
     super.onClose();
   }
+  void processToPay(){
+    if (amountController.text.isEmpty) {
+      UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please enter amount",
+      );
+    }
+    else if (jobRoleCtrl.text.isEmpty) {
+      UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please select method",
+      );
+    } else {
+      Get.to(ScanPasswordScreen());
+    }
+
+  }
+
   void onTapOfPassObsecure(bool val) {
     passIsObsecure.value = !val;
   }
 
   Future<void> callGetUuidApi() async {
+    UIUtils.showProgressDialog(isCancellable: false);
     ApiService()
         .callPostApi(
         body: await getUuidApiBody(),
@@ -71,14 +85,10 @@ class ScanScreenController extends GetxController {
       print(value);
       if (value['status']) {
         uuidModel.value = GetUuidDetail.fromJson(value);
-        print(uuidModel.value.data?.email);
-        print(uuidModel.value.data?.name);
-        print(uuidModel.value.data?.profilePhotoUrl);
-
-        /*email.value=uuidModel.value.data?.email;
-        name.value=uuidModel.value.data?.name;
-        image.value=uuidModel.value.data?.profilePhotoUrl;*/
-
+        email.value=uuidModel.value.data!.email!;
+        name.value=uuidModel.value.data!.name!;
+        image.value=uuidModel.value.data!.profilePhotoUrl!;
+        UIUtils.hideProgressDialog();
         Get.toNamed(AppRoutes.scanSummaryScreen);
       } else {
         UIUtils.showSnakBar(
@@ -95,7 +105,43 @@ class ScanScreenController extends GetxController {
     return form;
   }
 
-  void setSelected(String value){
-    selectedMethod.value = value;
+  void clickOnTransaction(){
+    if (passController.text.isEmpty) {
+      UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please enter password",
+      );
+    } else {
+      callTransactionApi();
+    }
   }
+
+  Future<void> callTransactionApi() async {
+    UIUtils.showProgressDialog(isCancellable: false);
+    ApiService()
+        .callPostApi(
+        body: await getTransactionApiBody(),
+        headerWithToken: true,
+        url: ApiEndPoints.TRANSACTION)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        UIUtils.hideProgressDialog();
+        Get.to(ScanSuccessScreen());
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<FormData> getTransactionApiBody() async {
+    final form = FormData({
+      "uuid": uuid.value.toString(),
+      "amount": amountController.text.toString(),
+      "pin": passController.text
+    });
+    return form;
+  }
+
 }

@@ -42,7 +42,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
                                       border: Border.all(color: ColorConstant.backBorder)),
                                   padding: EdgeInsets.all(10),
-                                  child: Icon(Icons.arrow_back_ios_new_outlined),
+                                  child: Icon(Icons.arrow_back_ios_new_outlined,size: getVerticalSize(18),),
                                 ),
                               ),
                               Text(
@@ -72,18 +72,12 @@ class ScanPasswordScreen extends StatelessWidget {
                           SizedBox(
                             height: getVerticalSize(54),
                           ),
-                          Text(
-                            "Password",
-                            style: AppStyle.DmSansFont.copyWith(
-                                color: ColorConstant.naturalGrey,
-                                fontWeight: FontWeight.w400,
-                                fontSize: getFontSize(20)),
-                          ),
                           Obx(
                                 () => AppTextField(
-                              hintText: 'Enter Password ',
+                              hintText: 'Password ',
                               controller:
                               scanController.passController,
+                              maxLength: 4,
                               isObsecure:
                               scanController.passIsObsecure.value,
                               suffixIcon: IconButton(
@@ -106,7 +100,7 @@ class ScanPasswordScreen extends StatelessWidget {
                             height: getVerticalSize(6),
                           ),
                           Text(
-                            "Must be at least 8 characters.",
+                            "Must be 4 characters.",
                             style: AppStyle.DmSansFont.copyWith(
                                 color: ColorConstant.naturalGrey,
                                 fontWeight: FontWeight.w400,
@@ -119,7 +113,8 @@ class ScanPasswordScreen extends StatelessWidget {
                             buttonColor: ColorConstant.primaryLightGreen,
                             radius: 16,
                             onPressed: () {
-                              Get.to(ScanSuccessScreen());
+                              scanController.callTransactionApi();
+
                             },
                           ),
                           SizedBox(

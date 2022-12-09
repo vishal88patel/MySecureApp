@@ -228,6 +228,7 @@ class _ScanScreenState extends State<ScanScreen> {
   }
   @override
   void dispose() {
+    counter=0;
     // controller?.dispose();
     super.dispose();
   }
@@ -336,12 +337,13 @@ class _ScanScreenState extends State<ScanScreen> {
       setState(() {
         result = scanData;
         scanController.qrCodeResult.value=scanData.code.toString();
-        print(scanData.code.toString());
-        if(scanController.qrCodeResult.value.isNotEmpty && counter==0){
-          counter=1;
+        print("UdId"+scanData.code.toString());
+        if(scanController.qrCodeResult.value.isNotEmpty){
+
           if(scanController.qrCodeResult.value!=null && scanController.qrCodeResult.value.isNotEmpty){
             //UIUtils.showSnakBar(headerText: "Success",bodyText: "Qr Code Scan Successfully");
             scanController.controller?.pauseCamera();
+            scanController.uuid.value=scanController.qrCodeResult.value;
              scanController.callGetUuidApi();
            // Get.to(ScanSummaryScreen());
           }else{
