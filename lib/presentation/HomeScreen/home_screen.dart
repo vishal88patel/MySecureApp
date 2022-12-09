@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/presentation/HomeScreen/controller/home_screen_controller.dart';
-import 'package:secureapp/presentation/HomeScreen/widget/payment_list_widget.dart';
-import 'package:secureapp/routes/app_routes.dart';
+import 'package:secure_cash_app/presentation/HomeScreen/controller/home_screen_controller.dart';
+import 'package:secure_cash_app/presentation/HomeScreen/widget/payment_list_widget.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Welcome to MySecureApp",
+                                "Welcome to Mysecure_cash_app",
                                 style: AppStyle.textStyleDMSANS.copyWith(
                                     color: ColorConstant.naturalGrey,
                                     fontWeight: FontWeight.w400,

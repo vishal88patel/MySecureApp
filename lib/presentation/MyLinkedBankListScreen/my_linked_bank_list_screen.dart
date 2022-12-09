@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/App%20Configurations/color_constants.dart';
-import 'package:secureapp/routes/app_routes.dart';
-import 'package:secureapp/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
+import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../theme/app_style.dart';
 import 'controller/my_linked_bank_list_screen_controller.dart';

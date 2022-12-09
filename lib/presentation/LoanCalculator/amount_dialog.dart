@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:secureapp/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 
 import '../../Custom Widgets/app_ElevatedButton .dart';
 

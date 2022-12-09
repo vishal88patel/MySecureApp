@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
-import 'package:secureapp/presentation/LoanCalculator/model/loan_calculation_response.dart';
+import 'package:secure_cash_app/presentation/LoanCalculator/model/loan_calculation_response.dart';
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';

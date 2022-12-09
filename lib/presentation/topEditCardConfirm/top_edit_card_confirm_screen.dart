@@ -2,11 +2,11 @@ import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/Custom%20Widgets/app_AppBar%20.dart';
-import 'package:secureapp/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:secureapp/Custom%20Widgets/app_textField.dart';
-import 'package:secureapp/routes/app_routes.dart';
-import 'package:secureapp/theme/app_style.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_AppBar%20.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_textField.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';

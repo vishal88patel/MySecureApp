@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/App%20Configurations/color_constants.dart';
-import 'package:secureapp/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';

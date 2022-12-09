@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/App%20Configurations/color_constants.dart';
-import 'package:secureapp/utils/HelperFiles/math_utils.dart';
-import 'package:secureapp/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 
 class LoaderScreen extends StatefulWidget {
   String appRoutes;

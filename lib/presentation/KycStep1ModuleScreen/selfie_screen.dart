@@ -5,10 +5,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:secureapp/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:secureapp/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
-import 'package:secureapp/routes/app_routes.dart';
-import 'package:secureapp/utils/HelperFiles/ui_utils.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
+import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../theme/app_style.dart';

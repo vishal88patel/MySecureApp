@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/routes/app_routes.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
 
 import 'App Configurations/color_constants.dart';
 import 'initial_bindings.dart';

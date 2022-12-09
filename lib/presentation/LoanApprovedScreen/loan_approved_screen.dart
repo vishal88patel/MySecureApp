@@ -4,9 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:secureapp/presentation/LoanApprovedScreen/controller/loan_approved_screen_controller.dart';
-import 'package:secureapp/theme/app_style.dart';
-import 'package:secureapp/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/presentation/LoanApprovedScreen/controller/loan_approved_screen_controller.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
+import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';

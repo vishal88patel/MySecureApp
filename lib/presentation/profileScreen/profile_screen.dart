@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/App%20Configurations/color_constants.dart';
-import 'package:secureapp/presentation/HomeScreen/controller/home_screen_controller.dart';
-import 'package:secureapp/presentation/profileScreen/widget/profile_op_widget.dart';
-import 'package:secureapp/routes/app_routes.dart';
-import 'package:secureapp/theme/app_style.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/presentation/HomeScreen/controller/home_screen_controller.dart';
+import 'package:secure_cash_app/presentation/profileScreen/widget/profile_op_widget.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../utils/HelperFiles/math_utils.dart';
 import '../DashBoardScreen/controller/dashboard_screen_controller.dart';

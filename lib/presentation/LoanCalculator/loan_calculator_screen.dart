@@ -2,11 +2,11 @@
 // import 'package:flutter/services.dart';
 // import 'package:flutter_vibrate/flutter_vibrate.dart';
 // import 'package:get/get.dart';
-// import 'package:secureapp/App%20Configurations/color_constants.dart';
-// import 'package:secureapp/Custom%20Widgets/app_ElevatedButton%20.dart';
-// import 'package:secureapp/presentation/LoanCalculator/select_loan_type_screen.dart';
-// import 'package:secureapp/theme/app_style.dart';
-// import 'package:secureapp/utils/HelperFiles/math_utils.dart';
+// import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+// import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+// import 'package:secure_cash_app/presentation/LoanCalculator/select_loan_type_screen.dart';
+// import 'package:secure_cash_app/theme/app_style.dart';
+// import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 // import 'package:syncfusion_flutter_gauges/gauges.dart';
 //
 // import '../../Custom Widgets/dash_widget.dart';
