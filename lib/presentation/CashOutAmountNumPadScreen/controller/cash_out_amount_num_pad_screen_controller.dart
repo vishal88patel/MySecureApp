@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/utils/ConstantsFiles/string_constants.dart';
-import 'package:secureapp/utils/HelperFiles/ui_utils.dart';
+import 'package:secure_cash_app/utils/ConstantsFiles/string_constants.dart';
+import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../../App Configurations/color_constants.dart';
 import '../../../routes/app_routes.dart';

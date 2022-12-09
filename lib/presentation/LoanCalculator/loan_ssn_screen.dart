@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:secureapp/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:secureapp/Custom%20Widgets/app_textField.dart';
-import 'package:secureapp/theme/app_style.dart';
-import 'package:secureapp/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_textField.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
+import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../EnterPersonalDetails/nam_pad.dart';

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:secureapp/App%20Configurations/color_constants.dart';
-import 'package:secureapp/theme/app_style.dart';
-import 'package:secureapp/utils/HelperFiles/math_utils.dart';
-import 'package:secureapp/theme/app_style.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
+import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 
 class CreditCardWidget extends StatelessWidget {

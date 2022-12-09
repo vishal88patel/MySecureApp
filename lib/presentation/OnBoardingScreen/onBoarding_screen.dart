@@ -1,8 +1,8 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:secureapp/presentation/OnBoardingScreen/onBoarding_content.dart';
-import 'package:secureapp/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/presentation/OnBoardingScreen/onBoarding_content.dart';
+import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
