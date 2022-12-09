@@ -4,8 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
+import 'package:secureapp/routes/app_routes.dart';
 
+import 'App Configurations/color_constants.dart';
 import 'initial_bindings.dart';
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
@@ -108,6 +109,19 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    Map<int, Color> color =
+    {
+      50: Color(0xFF4CD080),
+      100: Color(0xFF4CD080),
+      200: Color(0xFF4CD080),
+      300: Color(0xFF4CD080),
+      400: Color(0xFF4CD080),
+      500: Color(0xFF4CD080),
+      600: Color(0xFF4CD080),
+      700: Color(0xFF4CD080),
+      800: Color(0xFF4CD080),
+      900: Color(0xFF4CD080),
+    };
     return GetMaterialApp(
       defaultTransition: Transition.fadeIn,
       transitionDuration: Duration(milliseconds: 500),
@@ -115,6 +129,12 @@ class _MyAppState extends State<MyApp> {
       locale: Get.deviceLocale,
       //for setting localization strings
       title: 'My Secure App',
+      theme: ThemeData(
+          primarySwatch: MaterialColor(0xFF4CD080, color),
+          splashColor:  ColorConstant.primaryLightGreen,
+          highlightColor:  ColorConstant.primaryLightGreen,
+
+      ),
       initialBinding: InitialBindings(),
       initialRoute: AppRoutes.splashScreen,
       getPages: AppRoutes.pages,

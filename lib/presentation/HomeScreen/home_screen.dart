@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
-import 'package:my_secure_app/presentation/HomeScreen/widget/payment_list_widget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
+import 'package:secureapp/presentation/HomeScreen/controller/home_screen_controller.dart';
+import 'package:secureapp/presentation/HomeScreen/widget/payment_list_widget.dart';
+import 'package:secureapp/routes/app_routes.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
+import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import '../NotificationScreen/controller/notification_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
   var notificationController = Get.find<NotificationScreenController>();
+  var dashBoardController = Get.find<DashBoardScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +23,7 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: ColorConstant.backgroundColor,
         body: SafeArea(
           child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -137,13 +141,15 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          Text(
-                            "\$15,901",
-                            style: AppStyle.DmSansFont.copyWith(
-                                color: ColorConstant.naturalBlack,
-                                fontWeight: FontWeight.w700,
-                                fontSize: getFontSize(22)),
-                            overflow: TextOverflow.ellipsis,
+                          Obx(
+                            ()=> dashBoardController.UserBalance.value==""?Container():Text(
+                              "\$${dashBoardController.UserBalance.value}",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.naturalBlack,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: getFontSize(22)),
+                              overflow: TextOverflow.ellipsis,
+                            ),
                           ),
                         ],
                       ),
@@ -169,7 +175,9 @@ class HomeScreen extends StatelessWidget {
                                   width: getVerticalSize(28),
                                   fit: BoxFit.fill,
                                 ),
-                                SizedBox(height: getVerticalSize(10),),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
                                 Text(
                                   "Transfer",
                                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -192,7 +200,9 @@ class HomeScreen extends StatelessWidget {
                                   width: getVerticalSize(28),
                                   fit: BoxFit.fill,
                                 ),
-                                SizedBox(height: getVerticalSize(10),),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
                                 Text(
                                   "Top Up",
                                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -219,7 +229,9 @@ class HomeScreen extends StatelessWidget {
                                     height: getVerticalSize(28),
                                     width: getVerticalSize(28),
                                   ),
-                                  SizedBox(height: getVerticalSize(10),),
+                                  SizedBox(
+                                    height: getVerticalSize(10),
+                                  ),
                                   Text(
                                     "History",
                                     style: AppStyle.textStyleDMSANS.copyWith(
@@ -243,7 +255,9 @@ class HomeScreen extends StatelessWidget {
                                   width: getVerticalSize(22),
                                   fit: BoxFit.fill,
                                 ),
-                                SizedBox(height: getVerticalSize(10),),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
                                 Text(
                                   "Request \nMoney",
                                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -292,7 +306,7 @@ class HomeScreen extends StatelessWidget {
                               iconName: 'asset/icons/ic_link_card_home.png',
                               onTap: () {
                                 Get.toNamed(AppRoutes.topMyCardScreen);
-                               // Get.toNamed(AppRoutes.topAddCard1Screen);
+                                // Get.toNamed(AppRoutes.topAddCard1Screen);
                               }),
                         ],
                       ),
@@ -435,112 +449,62 @@ class HomeScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
-                  height: getVerticalSize(200),
-                  child: ListView(
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      SizedBox(
-                        width: getHorizontalSize(20),
-                      ),
-                      Stack(
-                        children: [
-                          Image.asset(
-                            'asset/icons/banner.png',
-                            width: getHorizontalSize(360),
-                          ),
-                          Positioned(
-                            top: getVerticalSize(20),
-                            left: getHorizontalSize(40),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "30% OFF",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(20)),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  "Black Friday deal",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(24)),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(50),
-                                ),
-                                Text(
-                                  "Get discount for every topup, \ntransfer and payment",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.greyBD,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(16)),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(
-                        width: getHorizontalSize(20),
-                      ),
-                      Stack(
-                        children: [
-                          Image.asset(
-                            'asset/icons/Card.png',
-                            width: getHorizontalSize(360),
-                          ),
-                          Positioned(
-                            top: getVerticalSize(20),
-                            left: getHorizontalSize(40),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  "30% OFF",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(20)),
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                                Text(
-                                  "Black Friday deal",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(24)),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(50),
-                                ),
-                                Text(
-                                  "Get discount for every topup, \ntransfer and payment",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.greyBD,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(16)),
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 2,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                Obx(
+                  () => homeController.homeModel.value.data != null
+                      ? SizedBox(
+                          height: getVerticalSize(180),
+                          child: ListView.builder(
+                              padding: EdgeInsets.only(
+                                  left: getHorizontalSize(18),
+                                  right: getHorizontalSize(20)),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: homeController
+                                  .homeModel.value.data!.topOffer!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Obx(
+                                  () => Padding(
+                                    padding: const EdgeInsets.only(right: 16.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(15.0),
+                                      child: Image.network(
+                                        homeController.homeModel.value.data!
+                                            .topOffer![index],
+                                        width: getHorizontalSize(360),
+                                        height: getVerticalSize(180),
+                                        fit: BoxFit.cover,
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                        )
+                      : SizedBox(
+                          height: getVerticalSize(200),
+                          child: ListView.builder(
+                              padding: EdgeInsets.only(
+                                  left: getHorizontalSize(18),
+                                  right: getHorizontalSize(20)),
+                              scrollDirection: Axis.horizontal,
+                              itemCount: 2,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Shimmer.fromColors(
+                                  baseColor: ColorConstant.shimmerBaseColor,
+                                  highlightColor:
+                                      ColorConstant.shimmerHighlightColor,
+                                  direction: ShimmerDirection.ttb,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(right: 14),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: ColorConstant.shimmerHighlightColor,
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15))),
+                                      width: getHorizontalSize(360),
+                                    ),
+                                  ),
+                                );
+                              }),
+                        ),
                 ),
                 SizedBox(
                   height: getVerticalSize(50),

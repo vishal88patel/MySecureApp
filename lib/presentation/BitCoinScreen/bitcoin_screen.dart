@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/utils/ConstantsFiles/string_constants.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
-import 'package:my_secure_app/utils/HelperFiles/ui_utils.dart';
-
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
+import '../../utils/HelperFiles/math_utils.dart';
+import '../../utils/HelperFiles/ui_utils.dart';
 import 'controller/bitcoin_screen_controller.dart';
 
 class BitCoinScreen extends StatelessWidget {

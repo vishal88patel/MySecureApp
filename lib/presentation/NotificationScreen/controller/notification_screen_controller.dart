@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
+import 'package:secureapp/routes/app_routes.dart';
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
@@ -44,6 +44,7 @@ class NotificationScreenController extends GetxController {
         isLoading.value=false;
         notificationModel.value = NotificationResponseModel.fromJson(value);
         globalNotificationCount.value = notificationModel.value.data!.length;
+        list.clear();
         list.addAll( notificationModel.value.data??[]);
       } else {
         UIUtils.showSnakBar(

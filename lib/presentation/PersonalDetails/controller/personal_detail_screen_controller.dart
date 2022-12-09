@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/presentation/LoginEmailScreen/controller/login_email_screen_controller.dart';
+import 'package:secureapp/presentation/LoginEmailScreen/controller/login_email_screen_controller.dart';
 import 'package:platform_device_id/platform_device_id.dart';
 
 import '../../../ApiServices/api_service.dart';

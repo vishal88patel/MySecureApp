@@ -1,12 +1,12 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:my_secure_app/App%20Configurations/image_constants.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_AppBar%20.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
-import 'package:my_secure_app/presentation/widget/select_mode_widget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/theme/app_style.dart';
+import 'package:secureapp/App%20Configurations/image_constants.dart';
+import 'package:secureapp/Custom%20Widgets/app_AppBar%20.dart';
+import 'package:secureapp/Custom%20Widgets/app_textField.dart';
+import 'package:secureapp/presentation/widget/select_mode_widget.dart';
+import 'package:secureapp/routes/app_routes.dart';
+import 'package:secureapp/theme/app_style.dart';
 import 'package:flutter/services.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
@@ -64,12 +64,17 @@ class TopMyCardScreen extends StatelessWidget {
                                       fontWeight: FontWeight.w700,
                                       fontSize: getFontSize(24)),
                                 ),
-                                Text(
-                                  "See all",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryLightGreen,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
+                                InkWell(
+                                  onTap: (){
+                                    Get.toNamed(AppRoutes.cardListScreen);
+                                  },
+                                  child: Text(
+                                    "See My all Cards",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryLightGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
                                 ),
                               ],
                             ),

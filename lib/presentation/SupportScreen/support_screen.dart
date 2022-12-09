@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_AppBar%20.dart';
-import 'package:my_secure_app/presentation/widget/select_mode_widget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/theme/app_style.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:secureapp/App%20Configurations/color_constants.dart';
+import 'package:secureapp/Custom%20Widgets/app_AppBar%20.dart';
+import 'package:secureapp/presentation/widget/select_mode_widget.dart';
+import 'package:secureapp/routes/app_routes.dart';
+import 'package:secureapp/theme/app_style.dart';
+import 'package:secureapp/utils/HelperFiles/math_utils.dart';
 
 import 'controller/support_screen_controller.dart';
 

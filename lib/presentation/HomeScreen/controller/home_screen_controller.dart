@@ -37,7 +37,7 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     getStoredData();
-     // callHomePageApi();
+     callHomePageApi();
 
     super.onInit();
   }
@@ -74,7 +74,7 @@ class HomeScreenController extends GetxController {
       print(value);
       if (value!=null && value['status'] ?? false) {
         homeModel.value = HomePageResponseModel.fromJson(value);
-        callGetLinkedBankApi();
+        // callGetLinkedBankApi();
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

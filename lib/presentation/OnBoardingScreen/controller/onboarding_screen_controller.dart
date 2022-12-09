@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
+import 'package:secureapp/routes/app_routes.dart';
 
 
 

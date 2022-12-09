@@ -20,7 +20,7 @@ import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
-import 'package:my_secure_app/presentation/camera_screen.dart';
+import 'package:secureapp/presentation/camera_screen.dart';
 
 
 class TopMyCardScreenController extends GetxController {

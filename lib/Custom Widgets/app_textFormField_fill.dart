@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_secure_app/theme/app_style.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:secureapp/theme/app_style.dart';
+import 'package:secureapp/utils/HelperFiles/math_utils.dart';
 
 import '../App Configurations/color_constants.dart';
 

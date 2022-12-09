@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:my_secure_app/App%20Configurations/color_constants.dart';
-import 'package:my_secure_app/presentation/HomeScreen/controller/home_screen_controller.dart';
-import 'package:my_secure_app/presentation/profileScreen/widget/profile_op_widget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/theme/app_style.dart';
+import 'package:secureapp/App%20Configurations/color_constants.dart';
+import 'package:secureapp/presentation/HomeScreen/controller/home_screen_controller.dart';
+import 'package:secureapp/presentation/profileScreen/widget/profile_op_widget.dart';
+import 'package:secureapp/routes/app_routes.dart';
+import 'package:secureapp/theme/app_style.dart';
 
 import '../../utils/HelperFiles/math_utils.dart';
+import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import 'controller/profile_screen_controller.dart';
 
 class ProfileScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
   var profileScreenController = Get.put(ProfileScreenController());
+  var dashBoardController = Get.find<DashBoardScreenController>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -264,12 +267,14 @@ class ProfileScreen extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Text(
-                                          "\$26,968.00",
-                                          style: AppStyle.textStyleDMSANS.copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w500,
-                                              fontSize: getFontSize(28)),
+                                        Obx(
+                                          ()=>dashBoardController.UserBalance.value==""?Container(): Text(
+                                            "\$${dashBoardController.UserBalance.value}",
+                                            style: AppStyle.textStyleDMSANS.copyWith(
+                                                color: ColorConstant.primaryWhite,
+                                                fontWeight: FontWeight.w500,
+                                                fontSize: getFontSize(28)),
+                                          ),
                                         ),
                                         SizedBox(height: getHorizontalSize(8),),
                                         Row(

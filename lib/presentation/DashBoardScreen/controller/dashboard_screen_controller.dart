@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../ApiServices/api_service.dart';
+import '../../../App Configurations/api_endpoints.dart';
 import '../../../App Configurations/color_constants.dart';
 import '../../../Custom Widgets/app_ElevatedButton .dart';
 import '../../../routes/app_routes.dart';
@@ -10,12 +12,17 @@ import '../../../theme/app_style.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
+import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../HistoryScreen/Model/getWallet.dart';
 import '../../LoginScreen/models/login_response_model.dart';
 import '../../NotificationScreen/controller/notification_screen_controller.dart';
 
 class DashBoardScreenController extends GetxController {
   var selectedIndex = 0.obs;
   var arguments = Get.arguments;
+  var walletModel=GetWallet().obs;
+  var UserBalance="".obs;
+
   @override
   void onReady() {
     super.onReady();
@@ -24,6 +31,7 @@ class DashBoardScreenController extends GetxController {
   @override
   void onInit() {
     getArguments();
+    callGetWalletApi(pageNo: 1);
     super.onInit();
   }
 
@@ -126,6 +134,33 @@ class DashBoardScreenController extends GetxController {
       ),
       barrierDismissible: true,
     );
+  }
+
+  Future<void> callGetWalletApi({required int pageNo}) async {
+    ApiService()
+        .callGetApi(
+        body: await getWalletApiBody(),
+        headerWithToken: true,
+        showLoader:false,
+        url: ApiEndPoints.GET_WALLET+"?page=$pageNo")
+        .then((value) {
+      print(value);
+      if (value!=null&&value['status']) {
+        walletModel.value = GetWallet.fromJson(value);
+
+        UserBalance.value= walletModel.value.data!.walletBalance!;
+
+      } else {
+        UIUtils.hideProgressDialog();
+        // UIUtils.showSnakBar(
+        //     bodyText: value['message']??'', headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<FormData> getWalletApiBody() async {
+    final form = FormData({});
+    return form;
   }
 
 }

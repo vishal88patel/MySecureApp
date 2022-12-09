@@ -1,25 +1,21 @@
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:get/get.dart';
+import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/material.dart';
-import 'package:my_secure_app/App%20Configurations/image_constants.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_AppBar%20.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:my_secure_app/Custom%20Widgets/app_textField.dart';
-import 'package:my_secure_app/presentation/widget/select_mode_widget.dart';
-import 'package:my_secure_app/routes/app_routes.dart';
-import 'package:my_secure_app/theme/app_style.dart';
+import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:secureapp/Custom%20Widgets/app_AppBar%20.dart';
+import 'package:secureapp/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secureapp/Custom%20Widgets/app_textField.dart';
+import 'package:secureapp/routes/app_routes.dart';
+import 'package:secureapp/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import '../../utils/HelperFiles/pref_utils.dart';
-import '../topAddCard1/controller/top_add_card1_screen_controller.dart';
 import 'controller/top_edit_card_confirm_screen_controller.dart';
 
 class TopEditCardConfirmScreen extends StatelessWidget {
   var topAddCardConfirmScreenController =
       Get.find<TopEditCardConfirmController>();
+  var cardTypeImage = "".obs;
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +52,7 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                                 child: Text(
                                   "Scan completed, now verify your data",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.naturalGrey,
+                                      color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w400,
                                       fontSize: getFontSize(22)),
                                 ),
@@ -100,128 +96,157 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(16)),
-                                      child: Column(
+                                      child: Stack(
                                         children: [
-                                          Container(
-                                            child: Padding(
-                                              padding: EdgeInsets.only(
-                                                  left: getHorizontalSize(20),
-                                                  right: getHorizontalSize(20),
-                                                  top: getVerticalSize(20)),
-                                              child: Column(
-                                                crossAxisAlignment:
-                                                    CrossAxisAlignment.start,
-                                                children: [
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                        "",
-                                                        style: AppStyle
-                                                            .textStyleDMSANS
-                                                            .copyWith(
-                                                                color: ColorConstant
-                                                                    .primaryWhite,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontSize:
-                                                                    getFontSize(
-                                                                        18)),
-                                                      ),
-                                                      SvgPicture.asset(
-                                                        "asset/icons/ic_card_ring.svg",
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height:
-                                                        getHorizontalSize(30),
-                                                  ),
-                                                  Row(
-                                                    children: [
-                                                      SvgPicture.asset(
-                                                        "asset/icons/ic_chip_grey.svg",
-                                                        fit: BoxFit.fill,
-                                                      ),
-                                                      SizedBox(
-                                                        width:
-                                                            getHorizontalSize(
-                                                                12),
-                                                      ),
-                                                      Obx(
-                                                        () => Text(
+                                          Image.asset(
+                                              'asset/icons/credit_card.png'),
+                                          Positioned(
+                                            top: getVerticalSize(10),
+                                            child: SizedBox(
+                                              width: size.width,
+                                              child: Padding(
+                                                padding: EdgeInsets.symmetric(
+                                                    horizontal:
+                                                        getHorizontalSize(50),
+                                                    ),
+                                                child: Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment.end,
+                                                      children: [
+                                                        Obx(
+                                                          () => Image.asset(
+                                                            checkCardImage(
+                                                              topAddCardConfirmScreenController
+                                                                  .cardNumber
+                                                                  .value,
+                                                            ),
+                                                            height:
+                                                                getVerticalSize(
+                                                                    35.34),
+                                                            width:
+                                                                getHorizontalSize(
+                                                                    50.1),
+                                                          ),
+                                                        ),
+
+                                                        // Image.asset('asset/icons/Visa_image.png',
+                                                        //   height: getVerticalSize(13.66),
+                                                        //   width: getHorizontalSize(43.54),),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          getVerticalSize(20),
+                                                    ),
+                                                    Obx(
+                                                      () => Text(
                                                           topAddCardConfirmScreenController
-                                                              .cardNumber.value,
+                                                              .cardNumber.value
+                                                              .toString(),
                                                           style: AppStyle
-                                                              .textStyleDMSANS
+                                                                  .DmSansFont
                                                               .copyWith(
-                                                                  color:
-                                                                      ColorConstant
-                                                                          .grey8F,
+                                                                  color: ColorConstant
+                                                                      .primaryWhite,
                                                                   fontWeight:
                                                                       FontWeight
                                                                           .w500,
                                                                   fontSize:
                                                                       getFontSize(
-                                                                          20)),
+                                                                          25))),
+                                                    ),
+                                                    SizedBox(
+                                                      height: 50,
+                                                    ),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .start,
+                                                          children: [
+                                                            Text(
+                                                                'Card Holder Name',
+                                                                style: AppStyle.DmSansFont.copyWith(
+                                                                    color: ColorConstant
+                                                                        .primaryWhite,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontSize:
+                                                                        getFontSize(
+                                                                            14))),
+                                                            Obx(
+                                                              () => Text(
+                                                                  topAddCardConfirmScreenController
+                                                                      .cardName
+                                                                      .value,
+                                                                  style: AppStyle.DmSansFont.copyWith(
+                                                                      color: ColorConstant
+                                                                          .primaryWhite,
+                                                                      letterSpacing:
+                                                                          0.55,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                              20))),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: getVerticalSize(40),
-                                                  ),
-                                                  Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Obx(
-                                                            () =>  Text(
-                                                          topAddCardConfirmScreenController
-                                                              .cardName.value,
-                                                          style: AppStyle
-                                                              .textStyleDMSANS
-                                                              .copyWith(
-                                                                  color:
-                                                                      ColorConstant
-                                                                          .grey8F,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          20)),
+                                                        SizedBox(
+                                                          width:
+                                                              getHorizontalSize(
+                                                                  70),
                                                         ),
-                                                      ),
-                                                      Obx(
-                                                            () =>  Text(
-                                                          topAddCardConfirmScreenController
-                                                              .cardDate.value,
-                                                          style: AppStyle
-                                                              .textStyleDMSANS
-                                                              .copyWith(
-                                                                  color:
-                                                                      ColorConstant
-                                                                          .grey8F,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          20)),
+                                                        Column(
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            Text('Expiry Date',
+                                                                style: AppStyle.DmSansFont.copyWith(
+                                                                    color: ColorConstant
+                                                                        .primaryWhite,
+                                                                    fontWeight:
+                                                                        FontWeight
+                                                                            .w500,
+                                                                    fontSize:
+                                                                        getFontSize(
+                                                                            14))),
+                                                            Obx(
+                                                              () => Text(
+                                                                  topAddCardConfirmScreenController
+                                                                      .cardDate
+                                                                      .value,
+                                                                  style: AppStyle.DmSansFont.copyWith(
+                                                                      color: ColorConstant
+                                                                          .primaryWhite,
+                                                                      letterSpacing:
+                                                                          0.55,
+                                                                      fontWeight:
+                                                                          FontWeight
+                                                                              .w500,
+                                                                      fontSize:
+                                                                          getFontSize(
+                                                                              20))),
+                                                            ),
+                                                          ],
                                                         ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  SizedBox(
-                                                    height: getVerticalSize(40),
-                                                  ),
-                                                ],
+                                                      ],
+                                                    ),
+                                                  ],
+                                                ),
                                               ),
                                             ),
                                           ),
@@ -325,7 +350,8 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                                                 topAddCardConfirmScreenController
                                                     .readOnly.value,
                                             onChanged: (value) => {
-                                              topAddCardConfirmScreenController.cardName.value=value
+                                              topAddCardConfirmScreenController
+                                                  .cardName.value = value
                                             },
                                             keyBordType: TextInputType.text,
                                             hintText: 'Cardholder Name',
@@ -339,14 +365,17 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                                                 topAddCardConfirmScreenController
                                                     .cardNumberController,
                                             inputFormatters: [
-                                              CardFormatter(sample:'0000 0000 0000 0000',separator:' '),
+                                              CardFormatter(
+                                                  sample: '0000 0000 0000 0000',
+                                                  separator: ' '),
                                             ],
                                             keyBordType: TextInputType.number,
                                             readOnly:
                                                 topAddCardConfirmScreenController
                                                     .readOnly.value,
                                             onChanged: (value) => {
-                                              topAddCardConfirmScreenController.cardNumber.value=value
+                                              topAddCardConfirmScreenController
+                                                  .cardNumber.value = value
                                             },
                                             hintText: 'Card Number',
                                           ),
@@ -362,14 +391,18 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                                                       topAddCardConfirmScreenController
                                                           .expDateController,
                                                   inputFormatters: [
-                                                    CardFormatter(sample:'00/00',separator:'/')
+                                                    CardFormatter(
+                                                        sample: '00/00',
+                                                        separator: '/')
                                                   ],
-                                                  keyBordType: TextInputType.datetime,
+                                                  keyBordType:
+                                                      TextInputType.datetime,
                                                   readOnly:
                                                       topAddCardConfirmScreenController
                                                           .readOnly.value,
                                                   onChanged: (value) => {
-                                                    topAddCardConfirmScreenController.cardDate.value=value
+                                                    topAddCardConfirmScreenController
+                                                        .cardDate.value = value
                                                   },
                                                   hintText: 'Expiry Date',
                                                 ),
@@ -383,9 +416,11 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                                                   controller:
                                                       topAddCardConfirmScreenController
                                                           .cvvController,
-                                                  keyBordType: TextInputType.number,
+                                                  keyBordType:
+                                                      TextInputType.number,
                                                   inputFormatters: [
-                                                    LengthLimitingTextInputFormatter(3),
+                                                    LengthLimitingTextInputFormatter(
+                                                        3),
                                                   ],
                                                   readOnly:
                                                       topAddCardConfirmScreenController
@@ -403,9 +438,11 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                                               textColor:
                                                   ColorConstant.primaryWhite,
                                               onPressed: () {
-                                                topAddCardConfirmScreenController.onClickOfAddCardButton(context);
-                                               /* Get.toNamed(
-                                                    AppRoutes.cardLoaderScreen);*/
+                                                topAddCardConfirmScreenController
+                                                    .onClickOfAddCardButton(
+                                                        context);
+                                                /* Get.toNamed(
+                                                          AppRoutes.cardLoaderScreen);*/
                                                 // Get.toNamed(AppRoutes.topAddCardConfirmScreen);
                                                 // Get.to(
                                                 //   LoaderScreen("",AppRoutes.creatPasswordScreen),
@@ -427,7 +464,25 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                   ],
                 ))));
   }
+
+  String checkCardImage(String number) {
+    var type = detectCCType(number);
+
+    switch (type) {
+      case CreditCardType.visa:
+        return "asset/icons/Visa_image.png";
+        break;
+
+      case CreditCardType.mastercard:
+        return "asset/icons/master_card_back.png";
+        break;
+      default:
+        return "";
+        break;
+    }
+  }
 }
+
 class CardFormatter extends TextInputFormatter {
   final String sample;
   final String separator;
@@ -447,7 +502,7 @@ class CardFormatter extends TextInputFormatter {
             sample[newValue.text.length - 1] == separator) {
           return TextEditingValue(
             text:
-            '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
+                '${oldValue.text}$separator${newValue.text.substring(newValue.text.length - 1)}',
             selection: TextSelection.collapsed(
               offset: newValue.selection.end + 1,
             ),

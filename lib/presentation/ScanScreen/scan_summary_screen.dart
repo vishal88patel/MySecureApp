@@ -1,12 +1,11 @@
-import 'dart:ffi';
 
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:my_secure_app/presentation/ScanScreen/scan_password_screen.dart';
-import 'package:my_secure_app/utils/HelperFiles/math_utils.dart';
+import 'package:secureapp/presentation/ScanScreen/scan_password_screen.dart';
+import 'package:secureapp/utils/HelperFiles/math_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
