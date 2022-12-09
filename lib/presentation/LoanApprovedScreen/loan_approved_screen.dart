@@ -111,16 +111,14 @@ class LoanApprovedScreen extends StatelessWidget {
                                 child: Padding(
                                   padding:
                                   EdgeInsets.only(left: 28, right: 28, top: 10),
-                                  child: Flexible(
-                                    child: Text(
-                                      "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
+                                  child: Text(
+                                    "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
 
-                                      textAlign: TextAlign.center,
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.greyTextColor,
-                                          fontSize: getFontSize(20),
-                                          fontWeight: FontWeight.bold),
-                                    ),
+                                    textAlign: TextAlign.center,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.greyTextColor,
+                                        fontSize: getFontSize(20),
+                                        fontWeight: FontWeight.bold),
                                   ),
                                 ),
                               ),
