@@ -10,6 +10,7 @@ class ColorConstant {
   static Color blue26= const Color(0xFF181A26);
   static Color skyE8= const Color(0xFF27EBE8);
   static Color grey8F= const Color(0xFF8F92A1);
+  static Color greyF4= const Color(0xFFF4F6F5);
   static Color lightSky= const Color(0xE8769D94);
   static Color greyTextColor= const Color(0xFF8F92A1);
   static Color buttonGreen= const Color(0xFF4CD080);

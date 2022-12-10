@@ -17,143 +17,180 @@ class EnterSNNDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
+        backgroundColor: ColorConstant.backgroundColor,
+        body: SafeArea(
+          child: SingleChildScrollView(
             child: Container(
-                height: size.height,
-                child: Stack(
-                  children: [
-                    Image.asset('asset/icons/background_image.png',
-                        fit: BoxFit.cover,width: double.infinity),
-                    SafeArea(
-                      child: Stack(
+              height: size.height,
+              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              child: Padding(
+                  padding: EdgeInsets.only(
+                      top: getVerticalSize(20)),
+                  child: Stack(
+                    children: [
+                      Column( crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Padding(
-                                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                child: Column( crossAxisAlignment: CrossAxisAlignment.start,
+                          Padding(
+                            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(12),
+                                        border: Border.all(
+                                            color:
+                                            ColorConstant.backBorder)),
+                                    padding: EdgeInsets.all(6),
+                                    child: Icon(
+                                      Icons.arrow_back_ios_new_outlined,size: 22,),
+                                  ),
+                                ),
+                                Text(
+                                  "Enter Your SNN Code",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.primaryBlack,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: getFontSize(20)),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(color: Colors.transparent)),
+                                  padding: EdgeInsets.all(10),
+                                  child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                ),                      ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(120),
+                          ),
+
+
+                          Expanded(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(20),
+                                    topLeft: Radius.circular(20),
+                                  ),
+                                  color:  ColorConstant.primaryWhite
+                              ),
+
+                              child: Expanded(
+                                child:SingleChildScrollView(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      height: getVerticalSize(10),
+                                      height: getVerticalSize(130),
                                     ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        InkWell(
-                                          onTap: () {
-                                            Get.back();
-                                          },
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                BorderRadius.circular(12),
-                                                border: Border.all(color: ColorConstant.primaryWhite.withOpacity(0.3))),
-                                            padding: EdgeInsets.all(6),
-                                            child: Icon(
-                                                Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.primaryWhite),
+
+                                    Padding(
+                                      padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                      child: Text(
+                                        "Enter the verification code we just\n sent on your phone number.",
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.grey8F,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(20),letterSpacing: 0.5),
+                                      ),
+                                    ),
+                                    Padding(
+                                      padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                      child: TextFormField(
+                                        readOnly: true,
+                                        style: TextStyle(color: ColorConstant.grey8F,),
+                                        inputFormatters: [
+                                          LengthLimitingTextInputFormatter(9),
+                                        ],
+                                        decoration: InputDecoration(
+                                          hintText: 'Enter SNN code',
+                                          hintStyle: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.grey8F,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: getFontSize(16)),
+                                          enabledBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(color: ColorConstant.grey8F),
+                                          ),
+                                          focusedBorder: UnderlineInputBorder(
+                                            borderSide: BorderSide(color: ColorConstant.grey8F),
                                           ),
                                         ),
-                                        Text(
-                                          "Enter Your SNN Code",
-                                          style: AppStyle.DmSansFont.copyWith(
-                                              color: ColorConstant.primaryWhite,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(20)),
-                                        ),
-                                        Container(
-                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                              border: Border.all(color: Colors.transparent)),
-                                          padding: EdgeInsets.all(10),
-                                          child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
-                                        ),                      ],
-                                    ),
-                                    SizedBox(
-                                      height: getVerticalSize(57),
-                                    ),
-                                    Center(
-                                      child: SvgPicture.asset(
-                                        "asset/icons/splash_image.svg",
+                                        // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
 
-                                        fit: BoxFit.fill,
+                                        controller:
+                                        enterPersonalDetailController.ssnController,
                                       ),
                                     ),
                                     SizedBox(
-                                      height: getVerticalSize(40),
+                                      height: getVerticalSize(60),
                                     ),
-                                    SizedBox(
-                                      height: getVerticalSize(43),
+
+                                    Padding(
+                                      padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                      child: AppElevatedButton(
+                                        buttonName: 'Next',
+
+                                        onPressed: () {
+                                          debugPrint('Your code: ${enterPersonalDetailController.ssnController.text}');
+                                          enterPersonalDetailController.onTapOfNextSnnButton();
+
+                                        },
+                                      ),
                                     ),
-                                    TextFormField(
-                                      readOnly: true,
-                                      style: TextStyle(color: ColorConstant.primaryWhite,),
-                                      inputFormatters: [
-                                        LengthLimitingTextInputFormatter(9),
+                                    SizedBox(height: getVerticalSize(10),),
+                                    Column(
+                                      children: [
+                                        NumPad(
+                                          type: 'SNN',
+                                          controller: enterPersonalDetailController.ssnController,
+                                          delete: () {
+                                            HapticFeedback.lightImpact();
+
+                                            if( enterPersonalDetailController.ssnController.text.isNotEmpty){
+                                              enterPersonalDetailController.ssnController.text = enterPersonalDetailController.ssnController.text
+                                                  .substring(0, enterPersonalDetailController.ssnController.text.length - 1);
+
+                                            }
+                                          },
+                                          // do something with the input numbers
+                                          onSubmit: () {
+                                            debugPrint('Your code: ${enterPersonalDetailController.ssnController.text}');
+                                            enterPersonalDetailController.onTapOfNextSnnButton();
+                                          },
+                                        ),
                                       ],
-                                      decoration: InputDecoration(
-                                        hintText: 'SNN',
-                                        hintStyle: AppStyle.DmSansFont.copyWith(
-                                            color: ColorConstant.primaryWhite,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: getFontSize(16)),
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
-                                        ),
-                                      ),
-                                      // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
-
-                                      controller:
-                                      enterPersonalDetailController.ssnController,
-                                    ),
+                                    )
                                   ],
-                                ),
+                                )),
                               ),
-                              Spacer(),
-                              Padding(
-                                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                child: AppElevatedButton(
-                                  buttonName: 'Next',
-
-                                  onPressed: () {
-                                    debugPrint('Your code: ${enterPersonalDetailController.ssnController.text}');
-                                    enterPersonalDetailController.onTapOfNextSnnButton();
-
-                                  },
-                                ),
-                              ),
-                              SizedBox(height: getVerticalSize(20),),
-                              Column(
-                                children: [
-                                  NumPad(
-                                    type: 'SNN',
-                                    controller: enterPersonalDetailController.ssnController,
-                                    delete: () {
-                                      HapticFeedback.lightImpact();
-
-                                      if( enterPersonalDetailController.ssnController.text.isNotEmpty){
-                                        enterPersonalDetailController.ssnController.text = enterPersonalDetailController.ssnController.text
-                                            .substring(0, enterPersonalDetailController.ssnController.text.length - 1);
-
-                                      }
-                                    },
-                                    // do something with the input numbers
-                                    onSubmit: () {
-                                      debugPrint('Your code: ${enterPersonalDetailController.ssnController.text}');
-                                      enterPersonalDetailController.onTapOfNextSnnButton();
-                                    },
-                                  ),
-                                ],
-                              )
-                            ],
+                            ),
                           ),
+
                         ],
                       ),
-                    ),
-                  ],
-                ))));
+
+
+                      Positioned(right: 10,
+                        top: getVerticalSize(60),
+                        child: Center(
+                            child: Image.asset('asset/icons/snn_image.png',
+                              height: getVerticalSize(220),)
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+            ),
+          ),
+        ));
+    
 
 
 
