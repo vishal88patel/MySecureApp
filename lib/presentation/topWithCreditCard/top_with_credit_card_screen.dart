@@ -1,27 +1,22 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:flutter/material.dart';
-import 'package:secure_cash_app/App%20Configurations/image_constants.dart';
+import 'package:intl/intl.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_AppBar%20.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:secure_cash_app/Custom%20Widgets/app_textField.dart';
-import 'package:secure_cash_app/presentation/widget/select_mode_widget.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import '../../utils/HelperFiles/pref_utils.dart';
-import 'package:intl/intl.dart';
 import 'controller/top_with_credit_card_controller.dart';
 
 class TopWithCreditCardScreen extends StatelessWidget {
-  var topWithCreditCardScreenController = Get.find<TopWithCreditCardController>();
+  var topWithCreditCardScreenController =
+      Get.find<TopWithCreditCardController>();
 
   @override
   Widget build(BuildContext context) {
-    // PrefUtils.setString(StringConstants.IS_KYC_DONE,"1");
     return Scaffold(
       backgroundColor: ColorConstant.backgroundColor,
       body: Container(
@@ -78,31 +73,31 @@ class TopWithCreditCardScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
-                                  padding: EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: 20, vertical: 5),
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     crossAxisAlignment:
-                                    CrossAxisAlignment.center,
+                                        CrossAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Column(
                                         mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                            CrossAxisAlignment.start,
                                         mainAxisAlignment:
-                                        MainAxisAlignment.start,
+                                            MainAxisAlignment.start,
                                         children: [
                                           Text(
                                             "Credit Card",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
-                                            style:
-                                            AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant
-                                                    .primaryWhite,
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color:
+                                                    ColorConstant.primaryWhite,
                                                 fontSize: getFontSize(22),
-                                                fontWeight:
-                                                FontWeight.w700),
+                                                fontWeight: FontWeight.w700),
                                           ),
                                           Padding(
                                             padding: EdgeInsets.only(
@@ -113,21 +108,22 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                               "Choose your credit card",
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
-                                              style: AppStyle.DmSansFont
-                                                  .copyWith(
-                                                  color: ColorConstant
-                                                      .naturalGrey,
-                                                  fontSize:
-                                                  getFontSize(20),
-                                                  fontWeight:
-                                                  FontWeight.w400),
+                                              style:
+                                                  AppStyle.DmSansFont.copyWith(
+                                                      color: ColorConstant
+                                                          .naturalGrey,
+                                                      fontSize: getFontSize(20),
+                                                      fontWeight:
+                                                          FontWeight.w400),
                                             ),
                                           ),
-
                                         ],
                                       ),
-                                      Image.asset('asset/icons/ic_plus_orange.png',
-                                      height: getVerticalSize(50),width: getHorizontalSize(50),)
+                                      Image.asset(
+                                        'asset/icons/ic_plus_orange.png',
+                                        height: getVerticalSize(50),
+                                        width: getHorizontalSize(50),
+                                      )
                                     ],
                                   ),
                                 ),
@@ -138,7 +134,6 @@ class TopWithCreditCardScreen extends StatelessWidget {
                         SizedBox(
                           height: getVerticalSize(26),
                         ),
-                      
                         Card(
                           margin: const EdgeInsets.symmetric(horizontal: 0),
                           color: ColorConstant.naturalBlack.withOpacity(0.2),
@@ -170,20 +165,28 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                 Container(
                                   width: getHorizontalSize(350),
                                   child: Padding(
-                                    padding:  EdgeInsets.only(left: getHorizontalSize(20),
-                                        right: getHorizontalSize(20),top: getVerticalSize(20)),
+                                    padding: EdgeInsets.only(
+                                        left: getHorizontalSize(20),
+                                        right: getHorizontalSize(20),
+                                        top: getVerticalSize(20)),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               "Balance",
-                                              style: AppStyle.textStyleDMSANS.copyWith(
-                                                  color: ColorConstant.primaryWhite,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(18)),
+                                              style: AppStyle.textStyleDMSANS
+                                                  .copyWith(
+                                                      color: ColorConstant
+                                                          .primaryWhite,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          getFontSize(18)),
                                             ),
                                             SvgPicture.asset(
                                               "asset/icons/ic_card_logo.svg",
@@ -191,138 +194,163 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                             ),
                                           ],
                                         ),
-                                        Obx(()=>
-                                           Text(
-                                            NumberFormat.currency(name: '\$ ').format(int.parse(topWithCreditCardScreenController.balance.value)),
+                                        Obx(
+                                          () => Text(
+                                            NumberFormat.currency(name: '\$ ')
+                                                .format(int.parse(
+                                                    topWithCreditCardScreenController
+                                                        .balance.value)),
                                             // "\$26,968.00",
-                                            style: AppStyle.textStyleDMSANS.copyWith(
-                                                color: ColorConstant.primaryWhite,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: getFontSize(28)),
+                                            style: AppStyle.textStyleDMSANS
+                                                .copyWith(
+                                                    color: ColorConstant
+                                                        .primaryWhite,
+                                                    fontWeight: FontWeight.w500,
+                                                    fontSize: getFontSize(28)),
                                           ),
                                         ),
-                                        SizedBox(height: getHorizontalSize(15),),
+                                        SizedBox(
+                                          height: getHorizontalSize(15),
+                                        ),
                                         Row(
                                           children: [
                                             SvgPicture.asset(
                                               "asset/icons/ic_chip.svg",
                                               fit: BoxFit.fill,
                                             ),
-                                            SizedBox(width: getHorizontalSize(12),),
+                                            SizedBox(
+                                              width: getHorizontalSize(12),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(12),),
+                                            SizedBox(
+                                              width: getHorizontalSize(12),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(12),),
+                                            SizedBox(
+                                              width: getHorizontalSize(12),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(6),),
+                                            SizedBox(
+                                              width: getHorizontalSize(6),
+                                            ),
                                             Container(
                                               height: getVerticalSize(6),
                                               width: getVerticalSize(6),
                                               decoration: BoxDecoration(
                                                   color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
+                                                  shape: BoxShape.circle),
                                             ),
-                                            SizedBox(width: getHorizontalSize(12),),
+                                            SizedBox(
+                                              width: getHorizontalSize(12),
+                                            ),
                                             Text(
                                               '3711',
-                                              style: AppStyle.textStyleDMSANS.copyWith(
-                                                  color: ColorConstant.primaryWhite,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(20)),
+                                              style: AppStyle.textStyleDMSANS
+                                                  .copyWith(
+                                                      color: ColorConstant
+                                                          .primaryWhite,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          getFontSize(20)),
                                             ),
                                           ],
                                         ),
@@ -339,133 +367,151 @@ class TopWithCreditCardScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: getVerticalSize(20),),
+              SizedBox(
+                height: getVerticalSize(20),
+              ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                padding:
+                    EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       "Set amount",
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
-                      style:
-                      AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant
-                              .naturalBlack,
+                      style: AppStyle.DmSansFont.copyWith(
+                          color: ColorConstant.naturalBlack,
                           fontSize: getFontSize(20),
-                          fontWeight:
-                          FontWeight.w700),
+                          fontWeight: FontWeight.w700),
                     ),
-                    SizedBox(height: getVerticalSize(5),),
+                    SizedBox(
+                      height: getVerticalSize(5),
+                    ),
                     Text(
                       "How much would you like to top up?",
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
-                      style: AppStyle.DmSansFont
-                          .copyWith(
+                      style: AppStyle.DmSansFont.copyWith(
                           color: ColorConstant.grey8F,
-                          fontSize:
-                          getFontSize(18),
-                          fontWeight:
-                          FontWeight.w400),
+                          fontSize: getFontSize(18),
+                          fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(height: getVerticalSize(15),),
-
-                    TextFormField(textAlign: TextAlign.center,
-                      controller: topWithCreditCardScreenController.amountController,
-                      decoration: InputDecoration(
-
-                        hintText: 'Amount',
-                        hintStyle: AppStyle.DmSansFont
-                            .copyWith(
-                            color: ColorConstant.grey8F,
-
-                            fontWeight: FontWeight.w400,fontSize: getFontSize(30)),
-
-                        enabledBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
-                        ),
-                        focusedBorder: UnderlineInputBorder(
-                          borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
-                        ),
-                      ),
-                      keyboardType: TextInputType.phone,
-                      style:AppStyle.DmSansFont
-                          .copyWith(
-                          color: ColorConstant.naturalBlack,
-                          fontWeight: FontWeight.w700,fontSize: getFontSize(30)),
+                    SizedBox(
+                      height: getVerticalSize(15),
                     ),
-
-                    SizedBox(height: getVerticalSize(20),),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "\$",
+                          style: AppStyle.textStyleDMSANS.copyWith(
+                              color: ColorConstant.primaryLightGreen,
+                              fontWeight: FontWeight.w500,
+                              fontSize: getFontSize(30)),
+                        ),
+                        SizedBox(
+                          width: getHorizontalSize(100),
+                          child: TextFormField(
+                            textAlign: TextAlign.start,
+                            controller:
+                                topWithCreditCardScreenController.amountController,
+                            decoration: InputDecoration(
+                              hintText: 'Amount',
+                              hintStyle: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.grey8F,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(30)),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: ColorConstant.primaryWhite.withOpacity(0.5),
+                                    width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: ColorConstant.grey8F.withOpacity(0.5),
+                                    width: 1),
+                              ),
+                            ),
+                            keyboardType: TextInputType.phone,
+                            style: AppStyle.DmSansFont.copyWith(
+                                color: ColorConstant.naturalBlack,
+                                fontWeight: FontWeight.w700,
+                                fontSize: getFontSize(30)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    Container(height: 1,color: ColorConstant.grey8F.withOpacity(0.5),),
+                    SizedBox(
+                      height: getVerticalSize(20),
+                    ),
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getHorizontalSize(20)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: ColorConstant.buttonGreen.withOpacity(0.15)
-                            ),
+                                borderRadius: BorderRadius.circular(16),
+                                color: ColorConstant.buttonGreen
+                                    .withOpacity(0.15)),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(25),
-                              vertical: getVerticalSize(7)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getHorizontalSize(25),
+                                  vertical: getVerticalSize(7)),
                               child: Text(
                                 "\$100.00",
-                                style:
-                                AppStyle.DmSansFont.copyWith(
-                                    color: ColorConstant
-                                        .buttonGreen,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.buttonGreen,
                                     fontSize: getFontSize(16),
-                                    fontWeight:
-                                    FontWeight.w500),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: ColorConstant.buttonGreen.withOpacity(0.15)
-                            ),
+                                color: ColorConstant.buttonGreen
+                                    .withOpacity(0.15)),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(25),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getHorizontalSize(25),
                                   vertical: getVerticalSize(7)),
                               child: Text(
                                 "\$100.00",
-                                style:
-                                AppStyle.DmSansFont.copyWith(
-                                    color: ColorConstant
-                                        .buttonGreen,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.buttonGreen,
                                     fontSize: getFontSize(16),
-                                    fontWeight:
-                                    FontWeight.w500),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
                           Container(
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(16),
-                                color: ColorConstant.buttonGreen.withOpacity(0.15)
-                            ),
+                                color: ColorConstant.buttonGreen
+                                    .withOpacity(0.15)),
                             child: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(25),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getHorizontalSize(25),
                                   vertical: getVerticalSize(7)),
                               child: Text(
                                 "\$100.00",
-                                style:
-                                AppStyle.DmSansFont.copyWith(
-                                    color: ColorConstant
-                                        .buttonGreen,
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant.buttonGreen,
                                     fontSize: getFontSize(16),
-                                    fontWeight:
-                                    FontWeight.w500),
+                                    fontWeight: FontWeight.w500),
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    
-                    SizedBox(height: getVerticalSize(150),),
+                    SizedBox(
+                      height: getVerticalSize(150),
+                    ),
                     AppElevatedButton(
                         buttonName: 'Top Up Now',
                         textColor: ColorConstant.primaryWhite,
@@ -478,27 +524,26 @@ class TopWithCreditCardScreen extends StatelessWidget {
                           //   duration: Duration(milliseconds: 400),
                           // );
                         }),
-                    SizedBox(height: getVerticalSize(15),),
-
+                    SizedBox(
+                      height: getVerticalSize(15),
+                    ),
                     Center(
-                      child: TextButton(onPressed: (){
-                        Get.back();
-                      }, child: Text(
-                        "Back to home",
-                        style:
-                        AppStyle.DmSansFont.copyWith(
-                            color: ColorConstant
-                                .naturalGrey,
-                            fontSize: getFontSize(18),
-                            fontWeight:
-                            FontWeight.w500),
-                      ),),
+                      child: TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: Text(
+                          "Back to home",
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.naturalGrey,
+                              fontSize: getFontSize(18),
+                              fontWeight: FontWeight.w500),
+                        ),
+                      ),
                     ),
                   ],
                 ),
               ),
-
-
             ],
           ),
         ),

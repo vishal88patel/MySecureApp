@@ -129,7 +129,7 @@ class TopAddCard1Controller extends GetxController {
 
     switch (type) {
       case CreditCardType.visa:
-        cardTypeImage.value="asset/icons/Visa_image.png";
+        cardTypeImage.value="asset/icons/ic_visa.png";
         break;
 
       case CreditCardType.mastercard:

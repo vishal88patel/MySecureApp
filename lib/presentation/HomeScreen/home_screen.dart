@@ -305,8 +305,8 @@ class HomeScreen extends StatelessWidget {
                               title: 'Link Card',
                               iconName: 'asset/icons/ic_link_card_home.png',
                               onTap: () {
-                                Get.toNamed(AppRoutes.topMyCardScreen);
-                                // Get.toNamed(AppRoutes.topAddCard1Screen);
+                                Get.toNamed(AppRoutes.topAddCard1Screen);
+
                               }),
                         ],
                       ),
@@ -329,9 +329,14 @@ class HomeScreen extends StatelessWidget {
                             title: 'Cash Card',
                             iconName: 'asset/icons/ic_cash_card_home.png',
                           ),
-                          PaymentListWidget(
-                            title: 'Cash Out',
-                            iconName: 'asset/icons/ic_cash_out_home.png',
+                          InkWell(
+                            onTap: (){
+                              Get.toNamed(AppRoutes.topSelectionModeScreen);
+                            },
+                            child: PaymentListWidget(
+                              title: 'Cash Out',
+                              iconName: 'asset/icons/ic_cash_out_home.png',
+                            ),
                           ),
                           PaymentListWidget(
                             title: 'Live Chat',

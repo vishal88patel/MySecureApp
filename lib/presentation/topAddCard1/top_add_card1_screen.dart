@@ -92,7 +92,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                           controller: topAddCard1ScreenController.nameController,
                                           hintText: 'Cardholder Name',),
                                       SizedBox(height: getVerticalSize(20),),
-                                      Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                                  /*    Row(mainAxisAlignment:MainAxisAlignment.spaceBetween,
                                         children: [
                                           SizedBox(
                                             width: MediaQuery.of(context).size.width/1.5,
@@ -116,6 +116,20 @@ class TopAddCard1Screen extends StatelessWidget {
                                               child: Image.asset(topAddCard1ScreenController.cardTypeImage.value)):Container(width: 10,height: 10,),
                                           )
                                         ],
+                                      ),*/
+                                      Obx(
+                                        ()=> AppTextField(fontSize: 18,
+                                          keyBordType: TextInputType.number,
+                                          onChanged: (text){
+                                            topAddCard1ScreenController.checkCardImage(text);
+                                          },
+                                          inputFormatters: [
+                                            CardFormatter(sample:'0000 0000 0000 0000',separator:' '),
+                                          ],
+                                          controller: topAddCard1ScreenController.cardNumberController,
+                                          hintText: 'Card Number',
+                                          suffixImage: topAddCard1ScreenController.cardTypeImage.value,
+                                        ),
                                       ),
                                       SizedBox(height: getVerticalSize(20),),
                                       Row(
@@ -129,9 +143,9 @@ class TopAddCard1Screen extends StatelessWidget {
                                               ],
                                               controller:
                                               topAddCard1ScreenController.expDateController,
-                                              hintText: 'Expiry Date',),
+                                              hintText: 'Expiry Date',suffixImage: "asset/icons/ic_expiry_date.png"),
                                           ),
-                                          SizedBox(width: getHorizontalSize(10),),
+                                          SizedBox(width: getHorizontalSize(20),),
                                           Expanded(
                                             child: AppTextField(fontSize: 18,
                                               inputFormatters: [
@@ -140,7 +154,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                               controller: topAddCard1ScreenController.cvvController,
 
                                               keyBordType: TextInputType.number,
-                                              hintText: '3-digit CVV',),
+                                              hintText: '3-digit CVV',suffixImage: "asset/icons/ic_cvv.png"),
                                           ),
                                         ],
                                       ),

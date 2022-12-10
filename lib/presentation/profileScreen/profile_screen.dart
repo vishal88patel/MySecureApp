@@ -421,7 +421,7 @@ class ProfileScreen extends StatelessWidget {
 
                     ProfileOptionWidget(
                       onTap: (){
-                        Get.toNamed(AppRoutes.topSelectionModeScreen);
+                        // Get.toNamed(AppRoutes.topSelectionModeScreen);
                       },
                       icon: "asset/icons/ic_profile_selected.svg",
                       title: 'Personal',
