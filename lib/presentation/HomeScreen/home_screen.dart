@@ -318,7 +318,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              Get.toNamed(AppRoutes.kycSelectStepScreen);
+                              Get.toNamed(AppRoutes.kycEmailScreen);
                             },
                             child: PaymentListWidget(
                               title: 'Identity Verification',
