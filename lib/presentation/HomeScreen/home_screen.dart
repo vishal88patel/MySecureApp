@@ -288,7 +288,7 @@ class HomeScreen extends StatelessWidget {
                               title: 'Link Card',
                               iconName: 'asset/icons/ic_link_card_home.png',
                               onTap: () {
-                                Get.toNamed(AppRoutes.topAddCard1Screen);
+                                Get.toNamed(AppRoutes.linkCardAddCardScreen);
 
                               }),
                         ],

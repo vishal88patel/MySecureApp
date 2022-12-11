@@ -9,12 +9,12 @@ import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../LinkCardAddCardScreen/controller/link_card_add_card_screen_controller.dart';
 import '../../LoginScreen/models/login_response_model.dart';
 import '../../NormalScreen/WelcomeScreen.dart';
-import '../../topAddCard1/controller/top_add_card1_screen_controller.dart';
 
-class TopEditCardConfirmController extends GetxController {
-  var cardController = Get.put(TopAddCard1Controller());
+class LinkCardEditCardController extends GetxController {
+  var cardController = Get.put(LinkCardAddCardController());
   TextEditingController nameController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
   TextEditingController expDateController = TextEditingController();
@@ -54,6 +54,10 @@ class TopEditCardConfirmController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter card number",
           headerText: StringConstants.ERROR);
+    } else if (cardNumberController.text.trim().length<12) {
+      UIUtils.showSnakBar(
+          bodyText: "Please enter 12 digit card number",
+          headerText: StringConstants.ERROR);
     } else if (expDateController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter expiry month and year",
@@ -68,7 +72,7 @@ class TopEditCardConfirmController extends GetxController {
           headerText: StringConstants.ERROR);
     }
     else{
-      Get.toNamed(AppRoutes.cardLoaderScreen);
+      Get.toNamed(AppRoutes.linkCardLoadingScreen);
     }
   }
   void setData(){
@@ -180,7 +184,7 @@ class TopEditCardConfirmController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Card Added Successfully",
           headerText: StringConstants.SUCCESS);
-
+      Get.toNamed(AppRoutes.linkCardSuccessScreen);
     } else {
       //UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(

@@ -134,7 +134,7 @@ class TopupCardListScreen extends StatelessWidget {
                           radius: 5,
                           onPressed: () {
                             // bankListController.showBankInfoBottomsheet();
-                            Get.toNamed(AppRoutes.cardDetailScreen);
+                            Get.toNamed(AppRoutes.linkCardAddCardScreen);
                           },
                         ),
                       ),

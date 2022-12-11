@@ -12,10 +12,10 @@ import '../../App Configurations/color_constants.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/pref_utils.dart';
-import 'controller/top_add_card1_screen_controller.dart';
+import 'controller/link_card_add_card_screen_controller.dart';
 
-class TopAddCard1Screen extends StatelessWidget {
-  var topAddCard1ScreenController = Get.find<TopAddCard1Controller>();
+class LinkCardAddCardScreen extends StatelessWidget {
+  var topAddCard1ScreenController = Get.find<LinkCardAddCardController>();
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +37,7 @@ class TopAddCard1Screen extends StatelessWidget {
                             children: [
 
                               AppAppBar(
-                                title: "Add New Card",
+                                title: "Add a Card",
                                 icon1: "asset/icons/ic_back.svg",
                                 icon2: "asset/icons/ic_notification.svg",
                                 onPressedIcon1: () {
@@ -162,7 +162,7 @@ class TopAddCard1Screen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(height: getVerticalSize(12),),
+                                SizedBox(height: getVerticalSize(24),),
                                 SelectModeWidget(
                                   onTap: (){
                                     FocusManager.instance.primaryFocus

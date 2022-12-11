@@ -10,11 +10,11 @@ import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import 'controller/top_edit_card_confirm_screen_controller.dart';
+import 'controller/link_card_edit_card_screen_controller.dart';
 
-class TopEditCardConfirmScreen extends StatelessWidget {
+class LinkCardEditCardScreen extends StatelessWidget {
   var topAddCardConfirmScreenController =
-      Get.find<TopEditCardConfirmController>();
+      Get.find<LinkCardEditCardController>();
   var cardTypeImage = "".obs;
 
   @override
@@ -60,7 +60,7 @@ class TopEditCardConfirmScreen extends StatelessWidget {
                             ],
                           ),
                           Padding(
-                            padding: EdgeInsets.only(top: getVerticalSize(200)),
+                            padding: EdgeInsets.only(top: getVerticalSize(160)),
                             child: Container(
                               width: double.infinity,
                               decoration: BoxDecoration(
@@ -477,7 +477,7 @@ class TopEditCardConfirmScreen extends StatelessWidget {
         return "asset/icons/master_card_back.png";
         break;
       default:
-        return "";
+        return "asset/icons/credit_card.png";
         break;
     }
   }
