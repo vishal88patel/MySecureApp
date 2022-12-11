@@ -17,7 +17,7 @@ import '../model/getUuiModel.dart';
 import 'package:intl/intl.dart';
 
 
-class TopWithCreditCardController extends GetxController {
+class CashoutAmountController extends GetxController {
   final amountController = TextEditingController();
 
   var walletModel=GetWallet().obs;
@@ -32,10 +32,10 @@ class TopWithCreditCardController extends GetxController {
   late ScrollController controller;
   var formatter = NumberFormat('#,##,000').obs;
 
-
   var opt1=false.obs;
   var opt2=false.obs;
   var opt3=false.obs;
+
   @override
   void onReady() {
     super.onReady();
@@ -98,90 +98,10 @@ class TopWithCreditCardController extends GetxController {
           bodyText: "Amount is not available");
     }else{
       //onTapOfListile(context);
-      Get.toNamed(AppRoutes.topSelectionModeScreen);
-      //Get.toNamed(AppRoutes.topAddCard1Screen);
+    //  Get.toNamed(AppRoutes.topAddCard1Screen);
+      Get.toNamed(AppRoutes.cashoutCardBankScreen);
     }
   }
-  void _scrollListener() {
-
-    if (controller.position.pixels == controller.position.maxScrollExtent) {
-      pageNumber.value++;
-      if(pageNumber.value<=lastPage.value){
-        callGetWalletApi(pageNo: pageNumber.value);
-      }
-    }
-  }
-  void onTapOfListile(BuildContext context) {
-    WithdrawErrorApi();
-    print("tappppppppppppppppppppppppppppppppppppppppppppppppppp");
-    UIUtils.showProgressDialog(isCancellable: false);
-    Future.delayed(Duration(milliseconds: 3000), () {
-      UIUtils.hideProgressDialog();
-      AwesomeDialog(
-          context: context,
-          dialogType: DialogType.ERROR,
-          animType: AnimType.RIGHSLIDE,
-          headerAnimationLoop: false,
-          title: 'Error',
-          desc:
-          'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
-          btnOkOnPress: () {},
-          btnOkIcon: Icons.cancel,
-          btnOkColor: Colors.red)
-        ..show();
-    });
-  }
-
-  Future<void> WithdrawErrorApi() async {
-    ApiService()
-        .callPostApi(
-        body: await getBodyWithdrawError(amountController.text),
-        headerWithToken: true,
-        url: ApiEndPoints.WITHDRAW_ERROR)
-        .then((value) {
-      print(value);
-      if (value['status']) {
 
 
-      } else {
-
-      }
-    });
-  }
-  Future<FormData> getBodyWithdrawError(String amount) async {
-    final form = FormData({"amount": amount});
-    print(form.toString());
-    return form;
-  }
-  Future<void> callGetUuidApi() async {
-    ApiService()
-        .callPostApi(
-        body: await getUuidApiBody(),
-        headerWithToken: true,
-        url: ApiEndPoints.GET_UUID_USER)
-        .then((value) {
-      print(value);
-      if (value['status']) {
-        uuidModel.value = GetUuidDetail.fromJson(value);
-        Get.toNamed(AppRoutes.amountNumPadScreen,arguments: {
-          "IS_PIN":isPin.value,
-          "EMAIL":uuidModel.value.data?.email,
-          "NAME":uuidModel.value.data?.name,
-          "IMAGE":uuidModel.value.data?.profilePhotoUrl,
-          "UUID_ID":uuid.value,
-          "amount" :walletModel.value.data!.walletBalance
-        });
-      } else {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
-      }
-    });
-  }
-
-  Future<FormData> getUuidApiBody() async {
-    final form = FormData({
-      "uuid": qrCodeResult.value
-    });
-    return form;
-  }
 }

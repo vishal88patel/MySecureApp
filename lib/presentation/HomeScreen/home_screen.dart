@@ -191,26 +191,33 @@ class HomeScreen extends StatelessWidget {
                               "asset/icons/ic_divider.svg",
                               fit: BoxFit.fill,
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  "asset/icons/ic_topUp.svg",
-                                  height: getVerticalSize(28),
-                                  width: getVerticalSize(28),
-                                  fit: BoxFit.fill,
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(10),
-                                ),
-                                Text(
-                                  "Top Up",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(16)),
-                                ),
-                              ],
+                            InkWell(
+                              onTap: (){
+
+                                Get.toNamed(AppRoutes.topWithCreditCardScreen);
+
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    "asset/icons/ic_topUp.svg",
+                                    height: getVerticalSize(28),
+                                    width: getVerticalSize(28),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(10),
+                                  ),
+                                  Text(
+                                    "Top Up",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(16)),
+                                  ),
+                                ],
+                              ),
                             ),
                             SvgPicture.asset(
                               "asset/icons/ic_divider.svg",
@@ -219,6 +226,7 @@ class HomeScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 Get.toNamed(AppRoutes.historyScreen);
+
                               },
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
@@ -241,31 +249,6 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ],
                               ),
-                            ),
-                            SvgPicture.asset(
-                              "asset/icons/ic_divider.svg",
-                              fit: BoxFit.fill,
-                            ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  "asset/icons/ic_req_money.svg",
-                                  height: getVerticalSize(22),
-                                  width: getVerticalSize(22),
-                                  fit: BoxFit.fill,
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(10),
-                                ),
-                                Text(
-                                  "Request \nMoney",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(16)),
-                                ),
-                              ],
                             ),
                           ],
                         ),
@@ -331,7 +314,9 @@ class HomeScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: (){
-                              Get.toNamed(AppRoutes.topSelectionModeScreen);
+
+                              Get.toNamed(AppRoutes.cashoutAmountScreen);
+
                             },
                             child: PaymentListWidget(
                               title: 'Cash Out',
