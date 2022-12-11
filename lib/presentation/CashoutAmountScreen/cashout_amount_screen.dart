@@ -9,11 +9,11 @@ import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import 'controller/top_with_credit_card_controller.dart';
+import 'controller/cashout_amount_scareen_controller.dart';
 
-class TopWithCreditCardScreen extends StatelessWidget {
+class CashoutAmountScreen extends StatelessWidget {
   var topWithCreditCardScreenController =
-      Get.find<TopWithCreditCardController>();
+      Get.find<CashoutAmountController>();
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                 height: 40,
                               ),
                               AppAppBar(
-                                title: "Top Up with Credit Card",
+                                title: "Cashout",
                                 icon1: "asset/icons/ic_back.svg",
                                 icon2: "asset/icons/ic_notification.svg",
                                 onPressedIcon1: () {
@@ -90,7 +90,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                             MainAxisAlignment.start,
                                         children: [
                                           Text(
-                                            "Credit Card",
+                                            "Amount",
                                             overflow: TextOverflow.ellipsis,
                                             textAlign: TextAlign.left,
                                             style: AppStyle.DmSansFont.copyWith(
@@ -105,7 +105,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                               right: 10,
                                             ),
                                             child: Text(
-                                              "Choose your credit card",
+                                              "Enter Your Cashout Amount",
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
                                               style:
@@ -119,11 +119,11 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                           ),
                                         ],
                                       ),
-                                      Image.asset(
+                                     /* Image.asset(
                                         'asset/icons/ic_plus_orange.png',
                                         height: getVerticalSize(50),
                                         width: getHorizontalSize(50),
-                                      )
+                                      )*/
                                     ],
                                   ),
                                 ),
@@ -377,7 +377,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Set amount",
+                      "Set Amount",
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
                       style: AppStyle.DmSansFont.copyWith(
@@ -389,7 +389,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                       height: getVerticalSize(5),
                     ),
                     Text(
-                      "How much would you like to top up?",
+                      "How much would you like to Cashout?",
                       overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left,
                       style: AppStyle.DmSansFont.copyWith(
@@ -411,7 +411,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                               fontSize: getFontSize(30)),
                         ),
                         SizedBox(
-                          width: getHorizontalSize(100),
+                          width: getHorizontalSize(120),
                           child: TextFormField(
                             textAlign: TextAlign.start,
                             controller:
@@ -453,101 +453,101 @@ class TopWithCreditCardScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Obx(()=>
-                              InkWell(
-                                onTap: (){
-                                  if(topWithCreditCardScreenController.opt1.value==true){
-                                    topWithCreditCardScreenController.opt1.value=false;
-                                  }else{
-                                    topWithCreditCardScreenController.opt1.value=true;
-                                    topWithCreditCardScreenController.opt2.value=false;
-                                    topWithCreditCardScreenController.opt3.value=false;
-                                    topWithCreditCardScreenController.amountController.text="100";
-                                  }
+                             InkWell(
+                              onTap: (){
+                                if(topWithCreditCardScreenController.opt1.value==true){
+                                  topWithCreditCardScreenController.opt1.value=false;
+                                }else{
+                                  topWithCreditCardScreenController.opt1.value=true;
+                                  topWithCreditCardScreenController.opt2.value=false;
+                                  topWithCreditCardScreenController.opt3.value=false;
+                                  topWithCreditCardScreenController.amountController.text="100";
+                                }
 
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(16),
-                                      color:topWithCreditCardScreenController.opt1.value? ColorConstant.primaryLightGreen:ColorConstant.buttonGreen
-                                          .withOpacity(0.15)),
-                                  child: Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: getHorizontalSize(25),
-                                        vertical: getVerticalSize(7)),
-                                    child: Text(
-                                      "\$100.00",
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color:topWithCreditCardScreenController.opt1.value?ColorConstant.primaryWhite:ColorConstant.buttonGreen,
-                                          fontSize: getFontSize(16),
-                                          fontWeight: FontWeight.w500),
-                                    ),
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color:topWithCreditCardScreenController.opt1.value? ColorConstant.primaryLightGreen:ColorConstant.buttonGreen
+                                        .withOpacity(0.15)),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: getHorizontalSize(25),
+                                      vertical: getVerticalSize(7)),
+                                  child: Text(
+                                    "\$100.00",
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color:topWithCreditCardScreenController.opt1.value?ColorConstant.primaryWhite:ColorConstant.buttonGreen,
+                                        fontSize: getFontSize(16),
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
+                            ),
                           ),
                           Obx(()=> InkWell(
-                            onTap: (){
-                              if(topWithCreditCardScreenController.opt2.value==true){
-                                topWithCreditCardScreenController.opt2.value=false;
-                              }else{
-                                topWithCreditCardScreenController.amountController.text="200";
-                                topWithCreditCardScreenController.opt2.value=true;
-                                topWithCreditCardScreenController.opt1.value=false;
-                                topWithCreditCardScreenController.opt3.value=false;
-                              }
+                              onTap: (){
+                                if(topWithCreditCardScreenController.opt2.value==true){
+                                  topWithCreditCardScreenController.opt2.value=false;
+                                }else{
+                                  topWithCreditCardScreenController.amountController.text="200";
+                                  topWithCreditCardScreenController.opt2.value=true;
+                                  topWithCreditCardScreenController.opt1.value=false;
+                                  topWithCreditCardScreenController.opt3.value=false;
+                                }
 
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color:topWithCreditCardScreenController.opt2.value? ColorConstant.primaryLightGreen:ColorConstant.buttonGreen
-                                      .withOpacity(0.15)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: getHorizontalSize(25),
-                                    vertical: getVerticalSize(7)),
-                                child: Text(
-                                  "\$200.00",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color:topWithCreditCardScreenController.opt2.value?ColorConstant.primaryWhite:ColorConstant.buttonGreen,
-                                      fontSize: getFontSize(16),
-                                      fontWeight: FontWeight.w500),
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color:topWithCreditCardScreenController.opt2.value? ColorConstant.primaryLightGreen:ColorConstant.buttonGreen
+                                        .withOpacity(0.15)),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: getHorizontalSize(25),
+                                      vertical: getVerticalSize(7)),
+                                  child: Text(
+                                    "\$200.00",
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color:topWithCreditCardScreenController.opt2.value?ColorConstant.primaryWhite:ColorConstant.buttonGreen,
+                                        fontSize: getFontSize(16),
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 ),
                               ),
                             ),
                           ),
-                          ),
                           Obx(()=> InkWell(
-                            onTap: (){
-                              if(topWithCreditCardScreenController.opt3.value==true){
-                                topWithCreditCardScreenController.opt3.value=false;
-                              }else{
-                                topWithCreditCardScreenController.amountController.text="500";
-                                topWithCreditCardScreenController.opt3.value=true;
-                                topWithCreditCardScreenController.opt1.value=false;
-                                topWithCreditCardScreenController.opt2.value=false;
-                              }
+                              onTap: (){
+                                if(topWithCreditCardScreenController.opt3.value==true){
+                                  topWithCreditCardScreenController.opt3.value=false;
+                                }else{
+                                  topWithCreditCardScreenController.amountController.text="500";
+                                  topWithCreditCardScreenController.opt3.value=true;
+                                  topWithCreditCardScreenController.opt1.value=false;
+                                  topWithCreditCardScreenController.opt2.value=false;
+                                }
 
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(16),
-                                  color:topWithCreditCardScreenController.opt3.value? ColorConstant.primaryLightGreen:ColorConstant.buttonGreen
-                                      .withOpacity(0.15)),
-                              child: Padding(
-                                padding: EdgeInsets.symmetric(
-                                    horizontal: getHorizontalSize(25),
-                                    vertical: getVerticalSize(7)),
-                                child: Text(
-                                  "\$500.00",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color:topWithCreditCardScreenController.opt3.value?ColorConstant.primaryWhite:ColorConstant.buttonGreen,
-                                      fontSize: getFontSize(16),
-                                      fontWeight: FontWeight.w500),
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color:topWithCreditCardScreenController.opt3.value? ColorConstant.primaryLightGreen:ColorConstant.buttonGreen
+                                        .withOpacity(0.15)),
+                                child: Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: getHorizontalSize(25),
+                                      vertical: getVerticalSize(7)),
+                                  child: Text(
+                                    "\$500.00",
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color:topWithCreditCardScreenController.opt3.value?ColorConstant.primaryWhite:ColorConstant.buttonGreen,
+                                        fontSize: getFontSize(16),
+                                        fontWeight: FontWeight.w500),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
                           ),
                         ],
                       ),
@@ -556,7 +556,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                       height: getVerticalSize(150),
                     ),
                     AppElevatedButton(
-                        buttonName: 'Top Up Now',
+                        buttonName: 'Cashout Now',
                         textColor: ColorConstant.primaryWhite,
                         onPressed: () {
                           topWithCreditCardScreenController.onNext(context);
