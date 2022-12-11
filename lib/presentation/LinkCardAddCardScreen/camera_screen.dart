@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -7,32 +6,32 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:permission_handler/permission_handler.dart';
-import '../App Configurations/color_constants.dart';
-import '../Custom Widgets/app_ElevatedButton .dart';
-import '../utils/HelperFiles/math_utils.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
-import 'package:path/path.dart' as path;
-import 'package:path_provider/path_provider.dart';
-import 'topAddCard1/controller/top_add_card1_screen_controller.dart';
+
+import '../../App Configurations/color_constants.dart';
+import '../../Custom Widgets/app_ElevatedButton .dart';
+import '../../utils/HelperFiles/math_utils.dart';
+import 'controller/link_card_add_card_screen_controller.dart';
 
 
-class CameraScreen2 extends StatefulWidget {
+
+class LinkCardCameraScreen extends StatefulWidget {
   final int? image;
   final String? title;
-  const CameraScreen2({required this.image,required this.title}) : super();
+  const LinkCardCameraScreen({required this.image,required this.title}) : super();
 
   @override
-  CameraScreen2State createState() => CameraScreen2State();
+  LinkCardCameraScreenState createState() => LinkCardCameraScreenState();
 }
 
-class CameraScreen2State extends State<CameraScreen2>
+class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
     with AutomaticKeepAliveClientMixin {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var cardDetailController = Get.find<TopAddCard1Controller>();
+  var cardDetailController = Get.find<LinkCardAddCardController>();
   int width=6;
   XFile? imageFile;
   @override
@@ -542,14 +541,14 @@ class CameraScreen2State extends State<CameraScreen2>
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const CameraScreen2(
+                  builder: (context) => const LinkCardCameraScreen(
                     image: 2,title: 'Scan the back of your card',
                   )),
             );
           }else if(widget.image==2){
             cardDetailController.netImage2.value=file!.path;
             //Get.toNamed(AppRoutes.cardLoaderScreen);
-            Get.toNamed(AppRoutes.topEditCard1Screen);
+            Get.toNamed(AppRoutes.linkCardEditCardScreen);
 
           }else{
 

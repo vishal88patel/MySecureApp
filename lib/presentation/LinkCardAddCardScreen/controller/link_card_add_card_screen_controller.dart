@@ -20,10 +20,10 @@ import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
-import 'package:secure_cash_app/presentation/camera_screen.dart';
+import '../camera_screen.dart';
 
 
-class TopAddCard1Controller extends GetxController {
+class LinkCardAddCardController extends GetxController {
 
   TextEditingController nameController = TextEditingController();
   TextEditingController cardNumberController = TextEditingController();
@@ -64,6 +64,10 @@ class TopAddCard1Controller extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter card number",
           headerText: StringConstants.ERROR);
+    } else if (cardNumberController.text.trim().length<12) {
+      UIUtils.showSnakBar(
+          bodyText: "Please enter 12 digit card number",
+          headerText: StringConstants.ERROR);
     } else if (expDateController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter expiry month and year",
@@ -92,7 +96,7 @@ class TopAddCard1Controller extends GetxController {
       Navigator.push(
         context,
         MaterialPageRoute(
-            builder: (context) => const CameraScreen2(
+            builder: (context) => const LinkCardCameraScreen(
               image: 1,title: 'Scan the front of your card',
             )),
       );

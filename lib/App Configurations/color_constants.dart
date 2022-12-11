@@ -43,6 +43,7 @@ class ColorConstant {
   static Color skyF6 = const Color(0xFFF6FAFD);
   static Color greyBD = const Color(0xFFBDBDBD);
   static Color greyF9 = const Color(0xFFF9FAFD);
+  static Color darkGrey = const Color(0xFF01373d);
 
 
   // new ui screen color

@@ -46,7 +46,9 @@ class ScanPasswordScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Confirm Password",
+                                scanController.isPin.value==0
+                                    ?"Enter Pin"
+                                    :"Confirm Pin",
                                 style: AppStyle.DmSansFont.copyWith(
                                     color: ColorConstant.naturalBlack,
                                     fontWeight: FontWeight.w700,
@@ -63,7 +65,9 @@ class ScanPasswordScreen extends StatelessWidget {
                             height: getVerticalSize(28),
                           ),
                           Text(
-                            "Please input your password before continuing payment",
+                            scanController.isPin.value==0
+                                ?"Please Set Your Pin before continuing payment"
+                                :"Please Enter Your Pin before continuing payment",
                             style: AppStyle.DmSansFont.copyWith(
                                 color: ColorConstant.naturalGrey,
                                 fontWeight: FontWeight.w400,

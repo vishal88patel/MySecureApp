@@ -51,8 +51,16 @@ import '../presentation/KycStep1ModuleScreen/binding/kyc_step1_screen_binding.da
 import '../presentation/KycStep1ModuleScreen/kyc__selfie_loading_screen.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_loading_screen.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_step1_data_screen.dart';
+import '../presentation/LinkCardAddCardScreen/binding/link_card_add_card_screen_binding.dart';
+import '../presentation/LinkCardAddCardScreen/link_card_add_card_screen.dart';
 import '../presentation/LinkCardAndBank/binding/link_card_bank_screen_binding.dart';
 import '../presentation/LinkCardAndBank/link_card_bank_screen.dart';
+import '../presentation/LinkCardEditCardScreen/binding/link_card_edit_card_screen_binding.dart';
+import '../presentation/LinkCardEditCardScreen/link_card_edit_card_screen.dart';
+import '../presentation/LinkCardLoadingScreen/binding/link_card_loading_screen_binding.dart';
+import '../presentation/LinkCardLoadingScreen/link_card_loading_screen.dart';
+import '../presentation/LinkCardSuccessScreen/binding/link_card_success_screen_binding.dart';
+import '../presentation/LinkCardSuccessScreen/link_card_success_screen.dart';
 import '../presentation/LoanApprovedScreen/binding/loan_approved_screen_binding.dart';
 import '../presentation/LoanApprovedScreen/loan_approved_screen.dart';
 import '../presentation/LoanStepScreen/binding/loan_step_screen_binding.dart';
@@ -98,16 +106,10 @@ import '../presentation/LoanCalculator/loan_email_screen.dart';
 import '../presentation/LoanCalculator/loan_ssn_screen.dart';
 import '../presentation/LoanCalculator/loan_address_screen.dart';
 import '../presentation/LoanCalculator/apply_loaninfo_screen.dart';
-import '../presentation/topAddCard1/binding/card_loader_screen_binding.dart';
-import '../presentation/topAddCard1/binding/top_add_card1_screen_binding.dart';
-import '../presentation/topAddCard1/card_loading_screen.dart';
-import '../presentation/topAddCard1/top_add_card1_screen.dart';
 import '../presentation/topAddCardConfirm/binding/top_add_card_confirm_screen_binding.dart';
 import '../presentation/topAddCardConfirm/top_add_card_confirm_screen.dart';
 import '../presentation/topAddCardFill/binding/top_add_card_fill_screen_binding.dart';
 import '../presentation/topAddCardFill/top_add_card_fill_screen.dart';
-import '../presentation/topEditCardConfirm/binding/top_edit_card_confirm_screen_binding.dart';
-import '../presentation/topEditCardConfirm/top_edit_card_confirm_screen.dart';
 import '../presentation/topSelectionMode/binding/top_selection_mode_screen_binding.dart';
 import '../presentation/topSelectionMode/top_selection_mode_screen.dart';
 import '../presentation/topWithCreditCard/binding/top_with_credit_card_binding.dart';
@@ -135,8 +137,6 @@ class AppRoutes {
   static String myLinkedBankListScreen = '/my_linked_bank_list_screen';
   static String selectBankListScreen = '/select_bank_list_screen';
   static String myBankAccountListScreen = '/my_bank_account_list_screen';
-  static String cardDetailScreen = '/card_detail_screen';
-  static String cardLoaderScreen = '/card_loading_screen';
   static String accountDetailListScreen = '/account__detail_list_screen';
   static String cardDetailListScreen = '/card_detail_list_screen';
   static String cardListScreen = '/card_list_screen';
@@ -206,7 +206,7 @@ class AppRoutes {
   static String topupBankListScreen = '/top_up_bank_list_screen';
   static String topMyCardScreen = '/top_my_card_screen';
   static String topAddCard1Screen = '/top_add_card1_screen';
-  static String topEditCard1Screen = '/top_edit_card1_screen';
+
   static String topAddCardFillScreen = '/top_add_card_fill_screen';
   static String topYourCreditCardScreen = '/top_your_credit_card_screen';
   static String topWithCreditCardScreen = '/top_with_credit_card_screen';
@@ -224,6 +224,10 @@ class AppRoutes {
   static String transferScanScreen = '/transfer_scan_screen';
   static String transferToUserScreen = '/transfer_to_user_screen';
 
+  static String linkCardAddCardScreen = '/link_card_add_card_screen';
+  static String linkCardLoadingScreen = '/link_card_loading_screen';
+  static String linkCardEditCardScreen = '/link_card_edit_card_screen';
+  static String linkCardSuccessScreen = '/link_card_success_screen';
 
 
   static List<GetPage> pages = [
@@ -575,26 +579,36 @@ class AppRoutes {
     ),
 
     GetPage(
-      name: topAddCard1Screen,
+      name: linkCardAddCardScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => TopAddCard1Screen(),
+      page: () => LinkCardAddCardScreen(),
       bindings: [
-        TopAddCard1Binding(),
+        LinkCardAddCardBinding(),
       ],
     ),
 
     GetPage(
-      name: topEditCard1Screen,
+      name: linkCardLoadingScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => TopEditCardConfirmScreen(),
+      page: () => LinkCardLoadingScreen(),
       bindings: [
-        TopEditCardConfirmBinding(),
+        LinkCardLoadingScreenBinding(),
       ],
     ),
 
     GetPage(
+      name: linkCardEditCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LinkCardEditCardScreen(),
+      bindings: [
+        LinkCardEditCardBinding(),
+      ],
+    ),
+
+    /*GetPage(
       name: cardLoaderScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -602,7 +616,7 @@ class AppRoutes {
       bindings: [
         CardLoaderScreenBinding(),
       ],
-    ),
+    ),*/
 
     GetPage(
       name: topAddCardFillScreen,
@@ -729,6 +743,16 @@ class AppRoutes {
       page: () => LoanApprovedScreen(),
       bindings: [
         LoanApprovedScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: linkCardSuccessScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LinkCardSuccessScreen(),
+      bindings: [
+        LinkCardSuccessScreenBinding(),
       ],
     ),
 

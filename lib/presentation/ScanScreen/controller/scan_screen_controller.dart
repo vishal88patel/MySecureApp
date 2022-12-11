@@ -8,6 +8,7 @@ import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../CashoutAmountScreen/model/getWallet.dart';
 import '../../HistoryScreen/Model/getUuidDetail.dart';
 import '../scan_password_screen.dart';
 import '../scan_success_screen.dart';
@@ -33,6 +34,9 @@ class ScanScreenController extends GetxController {
   var selectedMethod="Select Payment Method".obs;
 
   var isFirstOpen = false.obs;
+
+  var walletModel=GetWallet().obs;
+
 
   @override
   void onReady() {
@@ -74,6 +78,33 @@ class ScanScreenController extends GetxController {
     }
 
   }
+
+  Future<void> callGetWalletApi({required int pageNo}) async {
+    ApiService()
+        .callGetApi(
+        body: await getWalletApiBody(),
+        headerWithToken: true,
+        showLoader: pageNo==1?true:false,
+        url: ApiEndPoints.GET_WALLET+"?page=$pageNo")
+        .then((value) {
+      print(value);
+      if (value!=null&&value['status']) {
+        walletModel.value = GetWallet.fromJson(value);
+        isPin.value= walletModel.value.data!.isPin!;
+
+      } else {
+        UIUtils.hideProgressDialog();
+        // UIUtils.showSnakBar(
+        //     bodyText: value['message']??'', headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<FormData> getWalletApiBody() async {
+    final form = FormData({});
+    return form;
+  }
+
 
   void onTapOfPassObsecure(bool val) {
     passIsObsecure.value = !val;
