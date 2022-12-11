@@ -1,6 +1,7 @@
 import 'package:accordion/accordion.dart';
 import 'package:accordion/accordion_section.dart';
 import 'package:accordion/controllers.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -21,15 +22,6 @@ class ScanSummaryScreen extends StatelessWidget {
     'Credit Card',
     'Wallet',
   ];
-
-  final _headerStyle = const TextStyle(
-      color: Color(0xffffffff), fontSize: 15, fontWeight: FontWeight.bold);
-  final _contentStyleHeader = const TextStyle(
-      color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.w700);
-  final _contentStyle = const TextStyle(
-      color: Color(0xff999999), fontSize: 14, fontWeight: FontWeight.normal);
-  final _loremIpsum =
-      '''Lorem ipsum is typically a corrupted version of 'De finibus bonorum et malorum', a 1st century BC text by the Roman statesman and philosopher Cicero, with words altered, added, and removed to make it nonsensical and improper Latin.''';
 
   @override
   Widget build(BuildContext context) {
@@ -219,7 +211,7 @@ class ScanSummaryScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: MediaQuery.of(context).size.height / 18,
+                        height: 12,
                       ),
                       Text(
                         "Choose Method",
@@ -229,73 +221,524 @@ class ScanSummaryScreen extends StatelessWidget {
                             fontSize: getFontSize(22)),
                       ),
                       SizedBox(
-                        height: getVerticalSize(20),
+                        height: 12,
                       ),
-                      Obx(
-                        () => AnimatedContainer(
-                          duration: Duration(milliseconds: 300),
-                          height: scanController.dropHeight.value,
-                          child: Accordion(
-                            maxOpenSections: 2,
-                            headerBackgroundColorOpened: Colors.black54,
-                            scaleWhenAnimating: false,
-                            openAndCloseAnimation: true,
-                            sectionOpeningHapticFeedback:
-                                SectionHapticFeedback.heavy,
-                            sectionClosingHapticFeedback:
-                                SectionHapticFeedback.light,
-                            children: [
-                              AccordionSection(
-                                contentVerticalPadding: 0,
-                                headerPadding: EdgeInsets.zero,
-                                contentBorderRadius: 12,
-                                isOpen: true,
-                                leftIcon: Container(
-                                  height: 60,
+                      AnimatedContainer(
+                        duration: Duration(milliseconds: 300),
+                        height: scanController.animContainerHeighr.value,
+                        child: Accordion(
+                          paddingListBottom: 0,
+                          paddingBetweenClosedSections: 0,
+                          contentVerticalPadding: 0,
+                          headerPadding: EdgeInsets.zero,
+                          paddingListHorizontal: 0,
+                          paddingListTop: 0,
+                          contentHorizontalPadding: 0,
+                          paddingBetweenOpenSections: 0,
+                          headerBorderRadius: 20,
+                          headerBackgroundColorOpened: Colors.black54,
+                          scaleWhenAnimating: false,
+                          openAndCloseAnimation: true,
+                          sectionOpeningHapticFeedback:
+                              SectionHapticFeedback.heavy,
+                          sectionClosingHapticFeedback:
+                              SectionHapticFeedback.light,
+
+                          children: [
+                           /* AccordionSection(
+                              contentBackgroundColor: ColorConstant.primaryWhite,
+                              contentVerticalPadding: 12,
+                              headerPadding: EdgeInsets.zero,
+                              contentBorderRadius: 12,
+                              contentBorderColor: Colors.white,
+                              isOpen: true,
+                              leftIcon: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 12),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12))),
+                                    height: 55,
+                                    width: 80,
                                     child: Image.asset(
-                                  "asset/Logo.png",
-                                )),
-                                headerBackgroundColor:ColorConstant.primaryAppTextF1,
-                                headerBackgroundColorOpened:ColorConstant.primaryAppTextF1,
-                                header:
-                                    Container(child: Text('Introduction', style: _headerStyle)),
-                                content: Column(
-                                  children: [
-                                    AccordionSection(
-                                      isOpen: true,
-                                      leftIcon: const Icon(
-                                          Icons.compare_rounded,
-                                          color: Colors.white),
-                                      header: Text('Nested Accordion',
-                                          style: _headerStyle),
-                                      contentBorderColor:
-                                          const Color(0xffffffff),
-                                      headerBackgroundColorOpened: Colors.amber,
-                                      content: Accordion(
-                                        maxOpenSections: 1,
-                                        headerBackgroundColorOpened:
-                                            Colors.black54,
-                                        headerPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 7, horizontal: 15),
-                                        children: [
-                                        ],
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                contentHorizontalPadding: 0,
-                                contentBorderWidth: 1,
-                                // onOpenSection: () => print('onOpenSection ...'),
-                                // onCloseSection: () => print('onCloseSection ...'),
+                                      "asset/Logo.png",
+                                    )),
                               ),
-                            ],
-                          ),
+                              rightIcon: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(CupertinoIcons.chevron_up),
+                              ),
+                              flipRightIconIfOpen: true,
+                              headerBackgroundColor:
+                                  ColorConstant.primaryAppTextF1,
+                              headerBackgroundColorOpened:
+                                  ColorConstant.primaryAppTextF1,
+                              header: Container(
+                                  child: Text(scanController.selectedMethod.value,
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontSize: getFontSize(16),
+                                          fontWeight: FontWeight.bold))),
+                              content: Column(
+                                children: [
+                                  Obx(
+                                    () => scanController.isFirstOpen.value
+                                        ? AccordionSection(
+                                      onOpenSection: (){
+                                        scanController.onTaoOfItem("Wallet");
+                                      },
+                                      headerPadding: EdgeInsets.zero,
+                                      contentVerticalPadding: 0,
+                                      headerBorderRadius: 0,
+                                            contentBorderRadius: 40,
+                                            isOpen: false,
+                                            leftIcon: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      vertical: 8.0,
+                                                      horizontal: 12),
+                                              child: Container(
+                                                  decoration: BoxDecoration(
+                                                      color: Colors.white,
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  12))),
+                                                  height: 55,
+                                                  width: 80,
+                                                  child: Image.asset(
+                                                    "asset/Logo.png",
+                                                  )),
+                                            ),
+                                            header: Container(
+                                                child: Text('Wallet',
+                                                    style: AppStyle.DmSansFont
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .primaryBlack,
+                                                            fontSize:
+                                                                getFontSize(16),
+                                                            fontWeight: FontWeight
+                                                                .bold))),
+                                        headerBackgroundColor:
+                                        ColorConstant.primaryAppTextF1,
+                                        headerBackgroundColorOpened:
+                                        ColorConstant.primaryAppTextF1,
+                                            content: SizedBox())
+                                        : AccordionSection(
+                                            isOpen: false,
+                                            header: Text(''),
+                                            contentBorderColor:
+                                                const Color(0xffffffff),
+                                            headerBackgroundColorOpened:
+                                                Colors.white,
+                                        headerBackgroundColor:
+                                        ColorConstant.primaryWhite,
+                                            content: SizedBox()),
+                                  ),
+
+                                  Obx(
+                                        () => scanController.isFirstOpen.value
+                                        ? AccordionSection(
+                                            onOpenSection: (){
+                                              scanController.onTaoOfItem("Card");
+                                            },
+                                        headerPadding: EdgeInsets.zero,
+                                        contentVerticalPadding: 0,
+                                        headerBorderRadius: 0,
+                                        contentBorderRadius: 40,
+                                            isOpen: false,
+                                        leftIcon: Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 8.0,
+                                              horizontal: 12),
+                                          child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                  BorderRadius.all(
+                                                      Radius.circular(
+                                                          12))),
+                                              height: 55,
+                                              width: 80,
+                                              child: Image.asset(
+                                                "asset/Logo.png",
+                                              )),
+                                        ),
+                                        header: Container(
+                                            child: Text('Card',
+                                                style: AppStyle.DmSansFont
+                                                    .copyWith(
+                                                    color: ColorConstant
+                                                        .primaryBlack,
+                                                    fontSize:
+                                                    getFontSize(16),
+                                                    fontWeight: FontWeight
+                                                        .bold))),
+                                        headerBackgroundColor:
+                                        ColorConstant.primaryAppTextF1,
+                                        headerBackgroundColorOpened:
+                                        ColorConstant.primaryAppTextF1,
+                                        content: Container())
+                                        : AccordionSection(
+                                            isOpen: false,
+                                            header: Text(''),
+                                            contentBorderColor:
+                                            const Color(0xffffffff),
+                                            headerBackgroundColorOpened:
+                                            Colors.white,
+                                            headerBackgroundColor:
+                                            ColorConstant.primaryWhite,
+                                            content: SizedBox()),
+                                  ),
+
+                                  Obx(
+                                        () => scanController.isFirstOpen.value
+                                        ? AccordionSection(
+                                            onOpenSection: (){
+                                              scanController.onTaoOfItem("Bank");
+                                            },
+                                        headerPadding: EdgeInsets.zero,
+                                        contentVerticalPadding: 0,
+                                        headerBorderRadius: 0,
+                                        contentBorderRadius: 40,
+                                            isOpen: false,
+                                        leftIcon: Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 8.0,
+                                              horizontal: 12),
+                                          child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                  BorderRadius.all(
+                                                      Radius.circular(
+                                                          12))),
+                                              height: 55,
+                                              width: 80,
+                                              child: Image.asset(
+                                                "asset/Logo.png",
+                                              )),
+                                        ),
+                                        header: Container(
+                                            child: Text('Bank',
+                                                style: AppStyle.DmSansFont
+                                                    .copyWith(
+                                                    color: ColorConstant
+                                                        .primaryBlack,
+                                                    fontSize:
+                                                    getFontSize(16),
+                                                    fontWeight: FontWeight
+                                                        .bold))),
+                                        headerBackgroundColor:
+                                        ColorConstant.primaryAppTextF1,
+                                        headerBackgroundColorOpened:
+                                        ColorConstant.primaryAppTextF1,
+                                        content: Container())
+                                        : AccordionSection(
+                                            isOpen: false,
+                                            header: Text(''),
+                                            contentBorderColor:
+                                            const Color(0xffffffff),
+                                            headerBackgroundColorOpened:
+                                            Colors.white,
+                                            headerBackgroundColor:
+                                            ColorConstant.primaryWhite,
+                                            content: SizedBox()),
+                                  ),
+
+                                  Obx(
+                                        () => scanController.isFirstOpen.value
+                                        ? AccordionSection(
+                                            onOpenSection: (){
+                                              scanController.onTaoOfItem("Cash Card");
+                                            },
+                                        headerPadding: EdgeInsets.zero,
+                                        contentVerticalPadding: 0,
+                                        headerBorderRadius: 0,
+                                        contentBorderRadius: 40,
+                                            isOpen: false,
+                                        leftIcon: Padding(
+                                          padding:
+                                          const EdgeInsets.symmetric(
+                                              vertical: 8.0,
+                                              horizontal: 12),
+                                          child: Container(
+                                              decoration: BoxDecoration(
+                                                  color: Colors.white,
+                                                  borderRadius:
+                                                  BorderRadius.all(
+                                                      Radius.circular(
+                                                          12))),
+                                              height: 55,
+                                              width: 80,
+                                              child: Image.asset(
+                                                "asset/Logo.png",
+                                              )),
+                                        ),
+                                        header: Container(
+                                            child: Text('Cash Card',
+                                                style: AppStyle.DmSansFont
+                                                    .copyWith(
+                                                    color: ColorConstant
+                                                        .primaryBlack,
+                                                    fontSize:
+                                                    getFontSize(16),
+                                                    fontWeight: FontWeight
+                                                        .bold))),
+                                        headerBackgroundColor:
+                                        ColorConstant.primaryAppTextF1,
+                                        headerBackgroundColorOpened:
+                                        ColorConstant.primaryAppTextF1,
+                                        content: Container())
+                                        : AccordionSection(
+                                            isOpen: false,
+                                            header: Text(''),
+                                            contentBorderColor:
+                                            const Color(0xffffffff),
+                                            headerBackgroundColorOpened:
+                                            Colors.white,
+                                            headerBackgroundColor:
+                                            ColorConstant.primaryWhite,
+                                            content: SizedBox()),
+                                  ),
+                                ],
+                              ),
+                              contentHorizontalPadding: 0,
+                              contentBorderWidth: 1,
+                              onOpenSection: () {
+                                scanController.onChangeOfExpansonTile();
+                              },
+                              onCloseSection: () {
+                                scanController.onChangeOfExpansonTile();
+                              },
+                            ),*/
+
+                            AccordionSection(
+                              contentBackgroundColor: ColorConstant.primaryWhite,
+                              contentVerticalPadding: 12,
+                              headerPadding: EdgeInsets.zero,
+                              contentBorderRadius: 12,
+                              contentBorderColor: Colors.white,
+                              isOpen:  scanController.isFirstOpen.value,
+                              leftIcon: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    vertical: 8.0, horizontal: 12),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(12))),
+                                    height: 55,
+                                    width: 80,
+                                    child: Image.asset(
+                                      "asset/Logo.png",
+                                    )),
+                              ),
+                              rightIcon: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Icon(CupertinoIcons.chevron_down),
+                              ),
+                              flipRightIconIfOpen: true,
+                              headerBackgroundColor:
+                              ColorConstant.primaryAppTextF1,
+                              headerBackgroundColorOpened:
+                              ColorConstant.primaryAppTextF1,
+                              header: Container(
+                                  child: Text(scanController.selectedMethod.value,
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontSize: getFontSize(16),
+                                          fontWeight: FontWeight.bold))),
+                              content: Column(
+                                children: [
+                                  AccordionSection(
+                                    contentBackgroundColor: ColorConstant.primaryWhite,
+                                    contentVerticalPadding: 0,
+                                    headerPadding: EdgeInsets.zero,
+                                    contentBorderRadius: 12,
+                                    contentBorderColor: Colors.white,
+                                    isOpen: false,
+                                    leftIcon: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 12),
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(12))),
+                                          height: 55,
+                                          width: 80,
+                                          child: Image.asset(
+                                            "asset/Logo.png",
+                                          )),
+                                    ),
+                                    flipRightIconIfOpen: true,
+                                    headerBackgroundColor:
+                                    ColorConstant.primaryAppTextF1,
+                                    headerBackgroundColorOpened:
+                                    ColorConstant.primaryAppTextF1,
+                                    header: Container(
+                                        child: Text("Wallet",
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.primaryBlack,
+                                                fontSize: getFontSize(16),
+                                                fontWeight: FontWeight.bold))),
+                                    content: SizedBox(),
+                                    contentHorizontalPadding: 0,
+                                    contentBorderWidth: 1,
+                                    onOpenSection: () {
+                                      scanController.onTaoOfItem("Wallet");
+                                    },
+                                    onCloseSection: () {
+                                      scanController.onTaoOfItem("Wallet");
+                                    },
+                                  ),
+                                  AccordionSection(
+                                    contentBackgroundColor: ColorConstant.primaryWhite,
+                                    contentVerticalPadding: 0,
+                                    headerPadding: EdgeInsets.zero,
+                                    contentBorderRadius: 12,
+                                    contentBorderColor: Colors.white,
+                                    isOpen: false,
+                                    leftIcon: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 12),
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(12))),
+                                          height: 55,
+                                          width: 80,
+                                          child: Image.asset(
+                                            "asset/Logo.png",
+                                          )),
+                                    ),
+                                    flipRightIconIfOpen: true,
+                                    headerBackgroundColor:
+                                    ColorConstant.primaryAppTextF1,
+                                    headerBackgroundColorOpened:
+                                    ColorConstant.primaryAppTextF1,
+                                    header: Container(
+                                        child: Text("Card",
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.primaryBlack,
+                                                fontSize: getFontSize(16),
+                                                fontWeight: FontWeight.bold))),
+                                    content: SizedBox(),
+                                    contentHorizontalPadding: 0,
+                                    contentBorderWidth: 1,
+                                    onOpenSection: () {
+                                      scanController.onTaoOfItem("Card");
+                                    },
+                                    onCloseSection: () {
+                                      scanController.onTaoOfItem("Card");                                    },
+                                  ),
+                                  AccordionSection(
+                                    contentBackgroundColor: ColorConstant.primaryWhite,
+                                    contentVerticalPadding: 0,
+                                    headerPadding: EdgeInsets.zero,
+                                    contentBorderRadius: 12,
+                                    contentBorderColor: Colors.white,
+                                    isOpen: false,
+                                    leftIcon: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 12),
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(12))),
+                                          height: 55,
+                                          width: 80,
+                                          child: Image.asset(
+                                            "asset/Logo.png",
+                                          )),
+                                    ),
+                                    flipRightIconIfOpen: true,
+                                    headerBackgroundColor:
+                                    ColorConstant.primaryAppTextF1,
+                                    headerBackgroundColorOpened:
+                                    ColorConstant.primaryAppTextF1,
+                                    header: Container(
+                                        child: Text("Bank",
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.primaryBlack,
+                                                fontSize: getFontSize(16),
+                                                fontWeight: FontWeight.bold))),
+                                    content: SizedBox(),
+                                    contentHorizontalPadding: 0,
+                                    contentBorderWidth: 1,
+                                    onOpenSection: () {
+                                      scanController.onTaoOfItem("Bank");
+                                    },
+                                    onCloseSection: () {
+                                      scanController.onTaoOfItem("Bank");
+                                    },
+                                  ),
+                                  AccordionSection(
+                                    contentBackgroundColor: ColorConstant.primaryWhite,
+                                    contentVerticalPadding: 0,
+                                    headerPadding: EdgeInsets.zero,
+                                    contentBorderRadius: 12,
+                                    contentBorderColor: Colors.white,
+                                    isOpen: false,
+                                    leftIcon: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 8.0, horizontal: 12),
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              color: Colors.white,
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(12))),
+                                          height: 55,
+                                          width: 80,
+                                          child: Image.asset(
+                                            "asset/Logo.png",
+                                          )),
+                                    ),
+                                    flipRightIconIfOpen: true,
+                                    headerBackgroundColor:
+                                    ColorConstant.primaryAppTextF1,
+                                    headerBackgroundColorOpened:
+                                    ColorConstant.primaryAppTextF1,
+                                    header: Container(
+                                        child: Text("Cash Card",
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.primaryBlack,
+                                                fontSize: getFontSize(16),
+                                                fontWeight: FontWeight.bold))),
+                                    content: SizedBox(),
+                                    contentHorizontalPadding: 0,
+                                    contentBorderWidth: 1,
+                                    onOpenSection: () {
+                                      scanController.onTaoOfItem("Cash Card");
+                                    },
+                                    onCloseSection: () {
+                                      scanController.onTaoOfItem("Cash Card");
+                                    },
+                                  ),
+
+                                ],
+                              ),
+                              contentHorizontalPadding: 0,
+                              contentBorderWidth: 1,
+                              onOpenSection: () {
+                                scanController.onChangeOfExpansonTile();
+                              },
+                              onCloseSection: () {
+                                scanController.onChangeOfExpansonTile();
+                              },
+                            ),
+                          ],
                         ),
                       ),
-                      SizedBox(
-                        height: getVerticalSize(26),
-                      ),
+
                       AppElevatedButton(
                         buttonName: "Proceed to Pay",
                         textColor: Colors.white,
@@ -305,9 +748,7 @@ class ScanSummaryScreen extends StatelessWidget {
                           scanController.processToPay();
                         },
                       ),
-                      SizedBox(
-                        height: getVerticalSize(32),
-                      ),
+
                     ],
                   ),
                 ),
