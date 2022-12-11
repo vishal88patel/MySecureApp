@@ -33,7 +33,7 @@ class NumPad extends StatelessWidget {
               topRight: Radius.circular(32), topLeft: Radius.circular(32))),
       child: Column(
         children: [
-          SizedBox(height: getVerticalSize(50)),
+          SizedBox(height: getVerticalSize(20)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             // implement the number keys (from 0 to 9) with the NumberButton widget
@@ -133,7 +133,7 @@ class NumPad extends StatelessWidget {
               iconButtonWidget(context: context, function: () => delete()),
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 10),
 
           // Padding(
           //   padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),

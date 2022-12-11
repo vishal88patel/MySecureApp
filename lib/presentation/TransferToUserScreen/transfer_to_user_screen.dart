@@ -20,14 +20,14 @@ class TransferToUserScreen extends StatelessWidget {
     return Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(
-            child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: getVerticalSize(10),
-                  ),
-                  Row(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: getVerticalSize(10),
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
 
@@ -61,47 +61,50 @@ class TransferToUserScreen extends StatelessWidget {
                         child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
                       ),                      ],
                   ),
-                  SizedBox(
-                    height: getVerticalSize(40),
+                ),
+                SizedBox(
+                  height: getVerticalSize(40),
+                ),
+                Center(
+                  child: ClipRRect(
+                      borderRadius: BorderRadius.circular(100),
+                      child: Image.asset('asset/icons/profile_image.png',
+                      height: getVerticalSize(100),)),
+                ),
+                SizedBox(
+                  height: getVerticalSize(30),
+                ),
+                Center(
+                  child: Text(
+                    "Dianna Russell",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.naturalBlack,
+                        fontSize: getFontSize(24),
+                        fontWeight: FontWeight.w700),
                   ),
-                  Center(
-                    child: ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: Image.asset('asset/icons/profile_image.png',
-                        height: getVerticalSize(100),)),
+                ),
+                SizedBox(
+                  height: getVerticalSize(5),
+                ),
+                Center(
+                  child: Text(
+                    "5150-1094-1012",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.grey8F,
+                        fontSize: getFontSize(16),
+                        fontWeight: FontWeight.w400),
                   ),
-                  SizedBox(
-                    height: getVerticalSize(30),
-                  ),
-                  Center(
-                    child: Text(
-                      "Dianna Russell",
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant.naturalBlack,
-                          fontSize: getFontSize(24),
-                          fontWeight: FontWeight.w700),
-                    ),
-                  ),
-                  SizedBox(
-                    height: getVerticalSize(5),
-                  ),
-                  Center(
-                    child: Text(
-                      "5150-1094-1012",
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.center,
-                      style: AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant.grey8F,
-                          fontSize: getFontSize(16),
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  SizedBox(
-                    height: getVerticalSize(40),
-                  ),
-                  Text(
+                ),
+                SizedBox(
+                  height: getVerticalSize(40),
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  child: Text(
                     "Set amount",
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
@@ -110,10 +113,13 @@ class TransferToUserScreen extends StatelessWidget {
                         fontSize: getFontSize(20),
                         fontWeight: FontWeight.w700),
                   ),
-                  SizedBox(
-                    height: getVerticalSize(5),
-                  ),
-                  Text(
+                ),
+                SizedBox(
+                  height: getVerticalSize(5),
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  child: Text(
                     "How much would you like to top up?",
                     overflow: TextOverflow.ellipsis,
                     textAlign: TextAlign.left,
@@ -122,10 +128,13 @@ class TransferToUserScreen extends StatelessWidget {
                         fontSize: getFontSize(18),
                         fontWeight: FontWeight.w400),
                   ),
-                  SizedBox(
-                    height: getVerticalSize(15),
-                  ),
-                  Row(
+                ),
+                SizedBox(
+                  height: getVerticalSize(15),
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -167,11 +176,17 @@ class TransferToUserScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Container(height: 1,color: ColorConstant.grey8F.withOpacity(0.5),),
-                  SizedBox(
-                    height: getVerticalSize(20),
-                  ),
-                  Align(alignment: Alignment.bottomRight,
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  child: Container(height: 1,color: ColorConstant.grey8F.withOpacity(0.5),),
+                ),
+                SizedBox(
+                  height: getVerticalSize(20),
+                ),
+                Padding(
+                  padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  child: Align(alignment: Alignment.bottomRight,
                     child: Container(
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(100),
                         color: ColorConstant.buttonGreen,),
@@ -180,28 +195,29 @@ class TransferToUserScreen extends StatelessWidget {
                       child: Icon(Icons.send_rounded,color: ColorConstant.primaryWhite,),
                     ),
                   ),
-                  SizedBox(
-                    height: getVerticalSize(20),
-                  ),
-                  NumPad(
-                    type: '-',
-                    controller: transferToUserScreenController.amountCtrl,
-                    delete: () {
-                      HapticFeedback.lightImpact();
+                ),
+                SizedBox(
+                  height: getVerticalSize(20),
+                ),
+                NumPad(
+                  type: '-',
+                  controller: transferToUserScreenController.amountCtrl,
+                  delete: () {
+                    HapticFeedback.lightImpact();
 
-                      if( transferToUserScreenController.amountCtrl.text.isNotEmpty){
-                        transferToUserScreenController.amountCtrl.text = transferToUserScreenController.amountCtrl.text
-                            .substring(0, transferToUserScreenController.amountCtrl.text.length - 1);
+                    if( transferToUserScreenController.amountCtrl.text.isNotEmpty){
+                      transferToUserScreenController.amountCtrl.text = transferToUserScreenController.amountCtrl.text
+                          .substring(0, transferToUserScreenController.amountCtrl.text.length - 1);
 
-                      }
-                    },
-                    // do something with the input numbers
-                    onSubmit: () {
-                      debugPrint('Your code: ${transferToUserScreenController.amountCtrl.text}');
-                    },
-                  ),
-                ],
-              ),
+                    }
+                  },
+                  // do something with the input numbers
+                  onSubmit: () {
+                    debugPrint('Your code: ${transferToUserScreenController.amountCtrl.text}');
+                  },
+                ),
+
+              ],
             ),
           ),
         ));
