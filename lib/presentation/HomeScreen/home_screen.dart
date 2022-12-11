@@ -323,7 +323,9 @@ class HomeScreen extends StatelessWidget {
                               iconName: 'asset/icons/ic_cash_out_home.png',
                             ),
                           ),
-                          PaymentListWidget(
+                          PaymentListWidget(onTap: (){
+                            // homeController.showVerifyIdentityDialouge();
+                          },
                             title: 'Live Chat',
                             iconName: 'asset/icons/ic_live_chat_home.png',
                           ),

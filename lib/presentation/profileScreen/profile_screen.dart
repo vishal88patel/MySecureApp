@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Container(
                 height: getVerticalSize(
-                  500.00,
+                  512.00,
                 ),
                 width: size.width,
                 child: Stack(

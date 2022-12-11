@@ -86,6 +86,7 @@ dependencies:
   english_words: ^4.0.0
   expandable: ^5.0.1
   animated_custom_dropdown: ^1.2.2
+  accordion: ^2.5.1
 
 
 
