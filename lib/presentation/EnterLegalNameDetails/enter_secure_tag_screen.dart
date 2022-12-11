@@ -23,24 +23,25 @@ class EnterSecureTagScreen extends StatelessWidget {
     return  Scaffold(
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
-            child: Container(
-                height: size.height,
-                child: Stack(
-                  children: [
-                    SafeArea(
+          child: Container(
+              height: size.height,
+              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: getVerticalSize(20)),
+                    child: SafeArea(
                       child: Stack(
                         children: [
-                          Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: getVerticalSize(10),
-                                ),
-                                Row(
+                          Column( crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
+
                                     InkWell(
                                       onTap: () {
                                         Get.back();
@@ -60,7 +61,7 @@ class EnterSecureTagScreen extends StatelessWidget {
                                     Text(
                                       "Enter Your SecureTag",
                                       style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.darkBlue,
+                                          color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
                                           fontSize: getFontSize(20)),
                                     ),
@@ -71,73 +72,98 @@ class EnterSecureTagScreen extends StatelessWidget {
                                       child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
                                     ),                      ],
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(57),
-                                ),
-                                Center(
-                                  child: SvgPicture.asset(
-                                    "asset/icons/splash_image.svg",
+                              ),
+                              SizedBox(
+                                height: getVerticalSize(120),
+                              ),
 
-                                    fit: BoxFit.fill,
+
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        topLeft: Radius.circular(20),
+                                      ),
+                                      color:  ColorConstant.primaryWhite
+                                  ),
+
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      SizedBox(
+                                        height: getVerticalSize(130),
+                                      ),
+                                      Padding(
+                                        padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              "Your unique name for getting paid by anyone",
+                                              style: AppStyle.DmSansFont.copyWith(
+                                                  color: ColorConstant.grey8F,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: getFontSize(18)),
+                                            ),
+
+                                            SizedBox(
+                                              height: getVerticalSize(30),
+                                            ),
+                                            AppTextField(
+                                                hintText: '\$ SecureTag',
+                                                controller: enterLegelNameController.secureTagController),
+
+                                            SizedBox(
+                                              height: getVerticalSize(54),
+                                            ),
+                                            AppElevatedButton(
+                                              buttonName: 'Next',
+                                              onPressed: () {
+                                                if (enterLegelNameController
+                                                    .secureTagController.text.isEmpty) {
+                                                  UIUtils.showSnakBar(
+                                                      bodyText: "Please enter your SecureTag",
+                                                      headerText: StringConstants.ERROR);
+                                                } else {
+                                                  enterLegelNameController.  checkCashTagValidation();
+                                                  // Get.to(()=>
+                                                  //     LoaderScreen(AppRoutes.enterAddressScreen),
+                                                  //     transition: Transition.rightToLeft);
+
+                                                }
+                                              },
+                                            ),
+
+                                            SizedBox(
+                                              height: getVerticalSize(36),
+                                            ),
+                                          ],
+                                        ),
+                                      )
+                                    ],
                                   ),
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(40),
-                                ),
+                              ),
 
-                                SizedBox(
-                                  height: getVerticalSize(5),
-                                ),
-                                Text(
-                                  "Your unique name for getting paid by anyone",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.grey8F,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(18)),
-                                ),
+                            ],
+                          ),
 
-                                SizedBox(
-                                  height: getVerticalSize(30),
-                                ),
-                                AppTextField(
-                                    hintText: '\$ SecureTag',
-                                    controller: enterLegelNameController.secureTagController),
 
-                                SizedBox(
-                                  height: getVerticalSize(54),
-                                ),
-                                AppElevatedButton(
-                                  buttonName: 'Next',
-                                  onPressed: () {
-                                    if (enterLegelNameController
-                                        .secureTagController.text.isEmpty) {
-                                      UIUtils.showSnakBar(
-                                          bodyText: "Please enter your SecureTag",
-                                          headerText: StringConstants.ERROR);
-                                    } else {
-                                      enterLegelNameController.  checkCashTagValidation();
-                                      // Get.to(()=>
-                                      //     LoaderScreen(AppRoutes.enterAddressScreen),
-                                      //     transition: Transition.rightToLeft);
-
-                                    }
-                                  },
-                                ),
-
-                                SizedBox(
-                                  height: getVerticalSize(36),
-                                ),
-                              ],
+                          Positioned(right: 10,
+                            top: getVerticalSize(60),
+                            child: Center(
+                                child: Image.asset('asset/icons/birthDate_image.png',
+                                  height: getVerticalSize(220),)
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ))));
-
-
-
+                  )
+                ],
+              )),
+        ));
 
   }
 }

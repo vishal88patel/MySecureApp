@@ -160,6 +160,9 @@ buttonWidget(
   return InkWell(
     onTap: () {
       HapticFeedback.lightImpact();
+      if(type=='-'){
+        controller.text += number;
+      }else{
       if (type == 'BIRTHDATE') {
         if (controller.text.length <= 9) {
           controller.text += number.toString();
@@ -205,7 +208,7 @@ buttonWidget(
       else if(type=='OTP'){
         if(controller.text.length <=5){
           controller.text += number;
-        }}
+        }}}
     },
     child: Container(
       height: MediaQuery.of(context).size.height / 18,
