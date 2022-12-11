@@ -104,7 +104,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                     Padding(
                                       padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                       child: TextFormField(
-                                        readOnly: true,
+                                        readOnly: false,
                                         style: TextStyle(color: ColorConstant.grey8F,),
                                         inputFormatters: [
                                           LengthLimitingTextInputFormatter(9),
