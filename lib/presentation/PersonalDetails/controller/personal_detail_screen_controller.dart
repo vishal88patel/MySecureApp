@@ -60,8 +60,8 @@ class PersonalScreenController extends GetxController {
   EmployeementStatus statusIncomeObject = EmployeementStatus();
   var selectedLoanId = "1".obs;
   var loanList = [].obs;
-  var showJobTitle = true.obs;
-  var nameOfBusinessTitle = true.obs;
+  var showJobTitle = false.obs;
+  var nameOfBusinessTitle = false.obs;
 
   String device_type = "";
 

@@ -192,82 +192,82 @@ class PurpouseAccountScreen extends StatelessWidget {
                                                           .purposeOfOpeningAcc.value ==
                                                           ""
                                                           ? Container()
-                                                          : Padding(
-                                                        padding: EdgeInsets.only(left: getHorizontalSize(100)),
-                                                        child: ListView(
-                                                          shrinkWrap: true,
-                                                          children: personalDetailController.loanList.value
-                                                              .map((i) => Padding(
-                                                            padding: EdgeInsets.symmetric(
-                                                                vertical: getVerticalSize(5)),
-                                                            child: InkWell(
-                                                              onTap: () {
-                                                                personalDetailController
-                                                                    .onTapOnLoanTile(i.id);
-                                                              },
-                                                              child: Row(
-                                                                mainAxisAlignment:
-                                                                MainAxisAlignment.start,
-                                                                mainAxisSize: MainAxisSize.min,
-                                                                children: [
-                                                                  Icon(personalDetailController
-                                                                      .selectedLoanId
-                                                                      .value ==
-                                                                      i.id.toString()
-                                                                      ?Icons.check_box
-                                                                      :Icons.check_box_outline_blank_outlined,
-                                                                    color: personalDetailController
-                                                                        .selectedLoanId
-                                                                        .value ==
-                                                                        i.id.toString()
-                                                                        ?ColorConstant.buttonGreen
-                                                                        : Colors.black.withOpacity(0.5),
-                                                                    size: 20,),
-                                                                  /*Container(
-                                                          width: getHorizontalSize(22),
-                                                          height: getVerticalSize(22),
-                                                          decoration: BoxDecoration(
-                                                              color: personalDetailController
-                                                                  .selectedLoanId
-                                                                  .value ==
-                                                                  i.id.toString()
-                                                                  ? ColorConstant
-                                                                  .buttonGreen
-                                                                  : Colors.transparent,
-                                                              borderRadius:
-                                                              BorderRadius.circular(
-                                                                  100),
-                                                              border: Border.all(
+                                                          : ListView(
+                                                            shrinkWrap: true,
+                                                            children: personalDetailController.loanList.value
+                                                                .map((i) => Padding(
+                                                              padding: EdgeInsets.symmetric(
+                                                                  vertical: getVerticalSize(5)),
+                                                              child: InkWell(
+                                                                onTap: () {
+                                                                  personalDetailController
+                                                                      .onTapOnLoanTile(i.id);
+                                                                },
+                                                                child: Padding(
+                                                                  padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(50)),
+                                                                  child: Row(
+                                                                    mainAxisAlignment:
+                                                                    MainAxisAlignment.start,
+                                                                    mainAxisSize: MainAxisSize.min,
+                                                                    children: [
+                                                                      Icon(personalDetailController
+                                                                          .selectedLoanId
+                                                                          .value ==
+                                                                          i.id.toString()
+                                                                          ?Icons.check_box
+                                                                          :Icons.check_box_outline_blank_outlined,
+                                                                        color: personalDetailController
+                                                                            .selectedLoanId
+                                                                            .value ==
+                                                                            i.id.toString()
+                                                                            ?ColorConstant.buttonGreen
+                                                                            : Colors.black.withOpacity(0.5),
+                                                                        size: 24,),
+                                                                      /*Container(
+                                                            width: getHorizontalSize(22),
+                                                            height: getVerticalSize(22),
+                                                            decoration: BoxDecoration(
                                                                   color: personalDetailController
                                                                       .selectedLoanId
                                                                       .value ==
-                                                                      i.id.toString()?
-                                                                  ColorConstant
-                                                                      .buttonGreen:Colors.black)),
-                                                        ),*/
-                                                                  SizedBox(
-                                                                    width: getHorizontalSize(7),
+                                                                      i.id.toString()
+                                                                      ? ColorConstant
+                                                                      .buttonGreen
+                                                                      : Colors.transparent,
+                                                                  borderRadius:
+                                                                  BorderRadius.circular(
+                                                                      100),
+                                                                  border: Border.all(
+                                                                      color: personalDetailController
+                                                                          .selectedLoanId
+                                                                          .value ==
+                                                                          i.id.toString()?
+                                                                      ColorConstant
+                                                                          .buttonGreen:Colors.black)),
+                                                          ),*/
+                                                                      SizedBox(
+                                                                        width: getHorizontalSize(9),
+                                                                      ),
+                                                                      Text(
+                                                                        i.name.toString(),
+                                                                        style: AppStyle
+                                                                            .DmSansFont
+                                                                            .copyWith(
+                                                                            color: ColorConstant
+                                                                                .darkBlue,
+                                                                            fontSize:
+                                                                            getFontSize(22)),
+                                                                      ),
+                                                                      SizedBox(
+                                                                        width: getHorizontalSize(10),
+                                                                      ),
+                                                                    ],
                                                                   ),
-                                                                  Text(
-                                                                    i.name.toString(),
-                                                                    style: AppStyle
-                                                                        .DmSansFont
-                                                                        .copyWith(
-                                                                        color: ColorConstant
-                                                                            .darkBlue,
-                                                                        fontSize:
-                                                                        getFontSize(18)),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: getHorizontalSize(10),
-                                                                  ),
-                                                                ],
+                                                                ),
                                                               ),
-                                                            ),
-                                                          ))
-                                                              .toList(),
-                                                        ),
-                                                      ),
+                                                            ))
+                                                                .toList(),
+                                                          ),
                                                     ),
                                                   ],
                                                 ),
