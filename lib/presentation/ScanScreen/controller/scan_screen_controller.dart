@@ -28,6 +28,8 @@ class ScanScreenController extends GetxController {
   var name="".obs;
   var image="".obs;
   TextEditingController amountController = TextEditingController();
+  var dropHeight=250.00.obs;
+  var selectedMethod="Select Payment Method".obs;
 
   @override
   void onReady() {
@@ -142,6 +144,14 @@ class ScanScreenController extends GetxController {
       "pin": passController.text
     });
     return form;
+  }
+
+  void onChangeOfExpansonTile() {
+    if(dropHeight.value==350){
+      dropHeight.value=250;
+    }else{
+      dropHeight.value=350;
+    }
   }
 
 }
