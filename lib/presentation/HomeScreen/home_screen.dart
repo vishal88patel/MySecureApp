@@ -132,7 +132,7 @@ class HomeScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "Welcome to Mysecure_cash_app",
+                                "Welcome to Mysecure App",
                                 style: AppStyle.textStyleDMSANS.copyWith(
                                     color: ColorConstant.naturalGrey,
                                     fontWeight: FontWeight.w400,
@@ -166,26 +166,31 @@ class HomeScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SvgPicture.asset(
-                                  "asset/icons/ic_transfer.svg",
-                                  height: getVerticalSize(28),
-                                  width: getVerticalSize(28),
-                                  fit: BoxFit.fill,
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(10),
-                                ),
-                                Text(
-                                  "Transfer",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(16)),
-                                ),
-                              ],
+                            InkWell(
+                              onTap:(){
+                                Get.toNamed(AppRoutes.transferScreen);
+                              },
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  SvgPicture.asset(
+                                    "asset/icons/ic_transfer.svg",
+                                    height: getVerticalSize(28),
+                                    width: getVerticalSize(28),
+                                    fit: BoxFit.fill,
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(10),
+                                  ),
+                                  Text(
+                                    "Transfer",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(16)),
+                                  ),
+                                ],
+                              ),
                             ),
                             SvgPicture.asset(
                               "asset/icons/ic_divider.svg",

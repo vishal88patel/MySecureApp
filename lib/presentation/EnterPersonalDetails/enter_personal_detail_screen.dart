@@ -32,39 +32,41 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                         children: [
                               Column( crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-
-                                      InkWell(
-                                        onTap: () {
-                                          Get.back();
-                                        },
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              borderRadius:
-                                              BorderRadius.circular(12),
-                                              border: Border.all(
-                                                  color:
-                                                  ColorConstant.backBorder)),
-                                          padding: EdgeInsets.all(6),
-                                          child: Icon(
-                                            Icons.arrow_back_ios_new_outlined,size: 22,),
+                                  Padding(
+                                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {
+                                            Get.back();
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(12),
+                                                border: Border.all(
+                                                    color:
+                                                    ColorConstant.backBorder)),
+                                            padding: EdgeInsets.all(6),
+                                            child: Icon(
+                                              Icons.arrow_back_ios_new_outlined,size: 22,),
+                                          ),
                                         ),
-                                      ),
-                                      Text(
-                                        "Enter Your BirthDate",
-                                        style: AppStyle.DmSansFont.copyWith(
-                                            color: ColorConstant.primaryBlack,
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: getFontSize(20)),
-                                      ),
-                                      Container(
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                            border: Border.all(color: Colors.transparent)),
-                                        padding: EdgeInsets.all(10),
-                                        child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
-                                      ),                      ],
+                                        Text(
+                                          "Enter Your BirthDate",
+                                          style: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.primaryBlack,
+                                              fontWeight: FontWeight.w700,
+                                              fontSize: getFontSize(20)),
+                                        ),
+                                        Container(
+                                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                              border: Border.all(color: Colors.transparent)),
+                                          padding: EdgeInsets.all(10),
+                                          child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                        ),                      ],
+                                    ),
                                   ),
                                   SizedBox(
                                     height: getVerticalSize(120),

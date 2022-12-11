@@ -14,7 +14,12 @@ class KycEmailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return
+
+
+
+
+      Scaffold(
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
             child: Container(

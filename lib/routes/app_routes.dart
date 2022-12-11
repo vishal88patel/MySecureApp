@@ -1,4 +1,10 @@
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/TransferScanScreen/binding/transfer_scan_screen_binding.dart';
+import 'package:secure_cash_app/presentation/TransferScanScreen/transfer_scan_screen.dart';
+import 'package:secure_cash_app/presentation/TransferScreen/binding/transfer_screen_binding.dart';
+import 'package:secure_cash_app/presentation/TransferScreen/transfer_screen.dart';
+import 'package:secure_cash_app/presentation/TransferToUserScreen/binding/transfer_to_user_screen_binding.dart';
+import 'package:secure_cash_app/presentation/TransferToUserScreen/transfer_to_user_screen.dart';
 import 'package:secure_cash_app/presentation/CashoutAmountScreen/binding/cashout_amount_scareen_binding.dart';
 import 'package:secure_cash_app/presentation/TopUpCardListScreen/binding/topup_card_list_screen_binding.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
@@ -214,6 +220,9 @@ class AppRoutes {
   static String kycselfieLoadingScreen = '/kyc_selfie_loading_screen';
   static String kycSelectStepScreen = '/kyc_select_step_screen';
   static String scanSuccessScreen = '/scan_success_screen';
+  static String transferScreen = '/transfer_screen';
+  static String transferScanScreen = '/transfer_scan_screen';
+  static String transferToUserScreen = '/transfer_to_user_screen';
 
   static String linkCardAddCardScreen = '/link_card_add_card_screen';
   static String linkCardLoadingScreen = '/link_card_loading_screen';
@@ -844,6 +853,35 @@ class AppRoutes {
       page: () => FaqScreen(),
       bindings: [
         FaqScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: transferScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TransferScreen(),
+      bindings: [
+        TransferScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: transferScanScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TransferScanScreen(),
+      bindings: [
+        TransferScanScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: transferToUserScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TransferToUserScreen(),
+      bindings: [
+        TransferToUserScreenBinding(),
       ],
     ),
 
