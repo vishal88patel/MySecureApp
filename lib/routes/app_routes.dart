@@ -5,10 +5,19 @@ import 'package:secure_cash_app/presentation/TransferScreen/binding/transfer_scr
 import 'package:secure_cash_app/presentation/TransferScreen/transfer_screen.dart';
 import 'package:secure_cash_app/presentation/TransferToUserScreen/binding/transfer_to_user_screen_binding.dart';
 import 'package:secure_cash_app/presentation/TransferToUserScreen/transfer_to_user_screen.dart';
+import 'package:secure_cash_app/presentation/CashoutAmountScreen/binding/cashout_amount_scareen_binding.dart';
+import 'package:secure_cash_app/presentation/TopUpCardListScreen/binding/topup_card_list_screen_binding.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/CardListScreen/binding/card_list_screen_binding.dart';
 import '../presentation/CardListScreen/card_list_screen.dart';
+import '../presentation/CashoutAmountScreen/cashout_amount_screen.dart';
+import '../presentation/CashoutBankListScreen/binding/cashout_bank_list_screen_binding.dart';
+import '../presentation/CashoutBankListScreen/cashout_bank_list_screen.dart';
+import '../presentation/CashoutCardAndBankScreen/binding/cashout_card_bank_screen_binding.dart';
+import '../presentation/CashoutCardAndBankScreen/cashout_card_bank_screen.dart';
+import '../presentation/CashoutCardListScreen/binding/cashout_card_list_screen_binding.dart';
+import '../presentation/CashoutCardListScreen/cashout_card_list_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
 import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
@@ -74,6 +83,9 @@ import '../presentation/SupportScreen/binding/support_screen_binding.dart';
 import '../presentation/SupportScreen/support_screen.dart';
 import '../presentation/TopMyCardScreen/binding/top_my_card_screen_binding.dart';
 import '../presentation/TopMyCardScreen/top_my_card_screen.dart';
+import '../presentation/TopUpCardListScreen/topup_card_list_screen.dart';
+import '../presentation/TopupBankListScreen/binding/topup_bank_list_screen_binding.dart';
+import '../presentation/TopupBankListScreen/topup_bank_list_screen.dart';
 import '../presentation/WebViewPage/binding/webview_binding.dart';
 import '../presentation/WebViewPage/webview_screen.dart';
 import '../presentation/statistic/binding/statistic_screen_binding.dart';
@@ -128,6 +140,10 @@ class AppRoutes {
   static String accountDetailListScreen = '/account__detail_list_screen';
   static String cardDetailListScreen = '/card_detail_list_screen';
   static String cardListScreen = '/card_list_screen';
+  static String cashoutCardBankScreen = '/cashout_card_bank_screen';
+  static String cashoutCardListScreen = '/cashout_card_list_screen';
+  static String cashoutBankListScreen = '/cashout_bank_list_screen';
+  static String cashoutAmountScreen = '/cashout_amount_screen';
   static String bankDetailScreen = '/bank_detail_screen';
   static String amountNumPadScreen = '/amount_num_pad_screen';
   static String cashOutAmountNumPadScreen = '/cash_out_amount_num_pad_screen';
@@ -186,6 +202,8 @@ class AppRoutes {
   static String otpVerifySuccessfullyScreen = '/otp_verify_successfully_screen';
   static String statisticScreen = '/statistic_screen';
   static String topSelectionModeScreen = '/top_selection_mode_screen';
+  static String topupCardListScreen = '/top_up_card_list_screen';
+  static String topupBankListScreen = '/top_up_bank_list_screen';
   static String topMyCardScreen = '/top_my_card_screen';
   static String topAddCard1Screen = '/top_add_card1_screen';
   static String topEditCard1Screen = '/top_edit_card1_screen';
@@ -527,6 +545,26 @@ class AppRoutes {
     ),
 
     GetPage(
+      name: topupCardListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopupCardListScreen(),
+      bindings: [
+        TopupCardListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topupBankListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopupBankListScreen(),
+      bindings: [
+        TopupBankListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
       name: topMyCardScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
@@ -711,6 +749,46 @@ class AppRoutes {
       page: () => CardListScreen(),
       bindings: [
         CardListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cashoutCardBankScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CashoutCardBankScreen(),
+      bindings: [
+        CashoutCardBankBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cashoutCardListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CashoutCardListScreen(),
+      bindings: [
+        CashoutCardListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cashoutBankListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CashoutBankListScreen(),
+      bindings: [
+        CashoutBankListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cashoutAmountScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CashoutAmountScreen(),
+      bindings: [
+        CashoutAmountBinding(),
       ],
     ),
 

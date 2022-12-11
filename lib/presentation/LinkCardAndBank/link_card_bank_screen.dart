@@ -36,21 +36,21 @@ class LinkCardBankScreen extends StatelessWidget {
                             children: [
 
                               AppAppBar(
-                                title: "Select Method",
+                                title: "Personal Details",
                                 icon1: "asset/icons/ic_back.svg",
                                 icon2: "asset/icons/ic_notification.svg",
                                 onPressedIcon1: () {
                                   Get.back();
                                 },
                                 onPressedIcon2: () {
-                                  Get.toNamed(AppRoutes.notificationScreen);
+                                 // Get.toNamed(AppRoutes.notificationScreen);
                                 },
                               ),
 
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                 child: Text(
-                                  "Select linking methods",
+                                  "Please Choose Detail of",
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.naturalGrey,
                                       fontWeight:FontWeight.w400,

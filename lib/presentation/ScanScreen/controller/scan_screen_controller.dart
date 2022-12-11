@@ -28,8 +28,11 @@ class ScanScreenController extends GetxController {
   var name="".obs;
   var image="".obs;
   TextEditingController amountController = TextEditingController();
-  var dropHeight=250.00.obs;
+  var dropHeight=200.00.obs;
+  var animContainerHeighr=85.00.obs;
   var selectedMethod="Select Payment Method".obs;
+
+  var isFirstOpen = false.obs;
 
   @override
   void onReady() {
@@ -61,7 +64,7 @@ class ScanScreenController extends GetxController {
         bodyText: "Please enter amount",
       );
     }
-    else if (jobRoleCtrl.text.isEmpty) {
+    else if (selectedMethod.value =="Select Payment Method" ||selectedMethod.value.isEmpty) {
       UIUtils.showSnakBar(
         headerText: StringConstants.ERROR,
         bodyText: "Please select method",
@@ -147,11 +150,23 @@ class ScanScreenController extends GetxController {
   }
 
   void onChangeOfExpansonTile() {
-    if(dropHeight.value==350){
-      dropHeight.value=250;
+    if(dropHeight.value==600){
+      isFirstOpen.value = false;
+      dropHeight.value=200;
     }else{
-      dropHeight.value=350;
+      isFirstOpen.value = true;
+      dropHeight.value=600;
     }
+    if(animContainerHeighr.value==420){
+      animContainerHeighr.value=85;
+    }else{
+      animContainerHeighr.value=420;
+    }
+  }
+
+  void onTaoOfItem(String s) {
+    selectedMethod.value=s;
+    onChangeOfExpansonTile();
   }
 
 }
