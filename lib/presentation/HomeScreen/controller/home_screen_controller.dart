@@ -111,8 +111,10 @@ class HomeScreenController extends GetxController {
     if (PrefUtils.getBool(StringConstants.SHOW_WELCOME_DISLOUGE)) {
       Get.dialog(
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 200),
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(300)),
           child: Container(
+
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
             ),
@@ -121,33 +123,63 @@ class HomeScreenController extends GetxController {
               child: Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
-                    color: ColorConstant.primaryDarkGreen),
+                    color: ColorConstant.primaryWhite),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(
-                      height: 12,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            if (Get.isDialogOpen == true) Get.back();
-                          },
-                          child: Icon(
-                            Icons.close,
-                            color: Colors.white,
+
+
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
                           ),
-                        ),
-                        SizedBox(
-                          width: 12,
-                        ),
-                      ],
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 12,
+                            ),
+
+                            Row(crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset('asset/icons/done_image.png',color: Colors.transparent,
+                                    height: 60),
+                                Image.asset('asset/icons/done_image.png',height: 60),
+                                Row( mainAxisAlignment: MainAxisAlignment.end,
+
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        if (Get.isDialogOpen == true) Get.back();
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                  ],
+                                ),
+
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 12,
+                            ),
+                          ],
+                        )), SizedBox(
+                      height: 20,
                     ),
-                    Lottie.asset('asset/animations/welcome.json', height: 80),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       mainAxisSize: MainAxisSize.min,
@@ -158,7 +190,7 @@ class HomeScreenController extends GetxController {
                               textAlign: TextAlign.center,
                               "Hi " + homePageHeadeName.value,
                               style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.primaryWhite,
+                                  color: ColorConstant.primaryBlack,
                                   decoration: TextDecoration.none,
                                   fontWeight: FontWeight.bold,
                                   fontSize: getFontSize(24)),
@@ -167,7 +199,7 @@ class HomeScreenController extends GetxController {
                         ),
                       ],
                     ),
-                    SizedBox(height: 22,),
+                    SizedBox(height: 10,),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -177,9 +209,9 @@ class HomeScreenController extends GetxController {
                           Flexible(
                             child:Text(
                               textAlign: TextAlign.center,
-                              "Welcome to MySecure App. Thanks For the Creating an Account!!!",
+                              "Welcome to MySecure App. \nThanks for creating an account",
                               style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.primaryWhite,
+                                  color: ColorConstant.primaryBlack,
                                   decoration: TextDecoration.none,
                                   fontWeight: FontWeight.w300,
                                   fontSize: getFontSize(18)),
@@ -189,7 +221,7 @@ class HomeScreenController extends GetxController {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    /* SizedBox(
                       height: 40,
                     ),
                     Padding(
@@ -203,7 +235,7 @@ class HomeScreenController extends GetxController {
                           // Get.toNamed(AppRoutes.dashBoardScreen);
                         },
                       ),
-                    ),
+                    ),*/
 
                   ],
                 ),
@@ -220,13 +252,16 @@ class HomeScreenController extends GetxController {
     } else {
 
     }
+
   }
 
   void showVerifyIdentityDialouge() {
     Get.dialog(
       Padding(
-        padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 200),
+        padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+            vertical: getVerticalSize(230)),
         child: Container(
+
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(25),
           ),
@@ -235,64 +270,102 @@ class HomeScreenController extends GetxController {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(Radius.circular(25)),
-                  color: ColorConstant.primaryDarkGreen),
-              child:Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+                  color: ColorConstant.primaryWhite),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      GestureDetector(
-                        onTap: () {
-                          if (Get.isDialogOpen == true) Get.back();
-                        },
-                        child: Icon(
-                          Icons.close,
-                          color: Colors.white,
+
+
+                  Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(25),
+                            topRight: Radius.circular(25)
                         ),
-                      ),
-                      SizedBox(
-                        width: 12,
-                      ),
-                    ],
+                        ),
+
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 12,
+                          ),
+
+                          Row(crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Image.asset('asset/icons/done_image.png',color: Colors.transparent,
+                                  height: 60),
+                              Image.asset('asset/icons/verify_image.png',height: 80),
+                              Row( mainAxisAlignment: MainAxisAlignment.end,
+
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      if (Get.isDialogOpen == true) Get.back();
+                                    },
+                                    child: Icon(
+                                      Icons.close,
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 12,
+                                  ),
+                                ],
+                              ),
+
+                            ],
+                          ),
+
+                          SizedBox(
+                            height: 12,
+                          ),
+                        ],
+                      )), SizedBox(
+                    height: 20,
                   ),
-                  Lottie.asset('asset/animations/privacy.json', height: 100,width: 100),
-                  Padding(
-                    padding:
-                    const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8),
-                    child: Text(
-                      "Verify your idenditity",
-                      style: AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w600,
-                          decoration: TextDecoration.none,
-                          fontSize: getFontSize(24)),
-                    ),
-                  ),
+                  // Lottie.asset('asset/animations/welcome.json', height: 80),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Flexible(
-                        child: Text(
-                          textAlign: TextAlign.center,
-                          "To Enable Wallet withdrawal and deposits to complete your KYC",
-                          style: AppStyle.DmSansFont.copyWith(
-                              color: ColorConstant.primaryWhite,
-                              decoration: TextDecoration.none,
-                              fontWeight: FontWeight.w300,
-                              fontSize: getFontSize(18)),
+                        child:Text(
+                            textAlign: TextAlign.center,
+                            "Verify your idenditity" ,
+                            style: AppStyle.DmSansFont.copyWith(
+                                color: ColorConstant.primaryBlack,
+                                decoration: TextDecoration.none,
+                                fontWeight: FontWeight.bold,
+                                fontSize: getFontSize(24)),
+
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(
-                    height: 40,
+                  SizedBox(height: 10,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child:Text(
+                            textAlign: TextAlign.center,
+                            "To enable Wallet withdrawal and\n deposits first complete your Identity \nVerification",
+                            style: AppStyle.DmSansFont.copyWith(
+                                color: ColorConstant.primaryBlack,
+                                decoration: TextDecoration.none,
+                                fontWeight: FontWeight.w300,
+                                fontSize: getFontSize(18)),
+                          ),
+
+                        ),
+                      ],
+                    ),
                   ),
                   SizedBox(
                     height: 40,
@@ -309,13 +382,13 @@ class HomeScreenController extends GetxController {
                       },
                     ),
                   ),
+
                 ],
               ),
             ),
           ),
         ),
       ),
-
       barrierDismissible: false,
     ).then((value) {
 
