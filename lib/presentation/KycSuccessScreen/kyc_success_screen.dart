@@ -10,9 +10,10 @@ import '../../Custom Widgets/common_image_view.dart';
 import '../../routes/app_routes.dart';
 import '../KycStep1ModuleScreen/controller/kyc_loader_screen_controller.dart';
 import '../KycStep1ModuleScreen/selfie_screen.dart';
+import 'controller/kyc_success_screen_controller.dart';
 
 class KycSuccessScreen extends StatelessWidget {
-  var kycLoaderController = Get.find<KycLoaderController>();
+  var kycSuccessController = Get.find<KycSuccessScreenController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +72,7 @@ class KycSuccessScreen extends StatelessWidget {
                                     top: 32,
                                   ),
                                   child: Text(
-                                    kycLoaderController.apiType==1?"Successful!":"Pending",
+                                    kycSuccessController.type==1?"Successful!":"Pending",
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.DmSansFont.copyWith(
@@ -87,7 +88,7 @@ class KycSuccessScreen extends StatelessWidget {
                                   padding:
                                   EdgeInsets.only(left: 28, right: 28, top: 10),
                                   child: Text(
-                                    kycLoaderController.apiType==1?"Your Identity Verification Level - 1 is completed.":kycLoaderController.apiType==2?"Your Identity Verification Level - 1 is pending.":kycLoaderController.apiType==3?"Your Identity Verification Level - 2 is pending.":"Thank You",
+                                    kycSuccessController.type==1?"Your Identity Verification Level - 1 is completed.":kycSuccessController.type==2?"Your Identity Verification Level - 1 is pending.":kycSuccessController.type==3?"Your Identity Verification Level - 2 is pending.":"Thank You",
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.naturalGrey4,
@@ -112,7 +113,7 @@ class KycSuccessScreen extends StatelessWidget {
                                     top: 14,
                                   ),
                                   child: Text(
-                                    kycLoaderController.apiType==1?"Congratulation!":"Thank You",
+                                    kycSuccessController.type==1?"Congratulation!":"Thank You",
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.DmSansFont.copyWith(
@@ -128,7 +129,7 @@ class KycSuccessScreen extends StatelessWidget {
                                   padding:
                                   EdgeInsets.only(left: 40, right: 40, top: 6),
                                   child: Text(
-                                    kycLoaderController.apiType==1?"You have unlock Identity Verification Level - 2":"Your Identity Verification is under process",
+                                    kycSuccessController.type==1?"You have unlock Identity Verification Level - 2":"Your Identity Verification is under process",
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.naturalGrey4,
@@ -143,7 +144,7 @@ class KycSuccessScreen extends StatelessWidget {
                                   padding:
                                   EdgeInsets.only(left: 40, right: 40, top: 14),
                                   child: Text(
-                                    kycLoaderController.apiType==1?"Unlock Level - 2":" ",
+                                    kycSuccessController.type==1?"Unlock Level - 2":" ",
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.naturalBlack,
@@ -155,12 +156,12 @@ class KycSuccessScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 40.0,right: 40,top: 12),
                                 child: AppElevatedButton(
-                                  buttonName: kycLoaderController.apiType==1?"Yes":"Okay",
+                                  buttonName: kycSuccessController.type==1?"Yes":"Okay",
                                   textColor: Colors.white,
                                   buttonColor: ColorConstant.primaryLightGreen,
                                   radius: 16,
                                   onPressed: () {
-                                    if(kycLoaderController.apiType==1){
+                                    if(kycSuccessController.type==1){
                                       Get.to(()=>SelfieScreen(
                                         image: 5,
                                       ));
@@ -180,13 +181,13 @@ class KycSuccessScreen extends StatelessWidget {
                                   ),
                                   child: InkWell(
                                     onTap: (){
-                                      if(kycLoaderController.apiType==1){
+                                      if(kycSuccessController.type==1){
                                         Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
                                       }else{
                                       }
                                     },
                                     child: Text(
-                                      kycLoaderController.apiType==1?"Later":" ",
+                                      kycSuccessController.type==1?"Later":" ",
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.left,
                                       style: AppStyle.DmSansFont.copyWith(

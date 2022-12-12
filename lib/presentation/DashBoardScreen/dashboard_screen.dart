@@ -49,7 +49,7 @@ class DashBoardScreen extends StatelessWidget {
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
         onPressed: () {
-          scanController.cameraStart();
+            scanController.cameraStart();
           dashBoardController.onTapOfBottomnavigation(2);
         },
       ),

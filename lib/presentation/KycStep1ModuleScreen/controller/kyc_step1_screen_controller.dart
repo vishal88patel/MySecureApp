@@ -49,6 +49,7 @@ class KycStep1ScreenController extends GetxController {
   var readOnly = true.obs;
   var isAgree = false.obs;
   var step2 = false.obs;
+  var apiTy = 0.obs;
   DateTime selectedDate = DateTime.now();
 
 
@@ -219,7 +220,9 @@ class KycStep1ScreenController extends GetxController {
           UIUtils.showSnakBar(
               bodyText: "KYC Document Uploaded Successfully",
               headerText: StringConstants.SUCCESS);
-          Get.toNamed(AppRoutes.kycSuccessScreen);
+          Get.toNamed(AppRoutes.kycSuccessScreen,arguments: {
+          "API_TYPE": apiTy.value
+          });
           progress1.value = false;
           progress2.value = false;
           progress3.value = false;
@@ -327,6 +330,7 @@ class KycStep1ScreenController extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
+      apiTy.value=1;
       //   UIUtils.hideProgressDialog();
       progress();
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "2");
@@ -370,6 +374,7 @@ class KycStep1ScreenController extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
+      apiTy.value=2;
       //   UIUtils.hideProgressDialog();
       progress();
 
@@ -405,6 +410,7 @@ class KycStep1ScreenController extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
+      apiTy.value=3;
       //   UIUtils.hideProgressDialog();
       progress();
       step2.value=true;

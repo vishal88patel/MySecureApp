@@ -40,7 +40,7 @@ class SelfieScreenState extends State<SelfieScreen>
 
   Future<void> _initCamera() async {
     _cameras = await availableCameras();
-    _controller = CameraController(_cameras![1], ResolutionPreset.veryHigh);
+    _controller = CameraController(_cameras![1], ResolutionPreset.veryHigh,imageFormatGroup: ImageFormatGroup.yuv420,);
     _controller?.initialize().then((_) {
       if (!mounted) {
         return;

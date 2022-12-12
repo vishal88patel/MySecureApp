@@ -285,7 +285,9 @@ class HomeScreen extends StatelessWidget {
                             title: 'Boost Credit Score',
                             iconName: 'asset/icons/ic_boost_home.png',
                             onTap: (){
-                              //Get.toNamed(AppRoutes.kycSuccessScreen);
+                              Get.toNamed(AppRoutes.qrCodeScreen, arguments: {
+                                'UUID_ID': homeController.loginResponseModel!.data!.uuid!.toString(),
+                              });
                             },
                           ),
                           PaymentListWidget(
@@ -309,7 +311,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              homeController.isVerified==0?
+                              homeController.isVerified=="0"?
                               Get.toNamed(AppRoutes.kycEmailScreen):Get.toNamed(AppRoutes.kycSelectStepScreen);
                             },
                             child: PaymentListWidget(

@@ -10,6 +10,7 @@ import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../ScanScreen/controller/scan_screen_controller.dart';
 
 class TransferScanScreen extends StatelessWidget {
   var transferScanScreenController = Get.find<TransferScanScreenController>();
@@ -96,7 +97,8 @@ class TransferScanScreen extends StatelessWidget {
                   radius: 10,
                   buttonColor: ColorConstant.primaryLightGreen,
                   onPressed: () {
-                    Get.toNamed(AppRoutes.transferToUserScreen);
+
+                    Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":2});
                   },),
                 SizedBox(
                   height: getVerticalSize(40),

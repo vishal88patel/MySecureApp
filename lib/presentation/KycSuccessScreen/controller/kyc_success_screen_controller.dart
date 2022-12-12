@@ -23,6 +23,7 @@ class KycSuccessScreenController extends GetxController {
   var HeadeName="".obs;
   var loan_type="".obs;
   var loanAmount="".obs;
+  var type=0.obs;
 
 
   @override
@@ -40,7 +41,11 @@ class KycSuccessScreenController extends GetxController {
     super.onClose();
   }
 
-
+  getArguments() {
+    if (arguments != null) {
+      type.value = arguments['API_TYPE'];
+    }
+  }
 
 
 
