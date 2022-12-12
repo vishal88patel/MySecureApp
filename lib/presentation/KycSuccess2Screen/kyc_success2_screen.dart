@@ -10,10 +10,10 @@ import '../../Custom Widgets/common_image_view.dart';
 import '../../routes/app_routes.dart';
 import '../KycStep1ModuleScreen/controller/kyc_loader_screen_controller.dart';
 import '../KycStep1ModuleScreen/selfie_screen.dart';
-import 'controller/kyc_success_screen_controller.dart';
+import 'controller/kyc_success2_screen_controller.dart';
 
-class KycSuccessScreen extends StatelessWidget {
-  var kycSuccessController = Get.find<KycSuccessScreenController>();
+class KycSuccess2Screen extends StatelessWidget {
+  var kycSuccessController = Get.find<KycSuccess2ScreenController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

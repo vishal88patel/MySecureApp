@@ -220,9 +220,16 @@ class KycStep1ScreenController extends GetxController {
           UIUtils.showSnakBar(
               bodyText: "KYC Document Uploaded Successfully",
               headerText: StringConstants.SUCCESS);
-          Get.toNamed(AppRoutes.kycSuccessScreen,arguments: {
-          "API_TYPE": apiTy.value
-          });
+          if(apiTy.value==3){
+            Get.toNamed(AppRoutes.kycSuccess2Screen,arguments: {
+              "API_TYPE": apiTy.value
+            });
+          }else{
+            Get.toNamed(AppRoutes.kycSuccessScreen,arguments: {
+              "API_TYPE": apiTy.value
+            });
+          }
+
           progress1.value = false;
           progress2.value = false;
           progress3.value = false;

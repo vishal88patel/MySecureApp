@@ -55,6 +55,8 @@ import '../presentation/KycStep1ModuleScreen/binding/kyc_step1_screen_binding.da
 import '../presentation/KycStep1ModuleScreen/kyc__selfie_loading_screen.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_loading_screen.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_step1_data_screen.dart';
+import '../presentation/KycSuccess2Screen/binding/kyc_success2_screen_binding.dart';
+import '../presentation/KycSuccess2Screen/kyc_success2_screen.dart';
 import '../presentation/KycSuccessScreen/binding/kyc_success_screen_binding.dart';
 import '../presentation/KycSuccessScreen/kyc_success_screen.dart';
 import '../presentation/LinkCardAddCardScreen/binding/link_card_add_card_screen_binding.dart';
@@ -243,6 +245,7 @@ class AppRoutes {
   static String kycselfieLoadingScreen = '/kyc_selfie_loading_screen';
   static String kycSelectStepScreen = '/kyc_select_step_screen';
   static String kycSuccessScreen = '/kyc_success_screen';
+  static String kycSuccess2Screen = '/kyc_success2_screen';
 
   static List<GetPage> pages = [
     GetPage(
@@ -568,6 +571,16 @@ class AppRoutes {
       page: () => KycSuccessScreen(),
       bindings: [
         KycSuccessScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: kycSuccess2Screen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycSuccess2Screen(),
+      bindings: [
+        KycSuccess2ScreenBinding(),
       ],
     ),
 

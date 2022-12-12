@@ -45,14 +45,16 @@ class ScanPasswordScreen extends StatelessWidget {
                                   child: Icon(Icons.arrow_back_ios_new_outlined,size: getVerticalSize(18),),
                                 ),
                               ),
-                              Text(
-                                scanController.isPin.value==0
-                                    ?"Enter Pin"
-                                    :"Confirm Pin",
-                                style: AppStyle.DmSansFont.copyWith(
-                                    color: ColorConstant.naturalBlack,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: getFontSize(24)),
+                              Obx(()=>
+                                 Text(
+                                  scanController.isPin.value==0
+                                      ?"Enter Pin"
+                                      :"Confirm Pin",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.naturalBlack,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: getFontSize(24)),
+                                ),
                               ),
                               Container(
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
@@ -64,14 +66,15 @@ class ScanPasswordScreen extends StatelessWidget {
                           SizedBox(
                             height: getVerticalSize(28),
                           ),
-                          Text(
-                            scanController.isPin.value==0
-                                ?"Please Set Your Pin before continuing payment"
-                                :"Please Enter Your Pin before continuing payment",
-                            style: AppStyle.DmSansFont.copyWith(
-                                color: ColorConstant.naturalGrey,
-                                fontWeight: FontWeight.w400,
-                                fontSize: getFontSize(22)),
+                          Obx(()=> Text(
+                              scanController.isPin.value==0
+                                  ?"Please Set Your Pin before continuing payment"
+                                  :"Please Enter Your Pin before continuing payment",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.naturalGrey,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(22)),
+                            ),
                           ),
                           SizedBox(
                             height: getVerticalSize(54),
