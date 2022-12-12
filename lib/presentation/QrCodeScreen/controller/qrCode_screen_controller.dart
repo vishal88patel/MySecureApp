@@ -44,6 +44,5 @@ class QrCodeScreenController extends GetxController {
     loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
     userName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
     upiId.value=loginResponseModel!.data!.firstName!+loginResponseModel!.data!.lastName.toString();
-
   }
 }

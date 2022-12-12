@@ -15,7 +15,7 @@ import '../../LoginScreen/models/login_response_model.dart';
 
 
 
-class KycSuccessScreenController extends GetxController {
+class KycSuccess2ScreenController extends GetxController {
   var arguments = Get.arguments;
   var type=0.obs;
 

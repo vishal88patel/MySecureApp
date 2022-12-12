@@ -18,7 +18,7 @@ import 'package:intl/intl.dart';
 
 
 class TopWithCreditCardController extends GetxController {
-  final amountController = TextEditingController();
+  TextEditingController amountController = TextEditingController();
 
   var walletModel=GetWallet().obs;
   var uuidModel=GetUuidDetail().obs;

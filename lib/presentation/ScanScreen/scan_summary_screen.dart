@@ -625,89 +625,6 @@ class ScanSummaryScreen extends StatelessWidget {
                                     headerBackgroundColorOpened:
                                     ColorConstant.primaryAppTextF1,
                                     header: Container(
-                                        child: Text("Card",
-                                            style: AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant.primaryBlack,
-                                                fontSize: getFontSize(16),
-                                                fontWeight: FontWeight.bold))),
-                                    content: SizedBox(),
-                                    contentHorizontalPadding: 0,
-                                    contentBorderWidth: 1,
-                                    onOpenSection: () {
-                                      scanController.onTaoOfItem("Card");
-                                    },
-                                    onCloseSection: () {
-                                      scanController.onTaoOfItem("Card");                                    },
-                                  ),
-                                  AccordionSection(
-                                    contentBackgroundColor: ColorConstant.primaryWhite,
-                                    contentVerticalPadding: 0,
-                                    headerPadding: EdgeInsets.zero,
-                                    contentBorderRadius: 12,
-                                    contentBorderColor: Colors.white,
-                                    isOpen: false,
-                                    leftIcon: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0, horizontal: 12),
-                                      child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12))),
-                                          height: 55,
-                                          width: 80,
-                                          child: Image.asset(
-                                            "asset/Logo.png",
-                                          )),
-                                    ),
-                                    flipRightIconIfOpen: true,
-                                    headerBackgroundColor:
-                                    ColorConstant.primaryAppTextF1,
-                                    headerBackgroundColorOpened:
-                                    ColorConstant.primaryAppTextF1,
-                                    header: Container(
-                                        child: Text("Bank",
-                                            style: AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant.primaryBlack,
-                                                fontSize: getFontSize(16),
-                                                fontWeight: FontWeight.bold))),
-                                    content: SizedBox(),
-                                    contentHorizontalPadding: 0,
-                                    contentBorderWidth: 1,
-                                    onOpenSection: () {
-                                      scanController.onTaoOfItem("Bank");
-                                    },
-                                    onCloseSection: () {
-                                      scanController.onTaoOfItem("Bank");
-                                    },
-                                  ),
-                                  AccordionSection(
-                                    contentBackgroundColor: ColorConstant.primaryWhite,
-                                    contentVerticalPadding: 0,
-                                    headerPadding: EdgeInsets.zero,
-                                    contentBorderRadius: 12,
-                                    contentBorderColor: Colors.white,
-                                    isOpen: false,
-                                    leftIcon: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0, horizontal: 12),
-                                      child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12))),
-                                          height: 55,
-                                          width: 80,
-                                          child: Image.asset(
-                                            "asset/Logo.png",
-                                          )),
-                                    ),
-                                    flipRightIconIfOpen: true,
-                                    headerBackgroundColor:
-                                    ColorConstant.primaryAppTextF1,
-                                    headerBackgroundColorOpened:
-                                    ColorConstant.primaryAppTextF1,
-                                    header: Container(
                                         child: Text("Cash Card",
                                             style: AppStyle.DmSansFont.copyWith(
                                                 color: ColorConstant.primaryBlack,
@@ -720,10 +637,8 @@ class ScanSummaryScreen extends StatelessWidget {
                                       scanController.onTaoOfItem("Cash Card");
                                     },
                                     onCloseSection: () {
-                                      scanController.onTaoOfItem("Cash Card");
-                                    },
+                                      scanController.onTaoOfItem("Cash Card");                                    },
                                   ),
-
                                 ],
                               ),
                               contentHorizontalPadding: 0,
