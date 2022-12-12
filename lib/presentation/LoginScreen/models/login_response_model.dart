@@ -156,7 +156,7 @@ class Data {
     kycStatus = json['kyc_status'];
     kycType = json['kyc_type'];
     cashtag = json['cashtag'];
-    token = json['token'];
+    token = json['token']??"AuthorizationToken";
     isKyc = json['is_kyc'];
     privacyPolicy = json['privacyPolicy'];
   }

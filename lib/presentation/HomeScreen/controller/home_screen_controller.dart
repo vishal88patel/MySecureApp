@@ -39,6 +39,7 @@ class HomeScreenController extends GetxController {
     getStoredData();
     isVerified.value = PrefUtils.getString(StringConstants.IS_KYC_DONE);
      callHomePageApi();
+    getUserDetails();
 
     super.onInit();
   }
@@ -84,18 +85,20 @@ class HomeScreenController extends GetxController {
   }
 
 
-  Future<void> callGetLinkedBankApi() async {
+  Future<void> getUserDetails() async {
     ApiService()
         .callGetApi(
             body: await getHomePageApiBody(),
             headerWithToken: true,
             showLoader: false,
-            url: ApiEndPoints.HOME_PAGE_GET_LINKED_BANK)
+            url: ApiEndPoints.GET_PROFILE)
         .then((value) {
       print(value);
       if (value['status'] ?? false) {
-        getLinkedBankModel.value = GrtLinkedBank.fromJson(value);
-        // showWelcomeDialouge();
+        LoginResponseModel loginResponseModel =
+        LoginResponseModel.fromJson(value);
+        PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
+
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

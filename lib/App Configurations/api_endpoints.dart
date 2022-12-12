@@ -17,6 +17,7 @@ class ApiEndPoints {
   static String GET_STATUS_AND_INCOME_API = BASE_URL + "/auth/getRegister";
   static String GET_BANKLIST = BASE_URL + "/getBankList";
   static String HOME_PAGE_API = BASE_URL + "/auth/home";
+  static String GET_PROFILE = BASE_URL + "/auth/getProfile";
   static String Gwt_NOTIFICATION_API = BASE_URL + "/getNotification";
   static String HOME_PAGE_GET_LINKED_BANK = BASE_URL + "/getLinkBank";
   static String GET_WALLET = BASE_URL + "/getWallet";
@@ -25,7 +26,6 @@ class ApiEndPoints {
   static String KYC_UPDATE = BASE_URL + "/auth/kycUpdate";
   static String SEND_OTP_ON_EMAIL = BASE_URL + "/auth/sendOTP";
   static String VERIFY_OTP_OF_EMAIL = BASE_URL + "/auth/verifyOTP";
-  static String GET_PROFILE = BASE_URL + "/auth/getProfile";
   static String WITHDRAW_ERROR = BASE_URL + "/withdrawalAmount";
   static String FAQS = BASE_URL + "/getFAQ";
 
