@@ -4,14 +4,13 @@ import 'package:get/get.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_textField.dart';
+import 'package:secure_cash_app/presentation/ForgotPasswordScreen/controller/forgot_password_screen_controller.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
-import 'controller/create_password_screen_controller.dart';
-
-class CreatePasswordScreen extends StatelessWidget {
-  var createPasswordController = Get.find<CreatePasswordScreenController>();
+class ForgotCreatePasswordScreen extends StatelessWidget {
+  var forgotPasswordScreenController = Get.find<ForgotPasswordScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +53,7 @@ class CreatePasswordScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Create your new Password",
+                                      "Create new Password",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
@@ -108,11 +107,11 @@ class CreatePasswordScreen extends StatelessWidget {
                                                   () => AppTextField(
                                                 hintText: 'Create Password ',
                                                 controller:
-                                                createPasswordController.createPassController,
+                                                forgotPasswordScreenController.createPassController,
                                                 isObsecure:
-                                                createPasswordController.createPaasIsObsecure.value,
+                                                forgotPasswordScreenController.createPaasIsObsecure.value,
                                                 suffixIcon: IconButton(
-                                                  icon: Icon(createPasswordController
+                                                  icon: Icon(forgotPasswordScreenController
                                                       .createPaasIsObsecure.value
                                                       ? Icons.visibility_off
                                                       : Icons.visibility
@@ -122,8 +121,8 @@ class CreatePasswordScreen extends StatelessWidget {
                                                   iconSize: getSize(20),
                                                   onPressed: () {
                                                     print("oooooooooo");
-                                                    createPasswordController.onTapOfCreatePassObsecure(
-                                                        createPasswordController
+                                                    forgotPasswordScreenController.onTapOfCreatePassObsecure(
+                                                        forgotPasswordScreenController
                                                             .createPaasIsObsecure.value);
                                                   },
                                                 ),
@@ -136,23 +135,23 @@ class CreatePasswordScreen extends StatelessWidget {
                                                   () => AppTextField(
                                                 hintText: 'Confirm password',
                                                 suffixIcon: IconButton(
-                                                  icon: Icon(createPasswordController
+                                                  icon: Icon(forgotPasswordScreenController
                                                       .confirmPassIsObsecure.value
                                                       ? Icons.visibility_off
                                                       : Icons.visibility
                                                     // Icons.visibility,
                                                   ),
                                                   onPressed: () {
-                                                    createPasswordController.onTapOfConfirmPassObsecure(
-                                                        createPasswordController
+                                                    forgotPasswordScreenController.onTapOfConfirmPassObsecure(
+                                                        forgotPasswordScreenController
                                                             .confirmPassIsObsecure.value);
                                                   },
                                                   iconSize: getSize(20),
                                                   color: ColorConstant.grey8F,
                                                 ),
                                                 controller:
-                                                createPasswordController.confirmPassController,
-                                                isObsecure: createPasswordController
+                                                forgotPasswordScreenController.confirmPassController,
+                                                isObsecure: forgotPasswordScreenController
                                                     .confirmPassIsObsecure.value,
                                               ),
                                             ),
@@ -162,7 +161,7 @@ class CreatePasswordScreen extends StatelessWidget {
                                             AppElevatedButton(
                                                 buttonName: 'Next',
                                                 onPressed: () {
-                                                  createPasswordController.onTapOfNextButton();
+                                                  // forgotPasswordScreenController.onTapOfNextButton();
 
                                                 }),
 

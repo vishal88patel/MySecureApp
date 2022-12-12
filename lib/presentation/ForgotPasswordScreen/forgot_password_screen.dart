@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
-import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:secure_cash_app/Custom%20Widgets/app_textField.dart';
-import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
-import 'controller/create_password_screen_controller.dart';
+import '../../App Configurations/color_constants.dart';
+import '../../Custom Widgets/app_ElevatedButton .dart';
+import '../../Custom Widgets/app_textField.dart';
+import 'controller/forgot_password_screen_controller.dart';
 
-class CreatePasswordScreen extends StatelessWidget {
-  var createPasswordController = Get.find<CreatePasswordScreenController>();
+class ForgotPasswordScreen extends StatelessWidget {
+  var forgotPasswordScreenController = Get.find<ForgotPasswordScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -54,7 +52,7 @@ class CreatePasswordScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Create your new Password",
+                                      "Forgot Password",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
@@ -95,80 +93,32 @@ class CreatePasswordScreen extends StatelessWidget {
                                           crossAxisAlignment: CrossAxisAlignment.start,
                                           children: [
                                             Text(
-                                              "Your new password must be different \nfrom previous used passwords.",
+                                              "Enter your email or phone number",
                                               style: AppStyle.DmSansFont.copyWith(
                                                   color: ColorConstant.grey8F,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: getFontSize(18)),
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: getFontSize(20)),
                                             ),
                                             SizedBox(
-                                              height: getVerticalSize(54),
-                                            ),
-                                            Obx(
-                                                  () => AppTextField(
-                                                hintText: 'Create Password ',
-                                                controller:
-                                                createPasswordController.createPassController,
-                                                isObsecure:
-                                                createPasswordController.createPaasIsObsecure.value,
-                                                suffixIcon: IconButton(
-                                                  icon: Icon(createPasswordController
-                                                      .createPaasIsObsecure.value
-                                                      ? Icons.visibility_off
-                                                      : Icons.visibility
-                                                    // Icons.visibility_off,
-                                                  ),
-                                                  color: ColorConstant.grey8F,
-                                                  iconSize: getSize(20),
-                                                  onPressed: () {
-                                                    print("oooooooooo");
-                                                    createPasswordController.onTapOfCreatePassObsecure(
-                                                        createPasswordController
-                                                            .createPaasIsObsecure.value);
-                                                  },
-                                                ),
-                                              ),
+                                              height: getVerticalSize(40),
                                             ),
                                             SizedBox(
-                                              height: getVerticalSize(30),
-                                            ),
-                                            Obx(
-                                                  () => AppTextField(
-                                                hintText: 'Confirm password',
-                                                suffixIcon: IconButton(
-                                                  icon: Icon(createPasswordController
-                                                      .confirmPassIsObsecure.value
-                                                      ? Icons.visibility_off
-                                                      : Icons.visibility
-                                                    // Icons.visibility,
-                                                  ),
-                                                  onPressed: () {
-                                                    createPasswordController.onTapOfConfirmPassObsecure(
-                                                        createPasswordController
-                                                            .confirmPassIsObsecure.value);
-                                                  },
-                                                  iconSize: getSize(20),
-                                                  color: ColorConstant.grey8F,
-                                                ),
-                                                controller:
-                                                createPasswordController.confirmPassController,
-                                                isObsecure: createPasswordController
-                                                    .confirmPassIsObsecure.value,
-                                              ),
-                                            ),
+                                                child: AppTextField(
+                                                  controller: forgotPasswordScreenController.emailController,
+                                                  keyBordType: TextInputType.emailAddress,
+                                                  hintText: "Email or Phone Number ",
+                                                )),
                                             SizedBox(
                                               height: getVerticalSize(54),
                                             ),
                                             AppElevatedButton(
-                                                buttonName: 'Next',
+                                                buttonName: 'Get OTP',
+                                                textColor: ColorConstant.primaryWhite,
                                                 onPressed: () {
-                                                  createPasswordController.onTapOfNextButton();
+                                                  forgotPasswordScreenController.onTapOfButton();
 
                                                 }),
 
-                                            SizedBox(
-                                              height: getVerticalSize(36),
-                                            ),
                                           ],
                                         ),
                                       )
@@ -195,10 +145,6 @@ class CreatePasswordScreen extends StatelessWidget {
                 ],
               )),
         ));
-
-
-
-
 
 
   }

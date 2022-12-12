@@ -122,7 +122,7 @@ class DashBoardScreen extends StatelessWidget {
                       : SvgPicture.asset(
                           "asset/icons/ic_bitcoin.svg",
                           color: ColorConstant.primaryDarkGreen,
-                          height: getVerticalSize(30),
+                          height: getVerticalSize(26),
                         ),
                 ),
               ),
