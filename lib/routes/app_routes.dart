@@ -51,6 +51,8 @@ import '../presentation/KycStep1ModuleScreen/binding/kyc_step1_screen_binding.da
 import '../presentation/KycStep1ModuleScreen/kyc__selfie_loading_screen.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_loading_screen.dart';
 import '../presentation/KycStep1ModuleScreen/kyc_step1_data_screen.dart';
+import '../presentation/KycSuccessScreen/binding/kyc_success_screen_binding.dart';
+import '../presentation/KycSuccessScreen/kyc_success_screen.dart';
 import '../presentation/LinkCardAddCardScreen/binding/link_card_add_card_screen_binding.dart';
 import '../presentation/LinkCardAddCardScreen/link_card_add_card_screen.dart';
 import '../presentation/LinkCardAndBank/binding/link_card_bank_screen_binding.dart';
@@ -211,14 +213,7 @@ class AppRoutes {
   static String topYourCreditCardScreen = '/top_your_credit_card_screen';
   static String topWithCreditCardScreen = '/top_with_credit_card_screen';
   static String topAddCardConfirmScreen = '/top_add_card_confirm_screen';
-  static String kycEmailScreen = '/kyc_email_screen';
-  static String kycPhoneScreen = '/kyc_phone_screen';
-  static String kycOtpScreen = '/kyc_otp_screen';
-  static String kycOtpSuccessScreen = '/kyc_otp_success_screen';
-  static String kycStep1DataScreen = '/kyc_step1_data_screen';
-  static String kycLoadingScreen = '/kyc_loading_screen';
-  static String kycselfieLoadingScreen = '/kyc_selfie_loading_screen';
-  static String kycSelectStepScreen = '/kyc_select_step_screen';
+
   static String scanSuccessScreen = '/scan_success_screen';
   static String transferScreen = '/transfer_screen';
   static String transferScanScreen = '/transfer_scan_screen';
@@ -229,6 +224,16 @@ class AppRoutes {
   static String linkCardEditCardScreen = '/link_card_edit_card_screen';
   static String linkCardSuccessScreen = '/link_card_success_screen';
 
+
+  static String kycEmailScreen = '/kyc_email_screen';
+  static String kycPhoneScreen = '/kyc_phone_screen';
+  static String kycOtpScreen = '/kyc_otp_screen';
+  static String kycOtpSuccessScreen = '/kyc_otp_success_screen';
+  static String kycStep1DataScreen = '/kyc_step1_data_screen';
+  static String kycLoadingScreen = '/kyc_loading_screen';
+  static String kycselfieLoadingScreen = '/kyc_selfie_loading_screen';
+  static String kycSelectStepScreen = '/kyc_select_step_screen';
+  static String kycSuccessScreen = '/kyc_success_screen';
 
   static List<GetPage> pages = [
     GetPage(
@@ -536,7 +541,15 @@ class AppRoutes {
       ],
     ),
 
-
+    GetPage(
+      name: kycSuccessScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => KycSuccessScreen(),
+      bindings: [
+        KycSuccessScreenBinding(),
+      ],
+    ),
 
     GetPage(
       name: topSelectionModeScreen,

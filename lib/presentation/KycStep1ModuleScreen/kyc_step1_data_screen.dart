@@ -54,11 +54,11 @@ class KycStep1Screen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Complete KYC Details",
+                                      "Details",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.darkBlue,
                                           fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(20)),
+                                          fontSize: getFontSize(24)),
                                     ),
                                     Container(
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
@@ -79,7 +79,7 @@ class KycStep1Screen extends StatelessWidget {
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.naturalBlack,
                                           fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(28)),
+                                          fontSize: getFontSize(24)),
                                     ),
                                     InkWell(
                                       onTap: (){

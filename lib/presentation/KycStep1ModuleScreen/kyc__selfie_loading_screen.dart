@@ -169,26 +169,6 @@ class KYCSelfieLoadingScreen extends StatelessWidget {
                             height: getVerticalSize(20),
                           ),
                           Spacer(),
-                          Obx(()=>
-                          kycStep1Controller.progress4.value?Text(
-                              "Thank you.Your verification data has been successfully submitted.You'll get the results shortly",
-                              style: AppStyle.textStyleDMSANS
-                                  .copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                            ):Container(),
-                          ),
-                          SizedBox(
-                            height: getVerticalSize(20),
-                          ),
-                          Obx(()=>
-                          kycStep1Controller.progress4.value?AppElevatedButton(
-                                buttonName: 'Continue',
-                                onPressed: () async {
-                                    Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
-                                }):Container(),
-                          ),
                         ],
                       ),
                     ),

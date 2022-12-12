@@ -94,7 +94,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                     Padding(
                                       padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                       child: Text(
-                                        "Enter the verification code we just\n sent on your phone number.",
+                                        "Enter the verification code we just\nsent on your phone number.",
                                         style: AppStyle.DmSansFont.copyWith(
                                             color: ColorConstant.grey8F,
                                             fontWeight: FontWeight.w400,
@@ -104,7 +104,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                     Padding(
                                       padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                       child: TextFormField(
-                                        readOnly: false,
+                                        readOnly: true,
                                         style: TextStyle(color: ColorConstant.grey8F,),
                                         inputFormatters: [
                                           LengthLimitingTextInputFormatter(9),
