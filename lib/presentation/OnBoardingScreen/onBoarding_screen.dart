@@ -132,135 +132,23 @@ class OnBoardingScreen extends StatelessWidget {
                               buttonColor: ColorConstant.primaryLightGreen,
                               radius: 16,
                               onPressed: () {
-                                // if(onBoardingController.currentPage.value==0){
-                                //   onBoardingController.currentPage.value = 1;
-                                //   onBoardingController.  pageController.nextPage(
-                                //       duration: Duration(milliseconds: 250),
-                                //       curve: Curves.easeIn
-                                //   );
-                                //
-                                // }else if(onBoardingController.currentPage.value==1){
-                                //   onBoardingController.currentPage.value = 2;
-                                //   onBoardingController.  pageController.nextPage(
-                                //       duration: Duration(milliseconds: 250),
-                                //       curve: Curves.easeIn
-                                //   );
-                                // }else if(onBoardingController.currentPage.value==2){
-                                //   onBoardingController.onTapOfGetStartedButton();
-                                // }
-                                Get.dialog(
-                                  Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: getHorizontalSize(40)),
-                                    child: Center(
-                                      child: Material(
-                                        color: Colors.transparent,
-                                        child: Wrap(
-                                          children: [
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                  color: ColorConstant
-                                                      .primaryWhite,
-                                                  borderRadius:
-                                                      const BorderRadius.all(
-                                                          Radius.circular(15))),
-                                              margin: const EdgeInsets.only(
-                                                  bottom: 20),
-                                              padding: const EdgeInsets.only(
-                                                bottom: 20,
-                                              ),
-                                              constraints: const BoxConstraints(
-                                                  minWidth: 200),
-                                              child: Column(
-                                                children: [
-                                                  Container(
-                                                    decoration: BoxDecoration(
-                                                        color:
-                                                            Color(0xFFF4F4F6),
-                                                        borderRadius:
-                                                            const BorderRadius
-                                                                    .all(
-                                                                Radius.circular(
-                                                                    15))),
-                                                    padding: EdgeInsets.all(12),
-                                                    child: Column(
-                                                      crossAxisAlignment:
-                                                          CrossAxisAlignment
-                                                              .end,
-                                                      children: [
-                                                        InkWell(
-                                                          onTap:(){
-                                                            Get.back();
-                                                          },
-                                                            child: Icon(
-                                                                Icons.close)),
-                                                        Row(
-                                                          mainAxisAlignment:
-                                                              MainAxisAlignment
-                                                                  .center,
-                                                          children: [
-                                                            SvgPicture.asset(
-                                                                "asset/icons/ic_lock_pending.svg")
-                                                          ],
-                                                        ),
-                                                        Icon(
-                                                          Icons.close,
-                                                          color: Colors
-                                                              .transparent,
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  const SizedBox(
-                                                    height: 20,
-                                                  ),
-                                                  Container(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          0, 10, 0, 0),
-                                                      child: Text(
-                                                        "Oops!",
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: AppStyle
-                                                                .DmSansFont
-                                                            .copyWith(
-                                                                fontSize: 18,
-                                                                color:
-                                                                    ColorConstant
-                                                                        .darkBlue,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .bold),
-                                                      )),
-                                                  const SizedBox(
-                                                    height: 25,
-                                                  ),
-                                                  Container(
-                                                      padding: const EdgeInsets
-                                                              .fromLTRB(
-                                                          0, 10, 0, 0),
-                                                      child: Text(
-                                                        "Level 2 is locked, to unlock it\nfirst complete level 1.",
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        style: AppStyle
-                                                                .DmSansFont
-                                                            .copyWith(
-                                                                fontSize: 18,
-                                                                color: ColorConstant
-                                                                    .darkBlue),
-                                                      )),
-                                                ],
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  barrierDismissible: true,
-                                );
+                                if(onBoardingController.currentPage.value==0){
+                                  onBoardingController.currentPage.value = 1;
+                                  onBoardingController.  pageController.nextPage(
+                                      duration: Duration(milliseconds: 250),
+                                      curve: Curves.easeIn
+                                  );
+
+                                }else if(onBoardingController.currentPage.value==1){
+                                  onBoardingController.currentPage.value = 2;
+                                  onBoardingController.  pageController.nextPage(
+                                      duration: Duration(milliseconds: 250),
+                                      curve: Curves.easeIn
+                                  );
+                                }else if(onBoardingController.currentPage.value==2){
+                                  onBoardingController.onTapOfGetStartedButton();
+                                }
+
                               },
                             ),
                           ),

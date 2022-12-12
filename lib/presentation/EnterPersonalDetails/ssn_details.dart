@@ -82,94 +82,92 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                   color:  ColorConstant.primaryWhite
                               ),
 
-                              child: Expanded(
-                                child:SingleChildScrollView(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SizedBox(
-                                      height: getVerticalSize(130),
-                                    ),
+                              child: SingleChildScrollView(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: getVerticalSize(130),
+                                  ),
 
-                                    Padding(
-                                      padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                      child: Text(
-                                        "Enter the verification code we just\n sent on your phone number.",
-                                        style: AppStyle.DmSansFont.copyWith(
+                                  Padding(
+                                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                    child: Text(
+                                      "Enter the SNN Code",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.grey8F,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: getFontSize(20),letterSpacing: 0.5),
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                    child: TextFormField(
+                                      readOnly: false,
+                                      style: TextStyle(color: ColorConstant.grey8F,),
+                                      inputFormatters: [
+                                        LengthLimitingTextInputFormatter(9),
+                                      ],
+                                      decoration: InputDecoration(
+                                        hintText: 'Enter SNN code',
+                                        hintStyle: AppStyle.DmSansFont.copyWith(
                                             color: ColorConstant.grey8F,
                                             fontWeight: FontWeight.w400,
-                                            fontSize: getFontSize(20),letterSpacing: 0.5),
-                                      ),
-                                    ),
-                                    Padding(
-                                      padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                      child: TextFormField(
-                                        readOnly: false,
-                                        style: TextStyle(color: ColorConstant.grey8F,),
-                                        inputFormatters: [
-                                          LengthLimitingTextInputFormatter(9),
-                                        ],
-                                        decoration: InputDecoration(
-                                          hintText: 'Enter SNN code',
-                                          hintStyle: AppStyle.DmSansFont.copyWith(
-                                              color: ColorConstant.grey8F,
-                                              fontWeight: FontWeight.w400,
-                                              fontSize: getFontSize(16)),
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: ColorConstant.grey8F),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: ColorConstant.grey8F),
-                                          ),
+                                            fontSize: getFontSize(16)),
+                                        enabledBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: ColorConstant.grey8F),
                                         ),
-                                        // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
-
-                                        controller:
-                                        enterPersonalDetailController.ssnController,
+                                        focusedBorder: UnderlineInputBorder(
+                                          borderSide: BorderSide(color: ColorConstant.grey8F),
+                                        ),
                                       ),
-                                    ),
-                                    SizedBox(
-                                      height: getVerticalSize(60),
-                                    ),
+                                      // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
 
-                                    Padding(
-                                      padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                      child: AppElevatedButton(
-                                        buttonName: 'Next',
+                                      controller:
+                                      enterPersonalDetailController.ssnController,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(60),
+                                  ),
 
-                                        onPressed: () {
+                                  Padding(
+                                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                    child: AppElevatedButton(
+                                      buttonName: 'Next',
+
+                                      onPressed: () {
+                                        debugPrint('Your code: ${enterPersonalDetailController.ssnController.text}');
+                                        enterPersonalDetailController.onTapOfNextSnnButton();
+
+                                      },
+                                    ),
+                                  ),
+                                  SizedBox(height: getVerticalSize(10),),
+                                  Column(
+                                    children: [
+                                      NumPad(
+                                        type: 'SNN',
+                                        controller: enterPersonalDetailController.ssnController,
+                                        delete: () {
+                                          HapticFeedback.lightImpact();
+
+                                          if( enterPersonalDetailController.ssnController.text.isNotEmpty){
+                                            enterPersonalDetailController.ssnController.text = enterPersonalDetailController.ssnController.text
+                                                .substring(0, enterPersonalDetailController.ssnController.text.length - 1);
+
+                                          }
+                                        },
+                                        // do something with the input numbers
+                                        onSubmit: () {
                                           debugPrint('Your code: ${enterPersonalDetailController.ssnController.text}');
                                           enterPersonalDetailController.onTapOfNextSnnButton();
-
                                         },
                                       ),
-                                    ),
-                                    SizedBox(height: getVerticalSize(10),),
-                                    Column(
-                                      children: [
-                                        NumPad(
-                                          type: 'SNN',
-                                          controller: enterPersonalDetailController.ssnController,
-                                          delete: () {
-                                            HapticFeedback.lightImpact();
-
-                                            if( enterPersonalDetailController.ssnController.text.isNotEmpty){
-                                              enterPersonalDetailController.ssnController.text = enterPersonalDetailController.ssnController.text
-                                                  .substring(0, enterPersonalDetailController.ssnController.text.length - 1);
-
-                                            }
-                                          },
-                                          // do something with the input numbers
-                                          onSubmit: () {
-                                            debugPrint('Your code: ${enterPersonalDetailController.ssnController.text}');
-                                            enterPersonalDetailController.onTapOfNextSnnButton();
-                                          },
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                )),
-                              ),
+                                    ],
+                                  )
+                                ],
+                              )),
                             ),
                           ),
 
