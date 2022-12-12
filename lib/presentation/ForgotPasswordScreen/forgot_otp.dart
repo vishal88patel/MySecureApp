@@ -1,17 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secure_cash_app/routes/app_routes.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secure_cash_app/presentation/EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
+import 'package:secure_cash_app/presentation/EnterPersonalDetails/nam_pad.dart';
+import 'package:secure_cash_app/presentation/ForgotPasswordScreen/controller/forgot_password_screen_controller.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
-import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_ElevatedButton .dart';
-import '../../Custom Widgets/app_textField.dart';
-import 'controller/login_screen_controller.dart';
-
-class LoginScreen extends StatelessWidget {
-  var loginController = Get.find<LoginScreenController>();
+class ForgotOtpScreen extends StatelessWidget {
+  var forgotPasswordScreenController = Get.find<ForgotPasswordScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +38,6 @@ class LoginScreen extends StatelessWidget {
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
-
                                     InkWell(
                                       onTap: () {
                                         Get.back();
@@ -54,7 +55,7 @@ class LoginScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Give us your Email ID",
+                                      "Enter OTP",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
@@ -87,65 +88,76 @@ class LoginScreen extends StatelessWidget {
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       SizedBox(
-                                        height: getVerticalSize(130),
+                                        height: getVerticalSize(90),
                                       ),
+
                                       Padding(
                                         padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "To apply, we need your Email ID linked to \nyour app",
-                                              style: AppStyle.DmSansFont.copyWith(
-                                                  color: ColorConstant.grey8F,
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: getFontSize(18)),
-                                            ),
-                                            SizedBox(
-                                              height: getVerticalSize(54),
-                                            ),
-                                            SizedBox(
-                                                child: AppTextField(
-                                                  controller: loginController.emailController,
-                                                  keyBordType: TextInputType.emailAddress,
-                                                  hintText: "Email",
-                                                )),
-                                            SizedBox(
-                                              height: getVerticalSize(54),
-                                            ),
-                                            AppElevatedButton(
-                                                buttonName: 'Next',
-                                                textColor: ColorConstant.primaryWhite,
-                                                onPressed: () {
-                                                  loginController.onTapOfButton();
+                                        child: TextFormField(
+                                          keyboardType: TextInputType.number,
+                                          readOnly: true,
+                                          style: TextStyle(color: ColorConstant.grey8F),
+                                          inputFormatters: [
 
-                                                }),
-                                            SizedBox(
-                                              height: getVerticalSize(20),
-                                            ),
-                                            Row(mainAxisAlignment: MainAxisAlignment.center,
-                                              children: [
-                                                Text(
-                                                  "You to",
-                                                  style: AppStyle.DmSansFont.copyWith(
-                                                      color: ColorConstant.grey8F,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: getFontSize(18)),
-                                                ),
-                                                TextButton(onPressed: (){
-                                                  Get.toNamed(AppRoutes.forgotPasswordScreen);
-                                                },
-                                                  child:  Text(
-                                                  "Forgot Password ?",
-                                                  style: AppStyle.DmSansFont.copyWith(
-                                                      color: ColorConstant.primaryDarkGreen,
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: getFontSize(18)),
-                                                ),)
-                                              ],
-                                            ),
                                           ],
+
+                                          decoration: InputDecoration(
+                                            hintText: '000000',
+                                            hintStyle: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.grey8F,
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: getFontSize(16)),
+
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
+                                            ),
+                                          ),
+                                          // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
+
+                                          controller:
+                                          forgotPasswordScreenController.otpController,
                                         ),
+                                      ),
+                                      SizedBox(
+                                        height: getVerticalSize(60),
+                                      ),
+
+                                      Padding(
+                                        padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                        child: AppElevatedButton(
+                                          buttonName: 'Verify OTP',
+
+                                          onPressed: () {
+                                            forgotPasswordScreenController.onTapOfVerifyButton();
+
+                                          },
+                                        ),
+                                      ),
+                                      SizedBox(height: getVerticalSize(20),),
+                                      Column(
+                                        children: [
+                                          NumPad(
+                                            type: 'OTP',
+                                            controller: forgotPasswordScreenController.otpController,
+                                            delete: () {
+                                              HapticFeedback.lightImpact();
+
+                                              if( forgotPasswordScreenController.otpController.text.isNotEmpty){
+                                                forgotPasswordScreenController.otpController.text = forgotPasswordScreenController.otpController.text
+                                                    .substring(0, forgotPasswordScreenController.otpController.text.length - 1);
+
+                                              }
+                                            },
+                                            // do something with the input numbers
+                                            onSubmit: () {
+                                              debugPrint('Your code: ${forgotPasswordScreenController.otpController.text}');
+                                              forgotPasswordScreenController.onTapOfVerifyButton();
+                                            },
+                                          ),
+                                        ],
                                       )
                                     ],
                                   ),
@@ -172,5 +184,8 @@ class LoginScreen extends StatelessWidget {
         ));
 
 
+
+
   }
+
 }
