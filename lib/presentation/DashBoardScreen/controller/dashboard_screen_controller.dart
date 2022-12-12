@@ -31,6 +31,7 @@ class DashBoardScreenController extends GetxController {
   @override
   void onInit() {
     getArguments();
+    getUserDetails();
     callGetWalletApi(pageNo: 1);
     super.onInit();
   }
@@ -39,7 +40,26 @@ class DashBoardScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  Future<void> getUserDetails() async {
+    ApiService()
+        .callGetApi(
+        body: FormData({}),
+        headerWithToken: true,
+        showLoader: false,
+        url: ApiEndPoints.GET_PROFILE)
+        .then((value) {
+      print(value);
+      if (value['status'] ?? false) {
+        LoginResponseModel loginResponseModel =
+        LoginResponseModel.fromJson(value);
+        PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
 
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
 
 
   void onTapOfBottomnavigation(int value) {

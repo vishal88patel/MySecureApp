@@ -125,13 +125,6 @@ class LoginScreen extends StatelessWidget {
                                             ),
                                             Row(mainAxisAlignment: MainAxisAlignment.center,
                                               children: [
-                                                Text(
-                                                  "You to",
-                                                  style: AppStyle.DmSansFont.copyWith(
-                                                      color: ColorConstant.grey8F,
-                                                      fontWeight: FontWeight.w400,
-                                                      fontSize: getFontSize(18)),
-                                                ),
                                                 TextButton(onPressed: (){
                                                   Get.toNamed(AppRoutes.forgotPasswordScreen);
                                                 },

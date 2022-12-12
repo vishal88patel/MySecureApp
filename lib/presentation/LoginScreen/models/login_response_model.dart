@@ -1,3 +1,6 @@
+import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
+
 class LoginResponseModel {
   bool? status;
   String? message;
@@ -114,7 +117,7 @@ class Data {
         this.isKyc,
         this.privacyPolicy});
 
-  Data.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json)  {
     id = json['id'];
     name = json['name'];
     email = json['email'];
@@ -156,7 +159,7 @@ class Data {
     kycStatus = json['kyc_status'];
     kycType = json['kyc_type'];
     cashtag = json['cashtag'];
-    token = json['token']??"AuthorizationToken";
+    token = json['token']?? PrefUtils.getString(StringConstants.AUTH_TOKEN);
     isKyc = json['is_kyc'];
     privacyPolicy = json['privacyPolicy'];
   }

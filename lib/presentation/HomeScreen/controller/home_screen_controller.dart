@@ -39,7 +39,7 @@ class HomeScreenController extends GetxController {
     getStoredData();
     isVerified.value = PrefUtils.getString(StringConstants.IS_KYC_DONE);
      callHomePageApi();
-    getUserDetails();
+
 
     super.onInit();
   }
@@ -79,32 +79,13 @@ class HomeScreenController extends GetxController {
         // callGetLinkedBankApi();
       } else {
         UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
+            bodyText: "Error Fetching Offers", headerText: StringConstants.ERROR);
       }
     });
   }
 
 
-  Future<void> getUserDetails() async {
-    ApiService()
-        .callGetApi(
-            body: await getHomePageApiBody(),
-            headerWithToken: true,
-            showLoader: false,
-            url: ApiEndPoints.GET_PROFILE)
-        .then((value) {
-      print(value);
-      if (value['status'] ?? false) {
-        LoginResponseModel loginResponseModel =
-        LoginResponseModel.fromJson(value);
-        PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
 
-      } else {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
-      }
-    });
-  }
 
   Future<FormData> getHomePageApiBody() async {
     final form = FormData({});

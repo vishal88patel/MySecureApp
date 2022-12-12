@@ -12,7 +12,7 @@ import '../KycStep1ModuleScreen/controller/kyc_loader_screen_controller.dart';
 import '../KycStep1ModuleScreen/selfie_screen.dart';
 
 class KycSuccessScreen extends StatelessWidget {
-  var kycLoaderController = Get.find<KycLoaderController>();
+  var kycLoaderController = Get.put(KycLoaderController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
