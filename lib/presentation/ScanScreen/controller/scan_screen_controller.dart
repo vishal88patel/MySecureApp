@@ -34,7 +34,7 @@ class ScanScreenController extends GetxController {
   var selectedMethod="Select Payment Method".obs;
 
   var isFirstOpen = false.obs;
-
+  var balance="00000".obs;
   var walletModel=GetWallet().obs;
 
 
@@ -68,6 +68,10 @@ class ScanScreenController extends GetxController {
         headerText: StringConstants.ERROR,
         bodyText: "Please enter amount",
       );
+    }else if(int.parse(balance.value)<int.parse(amountController.text)){
+      UIUtils.showSnakBar(
+          headerText: StringConstants.ERROR,
+          bodyText: "Insufficient Wallet Balance");
     }
     else if (selectedMethod.value =="Select Payment Method" ||selectedMethod.value.isEmpty) {
       UIUtils.showSnakBar(
@@ -92,6 +96,7 @@ class ScanScreenController extends GetxController {
       if (value!=null&&value['status']) {
         walletModel.value = GetWallet.fromJson(value);
         isPin.value= walletModel.value.data!.isPin!;
+        balance.value= walletModel.value.data!.walletBalance!;
 
       } else {
         UIUtils.hideProgressDialog();

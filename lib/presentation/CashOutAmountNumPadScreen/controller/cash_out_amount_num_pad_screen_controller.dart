@@ -36,7 +36,7 @@ class CashOutAmountNumPadScreenController extends GetxController {
         Get.closeAllSnackbars();
         UIUtils.showSnakBar(
             headerText: StringConstants.ERROR,
-            bodyText: "Amount is not available");
+            bodyText: "Insufficient Wallet Balance");
         isAmountAvailable.value = false;
       }
     });

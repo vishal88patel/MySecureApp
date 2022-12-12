@@ -31,7 +31,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Container(
                 height: getVerticalSize(
-                  512.00,
+                  490.00,
                 ),
                 width: size.width,
                 child: Stack(
@@ -71,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                                       "My Profile",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.primaryWhite,
-                                          fontSize: getFontSize(24),
+                                          fontSize: getFontSize(22),
                                           fontWeight: FontWeight.bold),
                                     ),
                                     Container(
@@ -137,7 +137,7 @@ class ProfileScreen extends StatelessWidget {
                                                   AppStyle.DmSansFont.copyWith(
                                                       color: ColorConstant
                                                           .primaryWhite,
-                                                      fontSize: getFontSize(28),
+                                                      fontSize: getFontSize(26),
                                                       fontWeight:
                                                           FontWeight.bold),
                                             ),
@@ -156,7 +156,7 @@ class ProfileScreen extends StatelessWidget {
                                                         color: ColorConstant
                                                             .primaryAppTextF1,
                                                         fontSize:
-                                                            getFontSize(20),
+                                                            getFontSize(18),
                                                         fontWeight:
                                                             FontWeight.normal),
                                               ),
@@ -179,7 +179,7 @@ class ProfileScreen extends StatelessWidget {
                                                           color: ColorConstant
                                                               .primaryAppTextF1,
                                                           fontSize:
-                                                              getFontSize(20),
+                                                              getFontSize(18),
                                                           fontWeight: FontWeight
                                                               .normal),
                                                 ),
@@ -259,7 +259,7 @@ class ProfileScreen extends StatelessWidget {
                                               style: AppStyle.textStyleDMSANS.copyWith(
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(18)),
+                                                  fontSize: getFontSize(16)),
                                             ),
                                             SvgPicture.asset(
                                               "asset/icons/ic_card_logo.svg",
@@ -273,7 +273,7 @@ class ProfileScreen extends StatelessWidget {
                                             style: AppStyle.textStyleDMSANS.copyWith(
                                                 color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
-                                                fontSize: getFontSize(28)),
+                                                fontSize: getFontSize(26)),
                                           ),
                                         ),
                                         SizedBox(height: getHorizontalSize(8),),
@@ -397,7 +397,7 @@ class ProfileScreen extends StatelessWidget {
                                               style: AppStyle.textStyleDMSANS.copyWith(
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(20)),
+                                                  fontSize: getFontSize(18)),
                                             ),
                                           ],
                                         ),

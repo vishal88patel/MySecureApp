@@ -95,7 +95,7 @@ class TopWithCreditCardController extends GetxController {
     }else if(int.parse(balance.value)<int.parse(amountController.text)){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
-          bodyText: "Amount is not available");
+          bodyText: "Insufficient Wallet Balance");
     }else{
       //onTapOfListile(context);
       Get.toNamed(AppRoutes.topSelectionModeScreen);

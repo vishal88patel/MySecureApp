@@ -9,7 +9,9 @@ import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
+import '../../utils/HelperFiles/pref_utils.dart';
 import '../HomeScreen/controller/home_screen_controller.dart';
 import 'amount_dialog.dart';
 import 'controller/loan_calculator_screen_controller.dart';
@@ -126,7 +128,14 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                     ),
                                   ),
                                   Spacer(),
-                                  Text(
+                                  PrefUtils.getString(StringConstants.IS_KYC_DONE) == "1"? Text(
+                                    "Your Kyc is Pending !!! Please Wait Until Approvel",
+                                    style: AppStyle.DmSansFont
+                                        .copyWith(
+                                        color: ColorConstant.darkBlue,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(20)),
+                                  ):Text(
                                     "Please Complete your kyc to preoceed with your loan application",
                                     style: AppStyle.DmSansFont
                                         .copyWith(
@@ -137,7 +146,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                   SizedBox(
                                     height: getVerticalSize(50),
                                   ),
-                                  AppElevatedButton(
+                                  PrefUtils.getString(StringConstants.IS_KYC_DONE) == "1"?Container():AppElevatedButton(
                                       buttonName: 'Proceed to Kyc',
                                       radius: 5,
                                       onPressed: () {

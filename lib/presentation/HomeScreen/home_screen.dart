@@ -285,9 +285,9 @@ class HomeScreen extends StatelessWidget {
                             title: 'Boost Credit Score',
                             iconName: 'asset/icons/ic_boost_home.png',
                             onTap: (){
-                              Get.toNamed(AppRoutes.qrCodeScreen, arguments: {
-                                'UUID_ID': homeController.loginResponseModel!.data!.uuid!.toString(),
-                              });
+                              // Get.toNamed(AppRoutes.qrCodeScreen, arguments: {
+                              //   'UUID_ID': homeController.loginResponseModel!.data!.uuid!.toString(),
+                              // });
                             },
                           ),
                           PaymentListWidget(

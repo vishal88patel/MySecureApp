@@ -39,7 +39,7 @@ class ProfileOptionWidget extends StatelessWidget {
                         fontWeight:
                         FontWeight.w500,
                         fontSize:
-                        getFontSize(20)),
+                        getFontSize(18)),
                   ),
                 ),
               ],
