@@ -80,7 +80,7 @@ class LoanCalculatorScreenController extends GetxController {
   }
 
   Future<void> getStoredData() async {
-    if (PrefUtils.getString(StringConstants.IS_KYC_DONE) != "0") {
+    if (PrefUtils.getString(StringConstants.IS_KYC_DONE) != "0" && PrefUtils.getString(StringConstants.IS_KYC_DONE) != "1") {
       isKycDone.value = true;
       Future.delayed(Duration(milliseconds: 50), () {
         getLoanTypeApi();

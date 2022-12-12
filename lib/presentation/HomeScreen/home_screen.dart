@@ -284,6 +284,9 @@ class HomeScreen extends StatelessWidget {
                           PaymentListWidget(
                             title: 'Boost Credit Score',
                             iconName: 'asset/icons/ic_boost_home.png',
+                            onTap: (){
+                              //Get.toNamed(AppRoutes.kycSuccessScreen);
+                            },
                           ),
                           PaymentListWidget(
                             title: 'Link Bank',
@@ -306,7 +309,8 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              Get.toNamed(AppRoutes.kycEmailScreen);
+                              homeController.isVerified==0?
+                              Get.toNamed(AppRoutes.kycEmailScreen):Get.toNamed(AppRoutes.kycSelectStepScreen);
                             },
                             child: PaymentListWidget(
                               title: 'Identity Verification',

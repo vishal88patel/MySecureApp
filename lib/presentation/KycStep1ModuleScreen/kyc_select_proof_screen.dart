@@ -36,7 +36,7 @@ class KycSelectProofScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               AppAppBar(
-                                title: "Id Proof",
+                                title: "ID Proof",
                                 icon1: "asset/icons/ic_back.svg",
                                 icon2: "asset/icons/ic_notification.svg",
                                 onPressedIcon1: () {
@@ -52,7 +52,7 @@ class KycSelectProofScreen extends StatelessWidget {
                                 child: Text(
                                   "Select ID Proof",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.naturalGrey,
+                                      color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w400,
                                       fontSize: getFontSize(22)),
                                 ),
@@ -118,9 +118,9 @@ class KycSelectProofScreen extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   SvgPicture.asset(
-                                                    "asset/icons/ic_row_notification.svg",
+                                                    "asset/icons/ic_licence_pass.svg",
                                                     fit: BoxFit.fill,
-                                                    height: getVerticalSize(32),
+                                                    height: getVerticalSize(24),
                                                   ),
                                                   SizedBox(
                                                     width:
@@ -187,9 +187,9 @@ class KycSelectProofScreen extends StatelessWidget {
                                               Row(
                                                 children: [
                                                   SvgPicture.asset(
-                                                    "asset/icons/ic_row_notification.svg",
+                                                    "asset/icons/ic_licence_pass.svg",
                                                     fit: BoxFit.fill,
-                                                    height: getVerticalSize(32),
+                                                    height: getVerticalSize(24),
                                                   ),
                                                   SizedBox(
                                                     width:

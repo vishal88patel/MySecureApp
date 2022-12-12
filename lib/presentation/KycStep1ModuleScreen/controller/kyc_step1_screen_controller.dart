@@ -217,6 +217,28 @@ class KycStep1ScreenController extends GetxController {
         Future.delayed(Duration(milliseconds: 1000), () {
           progress4.value = true;
           UIUtils.showSnakBar(
+              bodyText: "KYC Document Uploaded Successfully",
+              headerText: StringConstants.SUCCESS);
+          Get.toNamed(AppRoutes.kycSuccessScreen);
+          progress1.value = false;
+          progress2.value = false;
+          progress3.value = false;
+          progress4.value = false;
+
+        });
+      });
+    });
+  }
+
+  void progressLevel2() {
+    progress1.value = true;
+    Future.delayed(Duration(milliseconds: 1000), () {
+      progress2.value = true;
+      Future.delayed(Duration(milliseconds: 1000), () {
+        progress3.value = true;
+        Future.delayed(Duration(milliseconds: 1000), () {
+          progress4.value = true;
+          UIUtils.showSnakBar(
               bodyText: "KYC has been completed successfully",
               headerText: StringConstants.SUCCESS);
         });
@@ -287,7 +309,7 @@ class KycStep1ScreenController extends GetxController {
     request.fields['email'] = emailController.text;
     request.fields['mobile'] = "";
     request.fields['ssn'] = ssnController.text;
-    request.fields['kyc_status'] = "1";
+    request.fields['kyc_status'] = "2";
     request.fields['kyc_type'] = "1";
     request.fields['date_of_birth'] = dobController.text;
     request.fields['licence_json'] = "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
@@ -307,8 +329,7 @@ class KycStep1ScreenController extends GetxController {
     if (response.statusCode == 200) {
       //   UIUtils.hideProgressDialog();
       progress();
-
-      PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "2");
     } else {
       //  UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(
@@ -374,7 +395,7 @@ class KycStep1ScreenController extends GetxController {
     http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
 
     request.headers.addAll(headers);
-    request.fields['kyc_status'] = "2";
+    request.fields['kyc_status'] = "3";
     request.files.add(await http.MultipartFile.fromPath("selfi_with_document", netImage5.value));
 
     var response = await request.send();
@@ -387,10 +408,7 @@ class KycStep1ScreenController extends GetxController {
       //   UIUtils.hideProgressDialog();
       progress();
       step2.value=true;
-      UIUtils.showSnakBar(
-          bodyText: "KYC has been completed successfully",
-          headerText: StringConstants.SUCCESS);
-      PrefUtils.setString(StringConstants.IS_KYC_DONE, "2");
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "3");
     } else {
       //  UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(

@@ -167,34 +167,6 @@ class KYCLoadingScreen extends StatelessWidget {
                           SizedBox(
                             height: getVerticalSize(20),
                           ),
-                          Spacer(),
-                          Obx(()=>
-                          kycStep1Controller.progress4.value?Text(
-                              "Thank you.Your verification data has been successfully submitted.You'll get the results shortly",
-                              style: AppStyle.textStyleDMSANS
-                                  .copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                            ):Container(),
-                          ),
-                          SizedBox(
-                            height: getVerticalSize(20),
-                          ),
-                          Obx(()=>
-                          kycStep1Controller.progress4.value?AppElevatedButton(
-                                buttonName: 'Continue',
-                                onPressed: () async {
-                                  var kk=await PrefUtils.getString(StringConstants.IS_KYC_DONE);
-                                  if(kk=="1" && kk!="2"){
-                                   kycLoaderController. showKycDialouge();
-
-                                  }
-                                  else{
-                                    Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
-                                  }
-                                }):Container(),
-                          ),
                         ],
                       ),
                     ),

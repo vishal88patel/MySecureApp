@@ -26,7 +26,7 @@ class HomeScreenController extends GetxController {
   var homePageHeadeName = "".obs;
   var profilePicture = "".obs;
   var showNotiFiBadge = false.obs;
-
+  var isVerified = "0".obs;
   @override
   void onReady() {
     WidgetsBinding.instance
@@ -37,6 +37,7 @@ class HomeScreenController extends GetxController {
   @override
   void onInit() {
     getStoredData();
+    isVerified.value = PrefUtils.getString(StringConstants.IS_KYC_DONE);
      callHomePageApi();
 
     super.onInit();
