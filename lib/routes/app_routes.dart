@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/ForgotPasswordScreen/binding/forgot_password_screen_binding.dart';
+import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_create_password.dart';
+import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_otp.dart';
+import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_password_screen.dart';
 import 'package:secure_cash_app/presentation/TransferScanScreen/binding/transfer_scan_screen_binding.dart';
 import 'package:secure_cash_app/presentation/TransferScanScreen/transfer_scan_screen.dart';
 import 'package:secure_cash_app/presentation/TransferScreen/binding/transfer_screen_binding.dart';
@@ -223,6 +227,9 @@ class AppRoutes {
   static String transferScreen = '/transfer_screen';
   static String transferScanScreen = '/transfer_scan_screen';
   static String transferToUserScreen = '/transfer_to_user_screen';
+  static String forgotPasswordScreen = '/forgot_password_screen';
+  static String forgotCreatePasswordScreen = '/forgot_create_password_screen';
+  static String forgotOtpScreen = '/forgot_otp_screen';
 
   static String linkCardAddCardScreen = '/link_card_add_card_screen';
   static String linkCardLoadingScreen = '/link_card_loading_screen';
@@ -875,6 +882,7 @@ class AppRoutes {
         TransferScanScreenBinding(),
       ],
     ),
+
     GetPage(
       name: transferToUserScreen,
       transition: Transition.rightToLeft,
@@ -882,6 +890,36 @@ class AppRoutes {
       page: () => TransferToUserScreen(),
       bindings: [
         TransferToUserScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: forgotPasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => ForgotPasswordScreen(),
+      bindings: [
+        ForgotPasswordScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: forgotOtpScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => ForgotOtpScreen(),
+      bindings: [
+        ForgotPasswordScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: forgotCreatePasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => ForgotCreatePasswordScreen(),
+      bindings: [
+        ForgotPasswordScreenBinding(),
       ],
     ),
 
