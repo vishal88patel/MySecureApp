@@ -83,6 +83,8 @@ import '../presentation/OnBoardingScreen/onBoarding_screen.dart';
 import '../presentation/PersonalDetails/Purpouse_opening_account_screen.dart';
 import '../presentation/PersonalDetails/binding/personal_detail_screen_binding.dart';
 import '../presentation/PersonalDetails/personal_detail_screen.dart';
+import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
+import '../presentation/QrCodeScreen/qrCode_screen.dart';
 import '../presentation/ScanScreen/binding/scan_screen_binding.dart';
 import '../presentation/ScanScreen/scan_password_screen.dart';
 import '../presentation/ScanScreen/scan_screen.dart';
@@ -302,6 +304,17 @@ class AppRoutes {
         WbviewScreenBinding(),
       ],
     ),
+
+    GetPage(
+      name: qrCodeScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => QrCodeScreen(),
+      bindings: [
+        QrCodeScreenBinding(),
+      ],
+    ),
+
     GetPage(
       name: homeScreen,
       transition: Transition.rightToLeft,
