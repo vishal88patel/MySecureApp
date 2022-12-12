@@ -148,6 +148,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 }else if(onBoardingController.currentPage.value==2){
                                   onBoardingController.onTapOfGetStartedButton();
                                 }
+
                               },
                             ),
                           ),

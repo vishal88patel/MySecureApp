@@ -40,6 +40,8 @@ class DashBoardScreenController extends GetxController {
     super.onClose();
   }
 
+
+
   void onTapOfBottomnavigation(int value) {
     selectedIndex.value=value;
 
