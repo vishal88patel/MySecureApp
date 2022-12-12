@@ -309,7 +309,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           InkWell(
                             onTap: () {
-                              homeController.isVerified==0?
+                              homeController.isVerified=="0"?
                               Get.toNamed(AppRoutes.kycEmailScreen):Get.toNamed(AppRoutes.kycSelectStepScreen);
                             },
                             child: PaymentListWidget(

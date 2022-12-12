@@ -276,32 +276,33 @@ class KycSelectStepScreen extends StatelessWidget {
                                                                     Radius.circular(
                                                                         15))),
                                                             padding: EdgeInsets.all(12),
-                                                            child: Column(
-                                                              crossAxisAlignment:
-                                                              CrossAxisAlignment
-                                                                  .end,
-                                                              children: [
-                                                                InkWell(
-                                                                    onTap:(){
-                                                                      Get.back();
-                                                                    },
-                                                                    child: Icon(
-                                                                        Icons.close)),
-                                                                Row(
-                                                                  mainAxisAlignment:
-                                                                  MainAxisAlignment
-                                                                      .center,
-                                                                  children: [
-                                                                    SvgPicture.asset(
-                                                                        "asset/icons/ic_lock_pending.svg")
-                                                                  ],
-                                                                ),
-                                                                Icon(
-                                                                  Icons.close,
-                                                                  color: Colors
-                                                                      .transparent,
-                                                                ),
-                                                              ],
+                                                            child: InkWell(
+                                                              onTap:(){
+                                                                Get.back();
+                                                              },
+                                                              child: Column(
+                                                                crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .end,
+                                                                children: [
+                                                                  Icon(
+                                                                      Icons.close),
+                                                                  Row(
+                                                                    mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .center,
+                                                                    children: [
+                                                                      SvgPicture.asset(
+                                                                          "asset/icons/ic_lock_pending.svg")
+                                                                    ],
+                                                                  ),
+                                                                  Icon(
+                                                                    Icons.close,
+                                                                    color: Colors
+                                                                        .transparent,
+                                                                  ),
+                                                                ],
+                                                              ),
                                                             ),
                                                           ),
                                                           const SizedBox(

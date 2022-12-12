@@ -114,7 +114,7 @@ class KycStep1ScreenController extends GetxController {
       },
     );
     if (picked != null && picked != selectedDate) {
-      final DateFormat formatter = DateFormat('dd/MM/yyyy');
+      final DateFormat formatter = DateFormat('MM/dd/yyyy');
       final String startDate = formatter.format(picked);
       dobController.text = startDate;
       log('startDate $startDate');

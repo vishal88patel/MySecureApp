@@ -198,7 +198,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
           headerText: StringConstants.ERROR);
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
     } else if (dobData.toLowerCase().trim().toString() !=
-        kycStep1Controller.dobController.text.replaceAll("/", "").toString()) {
+        dateConverterDDMMYYYY(kycStep1Controller.dobController.text).replaceAll("/", "").toString()) {
       UIUtils.showSnakBar(
           bodyText: "Birth Date is Not match With Driving Licence Birth Date",
           headerText: StringConstants.ERROR);
@@ -263,6 +263,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
         fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
         dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
+
         if(fname.isNotEmpty && lname.isNotEmpty){
           scanDataa(fname,lname,dobData);
         }}

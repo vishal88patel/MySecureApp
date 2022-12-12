@@ -141,7 +141,7 @@ class ProfileScreen extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold),
                                             ),
-                                            if(homeController.loginResponseModel!.data!.mobile!=null)
+                                            if(homeController.loginResponseModel!.data!=null)
                                             Padding(
                                               padding: EdgeInsets.only(
                                                 top: 7,
@@ -161,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
                                                             FontWeight.normal),
                                               ),
                                             ),
-                                            if(homeController.loginResponseModel!.data!.email!=null)
+                                            if(homeController.loginResponseModel!.data!=null)
                                             Align(
                                               alignment: Alignment.center,
                                               child: Padding(

@@ -46,6 +46,13 @@ extension StringCasingExtension on String {
 String dateConverter(String date){
   var inputFormat = DateFormat('yyyy-MM-dd');
   var date1 = inputFormat.parse(date);
+  var outputFormat = DateFormat('MM/dd/yyyy');
+  var date2 = outputFormat.format(date1);
+  return date2.toString();
+}
+String dateConverterDDMMYYYY(String date){
+  var inputFormat = DateFormat('MM/dd/yyyy');
+  var date1 = inputFormat.parse(date);
   var outputFormat = DateFormat('dd/MM/yyyy');
   var date2 = outputFormat.format(date1);
   return date2.toString();
