@@ -85,7 +85,7 @@ class ScanScreenController extends GetxController {
         .callGetApi(
         body: await getWalletApiBody(),
         headerWithToken: true,
-        showLoader: pageNo==1?true:false,
+        showLoader: false,
         url: ApiEndPoints.GET_WALLET+"?page=$pageNo")
         .then((value) {
       print(value);

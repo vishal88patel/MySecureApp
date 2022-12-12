@@ -26,6 +26,7 @@ class SplashScreenController extends GetxController {
   }
 
   Future changeRoute() async {
+    PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,true);
     LoginResponseModel? loginResponseModel =
         (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
     if (loginResponseModel != null &&

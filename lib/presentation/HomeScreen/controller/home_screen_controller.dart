@@ -76,6 +76,7 @@ class HomeScreenController extends GetxController {
       print(value);
       if (value!=null && value['status'] ?? false) {
         homeModel.value = HomePageResponseModel.fromJson(value);
+
         // callGetLinkedBankApi();
       } else {
         UIUtils.showSnakBar(
