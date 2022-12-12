@@ -99,7 +99,6 @@ class HomeScreenController extends GetxController {
           padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
               vertical: getVerticalSize(300)),
           child: Container(
-
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
             ),
@@ -376,7 +375,6 @@ class HomeScreenController extends GetxController {
       ),
       barrierDismissible: false,
     ).then((value) {
-
       Future.delayed(Duration(milliseconds: 500), () {
         PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
         Get.toNamed(AppRoutes.kycEmailScreen);
