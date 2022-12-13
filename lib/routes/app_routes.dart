@@ -13,8 +13,12 @@ import 'package:secure_cash_app/presentation/CashoutAmountScreen/binding/cashout
 import 'package:secure_cash_app/presentation/TopUpCardListScreen/binding/topup_card_list_screen_binding.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
+import '../presentation/BoostCreditScreen/binding/boost_credit_screen_binding.dart';
+import '../presentation/BoostCreditScreen/boost_credit_screen.dart';
 import '../presentation/CardListScreen/binding/card_list_screen_binding.dart';
 import '../presentation/CardListScreen/card_list_screen.dart';
+import '../presentation/CashCardScreen/binding/cash_card_screen_binding.dart';
+import '../presentation/CashCardScreen/cash_card_screen.dart';
 import '../presentation/CashoutAmountScreen/cashout_amount_screen.dart';
 import '../presentation/CashoutBankListScreen/binding/cashout_bank_list_screen_binding.dart';
 import '../presentation/CashoutBankListScreen/cashout_bank_list_screen.dart';
@@ -22,6 +26,8 @@ import '../presentation/CashoutCardAndBankScreen/binding/cashout_card_bank_scree
 import '../presentation/CashoutCardAndBankScreen/cashout_card_bank_screen.dart';
 import '../presentation/CashoutCardListScreen/binding/cashout_card_list_screen_binding.dart';
 import '../presentation/CashoutCardListScreen/cashout_card_list_screen.dart';
+import '../presentation/ChatScreen/binding/chat_screen_binding.dart';
+import '../presentation/ChatScreen/chat_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
 import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
@@ -246,6 +252,14 @@ class AppRoutes {
   static String kycSelectStepScreen = '/kyc_select_step_screen';
   static String kycSuccessScreen = '/kyc_success_screen';
   static String kycSuccess2Screen = '/kyc_success2_screen';
+
+  static String boostCreditScreen = '/boost_credit_screen';
+
+  static String cashCardScreen = '/cash_card_screen';
+
+  static String chatScreen = '/chat_screen';
+
+
 
   static List<GetPage> pages = [
     GetPage(
@@ -959,6 +973,37 @@ class AppRoutes {
       page: () => ForgotCreatePasswordScreen(),
       bindings: [
         ForgotPasswordScreenBinding(),
+      ],
+    ),
+
+
+    GetPage(
+      name: boostCreditScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => BoostCreditScreen(),
+      bindings: [
+        BoostCreditScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cashCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CashCardScreen(),
+      bindings: [
+        CashCardScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: chatScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => ChatScreen(),
+      bindings: [
+        ChatScreenBinding(),
       ],
     ),
 
