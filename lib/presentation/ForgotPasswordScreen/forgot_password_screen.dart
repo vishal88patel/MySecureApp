@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/EnterPersonalDetails/nam_pad.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
@@ -78,51 +80,114 @@ class ForgotPasswordScreen extends StatelessWidget {
                                         topRight: Radius.circular(20),
                                         topLeft: Radius.circular(20),
                                       ),
-                                      color:  ColorConstant.primaryWhite
+                                      color:  ColorConstant.backgroundColor
                                   ),
 
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      SizedBox(
-                                        height: getVerticalSize(130),
-                                      ),
-                                      Padding(
-                                        padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                        child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              "Enter your email or phone number",
-                                              style: AppStyle.DmSansFont.copyWith(
-                                                  color: ColorConstant.grey8F,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(20)),
-                                            ),
-                                            SizedBox(
-                                              height: getVerticalSize(40),
-                                            ),
-                                            SizedBox(
-                                                child: AppTextField(
-                                                  controller: forgotPasswordScreenController.emailController,
-                                                  keyBordType: TextInputType.emailAddress,
-                                                  hintText: "Email or Phone Number ",
-                                                )),
-                                            SizedBox(
-                                              height: getVerticalSize(54),
-                                            ),
-                                            AppElevatedButton(
-                                                buttonName: 'Get OTP',
-                                                textColor: ColorConstant.primaryWhite,
-                                                onPressed: () {
-                                                  forgotPasswordScreenController.onTapOfButton();
-
-                                                }),
-
-                                          ],
+                                  child: SingleChildScrollView(
+                                    child: Column(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        SizedBox(
+                                          height: getVerticalSize(100),
                                         ),
-                                      )
-                                    ],
+                                        Padding(
+                                          padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment.start,
+                                            children: [
+                                              Obx(()=> Text(
+                                                  forgotPasswordScreenController.isEmailPhone.value?
+                                                  "Enter your email ":
+                                                      "Enter your phone number",
+                                                  style: AppStyle.DmSansFont.copyWith(
+                                                      color: ColorConstant.grey8F,
+                                                      fontWeight: FontWeight.w500,
+                                                      fontSize: getFontSize(20)),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                height: getVerticalSize(20),
+                                              ),
+                                              Obx(
+                                                    ()=> SizedBox(
+                                                    child: AppTextField(
+                                                      readOnly:  forgotPasswordScreenController.isEmailPhone.value
+                                                          ?false:true,
+                                                      controller: forgotPasswordScreenController.isEmailPhone.value
+                                                          ?forgotPasswordScreenController.emailController
+                                                          :forgotPasswordScreenController.phoneNumberController,
+                                                      keyBordType: TextInputType.emailAddress,
+                                                      hintText:forgotPasswordScreenController.isEmailPhone.value
+                                                          ?"Email"
+                                                          : "Phone Number ",
+                                                    )),
+                                              ),
+
+                                              Row(mainAxisAlignment: MainAxisAlignment.end,
+                                                children: [
+                                                  Obx(
+                                                  ()=> TextButton(
+                                                        onPressed: (){
+                                                          forgotPasswordScreenController.emailPhoneChange();
+                                                        },
+                                                        child:  Text(
+                                                          forgotPasswordScreenController.isEmailPhone.value?
+                                                          "Using phone number" : "Using email ",
+                                                          style: AppStyle.DmSansFont.copyWith(
+                                                              color: ColorConstant.primaryDarkGreen,
+                                                              fontWeight: FontWeight.w500,
+                                                              fontSize: getFontSize(20)),
+                                                        ),),
+                                                  ),
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                height: getVerticalSize(20),
+                                              ),
+
+                                              AppElevatedButton(
+                                                  buttonName: 'Get OTP',
+                                                  textColor: ColorConstant.primaryWhite,
+                                                  onPressed: () {
+                                                    if(forgotPasswordScreenController.isEmailPhone.value){
+                                                      forgotPasswordScreenController.onTapOfButton();
+                                                    }else{
+                                                      forgotPasswordScreenController.onClickGetOtp(context);
+                                                    }
+
+                                                  }),
+                                              SizedBox(
+                                                height: getVerticalSize(30),
+                                              ),
+
+                                            ],
+                                          ),
+                                        ),
+                                        Obx(()=> Column(
+                                            children: [
+                                              if(!forgotPasswordScreenController.isEmailPhone.value)
+                                                NumPad(
+                                                type: 'PHONE',
+                                                controller: forgotPasswordScreenController.phoneNumberController,
+                                                delete: () {
+                                                  HapticFeedback.lightImpact();
+
+                                                  if( forgotPasswordScreenController.phoneNumberController.text.isNotEmpty){
+                                                    forgotPasswordScreenController.phoneNumberController.text = forgotPasswordScreenController.phoneNumberController.text
+                                                        .substring(0, forgotPasswordScreenController.phoneNumberController.text.length - 1);
+
+                                                  }
+                                                },
+                                                // do something with the input numbers
+                                                onSubmit: () {
+                                                  debugPrint('Your code: ${forgotPasswordScreenController.phoneNumberController.text}');
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ),
                                 ),
                               ),

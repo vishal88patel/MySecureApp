@@ -161,7 +161,7 @@ class ForgotCreatePasswordScreen extends StatelessWidget {
                                             AppElevatedButton(
                                                 buttonName: 'Next',
                                                 onPressed: () {
-                                                  // forgotPasswordScreenController.onTapOfNextButton();
+                                                  forgotPasswordScreenController.onTapResetButton();
 
                                                 }),
 
