@@ -131,7 +131,12 @@ class ForgotOtpScreen extends StatelessWidget {
                                           buttonName: 'Verify OTP',
 
                                           onPressed: () {
-                                            forgotPasswordScreenController.onTapOfVerifyButton();
+                                            if(forgotPasswordScreenController.isEmailPhone.value){
+                                              forgotPasswordScreenController.onTapEmailVerifyButton();
+                                            }else{
+                                              forgotPasswordScreenController.onClickVerifyOtp(context);
+                                            }
+
 
                                           },
                                         ),
@@ -154,7 +159,6 @@ class ForgotOtpScreen extends StatelessWidget {
                                             // do something with the input numbers
                                             onSubmit: () {
                                               debugPrint('Your code: ${forgotPasswordScreenController.otpController.text}');
-                                              forgotPasswordScreenController.onTapOfVerifyButton();
                                             },
                                           ),
                                         ],

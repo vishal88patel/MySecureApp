@@ -34,6 +34,8 @@ class ApiService extends GetConnect {
       required url,
       bool showLoader = true,
       bool headerWithToken = true}) async {
+    print("Auth Token from API service is :- $authToken");
+
     if (showLoader) {
       UIUtils.showProgressDialog(isCancellable: false);
     }
@@ -50,6 +52,7 @@ class ApiService extends GetConnect {
       }
       return response.body;
     } else {
+
       if (showLoader) {
         UIUtils.hideProgressDialog();
       }

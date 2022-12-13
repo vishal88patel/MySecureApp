@@ -26,6 +26,7 @@ class ApiEndPoints {
   static String KYC_UPDATE = BASE_URL + "/auth/kycUpdate";
   static String SEND_OTP_ON_EMAIL = BASE_URL + "/auth/sendOTP";
   static String VERIFY_OTP_OF_EMAIL = BASE_URL + "/auth/verifyOTP";
+  static String RESET_PASSWORD = BASE_URL + "/auth/resetPassword";
   static String WITHDRAW_ERROR = BASE_URL + "/withdrawalAmount";
   static String FAQS = BASE_URL + "/getFAQ";
 
