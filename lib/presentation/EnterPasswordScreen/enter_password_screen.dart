@@ -136,7 +136,7 @@ class EnterPasswordScreen extends StatelessWidget {
                                 AppElevatedButton(
                                   buttonName: 'Forget Password',
                                   onPressed: () {
-                                    enterPasswordController.onTapOfForgetPassButton();
+                                    Get.toNamed(AppRoutes.forgotPasswordScreen);
                                   },
                                 ),
 

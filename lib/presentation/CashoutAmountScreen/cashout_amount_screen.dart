@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_AppBar%20.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
+import '../../utils/HelperFiles/pref_utils.dart';
 import 'controller/cashout_amount_scareen_controller.dart';
 
 class CashoutAmountScreen extends StatelessWidget {
@@ -21,7 +24,7 @@ class CashoutAmountScreen extends StatelessWidget {
       backgroundColor: ColorConstant.backgroundColor,
       body: Container(
         width: size.width,
-        child: SingleChildScrollView(
+        child: PrefUtils.getString(StringConstants.IS_KYC_DONE) == "4"?SingleChildScrollView(
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -589,7 +592,86 @@ class CashoutAmountScreen extends StatelessWidget {
               ),
             ],
           ),
-        ),
+        ):
+        SingleChildScrollView(
+            child: Container(
+                height: size.height,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                          horizontal: getHorizontalSize(26.0),
+                          vertical: getVerticalSize(26)),
+                      child: SafeArea(
+                        child: Stack(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(
+                                  height: getVerticalSize(30),
+                                ),
+                                Center(
+                                  child: Text(
+                                    "Cash Out",
+                                    style: AppStyle.DmSansFont
+                                        .copyWith(
+                                        color: ColorConstant.darkBlue,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getFontSize(32)),
+                                  ),
+                                ),
+                                Spacer(),
+                                PrefUtils.getString(StringConstants.IS_KYC_DONE) == "3"? Text(
+                                  "Your Kyc is Pending !!! Please Wait Until Approvel",
+                                  style: AppStyle.DmSansFont
+                                      .copyWith(
+                                      color: ColorConstant.darkBlue,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(20)),
+                                ):Text(
+                                  "Please Complete your kyc to preoceed with your cash out",
+                                  style: AppStyle.DmSansFont
+                                      .copyWith(
+                                      color: ColorConstant.darkBlue,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(20)),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(50),
+                                ),
+                                PrefUtils.getString(StringConstants.IS_KYC_DONE) == "3"?Container():AppElevatedButton(
+                                    buttonName: 'Proceed to Kyc',
+                                    radius: 5,
+                                    onPressed: () {
+                                      Get.toNamed(AppRoutes.kycEmailScreen);
+
+                                    }),
+                                SizedBox(
+                                  height: getVerticalSize(20),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Lottie.asset('asset/animations/loan_wallet.json',
+                                height: MediaQuery.of(context).size.height/2,
+                                repeat: true
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ],
+                ))),
       ),
     );
   }

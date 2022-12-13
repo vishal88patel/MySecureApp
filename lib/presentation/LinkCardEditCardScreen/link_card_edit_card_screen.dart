@@ -105,9 +105,9 @@ class LinkCardEditCardScreen extends StatelessWidget {
                                             child: SizedBox(
                                               width: size.width,
                                               child: Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal:
-                                                        getHorizontalSize(50),
+                                                padding: EdgeInsets.only(
+                                                    left:
+                                                        getHorizontalSize(30),right:getHorizontalSize(50) ,
                                                     ),
                                                 child: Column(
                                                   crossAxisAlignment:
