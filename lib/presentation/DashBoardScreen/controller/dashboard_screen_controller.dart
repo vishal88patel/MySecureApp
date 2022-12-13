@@ -100,7 +100,7 @@ class DashBoardScreenController extends GetxController {
                           Text(
                             "Exit App",
                             style:
-                            AppStyle.DmSansFont.copyWith(fontSize: 22,color: ColorConstant.darkBlue),
+                            AppStyle.DmSansFont.copyWith(fontSize: 22,color: ColorConstant.primaryDarkGreen,fontWeight: FontWeight.bold),
                           ),
                         ],
                       ),
@@ -113,7 +113,7 @@ class DashBoardScreenController extends GetxController {
                             "Are you sure,\n you want to exit?",
                             textAlign: TextAlign.center,
                             style: AppStyle.DmSansFont
-                                .copyWith(fontSize: 18,color: ColorConstant.darkBlue),
+                                .copyWith(fontSize: 18,color: ColorConstant.primaryDarkGreen),
 
                           )),
                       const SizedBox(
@@ -126,7 +126,7 @@ class DashBoardScreenController extends GetxController {
                           Expanded(
                             child: AppElevatedButton(buttonName: 'NO',
                               radius: 5,
-                              buttonColor: ColorConstant.skyE8,
+                              buttonColor: ColorConstant.primaryDarkGreen,
                               onPressed: () {
 
                                 Get.back();
@@ -138,7 +138,7 @@ class DashBoardScreenController extends GetxController {
                           ),
                           Expanded(
                             child: AppElevatedButton(buttonName: 'YES',
-                              buttonColor: ColorConstant.skyE8,
+                              buttonColor: ColorConstant.primaryDarkGreen,
                               radius: 5,
                               onPressed: () {
                                 exit(0);

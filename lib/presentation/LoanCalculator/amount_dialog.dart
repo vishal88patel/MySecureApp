@@ -41,10 +41,10 @@ class CustomDialog extends StatelessWidget {
               begin: Alignment.topRight,
               end: Alignment.bottomLeft,
               colors: [
-                ColorConstant.darkGreen,
-                ColorConstant.greyF9,
-                ColorConstant.greyF9,
-                ColorConstant.redish,
+                ColorConstant.primaryWhite,
+                ColorConstant.primaryWhite,
+                ColorConstant.primaryWhite,
+                ColorConstant.primaryWhite,
               ],
             ),),
           child: Column(
@@ -74,11 +74,11 @@ class CustomDialog extends StatelessWidget {
           left: 16,
           right: 16,
           child: CircleAvatar(
-            backgroundColor: Colors.grey,
+            backgroundColor: ColorConstant.primaryDarkGreen,
             radius:66,
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Image.asset('asset/icons/app_icon_splash.png'),
+              padding: const EdgeInsets.all(22.0),
+              child: Image.asset('asset/Logo.png'),
             ),
           ),
         ),
