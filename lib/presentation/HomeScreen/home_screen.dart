@@ -285,9 +285,7 @@ class HomeScreen extends StatelessWidget {
                             title: 'Boost Credit Score',
                             iconName: 'asset/icons/ic_boost_home.png',
                             onTap: (){
-                              // Get.toNamed(AppRoutes.qrCodeScreen, arguments: {
-                              //   'UUID_ID': homeController.loginResponseModel!.data!.uuid!.toString(),
-                              // });
+                              Get.toNamed(AppRoutes.boostCreditScreen);
                             },
                           ),
                           PaymentListWidget(
@@ -319,15 +317,18 @@ class HomeScreen extends StatelessWidget {
                               iconName: 'asset/icons/ic_kyc_home.png',
                             ),
                           ),
-                          PaymentListWidget(
-                            title: 'Cash Card',
-                            iconName: 'asset/icons/ic_cash_card_home.png',
+                          InkWell(
+                            onTap: (){
+                              Get.toNamed(AppRoutes.cashCardScreen);
+                            },
+                            child: PaymentListWidget(
+                              title: 'Cash Card',
+                              iconName: 'asset/icons/ic_cash_card_home.png',
+                            ),
                           ),
                           InkWell(
                             onTap: (){
-
                               Get.toNamed(AppRoutes.cashoutAmountScreen);
-
                             },
                             child: PaymentListWidget(
                               title: 'Cash Out',
@@ -335,7 +336,7 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           PaymentListWidget(onTap: (){
-                            // homeController.showVerifyIdentityDialouge();
+                            Get.toNamed(AppRoutes.chatScreen);
                           },
                             title: 'Live Chat',
                             iconName: 'asset/icons/ic_live_chat_home.png',
