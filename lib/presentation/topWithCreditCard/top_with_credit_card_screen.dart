@@ -411,7 +411,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                               fontSize: getFontSize(30)),
                         ),
                         SizedBox(
-                          width: getHorizontalSize(100),
+                          width: 110,
                           child: TextFormField(
                             textAlign: TextAlign.start,
                             controller:
@@ -453,7 +453,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Obx(()=>
-                              InkWell(
+                              GestureDetector(
                                 onTap: (){
                                   if(topWithCreditCardScreenController.opt1.value==true){
                                     topWithCreditCardScreenController.opt1.value=false;
@@ -485,7 +485,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                 ),
                               ),
                           ),
-                          Obx(()=> InkWell(
+                          Obx(()=> GestureDetector(
                             onTap: (){
                               if(topWithCreditCardScreenController.opt2.value==true){
                                 topWithCreditCardScreenController.opt2.value=false;
@@ -517,7 +517,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                             ),
                           ),
                           ),
-                          Obx(()=> InkWell(
+                          Obx(()=> GestureDetector(
                             onTap: (){
                               if(topWithCreditCardScreenController.opt3.value==true){
                                 topWithCreditCardScreenController.opt3.value=false;

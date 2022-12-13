@@ -42,8 +42,9 @@ class QrCodeScreen extends StatelessWidget {
                           Icons.arrow_back_ios_new_outlined,size: 16,color: ColorConstant.primaryWhite,),
                       ),
                     ),
+
                     Text(
-                      "QR Code",
+                      "My QR Code",
                       style: AppStyle.DmSansFont.copyWith(
                           color: ColorConstant.primaryWhite,
                           fontWeight: FontWeight.w700,
@@ -70,6 +71,13 @@ class QrCodeScreen extends StatelessWidget {
                               ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w500,
                               fontSize: getFontSize(30))),
+                      SizedBox(width: getHorizontalSize(4),),
+                      Image.asset(
+                        'asset/icons/verified.png',
+                        color: ColorConstant.primaryLightGreen,
+                        height: getVerticalSize(24),
+                        width: getHorizontalSize(24),
+                      ),
                     ],
                   ),
               ),
@@ -91,7 +99,7 @@ class QrCodeScreen extends StatelessWidget {
               SizedBox(height: getVerticalSize(50),),
               Row(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text('UPI ID : ',
+                  Text('CashTag : ',
                       style: AppStyle.textStyleDMSANS
                           .copyWith(
                           color:
@@ -99,7 +107,7 @@ class QrCodeScreen extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           fontSize: getFontSize(20))),
                   Obx(()=>
-                     Text(qrController.upiId.value+"@mysecure",
+                     Text(qrController.upiId.value,
                         style: AppStyle.textStyleDMSANS
                             .copyWith(
                             color:
@@ -117,7 +125,7 @@ class QrCodeScreen extends StatelessWidget {
                       color:
                       ColorConstant.primaryWhite,
                       fontWeight: FontWeight.w500,
-                      fontSize: getFontSize(20))),
+                      fontSize: getFontSize(22))),
 
               Spacer(),
 

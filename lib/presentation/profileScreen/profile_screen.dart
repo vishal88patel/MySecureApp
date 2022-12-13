@@ -74,19 +74,26 @@ class ProfileScreen extends StatelessWidget {
                                           fontSize: getFontSize(22),
                                           fontWeight: FontWeight.bold),
                                     ),
-                                    Container(
-                                        decoration: BoxDecoration(
-                                            border: Border.all(
-                                              color: ColorConstant
-                                                  .primaryAppTextF1,
-                                            ),
-                                            borderRadius: BorderRadius.all(
-                                                Radius.circular(10))),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(8.0),
-                                          child: SvgPicture.asset(
-                                              "asset/icons/ic_scab.svg"),
-                                        ))
+                                    InkWell(
+                                      onTap: (){
+                                        Get.toNamed(AppRoutes.qrCodeScreen, arguments: {
+                                          'UUID_ID': homeController.loginResponseModel!.data!.uuid!.toString(),
+                                        });
+                                      },
+                                      child: Container(
+                                          decoration: BoxDecoration(
+                                              border: Border.all(
+                                                color: ColorConstant
+                                                    .primaryAppTextF1,
+                                              ),
+                                              borderRadius: BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: SvgPicture.asset(
+                                                "asset/icons/ic_scab.svg"),
+                                          )),
+                                    )
                                   ],
                                 ),
                               ),
@@ -415,7 +422,7 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(top:getVerticalSize(35),left: getHorizontalSize(30),right: getHorizontalSize(34)),
+                padding:  EdgeInsets.only(top:getVerticalSize(20),left: getHorizontalSize(30),right: getHorizontalSize(34)),
                 child: Column(
                   children: [
 
@@ -430,7 +437,7 @@ class ProfileScreen extends StatelessWidget {
                       onTap: (){
                         Get.toNamed(AppRoutes.linkCardBankScreen);
                       },
-                      icon: "asset/icons/ic_profile_selected.svg",
+                      icon: "asset/icons/ic_licence_pass.svg",
                       title: 'Banking Details',
                     ),
                     ProfileOptionWidget(
