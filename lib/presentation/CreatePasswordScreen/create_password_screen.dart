@@ -184,8 +184,12 @@ class CreatePasswordScreen extends StatelessWidget {
                           Positioned(right: 10,
                             top: getVerticalSize(60),
                             child: Center(
-                                child: Image.asset('asset/icons/birthDate_image.png',
-                                  height: getVerticalSize(220),)
+                                child: ClipRRect(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(100)),
+                                  child: Image.asset('asset/icons/password_image.jpg',
+                                    height: getVerticalSize(220),),
+                                )
                             ),
                           ),
                         ],

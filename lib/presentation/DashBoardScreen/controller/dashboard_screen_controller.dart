@@ -49,7 +49,7 @@ class DashBoardScreenController extends GetxController {
         url: ApiEndPoints.GET_PROFILE)
         .then((value) {
       print(value);
-      if (value['status'] ?? false) {
+      if (value!=null && value['status'] ?? false) {
         LoginResponseModel loginResponseModel =
         LoginResponseModel.fromJson(value);
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
