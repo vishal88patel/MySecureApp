@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/utils/ConstantsFiles/string_constants.dart';
+import 'package:secure_cash_app/utils/HelperFiles/pref_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
@@ -36,285 +38,185 @@ class _SelectLoanTypeScreenState extends State<SelectLoanTypeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: ColorConstant.primaryDarkGreen,
-        body: Stack(
-          alignment: Alignment.topCenter,
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: getVerticalSize(35),
-                ),
-                Image.asset(
-                  "asset/icons/ic_noti_background.png",
-                  width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: getVerticalSize(35),
-                ),
-                AppAppBar(
-                  title: "Select Loan Type",
-                  icon1: "asset/icons/ic_back.svg",
-                  icon2: "",
-                  onPressedIcon1: () {
-                    Get.back();
-                  },
-                  onPressedIcon2: () {},
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: 180,
-                ),
-                Expanded(
-                  child: Card(
-                    margin: const EdgeInsets.symmetric(horizontal: 0),
-                    color: ColorConstant.primaryWhite,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(36),
-                          topRight: Radius.circular(36)),
-                    ),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      child: SafeArea(
-                        child: Container(
-                          height: size.height,
-                          child: Obx(
-                            () => loanCalculatorController.isKycDone.value ==
-                                    true
-                                ? Padding(
-                                    padding: const EdgeInsets.all(0.0),
-                                    child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.only(
-                                                left: 20, right: 20),
-                                            child: Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                SizedBox(
-                                                  height: getVerticalSize(16),
-                                                ),
-                                                Text(
-                                                  "Select Loan Type",
-                                                  style: AppStyle.DmSansFont
-                                                      .copyWith(
-                                                          color: ColorConstant
-                                                              .primaryDarkGreen,
-                                                          fontWeight:
-                                                              FontWeight.w700,
-                                                          fontSize:
-                                                              getFontSize(25)),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(20),
-                                                ),
-                                                Text(
-                                                  "Select the amount needed and the reimbursement period",
-                                                  style: AppStyle.DmSansFont
-                                                      .copyWith(
-                                                          color: ColorConstant
-                                                              .primaryBlack,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize:
-                                                              getFontSize(22)),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(18),
-                                                ),
-                                                Obx(
-                                                  () => Text(
-                                                    loanCalculatorController
-                                                        .selectedLoan.value,
-                                                    style: AppStyle.DmSansFont
-                                                        .copyWith(
-                                                            color: ColorConstant
-                                                                .primaryDarkGreen,
-                                                            fontWeight:
-                                                                FontWeight.w400,
-                                                            fontSize:
-                                                                getFontSize(
-                                                                    20)),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(8),
-                                                ),
-                                                Container(
-                                                  height: getHorizontalSize(2),
-                                                  color: ColorConstant
-                                                      .primaryDarkGreen,
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(16),
-                                                ),
-                                                Obx(
-                                                  () => Wrap(
-                                                    alignment:
-                                                        WrapAlignment.start,
-                                                    children:
-                                                        loanCalculatorController
-                                                            .loanList.value
-                                                            .map((i) => Padding(
-                                                                  padding: EdgeInsets
-                                                                      .symmetric(
-                                                                          vertical:
-                                                                              getVerticalSize(8)),
-                                                                  child:
-                                                                      InkWell(
-                                                                    onTap: () {
-                                                                      loanCalculatorController.onTapOnLoanTile(
-                                                                          i.id,
-                                                                          i.name);
-                                                                    },
-                                                                    child: Row(
-                                                                      mainAxisAlignment:
-                                                                          MainAxisAlignment
-                                                                              .start,
-                                                                      mainAxisSize:
-                                                                          MainAxisSize
-                                                                              .min,
-                                                                      children: [
-                                                                        Container(
-                                                                          width:
-                                                                              getHorizontalSize(25),
-                                                                          height:
-                                                                              getHorizontalSize(25),
-                                                                          decoration: BoxDecoration(
-                                                                              color: loanCalculatorController.selectedLoanId.value == i.id.toString() ?
-                                                                              ColorConstant.primaryDarkGreen :
-                                                                              Colors.transparent,
-                                                                              borderRadius: BorderRadius.circular(100),
-                                                                              border: Border.all(color: ColorConstant.primaryLightGreen)),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              getHorizontalSize(7),
-                                                                        ),
-                                                                        Text(
-                                                                          i.name
-                                                                              .toString(),
-                                                                          style: AppStyle.DmSansFont.copyWith(
-                                                                              color: ColorConstant.primaryDarkGreen,
-                                                                              fontSize: getFontSize(20)),
-                                                                        ),
-                                                                        SizedBox(
-                                                                          width:
-                                                                              getHorizontalSize(10),
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                  ),
-                                                                ))
-                                                            .toList(),
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(10),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(250),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(50),
-                                                  child: AppElevatedButton(
-                                                    radius: 5,
-                                                    buttonName:
-                                                        'Process to Loan',
-                                                    textColor: ColorConstant
-                                                        .primaryWhite,
-                                                    fontWeight: FontWeight.w700,
-                                                    onPressed: () {
-                                                      loanCalculatorController
-                                                          .onClickOfProcessToLoan();
-                                                      // Get.toNamed(AppRoutes.loanStepScreen);
-                                                      // Get.offAllNamed(AppRoutes.dashBoardScreen);
-                                                      // Get.toNamed(AppRoutes.successScreen);
-                                                    },
-                                                  ),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(40),
-                                                ),
-                                              ],
-                                            ),
-                                          )
-                                        ]))
-                                : Center(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        SizedBox(
-                                          height: getVerticalSize(54),
-                                        ),
-                                        Padding(
-                                            padding: const EdgeInsets.all(18.0),
-                                            child: InkWell(
-                                              onTap: () {
-                                                Get.toNamed(
-                                                    AppRoutes.uploadDocument1);
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: ColorConstant.blue26,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            100)),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      horizontal:
-                                                          getHorizontalSize(15),
-                                                      vertical:
-                                                          getVerticalSize(12)),
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceBetween,
-                                                    children: [
-                                                      Text(
-                                                          'Please Complete Your Kyc First',
-                                                          style: AppStyle
-                                                                  .DmSansFont
-                                                              .copyWith(
-                                                                  color: ColorConstant
-                                                                      .primaryBlack,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          16))),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            )),
-                                      ],
-                                    ),
+    return
+      Scaffold(
+        backgroundColor: ColorConstant.primaryWhite,
+        body:  SingleChildScrollView(
+              child: Container(
+                  height: size.height,
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: getHorizontalSize(26.0),
+                        ),
+                        child: SafeArea(
+                          child: Stack(
+                            children: [
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: getVerticalSize(10),
                                   ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+
+                                      InkWell(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(12),
+                                              border: Border.all(
+                                                  color:
+                                                  ColorConstant.backBorder)),
+                                          padding: EdgeInsets.all(6),
+                                          child: Icon(
+                                            Icons.arrow_back_ios_new_outlined,size: 22,),
+                                        ),
+                                      ),
+                                      Text(
+                                        "Loans",
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.primaryBlack,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getFontSize(22)),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                            border: Border.all(color: Colors.transparent)),
+                                        padding: EdgeInsets.all(10),
+                                        child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                      ),                      ],
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(30),
+                                  ),
+                                  Text(
+                                    "Select Loan Type",
+                                    style: AppStyle.DmSansFont
+                                        .copyWith(
+                                        color: ColorConstant.darkBlue,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(20)),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(30),
+                                  ),
+                                  Text(
+                                    "Select the amount needed and the \nreimbursement period",
+                                    style: AppStyle.DmSansFont
+                                        .copyWith(
+                                        color: ColorConstant
+                                            .primaryBlack,
+                                        fontWeight:
+                                        FontWeight.w400,
+                                        fontSize:
+                                        getFontSize(20)),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(40),
+                                  ),
+                                  Text(
+                                    "Please select loan",
+                                    style: AppStyle.DmSansFont
+                                        .copyWith(
+                                        color: ColorConstant
+                                            .grey8F,
+                                        fontWeight:
+                                        FontWeight.w400,
+                                        fontSize:
+                                        getFontSize(18)),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(10),
+                                  ),
+                                  ListView.builder(
+                                    shrinkWrap: true,
+                                      itemCount: loanCalculatorController
+                                          .loanList.value.length,
+                                      itemBuilder: (BuildContext context, int index) {
+                                        return    Obx(
+                                              () =>Padding(
+                                            padding: EdgeInsets
+                                                .symmetric(
+                                                vertical:
+                                                getVerticalSize(8)),
+                                            child:
+                                            InkWell(
+                                              onTap: () {
+                                                loanCalculatorController.onTapOnLoanTile(
+                                                    loanCalculatorController
+                                                        .loanList.value[index].id,
+                                                    loanCalculatorController
+                                                        .loanList.value[index].name);
+                                              },
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment
+                                                    .start,
+                                                mainAxisSize:
+                                                MainAxisSize
+                                                    .min,
+                                                children: [
+                                                  Icon(loanCalculatorController.selectedLoanId.value == loanCalculatorController
+                                                      .loanList.value[index].id.toString()
+                                                      ?Icons.check_box_rounded
+                                                      :Icons.check_box_outline_blank_rounded,
+                                                    size: getHorizontalSize(25),
+                                                    color: ColorConstant.primaryLightGreen,),
+
+                                                  SizedBox(
+                                                    width:
+                                                    getHorizontalSize(7),
+                                                  ),
+                                                  Text(
+                                                    loanCalculatorController
+                                                        .loanList.value[index].name
+                                                        .toString(),
+                                                    style: AppStyle.DmSansFont.copyWith(
+                                                        color: ColorConstant.primaryBlack,
+                                                        fontSize: getFontSize(20)),
+                                                  ),
+                                                  SizedBox(
+                                                    width:
+                                                    getHorizontalSize(10),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        );
+                                      }),
+                                  SizedBox(
+                                    height: getVerticalSize(150),
+                                  ),
+                                  AppElevatedButton(
+                                      buttonName: 'Proceed to Loan',
+                                      radius: 10,
+                                      onPressed: () {
+                                        loanCalculatorController
+                                            .onClickOfProcessToLoan();                                        // Get.to(AmountRadialScreen());
+
+
+                                      }),
+                                  SizedBox(
+                                    height: getVerticalSize(20),
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+
+                    ],
+                  )),
         ));
+
   }
 }

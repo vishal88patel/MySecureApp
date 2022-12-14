@@ -1,10 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
-import 'package:lottie/lottie.dart';
-import 'package:secure_cash_app/presentation/LoanCalculator/Amount_radial_screen.dart';
-import 'package:secure_cash_app/presentation/LoanCalculator/select_loan_type_screen.dart';
-
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../routes/app_routes.dart';
@@ -23,7 +19,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.backgroundColor,
+        backgroundColor: ColorConstant.primaryWhite,
         body: Obx(
             ()=> loanCalculatorController.isKycDone.value?SingleChildScrollView(
               child: Container(
@@ -33,7 +29,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                      Padding(
                         padding: EdgeInsets.symmetric(
                             horizontal: getHorizontalSize(26.0),
-                            vertical: getVerticalSize(26)),
+                            ),
                         child: SafeArea(
                           child: Stack(
                             children: [
@@ -41,7 +37,44 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
-                                    height: getVerticalSize(30),
+                                    height: getVerticalSize(10),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+
+                                      InkWell(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(12),
+                                              border: Border.all(
+                                                  color:
+                                                  ColorConstant.backBorder)),
+                                          padding: EdgeInsets.all(6),
+                                          child: Icon(
+                                            Icons.arrow_back_ios_new_outlined,size: 22,),
+                                        ),
+                                      ),
+                                      Text(
+                                        "",
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.primaryBlack,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getFontSize(20)),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                            border: Border.all(color: Colors.transparent)),
+                                        padding: EdgeInsets.all(10),
+                                        child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                      ),                      ],
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(10),
                                   ),
                                   Center(
                                     child: Text(
@@ -50,24 +83,28 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                           .copyWith(
                                           color: ColorConstant.darkBlue,
                                               fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(32)),
+                                              fontSize: getFontSize(22)),
                                     ),
                                   ),
-                                  Spacer(),
+                                  SizedBox(
+                                    height: getVerticalSize(100),
+                                  ),
+                                  Image.asset('asset/icons/error_image.png'),
                                   Text(
-                                    "Thanks for making an interest in loan please proceed with the details.",
+                                    "Please Complete your Identity Verification Level - 1 to proceed with your loan application.",
                                     style: AppStyle.DmSansFont
                                         .copyWith(
                                         color: ColorConstant.darkBlue,
                                             fontWeight: FontWeight.w500,
                                             fontSize: getFontSize(20)),
+                                    textAlign: TextAlign.center,
                                   ),
                                   SizedBox(
                                     height: getVerticalSize(50),
                                   ),
                                   AppElevatedButton(
-                                      buttonName: 'Proceed',
-                                      radius: 5,
+                                      buttonName: 'Proceed to Identity Verification',
+                                      radius: 10,
                                       onPressed: () {
                                           Get.toNamed(AppRoutes.loanFnameScreen);
                                           // Get.to(AmountRadialScreen());
@@ -83,20 +120,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Lottie.asset('asset/animations/loan_wallet.json',
-                                  height: MediaQuery.of(context).size.height/2,
-                                repeat: true
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+
                     ],
                   ))):
             SingleChildScrollView(
@@ -162,20 +186,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Lottie.asset('asset/animations/loan_wallet.json',
-                                  height: MediaQuery.of(context).size.height/2,
-                                  repeat: true
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+
                     ],
                   ))),
         ));
