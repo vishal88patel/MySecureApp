@@ -97,6 +97,9 @@ import '../presentation/PersonalDetails/binding/personal_detail_screen_binding.d
 import '../presentation/PersonalDetails/personal_detail_screen.dart';
 import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
 import '../presentation/QrCodeScreen/qrCode_screen.dart';
+import '../presentation/RequestMoneyScreen/pay_summary_screen.dart';
+import '../presentation/RequestMoneyScreen/request_password_screen.dart';
+import '../presentation/RequestMoneyScreen/request_success_screen.dart';
 import '../presentation/ScanScreen/binding/scan_screen_binding.dart';
 import '../presentation/ScanScreen/scan_password_screen.dart';
 import '../presentation/ScanScreen/scan_screen.dart';
@@ -262,6 +265,9 @@ class AppRoutes {
   static String requestMoneyScreen = '/request_money_screen';
   static String requestMoneyAmountScreen = '/request_money_amount_screen';
   static String requestToScreen = '/request_to_screen';
+  static String requestSuccessScreen = '/request_success_screen';
+  static String requestSummeryScreen = '/request_summery_screen';
+  static String requestPasswordScreen = '/request_password_screen';
 
 
 
@@ -1036,6 +1042,36 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => RequestToScreen(),
+      bindings: [
+        RequestMoneyScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: requestSuccessScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => RequestSuccessScreen(),
+      bindings: [
+        RequestMoneyScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: requestSummeryScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => PaySummaryScreen(),
+      bindings: [
+        RequestMoneyScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: requestPasswordScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => RequestPasswordScreen(),
       bindings: [
         RequestMoneyScreenBinding(),
       ],

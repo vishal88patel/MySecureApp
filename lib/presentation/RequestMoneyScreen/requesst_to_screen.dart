@@ -73,24 +73,28 @@ class RequestToScreen extends StatelessWidget {
                         SizedBox(
                           height: getVerticalSize(40),
                         ),
-                        Center(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.asset('asset/icons/profile_image.png',
-                                height: getVerticalSize(100),)),
+                        Obx(()=>
+                            Center(
+                              child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(100),
+                                  child: Image.network(
+                                    requestMoneyScreenController.image.value,
+                                    height: getVerticalSize(100),)),
+                            ),
                         ),
                         SizedBox(
                           height: getVerticalSize(20),
                         ),
                         Center(
-                          child: Text(
-                            "Requesting to Dianna Rushell",
+                          child:Obx(()=> Text(
+                            "Requesting to "+requestMoneyScreenController.name.value,
                             overflow: TextOverflow.ellipsis,
                             textAlign: TextAlign.center,
                             style: AppStyle.DmSansFont.copyWith(
                                 color: ColorConstant.grey8F,
                                 fontSize: getFontSize(20),
                                 fontWeight: FontWeight.w400),
+                          ),
                           ),
                         ),
 
