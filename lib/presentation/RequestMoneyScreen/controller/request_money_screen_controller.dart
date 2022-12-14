@@ -12,6 +12,7 @@ class RequestMoneyScreenController extends GetxController {
   TextEditingController toController = TextEditingController();
   TextEditingController forNoteController = TextEditingController();
   TextEditingController amountCtrl = TextEditingController();
+     var containerHeight = 50.obs;
 
   List<String> imageList =['asset/icons/profile_image.png','asset/icons/profile_image.png','asset/icons/profile_image.png','asset/icons/profile_image.png','asset/icons/profile_image.png','asset/icons/profile_image.png'];
   @override
@@ -21,6 +22,7 @@ class RequestMoneyScreenController extends GetxController {
 
   @override
   void onInit() {
+    containerHeight.value = 50;
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -30,6 +32,9 @@ class RequestMoneyScreenController extends GetxController {
     super.onClose();
   }
 
+  void requestClick(){
+    containerHeight.value = 150;
+  }
   void onTapNextButton(){
     if(toController.text.isEmpty){
       UIUtils.showSnakBar(
