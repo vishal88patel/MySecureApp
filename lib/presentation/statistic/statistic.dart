@@ -4,13 +4,9 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:secure_cash_app/presentation/HomeScreen/controller/home_screen_controller.dart';
-import 'package:secure_cash_app/presentation/HomeScreen/widget/payment_list_widget.dart';
-import 'package:secure_cash_app/presentation/statistic/widgets/chart2.dart';
 import 'package:secure_cash_app/presentation/statistic/controller/statistic_screen_controller.dart';
+import 'package:secure_cash_app/presentation/statistic/widgets/chart2.dart';
 import 'package:secure_cash_app/presentation/statistic/widgets/recent_expenses_widget.dart';
-import 'package:secure_cash_app/presentation/widget/imageCommonView.dart';
-import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
@@ -18,15 +14,15 @@ import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 
 class StatisticScreen extends StatefulWidget {
-
   List<Color> get availableColors => const <Color>[
-    Colors.purpleAccent,
-    Colors.yellow,
-    Colors.lightBlue,
-    Colors.orange,
-    Colors.pink,
-    Colors.redAccent,
-  ];
+        Colors.purpleAccent,
+        Colors.yellow,
+        Colors.lightBlue,
+        Colors.orange,
+        Colors.pink,
+        Colors.redAccent,
+      ];
+
   @override
   State<StatisticScreen> createState() => _StatisticScreenState();
 }
@@ -39,11 +35,12 @@ class _StatisticScreenState extends State<StatisticScreen> {
   int touchedIndex = -1;
 
   bool isPlaying = false;
+
   @override
   void initState() {
     super.initState();
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +50,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-
                 AppAppBar(
                   title: "Statistic",
                   icon1: "asset/icons/Back.svg",
@@ -66,17 +62,19 @@ class _StatisticScreenState extends State<StatisticScreen> {
                 ),
                 Padding(
                   padding: EdgeInsets.only(
-                      left: getHorizontalSize(20), right: getHorizontalSize(20)),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                      left: getHorizontalSize(20),
+                      right: getHorizontalSize(20)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-
                       Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
                           color: ColorConstant.primaryDarkGreen,
                           borderRadius: BorderRadius.all(Radius.circular(16)),
                         ),
-                        padding: EdgeInsets.symmetric(vertical: getVerticalSize(20)),
+                        padding:
+                            EdgeInsets.symmetric(vertical: getVerticalSize(20)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
@@ -90,7 +88,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       fontWeight: FontWeight.w400,
                                       fontSize: getFontSize(18)),
                                 ),
-                                SizedBox(height: getVerticalSize(5),),
+                                SizedBox(
+                                  height: getVerticalSize(5),
+                                ),
                                 Text(
                                   "\$5,440",
                                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -100,7 +100,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 ),
                               ],
                             ),
-
                             SvgPicture.asset(
                               "asset/icons/ic_divider.svg",
                               fit: BoxFit.fill,
@@ -115,7 +114,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       fontWeight: FontWeight.w400,
                                       fontSize: getFontSize(18)),
                                 ),
-                                SizedBox(height: getVerticalSize(5),),
+                                SizedBox(
+                                  height: getVerticalSize(5),
+                                ),
                                 Text(
                                   "\$2,209",
                                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -131,16 +132,18 @@ class _StatisticScreenState extends State<StatisticScreen> {
                       SizedBox(
                         height: getVerticalSize(30),
                       ),
-
-
-                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Container(
-                            decoration: BoxDecoration(color: ColorConstant.grey8F.withOpacity(0.3),
-                            borderRadius: BorderRadius.circular(16)),
-                            padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(10),
+                            decoration: BoxDecoration(
+                                color: ColorConstant.grey8F.withOpacity(0.3),
+                                borderRadius: BorderRadius.circular(16)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: getHorizontalSize(10),
                                 vertical: getVerticalSize(2)),
-                            child:  Row(mainAxisSize: MainAxisSize.min,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   "Weekly",
@@ -149,7 +152,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       fontWeight: FontWeight.w400,
                                       fontSize: getFontSize(15)),
                                 ),
-                                SizedBox(width: getHorizontalSize(5),),
+                                SizedBox(
+                                  width: getHorizontalSize(5),
+                                ),
                                 Icon(Icons.keyboard_arrow_down_outlined),
                               ],
                             ),
@@ -160,7 +165,9 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 "asset/icons/ic_income.svg",
                                 fit: BoxFit.fill,
                               ),
-                              SizedBox(width: getHorizontalSize(5),),
+                              SizedBox(
+                                width: getHorizontalSize(5),
+                              ),
                               Text(
                                 "Income",
                                 style: AppStyle.textStyleDMSANS.copyWith(
@@ -168,13 +175,16 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                     fontWeight: FontWeight.w400,
                                     fontSize: getFontSize(15)),
                               ),
-                              SizedBox(width: getHorizontalSize(5),),
-
+                              SizedBox(
+                                width: getHorizontalSize(5),
+                              ),
                               SvgPicture.asset(
                                 "asset/icons/ic_expense.svg",
                                 fit: BoxFit.fill,
                               ),
-                              SizedBox(width: getHorizontalSize(5),),
+                              SizedBox(
+                                width: getHorizontalSize(5),
+                              ),
                               Text(
                                 "Expense",
                                 style: AppStyle.textStyleDMSANS.copyWith(
@@ -184,14 +194,11 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               ),
                             ],
                           ),
-
                         ],
                       ),
                       SizedBox(
                         height: getVerticalSize(30),
                       ),
-
-
                     ],
                   ),
                 ),
@@ -206,9 +213,10 @@ class _StatisticScreenState extends State<StatisticScreen> {
                           children: <Widget>[
                             Expanded(
                               child: Padding(
-                                padding: const EdgeInsets.symmetric(horizontal: 0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 0),
                                 child: BarChart(
-                                 randomData() ,
+                                  randomData(),
                                   swapAnimationDuration: animDuration,
                                 ),
                               ),
@@ -219,43 +227,53 @@ class _StatisticScreenState extends State<StatisticScreen> {
                           ],
                         ),
                       ),
-
                     ],
                   ),
                 ),
-                SizedBox(height: getVerticalSize(30),  ),
+                SizedBox(
+                  height: getVerticalSize(30),
+                ),
                 ChartWeeklyScreen(),
-                SizedBox(height: getVerticalSize(30),),
+                SizedBox(
+                  height: getVerticalSize(30),
+                ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                  padding:
+                      EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: ColorConstant.naturalGrey.withOpacity(0.10)
-                    ),
-                    padding: EdgeInsets.symmetric(vertical: getVerticalSize(5)
-                        ,horizontal: getHorizontalSize(5)),
-                    child: Obx(()=>
-                      Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        borderRadius: BorderRadius.circular(50),
+                        color: ColorConstant.naturalGrey.withOpacity(0.10)),
+                    padding: EdgeInsets.symmetric(
+                        vertical: getVerticalSize(5),
+                        horizontal: getHorizontalSize(5)),
+                    child: Obx(
+                      () => Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               homeController.incomeExpense(1);
                             },
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color: homeController.isIncomeExpense.value==1
-                                      ?ColorConstant.primaryWhite:Colors.transparent
-                              ),
+                                  color:
+                                      homeController.isIncomeExpense.value == 1
+                                          ? ColorConstant.primaryWhite
+                                          : Colors.transparent),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(50),
-                                            vertical: getVerticalSize(15)),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getHorizontalSize(50),
+                                    vertical: getVerticalSize(15)),
                                 child: Text(
                                   "Income",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color:homeController.isIncomeExpense.value==1
-                                          ? ColorConstant.darkGreen: ColorConstant.greyBD,
+                                      color: homeController
+                                                  .isIncomeExpense.value ==
+                                              1
+                                          ? ColorConstant.darkGreen
+                                          : ColorConstant.greyBD,
                                       fontWeight: FontWeight.w500,
                                       fontSize: getFontSize(20)),
                                 ),
@@ -263,23 +281,28 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             ),
                           ),
                           InkWell(
-                            onTap: (){
+                            onTap: () {
                               homeController.incomeExpense(2);
                             },
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color: homeController.isIncomeExpense.value==2
-                                      ?ColorConstant.primaryWhite:Colors.transparent
-                              ),
+                                  color:
+                                      homeController.isIncomeExpense.value == 2
+                                          ? ColorConstant.primaryWhite
+                                          : Colors.transparent),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getHorizontalSize(40),
                                     vertical: getVerticalSize(15)),
                                 child: Text(
                                   "Expenses",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: homeController.isIncomeExpense.value==2
-                                          ? ColorConstant.darkGreen: ColorConstant.greyBD,
+                                      color: homeController
+                                                  .isIncomeExpense.value ==
+                                              2
+                                          ? ColorConstant.darkGreen
+                                          : ColorConstant.greyBD,
                                       fontWeight: FontWeight.w500,
                                       fontSize: getFontSize(20)),
                                 ),
@@ -292,31 +315,33 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   ),
                 ),
                 Padding(
-                    padding: EdgeInsets.only(top: getVerticalSize(20),
-                        left: getHorizontalSize(20),right:  getHorizontalSize(20)),
+                    padding: EdgeInsets.only(
+                        top: getVerticalSize(20),
+                        left: getHorizontalSize(20),
+                        right: getHorizontalSize(20)),
                     child: Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisSize: MainAxisSize.max,
                         children: [
                           Column(
                               mainAxisSize: MainAxisSize.min,
-                              crossAxisAlignment:
-                              CrossAxisAlignment.start,
-                              mainAxisAlignment:
-                              MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.start,
                               children: [
                                 Padding(
-                                    padding: EdgeInsets.only(right: 9),
-                                    child:  Text(
-                                      'Category Chart',
-                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                          color: ColorConstant.primaryBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(24)),
-                                    ),),
-                                SizedBox(height: getVerticalSize(10),),
+                                  padding: EdgeInsets.only(right: 9),
+                                  child: Text(
+                                    'Category Chart',
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryBlack,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getFontSize(24)),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
                                 Text(
                                   'Last 7 days expenses',
                                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -333,125 +358,111 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 fontSize: getFontSize(24)),
                           ),
                         ])),
-                SizedBox(height: getVerticalSize(40),),
-
+                SizedBox(
+                  height: getVerticalSize(40),
+                ),
                 Align(
                     alignment: Alignment.center,
                     child: Container(
                         height: getSize(200.00),
                         width: getSize(200.00),
                         decoration: BoxDecoration(
-                          color: ColorConstant.primaryWhite,
-                          borderRadius: BorderRadius.circular(100)
-                        ),
-                        child: Stack(
-                            alignment: Alignment.centerLeft,
-                            children: [
-
-                              Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Container(
-                                      height: getSize(200.00),
-                                      width: getSize(200.00),
-                                      child:
-                                      CircularProgressIndicator(
-                                          value: 0.3,
-                                          backgroundColor:
-                                          Colors.teal,
-                                          strokeWidth: 20,
-                                          color: Colors.green))),
-                              Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Container(
-                                      height: getSize(200.00),
-                                      width: getSize(200.00),
-                                      child:
-                                      CircularProgressIndicator(
-                                          value: 0.7,
-                                          strokeWidth: 20,
-                                          backgroundColor:
-                                         Colors.green,
-                                          color: Colors.orange)))
-                            ]))),
+                            color: ColorConstant.primaryWhite,
+                            borderRadius: BorderRadius.circular(100)),
+                        child:
+                            Stack(alignment: Alignment.centerLeft, children: [
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                  height: getSize(200.00),
+                                  width: getSize(200.00),
+                                  child: CircularProgressIndicator(
+                                      value: 0.3,
+                                      backgroundColor: Colors.teal,
+                                      strokeWidth: 20,
+                                      color: Colors.green))),
+                          Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                  height: getSize(200.00),
+                                  width: getSize(200.00),
+                                  child: CircularProgressIndicator(
+                                      value: 0.7,
+                                      strokeWidth: 20,
+                                      backgroundColor: Colors.green,
+                                      color: Colors.orange)))
+                        ]))),
                 Align(
                     alignment: Alignment.center,
                     child: Padding(
-                        padding:
-                        EdgeInsets.only(left: 15, top: 50, right: 15),
+                        padding: EdgeInsets.only(left: 15, top: 50, right: 15),
                         child: Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.start,
-                            crossAxisAlignment:
-                            CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.max,
                             children: [
                               Container(
                                   height: getSize(6.00),
                                   width: getSize(6.00),
-                                  margin:
-                                  EdgeInsets.only(top: 6, bottom: 8),
+                                  margin: EdgeInsets.only(top: 6, bottom: 8),
                                   decoration: BoxDecoration(
                                       color: ColorConstant.primaryOrange,
-                                      borderRadius:
-                                      BorderRadius.circular(
-                                          getHorizontalSize(
-                                              3.00)))),
+                                      borderRadius: BorderRadius.circular(
+                                          getHorizontalSize(3.00)))),
                               Padding(
-                                  padding:  EdgeInsets.only(
-                                      left: 8, top: 1, bottom: 1),
-                                  child: Text(
-                                    'Transportation',
-                                    style: AppStyle.textStyleDMSANS.copyWith(
-                                        color: ColorConstant.primaryOrange,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
-                                  ),),
+                                padding:
+                                    EdgeInsets.only(left: 8, top: 1, bottom: 1),
+                                child: Text(
+                                  'Transportation',
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: ColorConstant.primaryOrange,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(18)),
+                                ),
+                              ),
                               Container(
                                   height: getSize(6.00),
                                   width: getSize(6.00),
-                                  margin:  EdgeInsets.only(
+                                  margin: EdgeInsets.only(
                                       left: 32, top: 6, bottom: 8),
                                   decoration: BoxDecoration(
                                       color: ColorConstant.buttonGreen,
-                                      borderRadius:
-                                      BorderRadius.circular(
-                                          getHorizontalSize(
-                                              3.00)))),
+                                      borderRadius: BorderRadius.circular(
+                                          getHorizontalSize(3.00)))),
                               Padding(
-                                  padding:
-                                  EdgeInsets.only(left: 8, top: 1),
-                                  child: Text(
-                                    'Shopping',
-                                    style: AppStyle.textStyleDMSANS.copyWith(
-                                        color: ColorConstant.buttonGreen,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
-                                  ),),
+                                padding: EdgeInsets.only(left: 8, top: 1),
+                                child: Text(
+                                  'Shopping',
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: ColorConstant.buttonGreen,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(18)),
+                                ),
+                              ),
                               Container(
                                   height: getSize(6.00),
                                   width: getSize(6.00),
-                                  margin:  EdgeInsets.only(
+                                  margin: EdgeInsets.only(
                                       left: 32, top: 6, bottom: 8),
                                   decoration: BoxDecoration(
-                                      color:ColorConstant.darkGreen,
-                                      borderRadius:
-                                      BorderRadius.circular(
-                                          getHorizontalSize(
-                                              3.00)))),
+                                      color: ColorConstant.darkGreen,
+                                      borderRadius: BorderRadius.circular(
+                                          getHorizontalSize(3.00)))),
                               Padding(
-                                  padding:
-                                  EdgeInsets.only(left: 8, bottom: 1),
-                                  child: Text(
-                                    'Coffee',
-                                    style: AppStyle.textStyleDMSANS.copyWith(
-                                        color: ColorConstant.darkGreen,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(18)),
-                                  ),
-                              ) ]))),
+                                padding: EdgeInsets.only(left: 8, bottom: 1),
+                                child: Text(
+                                  'Coffee',
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: ColorConstant.darkGreen,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(18)),
+                                ),
+                              )
+                            ]))),
                 Padding(
-                  padding: EdgeInsets.symmetric(vertical: getVerticalSize(30)
-                      ,horizontal: getHorizontalSize(20)),
+                  padding: EdgeInsets.symmetric(
+                      vertical: getVerticalSize(30),
+                      horizontal: getHorizontalSize(20)),
                   child: Text(
                     'Recent Expenses',
                     style: AppStyle.textStyleDMSANS.copyWith(
@@ -461,38 +472,44 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   ),
                 ),
                 ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context,int index) {
-                    return  RecentExpenses();
-                  }
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    itemCount: 5,
+                    itemBuilder: (BuildContext context, int index) {
+                      return RecentExpenses(
+                        image: "asset/icons/mg_image.png",
+                        title: "Loan Amount Payment",
+                        date: "04/12/2022",
+                        status:"credit" ,
+                        amount: "5000",
+                        transactionStatus:"Failed" ,
+                      );
+                    }),
+                SizedBox(
+                  height: getVerticalSize(50),
                 ),
-                SizedBox(height: getVerticalSize(50),),
-
-
               ],
             ),
           ),
         ));
   }
 
-
   BarChartGroupData makeGroupData(
-      int x,
-      double y, {
-        bool isTouched = false,
-        Color barColor = Colors.white,
-        double width = 22,
-        List<int> showTooltips = const [],
-      }) {
+    int x,
+    double y, {
+    bool isTouched = false,
+    Color barColor = Colors.white,
+    double width = 22,
+    List<int> showTooltips = const [],
+  }) {
     return BarChartGroupData(
       x: x,
       barRods: [
         BarChartRodData(
           toY: isTouched ? y + 1 : y,
-          color: isTouched ? Color(0xff4CD080) :  Color(0xff4CD080),
-          width: 12,borderRadius: BorderRadius.circular(10),
+          color: isTouched ? Color(0xff4CD080) : Color(0xff4CD080),
+          width: 12,
+          borderRadius: BorderRadius.circular(10),
           borderSide: isTouched
               ? BorderSide(color: Colors.yellow)
               : const BorderSide(color: Colors.white, width: 0),
@@ -508,26 +525,25 @@ class _StatisticScreenState extends State<StatisticScreen> {
   }
 
   List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-    switch (i) {
-      case 0:
-        return makeGroupData(0, 10, isTouched: i == touchedIndex);
-      case 1:
-        return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
-      case 2:
-        return makeGroupData(2, 5, isTouched: i == touchedIndex);
-      case 3:
-        return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
-      case 4:
-        return makeGroupData(4, 9, isTouched: i == touchedIndex);
-      case 5:
-        return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
-      case 6:
-        return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
-      default:
-        return throw Error();
-    }
-  });
-
+        switch (i) {
+          case 0:
+            return makeGroupData(0, 10, isTouched: i == touchedIndex);
+          case 1:
+            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
+          case 2:
+            return makeGroupData(2, 5, isTouched: i == touchedIndex);
+          case 3:
+            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
+          case 4:
+            return makeGroupData(4, 9, isTouched: i == touchedIndex);
+          case 5:
+            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
+          case 6:
+            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
+          default:
+            return throw Error();
+        }
+      });
 
   Widget getTitles(double value, TitleMeta meta) {
     const style = TextStyle(
@@ -609,49 +625,49 @@ class _StatisticScreenState extends State<StatisticScreen> {
               0,
               Random().nextInt(15).toDouble() + 6,
               barColor: widget.availableColors[
-              Random().nextInt(widget.availableColors.length)],
+                  Random().nextInt(widget.availableColors.length)],
             );
           case 1:
             return makeGroupData(
               1,
               Random().nextInt(15).toDouble() + 6,
               barColor: widget.availableColors[
-              Random().nextInt(widget.availableColors.length)],
+                  Random().nextInt(widget.availableColors.length)],
             );
           case 2:
             return makeGroupData(
               2,
               Random().nextInt(15).toDouble() + 6,
               barColor: widget.availableColors[
-              Random().nextInt(widget.availableColors.length)],
+                  Random().nextInt(widget.availableColors.length)],
             );
           case 3:
             return makeGroupData(
               3,
               Random().nextInt(15).toDouble() + 6,
               barColor: widget.availableColors[
-              Random().nextInt(widget.availableColors.length)],
+                  Random().nextInt(widget.availableColors.length)],
             );
           case 4:
             return makeGroupData(
               4,
               Random().nextInt(15).toDouble() + 6,
               barColor: widget.availableColors[
-              Random().nextInt(widget.availableColors.length)],
+                  Random().nextInt(widget.availableColors.length)],
             );
           case 5:
             return makeGroupData(
               5,
               Random().nextInt(15).toDouble() + 6,
               barColor: widget.availableColors[
-              Random().nextInt(widget.availableColors.length)],
+                  Random().nextInt(widget.availableColors.length)],
             );
           case 6:
             return makeGroupData(
               6,
               Random().nextInt(15).toDouble() + 6,
               barColor: widget.availableColors[
-              Random().nextInt(widget.availableColors.length)],
+                  Random().nextInt(widget.availableColors.length)],
             );
           default:
             return throw Error();

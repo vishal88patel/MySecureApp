@@ -191,10 +191,5 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                 ],
               )),
         ));
-
-
-
-
-
   }
 }
