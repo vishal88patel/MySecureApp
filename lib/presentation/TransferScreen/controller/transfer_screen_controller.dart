@@ -14,6 +14,7 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 
 class TransferScreenController extends GetxController {
   TextEditingController phoneController = TextEditingController();
+  var amount="".obs;
   @override
   void onReady() {
     super.onReady();
@@ -21,6 +22,7 @@ class TransferScreenController extends GetxController {
 
   @override
   void onInit() {
+
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }

@@ -8,10 +8,11 @@ import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 
 class TransferScreen extends StatelessWidget {
   var transferScreenController = Get.find<TransferScreenController>();
-
+  var dashBoardController = Get.find<DashBoardScreenController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,9 +77,11 @@ class TransferScreen extends StatelessWidget {
                           SizedBox(
                             height: getVerticalSize(20),
                           ),
-                          Text("\$0.00",style: AppStyle.DmSansFont
-                              .copyWith(color: ColorConstant.primaryWhite,
-                              fontWeight: FontWeight.w700,fontSize: getFontSize(32)),),
+                          Obx(()=>
+                             Text(dashBoardController.UserBalance.value!=""?"\$"+dashBoardController.UserBalance.value:"\$0.0",style: AppStyle.DmSansFont
+                                .copyWith(color: ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w700,fontSize: getFontSize(32)),),
+                          ),
                         ],
                       ),
                       Container(

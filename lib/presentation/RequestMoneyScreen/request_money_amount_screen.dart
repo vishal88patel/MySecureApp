@@ -182,8 +182,7 @@ class RequestMoneyAmountScreen extends StatelessWidget {
                               radius: 10,
                               buttonColor: ColorConstant.primaryLightGreen,
                               onPressed: () {
-                              Get.toNamed(AppRoutes.requestToScreen);
-                                // requestMoneyScreenController.onTapNextButton();
+                                 requestMoneyScreenController.onTapReqButton();
                               },),
                           ),
                           SizedBox(width: getHorizontalSize(10),),
@@ -192,7 +191,8 @@ class RequestMoneyAmountScreen extends StatelessWidget {
                               radius: 10,
                               buttonColor: ColorConstant.primaryLightGreen,
                               onPressed: () {
-                                // requestMoneyScreenController.onTapNextButton();
+                                requestMoneyScreenController.onTapPayButton();
+
                               },),
                           ),
                         ],

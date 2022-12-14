@@ -100,7 +100,7 @@ class TransferScanScreen extends StatelessWidget {
                   // Get.back();
                   //   Get.offAllNamed(AppRoutes.dashBoardScreen,
                   //       arguments: {"bottomTabCount": 2});
-                    // Get.toNamed(AppRoutes.transferToUserScreen);
+                     Get.toNamed(AppRoutes.scanScreen);
                   },),
                 SizedBox(
                   height: getVerticalSize(40),
