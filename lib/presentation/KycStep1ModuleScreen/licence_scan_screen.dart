@@ -29,7 +29,6 @@ class LicenceScanScreen extends StatefulWidget {
 
 class _LicenceScanScreenState extends State<LicenceScanScreen> {
   Barcode? result;
-  QRViewController? controller;
   int? counter=0;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'BarCode');
   var kycStep1Controller = Get.find<KycStep1ScreenController>();
@@ -44,14 +43,9 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   void initState() {
     super.initState();
     scanBarcodeNormal();
-    //cameraStart();
   }
 
-  Future<void> cameraStart() async {
-    Future.delayed(Duration(milliseconds: 100), () {
-      controller?.resumeCamera();
-    });
-  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -135,55 +129,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       barrierDismissible: true,
     );
   }
-  Widget _buildQrView(BuildContext context) {
-    // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
-    var scanArea = MediaQuery.of(context).size.width/1.2;
-    // To ensure the Scanner view is properly sizes after rotation
-    // we need to listen for Flutter SizeChanged notification and update controller
-    return QRView(
-      key: qrKey,
 
-      onQRViewCreated: _onQRViewCreated,
-      overlay: QrScannerOverlayShape(
-          borderColor: Colors.red,
-          borderRadius: 10,
-          borderLength: 30,
-          borderWidth: 10,
-          cutOutHeight:MediaQuery.of(context).size.width/2.25 ,
-          cutOutWidth: MediaQuery.of(context).size.width/1.1,
-          ),
-      onPermissionSet: (ctrl, p) => _onPermissionSet(context, ctrl, p),
-    );
-  }
-
-  void _onQRViewCreated(QRViewController controller) {
-    setState(() {
-      this.controller = controller;
-    });
-    controller.scannedDataStream.listen((scanData) {
-      setState(() {
-        result = scanData;
-        kycStep1Controller.qrCodeResult.value=scanData.code.toString();
-        print(scanData.code.toString());
-        if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0){
-          counter=1;
-          const start1 = "DCS";
-          const end1 = "DDE";
-          const start2 = "DAC";
-          const end2 = "DDF";
-          final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
-          final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
-          final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
-          final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
-          lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
-          fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
-          if(fname.isNotEmpty && lname.isNotEmpty){
-           // scanDataa(fname,lname,controller);
-          }
-        }
-      });
-    });
-  }
   void scanDataa(String? fName, String? lName,String dobData) {
     if (fName?.toLowerCase().trim() !=
         kycStep1Controller.firstNameController.text.toLowerCase().trim()) {
@@ -205,8 +151,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
     } else {
       UIUtils.showSnakBar(headerText: "Success",bodyText: "Driving Licence Scan Successfully");
-      //controller.stopCamera();
-      Future.delayed(Duration(milliseconds: 2000), () {
+      Future.delayed(Duration(milliseconds: 200), () {
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -217,14 +162,6 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
     }
   }
 
-  void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
-    log('${DateTime.now().toIso8601String()}_onPermissionSet $p');
-    if (!p) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('no Permission')),
-      );
-    }
-  }
 
   Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;

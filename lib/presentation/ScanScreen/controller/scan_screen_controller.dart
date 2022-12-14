@@ -45,6 +45,7 @@ class ScanScreenController extends GetxController {
 
   @override
   void onInit() {
+    // cameraStart();
     final now = new DateTime.now();
     date.value = DateFormat.yMMMMd('en_US').format(now).toString();
     callGetWalletApi(pageNo: 1);

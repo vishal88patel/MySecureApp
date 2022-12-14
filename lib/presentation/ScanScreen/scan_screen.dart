@@ -21,8 +21,8 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
-  // var scanController = Get.put(ScanScreenController());
-  var scanController = Get.find<ScanScreenController>();
+  var scanController = Get.put(ScanScreenController());
+  // var scanController = Get.find<ScanScreenController>();
 
 
   Barcode? result;
@@ -35,7 +35,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
   @override
   void initState() {
-    //_initCamera();
+    _initCamera();
     super.initState();
   }
 
