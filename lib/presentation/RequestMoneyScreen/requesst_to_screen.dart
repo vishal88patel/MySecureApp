@@ -74,23 +74,27 @@ class RequestToScreen extends StatelessWidget {
                           height: getVerticalSize(40),
                         ),
                         Center(
-                          child: ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: Image.asset('asset/icons/profile_image.png',
-                                height: getVerticalSize(100),)),
+                          child: Obx(()=>
+                            ClipRRect(
+                                borderRadius: BorderRadius.circular(100),
+                                child: Image.network(requestMoneyScreenController.image.value,
+                                  height: getVerticalSize(100),)),
+                          ),
                         ),
                         SizedBox(
                           height: getVerticalSize(20),
                         ),
                         Center(
-                          child: Text(
-                            "Requesting to Dianna Rushell",
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: AppStyle.DmSansFont.copyWith(
-                                color: ColorConstant.grey8F,
-                                fontSize: getFontSize(20),
-                                fontWeight: FontWeight.w400),
+                          child: Obx(()=>
+                            Text(
+                              "Requesting to "+requestMoneyScreenController.name.value,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.grey8F,
+                                  fontSize: getFontSize(20),
+                                  fontWeight: FontWeight.w400),
+                            ),
                           ),
                         ),
 
@@ -173,7 +177,7 @@ class RequestToScreen extends StatelessWidget {
                               radius: 10,
                               buttonColor: ColorConstant.primaryLightGreen,
                               onPressed: () {
-                                // requestMoneyScreenController.onTapNextButton();
+                                 requestMoneyScreenController.RequestMoneyApi();
                               },),
                           ),
                         ),

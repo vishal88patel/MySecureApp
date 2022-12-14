@@ -29,5 +29,8 @@ class ApiEndPoints {
   static String RESET_PASSWORD = BASE_URL + "/auth/resetPassword";
   static String WITHDRAW_ERROR = BASE_URL + "/withdrawalAmount";
   static String FAQS = BASE_URL + "/getFAQ";
+  static String GET_CASHTAG_USRE = BASE_URL + "/getCashtagUser";
+  static String REQUEST_MONEY = BASE_URL + "/requestMoney";
+  static String RECENT_TRANSACTION = BASE_URL + "/getRecentTransaction";
 
 }
