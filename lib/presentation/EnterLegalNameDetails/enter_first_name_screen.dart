@@ -179,7 +179,7 @@ class EnterFirstNameDetailScreen extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(100)),
-                                  child: Image.asset('asset/icons/name_image.jpg',
+                                  child: Image.asset('asset/icons/employement_image.jpg',
                                     height: getVerticalSize(220),),
                                 )
                             ),
