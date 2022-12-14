@@ -132,30 +132,36 @@ class TransferScreen extends StatelessWidget {
                       width: getHorizontalSize(30),
                     ),
                     Expanded(
-                      child: Container(
+                      child: InkWell(
+                        onTap: (){
 
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: ColorConstant.grey8F,)),
-                          padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Image.asset('asset/icons/doller_icon.png',
-                                height: getVerticalSize(60),),
-                              SizedBox(
-                                height: getVerticalSize(10),
-                              ),
-                              Text("Request \nMoney ",style: AppStyle.DmSansFont
-                                  .copyWith(color: ColorConstant.primaryBlack,
-                                  fontWeight: FontWeight.w700,fontSize: getFontSize(16)),),
-                              SizedBox(
-                                height: getVerticalSize(20),
-                              ),
-                              Text("Manage Account",style: AppStyle.DmSansFont
-                                  .copyWith(color: ColorConstant.grey8F,
-                                  fontWeight: FontWeight.w700,fontSize: getFontSize(14)),),
-                            ],
-                          )
+                          Get.toNamed(AppRoutes.requestMoneyScreen);
+                        },
+                        child: Container(
+
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                border: Border.all(color: ColorConstant.grey8F,)),
+                            padding: EdgeInsets.symmetric(vertical: 20,horizontal: 10),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Image.asset('asset/icons/doller_icon.png',
+                                  height: getVerticalSize(60),),
+                                SizedBox(
+                                  height: getVerticalSize(10),
+                                ),
+                                Text("Request \nMoney ",style: AppStyle.DmSansFont
+                                    .copyWith(color: ColorConstant.primaryBlack,
+                                    fontWeight: FontWeight.w700,fontSize: getFontSize(16)),),
+                                SizedBox(
+                                  height: getVerticalSize(20),
+                                ),
+                                Text("Manage Account",style: AppStyle.DmSansFont
+                                    .copyWith(color: ColorConstant.grey8F,
+                                    fontWeight: FontWeight.w700,fontSize: getFontSize(14)),),
+                              ],
+                            )
+                        ),
                       ),
                     ),
                   ],

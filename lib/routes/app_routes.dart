@@ -3,6 +3,10 @@ import 'package:secure_cash_app/presentation/ForgotPasswordScreen/binding/forgot
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_create_password.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_otp.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_password_screen.dart';
+import 'package:secure_cash_app/presentation/RequestMoneyScreen/binding/request_money_screen_binding.dart';
+import 'package:secure_cash_app/presentation/RequestMoneyScreen/requesst_to_screen.dart';
+import 'package:secure_cash_app/presentation/RequestMoneyScreen/request_money_amount_screen.dart';
+import 'package:secure_cash_app/presentation/RequestMoneyScreen/request_money_screen.dart';
 import 'package:secure_cash_app/presentation/TransferScanScreen/binding/transfer_scan_screen_binding.dart';
 import 'package:secure_cash_app/presentation/TransferScanScreen/transfer_scan_screen.dart';
 import 'package:secure_cash_app/presentation/TransferScreen/binding/transfer_screen_binding.dart';
@@ -252,12 +256,12 @@ class AppRoutes {
   static String kycSelectStepScreen = '/kyc_select_step_screen';
   static String kycSuccessScreen = '/kyc_success_screen';
   static String kycSuccess2Screen = '/kyc_success2_screen';
-
   static String boostCreditScreen = '/boost_credit_screen';
-
   static String cashCardScreen = '/cash_card_screen';
-
   static String chatScreen = '/chat_screen';
+  static String requestMoneyScreen = '/request_money_screen';
+  static String requestMoneyAmountScreen = '/request_money_amount_screen';
+  static String requestToScreen = '/request_to_screen';
 
 
 
@@ -1004,6 +1008,36 @@ class AppRoutes {
       page: () => ChatScreen(),
       bindings: [
         ChatScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: requestMoneyScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => RequestMoneyScreen(),
+      bindings: [
+        RequestMoneyScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: requestMoneyAmountScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => RequestMoneyAmountScreen(),
+      bindings: [
+        RequestMoneyScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: requestToScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => RequestToScreen(),
+      bindings: [
+        RequestMoneyScreenBinding(),
       ],
     ),
 
