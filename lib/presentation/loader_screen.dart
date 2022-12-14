@@ -45,20 +45,17 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
   Widget build(BuildContext context) {
     return Scaffold(
       body: Align(
-            alignment: Alignment.topLeft,
-            child: Padding(
-              padding: EdgeInsets.only(top: getVerticalSize(100),left: getHorizontalSize(40)),
-              child: RotationTransition(
-                turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
-                child: GradientCircularProgressIndicator(
-                  radius: 35,
-                  gradientColors: [
-                    ColorConstant.buttonGreen,
-                    ColorConstant.blueFF,
-                    ColorConstant.buttonGreen,
-                  ],
-                  strokeWidth: 10.0,
-                ),
+            alignment: Alignment.center,
+            child: RotationTransition(
+              turns: Tween(begin: 0.0, end: 1.0).animate(_animationController),
+              child: GradientCircularProgressIndicator(
+                radius: 35,
+                gradientColors: [
+                  ColorConstant.buttonGreen,
+                  ColorConstant.blueFF,
+                  ColorConstant.buttonGreen,
+                ],
+                strokeWidth: 10.0,
               ),
             ),
           ),
