@@ -74,27 +74,23 @@ class RequestToScreen extends StatelessWidget {
                           height: getVerticalSize(40),
                         ),
                         Center(
-                          child: Obx(()=>
-                            ClipRRect(
-                                borderRadius: BorderRadius.circular(100),
-                                child: Image.network(requestMoneyScreenController.image.value,
-                                  height: getVerticalSize(100),)),
-                          ),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: Image.asset('asset/icons/profile_image.png',
+                                height: getVerticalSize(100),)),
                         ),
                         SizedBox(
                           height: getVerticalSize(20),
                         ),
                         Center(
-                          child: Obx(()=>
-                            Text(
-                              "Requesting to "+requestMoneyScreenController.name.value,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.grey8F,
-                                  fontSize: getFontSize(20),
-                                  fontWeight: FontWeight.w400),
-                            ),
+                          child: Text(
+                            "Requesting to Dianna Rushell",
+                            overflow: TextOverflow.ellipsis,
+                            textAlign: TextAlign.center,
+                            style: AppStyle.DmSansFont.copyWith(
+                                color: ColorConstant.grey8F,
+                                fontSize: getFontSize(20),
+                                fontWeight: FontWeight.w400),
                           ),
                         ),
 
@@ -169,20 +165,67 @@ class RequestToScreen extends StatelessWidget {
                           ),
                         ),
                      Spacer(),
-                        Align(
-                          alignment: Alignment.bottomCenter,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                            child: AppElevatedButton(buttonName: 'Request',
-                              radius: 10,
-                              buttonColor: ColorConstant.primaryLightGreen,
-                              onPressed: () {
-                                 requestMoneyScreenController.RequestMoneyApi();
-                              },),
+                        Obx(()=> Align(
+                            alignment: Alignment.bottomCenter,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getHorizontalSize(
+                                      double.parse(requestMoneyScreenController.containerHeight.value.toString())==150?0:20)),
+                              child: InkWell(
+                                onTap: (){
+                                  requestMoneyScreenController.requestClick();
+                                },
+                                child: AnimatedContainer(
+                                  height: getVerticalSize(double.parse(requestMoneyScreenController.containerHeight.value.toString())),
+                                  duration: Duration(milliseconds: 500),
+                                  width: double.infinity,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                          topRight: Radius.circular(double.parse( requestMoneyScreenController.containerHeight.value.toString())==150?15:12.0),
+                                          topLeft: Radius.circular(double.parse( requestMoneyScreenController.containerHeight.value.toString())==150?15:12.0),
+                                          bottomLeft: Radius.circular(double.parse( requestMoneyScreenController.containerHeight.value.toString())==150?0:12.0),
+                                          bottomRight: Radius.circular(double.parse( requestMoneyScreenController.containerHeight.value.toString())==150?0:12.0),),
+                                      color: ColorConstant.primaryLightGreen),
+                                  child: double.parse(
+                                      requestMoneyScreenController.containerHeight.value.toString())==150
+                                      ? Padding(
+                                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20),vertical: getVerticalSize(20)),
+                                        child: Text(
+                                    'Requesting...',
+                                    textAlign: TextAlign.left,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontSize: getFontSize(20),
+                                          fontWeight: FontWeight.w700),
+
+                                  ),
+                                      )
+                                      :Center(
+                                    child: Text(
+                                      'Request',
+                                      textAlign: TextAlign.center,
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontSize: getFontSize(20),
+                                          fontWeight: FontWeight.w700),
+
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              // AppElevatedButton(buttonName: 'Request',
+                              //   radius: 10,
+                              //   buttonColor: ColorConstant.primaryLightGreen,
+                              //   onPressed: () {
+                              //     // requestMoneyScreenController.onTapNextButton();
+                              //   },),
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          height: getVerticalSize(40),
+                        Obx(()=>SizedBox(
+                            height: getVerticalSize(double.parse(
+                                requestMoneyScreenController.containerHeight.value.toString())==150?0:40),
+                          ),
                         ),
                       ],
                     ),
