@@ -1,5 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
@@ -36,15 +37,141 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
     setState(() {
       if (value.round() > 4999) {
         if (showInfoDialouge) {
-          AwesomeDialog(
-            context: context,
-            dialogType: DialogType.info,
-            animType: AnimType.rightSlide,
-            title: 'Info',
-            desc: 'Loan Above \$ 4999 will be Converted to Business Loan',
-            btnCancelOnPress: () {},
-            btnOkOnPress: () {},
-          )..show();
+          Get.dialog(
+            Padding(
+              padding: EdgeInsets.symmetric(
+                  horizontal: getHorizontalSize(40)),
+              child: Center(
+                child: Material(
+                  color: Colors.transparent,
+                  child: Wrap(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: ColorConstant
+                                .primaryWhite,
+                            borderRadius:
+                            const BorderRadius.all(
+                                Radius.circular(15))),
+                        margin: const EdgeInsets.only(
+                            bottom: 20),
+                        padding: const EdgeInsets.only(
+                          bottom: 20,
+                        ),
+                        constraints: const BoxConstraints(
+                            minWidth: 180),
+                        child: Column(
+                          children: [
+                            Container(
+                              decoration: BoxDecoration(
+                                  color:
+                                  Color(0xFFF4F4F6),
+                                  borderRadius:
+                                  const BorderRadius
+                                      .all(
+                                      Radius.circular(
+                                          15))),
+                              padding: EdgeInsets.all(12),
+                              child: InkWell(
+                                onTap:(){
+                                  // Get.back();
+                                },
+                                child: Column(
+                                  crossAxisAlignment:
+                                  CrossAxisAlignment
+                                      .end,
+                                  children: [
+                                    Icon(
+                                        Icons.close),
+                                    Row(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment
+                                          .center,
+                                      children: [
+                                        SvgPicture.asset(
+                                            "asset/icons/information_image.svg",height: 50,)
+                                      ],
+                                    ),
+                                    Center(
+                                      child: Text(
+                                        "Info",
+                                        textAlign:
+                                        TextAlign.center,
+                                        style: AppStyle
+                                            .DmSansFont
+                                            .copyWith(
+                                            fontSize: getFontSize(24),
+                                            fontWeight: FontWeight.w700,
+                                            color: ColorConstant
+
+                                                .darkBlue),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 20,
+                            ),
+
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            Container(
+                                padding: const EdgeInsets
+                                    .fromLTRB(
+                                    0, 10, 0, 0),
+                                child: Text(
+                                  "Loan Above \$ 4999 will \nbe Converted to Business Loan",
+                                  textAlign:
+                                  TextAlign.center,
+                                  style: AppStyle
+                                      .DmSansFont
+                                      .copyWith(
+                                      fontSize: getFontSize(18),
+                                      color: ColorConstant
+                                          .darkBlue),
+                                )),
+                            const SizedBox(
+                              height: 20,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+                              child: Row(
+                                children: [
+                                  Expanded(
+                                    child: AppElevatedButton(
+                                      buttonColor: ColorConstant.appProgressBarColor,
+                                      buttonName: 'Cancel',
+                                      radius: 10,
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },),
+                                  ),
+                                  SizedBox(width: getHorizontalSize(10),),
+                                  Expanded(
+                                    child: AppElevatedButton(
+                                      buttonColor: ColorConstant.primaryLightGreen,
+                                      buttonName: 'ok',
+                                      radius: 10,
+                                      onPressed: () {
+                                      },),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            barrierDismissible: true,
+          );
+
           showInfoDialouge = false;
         }
       }
@@ -61,7 +188,376 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return  Scaffold(
+        backgroundColor: ColorConstant.primaryWhite,
+        body:  SingleChildScrollView(
+          child: Container(
+              height: size.height,
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: getHorizontalSize(26.0),
+                    ),
+                    child: SafeArea(
+                      child: Stack(
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: getVerticalSize(10),
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+
+                                  InkWell(
+                                    onTap: () {
+                                      Get.back();
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(12),
+                                          border: Border.all(
+                                              color:
+                                              ColorConstant.backBorder)),
+                                      padding: EdgeInsets.all(6),
+                                      child: Icon(
+                                        Icons.arrow_back_ios_new_outlined,size: 22,),
+                                    ),
+                                  ),
+                                  Text(
+                                    "Amount",
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.primaryBlack,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getFontSize(22)),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(color: Colors.transparent)),
+                                    padding: EdgeInsets.all(10),
+                                    child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                  ),                      ],
+                              ),
+                              SizedBox(
+                                height: getVerticalSize(30),
+                              ),
+                              Text(
+                                "Select Loan Amount",
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color: ColorConstant
+                                        .primaryBlack,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: getFontSize(20)),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Text(
+                                "Select the amount needed and the \nreimbursement period",
+                                style: AppStyle.DmSansFont.copyWith(
+                                    color:
+                                    ColorConstant.primaryBlack,
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: getFontSize(18)),
+                              ),
+                              SizedBox(
+                                height: 15,
+                              ),
+                              Center(
+                                child: Container(
+                                  height: 300,
+                                  width: 300,
+                                  child: Obx(
+                                        ()=> SfRadialGauge(axes: <
+                                        RadialAxis>[
+                                      RadialAxis(
+                                          minimum: 100,
+                                          startAngle: 270,
+                                          endAngle: 260,
+                                          maximum:
+                                          loanCalculatorController
+                                              .maximumAvailableLoan
+                                              .value
+                                              .toDouble(),
+                                          showLabels: false,
+                                          showTicks: false,
+                                          radiusFactor: 0.7,
+                                          axisLineStyle:
+                                          AxisLineStyle(
+                                              cornerStyle:
+                                              CornerStyle
+                                                  .bothCurve,
+                                              color:
+                                              ColorConstant
+                                                  .greenF3,
+                                              thickness: 20),
+                                          pointers: <GaugePointer>[
+                                            RangePointer(
+                                                value: _volumeValue,
+                                                cornerStyle:
+                                                CornerStyle
+                                                    .bothCurve,
+                                                width: 20,
+
+                                                color: ColorConstant
+                                                    .primaryLightGreen.withOpacity(0.6),
+                                                sizeUnit:
+                                                GaugeSizeUnit
+                                                    .logicalPixel,
+                                                gradient:
+                                                SweepGradient(
+                                                  colors: <Color>[
+                                                    ColorConstant
+                                                        .primaryLightGreen,
+                                                    ColorConstant
+                                                        .primaryLightGreen,
+                                                  ],
+                                                )),
+                                            MarkerPointer(
+                                                value: _volumeValue,
+                                                enableDragging: true,
+                                                onValueChanged:
+                                                onVolumeChanged,
+                                                markerHeight: 34,
+                                                markerWidth: 34,
+                                                markerType:
+                                                MarkerType.image,
+                                                imageUrl:
+                                                "asset/icons/finger_image.png",
+                                                color: ColorConstant
+                                                    .primaryLightGreen,
+                                                borderWidth: 1,
+                                                borderColor: ColorConstant
+                                                    .primaryLightGreen)
+                                          ],
+                                          annotations: <
+                                              GaugeAnnotation>[
+                                            GaugeAnnotation(
+                                                angle: 90,
+                                                axisValue: 5,
+                                                positionFactor: 0.2,
+                                                widget: Column(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .center,
+                                                  children: [
+                                                    Text(
+                                                      "Amount",
+                                                      style: AppStyle.DmSansFont.copyWith(
+                                                          color: ColorConstant
+                                                              .primaryBlack,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              20)),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                      getVerticalSize(
+                                                          8),
+                                                    ),
+                                                    Text(
+                                                      "\$" +
+                                                          _volumeValue
+                                                              .ceil()
+                                                              .toString(),
+                                                      style: AppStyle.DmSansFont.copyWith(
+                                                          color: ColorConstant
+                                                              .primaryBlack,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w700,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              28)),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                      getVerticalSize(
+                                                          8),
+                                                    ),
+                                                    DotWidget(
+                                                      dashColor:
+                                                      ColorConstant
+                                                          .primaryDarkGreen,
+                                                      totalWidth:
+                                                      getHorizontalSize(
+                                                          120),
+                                                      dashHeight: 1,
+                                                      dashWidth: 2,
+                                                      emptyWidth: 2,
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                      getVerticalSize(
+                                                          8),
+                                                    ),
+                                                    Text(
+                                                      "@ ${loanCalculatorController.interestRate}% Per Year",
+                                                      style: AppStyle.DmSansFont.copyWith(
+                                                          color: ColorConstant
+                                                              .primaryBlack,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .bold,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              14)),
+                                                    ),
+                                                  ],
+                                                ))
+                                          ])
+                                    ]),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                height: getVerticalSize(150),
+                                child: GridView.builder(
+                                  itemCount:
+                                  loanCalculatorController
+                                      .loanTenuteList
+                                      .value
+                                      .length,
+                                  gridDelegate:
+                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                    crossAxisCount: 3,
+                                    childAspectRatio: 2,
+                                  ),
+                                  itemBuilder:
+                                      (BuildContext context,
+                                      int i) {
+                                    return Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical:
+                                          getVerticalSize(8)),
+                                      child: InkWell(
+                                        onTap: () {
+                                          loanCalculatorController.onTapOnLoanTenure(
+                                              loanCalculatorController
+                                                  .loanTenuteList
+                                                  .value[i]
+                                                  .id!
+                                                  .toInt(),
+                                              loanCalculatorController
+                                                  .loanTenuteList
+                                                  .value[i]
+                                                  .name
+                                                  .toString());
+                                        },
+                                        child: Obx(
+                                              () => Padding(
+                                            padding:
+                                            const EdgeInsets
+                                                .all(4.0),
+                                            child: Container(
+                                              width:
+                                              size.width / 3.5,
+                                              decoration: BoxDecoration(
+                                                  color: loanCalculatorController
+                                                      .selectedLoanTenureId
+                                                      .value
+                                                      .toString() ==
+                                                      loanCalculatorController
+                                                          .loanTenuteList
+                                                          .value[
+                                                      i]
+                                                          .id
+                                                          .toString()
+                                                      ? ColorConstant
+                                                      .primaryLightGreen
+                                                      : ColorConstant
+                                                      .greenF3
+                                                      .withOpacity(
+                                                      0.5),
+                                                  borderRadius: BorderRadius
+                                                      .all(Radius
+                                                      .circular(
+                                                      10))),
+                                              child: Padding(
+                                                padding: EdgeInsets.only(
+                                                    left:
+                                                    getHorizontalSize(
+                                                        10),
+                                                    right:
+                                                    getHorizontalSize(
+                                                        10),
+                                                    top:
+                                                    getHorizontalSize(
+                                                        10),
+                                                    bottom:
+                                                    getHorizontalSize(
+                                                        10)),
+                                                child: Center(
+                                                  child: Text(
+                                                    loanCalculatorController
+                                                        .loanTenuteList
+                                                        .value[i]
+                                                        .name
+                                                        .toString(),
+                                                    style: AppStyle.DmSansFont.copyWith(
+                                                        color: loanCalculatorController.selectedLoanTenureId.value.toString() ==
+                                                            loanCalculatorController.loanTenuteList.value[i].id
+                                                                .toString()
+                                                            ? ColorConstant
+                                                            .primaryWhite
+                                                            : ColorConstant
+                                                            .grey8F,
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w400,
+                                                        fontSize:
+                                                        getFontSize(
+                                                            16)),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: getHorizontalSize(40),
+                              ),
+                              Spacer(),
+                              AppElevatedButton(
+                                radius: 10,
+                                buttonName: 'Process to Loan',
+                                textColor:
+                                ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w700,
+                                onPressed: () {
+                                  loanCalculatorController
+                                      .onClickOfProcessToLoanFinalStep();
+                                  // Get.toNamed(AppRoutes.loanStepScreen);
+                                  // Get.offAllNamed(AppRoutes.dashBoardScreen);
+                                  // Get.toNamed(AppRoutes.successScreen);
+                                },
+                              ),
+                              SizedBox(
+                                height: getVerticalSize(40),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                ],
+              )),
+        ));
+      /*Scaffold(
         backgroundColor: ColorConstant.primaryDarkGreen,
         body: Stack(
           children: [
@@ -488,6 +984,6 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
               ],
             ),
           ],
-        ));
+        ));*/
   }
 }

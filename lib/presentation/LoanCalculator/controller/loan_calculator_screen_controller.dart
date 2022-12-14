@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/presentation/LoanCalculator/model/loan_calculation_response.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
@@ -363,14 +367,116 @@ class LoanCalculatorScreenController extends GetxController {
           headerText: StringConstants.ERROR);
     } else {
       Get.dialog(
-        CustomDialog(
-          description:
-              "Based on your profile and documents you are eligible for loan upto ${"\$$maximumAvailableLoan"}.Thank you",
-          onPressed: () {
-            Get.to(()=>SelectLoanTypeScreen());
-          },
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: getHorizontalSize(40)),
+          child: Center(
+            child: Material(
+              color: Colors.transparent,
+              child: Wrap(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                        color: ColorConstant
+                            .primaryWhite,
+                        borderRadius:
+                        const BorderRadius.all(
+                            Radius.circular(15))),
+                    margin: const EdgeInsets.only(
+                        bottom: 20),
+                    padding: const EdgeInsets.only(
+                      bottom: 20,
+                    ),
+                    constraints: const BoxConstraints(
+                        minWidth: 180),
+                    child: Column(
+                      children: [
+                        Container(
+                          decoration: BoxDecoration(
+                              color:
+                              Color(0xFFF4F4F6),
+                              borderRadius:
+                              const BorderRadius
+                                  .all(
+                                  Radius.circular(
+                                      15))),
+                          padding: EdgeInsets.all(12),
+                          child: InkWell(
+                            onTap:(){
+                              // Get.back();
+                            },
+                            child: Column(
+                              crossAxisAlignment:
+                              CrossAxisAlignment
+                                  .end,
+                              children: [
+                                Icon(
+                                    Icons.close),
+                                Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment
+                                      .center,
+                                  children: [
+                                    SvgPicture.asset(
+                                        "asset/icons/thumbs_up_image.svg")
+                                  ],
+                                ),
+                                Icon(
+                                  Icons.close,
+                                  color: Colors
+                                      .transparent,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 20,
+                        ),
+
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Container(
+                            padding: const EdgeInsets
+                                .fromLTRB(
+                                0, 10, 0, 0),
+                            child: Text(
+                              "Based on your Profile and \nDocuments, You are eligible for loan \n upto "
+                                  "\$11500. Thank You",
+                              textAlign:
+                              TextAlign.center,
+                              style: AppStyle
+                                  .DmSansFont
+                                  .copyWith(
+                                  fontSize: getFontSize(18),
+                                  color: ColorConstant
+                                      .darkBlue),
+                            )),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+                          child: AppElevatedButton(
+                              buttonColor: ColorConstant.primaryLightGreen,
+                              buttonName: 'Done',
+                              radius: 10,
+                              onPressed: () {
+                                Get.to(()=>SelectLoanTypeScreen());
+                              },),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ),
+        barrierDismissible: true,
       );
+     
     }
   }
 
