@@ -417,8 +417,8 @@ class LoanCalculatorScreenController extends GetxController {
                                   MainAxisAlignment
                                       .center,
                                   children: [
-                                    SvgPicture.asset(
-                                        "asset/icons/thumbs_up_image.svg")
+                                    Image.asset(
+                                        "asset/icons/ic_thumb.png")
                                   ],
                                 ),
                                 Icon(

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
+import 'package:vibration/vibration.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
@@ -30,10 +31,9 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
   double amountInto = 0;
 
   Future<void> onVolumeChanged(double value) async {
-    if (await Vibrate.canVibrate) {
-      Vibrate.vibrate();
-    }
-    ;
+    if (await Vibration.hasAmplitudeControl()!=null) {
+      Vibration.vibrate(amplitude: 50);
+    };
     setState(() {
       if (value.round() > 4999) {
         if (showInfoDialouge) {
@@ -88,8 +88,8 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                       MainAxisAlignment
                                           .center,
                                       children: [
-                                        SvgPicture.asset(
-                                            "asset/icons/information_image.svg",height: 50,)
+                                        Image.asset(
+                                            "asset/icons/information_image.png",height: 50,)
                                       ],
                                     ),
                                     Center(
@@ -156,6 +156,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                       buttonName: 'ok',
                                       radius: 10,
                                       onPressed: () {
+                                        Navigator.pop(context);
                                       },),
                                   ),
                                 ],
@@ -437,7 +438,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                       padding: EdgeInsets.symmetric(
                                           vertical:
                                           getVerticalSize(8)),
-                                      child: InkWell(
+                                      child: GestureDetector(
                                         onTap: () {
                                           loanCalculatorController.onTapOnLoanTenure(
                                               loanCalculatorController
