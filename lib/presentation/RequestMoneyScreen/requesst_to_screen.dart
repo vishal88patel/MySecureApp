@@ -217,12 +217,7 @@ class RequestToScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              // AppElevatedButton(buttonName: 'Request',
-                              //   radius: 10,
-                              //   buttonColor: ColorConstant.primaryLightGreen,
-                              //   onPressed: () {
-                              //     // requestMoneyScreenController.onTapNextButton();
-                              //   },),
+
                             ),
                           ),
                         ),
@@ -243,3 +238,4 @@ class RequestToScreen extends StatelessWidget {
         ));
   }
 }
+
