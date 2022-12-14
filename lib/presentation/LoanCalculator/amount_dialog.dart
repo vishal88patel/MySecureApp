@@ -74,11 +74,11 @@ class CustomDialog extends StatelessWidget {
           left: 16,
           right: 16,
           child: CircleAvatar(
-            backgroundColor: ColorConstant.primaryDarkGreen,
+            backgroundColor: ColorConstant.primaryWhite,
             radius:66,
             child: Padding(
               padding: const EdgeInsets.all(22.0),
-              child: Image.asset('asset/Logo.png'),
+              child: Image.asset('asset/icons/ic_thumb.png'),
             ),
           ),
         ),
