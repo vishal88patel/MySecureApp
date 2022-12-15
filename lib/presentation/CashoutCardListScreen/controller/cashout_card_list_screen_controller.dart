@@ -15,6 +15,7 @@ import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_controller.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
+import '../cashout_failed_screen.dart';
 import '../model/cashout_card_list_response_model.dart';
 
 
@@ -25,6 +26,7 @@ class CashoutCardListScreenController extends GetxController {
   var getLinkedBankModel = GrtLinkedBank().obs;
   var selectedIndex=1000.obs;
   var selectedCard= 0.obs;
+  var isPin= 0.obs;
   var arguments = Get.arguments;
 
   var type = "";
@@ -40,10 +42,16 @@ class CashoutCardListScreenController extends GetxController {
   void onInit() {
     callGetBankListApi();
     getArguments();
-
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
+
+
+  Future<FormData> getWalletApiBody() async {
+    final form = FormData({});
+    return form;
+  }
+
 
 
   void selectCreditCard(var index){
@@ -308,10 +316,20 @@ class CashoutCardListScreenController extends GetxController {
       print(value);
       if (value['status']) {
         UIUtils.hideProgressDialog();
-
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  CashoutFailedScreen()),
+        );
       } else {
         UIUtils.hideProgressDialog();
-
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  CashoutFailedScreen()),
+        );
       }
     });
   }
@@ -347,5 +365,7 @@ class CashoutCardListScreenController extends GetxController {
     final form = FormData({});
     return form;
   }
+
+
 
 }

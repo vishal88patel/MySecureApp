@@ -103,5 +103,9 @@ class CashoutAmountController extends GetxController {
     }
   }
 
+   goHome() {
+    Get.offAllNamed(AppRoutes.dashBoardScreen,
+        arguments: {"bottomTabCount": 0});
+  }
 
 }

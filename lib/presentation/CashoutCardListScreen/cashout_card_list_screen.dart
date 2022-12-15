@@ -89,10 +89,7 @@ class CashoutCardListScreen extends StatelessWidget {
                                   right: getHorizontalSize(cardListController.mainCardList.length-1==cardListController.selectedCard.value?20:0)),
                                   child: InkWell(
                                     onTap: () {
-                                      print("tappppppppppppppppppppppppppppppppppppppppppppppppppp ${cardListController.mainCardList.length} ${cardListController.selectedCard.value}");
-                                      //Get.toNamed(AppRoutes.topWithCreditCardScreen);
-                                  // cardListController.onTapOfListTile(context);
-                                      // Get.toNamed(AppRoutes.cardDetailListScreen);
+
                                       cardListController.selectCreditCard(index);
 
                                     },
