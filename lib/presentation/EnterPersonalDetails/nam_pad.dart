@@ -208,7 +208,11 @@ buttonWidget(
       else if(type=='OTP'){
         if(controller.text.length <=5){
           controller.text += number;
-        }}}
+        }} else if(type=='OTP4'){
+        if(controller.text.length <=3){
+          controller.text += number;
+        }}
+      }
     },
     child: Container(
       height: MediaQuery.of(context).size.height / 18,

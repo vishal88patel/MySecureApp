@@ -19,39 +19,44 @@ class EnterPasswordScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
-            child: Container(
-                height: size.height,
-                child: Stack(
-                  children: [
-                    SafeArea(
+          child: Container(
+              height: size.height,
+              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: getVerticalSize(20)),
+                    child: SafeArea(
                       child: Stack(
                         children: [
-                          Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: getVerticalSize(10),
-                                ),
-                                Row(
+                          Column( crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     InkWell(
-                                      onTap: (){
+                                      onTap: () {
                                         Get.back();
                                       },
                                       child: Container(
-                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                            border: Border.all(color: ColorConstant.backBorder)),
-                                        padding: EdgeInsets.all(10),
-                                        child: Icon(Icons.arrow_back_ios_new_outlined),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color:
+                                                ColorConstant.backBorder)),
+                                        padding: EdgeInsets.all(6),
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new_outlined,size: 22,),
                                       ),
                                     ),
                                     Text(
                                       "Enter your Password",
                                       style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.darkBlue,
+                                          color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
                                           fontSize: getFontSize(20)),
                                     ),
@@ -62,210 +67,112 @@ class EnterPasswordScreen extends StatelessWidget {
                                       child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
                                     ),                      ],
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(57),
-                                ),
-                                Center(
-                                  child: SvgPicture.asset(
-                                    "asset/icons/splash_image.svg",
+                              ),
+                              SizedBox(
+                                height: getVerticalSize(120),
+                              ),
 
-                                    fit: BoxFit.fill,
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(40),
-                                ),
 
-                                SizedBox(
-                                  height: getVerticalSize(5),
-                                ),
-                                Text(
-                                  "Please enter your password.",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.grey8F,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(18)),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(54),
-                                ),
-
-                                Obx(
-                                      () => AppTextField(
-                                    hintText: 'Enter Password ',
-                                    controller: enterPasswordController.passController,
-                                    isObsecure: enterPasswordController.PaasIsObsecure.value,
-                                    inputFormatters: [
-                                      LengthLimitingTextInputFormatter(15),
-                                    ],
-                                    suffixIcon: IconButton(
-                                      icon: Icon( enterPasswordController.PaasIsObsecure.value
-                                          ? Icons.visibility_off
-                                          : Icons.visibility
-                                        // Icons.visibility_off,
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        topLeft: Radius.circular(20),
                                       ),
-                                      color: ColorConstant.primaryAppTextF1,
-                                      iconSize: getSize(20),
-                                      onPressed: () {
-                                        print("oooooooooo");
-                                        enterPasswordController.onTapOfPassObsecure(
-                                            enterPasswordController
-                                                .PaasIsObsecure.value);
-                                      },
+                                      color:  ColorConstant.primaryWhite
+                                  ),
+
+                                  child: Padding(
+                                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        SizedBox(
+                                          height: getVerticalSize(90),
+                                        ),
+
+                                        Text(
+                                          "Please enter your password.",
+                                          style: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.grey8F,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: getFontSize(18)),
+                                        ),
+                                        SizedBox(
+                                          height: getVerticalSize(54),
+                                        ),
+
+                                        Obx(
+                                              () => AppTextField(
+                                            hintText: 'Enter Password ',
+                                            controller: enterPasswordController.passController,
+                                            isObsecure: enterPasswordController.PaasIsObsecure.value,
+                                            inputFormatters: [
+                                              LengthLimitingTextInputFormatter(15),
+                                            ],
+                                            suffixIcon: IconButton(
+                                              icon: Icon( enterPasswordController.PaasIsObsecure.value
+                                                  ? Icons.visibility_off
+                                                  : Icons.visibility
+                                                // Icons.visibility_off,
+                                              ),
+                                              color: ColorConstant.primaryAppTextF1,
+                                              iconSize: getSize(20),
+                                              onPressed: () {
+                                                print("oooooooooo");
+                                                enterPasswordController.onTapOfPassObsecure(
+                                                    enterPasswordController
+                                                        .PaasIsObsecure.value);
+                                              },
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: getVerticalSize(54),
+                                        ),
+
+                                        AppElevatedButton(
+                                            buttonName: 'Next',
+                                            textColor: ColorConstant.primaryWhite,
+                                            onPressed: () {
+                                              enterPasswordController.onTapOfNextButton();
+                                              // Get.to(
+                                              //   LoaderScreen("",AppRoutes.creatPasswordScreen),
+                                              //   transition: Transition.rightToLeft,
+                                              //   duration: Duration(milliseconds: 400),
+                                              // );
+                                            }),
+                                        SizedBox(
+                                          height: getVerticalSize(54),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(54),
-                                ),
+                              ),
 
-                                AppElevatedButton(
-                                    buttonName: 'Next',
-                                    textColor: ColorConstant.primaryWhite,
-                                    onPressed: () {
-                                      enterPasswordController.onTapOfNextButton();
-                                      // Get.to(
-                                      //   LoaderScreen("",AppRoutes.creatPasswordScreen),
-                                      //   transition: Transition.rightToLeft,
-                                      //   duration: Duration(milliseconds: 400),
-                                      // );
-                                    }),
-                                SizedBox(
-                                  height: getVerticalSize(54),
-                                ),
-                                AppElevatedButton(
-                                  buttonName: 'Forget Password',
-                                  onPressed: () {
-                                    Get.toNamed(AppRoutes.forgotPasswordScreen);
-                                  },
-                                ),
+                            ],
+                          ),
 
-                                SizedBox(
-                                  height: getVerticalSize(36),
-                                ),
-                              ],
+
+                          Positioned(right: 10,
+                            top: getVerticalSize(60),
+                            child: Center(
+                                child: Image.asset('asset/icons/birthDate_image.png',
+                                  height: getVerticalSize(220),)
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ))));
+                  )
+                ],
+              )),
+        ));
 
 
-      /*Scaffold(backgroundColor: ColorConstant.primaryBlack,
-        body: SingleChildScrollView(
-        child: Container(
-        height: size.height,
-        child: Stack(
-      children: [
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: getHorizontalSize(36.0),
-              vertical: getVerticalSize(26)),
-          child: SafeArea(
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap:(){
-                            Get.back();
-                          },
-                          child: Icon(
-                            Icons.arrow_back,
-                            color: ColorConstant.primaryWhite,
-                          ),
-                        ),
 
-                      ],
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(57),
-                    ),
-                    Text(
-                      "Enter your  \nPassword",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontWeight: FontWeight.w700,
-                          fontSize: getFontSize(32)),
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(5),
-                    ),
-                    Text(
-                      "Please enter your password",
-                      style: AppStyle.textStylePoppinsRegular.copyWith(
-                          color: ColorConstant.primaryAppTextF1,
-                          fontWeight: FontWeight.w400,
-                          fontSize: getFontSize(16)),
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(54),
-                    ),
-                    Obx(
-                          () => AppTextField(
-                        hintText: 'Enter Password ',
-                        controller: enterPasswordController.passController,
-                        isObsecure: enterPasswordController.PaasIsObsecure.value,
-                        maxLength: 15,
-                        suffixIcon: IconButton(
-                          icon: Icon( enterPasswordController.PaasIsObsecure.value
-                              ? Icons.visibility_off
-                              : Icons.visibility
-                            // Icons.visibility_off,
-                          ),
-                          color: ColorConstant.primaryAppTextF1,
-                          iconSize: getSize(20),
-                          onPressed: () {
-                            print("oooooooooo");
-                            enterPasswordController.onTapOfPassObsecure(
-                                enterPasswordController
-                                    .PaasIsObsecure.value);
-                          },
-                        ),
-                      ),
-                    ),
 
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-
-                    Spacer(),
-                    AppElevatedButton(
-                      radius: 5,
-                      buttonName: 'Next',
-                      onPressed: () {
-                        enterPasswordController.onTapOfNextButton();
-
-                      },
-                    ),
-
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    AppElevatedButton(
-                      radius: 5,
-                      buttonName: 'Forget Password',
-                      onPressed: () {
-                        enterPasswordController.onTapOfForgetPassButton();
-                      },
-                    ),
-
-                    SizedBox(
-                      height: getVerticalSize(40),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        )
-      ],
-    ))));*/
   }
 }

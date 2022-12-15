@@ -88,6 +88,7 @@ dependencies:
   animated_custom_dropdown: ^1.2.2
   accordion: ^2.5.1
   vibration: ^1.7.6
+  flutter_pin_code_fields: ^1.2.0
 
 
 

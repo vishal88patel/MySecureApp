@@ -21,22 +21,22 @@ class LoanEmailScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
-            child: Container(
-                height: size.height,
-                child: Stack(
-                  children: [
-                    SafeArea(
+          child: Container(
+              height: size.height,
+              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: getVerticalSize(20)),
+                    child: SafeArea(
                       child: Stack(
                         children: [
-                          Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: getVerticalSize(10),
-                                ),
-                                Row(
+                          Column( crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: [
                                     InkWell(
@@ -56,12 +56,11 @@ class LoanEmailScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Give us your Email and \nPhone Number",
+                                      "Give us your Email",
                                       style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.darkBlue,
+                                          color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
                                           fontSize: getFontSize(20)),
-                                      textAlign: TextAlign.center,
                                     ),
                                     Container(
                                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
@@ -70,81 +69,111 @@ class LoanEmailScreen extends StatelessWidget {
                                       child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
                                     ),                      ],
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(57),
-                                ),
-                                Center(
-                                  child: SvgPicture.asset(
-                                    "asset/icons/splash_image.svg",
+                              ),
+                              SizedBox(
+                                height: getVerticalSize(120),
+                              ),
 
-                                    fit: BoxFit.fill,
+
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        topLeft: Radius.circular(20),
+                                      ),
+                                      color:  ColorConstant.primaryWhite
+                                  ),
+
+                                  child: Padding(
+                                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                    child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        SizedBox(
+                                          height: getVerticalSize(120),
+                                        ),
+
+                                        Text(
+                                          "To apply, we need your email linked to \nyour app",
+                                          style: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.grey8F,
+                                              fontWeight: FontWeight.w400,
+                                              fontSize: getFontSize(18)),
+                                        ),
+                                        SizedBox(
+                                          height: getVerticalSize(54),
+                                        ),
+                                        SizedBox(
+                                            child: Obx(()
+                                            => AppTextField(
+                                              controller: loanCalculatorController.emailController,
+                                              keyBordType: TextInputType.emailAddress,
+                                              hintText: "Email",
+                                              readOnly:loanCalculatorController.isedit.value? false:true,
+                                              suffixIcon: IconButton(
+                                                icon: Icon(Icons.edit,
+                                                    color:ColorConstant.grey8F,
+                                                    size: getVerticalSize(20)),
+                                                onPressed: (){
+                                                  loanCalculatorController.editText();
+                                                },
+                                              ),
+                                            ),
+                                            )),
+
+                                        SizedBox(
+                                          height: getVerticalSize(26),
+                                        ),
+                                        // SizedBox(
+                                        //     child: AppTextField(
+                                        //       controller: loanCalculatorController.phoneController,
+                                        //       keyBordType: TextInputType.number,
+                                        //       hintText: "Phone Number",
+                                        //       inputFormatters: [
+                                        //         LengthLimitingTextInputFormatter(11),
+                                        //       ],
+                                        //     )),
+                                        Spacer(),
+                                        AppElevatedButton(
+                                            buttonName: 'Next',
+                                            radius: 5,
+                                            onPressed: () {
+                                              loanCalculatorController.onClickOfEmail();
+                                            }),
+                                        SizedBox(
+                                          height: getVerticalSize(36),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ),
-                                SizedBox(
-                                  height: getVerticalSize(40),
-                                ),
+                              ),
 
-                                SizedBox(
-                                  height: getVerticalSize(5),
-                                ),
-                                Text(
-                                  "To apply, we need your email linked to \nyour app",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.grey8F,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(18)),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(54),
-                                ),
-                                SizedBox(
-                                    child: Obx(()
-                                    => AppTextField(
-                                      controller: loanCalculatorController.emailController,
-                                      keyBordType: TextInputType.emailAddress,
-                                      hintText: "Email",
-                                      readOnly:loanCalculatorController.isedit.value? false:true,
-                                      suffixIcon: IconButton(
-                                        icon: Icon(Icons.edit,
-                                            color:ColorConstant.grey8F,
-                                            size: getVerticalSize(20)),
-                                        onPressed: (){
-                                          loanCalculatorController.editText();
-                                        },
-                                      ),
-                                    ),
-                                    )),
+                            ],
+                          ),
 
-                                SizedBox(
-                                  height: getVerticalSize(26),
-                                ),
-                                // SizedBox(
-                                //     child: AppTextField(
-                                //       controller: loanCalculatorController.phoneController,
-                                //       keyBordType: TextInputType.number,
-                                //       hintText: "Phone Number",
-                                //       inputFormatters: [
-                                //         LengthLimitingTextInputFormatter(11),
-                                //       ],
-                                //     )),
-                                Spacer(),
-                                AppElevatedButton(
-                                    buttonName: 'Next',
-                                    radius: 5,
-                                    onPressed: () {
-                                      loanCalculatorController.onClickOfEmail();
-                                    }),
-                                SizedBox(
-                                  height: getVerticalSize(36),
-                                ),
-                              ],
+
+                          Positioned(right: 10,
+                            top: getVerticalSize(60),
+                            child:Center(
+                                child: ClipRRect(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(100)),
+                                  child: Image.asset('asset/icons/employement_image.jpg',
+                                    height: getVerticalSize(220),),
+                                )
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ],
-                ))));
+                  )
+                ],
+              )),
+        ));
+
+
 
 
 

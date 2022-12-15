@@ -476,107 +476,178 @@ class KycSelectStepScreen extends StatelessWidget {
                                               barrierDismissible: true,
                                             );
 
-                                          }
                                         }
-                                      },
-                                      child: Obx(
-                                            () =>
-                                            Padding(
+                                      }
+                                    },
+                                    child: Obx(
+                                          () =>
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: getHorizontalSize(20),
+                                            ),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(16),
+                                                  color: ColorConstant.greyF9),
                                               padding: EdgeInsets.symmetric(
-                                                horizontal: getHorizontalSize(20),
-                                              ),
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                    BorderRadius.circular(16),
-                                                    color: ColorConstant.greyF9),
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: getHorizontalSize(
-                                                        20),
-                                                    vertical: getVerticalSize(
-                                                        20)),
-                                                child: Row(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                    crossAxisAlignment:
-                                                    CrossAxisAlignment.center,
-                                                    children: [
-                                                      Row(
+                                                  horizontal: getHorizontalSize(
+                                                      20),
+                                                  vertical: getVerticalSize(
+                                                      20)),
+                                              child: Row(
+                                                  mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                                  crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                                  children: [
+                                                    Row(
+                                                      children: [
+                                                        kycSelectStepController
+                                                            .isVerified ==
+                                                            "2" ||
+                                                            kycSelectStepController
+                                                                .isVerified ==
+                                                                "3" ||
+                                                            kycSelectStepController
+                                                                .isVerified ==
+                                                                "4"
+                                                            ? Image.asset(
+                                                          "asset/icons/ic_green_level.png",
+                                                          height:
+                                                          getVerticalSize(
+                                                              22),
+                                                          width:
+                                                          getHorizontalSize(
+                                                              22),
+                                                        )
+                                                            : Image.asset(
+                                                          "asset/icons/ic_grey_level.png",
+                                                          height:
+                                                          getVerticalSize(
+                                                              22),
+                                                          width:
+                                                          getHorizontalSize(
+                                                              22),
+                                                        ),
+                                                        SizedBox(
+                                                          width:
+                                                          getHorizontalSize(15),
+                                                        ),
+                                                        Text(
+                                                          "Level 2",
+                                                          style: AppStyle
+                                                              .textStyleDMSANS
+                                                              .copyWith(
+                                                              color: ColorConstant
+                                                                  .naturalBlack,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w500,
+                                                              fontSize:
+                                                              getFontSize(
+                                                                  20)),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    kycSelectStepController
+                                                        .isVerified ==
+                                                        "0"
+                                                        ? Icon(
+                                                      Icons.lock,
+                                                      color: ColorConstant
+                                                          .naturalGrey3,
+                                                      size:
+                                                      getVerticalSize(26),
+                                                    ): kycSelectStepController
+                                                        .isVerified ==
+                                                        "1"
+                                                        ?Icon(
+                                                      Icons.lock,
+                                                      color: ColorConstant
+                                                          .naturalGrey3,
+                                                      size:
+                                                      getVerticalSize(26),
+                                                    )
+                                                        : kycSelectStepController
+                                                        .isVerified ==
+                                                        "2"
+                                                        ? Row(
+                                                      children: [
+                                                        Text(
+                                                          "continue",
+                                                          style: AppStyle
+                                                              .textStyleDMSANS
+                                                              .copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryLightGreen,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w500,
+                                                              fontSize:
+                                                              getFontSize(
+                                                                  16)),
+                                                        ),
+                                                        Icon(
+                                                          Icons
+                                                              .arrow_forward_ios,
+                                                          color: ColorConstant
+                                                              .primaryLightGreen,
+                                                          size:
+                                                          getVerticalSize(
+                                                              20),
+                                                        ),
+                                                      ],
+                                                    )
+                                                        : kycSelectStepController
+                                                        .isVerified ==
+                                                        "3"
+                                                        ? Text(
+                                                      "pending",
+                                                      style: AppStyle
+                                                          .textStyleDMSANS
+                                                          .copyWith(
+                                                          color: ColorConstant
+                                                              .primaryLightGreen,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w500,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              16)),
+                                                    ): kycSelectStepController
+                                                        .isVerified ==
+                                                        "4"
+                                                        ? Text(
+                                                      "completed",
+                                                      style: AppStyle
+                                                          .textStyleDMSANS
+                                                          .copyWith(
+                                                          color: ColorConstant
+                                                              .primaryLightGreen,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w500,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              16)),
+                                                    )
+                                                        : Icon(
+                                                      Icons.lock,
+                                                      color: ColorConstant
+                                                          .naturalGrey3,
+                                                      size:
+                                                      getVerticalSize(
+                                                          26),
+                                                    ),
+                                                    /* kycSelectStepController
+                                                            .isVerified ==
+                                                        "2"
+                                                    ? Row(
                                                         children: [
-                                                          kycSelectStepController
-                                                              .isVerified ==
-                                                              "2" ||
-                                                              kycSelectStepController
-                                                                  .isVerified ==
-                                                                  "3" ||
-                                                              kycSelectStepController
-                                                                  .isVerified ==
-                                                                  "4"
-                                                              ? Image.asset(
-                                                            "asset/icons/ic_green_level.png",
-                                                            height:
-                                                            getVerticalSize(
-                                                                22),
-                                                            width:
-                                                            getHorizontalSize(
-                                                                22),
-                                                          )
-                                                              : Image.asset(
-                                                            "asset/icons/ic_grey_level.png",
-                                                            height:
-                                                            getVerticalSize(
-                                                                22),
-                                                            width:
-                                                            getHorizontalSize(
-                                                                22),
-                                                          ),
-                                                          SizedBox(
-                                                            width:
-                                                            getHorizontalSize(15),
-                                                          ),
-                                                          Text(
-                                                            "Level 2",
-                                                            style: AppStyle
-                                                                .textStyleDMSANS
-                                                                .copyWith(
-                                                                color: ColorConstant
-                                                                    .naturalBlack,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500,
-                                                                fontSize:
-                                                                getFontSize(
-                                                                    20)),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                      kycSelectStepController
-                                                          .isVerified ==
-                                                          "0"
-                                                          ? Icon(
-                                                        Icons.lock,
-                                                        color: ColorConstant
-                                                            .naturalGrey3,
-                                                        size:
-                                                        getVerticalSize(26),
-                                                      ): kycSelectStepController
-                                                          .isVerified ==
-                                                          "1"
-                                                          ?Icon(
-                                                        Icons.lock,
-                                                        color: ColorConstant
-                                                            .naturalGrey3,
-                                                        size:
-                                                        getVerticalSize(26),
-                                                      )
-                                                          : kycSelectStepController
-                                                          .isVerified ==
-                                                          "2"
-                                                          ? Row(
-                                                        children: [
-                                                          Text(
-                                                            "continue",
+                                                          kycSelectStepController.isVerified=="2"?Text(
+                                                            "completed",
                                                             style: AppStyle
                                                                 .textStyleDMSANS
                                                                 .copyWith(
@@ -588,126 +659,54 @@ class KycSelectStepScreen extends StatelessWidget {
                                                                 fontSize:
                                                                 getFontSize(
                                                                     16)),
-                                                          ),
-                                                          Icon(
-                                                            Icons
-                                                                .arrow_forward_ios,
-                                                            color: ColorConstant
-                                                                .primaryLightGreen,
-                                                            size:
-                                                            getVerticalSize(
-                                                                20),
-                                                          ),
+                                                          ):
+                                                          Row(
+                                                            children: [
+                                                              Text(
+                                                                "continue",
+                                                                style: AppStyle
+                                                                    .textStyleDMSANS
+                                                                    .copyWith(
+                                                                    color: ColorConstant
+                                                                        .primaryLightGreen,
+                                                                    fontWeight:
+                                                                    FontWeight
+                                                                        .w500,
+                                                                    fontSize:
+                                                                    getFontSize(
+                                                                        16)),
+                                                              ),
+                                                              Icon(
+                                                                Icons
+                                                                    .arrow_forward_ios,
+                                                                color: ColorConstant
+                                                                    .primaryLightGreen,
+                                                                size: getVerticalSize(
+                                                                    20),
+                                                              ),
+                                                            ],
+                                                          )
                                                         ],
                                                       )
-                                                          : kycSelectStepController
-                                                          .isVerified ==
-                                                          "3"
-                                                          ? Text(
-                                                        "pending",
-                                                        style: AppStyle
-                                                            .textStyleDMSANS
-                                                            .copyWith(
-                                                            color: ColorConstant
-                                                                .primaryLightGreen,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w500,
-                                                            fontSize:
-                                                            getFontSize(
-                                                                16)),
-                                                      ): kycSelectStepController
-                                                          .isVerified ==
-                                                          "4"
-                                                          ? Text(
-                                                        "completed",
-                                                        style: AppStyle
-                                                            .textStyleDMSANS
-                                                            .copyWith(
-                                                            color: ColorConstant
-                                                                .primaryLightGreen,
-                                                            fontWeight:
-                                                            FontWeight
-                                                                .w500,
-                                                            fontSize:
-                                                            getFontSize(
-                                                                16)),
-                                                      )
-                                                          : Icon(
+                                                    : Icon(
                                                         Icons.lock,
                                                         color: ColorConstant
-                                                            .naturalGrey3,
-                                                        size:
-                                                        getVerticalSize(
-                                                            26),
-                                                      ),
-                                                      /* kycSelectStepController
-                                                              .isVerified ==
-                                                          "2"
-                                                      ? Row(
-                                                          children: [
-                                                            kycSelectStepController.isVerified=="2"?Text(
-                                                              "completed",
-                                                              style: AppStyle
-                                                                  .textStyleDMSANS
-                                                                  .copyWith(
-                                                                  color: ColorConstant
-                                                                      .primaryLightGreen,
-                                                                  fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                                  fontSize:
-                                                                  getFontSize(
-                                                                      16)),
-                                                            ):
-                                                            Row(
-                                                              children: [
-                                                                Text(
-                                                                  "continue",
-                                                                  style: AppStyle
-                                                                      .textStyleDMSANS
-                                                                      .copyWith(
-                                                                      color: ColorConstant
-                                                                          .primaryLightGreen,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                      fontSize:
-                                                                      getFontSize(
-                                                                          16)),
-                                                                ),
-                                                                Icon(
-                                                                  Icons
-                                                                      .arrow_forward_ios,
-                                                                  color: ColorConstant
-                                                                      .primaryLightGreen,
-                                                                  size: getVerticalSize(
-                                                                      20),
-                                                                ),
-                                                              ],
-                                                            )
-                                                          ],
-                                                        )
-                                                      : Icon(
-                                                          Icons.lock,
-                                                          color: ColorConstant
-                                                              .primaryLightGreen,
-                                                          size: getVerticalSize(30),
-                                                        ),*/
-                                                    ]),
-                                              ),
+                                                            .primaryLightGreen,
+                                                        size: getVerticalSize(30),
+                                                      ),*/
+                                                  ]),
                                             ),
-                                      ),
+                                          ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
-                            )
-                          ],
-                        ),
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  )))),
-    );
+                    ),
+                  ],
+                ))));
   }
 }

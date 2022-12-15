@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/CashoutCardListScreen/cashout_pin_screen.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/binding/forgot_password_screen_binding.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_create_password.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_otp.dart';
@@ -165,6 +166,8 @@ class AppRoutes {
   static String cardListScreen = '/card_list_screen';
   static String cashoutCardBankScreen = '/cashout_card_bank_screen';
   static String cashoutCardListScreen = '/cashout_card_list_screen';
+  static String cashoutPinsScreen = '/cashout_pin_screen';
+
   static String cashoutBankListScreen = '/cashout_bank_list_screen';
   static String cashoutAmountScreen = '/cashout_amount_screen';
   static String bankDetailScreen = '/bank_detail_screen';
@@ -861,6 +864,16 @@ class AppRoutes {
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => CashoutCardListScreen(),
+      bindings: [
+        CashoutCardListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: cashoutPinsScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CashoutPinScreen(),
       bindings: [
         CashoutCardListScreenBinding(),
       ],

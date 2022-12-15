@@ -623,14 +623,14 @@ class CashoutAmountScreen extends StatelessWidget {
                                 ),
                                 Spacer(),
                                 PrefUtils.getString(StringConstants.IS_KYC_DONE) == "3"? Text(
-                                  "Your Kyc is Pending !!! Please Wait Until Approvel",
+                                  "Your Kyc is Pending !!! Please Wait Until Approval",
                                   style: AppStyle.DmSansFont
                                       .copyWith(
                                       color: ColorConstant.darkBlue,
                                       fontWeight: FontWeight.w500,
                                       fontSize: getFontSize(20)),
                                 ):Text(
-                                  "Please Complete your kyc to preoceed with your cash out",
+                                  "Please Complete your kyc to proceed with your cash out",
                                   style: AppStyle.DmSansFont
                                       .copyWith(
                                       color: ColorConstant.darkBlue,
@@ -644,8 +644,8 @@ class CashoutAmountScreen extends StatelessWidget {
                                     buttonName: 'Proceed to Kyc',
                                     radius: 5,
                                     onPressed: () {
-                                      Get.toNamed(AppRoutes.kycEmailScreen);
-
+                                      PrefUtils.getString(StringConstants.IS_KYC_DONE)=="0"?
+                                      Get.toNamed(AppRoutes.kycEmailScreen):Get.toNamed(AppRoutes.kycSelectStepScreen);
                                     }),
                                 SizedBox(
                                   height: getVerticalSize(20),
@@ -662,8 +662,8 @@ class CashoutAmountScreen extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Lottie.asset('asset/animations/loan_wallet.json',
-                                height: MediaQuery.of(context).size.height/2,
+                            Lottie.asset('asset/animations/red_error.json',
+                                width: MediaQuery.of(context).size.width/2,
                                 repeat: true
                             ),
                           ],
