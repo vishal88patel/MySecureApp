@@ -707,6 +707,6 @@ class KycSelectStepScreen extends StatelessWidget {
                       ),
                     ),
                   ],
-                ))));
+                )))));
   }
 }
