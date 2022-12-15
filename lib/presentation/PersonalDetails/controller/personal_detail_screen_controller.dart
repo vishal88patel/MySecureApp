@@ -264,7 +264,7 @@ class PersonalScreenController extends GetxController {
                     devicy_type: device_type,
                     middle_name:
                         enterLegalNameController.middleNameController.text,
-              cashtag: enterLegalNameController.secureTagController.text
+              cashtag: "\$"+enterLegalNameController.secureTagController.text
                   )
                 : await getRegisterBody(
                     type: loginController.emailController.text.isEmpty
@@ -301,7 +301,7 @@ class PersonalScreenController extends GetxController {
                     devicy_type: device_type,
                     middle_name:
                         enterLegalNameController.middleNameController.text,
-                cashtag: enterLegalNameController.secureTagController.text
+                cashtag: "\$"+enterLegalNameController.secureTagController.text
                   ),
             headerWithToken: false,
             url: ApiEndPoints.REGISTER)

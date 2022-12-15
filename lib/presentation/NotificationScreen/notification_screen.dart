@@ -22,72 +22,77 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
   Widget _buildItem(
       BuildContext context, NotiData item, Animation<double> animation) {
-    return Padding(
-      padding: EdgeInsets.all(2.0),
-      child: ScaleTransition(
-        child: Padding(
-          padding: EdgeInsets.only(
-              left: getHorizontalSize(20),
-              right: getHorizontalSize(20),
-              bottom: getVerticalSize(12)),
-          child: Row(
-            children: [
-              SvgPicture.asset(
-                "asset/icons/ic_row_notification.svg",
-                fit: BoxFit.fill,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: getHorizontalSize(18)),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Container(
-                      width: size.width / 1.7,
-                      child: Text(
-                        item.title.toString(),
+    return GestureDetector(
+      onTap: (){
+        notificationController. onClickOfNotificationTile(routeName: item.type.toString(),data: item.data.toString() );
+      },
+      child: Padding(
+        padding: EdgeInsets.all(2.0),
+        child: ScaleTransition(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: getHorizontalSize(20),
+                right: getHorizontalSize(20),
+                bottom: getVerticalSize(12)),
+            child: Row(
+              children: [
+                SvgPicture.asset(
+                  "asset/icons/ic_row_notification.svg",
+                  fit: BoxFit.fill,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: getHorizontalSize(18)),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Container(
+                        width: size.width / 1.7,
+                        child: Text(
+                          item.title.toString(),
+                          style: AppStyle.textStyleDMSANS.copyWith(
+                              color: ColorConstant.naturalBlack,
+                              fontWeight: FontWeight.w500,
+                              fontSize: getFontSize(16)),
+                        ),
+                      ),
+                      SizedBox(
+                        height: getVerticalSize(4),
+                      ),
+                      Text(
+                        getCustomFormattedDateTime(
+                            item.createdAt.toString(), 'MM-dd-yy  hh:mm'),
                         style: AppStyle.textStyleDMSANS.copyWith(
-                            color: ColorConstant.naturalBlack,
+                            color: ColorConstant.naturalGrey,
                             fontWeight: FontWeight.w500,
                             fontSize: getFontSize(16)),
                       ),
-                    ),
-                    SizedBox(
-                      height: getVerticalSize(4),
-                    ),
-                    Text(
-                      getCustomFormattedDateTime(
-                          item.createdAt.toString(), 'MM-dd-yy  hh:mm'),
-                      style: AppStyle.textStyleDMSANS.copyWith(
-                          color: ColorConstant.naturalGrey,
-                          fontWeight: FontWeight.w500,
-                          fontSize: getFontSize(16)),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 4,
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: ColorConstant.primaryLightGreen.withOpacity(0.3),
-                    borderRadius: BorderRadius.all(Radius.circular(10))),
-                padding:
-                    EdgeInsets.only(left: 10, right: 10, top: 6, bottom: 6),
-                child: Text(
-                  "Info",
-                  style: AppStyle.textStyleDMSANS.copyWith(
-                      color: ColorConstant.primaryLightGreen,
-                      fontWeight: FontWeight.w500,
-                      fontSize: getFontSize(16)),
+                SizedBox(
+                  width: 4,
                 ),
-              ),
-            ],
+                Container(
+                  decoration: BoxDecoration(
+                      color: ColorConstant.primaryLightGreen.withOpacity(0.3),
+                      borderRadius: BorderRadius.all(Radius.circular(10))),
+                  padding:
+                      EdgeInsets.only(left: 10, right: 10, top: 6, bottom: 6),
+                  child: Text(
+                    "Info",
+                    style: AppStyle.textStyleDMSANS.copyWith(
+                        color: ColorConstant.primaryLightGreen,
+                        fontWeight: FontWeight.w500,
+                        fontSize: getFontSize(16)),
+                  ),
+                ),
+              ],
+            ),
           ),
+          scale: animation,
         ),
-        scale: animation,
       ),
     );
   }

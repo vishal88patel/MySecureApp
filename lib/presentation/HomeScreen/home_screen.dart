@@ -11,6 +11,7 @@ import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import '../NotificationScreen/controller/notification_screen_controller.dart';
+import '../ScanScreen/controller/scan_screen_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
@@ -279,6 +280,7 @@ class HomeScreen extends StatelessWidget {
                               title: 'Apply For Loan',
                               iconName: 'asset/icons/ic_loan_home.png',
                               onTap: () {
+                                // scanController. controller?.pauseCamera();
                                 Get.toNamed(AppRoutes.loanApplyInfoScreen);
                               }),
                           PaymentListWidget(

@@ -21,8 +21,8 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
-  var scanController = Get.put(ScanScreenController());
-  // var scanController = Get.find<ScanScreenController>();
+  // var scanController = Get.put(ScanScreenController());
+  var scanController = Get.find<ScanScreenController>();
 
 
   Barcode? result;
@@ -32,12 +32,6 @@ class _ScanScreenState extends State<ScanScreen> {
   int? counter=0;
 
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
-
-  @override
-  void initState() {
-    // _initCamera();
-    super.initState();
-  }
 
   Future<void> _initCamera() async {
     Map<Permission, PermissionStatus> statuses = await [
