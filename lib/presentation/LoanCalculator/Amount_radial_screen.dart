@@ -102,9 +102,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                             .copyWith(
                                             fontSize: getFontSize(24),
                                             fontWeight: FontWeight.w700,
-                                            color: ColorConstant
-
-                                                .darkBlue),
+                                            color: ColorConstant.darkBlue),
                                       ),
                                     )
                                   ],

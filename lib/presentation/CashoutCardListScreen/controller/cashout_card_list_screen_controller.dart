@@ -24,9 +24,13 @@ class CashoutCardListScreenController extends GetxController {
   RxList mainCardList=[].obs;
   var getLinkedBankModel = GrtLinkedBank().obs;
   var selectedIndex=1000.obs;
+  var selectedCard= 0.obs;
   var arguments = Get.arguments;
+
   var type = "";
   var amountNumPadController = Get.put(CashOutAmountNumPadScreenController());
+  final pinController = TextEditingController();
+
   @override
   void onReady() {
     super.onReady();
@@ -39,6 +43,11 @@ class CashoutCardListScreenController extends GetxController {
 
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
+  }
+
+
+  void selectCreditCard(var index){
+    selectedCard.value = index;
   }
   void getArguments() {
     if (arguments != null) {
@@ -299,39 +308,10 @@ class CashoutCardListScreenController extends GetxController {
       print(value);
       if (value['status']) {
         UIUtils.hideProgressDialog();
-        AwesomeDialog(
 
-            context: context,
-            dialogType: DialogType.ERROR,
-            animType: AnimType.RIGHSLIDE,
-            headerAnimationLoop: false,
-            title: 'Error',
-            desc:
-            'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
-            btnOkOnPress: () {
-              Get.offAllNamed(AppRoutes.dashBoardScreen,
-                  arguments: {"bottomTabCount": 0});
-            },
-            btnOkIcon: Icons.cancel,
-            btnOkColor: Colors.red)
-          ..show();
       } else {
         UIUtils.hideProgressDialog();
-        AwesomeDialog(
-            context: context,
-            dialogType: DialogType.ERROR,
-            animType: AnimType.RIGHSLIDE,
-            headerAnimationLoop: false,
-            title: 'Error',
-            desc:
-            'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
-            btnOkOnPress: () {
-              Get.offAllNamed(AppRoutes.dashBoardScreen,
-                  arguments: {"bottomTabCount": 0});
-            },
-            btnOkIcon: Icons.cancel,
-            btnOkColor: Colors.red)
-          ..show();
+
       }
     });
   }
