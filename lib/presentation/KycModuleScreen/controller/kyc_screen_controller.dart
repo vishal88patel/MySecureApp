@@ -68,7 +68,7 @@ class KycScreenController extends GetxController {
   Future<void> sendOtpEmailApi() async {
     ApiService()
         .callPostApi(
-        body: await getBodyEmail(emailController.text),
+        body: await getBodyEmail(emailController.text,"1",""),
         headerWithToken: true,
         url: ApiEndPoints.SEND_OTP_ON_EMAIL)
         .then((value) {
@@ -85,10 +85,31 @@ class KycScreenController extends GetxController {
     });
   }
 
-  Future<FormData> getBodyEmail(String text) async {
-    final form = FormData({"email": text});
+  Future<FormData> getBodyEmail(String email,String type,String number) async {
+    final form = FormData({"email": email,"type": type,"mobile": type});
     print(form.toString());
     return form;
+  }
+
+  Future<void> sendOtpPhoneApi() async {
+    ApiService()
+        .callPostApi(
+        body: await getBodyEmail("","2",phoneNumberController.text),
+        headerWithToken: true,
+        showLoader: false,
+        url: ApiEndPoints.SEND_OTP_ON_EMAIL)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        kycFrom.value=2;
+        /*UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.SUCCESS);*/
+        //Get.toNamed(AppRoutes.kycOtpScreen);
+      } else {
+        /*UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);*/
+      }
+    });
   }
 
   void onClickGetOtp(BuildContext context) async {
@@ -112,6 +133,7 @@ class KycScreenController extends GetxController {
           .replaceAll('-', '')
           .replaceRange(5, 7, '');
       log('sdfkksafkakksfh ${number}');
+      sendOtpPhoneApi();
       auth.verifyPhoneNumber(
           phoneNumber: phoneNumberController.text,
           verificationCompleted: (PhoneAuthCredential credential) async {

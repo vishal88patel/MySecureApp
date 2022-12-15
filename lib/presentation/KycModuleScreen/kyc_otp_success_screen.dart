@@ -16,105 +16,157 @@ class KycOtpSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorConstant.darkBlue,
         body: SingleChildScrollView(
           child: Container(
             height: size.height,
-            child: Stack(
-              children: [
-                Image.asset('asset/icons/background_image.png',
-                    fit: BoxFit.cover,width: double.infinity),
-                SafeArea(
-                  child: Stack(
+            child: SafeArea(
+              child: Stack(
+                children: [
+                  Column(crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Column(crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                            child: Column( crossAxisAlignment: CrossAxisAlignment.start,
+                      Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                        child: Column( crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              height: getVerticalSize(10),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                SizedBox(
-                                  height: getVerticalSize(10),
+                                InkWell(
+                                  onTap: () {
+                                    Get.back();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(12),
+                                        border: Border.all(color: ColorConstant.primaryWhite.withOpacity(0.3))),
+                                    padding: EdgeInsets.all(6),
+                                    child: Icon(
+                                        Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.primaryWhite),
+                                  ),
                                 ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Get.back();
-                                      },
-                                      child: Container(
+                                Text(
+                                  "",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.primaryWhite,
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: getFontSize(20)),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                      border: Border.all(color: Colors.transparent)),
+                                  padding: EdgeInsets.all(10),
+                                  child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                ),                      ],
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                            horizontal: getHorizontalSize(40)),
+                        child: Center(
+                          child: Material(
+                            color: Colors.transparent,
+                            child: Wrap(
+                              children: [
+                                Container(
+                                  decoration: BoxDecoration(
+                                      color: ColorConstant
+                                          .primaryWhite,
+                                      borderRadius:
+                                      const BorderRadius.all(
+                                          Radius.circular(15))),
+                                  margin: const EdgeInsets.only(
+                                      bottom: 20),
+                                  padding: const EdgeInsets.only(
+                                    bottom: 20,
+                                  ),
+                                  constraints: const BoxConstraints(
+                                      minWidth: 180),
+                                  child: Column(
+                                    children: [
+                                      Container(
                                         decoration: BoxDecoration(
+                                            color:
+                                            Color(0xFFF4F4F6),
                                             borderRadius:
-                                            BorderRadius.circular(12),
-                                            border: Border.all(color: ColorConstant.primaryWhite.withOpacity(0.3))),
-                                        padding: EdgeInsets.all(6),
-                                        child: Icon(
-                                            Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.primaryWhite),
+                                            const BorderRadius
+                                                .all(
+                                                Radius.circular(
+                                                    15))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment
+                                                .center,
+                                            children: [
+                                              Image.asset(
+                                                "asset/icons/img_success_check.png",
+                                                height: 100,
+                                                width: 100,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "",
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(20)),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                          border: Border.all(color: Colors.transparent)),
-                                      padding: EdgeInsets.all(10),
-                                      child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
-                                    ),                      ],
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Container(
+                                          padding: const EdgeInsets
+                                              .fromLTRB(
+                                              10, 10, 10, 10),
+                                          child: Text(
+                                            "OTP Verified Successfully, Now you proceed for Documentation and Identity Verification Level-2",
+                                            textAlign:
+                                            TextAlign.center,
+                                            style: AppStyle
+                                                .DmSansFont
+                                                .copyWith(
+                                                fontSize: getFontSize(20),
+                                                color:
+                                                ColorConstant
+                                                    .darkBlue,
+                                                fontWeight:
+                                                FontWeight
+                                                    .bold),
+                                          )),
+                                      const SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ],
                             ),
                           ),
-                          Spacer(),
-                          Padding(
-                            padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(30)),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: Colors.transparent,
-                                  borderRadius: BorderRadius.all(
-                                      Radius.circular(24)),border: Border.all(color: ColorConstant.primaryLightGreen)
-                              ),
-                              child: Padding(
-                                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20),vertical: getVerticalSize(40)),
-                                child: Column(
-                                  children: [
-                                    Lottie.asset('asset/animations/98621-success-status.json',
-                                        height: getVerticalSize(200)),
-                                    SizedBox(height: getVerticalSize(20),),
-                                    Text('OTP verified successfully now your proceed for documentation and KYC',
-                                      style: AppStyle.textStyleDMSANS
-                                          .copyWith(color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w400,fontSize: getFontSize(22)),textAlign: TextAlign.center,),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-
-                          Spacer(),
-
-                          Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                            child: AppElevatedButton(
-                              buttonName: 'Continue',
-                              onPressed: () {
-                                Get.toNamed(AppRoutes.kycSelectStepScreen);
-                              },
-                            ),
-                          ),
-                          SizedBox(height: getVerticalSize(32),),
-
-                        ],
+                        ),
                       ),
+                      Spacer(),
+
+                      Padding(
+                        padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                        child: AppElevatedButton(
+                          buttonName: 'Continue',
+                          onPressed: () {
+                            Get.toNamed(AppRoutes.kycSelectStepScreen);
+                          },
+                        ),
+                      ),
+                      SizedBox(height: getVerticalSize(32),),
+
                     ],
                   ),
-                )
-              ],
+                ],
+              ),
             ),
           ),
         ));

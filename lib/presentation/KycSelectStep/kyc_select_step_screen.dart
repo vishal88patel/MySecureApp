@@ -511,7 +511,7 @@ class KycSelectStepScreen extends StatelessWidget {
                                                                 .isVerified ==
                                                                 "4"
                                                             ? Image.asset(
-                                                          "asset/icons/ic_green_level.png",
+                                                          "asset/icons/ic_green_level2.png",
                                                           height:
                                                           getVerticalSize(
                                                               22),
