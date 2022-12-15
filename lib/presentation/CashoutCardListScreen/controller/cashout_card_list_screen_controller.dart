@@ -14,6 +14,7 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_controller.dart';
+import '../../CashoutAmountScreen/controller/cashout_amount_scareen_controller.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
 import '../cashout_failed_screen.dart';
 import '../model/cashout_card_list_response_model.dart';
@@ -30,7 +31,9 @@ class CashoutCardListScreenController extends GetxController {
   var arguments = Get.arguments;
 
   var type = "";
-  var amountNumPadController = Get.put(CashOutAmountNumPadScreenController());
+  var amountNumPadController =
+  Get.find<CashoutAmountController>();
+
   final pinController = TextEditingController();
 
   @override
