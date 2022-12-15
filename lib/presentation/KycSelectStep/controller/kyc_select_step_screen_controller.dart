@@ -24,4 +24,9 @@ class KycSelectStepController extends GetxController {
     super.onClose();
   }
 
+  goToHome() {
+    Get.offAllNamed(AppRoutes.dashBoardScreen,
+        arguments: {"bottomTabCount": 0});
+  }
+
 }

@@ -36,6 +36,7 @@ class ScanScreenController extends GetxController {
   var isFirstOpen = false.obs;
   var balance="00000".obs;
   var walletModel=GetWallet().obs;
+  var arguments = Get.arguments;
 
 
   @override
@@ -45,12 +46,26 @@ class ScanScreenController extends GetxController {
 
   @override
   void onInit() {
+    getArguments();
+
     // cameraStart();
-    final now = new DateTime.now();
-    date.value = DateFormat.yMMMMd('en_US').format(now).toString();
-    callGetWalletApi(pageNo: 1);
+
     super.onInit();
 
+  }
+  void getArguments() {
+    if (arguments['uuid'] != null && arguments['amount'] != null) {
+      qrCodeResult.value = arguments['uuid'];
+      amountController.text = arguments['amount'];
+      final now = new DateTime.now();
+      date.value = DateFormat.yMMMMd('en_US').format(now).toString();
+      callGetUuidApi();
+
+    }else{
+      final now = new DateTime.now();
+      date.value = DateFormat.yMMMMd('en_US').format(now).toString();
+      callGetWalletApi(pageNo: 1);
+    }
   }
   Future<void> cameraStart() async {
     Future.delayed(Duration(milliseconds: 100), () {

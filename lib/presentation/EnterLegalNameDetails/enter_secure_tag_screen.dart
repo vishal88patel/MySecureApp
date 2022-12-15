@@ -20,7 +20,7 @@ class EnterSecureTagScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
           child: Container(
@@ -34,12 +34,14 @@ class EnterSecureTagScreen extends StatelessWidget {
                     child: SafeArea(
                       child: Stack(
                         children: [
-                          Column( crossAxisAlignment: CrossAxisAlignment.start,
+                          Column(crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Padding(
-                                padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getHorizontalSize(20)),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceBetween,
                                   children: [
 
                                     InkWell(
@@ -55,7 +57,8 @@ class EnterSecureTagScreen extends StatelessWidget {
                                                 ColorConstant.backBorder)),
                                         padding: EdgeInsets.all(6),
                                         child: Icon(
-                                          Icons.arrow_back_ios_new_outlined,size: 22,),
+                                          Icons.arrow_back_ios_new_outlined,
+                                          size: 22,),
                                       ),
                                     ),
                                     Text(
@@ -66,11 +69,17 @@ class EnterSecureTagScreen extends StatelessWidget {
                                           fontSize: getFontSize(20)),
                                     ),
                                     Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                          border: Border.all(color: Colors.transparent)),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              12),
+                                          border: Border.all(
+                                              color: Colors.transparent)),
                                       padding: EdgeInsets.all(10),
-                                      child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
-                                    ),                      ],
+                                      child: Icon(
+                                        Icons.arrow_back_ios_new_outlined,
+                                        color: Colors.transparent,),
+                                    ),
+                                  ],
                                 ),
                               ),
                               SizedBox(
@@ -85,7 +94,7 @@ class EnterSecureTagScreen extends StatelessWidget {
                                         topRight: Radius.circular(20),
                                         topLeft: Radius.circular(20),
                                       ),
-                                      color:  ColorConstant.primaryWhite
+                                      color: ColorConstant.primaryWhite
                                   ),
 
                                   child: Column(
@@ -95,13 +104,16 @@ class EnterSecureTagScreen extends StatelessWidget {
                                         height: getVerticalSize(130),
                                       ),
                                       Padding(
-                                        padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: getHorizontalSize(20)),
                                         child: Column(
-                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          crossAxisAlignment: CrossAxisAlignment
+                                              .start,
                                           children: [
                                             Text(
                                               "Your unique name for getting paid by anyone",
-                                              style: AppStyle.DmSansFont.copyWith(
+                                              style: AppStyle.DmSansFont
+                                                  .copyWith(
                                                   color: ColorConstant.grey8F,
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: getFontSize(18)),
@@ -110,9 +122,26 @@ class EnterSecureTagScreen extends StatelessWidget {
                                             SizedBox(
                                               height: getVerticalSize(30),
                                             ),
-                                            AppTextField(
-                                                hintText: '\$ SecureTag',
-                                                controller: enterLegelNameController.secureTagController),
+                                            Row(
+                                              children: [
+                                                Container(
+                                                  width:12,
+                                                  child: AppTextField(
+                                                      hintText: '',
+                                                    controller:enterLegelNameController.dollarController,
+                                                    readOnly: true,
+                                                    fontSize: 22,
+                                                      ),
+                                                ),
+                                                Expanded(
+                                                  child: AppTextField(
+                                                      hintText: 'SecureTag',
+                                                      fontSize: 22,
+                                                      controller: enterLegelNameController.secureTagController),
+                                                ),
+
+                                              ],
+                                            ),
 
                                             SizedBox(
                                               height: getVerticalSize(54),
@@ -121,12 +150,15 @@ class EnterSecureTagScreen extends StatelessWidget {
                                               buttonName: 'Next',
                                               onPressed: () {
                                                 if (enterLegelNameController
-                                                    .secureTagController.text.isEmpty) {
+                                                    .secureTagController.text
+                                                    .isEmpty) {
                                                   UIUtils.showSnakBar(
                                                       bodyText: "Please enter your SecureTag",
-                                                      headerText: StringConstants.ERROR);
+                                                      headerText: StringConstants
+                                                          .ERROR);
                                                 } else {
-                                                  enterLegelNameController.  checkCashTagValidation();
+                                                  enterLegelNameController
+                                                      .checkCashTagValidation();
                                                   // Get.to(()=>
                                                   //     LoaderScreen(AppRoutes.enterAddressScreen),
                                                   //     transition: Transition.rightToLeft);
@@ -156,7 +188,8 @@ class EnterSecureTagScreen extends StatelessWidget {
                                 child: ClipRRect(
                                   borderRadius:
                                   BorderRadius.all(Radius.circular(100)),
-                                  child: Image.asset('asset/icons/name_image.jpg',
+                                  child: Image.asset(
+                                    'asset/icons/name_image.jpg',
                                     height: getVerticalSize(220),),
                                 )
                             ),
@@ -168,6 +201,5 @@ class EnterSecureTagScreen extends StatelessWidget {
                 ],
               )),
         ));
-
   }
 }

@@ -15,6 +15,7 @@ class EnterLegalNameScreenController extends GetxController {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController middleNameController = TextEditingController();
   TextEditingController secureTagController = TextEditingController();
+  TextEditingController dollarController = TextEditingController(text: "\$");
 
 
 
@@ -25,7 +26,6 @@ class EnterLegalNameScreenController extends GetxController {
 
   @override
   void onInit() {
-    secureTagController = TextEditingController(text: '\$');
     super.onInit();
   }
 

@@ -674,7 +674,7 @@ class ScanSummaryScreen extends StatelessWidget {
   }
 }
 
-class AccordionPage extends StatelessWidget //__
+class AccordionPage extends StatelessWidget
 {
   const AccordionPage({Key? key}) : super(key: key);
 
@@ -853,4 +853,4 @@ class AccordionPage extends StatelessWidget //__
           ],
         ),
       );
-} //__
+}

@@ -15,6 +15,7 @@ import 'controller/dashboard_screen_controller.dart';
 
 class DashBoardScreen extends StatelessWidget {
   var dashBoardController = Get.find<DashBoardScreenController>();
+  // var scanController = Get.find<ScanScreenController>();
   var scanController = Get.put(ScanScreenController());
 
 
