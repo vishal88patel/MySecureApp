@@ -109,6 +109,7 @@ class RequestMoneyScreen extends StatelessWidget {
                                         padding: EdgeInsets.only(left: 10),
                                         child: GestureDetector(
                                           onTap: (){
+                                            FocusManager.instance.primaryFocus?.unfocus();
                                             requestMoneyScreenController.toController.text=requestMoneyScreenController.recentTransactionList.value[index].cashtag.toString();
                                             Future.delayed(Duration(milliseconds: 100), () {
                                               requestMoneyScreenController.GetCashtagUserApi();

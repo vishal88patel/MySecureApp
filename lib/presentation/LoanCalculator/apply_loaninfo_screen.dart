@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:lottie/lottie.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../routes/app_routes.dart';
@@ -86,12 +87,9 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                               fontSize: getFontSize(22)),
                                     ),
                                   ),
-                                  SizedBox(
-                                    height: getVerticalSize(100),
-                                  ),
-                                  Image.asset('asset/icons/error_image.png'),
+                                  Spacer(),
                                   Text(
-                                    "Please Complete your Identity Verification Level - 1 to proceed with your loan application.",
+                                    "Thanks for making an interest in loan please proceed with the details.",
                                     style: AppStyle.DmSansFont
                                         .copyWith(
                                         color: ColorConstant.darkBlue,
@@ -103,7 +101,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                     height: getVerticalSize(50),
                                   ),
                                   AppElevatedButton(
-                                      buttonName: 'Proceed to Identity Verification',
+                                      buttonName: 'Proceed to Loan',
                                       radius: 10,
                                       onPressed: () {
                                           Get.toNamed(AppRoutes.loanFnameScreen);
@@ -120,7 +118,20 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Lottie.asset('asset/animations/loan_wallet.json',
+                                  height: MediaQuery.of(context).size.height/2,
+                                repeat: true
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ))):
             SingleChildScrollView(
@@ -153,14 +164,14 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                   ),
                                   Spacer(),
                                   PrefUtils.getString(StringConstants.IS_KYC_DONE) == "1"? Text(
-                                    "Your Kyc is Pending !!! Please Wait Until Approvel",
+                                    "Your Kyc is Pending !!! Please Wait Until Approval",
                                     style: AppStyle.DmSansFont
                                         .copyWith(
                                         color: ColorConstant.darkBlue,
                                         fontWeight: FontWeight.w500,
                                         fontSize: getFontSize(20)),
                                   ):Text(
-                                    "Please Complete your kyc to preoceed with your loan application",
+                                    "Please Complete your kyc to proceed with your loan application",
                                     style: AppStyle.DmSansFont
                                         .copyWith(
                                         color: ColorConstant.darkBlue,
@@ -186,7 +197,21 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Lottie.asset('asset/animations/red_error.json',
+                                  height: MediaQuery.of(context).size.height/2,
+                                  width: MediaQuery.of(context).size.width/2,
+                                  repeat: true
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ],
                   ))),
         ));
