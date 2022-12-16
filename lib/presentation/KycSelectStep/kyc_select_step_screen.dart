@@ -338,7 +338,7 @@ class KycSelectStepScreen extends StatelessWidget {
                                                               Container(
                                                                   padding: const EdgeInsets
                                                                       .fromLTRB(
-                                                                      0, 10, 0, 0),
+                                                                      10, 10, 10, 0),
                                                                   child: Text(
                                                                     "Your Kyc is Pending!!! we will notify you once it approved",
                                                                     textAlign:
@@ -360,7 +360,10 @@ class KycSelectStepScreen extends StatelessWidget {
                                               ),
                                               barrierDismissible: true,
                                             );
-                                          }else{
+                                          }else if(kycSelectStepController.isVerified ==
+                                              "4"){
+
+                                        }else{
                                             Get.dialog(
                                               Padding(
                                                 padding: EdgeInsets.symmetric(
@@ -453,7 +456,7 @@ class KycSelectStepScreen extends StatelessWidget {
                                                               Container(
                                                                   padding: const EdgeInsets
                                                                       .fromLTRB(
-                                                                      0, 10, 0, 0),
+                                                                      10, 10, 10, 0),
                                                                   child: Text(
                                                                     "Level 2 is locked, to unlock it\nfirst complete level 1.",
                                                                     textAlign:
@@ -475,8 +478,7 @@ class KycSelectStepScreen extends StatelessWidget {
                                               ),
                                               barrierDismissible: true,
                                             );
-
-                                        }
+                                          }
                                       }
                                     },
                                     child: Obx(

@@ -125,7 +125,7 @@ class KycOtpSuccessScreen extends StatelessWidget {
                                               .fromLTRB(
                                               10, 10, 10, 10),
                                           child: Text(
-                                            "OTP Verified Successfully, Now you proceed for Documentation and Identity Verification Level-2",
+                                            "OTP Verified Successfully, Now you proceed for Documentation and Identity Verification",
                                             textAlign:
                                             TextAlign.center,
                                             style: AppStyle

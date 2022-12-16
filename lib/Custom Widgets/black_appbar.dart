@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
@@ -7,18 +9,15 @@ import '../App Configurations/color_constants.dart';
 
 class BlackAppBar extends StatelessWidget {
   final String title;
-  final String icon1;
   final String icon2;
-  final bool icon1pass;
-  final bool icon2pass;
+  final bool icon1show;
   final void Function() onPressedIcon1;
-  final void Function() onPressedIcon2;
 
 
   const BlackAppBar({Key? key,
     required this.title,
-    required this.icon1, required this.icon2, required this.onPressedIcon1,
-    required this.onPressedIcon2, required this.icon1pass, required this.icon2pass,}) : super(key: key);
+   required this.icon2, required this.onPressedIcon1,
+     required this.icon1show,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,29 +31,30 @@ class BlackAppBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              InkWell(
-                onTap: onPressedIcon1,
-                child: SvgPicture.asset(
-                  icon1.toString(),
-                  fit: BoxFit.fill,
-                  height: getVerticalSize(42),
+              icon1show?InkWell(
+                onTap: () {
+                  onPressedIcon1==null?Get.back():onPressedIcon1;
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius:
+                      BorderRadius.circular(12),
+                      border: Border.all(
+                          color:
+                          ColorConstant.backBorder)),
+                  padding: EdgeInsets.all(6),
+                  child: Icon(
+                    Icons.arrow_back_ios_new_outlined,size: 22,),
                 ),
-              ),
+              ):Container(height: getVerticalSize(42),width: getHorizontalSize(42),),
               Text(
                 title.toString(),
                 style: AppStyle.textStyleDMSANS.copyWith(
                     color: ColorConstant.naturalBlack,
                     fontWeight: FontWeight.w700,
-                    fontSize: getFontSize(24)),
+                    fontSize: getFontSize(20)),
               ),
-              InkWell(
-                onTap: onPressedIcon2,
-                child: SvgPicture.asset(
-                  icon2.toString(),
-                  fit: BoxFit.fill,
-                  height: getVerticalSize(40),
-                ),
-              ),
+              Container(height: getVerticalSize(42),width: getHorizontalSize(42),),
             ],
           ),
         ),
