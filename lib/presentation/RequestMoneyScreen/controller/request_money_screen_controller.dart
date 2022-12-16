@@ -79,7 +79,7 @@ class RequestMoneyScreenController extends GetxController {
     Get.toNamed(AppRoutes.requestToScreen);
   }
 
-  void onTapPayButton(){
+  /*void onTapPayButton(){
     if(int.parse(balance.value)<int.parse(amountCtrl.text)){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
@@ -89,7 +89,7 @@ class RequestMoneyScreenController extends GetxController {
       Get.toNamed(AppRoutes.requestSummeryScreen);
 
     }
-  }
+  }*/
 
   void onTapOfprocessToPay(){
     if (selectedMethod.value =="Select Payment Method" ||selectedMethod.value.isEmpty) {

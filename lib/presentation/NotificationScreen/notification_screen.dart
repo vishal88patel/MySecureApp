@@ -151,28 +151,31 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         SizedBox(
                           height: 8,
                         ),
-                        InkWell(
-                          onTap: () {
-                            if(notificationController.list.value!=null && notificationController.list.value.isNotEmpty ){
-                              _removeAllItems();
-                            }
-                          },
-                          child: Container(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                Text(
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              InkWell(
+                                onTap: (){
+                                  if(notificationController.list.value!=null && notificationController.list.value.isNotEmpty ){
+                                    _removeAllItems();
+                                  }
+                                },
+                                child: Text(
                                   "Mark as read",
                                   style: AppStyle.DmSansFont.copyWith(
                                       color: ColorConstant.primaryDarkGreen,
                                       fontSize: getFontSize(20)),
                                 ),
-                                SizedBox(
-                                  width: 12,
-                                )
-                              ],
-                            ),
+                              ),
+                              SizedBox(
+                                width: 14,
+                              )
+                            ],
                           ),
+                        ),
+                        SizedBox(
+                          height: getVerticalSize(12),
                         ),
                         Expanded(
                             child: Obx(

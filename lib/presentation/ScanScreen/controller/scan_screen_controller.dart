@@ -167,9 +167,15 @@ class ScanScreenController extends GetxController {
     if (passController.text.isEmpty) {
       UIUtils.showSnakBar(
         headerText: StringConstants.ERROR,
-        bodyText: "Please enter password",
+        bodyText: "Please Enter PIN",
       );
-    } else {
+    }else if(passController.text.length<4){
+      UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please Enter 4 Digit PIN",
+      );
+    }
+    else {
       callTransactionApi();
     }
   }

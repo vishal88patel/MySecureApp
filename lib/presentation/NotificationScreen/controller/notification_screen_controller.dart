@@ -14,6 +14,7 @@ import '../Model/notification_response_model.dart';
 class NotificationScreenController extends GetxController {
   var notificationModel = NotificationResponseModel().obs;
   var globalNotificationCount = 0.obs;
+  RxList originallist = [].obs;
   RxList list = [].obs;
   var isLoading = false.obs;
 
@@ -49,8 +50,10 @@ class NotificationScreenController extends GetxController {
         isLoading.value = false;
         notificationModel.value = NotificationResponseModel.fromJson(value);
         globalNotificationCount.value = notificationModel.value.data!.length;
+        originallist.clear();
         list.clear();
-        list.addAll(notificationModel.value.data ?? []);
+        originallist.addAll(notificationModel.value.data ?? []);
+        list.value=originallist.reversed.toList();
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

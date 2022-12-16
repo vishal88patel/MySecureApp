@@ -183,16 +183,6 @@ class RequestMoneyAmountScreen extends StatelessWidget {
                                    requestMoneyScreenController.onTapReqButton();
                                 },),
                             ),
-                            SizedBox(width: getHorizontalSize(10),),
-                            Expanded(
-                              child: AppElevatedButton(buttonName: 'Pay',
-                                radius: 10,
-                                buttonColor: ColorConstant.primaryLightGreen,
-                                onPressed: () {
-                                  requestMoneyScreenController.onTapPayButton();
-
-                                },),
-                            ),
                           ],
                         ),
                       ),

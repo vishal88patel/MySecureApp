@@ -91,6 +91,10 @@ class SelfieScreenState extends State<SelfieScreen>
             ClipPath(
                 clipper: Clip(),
                 child:_buildCameraPreview(),),
+            Center(child: Padding(
+              padding: EdgeInsets.only(bottom:getVerticalSize(150),right: getHorizontalSize(8)),
+              child: Image.asset("asset/icons/img_face.png",height: getVerticalSize(500),color: ColorConstant.primaryDarkGreen,),
+            )),
             Column(
               children: [
                 SizedBox(
@@ -370,7 +374,7 @@ class Clip extends CustomClipper<Path>{
   getClip(Size size) {
     print(size);
     Path path = Path()
-      ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(25, size.height/5.5, size.width-50, size.height/1.75), Radius.circular(100000)));
+      ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(25, size.height/5.5, size.width-50, size.height/1.9), Radius.circular(100000)));
     return path;
   }
 
