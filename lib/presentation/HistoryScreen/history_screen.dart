@@ -106,7 +106,7 @@ class HistoryScreen extends StatelessWidget {
                                           .walletModel.value.data!
                                           .userTransaction![index].amount
                                           .toString(),
-                                      image:"asset/icons/mg_image.png",
+                                      image:"asset/icons/img_history.png",
                                       status:historyController
                                           .walletModel.value.data!
                                           .userTransaction![index].status

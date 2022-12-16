@@ -84,11 +84,11 @@ class TopupCardListScreen extends StatelessWidget {
                               itemBuilder: (BuildContext context, int index) {
                                 return Obx(
                                       ()=> Padding(
-                                    padding: EdgeInsets.only(
-                                        top: getVerticalSize(cardListController.selectedCard.value==index?6.5:15),
-                                        bottom: getVerticalSize(cardListController.selectedCard.value==index?6.5:15),
-                                        left: getHorizontalSize(cardListController.mainCardList.length-1==cardListController.selectedCard.value?0:20),
-                                        right: getHorizontalSize(cardListController.mainCardList.length-1==cardListController.selectedCard.value?20:0)),
+                                        padding: EdgeInsets.only(
+                                            top: getVerticalSize(15),
+                                            bottom: getVerticalSize(15),
+                                            left: getHorizontalSize(15),
+                                            right: getHorizontalSize(15)),
                                     child: InkWell(
                                       onTap: () {
 

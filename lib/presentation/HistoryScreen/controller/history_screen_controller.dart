@@ -14,6 +14,7 @@ class HistoryScreenController extends GetxController {
   var walletModel=GetWallet().obs;
   var uuidModel=GetUuidDetail().obs;
   RxList transactionList=[].obs;
+  RxList list=[].obs;
   var pageNumber=1.obs;
   var lastPage=0.obs;
   var balance="".obs;
@@ -53,7 +54,8 @@ class HistoryScreenController extends GetxController {
         isPin.value= walletModel.value.data!.isPin!;
         lastPage.value= walletModel.value.data!.lastPage!;
         balance.value= walletModel.value.data!.walletBalance!;
-        transactionList.addAll(walletModel.value.data!.userTransaction??[]);
+        list.addAll(walletModel.value.data!.userTransaction??[]);
+        transactionList.value=list.reversed.toList();
         uuid.value= walletModel.value.data!.uuid!??"";
 
       } else {
