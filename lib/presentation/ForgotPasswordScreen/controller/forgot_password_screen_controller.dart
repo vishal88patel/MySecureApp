@@ -250,8 +250,14 @@ class ForgotPasswordScreenController extends GetxController {
         .then((value) {
       print(value);
       if (value['status']) {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.SUCCESS);
+        if(isOtp =='2'){
+          UIUtils.showSnakBar(
+              bodyText:'OTP Verified Successfully', headerText: StringConstants.SUCCESS);
+        }else{
+          UIUtils.showSnakBar(
+              bodyText: value['message'], headerText: StringConstants.SUCCESS);
+        }
+
         if(isOtp =='2'){
           Get.toNamed(AppRoutes.forgotCreatePasswordScreen);
         }else{

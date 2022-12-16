@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/TopUpCardListScreen/topup_failed_Screen.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../App Configurations/color_constants.dart';
@@ -25,6 +26,8 @@ class TopupCardListScreenController extends GetxController {
   var getLinkedBankModel = GrtLinkedBank().obs;
   var selectedIndex=1000.obs;
   var arguments = Get.arguments;
+  final pinController = TextEditingController();
+  var selectedCard= 0.obs;
   var type = "";
   var amountNumPadController = Get.put(CashOutAmountNumPadScreenController());
   @override
@@ -40,6 +43,11 @@ class TopupCardListScreenController extends GetxController {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
+
+  void selectCreditCard(var index){
+    selectedCard.value = index;
+  }
+
   void getArguments() {
     if (arguments != null) {
       type = arguments['TYPE'] ?? '';
@@ -299,39 +307,20 @@ class TopupCardListScreenController extends GetxController {
       print(value);
       if (value['status']) {
         UIUtils.hideProgressDialog();
-        AwesomeDialog(
-
-            context: context,
-            dialogType: DialogType.ERROR,
-            animType: AnimType.RIGHSLIDE,
-            headerAnimationLoop: false,
-            title: 'Error',
-            desc:
-            'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
-            btnOkOnPress: () {
-              Get.offAllNamed(AppRoutes.dashBoardScreen,
-                  arguments: {"bottomTabCount": 0});
-            },
-            btnOkIcon: Icons.cancel,
-            btnOkColor: Colors.red)
-          ..show();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  TopUpFailedScreen()),
+        );
       } else {
         UIUtils.hideProgressDialog();
-        AwesomeDialog(
-            context: context,
-            dialogType: DialogType.ERROR,
-            animType: AnimType.RIGHSLIDE,
-            headerAnimationLoop: false,
-            title: 'Error',
-            desc:
-            'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
-            btnOkOnPress: () {
-              Get.offAllNamed(AppRoutes.dashBoardScreen,
-                  arguments: {"bottomTabCount": 0});
-            },
-            btnOkIcon: Icons.cancel,
-            btnOkColor: Colors.red)
-          ..show();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  TopUpFailedScreen()),
+        );
       }
     });
   }
