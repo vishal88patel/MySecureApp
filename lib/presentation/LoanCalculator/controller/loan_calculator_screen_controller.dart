@@ -357,10 +357,6 @@ class LoanCalculatorScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter first address",
           headerText: StringConstants.ERROR);
-    } else if (address02Controller.text.isEmpty) {
-      UIUtils.showSnakBar(
-          bodyText: "Please enter second address",
-          headerText: StringConstants.ERROR);
     } else if (cityController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter city", headerText: StringConstants.ERROR);

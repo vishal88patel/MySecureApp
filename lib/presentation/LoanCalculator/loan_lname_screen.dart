@@ -128,7 +128,7 @@ class LoanLnameScreen extends StatelessWidget {
                                             buttonName: 'Next',
                                             radius: 5,
                                             onPressed: () {
-                                              loanCalculatorController.onClickOfLname();
+                                              //loanCalculatorController.onClickOfLname();
                                             }),
 
                                         SizedBox(
