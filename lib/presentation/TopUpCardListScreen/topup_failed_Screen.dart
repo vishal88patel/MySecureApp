@@ -25,9 +25,24 @@ class TopUpFailedScreen extends StatelessWidget {
           Column(
             children: [
               SizedBox(
-                height: 200,
+                height: 40,
               ),
-
+              Row(
+                children: [
+                  Text(
+                    "Receipt",
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.primaryWhite,
+                        fontWeight: FontWeight.w700,
+                        fontSize: getFontSize(30)),
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 130,
+              ),
               Container(
                 width: size.width,
                 child: SingleChildScrollView(

@@ -610,8 +610,42 @@ class CashoutAmountScreen extends StatelessWidget {
                               Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+
+                                      InkWell(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(12),
+                                              border: Border.all(
+                                                  color:
+                                                  ColorConstant.backBorder)),
+                                          padding: EdgeInsets.all(6),
+                                          child: Icon(
+                                            Icons.arrow_back_ios_new_outlined,size: 22,),
+                                        ),
+                                      ),
+                                      Text(
+                                        "",
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.primaryBlack,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getFontSize(20)),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                            border: Border.all(color: Colors.transparent)),
+                                        padding: EdgeInsets.all(10),
+                                        child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                      ),                      ],
+                                  ),
                                   SizedBox(
-                                    height: getVerticalSize(30),
+                                    height: getVerticalSize(10),
                                   ),
                                   Center(
                                     child: Text(
@@ -664,11 +698,15 @@ class CashoutAmountScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Lottie.asset('asset/animations/red_error.json',
-                                  width: MediaQuery.of(context).size.width/2,
-                                  repeat: true
+                              Image.asset('asset/icons/img_error_404.png',
+                                height: MediaQuery.of(context).size.height/2.5,
+                                width: MediaQuery.of(context).size.width/1.25,
+
                               ),
                             ],
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(40),
                           ),
                         ],
                       ),
