@@ -16,7 +16,6 @@ import '../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_c
 import 'controller/cashout_card_list_screen_controller.dart';
 
 class CashoutFailedScreen extends StatelessWidget {
-  var cashoutController = Get.find<CashOutAmountNumPadScreenController>();
 
   @override
   Widget build(BuildContext context) {
