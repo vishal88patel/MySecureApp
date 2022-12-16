@@ -151,19 +151,19 @@ List<SliderModel> getSlides(){
   SliderModel sliderModel =  SliderModel();
 
   // 1
-  sliderModel.setImage("asset/icons/splash_image.svg");
+  sliderModel.setImage("asset/icons/ic_app_logo.svg");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();
 
   // 2
-  sliderModel.setImage("asset/icons/splash_image.svg");
+  sliderModel.setImage("asset/icons/ic_app_logo.svg");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();
 
   // 3
-  sliderModel.setImage("asset/icons/splash_image.svg");
+  sliderModel.setImage("asset/icons/ic_app_logo.svg");
   slides.add(sliderModel);
 
   sliderModel = new SliderModel();

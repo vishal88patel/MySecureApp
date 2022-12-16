@@ -79,7 +79,18 @@ class RequestToScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(100),
                                   child: Image.network(
                                     requestMoneyScreenController.image.value,
-                                    height: getVerticalSize(100),)),
+                                    height: getVerticalSize(100),loadingBuilder: (BuildContext context, Widget child,
+                                      ImageChunkEvent? loadingProgress) {
+                                    if (loadingProgress == null) return child;
+                                    return Center(
+                                      child: CircularProgressIndicator(
+                                        value: loadingProgress.expectedTotalBytes != null
+                                            ? loadingProgress.cumulativeBytesLoaded /
+                                            loadingProgress.expectedTotalBytes!
+                                            : null,
+                                      ),
+                                    );
+                                  },)),
                             ),
                         ),
                         SizedBox(

@@ -19,7 +19,7 @@ class SplashScreen extends StatelessWidget {
       backgroundColor: ColorConstant.primaryDarkGreen,
       body: Center(
         child: SvgPicture.asset(
-          "asset/icons/splash_image.svg",
+          "asset/icons/ic_app_logo.svg",
 
           fit: BoxFit.fill,
         ),

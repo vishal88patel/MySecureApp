@@ -92,7 +92,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                   height: getVerticalSize(5),
                                 ),
                                 Text(
-                                  "\$5,440",
+                                  "\$0",
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w700,
@@ -118,7 +118,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                   height: getVerticalSize(5),
                                 ),
                                 Text(
-                                  "\$2,209",
+                                  "\$0",
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.primaryWhite,
                                       fontWeight: FontWeight.w700,
@@ -351,7 +351,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 ),
                               ]),
                           Text(
-                            '-\$312.00',
+                            '\$0',
                             style: AppStyle.textStyleDMSANS.copyWith(
                                 color: ColorConstant.primaryBlack,
                                 fontWeight: FontWeight.w700,
@@ -471,7 +471,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         fontSize: getFontSize(24)),
                   ),
                 ),
-                ListView.builder(
+                /*ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemCount: 5,
@@ -484,7 +484,22 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         amount: "5000",
                         transactionStatus:"Failed" ,
                       );
-                    }),
+                    }),*/
+                SizedBox(
+                  height: getVerticalSize(25),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'No Expenses Found',
+                      style: AppStyle.textStyleDMSANS.copyWith(
+                          color: ColorConstant.primaryDarkGreen,
+                          fontWeight: FontWeight.w700,
+                          fontSize: getFontSize(24)),
+                    ),
+                  ],
+                ),
                 SizedBox(
                   height: getVerticalSize(50),
                 ),

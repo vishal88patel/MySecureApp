@@ -52,7 +52,7 @@ class LinkCardBankScreen extends StatelessWidget {
                                 child: Text(
                                   "Please Choose Detail of",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.naturalGrey,
+                                      color: ColorConstant.primaryWhite,
                                       fontWeight:FontWeight.w400,
                                       fontSize:getFontSize(22)),
                                 ),

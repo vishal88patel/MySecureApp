@@ -15,6 +15,7 @@ import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_controller.dart';
 import '../../CashoutAmountScreen/controller/cashout_amount_scareen_controller.dart';
+import '../../CashoutAmountScreen/model/getWallet.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
 import '../cashout_failed_screen.dart';
 import '../model/cashout_card_list_response_model.dart';
@@ -35,7 +36,7 @@ class CashoutCardListScreenController extends GetxController {
   Get.find<CashoutAmountController>();
 
   final pinController = TextEditingController();
-
+  var walletModel=GetWallet().obs;
   @override
   void onReady() {
     super.onReady();
@@ -44,22 +45,21 @@ class CashoutCardListScreenController extends GetxController {
   @override
   void onInit() {
     callGetBankListApi();
+    callGetWalletApi(pageNo: 1);
     getArguments();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
 
 
-  Future<FormData> getWalletApiBody() async {
-    final form = FormData({});
-    return form;
-  }
+
 
 
 
   void selectCreditCard(var index){
     selectedCard.value = index;
   }
+
   void getArguments() {
     if (arguments != null) {
       type = arguments['TYPE'] ?? '';
@@ -368,6 +368,33 @@ class CashoutCardListScreenController extends GetxController {
     final form = FormData({});
     return form;
   }
+
+  Future<void> callGetWalletApi({required int pageNo}) async {
+    ApiService()
+        .callGetApi(
+        body: await getWalletApiBody(),
+        headerWithToken: true,
+        showLoader: false,
+        url: ApiEndPoints.GET_WALLET+"?page=$pageNo")
+        .then((value) {
+      print(value);
+      if (value!=null&&value['status']) {
+        walletModel.value = GetWallet.fromJson(value);
+        isPin.value= walletModel.value.data!.isPin!;
+
+
+      } else {
+        UIUtils.hideProgressDialog();
+        // UIUtils.showSnakBar(
+        //     bodyText: value['message']??'', headerText: StringConstants.ERROR);
+      }
+    });
+  }
+  Future<FormData> getWalletApiBody() async {
+    final form = FormData({});
+    return form;
+  }
+
 
 
 

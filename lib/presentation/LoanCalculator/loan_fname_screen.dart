@@ -97,7 +97,7 @@ class LoanFnameScreen extends StatelessWidget {
                                         ),
 
                                         Text(
-                                          "To apply, we need your first name linked\n to your app",
+                                          "To apply, we need your first name,last name \nand email linkedto your app",
                                           style: AppStyle.DmSansFont.copyWith(
                                               color: ColorConstant.grey8F,
                                               fontWeight: FontWeight.w400,
@@ -124,13 +124,55 @@ class LoanFnameScreen extends StatelessWidget {
                                             ),
                                             )),
                                         SizedBox(
+                                          height: getVerticalSize(32),
+                                        ),
+                                        SizedBox(
+                                            child: Obx(()
+                                            => AppTextField(
+                                              controller: loanCalculatorController.lastNameController,
+                                              keyBordType: TextInputType.text,
+                                              hintText: "Last Name",
+
+                                              readOnly:loanCalculatorController.isedit.value? false:true,
+                                              suffixIcon: IconButton(
+                                                icon: Icon(Icons.edit,
+                                                    color:ColorConstant.grey8F,
+                                                    size: getVerticalSize(20)),
+                                                onPressed: (){
+                                                  loanCalculatorController.editText();
+                                                },
+                                              ),
+                                            ),
+                                            )),
+                                        SizedBox(
+                                          height: getVerticalSize(32),
+                                        ),
+                                        SizedBox(
+                                            child: Obx(()
+                                            => AppTextField(
+                                              controller: loanCalculatorController.emailController,
+                                              keyBordType: TextInputType.emailAddress,
+                                              hintText: "Email",
+                                              readOnly:loanCalculatorController.isedit.value? false:true,
+                                              suffixIcon: IconButton(
+                                                icon: Icon(Icons.edit,
+                                                    color:ColorConstant.grey8F,
+                                                    size: getVerticalSize(20)),
+                                                onPressed: (){
+                                                  loanCalculatorController.editText();
+                                                },
+                                              ),
+                                            ),
+                                            )),
+
+                                        SizedBox(
                                           height: getVerticalSize(54),
                                         ),
                                         AppElevatedButton(
                                             buttonName: 'Next',
                                             radius: 5,
                                             onPressed: () {
-                                              loanCalculatorController.onClickOfFname();
+                                              loanCalculatorController.onClickOfEmail();
                                             }),
 
                                         SizedBox(

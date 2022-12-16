@@ -107,21 +107,35 @@ class ProfileScreen extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      ClipRRect(
-                                        borderRadius: BorderRadius.circular(
-                                          getHorizontalSize(
-                                            100.00,
+                                      Obx(()=>
+                                        ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            getHorizontalSize(
+                                              100.00,
+                                            ),
                                           ),
-                                        ),
-                                        child: Image.asset(
-                                          "asset/icons/ic_avatar.png",
-                                          height: getSize(
-                                            130.00,
-                                          ),
-                                          width: getSize(
-                                            130.00,
-                                          ),
-                                          fit: BoxFit.cover,
+                                          child: homeController.profilePicture.value!=null?Image.network(
+                                            homeController.profilePicture.value,
+                                            height: getSize(
+                                              130.00,
+                                            ),
+                                            width: getSize(
+                                              130.00,
+                                            ),
+                                            fit: BoxFit.cover,
+                                            loadingBuilder: (BuildContext context, Widget child,
+                                                ImageChunkEvent? loadingProgress) {
+                                              if (loadingProgress == null) return child;
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress.expectedTotalBytes != null
+                                                      ? loadingProgress.cumulativeBytesLoaded /
+                                                      loadingProgress.expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              );
+                                            },
+                                          ):Container(),
                                         ),
                                       ),
                                       Padding(

@@ -77,7 +77,20 @@ class RequestMoneyAmountScreen extends StatelessWidget {
                               borderRadius: BorderRadius.circular(100),
                               child: Image.network(
                                 requestMoneyScreenController.image.value,
-                                height: getVerticalSize(100),)),
+                                height: getVerticalSize(100),
+                                loadingBuilder: (BuildContext context, Widget child,
+                                    ImageChunkEvent? loadingProgress) {
+                                  if (loadingProgress == null) return child;
+                                  return Center(
+                                    child: CircularProgressIndicator(
+                                      value: loadingProgress.expectedTotalBytes != null
+                                          ? loadingProgress.cumulativeBytesLoaded /
+                                          loadingProgress.expectedTotalBytes!
+                                          : null,
+                                    ),
+                                  );
+                                },
+                              )),
                         ),
                       ),
                       SizedBox(
@@ -181,16 +194,6 @@ class RequestMoneyAmountScreen extends StatelessWidget {
                                 buttonColor: ColorConstant.primaryLightGreen,
                                 onPressed: () {
                                    requestMoneyScreenController.onTapReqButton();
-                                },),
-                            ),
-                            SizedBox(width: getHorizontalSize(10),),
-                            Expanded(
-                              child: AppElevatedButton(buttonName: 'Pay',
-                                radius: 10,
-                                buttonColor: ColorConstant.primaryLightGreen,
-                                onPressed: () {
-                                  requestMoneyScreenController.onTapPayButton();
-
                                 },),
                             ),
                           ],

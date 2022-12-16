@@ -316,7 +316,7 @@ class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
                   children: [
                     Center(
                       child: SvgPicture.asset(
-                        "asset/icons/splash_image.svg",
+                        "asset/icons/ic_app_logo.svg",
                         height: getVerticalSize(100),
                         fit: BoxFit.fill,
                       ),

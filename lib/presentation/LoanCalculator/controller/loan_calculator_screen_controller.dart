@@ -291,7 +291,16 @@ class LoanCalculatorScreenController extends GetxController {
   }
 
   void onClickOfEmail() {
-    if (emailController.text.isEmpty) {
+    if (firstNameController.text.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter First Name",
+          headerText: StringConstants.ERROR);
+    }else if (lastNameController.text.isEmpty) {
+      UIUtils.showSnakBar(
+          bodyText: "Please Enter Last Name",
+          headerText: StringConstants.ERROR);
+    }
+    else if (emailController.text.isEmpty) {
       UIUtils.showSnakBar(
         headerText: StringConstants.ERROR,
         bodyText: "Please Enter Email",
@@ -347,10 +356,6 @@ class LoanCalculatorScreenController extends GetxController {
     if (address01Controller.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter first address",
-          headerText: StringConstants.ERROR);
-    } else if (address02Controller.text.isEmpty) {
-      UIUtils.showSnakBar(
-          bodyText: "Please enter second address",
           headerText: StringConstants.ERROR);
     } else if (cityController.text.isEmpty) {
       UIUtils.showSnakBar(

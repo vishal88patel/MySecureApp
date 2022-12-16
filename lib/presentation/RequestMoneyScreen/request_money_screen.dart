@@ -98,78 +98,17 @@ class RequestMoneyScreen extends StatelessWidget {
                           height: getVerticalSize(20),
                         ),
                         Expanded(
-                          child:   Obx(
-                                      () => requestMoneyScreenController.recentTransactionModel.value.data !=
-                                      null? ListView.builder(
-                                    itemCount:requestMoneyScreenController.recentTransactionList.length ,
-                                    shrinkWrap: true,
-                                    scrollDirection:Axis.horizontal,
-                                    itemBuilder: (BuildContext context, int index) {
-                                      return Padding(
-                                        padding: EdgeInsets.only(left: 10),
-                                        child: GestureDetector(
-                                          onTap: (){
-                                            FocusManager.instance.primaryFocus?.unfocus();
-                                            requestMoneyScreenController.toController.text=requestMoneyScreenController.recentTransactionList.value[index].cashtag.toString();
-                                            Future.delayed(Duration(milliseconds: 100), () {
-                                              requestMoneyScreenController.GetCashtagUserApi();
-                                            });
-
-                                          },
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              ClipRRect(
-                                                borderRadius:BorderRadius.circular(100),
-                                                child: Image.network(requestMoneyScreenController
-                                                    .recentTransactionList
-                                                    .value[index]
-                                                    .profilePhotoPath
-                                                    .toString(),
-                                                  height: getVerticalSize(80),width: getHorizontalSize(80),),
-                                              ),
-                                              SizedBox(height: getVerticalSize(5),),
-                                              SizedBox(
-                                                width:getHorizontalSize(60),
-                                                child: Text(
-                                                requestMoneyScreenController
-                                                    .recentTransactionList
-                                                    .value[index]
-                                            .firstName
-                                            .toString()+" "+requestMoneyScreenController
-                                                    .recentTransactionList
-                                                    .value[index]
-                                                    .lastName
-                                                    .toString(),
-                                                  style: AppStyle.DmSansFont.copyWith(
-                                                      color: ColorConstant.primaryBlack,
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: getFontSize(16)),
-                                                  maxLines: 2,
-                                                ),
-                                              ),
-                                              SizedBox(height: getVerticalSize(5),),
-                                              Text(
-                                                requestMoneyScreenController
-                                                    .recentTransactionList
-                                                    .value[index]
-                                                    .cashtag
-                                                    .toString(),
-                                                style: AppStyle.DmSansFont.copyWith(
-                                                    color: ColorConstant.grey8F,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontSize: getFontSize(14)),
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      );
-                                    }):
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                            child: Obx(
+                          () => requestMoneyScreenController
+                                  .recentTransactionList
+                                  .value
+                                  .isEmpty
+                              ? Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
                                 children: [
                                   Image.asset(
                                     "asset/icons/no_recent.png",
@@ -187,8 +126,114 @@ class RequestMoneyScreen extends StatelessWidget {
                                 ],
                               ),
                             ],
-                          ),)
-                        ),
+                          )
+                              :ListView.builder(
+                              itemCount: requestMoneyScreenController
+                                  .recentTransactionList.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder:
+                                  (BuildContext context, int index) {
+                                return Padding(
+                                  padding: EdgeInsets.only(left: 10),
+                                  child: GestureDetector(
+                                    onTap: () {
+                                      FocusManager.instance.primaryFocus
+                                          ?.unfocus();
+                                      requestMoneyScreenController
+                                          .toController.text =
+                                          requestMoneyScreenController
+                                              .recentTransactionList
+                                              .value[index]
+                                              .cashtag
+                                              .toString();
+                                      Future.delayed(
+                                          Duration(milliseconds: 100), () {
+                                        requestMoneyScreenController
+                                            .GetCashtagUserApi();
+                                      });
+                                    },
+                                    child: Column(
+                                      crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                      children: [
+                                        ClipRRect(
+                                          borderRadius:
+                                          BorderRadius.circular(100),
+                                          child: Image.network(
+                                            requestMoneyScreenController
+                                                .recentTransactionList
+                                                .value[index]
+                                                .profilePhotoPath
+                                                .toString(),
+                                            height: getVerticalSize(80),
+                                            width: getHorizontalSize(80),
+                                            loadingBuilder: (BuildContext context, Widget child,
+                                                ImageChunkEvent? loadingProgress) {
+                                              if (loadingProgress == null) return child;
+                                              return Center(
+                                                child: CircularProgressIndicator(
+                                                  value: loadingProgress.expectedTotalBytes != null
+                                                      ? loadingProgress.cumulativeBytesLoaded /
+                                                      loadingProgress.expectedTotalBytes!
+                                                      : null,
+                                                ),
+                                              );
+                                            },
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: getVerticalSize(5),
+                                        ),
+                                        SizedBox(
+                                          width: getHorizontalSize(60),
+                                          child: Text(
+                                            requestMoneyScreenController
+                                                .recentTransactionList
+                                                .value[index]
+                                                .firstName
+                                                .toString() +
+                                                " " +
+                                                requestMoneyScreenController
+                                                    .recentTransactionList
+                                                    .value[index]
+                                                    .lastName
+                                                    .toString(),
+                                            style: AppStyle.DmSansFont
+                                                .copyWith(
+                                                color: ColorConstant
+                                                    .primaryBlack,
+                                                fontWeight:
+                                                FontWeight.w500,
+                                                fontSize:
+                                                getFontSize(16)),
+                                            maxLines: 2,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: getVerticalSize(5),
+                                        ),
+                                        Text(
+                                          requestMoneyScreenController
+                                              .recentTransactionList
+                                              .value[index]
+                                              .cashtag
+                                              .toString(),
+                                          style:
+                                          AppStyle.DmSansFont.copyWith(
+                                              color:
+                                              ColorConstant.grey8F,
+                                              fontWeight:
+                                              FontWeight.w500,
+                                              fontSize:
+                                              getFontSize(14)),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }) ,
+                        )),
                       ],
                     )),
                 SizedBox(

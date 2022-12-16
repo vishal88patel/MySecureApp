@@ -8,6 +8,7 @@ import 'package:secure_cash_app/presentation/RequestMoneyScreen/binding/request_
 import 'package:secure_cash_app/presentation/RequestMoneyScreen/requesst_to_screen.dart';
 import 'package:secure_cash_app/presentation/RequestMoneyScreen/request_money_amount_screen.dart';
 import 'package:secure_cash_app/presentation/RequestMoneyScreen/request_money_screen.dart';
+import 'package:secure_cash_app/presentation/TopUpCardListScreen/topup_pin_screen.dart';
 import 'package:secure_cash_app/presentation/TransferScanScreen/binding/transfer_scan_screen_binding.dart';
 import 'package:secure_cash_app/presentation/TransferScanScreen/transfer_scan_screen.dart';
 import 'package:secure_cash_app/presentation/TransferScreen/binding/transfer_screen_binding.dart';
@@ -16,6 +17,8 @@ import 'package:secure_cash_app/presentation/TransferToUserScreen/binding/transf
 import 'package:secure_cash_app/presentation/TransferToUserScreen/transfer_to_user_screen.dart';
 import 'package:secure_cash_app/presentation/CashoutAmountScreen/binding/cashout_amount_scareen_binding.dart';
 import 'package:secure_cash_app/presentation/TopUpCardListScreen/binding/topup_card_list_screen_binding.dart';
+import 'package:secure_cash_app/presentation/instructionScreen/binding/instruction_screen_binding.dart';
+import 'package:secure_cash_app/presentation/instructionScreen/instruction_screen.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/BoostCreditScreen/binding/boost_credit_screen_binding.dart';
@@ -271,6 +274,8 @@ class AppRoutes {
   static String requestSuccessScreen = '/request_success_screen';
   static String requestSummeryScreen = '/request_summery_screen';
   static String requestPasswordScreen = '/request_password_screen';
+  static String topUpPinsScreen = '/topUp_pin_screen';
+  static String instructionScreens = '/instruction_screen';
 
 
 
@@ -1087,6 +1092,26 @@ class AppRoutes {
       page: () => RequestPasswordScreen(),
       bindings: [
         RequestMoneyScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: topUpPinsScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => TopUpPinScreen(),
+      bindings: [
+        TopupCardListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: instructionScreens,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => InstructionScreen(),
+      bindings: [
+        InstructionScreenBinding(),
       ],
     ),
 

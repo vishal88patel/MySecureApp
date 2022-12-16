@@ -116,23 +116,23 @@ class ScanPasswordScreen extends StatelessWidget {
                                           keyboardType: TextInputType.number,
                                           length: 4,
                                           readOnly: true,
-                                          obscureText: false,
+                                          obscureText: true,
                                           animationType: AnimationType.fade,
                                           cursorColor: ColorConstant.primaryWhite,
-                                          textStyle: TextStyle(color: ColorConstant.primaryWhite),
+                                          textStyle: TextStyle(color: ColorConstant.naturalBlack),
                                           pinTheme: PinTheme(
                                             shape: PinCodeFieldShape.box,
                                             borderRadius: BorderRadius.circular(12),
-                                            fieldHeight: getVerticalSize(60),
-                                            fieldWidth: getVerticalSize(60),
-                                            activeFillColor: ColorConstant.primaryLightGreen,
-                                            disabledColor: ColorConstant.primaryLightGreen,
+                                            fieldHeight: getVerticalSize(70),
+                                            fieldWidth: getVerticalSize(70),
+                                            activeFillColor: ColorConstant.primaryWhite,
+                                            disabledColor: ColorConstant.primaryWhite,
                                             errorBorderColor: Colors.white.withOpacity(0.5),
                                             activeColor: Colors.white.withOpacity(0.5),
                                             selectedColor: Colors.white.withOpacity(0.5),
                                             inactiveColor: Colors.white.withOpacity(0.5),
-                                            inactiveFillColor: ColorConstant.primaryLightGreen,
-                                            selectedFillColor: ColorConstant.primaryLightGreen,),
+                                            inactiveFillColor: ColorConstant.primaryWhite,
+                                            selectedFillColor: ColorConstant.primaryWhite,),
                                           animationDuration: Duration(milliseconds: 300),
                                           backgroundColor: Colors.transparent,
                                           enableActiveFill: true,
@@ -147,34 +147,6 @@ class ScanPasswordScreen extends StatelessWidget {
                                           },
                                           appContext: context,
                                         ),),
-                                    /*TextFormField(
-                                      readOnly: true,
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: ColorConstant.primaryWhite,
-                                          fontSize: getFontSize(24)
-                                      ),
-                                      decoration: InputDecoration(
-                                        hintText: 'Enter PIN',
-                                        hintStyle: AppStyle.DmSansFont.copyWith(
-                                            color: ColorConstant.primaryWhite,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: getFontSize(24)),
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: ColorConstant
-                                                  .primaryAppTextF1),
-                                        ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(
-                                              color: ColorConstant
-                                                  .primaryAppTextF1),
-                                        ),
-                                      ),
-                                      // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
-
-                                      controller: scanController.passController,
-                                    ),*/
                                   ],
                                 ),
                               ),
@@ -187,7 +159,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                   onPressed: () {
                                     debugPrint(
                                         'Your code: ${scanController.passController.text}');
-                                    scanController.callTransactionApi();
+                                    scanController.clickOnTransaction();
                                   },
                                 ),
                               ),

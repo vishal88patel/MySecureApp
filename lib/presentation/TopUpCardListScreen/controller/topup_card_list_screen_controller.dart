@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/TopUpCardListScreen/topup_failed_Screen.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../App Configurations/color_constants.dart';
@@ -14,6 +15,7 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_controller.dart';
+import '../../CashoutAmountScreen/model/getWallet.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
 import '../model/topup_card_list_response_model.dart';
 
@@ -25,8 +27,12 @@ class TopupCardListScreenController extends GetxController {
   var getLinkedBankModel = GrtLinkedBank().obs;
   var selectedIndex=1000.obs;
   var arguments = Get.arguments;
+  final pinController = TextEditingController();
+  var selectedCard= 0.obs;
   var type = "";
+  var isPin = 0.obs;
   var amountNumPadController = Get.put(CashOutAmountNumPadScreenController());
+  var walletModel=GetWallet().obs;
   @override
   void onReady() {
     super.onReady();
@@ -36,10 +42,15 @@ class TopupCardListScreenController extends GetxController {
   void onInit() {
     callGetBankListApi();
     getArguments();
-
+    callGetWalletApi(pageNo: 1);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
+
+  void selectCreditCard(var index){
+    selectedCard.value = index;
+  }
+
   void getArguments() {
     if (arguments != null) {
       type = arguments['TYPE'] ?? '';
@@ -299,39 +310,20 @@ class TopupCardListScreenController extends GetxController {
       print(value);
       if (value['status']) {
         UIUtils.hideProgressDialog();
-        AwesomeDialog(
-
-            context: context,
-            dialogType: DialogType.ERROR,
-            animType: AnimType.RIGHSLIDE,
-            headerAnimationLoop: false,
-            title: 'Error',
-            desc:
-            'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
-            btnOkOnPress: () {
-              Get.offAllNamed(AppRoutes.dashBoardScreen,
-                  arguments: {"bottomTabCount": 0});
-            },
-            btnOkIcon: Icons.cancel,
-            btnOkColor: Colors.red)
-          ..show();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  TopUpFailedScreen()),
+        );
       } else {
         UIUtils.hideProgressDialog();
-        AwesomeDialog(
-            context: context,
-            dialogType: DialogType.ERROR,
-            animType: AnimType.RIGHSLIDE,
-            headerAnimationLoop: false,
-            title: 'Error',
-            desc:
-            'Something went wrong. we cannot process this transaction. Please Contact Admin!!!',
-            btnOkOnPress: () {
-              Get.offAllNamed(AppRoutes.dashBoardScreen,
-                  arguments: {"bottomTabCount": 0});
-            },
-            btnOkIcon: Icons.cancel,
-            btnOkColor: Colors.red)
-          ..show();
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) =>
+                  TopUpFailedScreen()),
+        );
       }
     });
   }
@@ -367,5 +359,32 @@ class TopupCardListScreenController extends GetxController {
     final form = FormData({});
     return form;
   }
+
+  Future<void> callGetWalletApi({required int pageNo}) async {
+    ApiService()
+        .callGetApi(
+        body: await getWalletApiBody(),
+        headerWithToken: true,
+        showLoader: false,
+        url: ApiEndPoints.GET_WALLET+"?page=$pageNo")
+        .then((value) {
+      print(value);
+      if (value!=null&&value['status']) {
+        walletModel.value = GetWallet.fromJson(value);
+        isPin.value= walletModel.value.data!.isPin!;
+
+
+      } else {
+        UIUtils.hideProgressDialog();
+        // UIUtils.showSnakBar(
+        //     bodyText: value['message']??'', headerText: StringConstants.ERROR);
+      }
+    });
+  }
+  Future<FormData> getWalletApiBody() async {
+    final form = FormData({});
+    return form;
+  }
+
 
 }

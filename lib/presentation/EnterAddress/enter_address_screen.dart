@@ -274,7 +274,7 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                               ],
                                             ),
                                             SizedBox(
-                                              height: getVerticalSize(54),
+                                              height: getVerticalSize(30),
                                             ),
                                             AppElevatedButton(
                                               buttonName: 'Next',
@@ -285,7 +285,7 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                             ),
 
                                             SizedBox(
-                                              height: getVerticalSize(36),
+                                              height: getVerticalSize(18),
                                             ),
                                           ],
                                         ),

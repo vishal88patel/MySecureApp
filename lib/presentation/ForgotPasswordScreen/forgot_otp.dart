@@ -102,7 +102,7 @@ class ForgotOtpScreen extends StatelessWidget {
                                           ],
 
                                           decoration: InputDecoration(
-                                            hintText: '000000',
+                                            hintText: 'OTP',
                                             hintStyle: AppStyle.DmSansFont.copyWith(
                                                 color: ColorConstant.grey8F,
                                                 fontWeight: FontWeight.w400,
