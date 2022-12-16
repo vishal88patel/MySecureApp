@@ -60,6 +60,7 @@ class CashoutCardListScreenController extends GetxController {
   void selectCreditCard(var index){
     selectedCard.value = index;
   }
+
   void getArguments() {
     if (arguments != null) {
       type = arguments['TYPE'] ?? '';
