@@ -17,6 +17,8 @@ import 'package:secure_cash_app/presentation/TransferToUserScreen/binding/transf
 import 'package:secure_cash_app/presentation/TransferToUserScreen/transfer_to_user_screen.dart';
 import 'package:secure_cash_app/presentation/CashoutAmountScreen/binding/cashout_amount_scareen_binding.dart';
 import 'package:secure_cash_app/presentation/TopUpCardListScreen/binding/topup_card_list_screen_binding.dart';
+import 'package:secure_cash_app/presentation/instructionScreen/binding/instruction_screen_binding.dart';
+import 'package:secure_cash_app/presentation/instructionScreen/instruction_screen.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
 import '../presentation/BoostCreditScreen/binding/boost_credit_screen_binding.dart';
@@ -273,6 +275,7 @@ class AppRoutes {
   static String requestSummeryScreen = '/request_summery_screen';
   static String requestPasswordScreen = '/request_password_screen';
   static String topUpPinsScreen = '/topUp_pin_screen';
+  static String instructionScreens = '/instruction_screen';
 
 
 
@@ -1099,6 +1102,16 @@ class AppRoutes {
       page: () => TopUpPinScreen(),
       bindings: [
         TopupCardListScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: instructionScreens,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => InstructionScreen(),
+      bindings: [
+        InstructionScreenBinding(),
       ],
     ),
 
