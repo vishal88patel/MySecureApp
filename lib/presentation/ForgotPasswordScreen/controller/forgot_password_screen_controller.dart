@@ -117,7 +117,7 @@ class ForgotPasswordScreenController extends GetxController {
   void onTapEmailVerifyButton(){
     sendResetPasswordApi(
         type: '1',
-        isOtp: '1',
+        isOtp: '2',
         password: confirmPassController.text,
         otp: otpController.text,
         email: emailController.text,
