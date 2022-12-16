@@ -97,6 +97,91 @@ class _NotificationScreenState extends State<NotificationScreen> {
     );
   }
 
+  Widget _buildItemForPay(
+      BuildContext context, NotiData item, Animation<double> animation) {
+    return GestureDetector(
+      onTap: (){
+       // notificationController. onClickOfNotificationTile(routeName: item.type.toString(),data: item.data.toString() );
+      },
+      child: Padding(
+        padding: EdgeInsets.all(2.0),
+        child: ScaleTransition(
+          scale: animation,
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: getHorizontalSize(20),
+                right: getHorizontalSize(20),
+                bottom: getVerticalSize(12)),
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              decoration: BoxDecoration(
+                color: ColorConstant.buttonGreen.withOpacity(0.1),
+                borderRadius: BorderRadius.all(Radius.circular(16)),
+              ),
+              child:Padding(
+                padding: EdgeInsets.all(getVerticalSize(16)),
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      "asset/icons/ic_cashback.svg",
+                      fit: BoxFit.fill,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(left: getHorizontalSize(18)),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                          "Name",
+                      style: AppStyle.textStyleDMSANS.copyWith(
+                          color: ColorConstant.naturalBlack,
+                          fontWeight: FontWeight.w700,
+                          fontSize: getFontSize(20)),
+                    ),
+                          Container(
+                            width: size.width / 1.9,
+                            child: Text(
+                              item.title.toString(),
+                              style: AppStyle.textStyleDMSANS.copyWith(
+                                  color: ColorConstant.naturalBlack,
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: getFontSize(16)),
+                            ),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(4),
+                          ),
+                          Row(
+                            children: [
+                              Text(
+                                "Pay now",
+                                style: AppStyle.textStyleDMSANS.copyWith(
+                                    color: ColorConstant.primaryLightGreen,
+                                    fontWeight: FontWeight.w500,
+                                    fontSize: getFontSize(16)),
+                              ),
+                              Icon(
+                                Icons.arrow_forward_ios_rounded,
+                                color: ColorConstant.primaryLightGreen,
+                                size: 12,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
   @override
   Widget build(BuildContext context) {
     notificationController.callNotificationApi();
@@ -179,57 +264,58 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         ),
                         Expanded(
                             child: Obx(
-                          () => notificationController.isLoading.value == false
-                              ? notificationController.list.isNotEmpty
+                                  () => notificationController.isLoading.value == false
+                                  ? notificationController.list.isNotEmpty
                                   ? AnimatedList(
-                                      key: _listKey,
-                                      initialItemCount:
-                                          notificationController.list.length,
-                                      itemBuilder:
-                                          (context, index, animation) =>
-                                              _buildItem(
-                                                  context,
-                                                  notificationController
-                                                      .list[index],
-                                                  animation),
-                                    )
+                                    shrinkWrap: true,
+                                key: _listKey,
+                                initialItemCount:
+                                notificationController.list.length,
+                                itemBuilder:
+                                    (context, index, animation) =>
+                                    _buildItem(
+                                        context,
+                                        notificationController
+                                            .list[index],
+                                        animation),
+                              )
                                   : Center(
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: 120,
-                                            width: 120,
-                                            child: SvgPicture.asset(
-                                              "asset/icons/no_new_notification.svg",
-                                              color: ColorConstant.primaryDarkGreen,
-                                            ),
-                                          ),
-                                          Text(
-                                            "No New Notification",
-                                            style: AppStyle.textStyleDMSANS.copyWith(
-                                                color: ColorConstant.primaryDarkGreen,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: getFontSize(24)),
-                                          ),
-                                        ],
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Container(
+                                      height: 120,
+                                      width: 120,
+                                      child: SvgPicture.asset(
+                                        "asset/icons/no_new_notification.svg",
+                                        color: ColorConstant.primaryDarkGreen,
                                       ),
-                                    )
-                              : Padding(
-                                  padding: const EdgeInsets.all(180),
-                                  child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      child: LoadingIndicator(
-                                        indicatorType:
-                                            Indicator.lineSpinFadeLoader,
-                                        colors: [ColorConstant.buttonGreen],
-                                        strokeWidth: 1,
-                                        backgroundColor: Colors.transparent,
-                                        pathBackgroundColor: Colors.transparent,
-                                      )),
+                                    ),
+                                    Text(
+                                      "No New Notification",
+                                      style: AppStyle.textStyleDMSANS.copyWith(
+                                          color: ColorConstant.primaryDarkGreen,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(24)),
+                                    ),
+                                  ],
                                 ),
-                        )),
+                              )
+                                  : Padding(
+                                padding: const EdgeInsets.all(180),
+                                child: Container(
+                                    height: 50,
+                                    width: 50,
+                                    child: LoadingIndicator(
+                                      indicatorType:
+                                      Indicator.lineSpinFadeLoader,
+                                      colors: [ColorConstant.buttonGreen],
+                                      strokeWidth: 1,
+                                      backgroundColor: Colors.transparent,
+                                      pathBackgroundColor: Colors.transparent,
+                                    )),
+                              ),
+                            )),
                       ],
                     ),
                   ),
