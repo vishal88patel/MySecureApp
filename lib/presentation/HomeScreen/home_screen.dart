@@ -338,8 +338,8 @@ class HomeScreen extends StatelessWidget {
                             ),
                           ),
                           PaymentListWidget(onTap: (){
-                            Get.toNamed(AppRoutes.instructionScreens);
-                            // Get.toNamed(AppRoutes.chatScreen);
+                            //Get.toNamed(AppRoutes.instructionScreens);
+                             Get.toNamed(AppRoutes.chatScreen);
                           },
                             title: 'Live Chat',
                             iconName: 'asset/icons/ic_live_chat_home.png',

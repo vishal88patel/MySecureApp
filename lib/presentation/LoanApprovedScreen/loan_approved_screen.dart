@@ -109,11 +109,10 @@ class LoanApprovedScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
-                                  padding:
-                                  EdgeInsets.only(left: 28, right: 28, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: 28, right: 28, top: 10),
                                   child: Text(
                                     "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
-
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.greyTextColor,
@@ -125,8 +124,8 @@ class LoanApprovedScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
-                                  padding:
-                                  EdgeInsets.only(left: 28, right: 28, top: 10),
+                                  padding: EdgeInsets.only(
+                                      left: 28, right: 28, top: 10),
                                   child: Text(
                                     "Total Amount",
                                     overflow: TextOverflow.ellipsis,
@@ -144,14 +143,11 @@ class LoanApprovedScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       left: 28, right: 28, top: 10, bottom: 5),
                                   child: Obx(
-                                      ()=> Text(
+                                    () => Text(
                                       "\$" +
-                                    loanApprovedController
-                                        .loanCalModel
-                                        .value
-                                        .data!
-                                        .loanAmount
-                                        .toString(),
+                                          loanApprovedController.loanCalModel
+                                              .value.data!.loanAmount
+                                              .toString(),
                                       overflow: TextOverflow.ellipsis,
                                       textAlign: TextAlign.left,
                                       style: AppStyle.DmSansFont.copyWith(
@@ -162,11 +158,14 @@ class LoanApprovedScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 30,),
+                              SizedBox(
+                                height: 30,
+                              ),
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 38.0, right: 38),
+                                  padding:
+                                      EdgeInsets.only(left: 38.0, right: 38),
                                   child: DottedLine(
                                       dashColor: ColorConstant.greyTextColor),
                                 ),
@@ -174,8 +173,8 @@ class LoanApprovedScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.centerLeft,
                                 child: Padding(
-                                  padding:
-                                  EdgeInsets.only(top: 15, right: 10, left: 40),
+                                  padding: EdgeInsets.only(
+                                      top: 15, right: 10, left: 40),
                                   child: Text(
                                     "Payment to ",
                                     overflow: TextOverflow.ellipsis,
@@ -190,16 +189,17 @@ class LoanApprovedScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.center,
                                 child: Container(
-                                  margin:
-                                  EdgeInsets.only(top: 12, left: 40, right: 40),
+                                  margin: EdgeInsets.only(
+                                      top: 12, left: 40, right: 40),
                                   decoration: BoxDecoration(
                                     color: Color(0xFFF2F2F2),
                                     borderRadius:
-                                    BorderRadius.all(Radius.circular(16)),
+                                        BorderRadius.all(Radius.circular(16)),
                                   ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
                                       Card(
@@ -212,8 +212,8 @@ class LoanApprovedScreen extends StatelessWidget {
                                         ),
                                         color: ColorConstant.primaryWhite,
                                         shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                          BorderRadius.all(Radius.circular(6)),
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(6)),
                                         ),
                                         child: Container(
                                           height: getSize(
@@ -230,8 +230,40 @@ class LoanApprovedScreen extends StatelessWidget {
                                             children: [
                                               Align(
                                                 alignment: Alignment.center,
-                                                child: SvgPicture.asset(
-                                                    "asset/icons/ic_starbucks.svg"),
+                                                child: Obx(
+                                                  () => loanApprovedController
+                                                              .profileImage
+                                                              .value !=
+                                                          null
+                                                      ? Image.network(
+                                                          loanApprovedController
+                                                              .profileImage
+                                                              .value,
+                                                          loadingBuilder:
+                                                              (BuildContext
+                                                                      context,
+                                                                  Widget child,
+                                                                  ImageChunkEvent?
+                                                                      loadingProgress) {
+                                                          if (loadingProgress ==
+                                                              null)
+                                                            return child;
+                                                          return Center(
+                                                            child:
+                                                                CircularProgressIndicator(
+                                                              value: loadingProgress
+                                                                          .expectedTotalBytes !=
+                                                                      null
+                                                                  ? loadingProgress
+                                                                          .cumulativeBytesLoaded /
+                                                                      loadingProgress
+                                                                          .expectedTotalBytes!
+                                                                  : null,
+                                                            ),
+                                                          );
+                                                        })
+                                                      : Container(),
+                                                ),
                                               ),
                                             ],
                                           ),
@@ -246,23 +278,29 @@ class LoanApprovedScreen extends StatelessWidget {
                                         child: Column(
                                           mainAxisSize: MainAxisSize.min,
                                           crossAxisAlignment:
-                                          CrossAxisAlignment.start,
+                                              CrossAxisAlignment.start,
                                           mainAxisAlignment:
-                                          MainAxisAlignment.start,
+                                              MainAxisAlignment.start,
                                           children: [
                                             Padding(
                                               padding: EdgeInsets.only(
                                                 right: 10,
                                               ),
                                               child: Obx(
-                                                ()=> Text(
-                                                  loanApprovedController.HeadeName.value,
-                                                  overflow: TextOverflow.ellipsis,
+                                                () => Text(
+                                                  loanApprovedController
+                                                      .HeadeName.value,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
-                                                  style: AppStyle.DmSansFont.copyWith(
-                                                      color: ColorConstant.primaryBlack,
-                                                      fontSize: getFontSize(20),
-                                                      fontWeight: FontWeight.bold),
+                                                  style: AppStyle.DmSansFont
+                                                      .copyWith(
+                                                          color: ColorConstant
+                                                              .primaryBlack,
+                                                          fontSize:
+                                                              getFontSize(20),
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                 ),
                                               ),
                                             ),
@@ -274,25 +312,30 @@ class LoanApprovedScreen extends StatelessWidget {
                                                 top: 3,
                                               ),
                                               child: Row(
-
                                                 crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                                    CrossAxisAlignment.start,
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Obx(
-                                                  ()=> Text(
-                                                      loanApprovedController.loan_type
+                                                    () => Text(
+                                                      loanApprovedController
+                                                          .loan_type
                                                           .toString(),
-                                                      overflow: TextOverflow.ellipsis,
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
-                                                      style: AppStyle.DmSansFont.copyWith(
-                                                          color: ColorConstant.greyTextColor,
-                                                          fontSize: getFontSize(14),
-                                                          fontWeight: FontWeight.bold),
+                                                      style: AppStyle.DmSansFont
+                                                          .copyWith(
+                                                              color: ColorConstant
+                                                                  .greyTextColor,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      14),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold),
                                                     ),
                                                   ),
-
-
                                                 ],
                                               ),
                                             ),
@@ -304,7 +347,8 @@ class LoanApprovedScreen extends StatelessWidget {
                                 ),
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 40.0,right: 40,top: 12),
+                                padding: const EdgeInsets.only(
+                                    left: 40.0, right: 40, top: 12),
                                 child: AppElevatedButton(
                                   buttonName: "Go To Wallet",
                                   textColor: Colors.white,
@@ -345,7 +389,8 @@ class LoanApprovedScreen extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Lottie.asset('asset/animations/partyyy.json', height: 300,width: MediaQuery.of(context).size.width),
+              Lottie.asset('asset/animations/partyyy.json',
+                  height: 300, width: MediaQuery.of(context).size.width),
             ],
           ),
         ],

@@ -29,6 +29,7 @@ class CashoutFailedScreen extends StatelessWidget {
                 height: 40,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
                     "Receipt",
@@ -104,7 +105,7 @@ class CashoutFailedScreen extends StatelessWidget {
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.DmSansFont.copyWith(
-                                        color: ColorConstant.appProgressBarColor,
+                                        color: ColorConstant.darkBlue,
                                         fontSize: getFontSize(28),
                                         fontWeight: FontWeight.bold),
                                   ),
@@ -123,7 +124,7 @@ class CashoutFailedScreen extends StatelessWidget {
                                         style: AppStyle.DmSansFont.copyWith(
                                             color: ColorConstant.greyTextColor,
                                             fontSize: getFontSize(20),
-                                            fontWeight: FontWeight.bold),
+                                            fontWeight: FontWeight.w400),
                                     ),
 
                                 ),
@@ -141,16 +142,17 @@ class CashoutFailedScreen extends StatelessWidget {
                               Padding(
                                 padding: const EdgeInsets.only(left: 40.0,right: 40,top: 12),
                                 child: AppElevatedButton(
-                                  buttonName: "Try Again",
+                                  buttonName: "Contact Support",
                                   textColor: Colors.white,
                                   buttonColor: ColorConstant.primaryLightGreen,
                                   radius: 16,
                                   onPressed: () {
-                                    Get.offAllNamed(AppRoutes.cashoutAmountScreen);
+                                    showTechnicalErrorDialouge();
+                                   // Get.offAllNamed(AppRoutes.cashoutAmountScreen);
                                   },
                                 ),
                               ),
-                              SizedBox(height: 14,),
+                              SizedBox(height: 16,),
                               InkWell(
                                 onTap: (){
                                   Get.offAllNamed(AppRoutes.dashBoardScreen,
@@ -178,5 +180,128 @@ class CashoutFailedScreen extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> showTechnicalErrorDialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+
+
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 12,
+                            ),
+
+                            Row(crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Image.asset('asset/icons/done_image.png',
+                                    color: Colors.transparent,
+                                    height: 60),
+                                Image.asset(
+                                    'asset/icons/done_image.png', height: 60),
+                                Row(mainAxisAlignment: MainAxisAlignment.end,
+
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {
+                                        if (Get.isDialogOpen == true) Get
+                                            .back();
+                                      },
+                                      child: Icon(
+                                        Icons.close,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 12,
+                                    ),
+                                  ],
+                                ),
+
+                              ],
+                            ),
+
+                            SizedBox(
+                              height: 12,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "This Functionality is coming soon",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    /* SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),*/
+
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
   }
 }

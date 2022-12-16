@@ -87,7 +87,10 @@ class KycSelectProofScreen extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
+                                      Get.toNamed(AppRoutes.instructionScreens,arguments: {
+                                        "ISFROM": "0",
+                                      });
+                                      /*Navigator.push(
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
@@ -95,7 +98,7 @@ class KycSelectProofScreen extends StatelessWidget {
                                                   image: 2,
                                                   title:"Scan the front image of\n Driving Licence",
                                                 )),
-                                      );
+                                      );*/
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(
@@ -156,15 +159,10 @@ class KycSelectProofScreen extends StatelessWidget {
                                   ),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                FrontPassportCameraScreen(
-                                                  title: 'Passport',
-                                                  image: 4,
-                                                )),
-                                      );
+                                      Get.toNamed(AppRoutes.instructionScreens,arguments: {
+                                        "ISFROM": "1",
+                                      });
+
                                     },
                                     child: Padding(
                                       padding: EdgeInsets.symmetric(

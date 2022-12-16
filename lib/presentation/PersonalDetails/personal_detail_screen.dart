@@ -415,7 +415,7 @@ class PersonalDetailScreen extends StatelessWidget {
                       height: getVerticalSize(57),
                     ),Center(
                       child: SvgPicture.asset(
-                        "asset/icons/splash_image.svg",
+                        "asset/icons/ic_app_logo.svg",
 
                         fit: BoxFit.fill,
                       ),

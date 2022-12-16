@@ -23,6 +23,7 @@ class LoanApprovedSScreenController extends GetxController {
   var HeadeName="".obs;
   var loan_type="".obs;
   var loanAmount="".obs;
+  var profileImage="".obs;
   @override
   void onReady() {
     super.onReady();
@@ -37,6 +38,7 @@ class LoanApprovedSScreenController extends GetxController {
   Future<void> getStoredData() async {
     loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
     HeadeName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
+    profileImage.value=loginResponseModel!.data!.profilePhotoPath!;
   }
 
   void getArguments() {

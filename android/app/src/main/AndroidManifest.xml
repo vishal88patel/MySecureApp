@@ -21,7 +21,7 @@
     <application
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
-        android:label="My Secure App"
+        android:label="Secure CashApp"
         android:requestLegacyExternalStorage="true"
         tools:replace="android:theme"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">

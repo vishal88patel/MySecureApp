@@ -168,7 +168,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
     // Platform messages may fail, so we use a try/catch PlatformException.
     try {
       barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
-          "#4CD080", 'Cancel', true, ScanMode.BARCODE);
+          "#105D38", 'Cancel', false, ScanMode.BARCODE);
       print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';

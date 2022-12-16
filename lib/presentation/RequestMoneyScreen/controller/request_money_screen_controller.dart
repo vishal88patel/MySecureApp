@@ -231,6 +231,7 @@ class RequestMoneyScreenController extends GetxController {
     final form = FormData({});
     return form;
   }
+
   Future<void> callTransactionApi() async {
     UIUtils.showProgressDialog(isCancellable: false);
     ApiService()

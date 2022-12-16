@@ -7,6 +7,8 @@ import 'package:secure_cash_app/routes/app_routes.dart';
 class InstructionScreenController extends GetxController {
   var currentPage = 0.obs;
   late PageController pageController;
+  var isFrom = "0".obs;
+  var arguments = Get.arguments;
 
   @override
   void onReady() {
@@ -16,6 +18,7 @@ class InstructionScreenController extends GetxController {
   @override
   void onInit() {
     pageController = PageController(initialPage: currentPage.value);
+    getArguments();
     super.onInit();
   }
 
@@ -23,6 +26,13 @@ class InstructionScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  void getArguments() {
+    if (arguments != null) {
+      isFrom.value = arguments['ISFROM'];
+    }
+  }
+
 
   void onTapOfGetStartedButton() {
       Get.offAllNamed(AppRoutes.authOptionScreen);

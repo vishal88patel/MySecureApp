@@ -91,10 +91,10 @@ class SelfieScreenState extends State<SelfieScreen>
             ClipPath(
                 clipper: Clip(),
                 child:_buildCameraPreview(),),
-            Center(child: Padding(
+            widget.image==1?Center(child: Padding(
               padding: EdgeInsets.only(bottom:getVerticalSize(150),right: getHorizontalSize(8)),
               child: Image.asset("asset/icons/img_face.png",height: getVerticalSize(500),color: ColorConstant.primaryDarkGreen,),
-            )),
+            )):Container(),
             Column(
               children: [
                 SizedBox(
@@ -107,10 +107,11 @@ class SelfieScreenState extends State<SelfieScreen>
                     children: [
                       InkWell(
                         onTap:(){
-                          Navigator.pop(context);
+                          showBackDialog();
                         },
                         child: SvgPicture.asset(
                           "asset/icons/ic_back.svg",
+                          height: getVerticalSize(40),
                           fit: BoxFit.fill,
                           color: Colors.white,
                         ),
@@ -120,7 +121,7 @@ class SelfieScreenState extends State<SelfieScreen>
                         style: AppStyle.textStyleDMSANS.copyWith(
                             color: ColorConstant.primaryWhite,
                             fontWeight: FontWeight.w700,
-                            fontSize: getFontSize(24)),
+                            fontSize: getFontSize(22)),
                       ),
                       SvgPicture.asset(
                         "asset/icons/ic_back.svg",
@@ -190,6 +191,7 @@ class SelfieScreenState extends State<SelfieScreen>
                               buttonColor: ColorConstant.primaryDarkGreen,
                               radius: 5,
                               onPressed: () {
+                                Get.back();
                                 Get.back();
                                 Get.back();
                                 Get.back();

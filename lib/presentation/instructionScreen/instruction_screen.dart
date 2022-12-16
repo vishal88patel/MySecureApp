@@ -7,6 +7,8 @@ import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
+import '../KycStep1ModuleScreen/front_back_licence_screen.dart';
+import '../KycStep1ModuleScreen/front_passport_screen.dart';
 import 'controller/instruction_screen_controller.dart';
 
 class InstructionScreen extends StatelessWidget {
@@ -38,21 +40,40 @@ class InstructionScreen extends StatelessWidget {
                     },
                     child: Container(
                       decoration: BoxDecoration(
-                          borderRadius:
-                          BorderRadius.circular(12),
-                          border: Border.all(
-                              color:
-                              ColorConstant.backBorder)),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: ColorConstant.backBorder)),
                       padding: EdgeInsets.all(6),
                       child: Icon(
-                        Icons.arrow_back_ios_new_outlined,size: 22,),
+                        Icons.arrow_back_ios_new_outlined,
+                        size: 22,
+                      ),
                     ),
                   ),
                   Padding(
                     padding: EdgeInsets.only(top: getVerticalSize(20)),
                     child: InkWell(
                       onTap: () {
-                        onBoardingController.onTapOfGetStartedButton();
+                        if(onBoardingController.isFrom.value=="0"){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                const FrontBackLicenceCameraScreen(
+                                  image: 2,
+                                  title:"Scan the front image of\n Driving Licence",
+                                )),
+                          );
+                        }else{
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    FrontPassportCameraScreen(
+                                      title: 'Passport',
+                                      image: 4,
+                                    )),
+                          );
+                        }
                       },
                       child: Text(
                         "Skip",
@@ -85,8 +106,6 @@ class InstructionScreen extends StatelessWidget {
             Expanded(
               child: Column(
                 children: <Widget>[
-
-
                   Container(
                     height: MediaQuery.of(context).size.height / 3,
                     width: MediaQuery.of(context).size.width,
@@ -130,14 +149,12 @@ class InstructionScreen extends StatelessWidget {
                                   fontSize: getFontSize(20)),
                             ),
                           ),
-                          SizedBox(
-                            height: getVerticalSize(60),
-                          ),
+                          Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: List.generate(
                               onBoardingData.length,
-                                  (index) => buildDot(index: index),
+                              (index) => buildDot(index: index),
                             ),
                           ),
                           SizedBox(
@@ -145,40 +162,72 @@ class InstructionScreen extends StatelessWidget {
                           ),
                           Obx(
                             () => onBoardingController.currentPage.value == 2
-                                ?AppElevatedButton(
-                              buttonName:
-                              "Start Identification"
-                              ,
-                              textColor: Colors.white,
-                              buttonColor: ColorConstant.primaryLightGreen,
-                              radius: 16,
-                              onPressed: () {
-                                if(onBoardingController.currentPage.value==2){
-                                  // onBoardingController.onTapOfGetStartedButton();
-                                }
-
-                              },
-                            ):
-                            TextButton(onPressed: (){
-                              if(onBoardingController.currentPage.value==0){
-                                onBoardingController.currentPage.value = 1;
-                                onBoardingController.  pageController.nextPage(
-                                    duration: Duration(milliseconds: 250),
-                                    curve: Curves.easeIn
-                                );
-
-                              }else if(onBoardingController.currentPage.value==1){
-                                onBoardingController.currentPage.value = 2;
-                                onBoardingController.  pageController.nextPage(
-                                    duration: Duration(milliseconds: 250),
-                                    curve: Curves.easeIn
-                                );
-                              }
-                            }, child: Text("Next"))
-
-                                ,
+                                ? AppElevatedButton(
+                                    buttonName: "Start Identification",
+                                    textColor: Colors.white,
+                                    buttonColor:
+                                        ColorConstant.primaryLightGreen,
+                                    radius: 16,
+                                    onPressed: () {
+                                      if (onBoardingController
+                                              .currentPage.value ==
+                                          2) {
+                                        if(onBoardingController.isFrom.value=="0"){
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                const FrontBackLicenceCameraScreen(
+                                                  image: 2,
+                                                  title:"Scan the front image of\n Driving Licence",
+                                                )),
+                                          );
+                                        }else{
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    FrontPassportCameraScreen(
+                                                      title: 'Passport',
+                                                      image: 4,
+                                                    )),
+                                          );
+                                        }
+                                      }
+                                    },
+                                  )
+                                : TextButton(
+                                    onPressed: () {
+                                      if (onBoardingController
+                                              .currentPage.value ==
+                                          0) {
+                                        onBoardingController.currentPage.value =
+                                            1;
+                                        onBoardingController.pageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 250),
+                                                curve: Curves.easeIn);
+                                      } else if (onBoardingController
+                                              .currentPage.value ==
+                                          1) {
+                                        onBoardingController.currentPage.value =
+                                            2;
+                                        onBoardingController.pageController
+                                            .nextPage(
+                                                duration:
+                                                    Duration(milliseconds: 250),
+                                                curve: Curves.easeIn);
+                                      }
+                                    },
+                                    child: Text("Next",
+                                        style: AppStyle.textStyleDMSANS
+                                            .copyWith(
+                                                color:
+                                                    ColorConstant.primaryLightGreen,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: getFontSize(20)))),
                           ),
-
                         ],
                       ),
                     ),
@@ -199,7 +248,6 @@ class InstructionScreen extends StatelessWidget {
               width: getHorizontalSize(12),
               decoration: BoxDecoration(
                 color: ColorConstant.primaryWhite,
-
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Padding(
