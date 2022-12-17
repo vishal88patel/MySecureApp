@@ -17,7 +17,7 @@ import 'controller/dashboard_screen_controller.dart';
 class DashBoardScreen extends StatelessWidget {
   var dashBoardController = Get.find<DashBoardScreenController>();
   // var scanController = Get.find<ScanScreenController>();
-  var scanController = Get.put(ScanScreenController());
+  // var scanController = Get.put(ScanScreenController());
 
 
   @override
@@ -51,7 +51,7 @@ class DashBoardScreen extends StatelessWidget {
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
         onPressed: () {
-            scanController.cameraStart();
+            // scanController.cameraStart();
           dashBoardController.onTapOfBottomnavigation(2);
         },
       ),
@@ -67,7 +67,7 @@ class DashBoardScreen extends StatelessWidget {
             children: <Widget>[
               GestureDetector(
                 onTap: () {
-                  scanController. controller?.pauseCamera();
+                  // scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(0);
                 },
                 child: Padding(
@@ -88,7 +88,7 @@ class DashBoardScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  scanController. controller?.pauseCamera();
+                  // scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(1);
                 },
                 child: Padding(
@@ -111,7 +111,7 @@ class DashBoardScreen extends StatelessWidget {
               GestureDetector(
 
                 onTap: () {
-                  scanController. controller?.pauseCamera();
+                  // scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(3);
                 },
                 child: Obx(
@@ -130,7 +130,7 @@ class DashBoardScreen extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  scanController. controller?.pauseCamera();
+                  // scanController. controller?.pauseCamera();
                   dashBoardController.onTapOfBottomnavigation(4);
                 },
                 child: Padding(
