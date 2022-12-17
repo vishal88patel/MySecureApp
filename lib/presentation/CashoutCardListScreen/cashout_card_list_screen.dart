@@ -151,7 +151,7 @@ class CashoutCardListScreen extends StatelessWidget {
                     radius: 10,
                     onPressed: () {
                       // bankListController.showBankInfoBottomsheet();
-                      Get.toNamed(AppRoutes.cashoutPinsScreen);
+                      Get.toNamed(AppRoutes.cashoutPinScreen);
                     },
                   ),
                 ),

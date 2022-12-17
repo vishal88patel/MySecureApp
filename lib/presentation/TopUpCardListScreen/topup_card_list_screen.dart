@@ -152,7 +152,8 @@ class TopupCardListScreen extends StatelessWidget {
                           buttonName: 'Continue',
                           radius: 10,
                           onPressed: () {
-                            Get.toNamed(AppRoutes.topUpPinsScreen);
+                            cardListController.onTapOfListTile(context);
+                            //Get.toNamed(AppRoutes.topUpPinsScreen);
                           },
                         ),
                       ),

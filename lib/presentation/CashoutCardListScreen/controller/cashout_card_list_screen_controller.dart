@@ -17,7 +17,6 @@ import '../../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_scree
 import '../../CashoutAmountScreen/controller/cashout_amount_scareen_controller.dart';
 import '../../CashoutAmountScreen/model/getWallet.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
-import '../cashout_failed_screen.dart';
 import '../model/cashout_card_list_response_model.dart';
 
 
@@ -302,46 +301,7 @@ class CashoutCardListScreenController extends GetxController {
   void onTapOfTile(int index) {
     selectedIndex.value=index;
   }
-  void onTapOfListTile(BuildContext context) {
-    UIUtils.showProgressDialog(isCancellable: false);
-    Future.delayed(Duration(milliseconds: 2000), () {
-      WithdrawErrorApi(context);
-    });
-  }
-
-  Future<void> WithdrawErrorApi(BuildContext context) async {
-    ApiService()
-        .callPostApi(
-        body: await getBodyWithdrawError(amountNumPadController.amountController.text),
-        headerWithToken: true,
-        url: ApiEndPoints.WITHDRAW_ERROR)
-        .then((value) {
-      print(value);
-      if (value['status']) {
-        UIUtils.hideProgressDialog();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  CashoutFailedScreen()),
-        );
-      } else {
-        UIUtils.hideProgressDialog();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  CashoutFailedScreen()),
-        );
-      }
-    });
-  }
-
-  Future<FormData> getBodyWithdrawError(String amount) async {
-    final form = FormData({"amount": amount});
-    print(form.toString());
-    return form;
-  }
+  
   Future<void> callGetBankListApi() async {
     ApiService()
         .callGetApi(

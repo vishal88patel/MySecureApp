@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
-import 'package:secure_cash_app/presentation/EnterPersonalDetails/nam_pad.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_AppBar%20.dart';
+import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
+import 'package:secure_cash_app/theme/app_style.dart';
+
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_ElevatedButton .dart';
-import '../../routes/app_routes.dart';
-import '../../theme/app_style.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import '../../utils/HelperFiles/ui_utils.dart';
-import 'CashoutCreditCardWidget.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-
-import 'controller/cashout_card_list_screen_controller.dart';
-import 'package:flutter_pin_code_fields/flutter_pin_code_fields.dart';
-
+import '../../utils/HelperFiles/pref_utils.dart';
+import '../EnterPersonalDetails/nam_pad.dart';
+import 'controller/cashout_pin_scareen_controller.dart';
 
 class CashoutPinScreen extends StatelessWidget {
-  var cardListController = Get.find<CashoutCardListScreenController>();
+  var pinScreenController = Get.find<CashoutPinController>();
   //var bankListController = Get.put(CardListScreenController());
 
 
@@ -53,6 +54,7 @@ class CashoutPinScreen extends StatelessWidget {
                                         InkWell(
                                           onTap: () {
                                             Get.back();
+                                            pinScreenController.pinController.text="";
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -73,7 +75,7 @@ class CashoutPinScreen extends StatelessWidget {
                                         ),
                                         Obx(()=>
                                             Text(
-                                              cardListController.isPin.value==0
+                                              pinScreenController.isPin.value==0
                                                   ?"Enter Pin"
                                                   :"Confirm Pin",
                                               style: AppStyle.DmSansFont.copyWith(
@@ -101,7 +103,7 @@ class CashoutPinScreen extends StatelessWidget {
                                       height: getVerticalSize(28),
                                     ),
                                     Obx(()=> Text(
-                                      cardListController.isPin.value==0
+                                      pinScreenController.isPin.value==0
                                           ?"Please Set Your Pin before continuing payment"
                                           :"Please Enter Your Pin before continuing payment",
                                       style: AppStyle.DmSansFont.copyWith(
@@ -140,7 +142,7 @@ class CashoutPinScreen extends StatelessWidget {
                                         animationDuration: Duration(milliseconds: 300),
                                         backgroundColor: Colors.transparent,
                                         enableActiveFill: true,
-                                        controller: cardListController.pinController,
+                                        controller: pinScreenController.pinController,
                                         onCompleted: (v) {
                                           print("Completed");
                                         },
@@ -162,8 +164,8 @@ class CashoutPinScreen extends StatelessWidget {
                                   buttonName: 'Continue',
                                   onPressed: () {
                                     debugPrint(
-                                        'Your code: ${cardListController.pinController.text}');
-                                    cardListController.onTapOfListTile(context);
+                                        'Your code: ${pinScreenController.pinController.text}');
+                                    pinScreenController.onTapOfListTile(context);
                                   },
                                 ),
                               ),
@@ -174,17 +176,17 @@ class CashoutPinScreen extends StatelessWidget {
                                 children: [
                                   NumPad(
                                     type: 'OTP',
-                                    controller: cardListController.pinController,
+                                    controller: pinScreenController.pinController,
                                     delete: () {
                                       HapticFeedback.lightImpact();
 
-                                      if (cardListController
+                                      if (pinScreenController
                                           .pinController.text.isNotEmpty) {
-                                        cardListController.pinController.text =
-                                            cardListController.pinController.text
+                                        pinScreenController.pinController.text =
+                                            pinScreenController.pinController.text
                                                 .substring(
                                                 0,
-                                                cardListController
+                                                pinScreenController
                                                     .pinController
                                                     .text
                                                     .length -
@@ -194,7 +196,7 @@ class CashoutPinScreen extends StatelessWidget {
                                     // do something with the input numbers
                                     onSubmit: () {
                                       debugPrint(
-                                          'Your code: ${cardListController.pinController.text}');
+                                          'Your code: ${pinScreenController.pinController.text}');
                                     },
                                   ),
                                 ],
@@ -208,5 +210,3 @@ class CashoutPinScreen extends StatelessWidget {
                 ))));
   }
 }
-
-

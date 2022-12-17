@@ -13,7 +13,6 @@ import '../../Custom Widgets/common_image_view.dart';
 import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import '../CashOutAmountNumPadScreen/controller/cash_out_amount_num_pad_screen_controller.dart';
-import 'controller/cashout_card_list_screen_controller.dart';
 
 class CashoutFailedScreen extends StatelessWidget {
 

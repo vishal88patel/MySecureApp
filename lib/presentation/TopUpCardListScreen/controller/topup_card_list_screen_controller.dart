@@ -303,33 +303,33 @@ class TopupCardListScreenController extends GetxController {
   Future<void> WithdrawErrorApi(BuildContext context) async {
     ApiService()
         .callPostApi(
-        body: await getBodyWithdrawError(amountNumPadController.amountController.text),
+        body: await getBodyWithdrawError(amountNumPadController.amountController.text,pinController.text.toString()),
         headerWithToken: true,
         url: ApiEndPoints.WITHDRAW_ERROR)
         .then((value) {
       print(value);
       if (value['status']) {
-        UIUtils.hideProgressDialog();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  TopUpFailedScreen()),
-        );
+
       } else {
-        UIUtils.hideProgressDialog();
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) =>
-                  TopUpFailedScreen()),
-        );
+        if(value["type"]=="1"){
+          UIUtils.hideProgressDialog();
+          UIUtils.showSnakBar(
+              bodyText: value['message']??'', headerText: StringConstants.ERROR);
+        }else{
+          UIUtils.hideProgressDialog();
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) =>
+                    TopUpFailedScreen()),
+          );
+        }
       }
     });
   }
 
-  Future<FormData> getBodyWithdrawError(String amount) async {
-    final form = FormData({"amount": amount});
+  Future<FormData> getBodyWithdrawError(String amount,String pin) async {
+    final form = FormData({"amount": amount,"pin":pin});
     print(form.toString());
     return form;
   }

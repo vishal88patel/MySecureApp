@@ -49,6 +49,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                         InkWell(
                                           onTap: () {
                                             Get.back();
+                                            scanController.passController.text="";
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(

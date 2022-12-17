@@ -448,7 +448,7 @@ class LoanCalculatorScreenController extends GetxController {
                                 0, 10, 0, 0),
                             child: Text(
                               "Based on your Profile and \nDocuments, You are eligible for loan \n upto "
-                                  "\$11500. Thank You",
+                                  "\$${maximumAvailableLoan.value}. Thank You",
                               textAlign:
                               TextAlign.center,
                               style: AppStyle

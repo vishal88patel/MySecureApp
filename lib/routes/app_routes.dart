@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:secure_cash_app/presentation/CashoutCardListScreen/cashout_pin_screen.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/binding/forgot_password_screen_binding.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_create_password.dart';
 import 'package:secure_cash_app/presentation/ForgotPasswordScreen/forgot_otp.dart';
@@ -34,6 +33,8 @@ import '../presentation/CashoutCardAndBankScreen/binding/cashout_card_bank_scree
 import '../presentation/CashoutCardAndBankScreen/cashout_card_bank_screen.dart';
 import '../presentation/CashoutCardListScreen/binding/cashout_card_list_screen_binding.dart';
 import '../presentation/CashoutCardListScreen/cashout_card_list_screen.dart';
+import '../presentation/CashoutPinScreen/binding/cashout_pin_scareen_binding.dart';
+import '../presentation/CashoutPinScreen/cashout_pin_screen.dart';
 import '../presentation/ChatScreen/binding/chat_screen_binding.dart';
 import '../presentation/ChatScreen/chat_screen.dart';
 import '../presentation/CreatePasswordScreen/binding/create_password_screen_binding.dart';
@@ -167,12 +168,14 @@ class AppRoutes {
   static String accountDetailListScreen = '/account__detail_list_screen';
   static String cardDetailListScreen = '/card_detail_list_screen';
   static String cardListScreen = '/card_list_screen';
+
   static String cashoutCardBankScreen = '/cashout_card_bank_screen';
   static String cashoutCardListScreen = '/cashout_card_list_screen';
-  static String cashoutPinsScreen = '/cashout_pin_screen';
-
+  static String cashoutPinScreen = '/cashout_pin_screen';
   static String cashoutBankListScreen = '/cashout_bank_list_screen';
   static String cashoutAmountScreen = '/cashout_amount_screen';
+
+
   static String bankDetailScreen = '/bank_detail_screen';
   static String amountNumPadScreen = '/amount_num_pad_screen';
   static String cashOutAmountNumPadScreen = '/cash_out_amount_num_pad_screen';
@@ -875,12 +878,12 @@ class AppRoutes {
     ),
 
     GetPage(
-      name: cashoutPinsScreen,
+      name: cashoutPinScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
       page: () => CashoutPinScreen(),
       bindings: [
-        CashoutCardListScreenBinding(),
+        CashoutPinBinding(),
       ],
     ),
 
