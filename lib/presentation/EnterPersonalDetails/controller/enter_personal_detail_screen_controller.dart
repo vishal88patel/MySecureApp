@@ -37,16 +37,23 @@ class EnterBirthDateController extends GetxController {
           bodyText: "Please enter Date of Birth",
           headerText: StringConstants.ERROR);
       // } else if (!isAdult(dobController.text)) {
-    } else if (dobController.text=="00/00/0000") {
-
-      UIUtils.showSnakBar(
-          bodyText: "Pleas enter valid birth date", headerText: StringConstants.ERROR);
-    }else if (!isAdult(dobController.text)) {
+    } else if (!isAdult(dobController.text)) {
       UIUtils.showSnakBar(
           bodyText: "Under 18 year old are not eligible for register", headerText: StringConstants.ERROR);
     }
     else {
-      Get.to(()=> LoaderScreen(AppRoutes.enterSnnDetailScreen),transition: Transition.rightToLeft);
+
+
+      try {
+        DateFormat format = DateFormat("MM/dd/yyyy");
+        format.parseStrict(dobController.text);
+        Get.to(()=> LoaderScreen(AppRoutes.enterSnnDetailScreen),transition: Transition.rightToLeft);
+      } catch(e) {
+        UIUtils.showSnakBar(bodyText: "Please Enter Valid BirthDate",headerText: StringConstants.ERROR);
+      }
+
+
+      // Get.to(()=> LoaderScreen(AppRoutes.enterSnnDetailScreen),transition: Transition.rightToLeft);
       // Get.toNamed(AppRoutes.enterSnnDetailScreen);
     }
   }
@@ -69,7 +76,7 @@ class EnterBirthDateController extends GetxController {
 
 
   bool isAdult(String birthDateString) {
-    String datePattern = "dd/MM/yyyy";
+    String datePattern = "MM/dd/yyyy";
 
     DateTime birthDate = DateFormat(datePattern).parse(birthDateString);
     DateTime today = DateTime.now();
