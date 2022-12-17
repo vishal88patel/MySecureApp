@@ -305,116 +305,116 @@ class ProfileScreen extends StatelessWidget {
                                               fit: BoxFit.fill,
                                             ),
                                             SizedBox(width: getHorizontalSize(12),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(12),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(12),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(6),),
-                                            Container(
-                                              height: getVerticalSize(6),
-                                              width: getVerticalSize(6),
-                                              decoration: BoxDecoration(
-                                                  color: Colors.white,
-                                                  shape: BoxShape.circle
-                                              ),
-                                            ),
-                                            SizedBox(width: getHorizontalSize(12),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(12),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(12),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(6),),
+                                            // Container(
+                                            //   height: getVerticalSize(6),
+                                            //   width: getVerticalSize(6),
+                                            //   decoration: BoxDecoration(
+                                            //       color: Colors.white,
+                                            //       shape: BoxShape.circle
+                                            //   ),
+                                            // ),
+                                            // SizedBox(width: getHorizontalSize(12),),
                                             Text(
-                                              "3765",
+                                              "homeController.loginResponseModel!.data!.mobile",
                                               style: AppStyle.textStyleDMSANS.copyWith(
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w500,

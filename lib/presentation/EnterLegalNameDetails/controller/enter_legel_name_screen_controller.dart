@@ -60,7 +60,7 @@ class EnterLegalNameScreenController extends GetxController {
   Future<void> checkCashTagValidation() async {
     ApiService()
         .callPostApi(
-        body: await getBody(secureTagController.text),
+        body: await getBody("\$"+secureTagController.text),
         headerWithToken: false,
         url: ApiEndPoints.CHECK_CASHTAG_VALIDATION)
         .then((value) {

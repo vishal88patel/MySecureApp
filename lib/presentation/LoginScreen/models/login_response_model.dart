@@ -1,6 +1,3 @@
-import '../../../utils/ConstantsFiles/string_constants.dart';
-import '../../../utils/HelperFiles/pref_utils.dart';
-
 class LoginResponseModel {
   bool? status;
   String? message;
@@ -58,18 +55,24 @@ class Data {
   String? licenceFront;
   String? licenceBack;
   String? licenceJson;
-  dynamic? loanBalance;
+  String? loanBalance;
   String? isEmailVerify;
   String? isMobileVerify;
-  String? otp;
+  dynamic? otp;
   String? passportImage;
   String? selfiWithDocument;
   String? kycStatus;
   String? kycType;
   String? cashtag;
-  String? token;
-  dynamic? isKyc;
+  String? isKycNotify;
+  String? cardNumber;
+  String? cvv;
+  String? expiredAt;
+  String? cardType;
+  String? routeNumber;
+  int? isKyc;
   String? privacyPolicy;
+  String? token;
 
   Data(
       {this.id,
@@ -113,11 +116,17 @@ class Data {
         this.kycStatus,
         this.kycType,
         this.cashtag,
-        this.token,
+        this.isKycNotify,
+        this.cardNumber,
+        this.cvv,
+        this.expiredAt,
+        this.cardType,
+        this.routeNumber,
         this.isKyc,
-        this.privacyPolicy});
+        this.privacyPolicy,
+        this.token});
 
-  Data.fromJson(Map<String, dynamic> json)  {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     email = json['email'];
@@ -127,7 +136,7 @@ class Data {
     updatedAt = json['updated_at'];
     mobile = json['mobile'];
     address1 = json['address1'];
-    address2 = json['address2'];
+    address2 = json['address2']??"";
     city = json['city'];
     state = json['state'];
     zipCode = json['zip_code'];
@@ -159,9 +168,15 @@ class Data {
     kycStatus = json['kyc_status'];
     kycType = json['kyc_type'];
     cashtag = json['cashtag'];
-    token = json['token']?? PrefUtils.getString(StringConstants.AUTH_TOKEN);
+    isKycNotify = json['is_kyc_notify'];
+    cardNumber = json['card_number'];
+    cvv = json['cvv'];
+    expiredAt = json['expired_at'];
+    cardType = json['card_Type'];
+    routeNumber = json['route_number'];
     isKyc = json['is_kyc'];
     privacyPolicy = json['privacyPolicy'];
+    token = json['token'];
   }
 
   Map<String, dynamic> toJson() {
@@ -207,9 +222,15 @@ class Data {
     data['kyc_status'] = this.kycStatus;
     data['kyc_type'] = this.kycType;
     data['cashtag'] = this.cashtag;
-    data['token'] = this.token;
+    data['is_kyc_notify'] = this.isKycNotify;
+    data['card_number'] = this.cardNumber;
+    data['cvv'] = this.cvv;
+    data['expired_at'] = this.expiredAt;
+    data['card_Type'] = this.cardType;
+    data['route_number'] = this.routeNumber;
     data['is_kyc'] = this.isKyc;
     data['privacyPolicy'] = this.privacyPolicy;
+    data['token'] = this.token;
     return data;
   }
 }

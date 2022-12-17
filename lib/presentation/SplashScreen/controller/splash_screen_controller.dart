@@ -28,8 +28,7 @@ class SplashScreenController extends GetxController {
   Future changeRoute() async {
     LoginResponseModel? loginResponseModel =
         (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
-    if (loginResponseModel != null &&
-        loginResponseModel.data!.token!.isNotEmpty) {
+    if (loginResponseModel != null && loginResponseModel.data!.token!=null) {
       Future.delayed(Duration(milliseconds: 1000), () {
         Get.offAllNamed(AppRoutes.dashBoardScreen,
             arguments: {"bottomTabCount": 0});
