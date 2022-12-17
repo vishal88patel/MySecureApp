@@ -283,7 +283,7 @@ class ProfileScreen extends StatelessWidget {
                                                   fontSize: getFontSize(16)),
                                             ),
                                             SvgPicture.asset(
-                                              "asset/icons/ic_card_logo.svg",
+                                              "asset/icons/ic_visa.svg",
                                               fit: BoxFit.fill,
                                             ),
                                           ],
@@ -414,7 +414,7 @@ class ProfileScreen extends StatelessWidget {
                                             // ),
                                             // SizedBox(width: getHorizontalSize(12),),
                                             Text(
-                                              "homeController.loginResponseModel!.data!.mobile",
+                                              homeController.loginResponseModel!.data!.cardNumber.toString(),
                                               style: AppStyle.textStyleDMSANS.copyWith(
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w500,
