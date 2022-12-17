@@ -5,6 +5,7 @@ import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/ui_utils.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -222,7 +223,12 @@ class TopupCardListScreen extends StatelessWidget {
                           buttonName: 'Continue',
                           radius: 10,
                           onPressed: () {
-                            cardListController.onTapOfListTile(context);
+                            if(!cardListController.selectedCard.value){
+                              UIUtils.showSnakBar(headerText: StringConstants.ERROR,bodyText: "Please Select a Card");
+                            }else{
+                              cardListController.onTapOfListTile(context);
+                            }
+
                             //Get.toNamed(AppRoutes.topUpPinsScreen);
                           },
                         ),
