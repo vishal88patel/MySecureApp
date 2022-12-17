@@ -171,16 +171,6 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                   height: getVerticalSize(20),
                                 ),
                                 Spacer(),
-                                Obx(()=>
-                                cardController.progress4.value?Text(
-                                    "Thank you.Your card data has been successfully submitted.You'll get the results shortly",
-                                    style: AppStyle.textStyleDMSANS
-                                        .copyWith(
-                                            color: ColorConstant.primaryWhite,
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: getFontSize(18)),
-                                  ):Container(),
-                                ),
                                 SizedBox(
                                   height: getVerticalSize(32),
                                 ),

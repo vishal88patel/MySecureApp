@@ -26,7 +26,8 @@ class CashoutCardListScreenController extends GetxController {
   RxList mainCardList=[].obs;
   var getLinkedBankModel = GrtLinkedBank().obs;
   var selectedIndex=1000.obs;
-  var selectedCard= 0.obs;
+  var selectedCard = false.obs;
+   int? selectIndex = 0;
   var isPin= 0.obs;
   var arguments = Get.arguments;
 
@@ -55,8 +56,8 @@ class CashoutCardListScreenController extends GetxController {
 
 
 
-  void selectCreditCard(var index){
-    selectedCard.value = index;
+  void selectCreditCard(){
+    selectedCard.value = !selectedCard.value;
   }
 
   void getArguments() {

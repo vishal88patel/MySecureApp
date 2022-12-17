@@ -31,6 +31,17 @@ class MyLinkedBankListScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  List<String> countries = [
+    "Nepal",
+    "India",
+    "Pakistan",
+    "Bangladesh",
+    "USA",
+    "Canada",
+    "China",
+    "Russia",
+  ];
+
 
   Future<void> callGetLinkedBankApi() async {
     ApiService()

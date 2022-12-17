@@ -73,7 +73,43 @@ class CashoutCardListScreen extends StatelessWidget {
                           null
                       ? SizedBox(
                     height: getVerticalSize(250),
-                        child: ListView.builder(
+                        child:cardListController.selectedCard.value?
+                        Obx(()=>InkWell(
+                          onTap: (){
+                            cardListController.selectCreditCard();
+                          },
+                          child: Center(
+                            child: CashoutCreditCardWidget(
+                                  cardHolderName: cardListController
+                                      .mainCardList
+                                      .value[cardListController.selectIndex!]
+                                      .holderName
+                                      .toString(),
+                                  cardType: cardListController
+                                      .mainCardList
+                                      .value[cardListController.selectIndex!]
+                                      .cardType
+                                      .toString(),
+                                  hPadding: 65,
+                                  cardNumber: cardListController
+                                      .mainCardList
+                                      .value[cardListController.selectIndex!]
+                                      .cardNumber
+                                      .toString(),
+                                  expiryDate: cardListController
+                                      .mainCardList
+                                      .value[cardListController.selectIndex!]
+                                      .expireMonth
+                                      .toString() +
+                                      "/" +
+                                      cardListController.mainCardList
+                                          .value[cardListController.selectIndex!].expireYear
+                                          .toString()),
+                          ),
+                        ),
+                        )
+                            :
+                        ListView.builder(
                             itemCount:
                                 cardListController.mainCardList.length,
                             physics: const BouncingScrollPhysics(),
@@ -81,7 +117,7 @@ class CashoutCardListScreen extends StatelessWidget {
                             shrinkWrap: true,
                             itemBuilder: (BuildContext context, int index) {
                               return Obx(
-                                  ()=> Padding(
+                                  ()=>  Padding(
                                   padding: EdgeInsets.only(
                                       top: getVerticalSize(15),
                                       bottom: getVerticalSize(15),
@@ -89,9 +125,8 @@ class CashoutCardListScreen extends StatelessWidget {
                                   right: getHorizontalSize(15)),
                                   child: InkWell(
                                     onTap: () {
-
-                                      cardListController.selectCreditCard(index);
-
+                                      cardListController.selectIndex = index;
+                                      cardListController.selectCreditCard();
                                     },
                                     child: CashoutCreditCardWidget(
                                         cardHolderName: cardListController
@@ -104,6 +139,7 @@ class CashoutCardListScreen extends StatelessWidget {
                                             .value[index]
                                             .cardType
                                             .toString(),
+                                        hPadding: 65,
                                         cardNumber: cardListController
                                             .mainCardList
                                             .value[index]
