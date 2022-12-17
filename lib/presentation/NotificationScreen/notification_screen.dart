@@ -298,32 +298,48 @@ class _NotificationScreenState extends State<NotificationScreen> {
                                                           .list[index],
                                                       animation),
                                     )
-                                  : Center(
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Container(
-                                            height: 120,
-                                            width: 120,
-                                            child: SvgPicture.asset(
-                                              "asset/icons/no_new_notification.svg",
-                                              color: ColorConstant
-                                                  .primaryDarkGreen,
-                                            ),
-                                          ),
-                                          Text(
-                                            "No New Notification",
-                                            style: AppStyle.textStyleDMSANS
-                                                .copyWith(
-                                                    color: ColorConstant
-                                                        .primaryDarkGreen,
-                                                    fontWeight: FontWeight.w700,
-                                                    fontSize: getFontSize(24)),
-                                          ),
-                                        ],
-                                      ),
-                                    )
+                                  : Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                          padding: EdgeInsets.all(getVerticalSize(20)),
+                                          child:Container(
+                                              width: double.infinity,
+                                              height: getVerticalSize(200),
+                                              margin:
+                                              EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                              decoration: BoxDecoration(
+                                                  borderRadius: BorderRadius.circular(12),
+                                                  color: ColorConstant.primaryAppTextF1),
+                                              child: Row(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Column(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                    children: [
+                                                      Image.asset(
+                                                        "asset/icons/no_recent.png",
+                                                        fit: BoxFit.fill,
+                                                        height: getVerticalSize(70),
+                                                        width: getVerticalSize(70),
+                                                      ),
+                                                      Text(
+                                                        "No New Notification",
+                                                        style: AppStyle.DmSansFont.copyWith(
+                                                            color: ColorConstant.naturalGrey3,
+                                                            fontWeight: FontWeight.w600,
+                                                            fontSize: getFontSize(20)),
+                                                      )
+                                                    ],
+                                                  ),
+                                                ],
+                                              ))
+                                      )
+
+                                    ],
+                                  )
                               : Padding(
                                   padding: const EdgeInsets.all(180),
                                   child: Container(
