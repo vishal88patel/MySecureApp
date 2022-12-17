@@ -163,25 +163,7 @@ class ProfileScreen extends StatelessWidget {
                                                           FontWeight.bold),
                                             ),
                                             if(homeController.loginResponseModel!.data!=null)
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                top: 7,
-                                                right: 10,
-                                              ),
-                                              child: Text(
-                                                  homeController.loginResponseModel!.data!.mobile??'',
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle.DmSansFont
-                                                    .copyWith(
-                                                        color: ColorConstant
-                                                            .primaryAppTextF1,
-                                                        fontSize:
-                                                            getFontSize(18),
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                              ),
-                                            ),
+
                                             if(homeController.loginResponseModel!.data!=null)
                                             Align(
                                               alignment: Alignment.center,
@@ -216,9 +198,7 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: getVerticalSize(24),
-                        ),
+
                         Card(
                           margin: const EdgeInsets.symmetric(horizontal: 0),
                           color: ColorConstant.naturalGrey2,
@@ -416,9 +396,10 @@ class ProfileScreen extends StatelessWidget {
                                             Text(
                                               homeController.loginResponseModel!.data!.cardNumber.toString(),
                                               style: AppStyle.textStyleDMSANS.copyWith(
+                                                wordSpacing: 12,
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(18)),
+                                                  fontSize: getFontSize(22)),
                                             ),
                                           ],
                                         ),
