@@ -19,6 +19,7 @@ import 'package:intl/intl.dart';
 
 class CashoutAmountController extends GetxController {
   TextEditingController amountController = TextEditingController();
+  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel().obs;
 
   var walletModel=GetWallet().obs;
   var uuidModel=GetUuidDetail().obs;
@@ -43,6 +44,7 @@ class CashoutAmountController extends GetxController {
 
   @override
   void onInit() {
+    getStoredData();
     callGetWalletApi(pageNo: 1);
     //controller = ScrollController()..addListener(_scrollListener);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
@@ -106,6 +108,11 @@ class CashoutAmountController extends GetxController {
    goHome() {
     Get.offAllNamed(AppRoutes.dashBoardScreen,
         arguments: {"bottomTabCount": 0});
+  }
+
+  Future<void> getStoredData() async {
+    loginResponseModel.value =
+    (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE))!;
   }
 
 }

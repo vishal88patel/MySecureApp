@@ -31,6 +31,7 @@ class TopWithCreditCardController extends GetxController {
   var qrCodeResult="".obs;
   late ScrollController controller;
   var formatter = NumberFormat('#,##,000').obs;
+  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel().obs;
 
 
   var opt1=false.obs;
@@ -38,7 +39,12 @@ class TopWithCreditCardController extends GetxController {
   var opt3=false.obs;
   @override
   void onReady() {
+    getStoredData();
     super.onReady();
+  }
+  Future<void> getStoredData() async {
+    loginResponseModel.value =
+    (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE))!;
   }
 
   @override

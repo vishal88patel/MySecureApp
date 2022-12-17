@@ -96,11 +96,9 @@ class TransferScanScreen extends StatelessWidget {
                   radius: 10,
                   buttonColor: ColorConstant.primaryLightGreen,
                   onPressed: () {
-                  // Get.back();
-                  // Get.back();
-                  //   Get.offAllNamed(AppRoutes.dashBoardScreen,
-                  //       arguments: {"bottomTabCount": 2});
-                     Get.toNamed(AppRoutes.scanScreen);
+                    Get.offAllNamed(AppRoutes.dashBoardScreen,
+                        arguments: {"bottomTabCount": 2});
+
                   },),
                 SizedBox(
                   height: getVerticalSize(40),

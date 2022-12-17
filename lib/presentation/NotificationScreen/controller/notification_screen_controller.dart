@@ -7,6 +7,7 @@ import 'package:secure_cash_app/routes/app_routes.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../ScanScreen/model/custom_model.dart';
 import '../Model/notification_response_model.dart';
@@ -17,6 +18,7 @@ class NotificationScreenController extends GetxController {
   RxList originallist = [].obs;
   RxList list = [].obs;
   var isLoading = false.obs;
+  var isVerified = "0".obs;
 
   @override
   void onReady() {
@@ -90,7 +92,8 @@ class NotificationScreenController extends GetxController {
             arguments: {"bottomTabCount": 0});
         break;
       case "KYC_CHECK":
-        Get.toNamed(AppRoutes.kycSelectStepScreen);
+        PrefUtils.getString(StringConstants.IS_KYC_DONE)=="0"?
+        Get.toNamed(AppRoutes.kycEmailScreen):Get.toNamed(AppRoutes.kycSelectStepScreen);
         break;
       case "LOAN_GET":
         Get.toNamed(AppRoutes.loanApplyInfoScreen);
