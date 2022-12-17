@@ -173,7 +173,7 @@ class DashBoardScreenController extends GetxController {
         UserBalance.value= walletModel.value.data!.walletBalance!;
 
       } else {
-        UIUtils.hideProgressDialog(); 
+        UIUtils.hideProgressDialog();
         // UIUtils.showSnakBar(
         //     bodyText: value['message']??'', headerText: StringConstants.ERROR);
       }
