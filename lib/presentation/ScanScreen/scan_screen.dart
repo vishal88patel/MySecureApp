@@ -349,9 +349,9 @@ class _ScanScreenState extends State<ScanScreen> {
   void _onPermissionSet(BuildContext context, QRViewController ctrl, bool p) {
 
     if (!p) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('no Permission')),
-      );
+      // ScaffoldMessenger.of(context).showSnackBar(
+      //   const SnackBar(content: Text('no Permission')),
+      // );
     }
   }
 }
