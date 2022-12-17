@@ -44,6 +44,7 @@ class ScanScreenController extends GetxController {
 
   @override
   void onReady() {
+    cameraStart();
     super.onReady();
   }
 
@@ -51,12 +52,10 @@ class ScanScreenController extends GetxController {
   void onInit() {
     getArguments();
     getStoredData();
-
     // cameraStart();
-
     super.onInit();
-
   }
+
   void getArguments() {
     if (arguments['uuid'] != null && arguments['amount'] != null) {
       qrCodeResult.value = arguments['uuid'];
@@ -151,7 +150,9 @@ class ScanScreenController extends GetxController {
         name.value=uuidModel.value.data!.name!;
         image.value=uuidModel.value.data!.profilePhotoUrl!;
         UIUtils.hideProgressDialog();
-        Get.toNamed(AppRoutes.scanSummaryScreen);
+        Get.toNamed(AppRoutes.scanSummaryScreen)!.then((value) {
+          cameraStart();
+        });
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

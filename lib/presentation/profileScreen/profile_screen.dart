@@ -286,7 +286,7 @@ class ProfileScreen extends StatelessWidget {
                                             ),
                                             SizedBox(width: getHorizontalSize(12),),
                                             Text(
-                                              homeController.loginResponseModel!.data!.cardNumber.toString().replaceRange(0, 12, '*' * 12),
+                                                homeController.loginResponseModel!.data!=null? homeController.loginResponseModel!.data!.cardNumber.toString().replaceRange(0, 12, '*' * 12):"",
                                               style: AppStyle.textStyleDMSANS.copyWith(
                                                 wordSpacing: 12,
                                                   color: ColorConstant.primaryWhite,
