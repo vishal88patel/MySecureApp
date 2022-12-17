@@ -66,119 +66,119 @@ class TopupBankListScreen extends StatelessWidget {
                       height: getVerticalSize(10),
                     ),
                     Obx(
-                      () =>
+                          () =>
                       bankListController.getLinkedBankModel.value.data !=
-                              null
+                          null
                           ?bankListController.getLinkedBankModel.value.data!.isNotEmpty?
                       ListView.builder(
-                              shrinkWrap: true,
-                              // itemCount: 2,
-                              itemCount: bankListController.getLinkedBankModel
-                                          .value.data!.length >
-                                      2
-                                  ? 2
-                                  : bankListController
-                                      .getLinkedBankModel.value.data!.length,
-                              physics: const BouncingScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return Padding(
+                          shrinkWrap: true,
+                          // itemCount: 2,
+                          itemCount: bankListController.getLinkedBankModel
+                              .value.data!.length >
+                              2
+                              ? 2
+                              : bankListController
+                              .getLinkedBankModel.value.data!.length,
+                          physics: const BouncingScrollPhysics(),
+                          itemBuilder: (BuildContext context, int index) {
+                            return Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getVerticalSize(6.5)),
+                              child: InkWell(
+                                onTap: (){
+                                  // bankListController.showBankInfoBottomsheet();
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ColorConstant.greyF9,
+                                      // border: Border.all(color: ColorConstant.primaryLightGreen),
+                                      borderRadius:
+                                      BorderRadius.circular(10)),
                                   padding: EdgeInsets.symmetric(
-                                      vertical: getVerticalSize(6.5)),
-                                  child: InkWell(
-                                    onTap: (){
-                                      // bankListController.showBankInfoBottomsheet();
-                                    }, 
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                          color: ColorConstant.greyF9,
-                                          // border: Border.all(color: ColorConstant.primaryLightGreen),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: getVerticalSize(10)),
-                                      child: Row(
+                                      vertical: getVerticalSize(10)),
+                                  child: Row(
+                                    children: [
+                                      Container(
+                                        padding: EdgeInsets.all(10),
+                                        width: 50,
+                                        height: 50,
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(10)),
+                                        child: Image.asset(
+                                          "asset/icons/ic_bank_orange.png",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        width: 12,
+                                      ),
+                                      Column(
+                                        crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.start,
                                         children: [
-                                          Container(
-                                            padding: EdgeInsets.all(10),
-                                            width: 50,
-                                            height: 50,
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(10)),
-                                            child: Image.asset(
-                                              "asset/icons/ic_bank_orange.png",
-                                              fit: BoxFit.cover,
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            width: 12,
-                                          ),
-                                          Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                          Row(
+                                            mainAxisSize: MainAxisSize.max,
                                             mainAxisAlignment:
-                                                MainAxisAlignment.start,
+                                            MainAxisAlignment
+                                                .spaceBetween,
                                             children: [
-                                              Row(
-                                                mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  Text(
-                                                      // 'kishan',
+                                              Text(
+                                                // 'kishan',
+                                                  bankListController
+                                                      .getLinkedBankModel
+                                                      .value
+                                                      .data![index]
+                                                      .bankName
+                                                      .toString() +
+                                                      "   " +
                                                       bankListController
-                                                              .getLinkedBankModel
-                                                              .value
-                                                              .data![index]
-                                                              .bankName
-                                                              .toString() +
-                                                          "   " +
-                                                          bankListController
-                                                              .getLinkedBankModel
-                                                              .value
-                                                              .data![index]
-                                                              .accountNumber
-                                                              .toString()
-                                                              .substring(0, 4),
-                                                      style: AppStyle
-                                                          .DmSansFont
-                                                          .copyWith(
-                                                              color: ColorConstant.primaryBlack,
-                                                              fontWeight:
-                                                                  FontWeight.w600,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                      18))),
-                                                ],
-                                              ),
+                                                          .getLinkedBankModel
+                                                          .value
+                                                          .data![index]
+                                                          .accountNumber
+                                                          .toString()
+                                                          .substring(0, 4),
+                                                  style: AppStyle
+                                                      .DmSansFont
+                                                      .copyWith(
+                                                      color: ColorConstant.primaryBlack,
+                                                      fontWeight:
+                                                      FontWeight.w600,
+                                                      fontSize:
+                                                      getFontSize(
+                                                          18))),
                                             ],
                                           ),
-                                          Spacer(),
-                                          index==0?Row(
-                                            children: [
-                                              Container(
-                                                height: 10,
-                                                width: 10,
-                                                decoration: BoxDecoration(
-                                                  shape: BoxShape.circle,
-                                                  color: ColorConstant.primaryLightGreen,
-
-                                                ),
-                                              ),
-                                              SizedBox(width: 4,),
-                                              Text("Primary",style: TextStyle(color: ColorConstant.primaryBlack),)
-                                            ],
-                                          ):SizedBox(),
-                                          SizedBox(
-                                            width: 14,
-                                          )
                                         ],
                                       ),
-                                    ),
+                                      Spacer(),
+                                      index==0?Row(
+                                        children: [
+                                          Container(
+                                            height: 10,
+                                            width: 10,
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              color: ColorConstant.primaryLightGreen,
+
+                                            ),
+                                          ),
+                                          SizedBox(width: 4,),
+                                          Text("Primary",style: TextStyle(color: ColorConstant.primaryBlack),)
+                                        ],
+                                      ):SizedBox(),
+                                      SizedBox(
+                                        width: 14,
+                                      )
+                                    ],
                                   ),
-                                );
-                              }):Padding(
+                                ),
+                              ),
+                            );
+                          }):Padding(
                           padding: EdgeInsets.all(getVerticalSize(20)),
                           child:Container(
                               width: double.infinity,

@@ -28,7 +28,8 @@ class TopupCardListScreenController extends GetxController {
   var selectedIndex=1000.obs;
   var arguments = Get.arguments;
   final pinController = TextEditingController();
-  var selectedCard= 0.obs;
+  var selectedCard = false.obs;
+  int? selectIndex = 0;
   var type = "";
   var isPin = 0.obs;
   var amountNumPadController = Get.put(CashOutAmountNumPadScreenController());
@@ -47,8 +48,8 @@ class TopupCardListScreenController extends GetxController {
     super.onInit();
   }
 
-  void selectCreditCard(var index){
-    selectedCard.value = index;
+  void selectCreditCard(){
+    selectedCard.value = !selectedCard.value;
   }
 
   void getArguments() {
