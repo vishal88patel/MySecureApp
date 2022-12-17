@@ -429,5 +429,8 @@ class KycStep1ScreenController extends GetxController {
           headerText: StringConstants.SUCCESS);
     }
   }
-
+  goToHome() {
+    Get.offAllNamed(AppRoutes.dashBoardScreen,
+        arguments: {"bottomTabCount": 0});
+  }
 }

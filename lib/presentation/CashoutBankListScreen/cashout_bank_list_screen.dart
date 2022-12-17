@@ -15,7 +15,6 @@ class CashoutBankListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: ColorConstant.primaryWhite,
-
         body: Stack(
       children: [
         Padding(
