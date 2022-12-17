@@ -7,10 +7,10 @@ import '../../theme/app_style.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/ui_utils.dart';
-import 'controller/boost_credit_screen_controller.dart';
+import 'controller/bitcoin_screen_controller.dart';
 
-class BoostCreditScreen extends StatelessWidget {
-  var boostCreditController = Get.put(BoostCreditScreenController);
+class BitCoinnScreen extends StatelessWidget {
+  var notificationController = Get.put(BitCoinScreenController);
 
   @override
   Widget build(BuildContext context) {
@@ -19,62 +19,52 @@ class BoostCreditScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Container(
               height: size.height,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column( crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: getVerticalSize(52),
-                  ),
+                  SizedBox(height: getVerticalSize(52),),
                   Padding(
-                    padding:
-                        EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                    padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
                           onTap: () {
-                            Get.back();
+
                           },
                           child: Container(
                             decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
+                                borderRadius:
+                                BorderRadius.circular(12),
                                 border: Border.all(
-                                    color: ColorConstant.backBorder)),
+                                    color:
+                                    ColorConstant.backBorder)),
                             padding: EdgeInsets.all(6),
                             child: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              size: 22,
-                            ),
+                              Icons.arrow_back_ios_new_outlined,size: 22,),
                           ),
                         ),
                         Text(
-                          "Boost Credit",
+                          "Bitcoin",
                           style: AppStyle.DmSansFont.copyWith(
                               color: ColorConstant.primaryBlack,
                               fontWeight: FontWeight.w700,
                               fontSize: getFontSize(20)),
                         ),
                         Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
+                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
                               border: Border.all(color: Colors.transparent)),
                           padding: EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.arrow_back_ios_new_outlined,
-                            color: Colors.transparent,
-                          ),
-                        ),
-                      ],
+                          child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                        ),                      ],
                     ),
                   ),
                   SizedBox(
                     height: getVerticalSize(40),
                   ),
                   Center(
-                      child: Image.asset(
-                    'asset/icons/img_comingsoon.png',
-                    height: getVerticalSize(300),
-                  )),
+                      child: Image.asset('asset/icons/img_comingsoon.png',
+                        height: getVerticalSize(300),)
+                  ),
                   SizedBox(
                     height: getVerticalSize(30),
                   ),
@@ -92,7 +82,8 @@ class BoostCreditScreen extends StatelessWidget {
                   ),
                   Center(
                       child: Image.asset('asset/icons/img_comingsoon_card.png',
-                          width: size.width / 1.15)),
+                        width: size.width/1.15)
+                  ),
                 ],
               )),
         ));

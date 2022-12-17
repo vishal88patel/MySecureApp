@@ -6,6 +6,7 @@ import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../BitCoinScreen/bitcoin_screen.dart';
+import '../BitCoinScreen/bitcoinn_screen.dart';
 import '../HomeScreen/home_screen.dart';
 import '../NotificationScreen/notification_screen.dart';
 import '../ScanScreen/controller/scan_screen_controller.dart';
@@ -33,7 +34,7 @@ class DashBoardScreen extends StatelessWidget {
               HomeScreen(),
               StatisticScreen(),
               ScanScreen(),
-              BitCoinScreen(),
+              BitCoinnScreen(),
               ProfileScreen(),
               // TransactionScreen(),
               // LinkBankListScreen(),
@@ -116,7 +117,7 @@ class DashBoardScreen extends StatelessWidget {
                 child: Obx(
                   () => dashBoardController.selectedIndex.value == 3
                       ? SvgPicture.asset(
-                          "asset/icons/ic_bitcoin.svg",
+                          "asset/icons/ic_bitcoin_checked.svg",
                           color: ColorConstant.primaryDarkGreen,
                           height: getVerticalSize(32),
                         )
