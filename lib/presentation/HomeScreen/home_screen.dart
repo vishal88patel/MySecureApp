@@ -7,6 +7,7 @@ import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:shimmer/shimmer.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
@@ -474,16 +475,21 @@ class HomeScreen extends StatelessWidget {
                                   .homeModel.value.data!.topOffer!.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return Obx(
-                                  () => Padding(
-                                    padding: const EdgeInsets.only(right: 16.0),
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.circular(15.0),
-                                      child: Image.network(
-                                        homeController.homeModel.value.data!
-                                            .topOffer![index],
-                                        width: getHorizontalSize(360),
-                                        height: getVerticalSize(180),
-                                        fit: BoxFit.cover,
+                                  () => InkWell(
+                                    onTap: (){
+                                      showOfferBannerDialouge();
+                                    },
+                                    child: Padding(
+                                      padding: const EdgeInsets.only(right: 16.0),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(15.0),
+                                        child: Image.network(
+                                          homeController.homeModel.value.data!
+                                              .topOffer![index],
+                                          width: getHorizontalSize(360),
+                                          height: getVerticalSize(180),
+                                          fit: BoxFit.cover,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -525,5 +531,100 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ));
+  }
+  Future<void> showOfferBannerDialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                    'asset/icons/done_image.png', height: 60),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Offer will be coming soon!!!",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
   }
 }

@@ -76,7 +76,10 @@ class PersonalDetailsScreen extends StatelessWidget {
                   Stack(
                     alignment: Alignment.center,
                     children: [
-                      Image.asset('asset/icons/credit_card.png',height: getVerticalSize(230),),
+                      Container(
+                        width: size.width/1.15,
+                        child: Image.asset('asset/icons/credit_card.png',),
+                      ),
                       Positioned(
                         top: getVerticalSize(20),
                         child: SizedBox(

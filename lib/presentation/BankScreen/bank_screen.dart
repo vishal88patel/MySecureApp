@@ -89,9 +89,6 @@ class BankScreen extends StatelessWidget {
                   SizedBox(
                     height: getVerticalSize(30),
                   ),
-                  Center(
-                      child: Image.asset('asset/icons/img_comingsoon_card.png',
-                          width: size.width / 1.15)),
                 ],
               )),
         ));
