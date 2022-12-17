@@ -9,6 +9,7 @@ import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/pref_utils.dart';
@@ -91,481 +92,23 @@ class KycSelectStepScreen extends StatelessWidget {
                                       onTap: () {
                                         if (kycSelectStepController.isVerified ==
                                             "0") {
-                                          // Get.toNamed(
-                                          //     AppRoutes.kycStep1DataScreen);
+
                                           Get.offAllNamed(AppRoutes.kycStep1DataScreen);
                                         }else if(kycSelectStepController.isVerified ==
                                             "4"){
-                                          Get.dialog(
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: getHorizontalSize(40)),
-                                              child: Center(
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: Wrap(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            color: ColorConstant
-                                                                .primaryWhite,
-                                                            borderRadius:
-                                                            const BorderRadius.all(
-                                                                Radius.circular(15))),
-                                                        padding: const EdgeInsets.only(
-                                                          bottom: 10,
-                                                        ),
-                                                        constraints: const BoxConstraints(
-                                                            minWidth: 180),
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              decoration: BoxDecoration(
-                                                                  color:
-                                                                  Color(0xFFF4F4F6),
-                                                                  borderRadius:
-                                                                  const BorderRadius
-                                                                      .all(
-                                                                      Radius.circular(
-                                                                          15))),
-                                                              padding: EdgeInsets.all(6),
-                                                              child: InkWell(
-                                                                onTap:(){
-                                                                  Get.back();
-                                                                },
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
-                                                                  children: [
-                                                                    Icon(
-                                                                        Icons.close),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                      children: [
-                                                                        Image.asset(
-                                                                          "asset/icons/img_success_check.png",
-                                                                          height: 80,
-                                                                          width: 80,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Icon(
-                                                                      Icons.close,
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              height: 20,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    0, 10, 0, 0),
-                                                                child: Text(
-                                                                  "Completed",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(20),
-                                                                      color:
-                                                                      ColorConstant
-                                                                          .darkBlue,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                                )),
-                                                            const SizedBox(
-                                                              height: 10,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    10, 10, 10, 0),
-                                                                child: Text(
-                                                                  "Your Kyc Level 1 has been Completed",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(18),
-                                                                      color: ColorConstant
-                                                                          .darkBlue),
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            barrierDismissible: true,
-                                          );
+                                          showCompetedLevel1Dialouge();
+
                                         }
                                         else if(kycSelectStepController.isVerified ==
                                             "2"){
-                                          Get.dialog(
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: getHorizontalSize(40)),
-                                              child: Center(
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: Wrap(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            color: ColorConstant
-                                                                .primaryWhite,
-                                                            borderRadius:
-                                                            const BorderRadius.all(
-                                                                Radius.circular(15))),
-                                                        padding: const EdgeInsets.only(
-                                                          bottom: 10,
-                                                        ),
-                                                        constraints: const BoxConstraints(
-                                                            minWidth: 180),
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              height:140,
-                                                              decoration: BoxDecoration(
-                                                                  color:
-                                                                  Color(0xFFF4F4F6),
-                                                                  borderRadius:
-                                                                  const BorderRadius
-                                                                      .all(
-                                                                      Radius.circular(
-                                                                          15))),
-                                                              padding: EdgeInsets.all(6),
-                                                              child: InkWell(
-                                                                onTap:(){
-                                                                  Get.back();
-                                                                },
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
-                                                                  children: [
-                                                                    Icon(
-                                                                        Icons.close),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                      children: [
-                                                                        Image.asset(
-                                                                          "asset/icons/img_success_check.png",
-                                                                          height: 80,
-                                                                          width: 80,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Icon(
-                                                                      Icons.close,
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              height: 20,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    0, 10, 0, 0),
-                                                                child: Text(
-                                                                  "Completed",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(20),
-                                                                      color:
-                                                                      ColorConstant
-                                                                          .darkBlue,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                                )),
-                                                            const SizedBox(
-                                                              height: 10,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    10, 10, 10, 0),
-                                                                child: Text(
-                                                                  "Your Kyc Level 1 has been Completed",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(18),
-                                                                      color: ColorConstant
-                                                                          .darkBlue),
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            barrierDismissible: true,
-                                          );
+                                          showCompetedLevel1Dialouge();
                                         }
                                         else if(kycSelectStepController.isVerified ==
                                             "1"){
-                                          Get.dialog(
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: getHorizontalSize(40)),
-                                              child: Center(
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: Wrap(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            color: ColorConstant
-                                                                .primaryWhite,
-                                                            borderRadius:
-                                                            const BorderRadius.all(
-                                                                Radius.circular(15))),
-                                                        padding: const EdgeInsets.only(
-                                                          bottom: 10,
-                                                        ),
-                                                        constraints: const BoxConstraints(
-                                                            minWidth: 180),
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              decoration: BoxDecoration(
-                                                                  color:
-                                                                  Color(0xFFF4F4F6),
-                                                                  borderRadius:
-                                                                  const BorderRadius
-                                                                      .all(
-                                                                      Radius.circular(
-                                                                          15))),
-                                                              padding: EdgeInsets.all(6),
-                                                              child: InkWell(
-                                                                onTap:(){
-                                                                  Get.back();
-                                                                },
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
-                                                                  children: [
-                                                                    Icon(
-                                                                        Icons.close),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                      children: [
-                                                                        Image.asset(
-                                                                          "asset/icons/img_success_check.png",
-                                                                          height: 80,
-                                                                          width: 80,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Icon(
-                                                                      Icons.close,
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              height: 20,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    0, 10, 0, 0),
-                                                                child: Text(
-                                                                  "Pending",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(20),
-                                                                      color:
-                                                                      ColorConstant
-                                                                          .darkBlue,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                                )),
-                                                            const SizedBox(
-                                                              height: 10,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    10, 10, 10, 0),
-                                                                child: Text(
-                                                                  "Your Kyc Level 1 is Pending!!! we will notify you once it approved",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(18),
-                                                                      color: ColorConstant
-                                                                          .darkBlue),
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            barrierDismissible: true,
-                                          );
+                                          showPendingLevel1Dialouge();
                                         } else if(kycSelectStepController.isVerified ==
                                             "3"){
-                                          Get.dialog(
-                                            Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  horizontal: getHorizontalSize(40)),
-                                              child: Center(
-                                                child: Material(
-                                                  color: Colors.transparent,
-                                                  child: Wrap(
-                                                    children: [
-                                                      Container(
-                                                        decoration: BoxDecoration(
-                                                            color: ColorConstant
-                                                                .primaryWhite,
-                                                            borderRadius:
-                                                            const BorderRadius.all(
-                                                                Radius.circular(15))),
-                                                        padding: const EdgeInsets.only(
-                                                          bottom: 10,
-                                                        ),
-                                                        constraints: const BoxConstraints(
-                                                            minWidth: 180),
-                                                        child: Column(
-                                                          children: [
-                                                            Container(
-                                                              height:140,
-                                                              decoration: BoxDecoration(
-                                                                  color:
-                                                                  Color(0xFFF4F4F6),
-                                                                  borderRadius:
-                                                                  const BorderRadius
-                                                                      .all(
-                                                                      Radius.circular(
-                                                                          15))),
-                                                              padding: EdgeInsets.all(6),
-                                                              child: InkWell(
-                                                                onTap:(){
-                                                                  Get.back();
-                                                                },
-                                                                child: Column(
-                                                                  crossAxisAlignment:
-                                                                  CrossAxisAlignment
-                                                                      .end,
-                                                                  children: [
-                                                                    Icon(
-                                                                        Icons.close),
-                                                                    Row(
-                                                                      mainAxisAlignment:
-                                                                      MainAxisAlignment
-                                                                          .center,
-                                                                      children: [
-                                                                        Image.asset(
-                                                                          "asset/icons/img_success_check.png",
-                                                                          height: 80,
-                                                                          width: 80,
-                                                                        ),
-                                                                      ],
-                                                                    ),
-                                                                    Icon(
-                                                                      Icons.close,
-                                                                      color: Colors
-                                                                          .transparent,
-                                                                    ),
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                            ),
-                                                            const SizedBox(
-                                                              height: 20,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    0, 10, 0, 0),
-                                                                child: Text(
-                                                                  "Completed",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(20),
-                                                                      color:
-                                                                      ColorConstant
-                                                                          .darkBlue,
-                                                                      fontWeight:
-                                                                      FontWeight
-                                                                          .bold),
-                                                                )),
-                                                            const SizedBox(
-                                                              height: 10,
-                                                            ),
-                                                            Container(
-                                                                padding: const EdgeInsets
-                                                                    .fromLTRB(
-                                                                    10, 10, 10, 0),
-                                                                child: Text(
-                                                                  "Your Kyc Level 1 has been Completed",
-                                                                  textAlign:
-                                                                  TextAlign.center,
-                                                                  style: AppStyle
-                                                                      .DmSansFont
-                                                                      .copyWith(
-                                                                      fontSize: getFontSize(18),
-                                                                      color: ColorConstant
-                                                                          .darkBlue),
-                                                                )),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            barrierDismissible: true,
-                                          );
+                                          showCompetedLevel1Dialouge();
                                         }
                                         else{
 
@@ -721,355 +264,12 @@ class KycSelectStepScreen extends StatelessWidget {
                                         } else {
                                           if(kycSelectStepController.isVerified ==
                                               "3"){
-                                            Get.dialog(
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: getHorizontalSize(40)),
-                                                child: Center(
-                                                  child: Material(
-                                                    color: Colors.transparent,
-                                                    child: Wrap(
-                                                      children: [
-                                                        Container(
-                                                          decoration: BoxDecoration(
-                                                              color: ColorConstant
-                                                                  .primaryWhite,
-                                                              borderRadius:
-                                                              const BorderRadius.all(
-                                                                  Radius.circular(15))),
-                                                          margin: const EdgeInsets.only(
-                                                              bottom: 20),
-                                                          padding: const EdgeInsets.only(
-                                                            bottom: 20,
-                                                          ),
-                                                          constraints: const BoxConstraints(
-                                                              minWidth: 180),
-                                                          child: Column(
-                                                            children: [
-                                                              Container(
-                                                                decoration: BoxDecoration(
-                                                                    color:
-                                                                    Color(0xFFF4F4F6),
-                                                                    borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            15))),
-                                                                padding: EdgeInsets.all(12),
-                                                                child: InkWell(
-                                                                  onTap:(){
-                                                                    Get.back();
-                                                                  },
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .end,
-                                                                    children: [
-                                                                      Icon(
-                                                                          Icons.close),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                        children: [
-                                                                          Image.asset(
-                                                                            "asset/icons/img_success_check.png",
-                                                                            height: 80,
-                                                                            width: 80,
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                      Icon(
-                                                                        Icons.close,
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              const SizedBox(
-                                                                height: 20,
-                                                              ),
-                                                              Container(
-                                                                  padding: const EdgeInsets
-                                                                      .fromLTRB(
-                                                                      0, 10, 0, 0),
-                                                                  child: Text(
-                                                                    "Oops!",
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                    style: AppStyle
-                                                                        .DmSansFont
-                                                                        .copyWith(
-                                                                        fontSize: getFontSize(20),
-                                                                        color:
-                                                                        ColorConstant
-                                                                            .darkBlue,
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                                  )),
-                                                              const SizedBox(
-                                                                height: 10,
-                                                              ),
-                                                              Container(
-                                                                  padding: const EdgeInsets
-                                                                      .fromLTRB(
-                                                                      10, 10, 10, 0),
-                                                                  child: Text(
-                                                                    "Your Kyc Level 2 is Pending!!! we will notify you once it approved",
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                    style: AppStyle
-                                                                        .DmSansFont
-                                                                        .copyWith(
-                                                                        fontSize: getFontSize(18),
-                                                                        color: ColorConstant
-                                                                            .darkBlue),
-                                                                  )),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              barrierDismissible: true,
-                                            );
+                                            showPendingLevel2Dialouge();
                                           }else if(kycSelectStepController.isVerified ==
                                               "4"){
-                                            Get.dialog(
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: getHorizontalSize(40)),
-                                                child: Center(
-                                                  child: Material(
-                                                    color: Colors.transparent,
-                                                    child: Wrap(
-                                                      children: [
-                                                        Container(
-                                                          decoration: BoxDecoration(
-                                                              color: ColorConstant
-                                                                  .primaryWhite,
-                                                              borderRadius:
-                                                              const BorderRadius.all(
-                                                                  Radius.circular(15))),
-                                                          padding: const EdgeInsets.only(
-                                                            bottom: 10,
-                                                          ),
-                                                          constraints: const BoxConstraints(
-                                                              minWidth: 180),
-                                                          child: Column(
-                                                            children: [
-                                                              Container(
-                                                                decoration: BoxDecoration(
-                                                                    color:
-                                                                    Color(0xFFF4F4F6),
-                                                                    borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            15))),
-                                                                padding: EdgeInsets.all(6),
-                                                                child: InkWell(
-                                                                  onTap:(){
-                                                                    Get.back();
-                                                                  },
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .end,
-                                                                    children: [
-                                                                      Icon(
-                                                                          Icons.close),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                        children: [
-                                                                          Image.asset(
-                                                                            "asset/icons/img_success_check.png",
-                                                                            height: 80,
-                                                                            width: 80,
-                                                                          ),
-                                                                        ],
-                                                                      ),
-                                                                      Icon(
-                                                                        Icons.close,
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              const SizedBox(
-                                                                height: 20,
-                                                              ),
-                                                              Container(
-                                                                  padding: const EdgeInsets
-                                                                      .fromLTRB(
-                                                                      0, 10, 0, 0),
-                                                                  child: Text(
-                                                                    "Completed",
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                    style: AppStyle
-                                                                        .DmSansFont
-                                                                        .copyWith(
-                                                                        fontSize: getFontSize(20),
-                                                                        color:
-                                                                        ColorConstant
-                                                                            .darkBlue,
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                                  )),
-                                                              const SizedBox(
-                                                                height: 10,
-                                                              ),
-                                                              Container(
-                                                                  padding: const EdgeInsets
-                                                                      .fromLTRB(
-                                                                      10, 10, 10, 0),
-                                                                  child: Text(
-                                                                    "Your Kyc Level 2 has been Completed",
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                    style: AppStyle
-                                                                        .DmSansFont
-                                                                        .copyWith(
-                                                                        fontSize: getFontSize(18),
-                                                                        color: ColorConstant
-                                                                            .darkBlue),
-                                                                  )),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              barrierDismissible: true,
-                                            );
+                                            showCompetedLevel2Dialouge();
                                         }else{
-                                            Get.dialog(
-                                              Padding(
-                                                padding: EdgeInsets.symmetric(
-                                                    horizontal: getHorizontalSize(40)),
-                                                child: Center(
-                                                  child: Material(
-                                                    color: Colors.transparent,
-                                                    child: Wrap(
-                                                      children: [
-                                                        Container(
-                                                          decoration: BoxDecoration(
-                                                              color: ColorConstant
-                                                                  .primaryWhite,
-                                                              borderRadius:
-                                                              const BorderRadius.all(
-                                                                  Radius.circular(15))),
-                                                          margin: const EdgeInsets.only(
-                                                              bottom: 20),
-                                                          padding: const EdgeInsets.only(
-                                                            bottom: 20,
-                                                          ),
-                                                          constraints: const BoxConstraints(
-                                                              minWidth: 180),
-                                                          child: Column(
-                                                            children: [
-                                                              Container(
-                                                                decoration: BoxDecoration(
-                                                                    color:
-                                                                    Color(0xFFF4F4F6),
-                                                                    borderRadius:
-                                                                    const BorderRadius
-                                                                        .all(
-                                                                        Radius.circular(
-                                                                            15))),
-                                                                padding: EdgeInsets.all(12),
-                                                                child: InkWell(
-                                                                  onTap:(){
-                                                                    Get.back();
-                                                                  },
-                                                                  child: Column(
-                                                                    crossAxisAlignment:
-                                                                    CrossAxisAlignment
-                                                                        .end,
-                                                                    children: [
-                                                                      Icon(
-                                                                          Icons.close),
-                                                                      Row(
-                                                                        mainAxisAlignment:
-                                                                        MainAxisAlignment
-                                                                            .center,
-                                                                        children: [
-                                                                          SvgPicture.asset(
-                                                                              "asset/icons/ic_lock_pending.svg")
-                                                                        ],
-                                                                      ),
-                                                                      Icon(
-                                                                        Icons.close,
-                                                                        color: Colors
-                                                                            .transparent,
-                                                                      ),
-                                                                    ],
-                                                                  ),
-                                                                ),
-                                                              ),
-                                                              const SizedBox(
-                                                                height: 20,
-                                                              ),
-                                                              Container(
-                                                                  padding: const EdgeInsets
-                                                                      .fromLTRB(
-                                                                      0, 10, 0, 0),
-                                                                  child: Text(
-                                                                    "Oops!",
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                    style: AppStyle
-                                                                        .DmSansFont
-                                                                        .copyWith(
-                                                                        fontSize: getFontSize(20),
-                                                                        color:
-                                                                        ColorConstant
-                                                                            .darkBlue,
-                                                                        fontWeight:
-                                                                        FontWeight
-                                                                            .bold),
-                                                                  )),
-                                                              const SizedBox(
-                                                                height: 10,
-                                                              ),
-                                                              Container(
-                                                                  padding: const EdgeInsets
-                                                                      .fromLTRB(
-                                                                      10, 10, 10, 0),
-                                                                  child: Text(
-                                                                    "Level 2 is locked, to unlock it\nfirst complete level 1.",
-                                                                    textAlign:
-                                                                    TextAlign.center,
-                                                                    style: AppStyle
-                                                                        .DmSansFont
-                                                                        .copyWith(
-                                                                        fontSize: getFontSize(18),
-                                                                        color: ColorConstant
-                                                                            .darkBlue),
-                                                                  )),
-                                                            ],
-                                                          ),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ),
-                                              ),
-                                              barrierDismissible: true,
-                                            );
+                                            showDialouge();
                                           }
                                       }
                                     },
@@ -1235,59 +435,6 @@ class KycSelectStepScreen extends StatelessWidget {
                                                       getVerticalSize(
                                                           26),
                                                     ),
-                                                    /* kycSelectStepController
-                                                            .isVerified ==
-                                                        "2"
-                                                    ? Row(
-                                                        children: [
-                                                          kycSelectStepController.isVerified=="2"?Text(
-                                                            "completed",
-                                                            style: AppStyle
-                                                                .textStyleDMSANS
-                                                                .copyWith(
-                                                                color: ColorConstant
-                                                                    .primaryLightGreen,
-                                                                fontWeight:
-                                                                FontWeight
-                                                                    .w500,
-                                                                fontSize:
-                                                                getFontSize(
-                                                                    16)),
-                                                          ):
-                                                          Row(
-                                                            children: [
-                                                              Text(
-                                                                "continue",
-                                                                style: AppStyle
-                                                                    .textStyleDMSANS
-                                                                    .copyWith(
-                                                                    color: ColorConstant
-                                                                        .primaryLightGreen,
-                                                                    fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                    fontSize:
-                                                                    getFontSize(
-                                                                        16)),
-                                                              ),
-                                                              Icon(
-                                                                Icons
-                                                                    .arrow_forward_ios,
-                                                                color: ColorConstant
-                                                                    .primaryLightGreen,
-                                                                size: getVerticalSize(
-                                                                    20),
-                                                              ),
-                                                            ],
-                                                          )
-                                                        ],
-                                                      )
-                                                    : Icon(
-                                                        Icons.lock,
-                                                        color: ColorConstant
-                                                            .primaryLightGreen,
-                                                        size: getVerticalSize(30),
-                                                      ),*/
                                                   ]),
                                             ),
                                           ),
@@ -1302,5 +449,483 @@ class KycSelectStepScreen extends StatelessWidget {
                     ),
                   ],
                 )))));
+  }
+
+  Future<void> showPendingLevel1Dialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                    'asset/icons/done_image.png', height: 60),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Your Kyc Level 1 is Pending!!! we will notify you once it approved",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
+  }
+  Future<void> showCompetedLevel1Dialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                    'asset/icons/done_image.png', height: 60),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Your Kyc Level 1 has been Completed",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
+  }
+  Future<void> showDialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment
+                                  .center,
+                              children: [
+                                SvgPicture.asset(
+                                    "asset/icons/ic_lock_pending.svg")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 14,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Level 2 is locked, to unlock it first complete level 1.",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
+  }
+  Future<void> showPendingLevel2Dialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                    'asset/icons/done_image.png', height: 60),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "our Kyc Level 2 is Pending!!! we will notify you once it approved",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
+  }
+  Future<void> showCompetedLevel2Dialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                    'asset/icons/done_image.png', height: 60),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Your Kyc Level 2 has been Completed",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
   }
 }

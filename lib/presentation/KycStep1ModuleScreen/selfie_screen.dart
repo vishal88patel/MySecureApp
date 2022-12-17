@@ -191,11 +191,17 @@ class SelfieScreenState extends State<SelfieScreen>
                               buttonColor: ColorConstant.primaryDarkGreen,
                               radius: 5,
                               onPressed: () {
+                              if(widget.image==1){
                                 Get.back();
                                 Get.back();
                                 Get.back();
                                 Get.back();
                                 Get.back();
+                              }else{
+                                Get.back();
+                                Get.back();
+                              }
+
                               },),
                           ),
                         ],

@@ -215,7 +215,7 @@ class LinkCardSuccessScreen extends StatelessWidget {
                                                 right: 10,
                                               ),
                                               child: Text(
-                                                  linkCardController.cardNumberController.text,
+                                                  linkCardController.nameController.text,
                                                   overflow: TextOverflow.ellipsis,
                                                   textAlign: TextAlign.left,
                                                   style: AppStyle.DmSansFont.copyWith(
@@ -239,7 +239,7 @@ class LinkCardSuccessScreen extends StatelessWidget {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    linkCardController.expDateController.text,
+                                                    linkCardController.cardNumberController.text,
                                                       overflow: TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle.DmSansFont.copyWith(

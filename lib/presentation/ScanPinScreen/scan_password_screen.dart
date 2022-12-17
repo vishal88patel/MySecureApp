@@ -12,10 +12,10 @@ import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../EnterPersonalDetails/nam_pad.dart';
-import 'controller/scan_screen_controller.dart';
+import 'controller/scan_pin_controller.dart';
 
 class ScanPasswordScreen extends StatelessWidget {
-  var scanController = Get.put(ScanScreenController());
+  var scanPinController = Get.find<ScanPinController>();
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                         InkWell(
                                           onTap: () {
                                             Get.back();
-                                            scanController.passController.text="";
+                                            scanPinController.pinController.text="";
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(
@@ -70,7 +70,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                         ),
                                         Obx(()=>
                                           Text(
-                                            scanController.isPin.value==0
+                                            scanPinController.isPin.value==0
                                                 ?"Enter Pin"
                                                 :"Confirm Pin",
                                             style: AppStyle.DmSansFont.copyWith(
@@ -98,7 +98,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                       height: getVerticalSize(28),
                                     ),
                                     Obx(()=> Text(
-                                      scanController.isPin.value==0
+                                      scanPinController.isPin.value==0
                                           ?"Please Set Your Pin before continuing payment"
                                           :"Please Enter Your Pin before continuing payment",
                                       style: AppStyle.DmSansFont.copyWith(
@@ -137,7 +137,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                           animationDuration: Duration(milliseconds: 300),
                                           backgroundColor: Colors.transparent,
                                           enableActiveFill: true,
-                                          controller: scanController.passController,
+                                          controller: scanPinController.pinController,
                                           onCompleted: (v) {
                                             print("Completed");
                                           },
@@ -159,8 +159,8 @@ class ScanPasswordScreen extends StatelessWidget {
                                   buttonName: 'Continue',
                                   onPressed: () {
                                     debugPrint(
-                                        'Your code: ${scanController.passController.text}');
-                                    scanController.clickOnTransaction();
+                                        'Your code: ${scanPinController.pinController.text}');
+                                    scanPinController.clickOnTransaction();
                                   },
                                 ),
                               ),
@@ -171,18 +171,18 @@ class ScanPasswordScreen extends StatelessWidget {
                                 children: [
                                   NumPad(
                                     type: 'OTP',
-                                    controller: scanController.passController,
+                                    controller: scanPinController.pinController,
                                     delete: () {
                                       HapticFeedback.lightImpact();
 
-                                      if (scanController
-                                          .passController.text.isNotEmpty) {
-                                        scanController.passController.text =
-                                            scanController.passController.text
+                                      if (scanPinController
+                                          .pinController.text.isNotEmpty) {
+                                        scanPinController.pinController.text =
+                                            scanPinController.pinController.text
                                                 .substring(
                                                     0,
-                                                    scanController
-                                                            .passController
+                                                    scanPinController
+                                                            .pinController
                                                             .text
                                                             .length -
                                                         1);
@@ -191,7 +191,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                     // do something with the input numbers
                                     onSubmit: () {
                                       debugPrint(
-                                          'Your code: ${scanController.passController.text}');
+                                          'Your code: ${scanPinController.pinController.text}');
                                     },
                                   ),
                                 ],
@@ -238,7 +238,7 @@ class ScanPasswordScreen extends StatelessWidget {
                               ),
                               Obx(()=>
                                  Text(
-                                  scanController.isPin.value==0
+                                  scanPinController.isPin.value==0
                                       ?"Enter Pin"
                                       :"Confirm Pin",
                                   style: AppStyle.DmSansFont.copyWith(
@@ -258,7 +258,7 @@ class ScanPasswordScreen extends StatelessWidget {
                             height: getVerticalSize(28),
                           ),
                           Obx(()=> Text(
-                              scanController.isPin.value==0
+                              scanPinController.isPin.value==0
                                   ?"Please Set Your Pin before continuing payment"
                                   :"Please Enter Your Pin before continuing payment",
                               style: AppStyle.DmSansFont.copyWith(
@@ -274,12 +274,12 @@ class ScanPasswordScreen extends StatelessWidget {
                                 () => AppTextField(
                               hintText: 'Pin',
                               controller:
-                              scanController.passController,
+                              scanPinController.passController,
                               maxLength: 4,
                               isObsecure:
-                              scanController.passIsObsecure.value,
+                              scanPinController.passIsObsecure.value,
                               suffixIcon: IconButton(
-                                icon: Icon(scanController
+                                icon: Icon(scanPinController
                                     .passIsObsecure.value
                                     ? Icons.visibility_off
                                     : Icons.visibility
@@ -288,8 +288,8 @@ class ScanPasswordScreen extends StatelessWidget {
                                 color: ColorConstant.naturalGrey3,
                                 iconSize: getSize(24),
                                 onPressed: () {
-                                  scanController.onTapOfPassObsecure(
-                                      scanController.passIsObsecure.value);
+                                  scanPinController.onTapOfPassObsecure(
+                                      scanPinController.passIsObsecure.value);
                                 },
                               ),
                             ),
@@ -312,7 +312,7 @@ class ScanPasswordScreen extends StatelessWidget {
                             buttonColor: ColorConstant.primaryLightGreen,
                             radius: 16,
                             onPressed: () {
-                              scanController.callTransactionApi();
+                              scanPinController.callTransactionApi();
 
                             },
                           ),

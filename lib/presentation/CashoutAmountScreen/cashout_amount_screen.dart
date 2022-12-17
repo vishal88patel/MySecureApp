@@ -65,7 +65,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                   height: 40,
                                 ),
                                 AppAppBar(
-                                  title: "Cashout",
+                                  title: "Cash out",
                                   icon1: "asset/icons/ic_back.svg",
                                   icon2: "asset/icons/ic_notification.svg",
                                   onPressedIcon1: () {
@@ -408,41 +408,48 @@ class CashoutAmountScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "\$",
-                            style: AppStyle.textStyleDMSANS.copyWith(
-                                color: ColorConstant.primaryLightGreen,
-                                fontWeight: FontWeight.w500,
-                                fontSize: getFontSize(30)),
-                          ),
-                          SizedBox(
-                            width: 100,
-                            child: TextFormField(
-                              textAlign: TextAlign.start,
-                              controller:
-                                  topWithCreditCardScreenController.amountController,
-                              decoration: InputDecoration(
-                                hintText: 'Amount',
-                                hintStyle: AppStyle.DmSansFont.copyWith(
-                                    color: ColorConstant.grey8F,
-                                    fontWeight: FontWeight.w400,
-                                    fontSize: getFontSize(30)),
-                                enabledBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: ColorConstant.primaryWhite.withOpacity(0.5),
-                                      width: 1),
+                          IntrinsicWidth(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "\$",
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: ColorConstant.primaryLightGreen,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(30)),
                                 ),
-                                focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(
-                                      color: ColorConstant.grey8F.withOpacity(0.5),
-                                      width: 1),
+                                IntrinsicWidth(
+                                  child: TextFormField(
+                                    textAlign: TextAlign.start,
+                                    controller:
+                                    topWithCreditCardScreenController.amountController,
+                                    decoration: InputDecoration(
+                                        hintText: 'Amount',
+                                        hintStyle: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.grey8F,
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(24)),
+                                        border: InputBorder.none
+                                      /*enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorConstant.primaryWhite.withOpacity(0.5),
+                                          width: 1),
+                                    ),*/
+                                      /*focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorConstant.grey8F.withOpacity(0.5),
+                                          width: 1),
+                                    ),*/
+                                    ),
+                                    keyboardType: TextInputType.phone,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.naturalBlack,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getFontSize(30)),
+                                  ),
                                 ),
-                              ),
-                              keyboardType: TextInputType.phone,
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.naturalBlack,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getFontSize(30)),
+                              ],
                             ),
                           ),
                         ],

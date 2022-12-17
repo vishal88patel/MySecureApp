@@ -52,7 +52,7 @@ class TopSelectionModeScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Select top up methods",
+                                      "Select Method",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
