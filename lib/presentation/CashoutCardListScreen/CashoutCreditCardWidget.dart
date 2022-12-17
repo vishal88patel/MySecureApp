@@ -11,12 +11,13 @@ class CashoutCreditCardWidget extends StatelessWidget {
   final String cardHolderName;
   final String expiryDate;
   final String cardType;
+  final double? hPadding;
 
   const CashoutCreditCardWidget({Key? key,
     required this.cardNumber,
     required this.cardHolderName,
     required this.expiryDate,
-    required this.cardType,
+    required this.cardType,  this.hPadding,
   }) : super(key: key);
 
   @override
@@ -32,7 +33,7 @@ class CashoutCreditCardWidget extends StatelessWidget {
           top: getVerticalSize(20),
           child: SizedBox(width: size.width,
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(50),
+              padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(hPadding??50),
                   vertical: getVerticalSize(10)),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
