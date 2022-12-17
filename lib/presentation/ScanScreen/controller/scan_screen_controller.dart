@@ -7,9 +7,11 @@ import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CashoutAmountScreen/model/getWallet.dart';
 import '../../HistoryScreen/Model/getUuidDetail.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 import '../../ScanPinScreen/scan_password_screen.dart';
 import '../scan_success_screen.dart';
 
@@ -32,6 +34,7 @@ class ScanScreenController extends GetxController {
   var dropHeight=200.00.obs;
   var animContainerHeighr=85.00.obs;
   var selectedMethod="Select Payment Method".obs;
+  Rx<LoginResponseModel> loginResponseModel = LoginResponseModel().obs;
 
   var isFirstOpen = false.obs;
   var balance="00000".obs;
@@ -47,6 +50,7 @@ class ScanScreenController extends GetxController {
   @override
   void onInit() {
     getArguments();
+    getStoredData();
 
     // cameraStart();
 
@@ -89,12 +93,12 @@ class ScanScreenController extends GetxController {
           headerText: StringConstants.ERROR,
           bodyText: "Insufficient Wallet Balance");
     }
-    else if (selectedMethod.value =="Select Payment Method" ||selectedMethod.value.isEmpty) {
+   /* else if (selectedMethod.value =="Select Payment Method" ||selectedMethod.value.isEmpty) {
       UIUtils.showSnakBar(
         headerText: StringConstants.ERROR,
         bodyText: "Please select method",
       );
-    } else {
+    }*/ else {
       Get.toNamed(AppRoutes.scanPasswordScreen);
     }
 
@@ -226,6 +230,10 @@ class ScanScreenController extends GetxController {
   void onTaoOfItem(String s) {
     selectedMethod.value=s;
     onChangeOfExpansonTile();
+  }
+
+  Future<void> getStoredData() async {
+    loginResponseModel.value = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE))!;
   }
 
 }

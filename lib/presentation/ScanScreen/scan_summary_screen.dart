@@ -545,127 +545,136 @@ class ScanSummaryScreen extends StatelessWidget {
                               isOpen:  scanController.isFirstOpen.value,
                               leftIcon: Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    vertical: 8.0, horizontal: 12),
+                                    vertical: 8.0, horizontal: 8),
                                 child: Container(
                                     decoration: BoxDecoration(
-                                        color: Colors.white,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(12))),
                                     height: 55,
-                                    width: 80,
+                                    width: 70,
                                     child: Image.asset(
-                                      "asset/Logo.png",
+                                      "asset/icons/ic_main_card.png",
                                     )),
                               ),
                               rightIcon: Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Icon(CupertinoIcons.chevron_down),
+                                child: Icon(CupertinoIcons.chevron_down,color: ColorConstant.primaryDarkGreen,),
                               ),
-                              flipRightIconIfOpen: true,
+                              flipRightIconIfOpen: false,
                               headerBackgroundColor:
                               ColorConstant.primaryAppTextF1,
                               headerBackgroundColorOpened:
                               ColorConstant.primaryAppTextF1,
                               header: Container(
-                                  child: Text(scanController.selectedMethod.value,
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.primaryBlack,
-                                          fontSize: getFontSize(16),
-                                          fontWeight: FontWeight.bold))),
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text("Visa Card",
+                                          style: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.primaryBlack,
+                                              fontSize: getFontSize(18),
+                                              fontWeight: FontWeight.w600)),
+                                      Text(scanController.loginResponseModel.value.data!.cardNumber.toString().replaceRange(0, 12, '*' * 12),
+                                          style: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.primaryBlack,
+                                              fontSize: getFontSize(18),
+                                              fontWeight: FontWeight.normal)),
+                                    ],
+                                  )),
                               content: Column(
                                 children: [
-                                  AccordionSection(
-                                    contentBackgroundColor: ColorConstant.primaryWhite,
-                                    contentVerticalPadding: 0,
-                                    headerPadding: EdgeInsets.zero,
-                                    contentBorderRadius: 12,
-                                    contentBorderColor: Colors.white,
-                                    isOpen: false,
-                                    leftIcon: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0, horizontal: 12),
-                                      child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12))),
-                                          height: 55,
-                                          width: 80,
-                                          child: Image.asset(
-                                            "asset/Logo.png",
-                                          )),
-                                    ),
-                                    flipRightIconIfOpen: true,
-                                    headerBackgroundColor:
-                                    ColorConstant.primaryAppTextF1,
-                                    headerBackgroundColorOpened:
-                                    ColorConstant.primaryAppTextF1,
-                                    header: Container(
-                                        child: Text("Wallet",
-                                            style: AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant.primaryBlack,
-                                                fontSize: getFontSize(16),
-                                                fontWeight: FontWeight.bold))),
-                                    content: SizedBox(),
-                                    contentHorizontalPadding: 0,
-                                    contentBorderWidth: 1,
-                                    onOpenSection: () {
-                                      scanController.onTaoOfItem("Wallet");
-                                    },
-                                    onCloseSection: () {
-                                      scanController.onTaoOfItem("Wallet");
-                                    },
-                                  ),
-                                  AccordionSection(
-                                    contentBackgroundColor: ColorConstant.primaryWhite,
-                                    contentVerticalPadding: 0,
-                                    headerPadding: EdgeInsets.zero,
-                                    contentBorderRadius: 12,
-                                    contentBorderColor: Colors.white,
-                                    isOpen: false,
-                                    leftIcon: Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          vertical: 8.0, horizontal: 12),
-                                      child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Colors.white,
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(12))),
-                                          height: 55,
-                                          width: 80,
-                                          child: Image.asset(
-                                            "asset/Logo.png",
-                                          )),
-                                    ),
-                                    flipRightIconIfOpen: true,
-                                    headerBackgroundColor:
-                                    ColorConstant.primaryAppTextF1,
-                                    headerBackgroundColorOpened:
-                                    ColorConstant.primaryAppTextF1,
-                                    header: Container(
-                                        child: Text("Cash Card",
-                                            style: AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant.primaryBlack,
-                                                fontSize: getFontSize(16),
-                                                fontWeight: FontWeight.bold))),
-                                    content: SizedBox(),
-                                    contentHorizontalPadding: 0,
-                                    contentBorderWidth: 1,
-                                    onOpenSection: () {
-                                      scanController.onTaoOfItem("Cash Card");
-                                    },
-                                    onCloseSection: () {
-                                      scanController.onTaoOfItem("Cash Card");                                    },
-                                  ),
+                                  // AccordionSection(
+                                  //   contentBackgroundColor: ColorConstant.primaryWhite,
+                                  //   contentVerticalPadding: 0,
+                                  //   headerPadding: EdgeInsets.zero,
+                                  //   contentBorderRadius: 12,
+                                  //   contentBorderColor: Colors.white,
+                                  //   isOpen: false,
+                                  //   leftIcon: Padding(
+                                  //     padding: const EdgeInsets.symmetric(
+                                  //         vertical: 8.0, horizontal: 12),
+                                  //     child: Container(
+                                  //         decoration: BoxDecoration(
+                                  //             color: Colors.white,
+                                  //             borderRadius: BorderRadius.all(
+                                  //                 Radius.circular(12))),
+                                  //         height: 55,
+                                  //         width: 80,
+                                  //         child: Image.asset(
+                                  //           "asset/Logo.png",
+                                  //         )),
+                                  //   ),
+                                  //   flipRightIconIfOpen: true,
+                                  //   headerBackgroundColor:
+                                  //   ColorConstant.primaryAppTextF1,
+                                  //   headerBackgroundColorOpened:
+                                  //   ColorConstant.primaryAppTextF1,
+                                  //   header: Container(
+                                  //       child: Text("Wallet",
+                                  //           style: AppStyle.DmSansFont.copyWith(
+                                  //               color: ColorConstant.primaryBlack,
+                                  //               fontSize: getFontSize(16),
+                                  //               fontWeight: FontWeight.bold))),
+                                  //   content: SizedBox(),
+                                  //   contentHorizontalPadding: 0,
+                                  //   contentBorderWidth: 1,
+                                  //   onOpenSection: () {
+                                  //     scanController.onTaoOfItem("Wallet");
+                                  //   },
+                                  //   onCloseSection: () {
+                                  //     scanController.onTaoOfItem("Wallet");
+                                  //   },
+                                  // ),
+                                  // AccordionSection(
+                                  //   contentBackgroundColor: ColorConstant.primaryWhite,
+                                  //   contentVerticalPadding: 0,
+                                  //   headerPadding: EdgeInsets.zero,
+                                  //   contentBorderRadius: 12,
+                                  //   contentBorderColor: Colors.white,
+                                  //   isOpen: false,
+                                  //   leftIcon: Padding(
+                                  //     padding: const EdgeInsets.symmetric(
+                                  //         vertical: 8.0, horizontal: 12),
+                                  //     child: Container(
+                                  //         decoration: BoxDecoration(
+                                  //             color: Colors.white,
+                                  //             borderRadius: BorderRadius.all(
+                                  //                 Radius.circular(12))),
+                                  //         height: 55,
+                                  //         width: 80,
+                                  //         child: Image.asset(
+                                  //           "asset/Logo.png",
+                                  //         )),
+                                  //   ),
+                                  //   flipRightIconIfOpen: true,
+                                  //   headerBackgroundColor:
+                                  //   ColorConstant.primaryAppTextF1,
+                                  //   headerBackgroundColorOpened:
+                                  //   ColorConstant.primaryAppTextF1,
+                                  //   header: Container(
+                                  //       child: Text("Cash Card",
+                                  //           style: AppStyle.DmSansFont.copyWith(
+                                  //               color: ColorConstant.primaryBlack,
+                                  //               fontSize: getFontSize(16),
+                                  //               fontWeight: FontWeight.bold))),
+                                  //   content: SizedBox(),
+                                  //   contentHorizontalPadding: 0,
+                                  //   contentBorderWidth: 1,
+                                  //   onOpenSection: () {
+                                  //     scanController.onTaoOfItem("Cash Card");
+                                  //   },
+                                  //   onCloseSection: () {
+                                  //     scanController.onTaoOfItem("Cash Card");                                    },
+                                  // ),
                                 ],
                               ),
                               contentHorizontalPadding: 0,
                               contentBorderWidth: 1,
                               onOpenSection: () {
-                                scanController.onChangeOfExpansonTile();
+                                // scanController.onChangeOfExpansonTile();
                               },
                               onCloseSection: () {
-                                scanController.onChangeOfExpansonTile();
+                                // scanController.onChangeOfExpansonTile();
                               },
                             ),
                           ],
