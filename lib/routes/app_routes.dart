@@ -20,6 +20,8 @@ import 'package:secure_cash_app/presentation/instructionScreen/binding/instructi
 import 'package:secure_cash_app/presentation/instructionScreen/instruction_screen.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
+import '../presentation/BankScreen/bank_screen.dart';
+import '../presentation/BankScreen/binding/bank_screen_binding.dart';
 import '../presentation/BoostCreditScreen/binding/boost_credit_screen_binding.dart';
 import '../presentation/BoostCreditScreen/boost_credit_screen.dart';
 import '../presentation/CardListScreen/binding/card_list_screen_binding.dart';
@@ -272,6 +274,7 @@ class AppRoutes {
   static String boostCreditScreen = '/boost_credit_screen';
   static String cashCardScreen = '/cash_card_screen';
   static String chatScreen = '/chat_screen';
+  static String bankScreen = '/bank_screen';
   static String requestMoneyScreen = '/request_money_screen';
   static String requestMoneyAmountScreen = '/request_money_amount_screen';
   static String requestToScreen = '/request_to_screen';
@@ -1036,6 +1039,16 @@ class AppRoutes {
       page: () => ChatScreen(),
       bindings: [
         ChatScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: bankScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => BankScreen(),
+      bindings: [
+        BankScreenBinding(),
       ],
     ),
 

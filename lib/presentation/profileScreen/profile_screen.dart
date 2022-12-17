@@ -163,25 +163,7 @@ class ProfileScreen extends StatelessWidget {
                                                           FontWeight.bold),
                                             ),
                                             if(homeController.loginResponseModel!.data!=null)
-                                            Padding(
-                                              padding: EdgeInsets.only(
-                                                top: 7,
-                                                right: 10,
-                                              ),
-                                              child: Text(
-                                                  homeController.loginResponseModel!.data!.mobile??'',
-                                                overflow: TextOverflow.ellipsis,
-                                                textAlign: TextAlign.left,
-                                                style: AppStyle.DmSansFont
-                                                    .copyWith(
-                                                        color: ColorConstant
-                                                            .primaryAppTextF1,
-                                                        fontSize:
-                                                            getFontSize(18),
-                                                        fontWeight:
-                                                            FontWeight.normal),
-                                              ),
-                                            ),
+
                                             if(homeController.loginResponseModel!.data!=null)
                                             Align(
                                               alignment: Alignment.center,
@@ -216,9 +198,7 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        SizedBox(
-                          height: getVerticalSize(24),
-                        ),
+
                         Card(
                           margin: const EdgeInsets.symmetric(horizontal: 0),
                           color: ColorConstant.naturalGrey2,
@@ -305,120 +285,13 @@ class ProfileScreen extends StatelessWidget {
                                               fit: BoxFit.fill,
                                             ),
                                             SizedBox(width: getHorizontalSize(12),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(12),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(12),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(6),),
-                                            // Container(
-                                            //   height: getVerticalSize(6),
-                                            //   width: getVerticalSize(6),
-                                            //   decoration: BoxDecoration(
-                                            //       color: Colors.white,
-                                            //       shape: BoxShape.circle
-                                            //   ),
-                                            // ),
-                                            // SizedBox(width: getHorizontalSize(12),),
                                             Text(
-                                              homeController.loginResponseModel!.data!.cardNumber.toString(),
+                                              homeController.loginResponseModel!.data!.cardNumber.toString().replaceRange(0, 12, '*' * 12),
                                               style: AppStyle.textStyleDMSANS.copyWith(
+                                                wordSpacing: 12,
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(18)),
+                                                  fontSize: getFontSize(22)),
                                             ),
                                           ],
                                         ),

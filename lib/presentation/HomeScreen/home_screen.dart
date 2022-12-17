@@ -12,6 +12,7 @@ import '../../utils/HelperFiles/math_utils.dart';
 import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import '../NotificationScreen/controller/notification_screen_controller.dart';
 import '../ScanScreen/controller/scan_screen_controller.dart';
+import '../BankScreen/bank_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
@@ -295,6 +296,7 @@ class HomeScreen extends StatelessWidget {
                             iconName: 'asset/icons/ic_link_bank_home.png',
                             onTap: (){
                               // Get.toNamed(AppRoutes.myLinkedBankListScreen);
+                              Get.toNamed(AppRoutes.bankScreen);
                             },
                           ),
                           PaymentListWidget(

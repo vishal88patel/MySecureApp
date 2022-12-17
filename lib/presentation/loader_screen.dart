@@ -51,9 +51,10 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
               child: GradientCircularProgressIndicator(
                 radius: 35,
                 gradientColors: [
-                  ColorConstant.buttonGreen,
-                  ColorConstant.blueFF,
-                  ColorConstant.buttonGreen,
+                  ColorConstant.primaryDarkGreen,
+                  ColorConstant.primaryLightGreen,
+                  ColorConstant.primaryLightGreen,
+                  ColorConstant.primaryDarkGreen,
                 ],
                 strokeWidth: 10.0,
               ),

@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_AppBar .dart';
-import '../../theme/app_style.dart';
-import '../../utils/ConstantsFiles/string_constants.dart';
-import '../../utils/HelperFiles/math_utils.dart';
-import '../../utils/HelperFiles/ui_utils.dart';
-import 'controller/boost_credit_screen_controller.dart';
+import '../../../App Configurations/color_constants.dart';
+import '../../../Custom Widgets/app_AppBar .dart';
+import '../../../theme/app_style.dart';
+import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/math_utils.dart';
+import '../../../utils/HelperFiles/ui_utils.dart';
 
-class BoostCreditScreen extends StatelessWidget {
-  var boostCreditController = Get.put(BoostCreditScreenController);
+class BankScreen extends StatelessWidget {
+
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class BoostCreditScreen extends StatelessWidget {
                   ),
                   Padding(
                     padding:
-                        EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                    EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -48,7 +47,7 @@ class BoostCreditScreen extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "Boost Credit",
+                          "Link Bank",
                           style: AppStyle.DmSansFont.copyWith(
                               color: ColorConstant.primaryBlack,
                               fontWeight: FontWeight.w700,
@@ -72,9 +71,9 @@ class BoostCreditScreen extends StatelessWidget {
                   ),
                   Center(
                       child: Image.asset(
-                    'asset/icons/img_comingsoon.png',
-                    height: getVerticalSize(300),
-                  )),
+                        'asset/icons/img_comingsoon.png',
+                        height: getVerticalSize(300),
+                      )),
                   SizedBox(
                     height: getVerticalSize(30),
                   ),
