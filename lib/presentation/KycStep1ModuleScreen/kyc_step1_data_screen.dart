@@ -16,243 +16,246 @@ class KycStep1Screen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: ColorConstant.backgroundColor,
-        body: SingleChildScrollView(
-            child: Container(
-                height: size.height,
-                child: Stack(
-                  children: [
-                    SafeArea(
-                      child: Stack(
-                        children: [
-                          Padding(
-                            padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: getVerticalSize(10),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    InkWell(
-                                      onTap: () {
-                                        Get.back();
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(12),
-                                            border: Border.all(
-                                                color:
-                                                ColorConstant.backBorder)),
-                                        padding: EdgeInsets.all(6),
-                                        child: Icon(
-                                          Icons.arrow_back_ios_new_outlined,size: 22,),
+    return WillPopScope(
+      onWillPop: () => kycStep1Controller.goToHome(),
+      child: Scaffold(
+          backgroundColor: ColorConstant.backgroundColor,
+          body: SingleChildScrollView(
+              child: Container(
+                  height: size.height,
+                  child: Stack(
+                    children: [
+                      SafeArea(
+                        child: Stack(
+                          children: [
+                            Padding(
+                              padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    height: getVerticalSize(10),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          kycStep1Controller.goToHome();
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(12),
+                                              border: Border.all(
+                                                  color:
+                                                  ColorConstant.backBorder)),
+                                          padding: EdgeInsets.all(6),
+                                          child: Icon(
+                                            Icons.arrow_back_ios_new_outlined,size: 22,),
+                                        ),
                                       ),
-                                    ),
-                                    Text(
-                                      "Details",
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.darkBlue,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(24)),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                          border: Border.all(color: Colors.transparent)),
-                                      padding: EdgeInsets.all(10),
-                                      child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
-                                    ),                      ],
-                                ),
+                                      Text(
+                                        "Details",
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.darkBlue,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getFontSize(24)),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                            border: Border.all(color: Colors.transparent)),
+                                        padding: EdgeInsets.all(10),
+                                        child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                      ),                      ],
+                                  ),
 
-                                SizedBox(
-                                  height: getVerticalSize(40),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      "Your Details",
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.naturalBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(24)),
-                                    ),
-                                    InkWell(
-                                      onTap: (){
+                                  SizedBox(
+                                    height: getVerticalSize(40),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text(
+                                        "Your Details",
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.naturalBlack,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getFontSize(24)),
+                                      ),
+                                      InkWell(
+                                        onTap: (){
+                                          FocusManager.instance.primaryFocus
+                                              ?.unfocus();
+                                          if(kycStep1Controller.readOnly.value==true){
+                                            kycStep1Controller.readOnly.value=false;
+                                          }else{
+                                            kycStep1Controller.readOnly.value=true;
+                                          }
+
+                                        },
+                                        child: Obx(()=>
+                                            Container(
+                                            height: getHorizontalSize(40),
+                                            decoration: BoxDecoration(
+                                              color: ColorConstant.primaryLightGreen,
+                                              borderRadius: BorderRadius.circular(12),
+                                            ),
+                                            child: Padding(
+                                              padding:  EdgeInsets.only(left: getHorizontalSize(10),right: getHorizontalSize(10)),
+                                              child:kycStep1Controller.readOnly.value?Row(
+                                                children: [
+                                                  Icon(Icons.edit,size: 14,color: Colors.white,),
+                                                  SizedBox(width: getHorizontalSize(6),),
+                                                  Text(
+                                                    "Edit",
+                                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                                        color: ColorConstant.primaryWhite,
+                                                        fontWeight: FontWeight.w500,
+                                                        fontSize: getFontSize(18)),
+                                                  ),
+                                                ],
+                                              ):Icon(Icons.close,size: 20,color: Colors.white,),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(54),
+                                  ),
+                                  Obx(()=>
+                                     SizedBox(
+                                        child: AppTextField(
+                                          controller: kycStep1Controller.firstNameController,
+                                          keyBordType: TextInputType.text,
+                                          hintText: "First Name",
+                                          readOnly: kycStep1Controller.readOnly.value,
+
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(26),
+                                  ),
+                                  Obx(()=> SizedBox(
+                                        child: AppTextField(
+                                          controller: kycStep1Controller.lastNameController,
+                                          keyBordType: TextInputType.text,
+                                          hintText: "Last Name",
+                                          readOnly: kycStep1Controller.readOnly.value,
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(26),
+                                  ),
+                                  Obx(()=> SizedBox(
+                                        child: AppTextField(
+                                          controller: kycStep1Controller.emailController,
+                                          keyBordType: TextInputType.emailAddress,
+                                          hintText: "Email",
+                                          readOnly: kycStep1Controller.readOnly.value,
+                                        )),
+                                  ),
+                                 /* SizedBox(
+                                    height: getVerticalSize(26),
+                                  ),
+                                  Obx(()=> SizedBox(
+                                        child: AppTextField(
+                                          controller: kycStep1Controller.phoneNumberController,
+                                          keyBordType: TextInputType.number,
+                                          hintText: "Phone Number",
+                                          maxLength: 10,
+                                          readOnly: kycStep1Controller.readOnly.value,
+                                        )),
+                                  ),*/
+                                  SizedBox(
+                                    height: getVerticalSize(26),
+                                  ),
+                                  SizedBox(
+                                        child: TextFormField(
+                                          readOnly: true,
+                                          onTap: (){
+                                            kycStep1Controller.readOnly.value?"":kycStep1Controller.selectBirthDate(context);
+                                          },
+                                          style: TextStyle(color:ColorConstant.grey8F),
+                                          decoration: InputDecoration(
+                                            hintText: 'Date Of Birth',
+                                            hintStyle: AppStyle.textStyleDMSANS
+                                                .copyWith(color: ColorConstant.grey8F,
+                                                fontWeight: FontWeight.w400,fontSize: getFontSize(20)),
+                                            suffixIcon:Icon( Icons.calendar_month,color: ColorConstant.grey8F,),
+                                            enabledBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
+                                            ),
+                                            focusedBorder: UnderlineInputBorder(
+                                              borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
+                                            ),
+                                          ),
+                                          controller:
+                                          kycStep1Controller.dobController,
+                                        ),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(26),
+                                  ),
+                                  Obx(()=> SizedBox(
+                                        child: AppTextField(
+                                          controller: kycStep1Controller.ssnController,
+                                          keyBordType: TextInputType.number,
+                                          hintText: "SSN",
+                                          maxLength: 9,
+                                          readOnly: kycStep1Controller.readOnly.value,
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(16),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Obx(()
+                                      => IconButton(onPressed: (){
+                                        kycStep1Controller.isAgreeCheckBox();
+                                      },
+                                          padding: EdgeInsets.zero,
+                                          constraints: BoxConstraints(),
+                                          icon: Icon(kycStep1Controller.isAgree.value
+                                              ?Icons.check_box:Icons.check_box_outline_blank,
+                                            color: ColorConstant.grey8F,)),
+                                      ),
+                                      Text(
+                                        "These are certified details",
+                                        style: AppStyle.textStyleDMSANS.copyWith(
+                                            color: ColorConstant.naturalGrey,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: getFontSize(20)),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(26),
+                                  ),
+                                  Spacer(),
+                                  AppElevatedButton(
+                                      buttonName: 'Continue',
+                                      textColor: ColorConstant.primaryWhite,
+                                      onPressed: () {
                                         FocusManager.instance.primaryFocus
                                             ?.unfocus();
-                                        if(kycStep1Controller.readOnly.value==true){
-                                          kycStep1Controller.readOnly.value=false;
-                                        }else{
-                                          kycStep1Controller.readOnly.value=true;
-                                        }
-
-                                      },
-                                      child: Obx(()=>
-                                          Container(
-                                          height: getHorizontalSize(40),
-                                          decoration: BoxDecoration(
-                                            color: ColorConstant.primaryLightGreen,
-                                            borderRadius: BorderRadius.circular(12),
-                                          ),
-                                          child: Padding(
-                                            padding:  EdgeInsets.only(left: getHorizontalSize(10),right: getHorizontalSize(10)),
-                                            child:kycStep1Controller.readOnly.value?Row(
-                                              children: [
-                                                Icon(Icons.edit,size: 14,color: Colors.white,),
-                                                SizedBox(width: getHorizontalSize(6),),
-                                                Text(
-                                                  "Edit",
-                                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                                      color: ColorConstant.primaryWhite,
-                                                      fontWeight: FontWeight.w500,
-                                                      fontSize: getFontSize(18)),
-                                                ),
-                                              ],
-                                            ):Icon(Icons.close,size: 20,color: Colors.white,),
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(54),
-                                ),
-                                Obx(()=>
-                                   SizedBox(
-                                      child: AppTextField(
-                                        controller: kycStep1Controller.firstNameController,
-                                        keyBordType: TextInputType.text,
-                                        hintText: "First Name",
-                                        readOnly: kycStep1Controller.readOnly.value,
-
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(26),
-                                ),
-                                Obx(()=> SizedBox(
-                                      child: AppTextField(
-                                        controller: kycStep1Controller.lastNameController,
-                                        keyBordType: TextInputType.text,
-                                        hintText: "Last Name",
-                                        readOnly: kycStep1Controller.readOnly.value,
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(26),
-                                ),
-                                Obx(()=> SizedBox(
-                                      child: AppTextField(
-                                        controller: kycStep1Controller.emailController,
-                                        keyBordType: TextInputType.emailAddress,
-                                        hintText: "Email",
-                                        readOnly: kycStep1Controller.readOnly.value,
-                                      )),
-                                ),
-                               /* SizedBox(
-                                  height: getVerticalSize(26),
-                                ),
-                                Obx(()=> SizedBox(
-                                      child: AppTextField(
-                                        controller: kycStep1Controller.phoneNumberController,
-                                        keyBordType: TextInputType.number,
-                                        hintText: "Phone Number",
-                                        maxLength: 10,
-                                        readOnly: kycStep1Controller.readOnly.value,
-                                      )),
-                                ),*/
-                                SizedBox(
-                                  height: getVerticalSize(26),
-                                ),
-                                SizedBox(
-                                      child: TextFormField(
-                                        readOnly: true,
-                                        onTap: (){
-                                          kycStep1Controller.readOnly.value?"":kycStep1Controller.selectBirthDate(context);
-                                        },
-                                        style: TextStyle(color:ColorConstant.grey8F),
-                                        decoration: InputDecoration(
-                                          hintText: 'Date Of Birth',
-                                          hintStyle: AppStyle.textStyleDMSANS
-                                              .copyWith(color: ColorConstant.grey8F,
-                                              fontWeight: FontWeight.w400,fontSize: getFontSize(20)),
-                                          suffixIcon:Icon( Icons.calendar_month,color: ColorConstant.grey8F,),
-                                          enabledBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
-                                          ),
-                                          focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: ColorConstant.grey8F.withOpacity(0.5),width: 1),
-                                          ),
-                                        ),
-                                        controller:
-                                        kycStep1Controller.dobController,
-                                      ),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(26),
-                                ),
-                                Obx(()=> SizedBox(
-                                      child: AppTextField(
-                                        controller: kycStep1Controller.ssnController,
-                                        keyBordType: TextInputType.number,
-                                        hintText: "SSN",
-                                        maxLength: 9,
-                                        readOnly: kycStep1Controller.readOnly.value,
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(16),
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    Obx(()
-                                    => IconButton(onPressed: (){
-                                      kycStep1Controller.isAgreeCheckBox();
-                                    },
-                                        padding: EdgeInsets.zero,
-                                        constraints: BoxConstraints(),
-                                        icon: Icon(kycStep1Controller.isAgree.value
-                                            ?Icons.check_box:Icons.check_box_outline_blank,
-                                          color: ColorConstant.grey8F,)),
-                                    ),
-                                    Text(
-                                      "These are certified details",
-                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                          color: ColorConstant.naturalGrey,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(20)),
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(26),
-                                ),
-                                Spacer(),
-                                AppElevatedButton(
-                                    buttonName: 'Continue',
-                                    textColor: ColorConstant.primaryWhite,
-                                    onPressed: () {
-                                      FocusManager.instance.primaryFocus
-                                          ?.unfocus();
-                                      kycStep1Controller.onClickOfNextButton(context);
-                                    }),
-                                SizedBox(
-                                  height: getVerticalSize(36),
-                                ),
-                              ],
+                                        kycStep1Controller.onClickOfNextButton(context);
+                                      }),
+                                  SizedBox(
+                                    height: getVerticalSize(36),
+                                  ),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
-                ))));
+                    ],
+                  )))),
+    );
   }
 }

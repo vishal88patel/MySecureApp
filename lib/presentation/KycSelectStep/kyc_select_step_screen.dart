@@ -43,7 +43,7 @@ class KycSelectStepScreen extends StatelessWidget {
                                   icon1: "asset/icons/ic_back.svg",
                                   icon2: "asset/icons/ic_notification.svg",
                                   onPressedIcon1: () {
-                                    Get.back();
+                                    kycSelectStepController.goToHome();
                                   },
                                   onPressedIcon2: () {
                                     // Get.toNamed(AppRoutes.notificationScreen);
