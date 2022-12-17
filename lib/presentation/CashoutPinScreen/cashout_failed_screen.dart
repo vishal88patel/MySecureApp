@@ -187,13 +187,9 @@ class CashoutFailedScreen extends StatelessWidget {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
               vertical: getVerticalSize(340)),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Container(
+          child: Wrap(
+            children: [
+              Container(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.all(Radius.circular(25)),
                     color: ColorConstant.primaryWhite),
@@ -202,8 +198,6 @@ class CashoutFailedScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-
-
                     Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.only(
@@ -215,46 +209,22 @@ class CashoutFailedScreen extends StatelessWidget {
                         child: Column(
                           children: [
                             SizedBox(
-                              height: 12,
+                              height: 10,
                             ),
-
-                            Row(crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Image.asset('asset/icons/done_image.png',
-                                    color: Colors.transparent,
-                                    height: 60),
                                 Image.asset(
                                     'asset/icons/done_image.png', height: 60),
-                                Row(mainAxisAlignment: MainAxisAlignment.end,
-
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        if (Get.isDialogOpen == true) Get
-                                            .back();
-                                      },
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 12,
-                                    ),
-                                  ],
-                                ),
-
                               ],
                             ),
-
                             SizedBox(
-                              height: 12,
+                              height: 10,
                             ),
                           ],
                         )),
                     SizedBox(
-                      height: 20,
+                      height: 10,
                     ),
                     // Lottie.asset('asset/animations/welcome.json', height: 80),
                     Padding(
@@ -278,11 +248,11 @@ class CashoutFailedScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    /* SizedBox(
-                      height: 40,
+                     SizedBox(
+                      height: 20,
                     ),
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
                       child: AppElevatedButton(
                         buttonName: 'Ok',
                         radius: 5,
@@ -292,15 +262,18 @@ class CashoutFailedScreen extends StatelessWidget {
                           // Get.toNamed(AppRoutes.dashBoardScreen);
                         },
                       ),
-                    ),*/
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
 
                   ],
                 ),
               ),
-            ),
+            ],
           ),
         ),
-        barrierDismissible: false,
+        barrierDismissible: true,
       );
   }
 }

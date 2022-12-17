@@ -10,7 +10,7 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CashoutAmountScreen/model/getWallet.dart';
 import '../../HistoryScreen/Model/getUuidDetail.dart';
-import '../scan_password_screen.dart';
+import '../../ScanPinScreen/scan_password_screen.dart';
 import '../scan_success_screen.dart';
 
 
@@ -95,7 +95,7 @@ class ScanScreenController extends GetxController {
         bodyText: "Please select method",
       );
     } else {
-      Get.to(ScanPasswordScreen());
+      Get.toNamed(AppRoutes.scanPasswordScreen);
     }
 
   }

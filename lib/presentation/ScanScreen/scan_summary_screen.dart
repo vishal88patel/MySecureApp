@@ -113,30 +113,48 @@ class ScanSummaryScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "\$",
-                            style: AppStyle.textStyleDMSANS.copyWith(
-                                color: ColorConstant.primaryLightGreen,
-                                fontWeight: FontWeight.w500,
-                                fontSize: getFontSize(25)),
-                          ),
-                          SizedBox(
-                            width: getHorizontalSize(100),
-                            child: TextFormField(
-                              textAlign: TextAlign.start,
-                              controller: scanController.amountController,
-                              decoration: InputDecoration(
-                                  hintText: 'Amount',
-                                  hintStyle: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.grey8F,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(25)),
-                                  border: InputBorder.none),
-                              keyboardType: TextInputType.phone,
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.primaryWhite,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getFontSize(25)),
+                          IntrinsicWidth(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  "\$",
+                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                      color: ColorConstant.primaryLightGreen,
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: getFontSize(30)),
+                                ),
+                                IntrinsicWidth(
+                                  child: TextFormField(
+                                    textAlign: TextAlign.start,
+                                    controller:
+                                    scanController.amountController,
+                                    decoration: InputDecoration(
+                                        hintText: 'Amount',
+                                        hintStyle: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.primaryWhite.withOpacity(0.5),
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: getFontSize(24)),
+                                        border: InputBorder.none
+                                      /*enabledBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorConstant.primaryWhite.withOpacity(0.5),
+                                          width: 1),
+                                    ),*/
+                                      /*focusedBorder: UnderlineInputBorder(
+                                      borderSide: BorderSide(
+                                          color: ColorConstant.grey8F.withOpacity(0.5),
+                                          width: 1),
+                                    ),*/
+                                    ),
+                                    keyboardType: TextInputType.phone,
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getFontSize(30)),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],

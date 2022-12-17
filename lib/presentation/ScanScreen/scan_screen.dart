@@ -2,7 +2,6 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:secure_cash_app/presentation/ScanScreen/scan_password_screen.dart';
 import 'package:secure_cash_app/presentation/ScanScreen/scan_success_screen.dart';
 import 'package:secure_cash_app/presentation/ScanScreen/scan_summary_screen.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';

@@ -105,8 +105,9 @@ import '../presentation/QrCodeScreen/qrCode_screen.dart';
 import '../presentation/RequestMoneyScreen/pay_summary_screen.dart';
 import '../presentation/RequestMoneyScreen/request_password_screen.dart';
 import '../presentation/RequestMoneyScreen/request_success_screen.dart';
+import '../presentation/ScanPinScreen/binding/scan_pin_scareen_binding.dart';
+import '../presentation/ScanPinScreen/scan_password_screen.dart';
 import '../presentation/ScanScreen/binding/scan_screen_binding.dart';
-import '../presentation/ScanScreen/scan_password_screen.dart';
 import '../presentation/ScanScreen/scan_screen.dart';
 import '../presentation/ScanScreen/scan_summary_screen.dart';
 import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart';
@@ -515,7 +516,7 @@ class AppRoutes {
       transitionDuration: Duration(milliseconds: 400),
       page: () => ScanPasswordScreen(),
       bindings: [
-        ScanScreenBinding(),
+        ScanPinBinding(),
       ],
     ),
 

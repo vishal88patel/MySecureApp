@@ -10,7 +10,6 @@ import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../CashoutAmountScreen/model/getWallet.dart';
-import '../../ScanScreen/scan_password_screen.dart';
 import '../model/getCashtagUserModel.dart';
 import '../model/recentTransactionModel.dart';
 
