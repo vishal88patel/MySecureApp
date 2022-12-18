@@ -296,8 +296,8 @@ class HomeScreen extends StatelessWidget {
                             title: 'Link Bank',
                             iconName: 'asset/icons/ic_link_bank_home.png',
                             onTap: (){
-                              // Get.toNamed(AppRoutes.myLinkedBankListScreen);
-                              Get.toNamed(AppRoutes.bankScreen);
+                              Get.toNamed(AppRoutes.myLinkedBankListScreen);
+                              // Get.toNamed(AppRoutes.bankScreen);
                             },
                           ),
                           PaymentListWidget(

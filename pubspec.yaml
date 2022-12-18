@@ -89,6 +89,8 @@ dependencies:
   accordion: ^2.5.1
   vibration: ^1.7.6
   flutter_pin_code_fields: ^1.2.0
+  azlistview: ^2.0.0
+  lpinyin: ^2.0.3
 
 
 
