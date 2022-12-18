@@ -36,7 +36,7 @@ class ScanSummaryScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: getVerticalSize(26),
+                    height: getVerticalSize(20),
                   ),
                   AppAppBar(
                     title: "Summary Transaction",

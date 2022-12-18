@@ -347,7 +347,9 @@ class TopupCardListScreenController extends GetxController {
         cashoutCardListModel.value = TopupCardListResponseModel.fromJson(value);
         for (int i = 0; i < cashoutCardListModel.value.data!.length; i++) {
           mainCardList.value.add(cashoutCardListModel.value.data![i]);
+
         }
+        mainCardList.refresh();
 
       } else {
         UIUtils.showSnakBar(

@@ -62,7 +62,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     children: [
                                       SizedBox(
-                                        height: 40,
+                                        height: getVerticalSize(20),
                                       ),
                                       AppAppBar(
                                         title: "Cash out",

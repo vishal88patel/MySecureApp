@@ -44,9 +44,7 @@ class CashoutPinScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(
-                                      height: getVerticalSize(10),
-                                    ),
+
                                     Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -76,8 +74,8 @@ class CashoutPinScreen extends StatelessWidget {
                                         Obx(()=>
                                             Text(
                                               pinScreenController.isPin.value==0
-                                                  ?"Enter Pin"
-                                                  :"Confirm Pin",
+                                                  ?"Set Your Pin"
+                                                  :"Enter Your Pin",
                                               style: AppStyle.DmSansFont.copyWith(
                                                   color: ColorConstant.primaryWhite,
                                                   fontWeight: FontWeight.w700,
