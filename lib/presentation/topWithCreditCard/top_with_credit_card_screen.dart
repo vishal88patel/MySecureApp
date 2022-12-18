@@ -60,20 +60,43 @@ class TopWithCreditCardScreen extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: 40,
+                                height: getVerticalSize(40),
                               ),
-                              AppAppBar(
-                                title: "Top Up",
-                                icon1: "asset/icons/ic_back.svg",
-                                icon2:
-                                "asset/icons/ic_notification.svg",
-                                onPressedIcon1: () {
-                                  Get.back();
-                                },
-                                onPressedIcon2: () {
-                                  Get.toNamed(
-                                      AppRoutes.notificationScreen);
-                                },
+                              Padding(
+                                padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20.0), ),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color:
+                                                ColorConstant.backBorder)),
+                                        padding: EdgeInsets.all(6),
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.primaryWhite,),
+                                      ),
+                                    ),
+                                    Text(
+                                      "My Cards",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
+                                          border: Border.all(color: Colors.transparent)),
+                                      padding: EdgeInsets.all(10),
+                                      child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
+                                    ),                      ],
+                                ),
                               ),
                               Align(
                                 alignment: Alignment.centerLeft,
@@ -350,6 +373,11 @@ class TopWithCreditCardScreen extends StatelessWidget {
                               IntrinsicWidth(
                                 child: TextFormField(
                                   textAlign: TextAlign.start,
+                                  onChanged: (value){
+                                    topWithCreditCardScreenController.opt1.value=false;
+                                    topWithCreditCardScreenController.opt2.value=false;
+                                    topWithCreditCardScreenController.opt3.value=false;
+                                  },
                                   controller:
                                       topWithCreditCardScreenController.amountController,
                                   decoration: InputDecoration(
@@ -402,6 +430,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                     topWithCreditCardScreenController.opt2.value=false;
                                     topWithCreditCardScreenController.opt3.value=false;
                                     topWithCreditCardScreenController.amountController.text="100";
+                                    topWithCreditCardScreenController.amountController.selection = TextSelection.fromPosition(TextPosition(offset: topWithCreditCardScreenController.amountController.text.length));
                                   }
 
                                 },
@@ -434,6 +463,8 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                 topWithCreditCardScreenController.opt2.value=true;
                                 topWithCreditCardScreenController.opt1.value=false;
                                 topWithCreditCardScreenController.opt3.value=false;
+                                topWithCreditCardScreenController.amountController.selection = TextSelection.fromPosition(TextPosition(offset: topWithCreditCardScreenController.amountController.text.length));
+
                               }
 
                             },
@@ -466,6 +497,8 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                 topWithCreditCardScreenController.opt3.value=true;
                                 topWithCreditCardScreenController.opt1.value=false;
                                 topWithCreditCardScreenController.opt2.value=false;
+                                topWithCreditCardScreenController.amountController.selection = TextSelection.fromPosition(TextPosition(offset: topWithCreditCardScreenController.amountController.text.length));
+
                               }
 
                             },

@@ -9,14 +9,14 @@ import '../App Configurations/color_constants.dart';
 
 class WhiteAppBar extends StatelessWidget {
   final String title;
-  final String icon2;
+
   final bool icon1show;
   final void Function() onPressedIcon1;
 
 
   const WhiteAppBar({Key? key,
     required this.title,
-   required this.icon2, required this.onPressedIcon1,
+    required this.onPressedIcon1,
      required this.icon1show,}) : super(key: key);
 
   @override
@@ -41,7 +41,7 @@ class WhiteAppBar extends StatelessWidget {
                       BorderRadius.circular(12),
                       border: Border.all(
                           color:
-                          ColorConstant.primaryWhite)),
+                          ColorConstant.backBorder)),
                   padding: EdgeInsets.all(6),
                   child: Icon(
                     Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.primaryWhite),

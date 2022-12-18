@@ -317,7 +317,7 @@ class CashoutCardListScreenController extends GetxController {
         for (int i = 0; i < cashoutCardListModel.value.data!.length; i++) {
           mainCardList.value.add(cashoutCardListModel.value.data![i]);
         }
-
+        mainCardList.refresh();
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

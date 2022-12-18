@@ -90,10 +90,10 @@ class TopWithCreditCardController extends GetxController {
   }
 
   onNext(BuildContext context){
-    if(amountController.text=='0'){
+    if(amountController.text.startsWith("0")){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
-          bodyText: "Please Enter Amount");
+          bodyText: "Please Enter Valid Amount");
     }else if(amountController.text.isEmpty){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,

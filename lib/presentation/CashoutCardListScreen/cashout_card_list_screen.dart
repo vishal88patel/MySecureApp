@@ -76,8 +76,7 @@ class CashoutCardListScreen extends StatelessWidget {
                     ),
                     Obx(
                       () => cardListController
-                                  .cashoutCardListModel.value.data !=
-                              null
+                          .mainCardList.value.isNotEmpty
                           ? SizedBox(
                               height: getVerticalSize(250),
                               child: cardListController.selectedCard.value

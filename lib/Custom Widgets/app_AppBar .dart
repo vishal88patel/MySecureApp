@@ -46,14 +46,14 @@ class AppAppBar extends StatelessWidget {
                 style: AppStyle.textStyleDMSANS.copyWith(
                     color: titleColor??ColorConstant.primaryWhite,
                     fontWeight: FontWeight.w700,
-                    fontSize: getFontSize(24)),
+                    fontSize: getFontSize(22)),
               ),
               InkWell(
                 onTap: onPressedIcon2,
                 child: SvgPicture.asset(
                   icon2.toString(),
                   fit: BoxFit.fill,
-                  height: getVerticalSize(40),
+                  height: getVerticalSize(42),
                 ),
               ),
             ],

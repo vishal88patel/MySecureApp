@@ -72,100 +72,104 @@ class TopupCardListScreen extends StatelessWidget {
                         height: getVerticalSize(10),
                       ),
                       Obx(
-                            () => cardListController.cashoutCardListModel.value.data !=
-                            null
-                            ? SizedBox(
+                            () => cardListController
+                                .mainCardList.value.isNotEmpty
+                            ? Obx(()=>
+                               SizedBox(
                           height: getVerticalSize(250),
                           child:cardListController.selectedCard.value?
-                          Obx(()=>InkWell(
-                            onTap: (){
-                              cardListController.selectCreditCard();
-                            },
-                            child: Center(
-                              child: CashoutCreditCardWidget(
-                                  cardHolderName: cardListController
-                                      .mainCardList
-                                      .value[cardListController.selectIndex!]
-                                      .holderName
-                                      .toString(),
-                                  cardType: cardListController
-                                      .mainCardList
-                                      .value[cardListController.selectIndex!]
-                                      .cardType
-                                      .toString(),
-                                  hPadding: 65,
-                                  cardNumber: cardListController
-                                      .mainCardList
-                                      .value[cardListController.selectIndex!]
-                                      .cardNumber
-                                      .toString(),
-                                  expiryDate: cardListController
-                                      .mainCardList
-                                      .value[cardListController.selectIndex!]
-                                      .expireMonth
-                                      .toString() +
-                                      "/" +
-                                      cardListController.mainCardList
-                                          .value[cardListController.selectIndex!].expireYear
-                                          .toString()),
-                            ),
-                          ),
+                          InkWell(
+                              onTap: (){
+                                cardListController.selectCreditCard();
+                              },
+                              child: Center(
+                                child: CashoutCreditCardWidget(
+                                    cardHolderName: cardListController
+                                        .mainCardList
+                                        .value[cardListController.selectIndex!]
+                                        .holderName
+                                        .toString(),
+                                    cardType: cardListController
+                                        .mainCardList
+                                        .value[cardListController.selectIndex!]
+                                        .cardType
+                                        .toString(),
+                                    hPadding: 65,
+                                    cardNumber: cardListController
+                                        .mainCardList
+                                        .value[cardListController.selectIndex!]
+                                        .cardNumber
+                                        .toString(),
+                                    expiryDate: cardListController
+                                        .mainCardList
+                                        .value[cardListController.selectIndex!]
+                                        .expireMonth
+                                        .toString() +
+                                        "/" +
+                                        cardListController.mainCardList
+                                            .value[cardListController.selectIndex!].expireYear
+                                            .toString()),
+                              ),
                           )
-                              :
-                          ListView.builder(
-                              itemCount:
-                              cardListController.mainCardList.length,
-                              physics: const BouncingScrollPhysics(),
-                              scrollDirection: Axis.horizontal,
-                              shrinkWrap: true,
-                              itemBuilder: (BuildContext context, int index) {
-                                return Obx(
-                                      ()=>  Padding(
-                                    padding: EdgeInsets.only(
-                                        top: getVerticalSize(15),
-                                        bottom: getVerticalSize(15),
-                                        left: getHorizontalSize(15),
-                                        right: getHorizontalSize(15)),
-                                    child: InkWell(
-                                      onTap: () {
-                                        cardListController.selectIndex = index;
-                                        cardListController.selectCreditCard();
-                                      },
-                                      child: CashoutCreditCardWidget(
-                                          cardHolderName: cardListController
-                                              .mainCardList
-                                              .value[index]
-                                              .holderName
-                                              .toString(),
-                                          cardType: cardListController
-                                              .mainCardList
-                                              .value[index]
-                                              .cardType
-                                              .toString(),
-                                          hPadding: 65,
-                                          cardNumber: cardListController
-                                              .mainCardList
-                                              .value[index]
-                                              .cardNumber
-                                              .toString(),
-                                          expiryDate: cardListController
-                                              .mainCardList
-                                              .value[index]
-                                              .expireMonth
-                                              .toString() +
-                                              "/" +
-                                              cardListController.mainCardList
-                                                  .value[index].expireYear
-                                                  .toString()),
-                                      // holderName
-                                      // cardNumber
-                                      // expireYear
-                                      // expireMonth
-                                    ),
-                                  ),
-                                );
-                              }),
-                        )
+
+                                :
+                         Obx(()=>
+                               ListView.builder(
+                                  itemCount:
+                                  cardListController.mainCardList.length,
+                                  physics: const BouncingScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  shrinkWrap: true,
+                                  itemBuilder: (BuildContext context, int index) {
+                                    return Obx(
+                                          ()=>  Padding(
+                                        padding: EdgeInsets.only(
+                                            top: getVerticalSize(15),
+                                            bottom: getVerticalSize(15),
+                                            left: getHorizontalSize(15),
+                                            right: getHorizontalSize(15)),
+                                        child: InkWell(
+                                          onTap: () {
+                                            cardListController.selectIndex = index;
+                                            cardListController.selectCreditCard();
+                                          },
+                                          child: CashoutCreditCardWidget(
+                                              cardHolderName: cardListController
+                                                  .mainCardList
+                                                  .value[index]
+                                                  .holderName
+                                                  .toString(),
+                                              cardType: cardListController
+                                                  .mainCardList
+                                                  .value[index]
+                                                  .cardType
+                                                  .toString(),
+                                              hPadding: 65,
+                                              cardNumber: cardListController
+                                                  .mainCardList
+                                                  .value[index]
+                                                  .cardNumber
+                                                  .toString(),
+                                              expiryDate: cardListController
+                                                  .mainCardList
+                                                  .value[index]
+                                                  .expireMonth
+                                                  .toString() +
+                                                  "/" +
+                                                  cardListController.mainCardList
+                                                      .value[index].expireYear
+                                                      .toString()),
+                                          // holderName
+                                          // cardNumber
+                                          // expireYear
+                                          // expireMonth
+                                        ),
+                                      ),
+                                    );
+                                  }),
+                          ),
+                        ),
+                            )
                             :Padding(
                             padding: EdgeInsets.all(getVerticalSize(20)),
                             child:Container(

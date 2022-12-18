@@ -70,8 +70,8 @@ class RequestPasswordScreen extends StatelessWidget {
                                         Obx(()=>
                                           Text(
                                             requestMoneyScreenController.isPin.value==0
-                                                ?"Enter Pin"
-                                                :"Confirm Pin",
+                                                ?"Set Your Pin"
+                                                :"Enter Your Pin",
                                             style: AppStyle.DmSansFont.copyWith(
                                                 color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w700,

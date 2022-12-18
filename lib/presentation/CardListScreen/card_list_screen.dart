@@ -69,58 +69,90 @@ class CardListScreen extends StatelessWidget {
                       SizedBox(
                         height: getVerticalSize(10),
                       ),
-                      Expanded(
-                        child: Obx(
-                          () => cardListController.cardListModel.value.data !=
-                                  null
-                              ? ListView.builder(
-                                  itemCount:
-                                      cardListController.mainCardList.length,
-                                  physics: const BouncingScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemBuilder: (BuildContext context, int index) {
-                                    return Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          vertical: getVerticalSize(6.5)),
-                                      child: InkWell(
-                                        onTap: () {
-                                          // onTapOfListile(context);
-                                          // Get.toNamed(AppRoutes.cardDetailListScreen);
+                      Obx(
+                        () => cardListController.cardListModel.value.data !=
+                                null
+                            ? ListView.builder(
+                                itemCount:
+                                    cardListController.mainCardList.length,
+                                physics: const BouncingScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: getVerticalSize(6.5)),
+                                    child: InkWell(
+                                      onTap: () {
+                                        // onTapOfListile(context);
+                                        // Get.toNamed(AppRoutes.cardDetailListScreen);
 
-                                        },
-                                        child: CreditCardWidget(
-                                            cardHolderName: cardListController
-                                                .mainCardList
-                                                .value[index]
-                                                .holderName
-                                                .toString(),
-                                            cardType: cardListController
-                                                .mainCardList
-                                                .value[index]
-                                                .cardType
-                                                .toString(),
-                                            cardNumber: cardListController
-                                                .mainCardList
-                                                .value[index]
-                                                .cardNumber
-                                                .toString(),
-                                            expiryDate: cardListController
-                                                    .mainCardList
-                                                    .value[index]
-                                                    .expireMonth
-                                                    .toString() +
-                                                "/" +
-                                                cardListController.mainCardList
-                                                    .value[index].expireYear
-                                                    .toString()),
-                                        // holderName
-                                        // cardNumber
-                                        // expireYear
-                                        // expireMonth
-                                      ),
-                                    );
-                                  })
-                              : Container(),
+                                      },
+                                      child: CreditCardWidget(
+                                          cardHolderName: cardListController
+                                              .mainCardList
+                                              .value[index]
+                                              .holderName
+                                              .toString(),
+                                          cardType: cardListController
+                                              .mainCardList
+                                              .value[index]
+                                              .cardType
+                                              .toString(),
+                                          cardNumber: cardListController
+                                              .mainCardList
+                                              .value[index]
+                                              .cardNumber
+                                              .toString(),
+                                          expiryDate: cardListController
+                                                  .mainCardList
+                                                  .value[index]
+                                                  .expireMonth
+                                                  .toString() +
+                                              "/" +
+                                              cardListController.mainCardList
+                                                  .value[index].expireYear
+                                                  .toString()),
+                                      // holderName
+                                      // cardNumber
+                                      // expireYear
+                                      // expireMonth
+                                    ),
+                                  );
+                                })
+                            : Padding(
+                            padding: EdgeInsets.all(getVerticalSize(20)),
+                            child:Container(
+                                width: double.infinity,
+                                height: getVerticalSize(200),
+                                margin:
+                                EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(12),
+                                    color: ColorConstant.primaryAppTextF1),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Column(
+                                      mainAxisAlignment:
+                                      MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          "asset/icons/no_recent.png",
+                                          fit: BoxFit.fill,
+                                          height: getVerticalSize(70),
+                                          width: getVerticalSize(70),
+                                        ),
+                                        Text(
+                                          "No Card Linked",
+                                          style: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.naturalGrey3,
+                                              fontWeight: FontWeight.w600,
+                                              fontSize: getFontSize(20)),
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ))
                         ),
                       ),
                       Padding(
