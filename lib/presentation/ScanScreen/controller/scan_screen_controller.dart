@@ -56,9 +56,10 @@ class ScanScreenController extends GetxController {
     super.onInit();
   }
 
-  void getArguments() {
-    if (arguments['uuid'] != null && arguments['amount'] != null) {
+  void getArguments({arguments}) {
+    if (arguments!=null && arguments['uuid'] != null && arguments['amount'] != null) {
       qrCodeResult.value = arguments['uuid'];
+      uuid.value = arguments['uuid'];
       amountController.text = arguments['amount'];
       final now = new DateTime.now();
       date.value = DateFormat.yMMMMd('en_US').format(now).toString();
@@ -98,7 +99,9 @@ class ScanScreenController extends GetxController {
         bodyText: "Please select method",
       );
     }*/ else {
-      Get.toNamed(AppRoutes.scanPasswordScreen);
+      Get.toNamed(AppRoutes.scanPasswordScreen,arguments: {
+        "uuid":uuid.value,
+      });
     }
 
   }
@@ -144,7 +147,7 @@ class ScanScreenController extends GetxController {
         url: ApiEndPoints.GET_UUID_USER)
         .then((value) {
       print(value);
-      if (value['status']) {
+      if (value!=null && value['status']) {
         uuidModel.value = GetUuidDetail.fromJson(value);
         email.value=uuidModel.value.data!.email!;
         name.value=uuidModel.value.data!.name!;
@@ -154,6 +157,7 @@ class ScanScreenController extends GetxController {
           cameraStart();
         });
       } else {
+        cameraStart();
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
       }

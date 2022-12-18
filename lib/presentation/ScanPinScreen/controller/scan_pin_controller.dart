@@ -28,6 +28,8 @@ class ScanPinController extends GetxController {
   var walletModel=GetWallet().obs;
   var isPin=0.obs;
   var scanController = Get.find<ScanScreenController>();
+  var arguments = Get.arguments;
+
   @override
   void onReady() {
     super.onReady();
@@ -35,10 +37,20 @@ class ScanPinController extends GetxController {
 
   @override
   void onInit() {
-    callGetWalletApi(pageNo: 1);
+    getArguments();
+
     //controller = ScrollController()..addListener(_scrollListener);
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
+  }
+  void getArguments() {
+    if (arguments!=null && arguments['uuid'] != null ) {
+
+      uuid.value = arguments['uuid'];
+      callGetWalletApi(pageNo: 1);
+    }else{
+      callGetWalletApi(pageNo: 1);
+    }
   }
 
   @override
@@ -57,7 +69,7 @@ class ScanPinController extends GetxController {
       if (value!=null&&value['status']) {
         walletModel.value = GetWallet.fromJson(value);
         isPin.value= walletModel.value.data!.isPin!;
-        uuid.value= walletModel.value.data!.uuid!;
+        // uuid.value= walletModel.value.data!.uuid!;
 
 
       } else {

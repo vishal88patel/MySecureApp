@@ -110,7 +110,10 @@ class NotificationScreenController extends GetxController {
         //   "uuid": c.requestUser!.uuid.toString(),
         //   "amount": c.amount.toString(),
         // });
-        scanController.callGetUuidApi();
+        scanController.getArguments(arguments:{
+          "uuid":c.requestUser!.uuid.toString(),
+          "amount":c.amount.toString(),
+        } );
         break;
     }
   }
