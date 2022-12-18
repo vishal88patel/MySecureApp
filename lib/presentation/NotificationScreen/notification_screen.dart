@@ -381,9 +381,10 @@ class _NotificationScreenState extends State<NotificationScreen> {
         duration: const Duration(milliseconds: 300),
       );
       notificationController.list.removeAt(0);
-      notificationController.clearNotification("");
-      notificationController.callNotificationApi();
+
     }
+    notificationController.clearNotification("");
+    notificationController.callNotificationApi();
   }
 }
 

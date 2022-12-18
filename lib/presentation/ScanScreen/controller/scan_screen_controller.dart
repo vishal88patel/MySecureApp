@@ -52,7 +52,6 @@ class ScanScreenController extends GetxController {
   void onInit() {
     getArguments();
     getStoredData();
-    // cameraStart();
     super.onInit();
   }
 

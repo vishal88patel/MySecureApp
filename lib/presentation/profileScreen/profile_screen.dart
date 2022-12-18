@@ -275,91 +275,96 @@ class ProfileScreen extends StatelessWidget {
                             ),
                             child: Column(
                               children: [
-                                Container(
-                                  width: getHorizontalSize(350),
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                        left: getHorizontalSize(20),
-                                        right: getHorizontalSize(20),
-                                        top: getVerticalSize(20)),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Text(
-                                              "Balance",
-                                              style: AppStyle.textStyleDMSANS
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .primaryWhite,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize:
-                                                          getFontSize(16)),
-                                            ),
-                                            SvgPicture.asset(
-                                              "asset/icons/ic_visa.svg",
-                                              fit: BoxFit.fill,
-                                            ),
-                                          ],
-                                        ),
-                                        Obx(
-                                          () => dashBoardController
-                                                      .UserBalance.value ==
-                                                  ""
-                                              ? Container()
-                                              : Text(
-                                            NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
-                                                  style: AppStyle
-                                                      .textStyleDMSANS
-                                                      .copyWith(
-                                                          color: ColorConstant
-                                                              .primaryWhite,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize:
-                                                              getFontSize(26)),
-                                                ),
-                                        ),
-                                        SizedBox(
-                                          height: getHorizontalSize(8),
-                                        ),
-                                        Row(
-                                          children: [
-                                            SvgPicture.asset(
-                                              "asset/icons/ic_chip.svg",
-                                              fit: BoxFit.fill,
-                                            ),
-                                            SizedBox(
-                                              width: getHorizontalSize(12),
-                                            ),
-                                            Text(
-                                              homeController.loginResponseModel!
-                                                          .data !=
-                                                      null
-                                                  ? CommonUtils.FormatCardNumber(
-                                                      homeController
-                                                          .loginResponseModel!
-                                                          .data!
-                                                          .cardNumber
-                                                          .toString())
-                                                  : "",
-                                              style: AppStyle.textStyleDMSANS
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .primaryWhite,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize:
-                                                          getFontSize(22)),
-                                            ),
-                                          ],
-                                        ),
-                                      ],
+                                InkWell(
+                                  onTap:(){
+                            Get.toNamed(AppRoutes.showUserCardScreen);
+                          },
+                                  child: Container(
+                                    width: getHorizontalSize(350),
+                                    child: Padding(
+                                      padding: EdgeInsets.only(
+                                          left: getHorizontalSize(20),
+                                          right: getHorizontalSize(20),
+                                          top: getVerticalSize(20)),
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Text(
+                                                "Balance",
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryWhite,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(16)),
+                                              ),
+                                              SvgPicture.asset(
+                                                "asset/icons/ic_visa.svg",
+                                                fit: BoxFit.fill,
+                                              ),
+                                            ],
+                                          ),
+                                          Obx(
+                                            () => dashBoardController
+                                                        .UserBalance.value ==
+                                                    ""
+                                                ? Container()
+                                                : Text(
+                                              NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
+                                                    style: AppStyle
+                                                        .textStyleDMSANS
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .primaryWhite,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize:
+                                                                getFontSize(26)),
+                                                  ),
+                                          ),
+                                          SizedBox(
+                                            height: getHorizontalSize(8),
+                                          ),
+                                          Row(
+                                            children: [
+                                              SvgPicture.asset(
+                                                "asset/icons/ic_chip.svg",
+                                                fit: BoxFit.fill,
+                                              ),
+                                              SizedBox(
+                                                width: getHorizontalSize(12),
+                                              ),
+                                              Text(
+                                                homeController.loginResponseModel!
+                                                            .data !=
+                                                        null
+                                                    ? CommonUtils.FormatCardNumber(
+                                                        homeController
+                                                            .loginResponseModel!
+                                                            .data!
+                                                            .cardNumber
+                                                            .toString())
+                                                    : "",
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryWhite,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(22)),
+                                              ),
+                                            ],
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),

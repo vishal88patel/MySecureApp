@@ -118,6 +118,8 @@ import '../presentation/OnBoardingScreen/binding/onboarding_screen_binding.dart'
 import '../presentation/SelectLoanTypeScreen/binding/select_loan_type_screen_binding.dart';
 import '../presentation/SelectLoanTypeScreen/controller/select_loan_type_screen_controller.dart';
 import '../presentation/LoanCalculator/select_loan_type_screen.dart';
+import '../presentation/ShowUserCard/binding/show_user_card_screen_binding.dart';
+import '../presentation/ShowUserCard/show_user_card.dart';
 import '../presentation/SplashScreen/binding/splash_screen_binding.dart';
 import '../presentation/SplashScreen/splash_screen.dart';
 import '../presentation/SupportScreen/binding/support_screen_binding.dart';
@@ -286,6 +288,7 @@ class AppRoutes {
   static String topUpPinsScreen = '/topUp_pin_screen';
   static String instructionScreens = '/instruction_screen';
   static String profileDetailsScreen = '/profile_details_screen';
+  static String showUserCardScreen = '/show_user_card_screen';
 
 
 
@@ -623,6 +626,15 @@ class AppRoutes {
       page: () => PersonalDetailsScreen(),
       bindings: [
         PersonalDetailsScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: showUserCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => ShowUserCardScreen(),
+      bindings: [
+        ShowUserCardBinding(),
       ],
     ),
 

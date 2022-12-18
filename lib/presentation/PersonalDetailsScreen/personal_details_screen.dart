@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../Custom Widgets/app_textField.dart';
 import '../../theme/app_style.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
+import '../../utils/HelperFiles/common_utils.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/ui_utils.dart';
 import 'controller/personal_details_screen_controller.dart';
@@ -109,8 +111,10 @@ class PersonalDetailsScreen extends StatelessWidget {
                                                 fontSize:
                                                 getFontSize(14))),
                                         Obx(()=>Text(
-                                            "\$"+""+personalDetailsController
-                                                .balance.value,
+                                            personalDetailsController
+                                                .balance.value!=""?
+                                            NumberFormat.currency(name: '\$ ').format(int.parse(personalDetailsController
+                                                .balance.value)):"",
                                             style: AppStyle
                                                 .DmSansFont
                                                 .copyWith(
@@ -137,7 +141,9 @@ class PersonalDetailsScreen extends StatelessWidget {
                                 Obx(()=>
                                    Text(
                                       personalDetailsController
-                                          .cardNumber.value!=""?personalDetailsController.cardNumber.value.toString().replaceRange(0, 12, '*' * 12):"",
+                                          .cardNumber.value!=""?CommonUtils.FormatCardNumber(
+                                          personalDetailsController.cardNumber.value.toString()
+                                              .toString()):"",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w500,
