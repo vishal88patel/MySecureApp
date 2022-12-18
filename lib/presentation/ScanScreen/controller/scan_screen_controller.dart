@@ -87,6 +87,10 @@ class ScanScreenController extends GetxController {
         headerText: StringConstants.ERROR,
         bodyText: "Please enter amount",
       );
+    }else if(int.parse(amountController.text.toString())<=0){
+      UIUtils.showSnakBar(
+          headerText: StringConstants.ERROR,
+          bodyText: "Please Enter Valid Amount");
     }else if(int.parse(balance.value)<int.parse(amountController.text)){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,

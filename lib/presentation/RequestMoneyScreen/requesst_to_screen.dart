@@ -115,44 +115,56 @@ class RequestToScreen extends StatelessWidget {
                         ),
                         Padding(
                           padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                          child: Row(
+                          child:  Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
-                                "\$",
-                                style: AppStyle.textStyleDMSANS.copyWith(
-                                    color: ColorConstant.primaryBlack,
-                                    fontWeight: FontWeight.w700,
-                                    fontSize: getFontSize(30)),
-                              ),
-                              SizedBox(
-                                width: getHorizontalSize(100),
-                                child: TextFormField(
-                                  readOnly: true,
-                                  textAlign: TextAlign.start,
-                                  controller: requestMoneyScreenController.amountCtrl,
-                                  decoration: InputDecoration(
-                                    hintText: '0',
-                                    hintStyle: AppStyle.DmSansFont.copyWith(
-                                        color: ColorConstant.grey8F,
-                                        fontWeight: FontWeight.w400,
-                                        fontSize: getFontSize(30)),
-                                    enabledBorder: UnderlineInputBorder(
+                              IntrinsicWidth(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding:  EdgeInsets.only(left:getHorizontalSize(20)),
+                                      child: Text(
+                                        "\$",
+                                        textAlign: TextAlign.right,
+                                        style: AppStyle.textStyleDMSANS.copyWith(
+                                            color: ColorConstant.primaryLightGreen,
+                                            fontWeight: FontWeight.w500,
+                                            fontSize: getFontSize(30)),
+                                      ),
+                                    ),
+                                    IntrinsicWidth(
+                                      child: TextFormField(
+                                        textAlign: TextAlign.start,
+                                        readOnly: true,
+                                        controller:
+                                        requestMoneyScreenController.amountCtrl,
+                                        decoration: InputDecoration(
+                                            hintText: 'Amount',
+                                            hintStyle: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.primaryWhite.withOpacity(0.5),
+                                                fontWeight: FontWeight.w400,
+                                                fontSize: getFontSize(24)),
+                                            border: InputBorder.none
+                                          /*enabledBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: ColorConstant.primaryWhite.withOpacity(0.5),
                                           width: 1),
-                                    ),
-                                    focusedBorder: UnderlineInputBorder(
+                                    ),*/
+                                          /*focusedBorder: UnderlineInputBorder(
                                       borderSide: BorderSide(
                                           color: ColorConstant.grey8F.withOpacity(0.5),
                                           width: 1),
+                                    ),*/
+                                        ),
+                                        keyboardType: TextInputType.phone,
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.naturalBlack,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getFontSize(30)),
+                                      ),
                                     ),
-                                  ),
-                                  keyboardType: TextInputType.phone,
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.naturalBlack,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(30)),
+                                  ],
                                 ),
                               ),
                             ],

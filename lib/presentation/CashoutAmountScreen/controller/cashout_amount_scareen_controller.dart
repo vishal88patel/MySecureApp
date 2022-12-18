@@ -86,14 +86,14 @@ class CashoutAmountController extends GetxController {
   }
 
   onNext(BuildContext context){
-    if(amountController.text=='0'){
+    if(amountController.text.isEmpty){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
           bodyText: "Please Enter Amount");
-    }else if(amountController.text.isEmpty){
+    }else if(int.parse(amountController.text.toString())<=0){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
-          bodyText: "Please Enter Amount");
+          bodyText: "Please Enter Valid Amount");
     }else if(int.parse(balance.value)<int.parse(amountController.text)){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,

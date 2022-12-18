@@ -75,7 +75,16 @@ class RequestMoneyScreenController extends GetxController {
   }
 
   void onTapReqButton(){
-    Get.toNamed(AppRoutes.requestToScreen);
+    if(int.parse(amountCtrl.text.toString())<=0){
+      UIUtils.showSnakBar(
+          headerText: StringConstants.ERROR,
+          bodyText: "Please Enter Valid Amount");
+    }
+    else{
+      Get.toNamed(AppRoutes.requestToScreen);
+
+    }
+
   }
 
   /*void onTapPayButton(){

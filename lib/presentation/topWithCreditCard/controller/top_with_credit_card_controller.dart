@@ -90,15 +90,15 @@ class TopWithCreditCardController extends GetxController {
   }
 
   onNext(BuildContext context){
-    if(amountController.text.startsWith("0")){
-      UIUtils.showSnakBar(
-          headerText: StringConstants.ERROR,
-          bodyText: "Please Enter Valid Amount");
-    }else if(amountController.text.isEmpty){
+     if(amountController.text.isEmpty){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
           bodyText: "Please Enter Amount");
-    }else if(int.parse(balance.value)<int.parse(amountController.text)){
+    }else if(int.parse(amountController.text.toString())<=0){
+       UIUtils.showSnakBar(
+           headerText: StringConstants.ERROR,
+           bodyText: "Please Enter Valid Amount");
+     }else if(int.parse(balance.value)<int.parse(amountController.text)){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
           bodyText: "Insufficient Wallet Balance");
