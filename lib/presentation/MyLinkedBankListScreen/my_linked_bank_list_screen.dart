@@ -1,9 +1,11 @@
 import 'dart:math';
 
+import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/presentation/test.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
@@ -94,33 +96,41 @@ class MyLinkedBankListScreen extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             return Padding(
                               padding:  EdgeInsets.only(left: getHorizontalSize(20)),
-                              child: Container(
-                                width: getHorizontalSize(110),
-                                decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(12),
-                                    color: ColorConstant.naturalGrey2,
-                                    border: Border.all(
-                                        color:
-                                        ColorConstant.naturalGrey2)),
-                                padding: EdgeInsets.all(6),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      Icons.maps_home_work,size: 22,),
-                                    SizedBox(
-                                      height: getVerticalSize(5),
+                              child: Obx(
+                                  ()=>InkWell(
+                                  onTap: (){
+                                    bankListController.selectBank(index);
+                                    bankListController.selectBankOnTap(context);
+                                  },
+                                  child: Container(
+                                    width: getHorizontalSize(110),
+                                    decoration: BoxDecoration(
+                                        borderRadius:
+                                        BorderRadius.circular(12),
+                                        color: ColorConstant.naturalGrey2,
+                                        border: Border.all(
+                                            color: bankListController.isBankSelected.value==index?
+                                            ColorConstant.primaryLightGreen:ColorConstant.naturalGrey2)),
+                                    padding: EdgeInsets.all(6),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(
+                                          Icons.maps_home_work,size: 22,),
+                                        SizedBox(
+                                          height: getVerticalSize(5),
+                                        ),
+                                        Text(
+                                          "Citibank",
+                                          style: AppStyle.DmSansFont.copyWith(
+                                              color: ColorConstant.primaryBlack,
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: getFontSize(16)),
+                                        ),
+                                      ],
                                     ),
-                                    Text(
-                                      "Citibank",
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.primaryBlack,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(16)),
-                                    ),
-                                  ],
+                                  ),
                                 ),
                               ),
                             );
@@ -159,7 +169,57 @@ class MyLinkedBankListScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                    )
+                    ),
+
+                    Expanded(
+                      child: Obx(
+                        ()=> AzListView(
+                          data: bankListController.contacts,
+                          itemCount: bankListController.contacts.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            ContactInfo model = bankListController.contacts[index];
+                            return bankListController.buildListItem(model);
+                          },
+                          physics: BouncingScrollPhysics(),
+                          indexBarData: SuspensionUtil.getTagIndexList(bankListController.contacts),
+
+                          indexBarMargin: EdgeInsets.all(10),
+                          indexBarOptions: IndexBarOptions(
+                            needRebuild: true,
+                            decoration: bankListController.getIndexBarDecoration(Colors.grey[50]!),
+                            downDecoration: bankListController.getIndexBarDecoration(Colors.grey[200]!),
+                          ),
+                        ),
+                      ),
+                      // ListView.builder(
+                      //     itemCount: bankListController.countries.length,
+                      //     shrinkWrap: true,
+                      //
+                      //     itemBuilder: (BuildContext context, int index) {
+                      //       return Padding(
+                      //         padding:  EdgeInsets.only(left: getHorizontalSize(20)),
+                      //         child: Column(
+                      //           mainAxisAlignment: MainAxisAlignment.center,
+                      //           crossAxisAlignment: CrossAxisAlignment.start,
+                      //           children: [
+                      //
+                      //             SizedBox(
+                      //               height: getVerticalSize(5),
+                      //             ),
+                      //             Text(
+                      //               bankListController.countries[index],
+                      //               style: AppStyle.DmSansFont.copyWith(
+                      //                   color: ColorConstant.primaryBlack,
+                      //                   fontWeight: FontWeight.w500,
+                      //                   fontSize: getFontSize(16)),
+                      //             ),
+                      //
+                      //             const Divider()
+                      //           ],
+                      //         ),
+                      //       );
+                      //     }),
+                    ),
                   ],
                 ),
               ],

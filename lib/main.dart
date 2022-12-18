@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/test.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 
 import 'App Configurations/color_constants.dart';
@@ -138,8 +139,8 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: MaterialColor(0xFF4CD080, color),
           splashColor:  ColorConstant.primaryLightGreen,
           highlightColor:  ColorConstant.primaryLightGreen,
-
       ),
+
       initialBinding: InitialBindings(),
       initialRoute: AppRoutes.splashScreen,
       getPages: AppRoutes.pages,

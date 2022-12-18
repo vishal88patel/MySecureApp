@@ -1,7 +1,13 @@
+import 'dart:convert';
+
+import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:lpinyin/lpinyin.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/presentation/test.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../../ApiServices/api_service.dart';
@@ -15,6 +21,8 @@ import '../../HomeScreen/model/get_linked_bank.dart';
 
 class MyLinkedBankListScreenController extends GetxController {
   var getLinkedBankModel = GrtLinkedBank().obs;
+  var isBankSelected = 0.obs;
+  var contacts = <ContactInfo>[].obs;
 
   @override
   void onReady() {
@@ -24,14 +32,172 @@ class MyLinkedBankListScreenController extends GetxController {
   @override
   void onInit() {
     // callGetLinkedBankApi();
+    loadData();
     super.onInit();
+  }
+
+  void selectBank(var index){
+    isBankSelected.value =index;
+  }
+
+  void selectBankOnTap(BuildContext context){
+
+    Get.dialog(
+      Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: getHorizontalSize(40)),
+        child: Center(
+          child: Material(
+            color: Colors.transparent,
+            child: Wrap(
+              children: [
+                Stack(
+                  alignment: Alignment.topCenter,
+                  clipBehavior: Clip.none,
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                          color: ColorConstant
+                              .primaryWhite,
+                          borderRadius:
+                          const BorderRadius.all(
+                              Radius.circular(15))),
+                      margin: const EdgeInsets.only(
+                          bottom: 20),
+                      padding: const EdgeInsets.only(
+                        bottom: 20,
+                      ),
+                      constraints: const BoxConstraints(
+                          minWidth: 180),
+                      child: Column(
+                        children: [
+
+
+                          const SizedBox(
+                            height: 60,
+                          ),
+                          Container(
+                              padding: const EdgeInsets
+                                  .fromLTRB(
+                                  0, 10, 0, 0),
+                              child: Text(
+                                "Do you want to link ‘DBS Bank’ \nwith My Secure App?",
+                                textAlign:
+                                TextAlign.center,
+                                style: AppStyle
+                                    .DmSansFont
+                                    .copyWith(
+                                    fontSize: getFontSize(18),
+                                    color: ColorConstant
+                                        .darkBlue),
+                              )),
+                          const SizedBox(
+                            height: 20,
+                          ),
+                          Padding(
+                            padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: getVerticalSize(50),
+
+                                  child: AppElevatedButton(
+                                    buttonColor: ColorConstant.appProgressBarColor,
+                                    buttonName: 'Cancel',
+                                    radius: 10,
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },),
+                                ),
+                            SizedBox(height: getVerticalSize(10),),
+                                SizedBox(
+                                  height: getVerticalSize(50),
+                                  child: AppElevatedButton(
+                                    buttonColor: ColorConstant.primaryLightGreen,
+                                    buttonName: 'ok',
+                                    radius: 10,
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      top: getVerticalSize(-50),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(100),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: ColorConstant.primaryWhite,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                          padding: EdgeInsets.all(5),
+                          child: Image.asset(
+                            "asset/icons/bank1_image.png",height: 60,),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+      barrierDismissible: true,
+    );
+  }
+
+  void loadData() async {
+    //加载联系人列表
+    rootBundle.loadString('asset/contects.json').then((value) {
+      List list = json.decode(value);
+      list.forEach((v) {
+        contacts.add(ContactInfo.fromJson(v));
+      });
+      handleList(contacts);
+    });
+  }
+  void handleList(List<ContactInfo> list) {
+    if (list.isEmpty) return;
+    for (int i = 0, length = list.length; i < length; i++) {
+      String pinyin = PinyinHelper.getPinyinE(list[i].name);
+      String tag = pinyin.substring(0, 1).toUpperCase();
+      list[i].namePinyin = pinyin;
+      if (RegExp("[A-Z]").hasMatch(tag)) {
+        list[i].tagIndex = tag;
+      } else {
+        list[i].tagIndex = "#";
+      }
+    }
+    // A-Z sort.
+    SuspensionUtil.sortListBySuspensionTag(contacts);
+
+    // show sus tag.
+    SuspensionUtil.setShowSuspensionStatus(contacts);
+
+    contacts.refresh();
+    update();
   }
 
   @override
   void onClose() {
     super.onClose();
   }
+
   List<String> countries = [
+    "Nepal",
+    "India",
+    "Pakistan",
+    "Bangladesh",
+    "USA",
+    "Canada",
+    "China",
+    "Russia",
     "Nepal",
     "India",
     "Pakistan",
@@ -65,7 +231,48 @@ class MyLinkedBankListScreenController extends GetxController {
     final form = FormData({});
     return form;
   }
+  Widget buildListItem(ContactInfo model) {
+    String susTag = model.getSuspensionTag();
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Offstage(
+            offstage: model.isShowSuspension != true,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  '$susTag',
+                  textScaleFactor: 1.2,
+                  style: AppStyle.DmSansFont.copyWith(
+                      color: ColorConstant.grey8F,
+                      fontWeight: FontWeight.w500,
+                      fontSize: getFontSize(16)),
+                ),
+                const Divider(),
+              ],
+            )
+          ),
 
+          Text(
+            model.name,
+            style: AppStyle.DmSansFont.copyWith(
+                color: ColorConstant.primaryBlack,
+                fontWeight: FontWeight.w500,
+                fontSize: getFontSize(16)),
+          ),
+
+          const Divider()
+        ],
+      ),
+    );
+  }
+  Decoration getIndexBarDecoration(Color color) {
+    return BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.circular(20.0),
+        border: Border.all(color: Colors.grey[300]!, width: .5));
+  }
   void showBankInfoBottomsheet() {
     Get.bottomSheet(
         isScrollControlled: true,
