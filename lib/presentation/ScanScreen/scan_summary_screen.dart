@@ -548,6 +548,7 @@ class ScanSummaryScreen extends StatelessWidget {
                                     vertical: 8.0, horizontal: 8),
                                 child: Container(
                                     decoration: BoxDecoration(
+                                      color: ColorConstant.primaryWhite,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(12))),
                                     height: 55,
