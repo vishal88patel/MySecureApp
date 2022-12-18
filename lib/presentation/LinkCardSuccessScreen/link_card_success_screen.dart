@@ -14,6 +14,7 @@ import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../Custom Widgets/appbar_image_1.dart';
 import '../../Custom Widgets/common_image_view.dart';
 import '../../routes/app_routes.dart';
+import '../../utils/HelperFiles/common_utils.dart';
 import 'controller/link_card_success_screen_controller.dart';
 
 class LinkCardSuccessScreen extends StatelessWidget {
@@ -118,7 +119,7 @@ class LinkCardSuccessScreen extends StatelessWidget {
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.naturalGrey4,
                                         fontSize: getFontSize(20),
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
@@ -239,7 +240,10 @@ class LinkCardSuccessScreen extends StatelessWidget {
                                                 mainAxisSize: MainAxisSize.max,
                                                 children: [
                                                   Text(
-                                                    linkCardController.cardNumberController.text,
+                                                    CommonUtils.FormatCardNumber(
+                                                        linkCardController.cardNumberController.text
+                                                            .toString().replaceAll(" ", ""))
+                                                   ,
                                                       overflow: TextOverflow.ellipsis,
                                                       textAlign: TextAlign.left,
                                                       style: AppStyle.DmSansFont.copyWith(

@@ -218,7 +218,9 @@ class CashoutCardListScreen extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                           horizontal: getHorizontalSize(40)),
                       child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Get.toNamed(AppRoutes.linkCardAddCardScreen);
+                          },
                           child: Image.asset('asset/icons/add_card_image.png')),
                     ),
                     SizedBox(

@@ -59,11 +59,12 @@ class WebviewScreen extends StatelessWidget {
                                     padding: EdgeInsets.symmetric(
                                       vertical: getVerticalSize(10),
                                         horizontal: getHorizontalSize(20)),
-                                    child: WebView(
-                                      initialUrl: webviewController.webLink.value,
-                                      javascriptMode: JavascriptMode.unrestricted,
-                                      userAgent: webviewController.userAgent.value,
-                                      onProgress:(progress) => webviewController.loadingValue.value = progress / 100,
+                                    child:Obx(()=> WebView(
+                                        initialUrl: webviewController.webLink.value,
+                                        javascriptMode: JavascriptMode.unrestricted,
+                                        userAgent: webviewController.userAgent.value,
+                                        onProgress:(progress) => webviewController.loadingValue.value = progress / 100,
+                                      ),
                                     ),
                                   ),
                                 ),

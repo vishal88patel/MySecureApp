@@ -9,7 +9,7 @@ class CommonUtils {
         " " +
         result.substring(5, 9) +
         " " +
-        result.substring(10, 15) +
+        result.substring(10, 14) +
         " " +
         result.substring(16, result.length);
     return ss;

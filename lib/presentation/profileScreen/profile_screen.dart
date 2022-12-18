@@ -9,6 +9,7 @@ import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/common_utils.dart';
 
+import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import 'controller/profile_screen_controller.dart';
@@ -408,7 +409,7 @@ class ProfileScreen extends StatelessWidget {
                       title: 'Privacy & Security',
                     ),
                     ProfileOptionWidget(
-                      onTap: () {},
+                      onTap: () {showOfferComingDialouge();},
                       icon: "asset/icons/ic_offer.svg",
                       title: 'Offers & Rewards',
                     ),
@@ -429,996 +430,107 @@ class ProfileScreen extends StatelessWidget {
                   ],
                 ),
               )
-              // Container(
-              //   width: double.infinity,
-              //   decoration: AppDecoration.fillWhiteA700,
-              //   child: Column(
-              //     mainAxisSize: MainAxisSize.min,
-              //     crossAxisAlignment: CrossAxisAlignment.center,
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     children: [
-              //       Card(
-              //         clipBehavior: Clip.antiAlias,
-              //         elevation: 0,
-              //         margin: getMargin(
-              //           left: 16,
-              //           right: 16,
-              //         ),
-              //         color: ColorConstant.teal900,
-              //         shape: RoundedRectangleBorder(
-              //           borderRadius: BorderRadiusStyle.customBorderBL32,
-              //         ),
-              //         child: Container(
-              //           height: getVerticalSize(
-              //             170.00,
-              //           ),
-              //           width: getHorizontalSize(
-              //             327.00,
-              //           ),
-              //           decoration: AppDecoration.fillTeal900.copyWith(
-              //             borderRadius: BorderRadiusStyle.customBorderBL32,
-              //           ),
-              //           child: Stack(
-              //             alignment: Alignment.bottomCenter,
-              //             children: [
-              //               Align(
-              //                 alignment: Alignment.center,
-              //                 child: Container(
-              //                   height: getVerticalSize(
-              //                     170.00,
-              //                   ),
-              //                   width: getHorizontalSize(
-              //                     263.00,
-              //                   ),
-              //                   margin: getMargin(
-              //                     left: 32,
-              //                     right: 32,
-              //                   ),
-              //                   decoration: BoxDecoration(
-              //                     color: ColorConstant.black9006c,
-              //                     borderRadius: BorderRadius.circular(
-              //                       getHorizontalSize(
-              //                         16.00,
-              //                       ),
-              //                     ),
-              //                   ),
-              //                 ),
-              //               ),
-              //               Align(
-              //                 alignment: Alignment.bottomCenter,
-              //                 child: Container(
-              //                   margin: getMargin(
-              //                     left: 16,
-              //                     top: 10,
-              //                     right: 16,
-              //                   ),
-              //                   decoration:
-              //                       AppDecoration.fillOrange300.copyWith(
-              //                     borderRadius:
-              //                         BorderRadiusStyle.customBorderBL32,
-              //                   ),
-              //                   child: Column(
-              //                     mainAxisSize: MainAxisSize.min,
-              //                     crossAxisAlignment:
-              //                         CrossAxisAlignment.center,
-              //                     mainAxisAlignment: MainAxisAlignment.start,
-              //                     children: [
-              //                       Padding(
-              //                         padding: getPadding(
-              //                           left: 16,
-              //                           top: 16,
-              //                           right: 16,
-              //                         ),
-              //                         child: Row(
-              //                           mainAxisAlignment:
-              //                               MainAxisAlignment.spaceBetween,
-              //                           crossAxisAlignment:
-              //                               CrossAxisAlignment.start,
-              //                           mainAxisSize: MainAxisSize.max,
-              //                           children: [
-              //                             Container(
-              //                               margin: getMargin(
-              //                                 top: 1,
-              //                               ),
-              //                               decoration: BoxDecoration(
-              //                                 borderRadius: BorderRadius.only(
-              //                                   bottomLeft: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                   bottomRight: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                               child: Column(
-              //                                 mainAxisSize: MainAxisSize.min,
-              //                                 crossAxisAlignment:
-              //                                     CrossAxisAlignment.start,
-              //                                 mainAxisAlignment:
-              //                                     MainAxisAlignment.start,
-              //                                 children: [
-              //                                   Text(
-              //                                     "lbl_balance".tr,
-              //                                     overflow:
-              //                                         TextOverflow.ellipsis,
-              //                                     textAlign: TextAlign.left,
-              //                                     style: AppStyle
-              //                                         .txtIBMPlexMono14,
-              //                                   ),
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       top: 2,
-              //                                       right: 10,
-              //                                     ),
-              //                                     child: Text(
-              //                                       "lbl_0".tr,
-              //                                       overflow:
-              //                                           TextOverflow.ellipsis,
-              //                                       textAlign: TextAlign.left,
-              //                                       style: AppStyle
-              //                                           .txtIBMPlexMonoSemiBold24,
-              //                                     ),
-              //                                   ),
-              //                                 ],
-              //                               ),
-              //                             ),
-              //                             Padding(
-              //                               padding: getPadding(
-              //                                 bottom: 25,
-              //                               ),
-              //                               child: ClipRRect(
-              //                                 borderRadius: BorderRadius.only(
-              //                                   bottomLeft: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                   bottomRight: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                                 child: CommonImageView(
-              //                                   svgPath:
-              //                                       ImageConstant.imgContrast,
-              //                                   height: getVerticalSize(
-              //                                     28.00,
-              //                                   ),
-              //                                   width: getHorizontalSize(
-              //                                     45.00,
-              //                                   ),
-              //                                   fit: BoxFit.cover,
-              //                                 ),
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ),
-              //                       Container(
-              //                         margin: getMargin(
-              //                           left: 16,
-              //                           top: 24,
-              //                           right: 14,
-              //                           bottom: 28,
-              //                         ),
-              //                         decoration: BoxDecoration(
-              //                           borderRadius: BorderRadius.only(
-              //                             bottomLeft: Radius.circular(
-              //                               getHorizontalSize(
-              //                                 32.00,
-              //                               ),
-              //                             ),
-              //                             bottomRight: Radius.circular(
-              //                               getHorizontalSize(
-              //                                 32.00,
-              //                               ),
-              //                             ),
-              //                           ),
-              //                         ),
-              //                         child: Row(
-              //                           mainAxisAlignment:
-              //                               MainAxisAlignment.spaceBetween,
-              //                           crossAxisAlignment:
-              //                               CrossAxisAlignment.center,
-              //                           mainAxisSize: MainAxisSize.max,
-              //                           children: [
-              //                             ClipRRect(
-              //                               borderRadius: BorderRadius.only(
-              //                                 bottomLeft: Radius.circular(
-              //                                   getHorizontalSize(
-              //                                     32.00,
-              //                                   ),
-              //                                 ),
-              //                                 bottomRight: Radius.circular(
-              //                                   getHorizontalSize(
-              //                                     32.00,
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                               child: CommonImageView(
-              //                                 svgPath: ImageConstant.imgChip,
-              //                                 height: getVerticalSize(
-              //                                   32.00,
-              //                                 ),
-              //                                 width: getHorizontalSize(
-              //                                   48.00,
-              //                                 ),
-              //                                 fit: BoxFit.cover,
-              //                               ),
-              //                             ),
-              //                             Container(
-              //                               margin: getMargin(
-              //                                 top: 5,
-              //                                 bottom: 5,
-              //                               ),
-              //                               decoration: BoxDecoration(
-              //                                 borderRadius: BorderRadius.only(
-              //                                   bottomLeft: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                   bottomRight: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                               child: Row(
-              //                                 crossAxisAlignment:
-              //                                     CrossAxisAlignment.start,
-              //                                 mainAxisSize: MainAxisSize.max,
-              //                                 children: [
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       top: 7,
-              //                                       bottom: 7,
-              //                                     ),
-              //                                     child: ClipRRect(
-              //                                       borderRadius:
-              //                                           BorderRadius.only(
-              //                                         bottomLeft:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                         bottomRight:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                       ),
-              //                                       child: CommonImageView(
-              //                                         svgPath: ImageConstant
-              //                                             .imgGroup61,
-              //                                         height: getVerticalSize(
-              //                                           6.00,
-              //                                         ),
-              //                                         width:
-              //                                             getHorizontalSize(
-              //                                           42.00,
-              //                                         ),
-              //                                         fit: BoxFit.cover,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       left: 12,
-              //                                       top: 7,
-              //                                       bottom: 7,
-              //                                     ),
-              //                                     child: ClipRRect(
-              //                                       borderRadius:
-              //                                           BorderRadius.only(
-              //                                         bottomLeft:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                         bottomRight:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                       ),
-              //                                       child: CommonImageView(
-              //                                         svgPath: ImageConstant
-              //                                             .imgGroup61,
-              //                                         height: getVerticalSize(
-              //                                           6.00,
-              //                                         ),
-              //                                         width:
-              //                                             getHorizontalSize(
-              //                                           42.00,
-              //                                         ),
-              //                                         fit: BoxFit.cover,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       left: 12,
-              //                                       top: 7,
-              //                                       bottom: 7,
-              //                                     ),
-              //                                     child: ClipRRect(
-              //                                       borderRadius:
-              //                                           BorderRadius.only(
-              //                                         bottomLeft:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                         bottomRight:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                       ),
-              //                                       child: CommonImageView(
-              //                                         svgPath: ImageConstant
-              //                                             .imgGroup61,
-              //                                         height: getVerticalSize(
-              //                                           6.00,
-              //                                         ),
-              //                                         width:
-              //                                             getHorizontalSize(
-              //                                           42.00,
-              //                                         ),
-              //                                         fit: BoxFit.cover,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       left: 12,
-              //                                     ),
-              //                                     child: Text(
-              //                                       "lbl_2356".tr,
-              //                                       overflow:
-              //                                           TextOverflow.ellipsis,
-              //                                       textAlign: TextAlign.left,
-              //                                       style: AppStyle
-              //                                           .txtIBMPlexMonoMedium16,
-              //                                     ),
-              //                                   ),
-              //                                 ],
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ),
-              //                     ],
-              //                   ),
-              //                 ),
-              //               ),
-              //               Align(
-              //                 alignment: Alignment.bottomLeft,
-              //                 child: Container(
-              //                   margin: getMargin(
-              //                     top: 10,
-              //                   ),
-              //                   decoration:
-              //                       AppDecoration.fillGreen400.copyWith(
-              //                     borderRadius:
-              //                         BorderRadiusStyle.customBorderBL32,
-              //                   ),
-              //                   child: Column(
-              //                     mainAxisSize: MainAxisSize.min,
-              //                     crossAxisAlignment:
-              //                         CrossAxisAlignment.start,
-              //                     mainAxisAlignment: MainAxisAlignment.start,
-              //                     children: [
-              //                       Align(
-              //                         alignment: Alignment.center,
-              //                         child: Padding(
-              //                           padding: getPadding(
-              //                             left: 16,
-              //                             top: 16,
-              //                             right: 16,
-              //                           ),
-              //                           child: Row(
-              //                             mainAxisAlignment:
-              //                                 MainAxisAlignment.spaceBetween,
-              //                             crossAxisAlignment:
-              //                                 CrossAxisAlignment.start,
-              //                             mainAxisSize: MainAxisSize.max,
-              //                             children: [
-              //                               Container(
-              //                                 margin: getMargin(
-              //                                   top: 1,
-              //                                 ),
-              //                                 decoration: BoxDecoration(
-              //                                   borderRadius:
-              //                                       BorderRadius.only(
-              //                                     bottomLeft: Radius.circular(
-              //                                       getHorizontalSize(
-              //                                         32.00,
-              //                                       ),
-              //                                     ),
-              //                                     bottomRight:
-              //                                         Radius.circular(
-              //                                       getHorizontalSize(
-              //                                         32.00,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                                 child: Column(
-              //                                   mainAxisSize:
-              //                                       MainAxisSize.min,
-              //                                   crossAxisAlignment:
-              //                                       CrossAxisAlignment.start,
-              //                                   mainAxisAlignment:
-              //                                       MainAxisAlignment.start,
-              //                                   children: [
-              //                                     Padding(
-              //                                       padding: getPadding(
-              //                                         right: 10,
-              //                                       ),
-              //                                       child: Text(
-              //                                         "lbl_balance".tr,
-              //                                         overflow: TextOverflow
-              //                                             .ellipsis,
-              //                                         textAlign:
-              //                                             TextAlign.left,
-              //                                         style: AppStyle
-              //                                             .txtIBMPlexMono14,
-              //                                       ),
-              //                                     ),
-              //                                     Padding(
-              //                                       padding: getPadding(
-              //                                         top: 2,
-              //                                       ),
-              //                                       child: Text(
-              //                                         "lbl_26_968_00".tr,
-              //                                         overflow: TextOverflow
-              //                                             .ellipsis,
-              //                                         textAlign:
-              //                                             TextAlign.left,
-              //                                         style: AppStyle
-              //                                             .txtIBMPlexMonoBold24,
-              //                                       ),
-              //                                     ),
-              //                                   ],
-              //                                 ),
-              //                               ),
-              //                               Padding(
-              //                                 padding: getPadding(
-              //                                   bottom: 26,
-              //                                 ),
-              //                                 child: ClipRRect(
-              //                                   borderRadius:
-              //                                       BorderRadius.only(
-              //                                     bottomLeft: Radius.circular(
-              //                                       getHorizontalSize(
-              //                                         32.00,
-              //                                       ),
-              //                                     ),
-              //                                     bottomRight:
-              //                                         Radius.circular(
-              //                                       getHorizontalSize(
-              //                                         32.00,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                   child: CommonImageView(
-              //                                     svgPath: ImageConstant
-              //                                         .imgContrast,
-              //                                     height: getVerticalSize(
-              //                                       28.00,
-              //                                     ),
-              //                                     width: getHorizontalSize(
-              //                                       45.00,
-              //                                     ),
-              //                                     fit: BoxFit.cover,
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                             ],
-              //                           ),
-              //                         ),
-              //                       ),
-              //                       Container(
-              //                         margin: getMargin(
-              //                           left: 16,
-              //                           top: 23,
-              //                           right: 16,
-              //                           bottom: 16,
-              //                         ),
-              //                         decoration: BoxDecoration(
-              //                           borderRadius: BorderRadius.only(
-              //                             bottomLeft: Radius.circular(
-              //                               getHorizontalSize(
-              //                                 32.00,
-              //                               ),
-              //                             ),
-              //                             bottomRight: Radius.circular(
-              //                               getHorizontalSize(
-              //                                 32.00,
-              //                               ),
-              //                             ),
-              //                           ),
-              //                         ),
-              //                         child: Row(
-              //                           mainAxisAlignment:
-              //                               MainAxisAlignment.start,
-              //                           crossAxisAlignment:
-              //                               CrossAxisAlignment.center,
-              //                           mainAxisSize: MainAxisSize.max,
-              //                           children: [
-              //                             ClipRRect(
-              //                               borderRadius: BorderRadius.only(
-              //                                 bottomLeft: Radius.circular(
-              //                                   getHorizontalSize(
-              //                                     32.00,
-              //                                   ),
-              //                                 ),
-              //                                 bottomRight: Radius.circular(
-              //                                   getHorizontalSize(
-              //                                     32.00,
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                               child: CommonImageView(
-              //                                 svgPath: ImageConstant.imgChip,
-              //                                 height: getVerticalSize(
-              //                                   28.00,
-              //                                 ),
-              //                                 width: getHorizontalSize(
-              //                                   40.00,
-              //                                 ),
-              //                                 fit: BoxFit.cover,
-              //                               ),
-              //                             ),
-              //                             Container(
-              //                               margin: getMargin(
-              //                                 left: 16,
-              //                                 top: 3,
-              //                                 bottom: 3,
-              //                               ),
-              //                               decoration: BoxDecoration(
-              //                                 borderRadius: BorderRadius.only(
-              //                                   bottomLeft: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                   bottomRight: Radius.circular(
-              //                                     getHorizontalSize(
-              //                                       32.00,
-              //                                     ),
-              //                                   ),
-              //                                 ),
-              //                               ),
-              //                               child: Row(
-              //                                 crossAxisAlignment:
-              //                                     CrossAxisAlignment.start,
-              //                                 mainAxisSize: MainAxisSize.max,
-              //                                 children: [
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       top: 7,
-              //                                       bottom: 7,
-              //                                     ),
-              //                                     child: ClipRRect(
-              //                                       borderRadius:
-              //                                           BorderRadius.only(
-              //                                         bottomLeft:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                         bottomRight:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                       ),
-              //                                       child: CommonImageView(
-              //                                         svgPath: ImageConstant
-              //                                             .imgGroup61,
-              //                                         height: getVerticalSize(
-              //                                           6.00,
-              //                                         ),
-              //                                         width:
-              //                                             getHorizontalSize(
-              //                                           42.00,
-              //                                         ),
-              //                                         fit: BoxFit.cover,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       left: 16,
-              //                                       top: 7,
-              //                                       bottom: 7,
-              //                                     ),
-              //                                     child: ClipRRect(
-              //                                       borderRadius:
-              //                                           BorderRadius.only(
-              //                                         bottomLeft:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                         bottomRight:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                       ),
-              //                                       child: CommonImageView(
-              //                                         svgPath: ImageConstant
-              //                                             .imgGroup61,
-              //                                         height: getVerticalSize(
-              //                                           6.00,
-              //                                         ),
-              //                                         width:
-              //                                             getHorizontalSize(
-              //                                           42.00,
-              //                                         ),
-              //                                         fit: BoxFit.cover,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       left: 16,
-              //                                       top: 7,
-              //                                       bottom: 7,
-              //                                     ),
-              //                                     child: ClipRRect(
-              //                                       borderRadius:
-              //                                           BorderRadius.only(
-              //                                         bottomLeft:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                         bottomRight:
-              //                                             Radius.circular(
-              //                                           getHorizontalSize(
-              //                                             32.00,
-              //                                           ),
-              //                                         ),
-              //                                       ),
-              //                                       child: CommonImageView(
-              //                                         svgPath: ImageConstant
-              //                                             .imgGroup61,
-              //                                         height: getVerticalSize(
-              //                                           6.00,
-              //                                         ),
-              //                                         width:
-              //                                             getHorizontalSize(
-              //                                           42.00,
-              //                                         ),
-              //                                         fit: BoxFit.cover,
-              //                                       ),
-              //                                     ),
-              //                                   ),
-              //                                   Padding(
-              //                                     padding: getPadding(
-              //                                       left: 16,
-              //                                     ),
-              //                                     child: Text(
-              //                                       "lbl_3765".tr,
-              //                                       overflow:
-              //                                           TextOverflow.ellipsis,
-              //                                       textAlign: TextAlign.left,
-              //                                       style: AppStyle
-              //                                           .txtIBMPlexMonoMedium16,
-              //                                     ),
-              //                                   ),
-              //                                 ],
-              //                               ),
-              //                             ),
-              //                           ],
-              //                         ),
-              //                       ),
-              //                     ],
-              //                   ),
-              //                 ),
-              //               ),
-              //             ],
-              //           ),
-              //         ),
-              //       ),
-              //       Padding(
-              //         padding: getPadding(
-              //           left: 16,
-              //           top: 32,
-              //           right: 16,
-              //         ),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           mainAxisSize: MainAxisSize.max,
-              //           children: [
-              //             Row(
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               mainAxisSize: MainAxisSize.min,
-              //               children: [
-              //                 CommonImageView(
-              //                   svgPath: ImageConstant.imgUser24x24,
-              //                   height: getSize(
-              //                     24.00,
-              //                   ),
-              //                   width: getSize(
-              //                     24.00,
-              //                   ),
-              //                 ),
-              //                 Padding(
-              //                   padding: getPadding(
-              //                     left: 16,
-              //                     top: 1,
-              //                     bottom: 2,
-              //                   ),
-              //                   child: Text(
-              //                     "lbl_personal".tr,
-              //                     overflow: TextOverflow.ellipsis,
-              //                     textAlign: TextAlign.left,
-              //                     style: AppStyle.txtDMSansMedium16Black900,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //             CommonImageView(
-              //               svgPath: ImageConstant.imgArrowrightGray400,
-              //               height: getSize(
-              //                 24.00,
-              //               ),
-              //               width: getSize(
-              //                 24.00,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Padding(
-              //         padding: getPadding(
-              //           left: 16,
-              //           top: 32,
-              //           right: 16,
-              //         ),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           mainAxisSize: MainAxisSize.max,
-              //           children: [
-              //             Row(
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               mainAxisSize: MainAxisSize.max,
-              //               children: [
-              //                 CommonImageView(
-              //                   svgPath: ImageConstant.imgLock,
-              //                   height: getSize(
-              //                     24.00,
-              //                   ),
-              //                   width: getSize(
-              //                     24.00,
-              //                   ),
-              //                 ),
-              //                 Padding(
-              //                   padding: getPadding(
-              //                     left: 16,
-              //                     top: 2,
-              //                     bottom: 1,
-              //                   ),
-              //                   child: Text(
-              //                     "msg_privacy_security".tr,
-              //                     overflow: TextOverflow.ellipsis,
-              //                     textAlign: TextAlign.left,
-              //                     style: AppStyle.txtDMSansMedium16Black900,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //             CommonImageView(
-              //               svgPath: ImageConstant.imgArrowrightGray400,
-              //               height: getSize(
-              //                 24.00,
-              //               ),
-              //               width: getSize(
-              //                 24.00,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Padding(
-              //         padding: getPadding(
-              //           left: 16,
-              //           top: 32,
-              //           right: 16,
-              //         ),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           mainAxisSize: MainAxisSize.max,
-              //           children: [
-              //             Row(
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               mainAxisSize: MainAxisSize.min,
-              //               children: [
-              //                 CommonImageView(
-              //                   svgPath: ImageConstant.imgGrid24x24,
-              //                   height: getSize(
-              //                     24.00,
-              //                   ),
-              //                   width: getSize(
-              //                     24.00,
-              //                   ),
-              //                 ),
-              //                 Padding(
-              //                   padding: getPadding(
-              //                     left: 16,
-              //                     top: 1,
-              //                     bottom: 2,
-              //                   ),
-              //                   child: Text(
-              //                     "msg_offers_rewards".tr,
-              //                     overflow: TextOverflow.ellipsis,
-              //                     textAlign: TextAlign.left,
-              //                     style: AppStyle.txtDMSansMedium16Black900,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //             CommonImageView(
-              //               svgPath: ImageConstant.imgArrowrightGray400,
-              //               height: getSize(
-              //                 24.00,
-              //               ),
-              //               width: getSize(
-              //                 24.00,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Padding(
-              //         padding: getPadding(
-              //           left: 16,
-              //           top: 32,
-              //           right: 16,
-              //         ),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           mainAxisSize: MainAxisSize.max,
-              //           children: [
-              //             Row(
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               mainAxisSize: MainAxisSize.min,
-              //               children: [
-              //                 CommonImageView(
-              //                   svgPath: ImageConstant.imgQuestion24x24,
-              //                   height: getSize(
-              //                     24.00,
-              //                   ),
-              //                   width: getSize(
-              //                     24.00,
-              //                   ),
-              //                 ),
-              //                 Padding(
-              //                   padding: getPadding(
-              //                     left: 16,
-              //                     top: 2,
-              //                     bottom: 1,
-              //                   ),
-              //                   child: Text(
-              //                     "lbl_help".tr,
-              //                     overflow: TextOverflow.ellipsis,
-              //                     textAlign: TextAlign.left,
-              //                     style: AppStyle.txtDMSansMedium16Black900,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //             CommonImageView(
-              //               svgPath: ImageConstant.imgArrowrightGray400,
-              //               height: getSize(
-              //                 24.00,
-              //               ),
-              //               width: getSize(
-              //                 24.00,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Padding(
-              //         padding: getPadding(
-              //           left: 16,
-              //           top: 32,
-              //           right: 16,
-              //         ),
-              //         child: Row(
-              //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              //           crossAxisAlignment: CrossAxisAlignment.center,
-              //           mainAxisSize: MainAxisSize.max,
-              //           children: [
-              //             Row(
-              //               crossAxisAlignment: CrossAxisAlignment.center,
-              //               mainAxisSize: MainAxisSize.min,
-              //               children: [
-              //                 CommonImageView(
-              //                   svgPath: ImageConstant.imgCalculator24x24,
-              //                   height: getSize(
-              //                     24.00,
-              //                   ),
-              //                   width: getSize(
-              //                     24.00,
-              //                   ),
-              //                 ),
-              //                 Padding(
-              //                   padding: getPadding(
-              //                     left: 16,
-              //                     top: 2,
-              //                     bottom: 1,
-              //                   ),
-              //                   child: Text(
-              //                     "lbl_logout".tr,
-              //                     overflow: TextOverflow.ellipsis,
-              //                     textAlign: TextAlign.left,
-              //                     style: AppStyle.txtDMSansMedium16Black900,
-              //                   ),
-              //                 ),
-              //               ],
-              //             ),
-              //             CommonImageView(
-              //               svgPath: ImageConstant.imgArrowrightGray400,
-              //               height: getSize(
-              //                 24.00,
-              //               ),
-              //               width: getSize(
-              //                 24.00,
-              //               ),
-              //             ),
-              //           ],
-              //         ),
-              //       ),
-              //       Align(
-              //         alignment: Alignment.centerLeft,
-              //         child: Container(
-              //           height: getVerticalSize(
-              //             111.00,
-              //           ),
-              //           width: size.width,
-              //           margin: getMargin(
-              //             top: 7,
-              //           ),
-              //         ),
-              //       ),
-              //     ],
-              //   ),
-              // ),
+
             ],
           ),
         ),
       ),
     );
   }
+  Future<void> showOfferComingDialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
 
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Image.asset(
+                                    'asset/icons/done_image.png', height: 60),
+                              ],
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Offer will be coming soon!!!",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
+  }
 
 }

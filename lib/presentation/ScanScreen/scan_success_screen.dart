@@ -118,7 +118,7 @@ class ScanSuccessScreen extends StatelessWidget {
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.greyTextColor,
                                           fontSize: getFontSize(20),
-                                          fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.w500),
                                     ),
                                   ),
                                 ),

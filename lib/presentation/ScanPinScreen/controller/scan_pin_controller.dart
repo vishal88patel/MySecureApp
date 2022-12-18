@@ -156,13 +156,19 @@ class ScanPinController extends GetxController {
         headerWithToken: true,
         url: ApiEndPoints.TRANSACTION)
         .then((value) {
-      print(value);
-      if (value['status']) {
+      print("-------"+value.toString());
+      if (value!=null && value['status']) {
         UIUtils.hideProgressDialog();
         Get.to(ScanSuccessScreen());
       } else {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
+        if(value!=null && value['status']==false){
+          UIUtils.showSnakBar(
+              bodyText: value['message'], headerText: StringConstants.ERROR);
+        }else{
+          UIUtils.showSnakBar(
+              bodyText: "Something Went Wrong!!!,Please try again", headerText: StringConstants.ERROR);
+        }
+
       }
     });
   }

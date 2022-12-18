@@ -89,36 +89,72 @@ class HistoryScreen extends StatelessWidget {
                                 .walletModel.value.data !=
                                 null
                                 ? Expanded(
-                              child: ListView.builder(
+                              child: historyController
+                                  .transactionList.value.isNotEmpty?ListView.builder(
                                   shrinkWrap: false,
                                   physics: const BouncingScrollPhysics(),
-                                  itemCount: historyController
-                                      .walletModel.value.data!
-                                      .userTransaction!.length,
+                                  itemCount:  historyController
+                                      .transactionList.value.length,
                                   itemBuilder: (BuildContext context,
                                       int index) {
                                     return RecentExpenses(
-                                      title: historyController
-                                          .walletModel.value.data!
-                                          .userTransaction![index].notes
+                                      title:  historyController
+                                          .transactionList.value[index].notes
                                           .toString(),
-                                      amount:historyController
-                                          .walletModel.value.data!
-                                          .userTransaction![index].amount
+                                      amount: historyController
+                                          .transactionList.value![index].amount
                                           .toString(),
                                       image:"asset/icons/img_history.png",
-                                      status:historyController
-                                          .walletModel.value.data!
-                                          .userTransaction![index].status
+                                      status: historyController
+                                          .transactionList.value![index].status
                                           .toString(),
-                                      transactionStatus:historyController
-                                          .walletModel.value.data!
-                                          .userTransaction![index].transactionStatus
-                                          .toString(),date: historyController
-                                        .walletModel.value.data!
-                                        .userTransaction![index].createdAt
+                                      transactionStatus: historyController
+                                          .transactionList.value![index].transactionStatus
+                                          .toString(),date:  historyController
+                                        .transactionList.value![index].createdAt
                                         .toString(),);
-                                  }),
+                                  }):Column(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                      padding: EdgeInsets.all(getVerticalSize(20)),
+                                      child:Container(
+                                          width: double.infinity,
+                                          height: getVerticalSize(200),
+                                          margin:
+                                          EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                          decoration: BoxDecoration(
+                                              borderRadius: BorderRadius.circular(12),
+                                              color: ColorConstant.primaryAppTextF1),
+                                          child: Row(
+                                            mainAxisAlignment: MainAxisAlignment.center,
+                                            children: [
+                                              Column(
+                                                mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                                children: [
+                                                  Image.asset(
+                                                    "asset/icons/no_recent.png",
+                                                    fit: BoxFit.fill,
+                                                    height: getVerticalSize(70),
+                                                    width: getVerticalSize(70),
+                                                  ),
+                                                  Text(
+                                                    "No New Transactions",
+                                                    style: AppStyle.DmSansFont.copyWith(
+                                                        color: ColorConstant.naturalGrey3,
+                                                        fontWeight: FontWeight.w600,
+                                                        fontSize: getFontSize(20)),
+                                                  )
+                                                ],
+                                              ),
+                                            ],
+                                          ))
+                                  )
+
+                                ],
+                              ),
                             )
                                 : Padding(
                               padding: const EdgeInsets.all(180),

@@ -27,6 +27,7 @@ class ScanSummaryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         backgroundColor: ColorConstant.primaryDarkGreen,
         body: Stack(
           alignment: Alignment.bottomCenter,
@@ -572,7 +573,7 @@ class ScanSummaryScreen extends StatelessWidget {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
-                                      Text("Visa Card",
+                                      Text("Secure Cash Card",
                                           style: AppStyle.DmSansFont.copyWith(
                                               color: ColorConstant.primaryBlack,
                                               fontSize: getFontSize(18),

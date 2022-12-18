@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/routes/app_routes.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
@@ -29,7 +30,8 @@ class BitCoinnScreen extends StatelessWidget {
                       children: [
                         InkWell(
                           onTap: () {
-
+                            Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                arguments: {"bottomTabCount": 0});
                           },
                           child: Container(
                             decoration: BoxDecoration(

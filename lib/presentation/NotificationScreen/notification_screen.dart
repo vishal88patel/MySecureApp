@@ -11,6 +11,8 @@ import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
+import '../../utils/HelperFiles/ui_utils.dart';
 import '../ScanScreen/model/custom_model.dart';
 import 'controller/notification_screen_controller.dart';
 
@@ -222,7 +224,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                   onPressedIcon1: () {
                     Get.back();
                   },
-                  onPressedIcon2: () {},
+                  onPressedIcon2: () {
+                    UIUtils.showSnakBar(headerText: StringConstants.SUCCESS,bodyText: "Setting Page will be Coming soon");
+                  },
                 ),
               ],
             ),

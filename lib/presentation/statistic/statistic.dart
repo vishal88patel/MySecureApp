@@ -7,9 +7,12 @@ import 'package:get/get.dart';
 import 'package:secure_cash_app/presentation/statistic/controller/statistic_screen_controller.dart';
 import 'package:secure_cash_app/presentation/statistic/widgets/chart2.dart';
 import 'package:secure_cash_app/presentation/statistic/widgets/recent_expenses_widget.dart';
+import 'package:secure_cash_app/utils/ConstantsFiles/string_constants.dart';
+import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
+import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 
@@ -56,9 +59,12 @@ class _StatisticScreenState extends State<StatisticScreen> {
                   icon2: "asset/icons/ic_setting_black.svg",
                   titleColor: ColorConstant.naturalBlack,
                   onPressedIcon1: () {
-                    Get.back();
+                    Get.offAllNamed(AppRoutes.dashBoardScreen,
+                        arguments: {"bottomTabCount": 0});
                   },
-                  onPressedIcon2: () {},
+                  onPressedIcon2: () {
+                    UIUtils.showSnakBar(headerText: StringConstants.SUCCESS,bodyText: "Setting Page will be Coming soon");
+                  },
                 ),
                 Padding(
                   padding: EdgeInsets.only(

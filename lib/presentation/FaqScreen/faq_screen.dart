@@ -73,125 +73,127 @@ class FaqScreen extends StatelessWidget {
                                     ),
                                     SizedBox(height: getVerticalSize(20),),
 
-                                    faqController.faqModel.value.data!=null?
-                                    faqController.isApiCall.value?
-                                      ListView.builder(
-                                        physics:const NeverScrollableScrollPhysics(),
-                                          itemCount: faqController.faqModel.value.data!.length,
-                                          shrinkWrap: true,
-                                          itemBuilder: (BuildContext context, int index) {
-                                            return  Obx(()
-                                            => ExpandableNotifier(
-                                                child: Card(
-                                                  color: ColorConstant.greyF9,
-                                                  clipBehavior: Clip.antiAlias,
-                                                  child: Column(
-                                                    children: <Widget>[
-                                                      ScrollOnExpand(
-                                                        scrollOnExpand: true,
-                                                        scrollOnCollapse: false,
-                                                        child: ExpandablePanel(
-                                                          theme: const ExpandableThemeData(
-                                                            headerAlignment: ExpandablePanelHeaderAlignment.center,
-                                                            tapBodyToCollapse: true,
-                                                          ),
-                                                          header: Padding(
-                                                              padding: EdgeInsets.all(10),
-                                                              child: Text('${index+1}. '
-                                                                  ' ${faqController.faqModel.value.data![index].question??''} ?',
-                                                                style: AppStyle.textStyleDMSANS.copyWith(
-                                                                    color: ColorConstant.primaryBlack,
-                                                                    fontWeight: FontWeight.w600,
-                                                                    fontSize: getFontSize(16)),),),
-                                                          collapsed: Text(faqController.faqModel.value.data![index].answer??'',
-                                                            style: AppStyle.textStyleDMSANS.copyWith(
-                                                                color: ColorConstant.primaryBlack,
-                                                                fontWeight: FontWeight.w400,
-                                                                fontSize: getFontSize(16)),maxLines: 1,
+                                    Obx(()=>
+                                       faqController.faqModel.value.data!=null?
+                                      faqController.isApiCall.value?
+                                        ListView.builder(
+                                          physics:const NeverScrollableScrollPhysics(),
+                                            itemCount: faqController.faqModel.value.data!.length,
+                                            shrinkWrap: true,
+                                            itemBuilder: (BuildContext context, int index) {
+                                              return  Obx(()
+                                              => ExpandableNotifier(
+                                                  child: Card(
+                                                    color: ColorConstant.greyF9,
+                                                    clipBehavior: Clip.antiAlias,
+                                                    child: Column(
+                                                      children: <Widget>[
+                                                        ScrollOnExpand(
+                                                          scrollOnExpand: true,
+                                                          scrollOnCollapse: false,
+                                                          child: ExpandablePanel(
+                                                            theme: const ExpandableThemeData(
+                                                              headerAlignment: ExpandablePanelHeaderAlignment.center,
+                                                              tapBodyToCollapse: true,
                                                             ),
-                                                          expanded: Column(
-                                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                                            children: <Widget>[
-                                                                Padding(
-                                                                    padding: EdgeInsets.only(bottom: 10),
-                                                                    child:Text(faqController.faqModel.value.data![index].answer??'',
-                                                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                                                          color: ColorConstant.primaryBlack,
-                                                                          fontWeight: FontWeight.w400,
-                                                                          fontSize: getFontSize(16)), softWrap: true,
-                                                                      overflow: TextOverflow.fade,),),
-                                                            ],
-                                                          ),
-                                                          builder: (_, collapsed, expanded) {
-                                                            return Padding(
-                                                              padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                                                              child: Expandable(
-                                                                collapsed: collapsed,
-                                                                expanded: expanded,
-                                                                theme: const ExpandableThemeData(crossFadePoint: 0),
-                                                              ),
-                                                            );
-                                                          },
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                ))
-                                              /*  InkWell(
-                                                onTap: (){
-                                                  faqController.expandWidget(index);
-                                                },
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(vertical: getVerticalSize(10)),
-                                                  child: Container(
-
-                                                    decoration: BoxDecoration(
-                                                        color: ColorConstant.greyF9,
-                                                        borderRadius: BorderRadius.circular(10),
-                                                        border: Border.all(
-                                                            color: ColorConstant.primaryLightGreen.withOpacity(0.2)
-                                                        )
-                                                    ),
-                                                    child: Padding(
-                                                      padding:  EdgeInsets.symmetric(
-                                                          horizontal: getHorizontalSize(15),
-                                                          vertical: getVerticalSize(12)),
-                                                      child: Column(
-                                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                                        children: [
-                                                          Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                            children: [
-                                                              Text('${index+1}. '
-                                                                  ' ${faqController.faqModel.value.data![index].question??''} ?',
-                                                                style: AppStyle.textStyleDMSANS.copyWith(
-                                                                    color: ColorConstant.primaryBlack,
-                                                                    fontWeight: FontWeight.w600,
-                                                                    fontSize: getFontSize(16)),),
-                                                              Icon(Icons.arrow_forward_ios_outlined,   size: getSize(20),
-                                                                color: ColorConstant.primaryBlack.withOpacity(0.20),),
-                                                            ],
-                                                          ),
-                                                          if(faqController.isExpand.value == index)
-                                                            Column(
-                                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                                              children: [
-                                                                SizedBox(height: getVerticalSize(10),),
-                                                                Divider(),
-                                                                SizedBox(height: getVerticalSize(10),),
-                                                                Text(faqController.faqModel.value.data![index].answer??'',
+                                                            header: Padding(
+                                                                padding: EdgeInsets.all(10),
+                                                                child: Text('${index+1}. '
+                                                                    ' ${faqController.faqModel.value.data![index].question??''} ?',
                                                                   style: AppStyle.textStyleDMSANS.copyWith(
                                                                       color: ColorConstant.primaryBlack,
-                                                                      fontWeight: FontWeight.w400,
-                                                                      fontSize: getFontSize(16)),),
+                                                                      fontWeight: FontWeight.w600,
+                                                                      fontSize: getFontSize(16)),),),
+                                                            collapsed: Text(faqController.faqModel.value.data![index].answer??'',
+                                                              style: AppStyle.textStyleDMSANS.copyWith(
+                                                                  color: ColorConstant.primaryBlack,
+                                                                  fontWeight: FontWeight.w400,
+                                                                  fontSize: getFontSize(16)),maxLines: 1,
+                                                              ),
+                                                            expanded: Column(
+                                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                                              children: <Widget>[
+                                                                  Padding(
+                                                                      padding: EdgeInsets.only(bottom: 10),
+                                                                      child:Text(faqController.faqModel.value.data![index].answer??'',
+                                                                        style: AppStyle.textStyleDMSANS.copyWith(
+                                                                            color: ColorConstant.primaryBlack,
+                                                                            fontWeight: FontWeight.w400,
+                                                                            fontSize: getFontSize(16)), softWrap: true,
+                                                                        overflow: TextOverflow.fade,),),
                                                               ],
                                                             ),
-                                                        ],
+                                                            builder: (_, collapsed, expanded) {
+                                                              return Padding(
+                                                                padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
+                                                                child: Expandable(
+                                                                  collapsed: collapsed,
+                                                                  expanded: expanded,
+                                                                  theme: const ExpandableThemeData(crossFadePoint: 0),
+                                                                ),
+                                                              );
+                                                            },
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ))
+                                                /*  InkWell(
+                                                  onTap: (){
+                                                    faqController.expandWidget(index);
+                                                  },
+                                                  child: Padding(
+                                                    padding: EdgeInsets.symmetric(vertical: getVerticalSize(10)),
+                                                    child: Container(
+
+                                                      decoration: BoxDecoration(
+                                                          color: ColorConstant.greyF9,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          border: Border.all(
+                                                              color: ColorConstant.primaryLightGreen.withOpacity(0.2)
+                                                          )
                                                       ),
-                                                    ),),
-                                                ),
-                                              ),*/
-                                            );
-                                          }):Container():Container(),
+                                                      child: Padding(
+                                                        padding:  EdgeInsets.symmetric(
+                                                            horizontal: getHorizontalSize(15),
+                                                            vertical: getVerticalSize(12)),
+                                                        child: Column(
+                                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                                          children: [
+                                                            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                              children: [
+                                                                Text('${index+1}. '
+                                                                    ' ${faqController.faqModel.value.data![index].question??''} ?',
+                                                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                                                      color: ColorConstant.primaryBlack,
+                                                                      fontWeight: FontWeight.w600,
+                                                                      fontSize: getFontSize(16)),),
+                                                                Icon(Icons.arrow_forward_ios_outlined,   size: getSize(20),
+                                                                  color: ColorConstant.primaryBlack.withOpacity(0.20),),
+                                                              ],
+                                                            ),
+                                                            if(faqController.isExpand.value == index)
+                                                              Column(
+                                                                crossAxisAlignment: CrossAxisAlignment.start,
+                                                                children: [
+                                                                  SizedBox(height: getVerticalSize(10),),
+                                                                  Divider(),
+                                                                  SizedBox(height: getVerticalSize(10),),
+                                                                  Text(faqController.faqModel.value.data![index].answer??'',
+                                                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                                                        color: ColorConstant.primaryBlack,
+                                                                        fontWeight: FontWeight.w400,
+                                                                        fontSize: getFontSize(16)),),
+                                                                ],
+                                                              ),
+                                                          ],
+                                                        ),
+                                                      ),),
+                                                  ),
+                                                ),*/
+                                              );
+                                            }):Container():Container(),
+                                    ),
 
                                   ],
                             ),
