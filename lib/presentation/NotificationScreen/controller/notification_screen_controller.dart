@@ -118,19 +118,25 @@ class NotificationScreenController extends GetxController {
     }
   }
 
-  Future<void> clearNotification() async {
+  Future<void> clearNotification(String id) async {
     ApiService()
         .callPostApi(
-            body: await getBody(),
+            body: await getBody(id),
             headerWithToken: true,
             showLoader: false,
             url: ApiEndPoints.CLEAR_NOTIFICATION)
-        .then((value) {});
+        .then((value) {
+      callNotificationApi();
+    });
   }
 
-  Future<FormData> getBody() async {
-    final form = FormData({});
-
-    return form;
+  Future<FormData> getBody(String id) async {
+    if(id.isEmpty){
+      return  FormData({});
+    }else{
+      return  FormData({
+        "id":id,
+      });
+    }
   }
 }

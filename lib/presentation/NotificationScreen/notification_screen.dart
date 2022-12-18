@@ -108,6 +108,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
     return GestureDetector(
       onTap: () {
+        notificationController.clearNotification(item.id.toString());
         notificationController.onClickOfNotificationTile(
             routeName: item.type.toString(), data: item.data.toString());
       },
@@ -376,7 +377,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         duration: const Duration(milliseconds: 300),
       );
       notificationController.list.removeAt(0);
-      notificationController.clearNotification();
+      notificationController.clearNotification("");
       notificationController.callNotificationApi();
     }
   }

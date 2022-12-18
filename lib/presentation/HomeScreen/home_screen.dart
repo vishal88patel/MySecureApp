@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:secure_cash_app/presentation/HomeScreen/controller/home_screen_controller.dart';
 import 'package:secure_cash_app/presentation/HomeScreen/widget/payment_list_widget.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
@@ -146,7 +147,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           Obx(
                             ()=> dashBoardController.UserBalance.value==""?Container():Text(
-                              "\$${dashBoardController.UserBalance.value}",
+                              NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
                               style: AppStyle.DmSansFont.copyWith(
                                   color: ColorConstant.naturalBlack,
                                   fontWeight: FontWeight.w700,

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 import 'package:secure_cash_app/presentation/HomeScreen/controller/home_screen_controller.dart';
 import 'package:secure_cash_app/presentation/profileScreen/widget/profile_op_widget.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
+import 'package:secure_cash_app/utils/HelperFiles/common_utils.dart';
 
 import '../../utils/HelperFiles/math_utils.dart';
 import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
@@ -15,7 +17,6 @@ class ProfileScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
   var profileScreenController = Get.put(ProfileScreenController());
   var dashBoardController = Get.find<DashBoardScreenController>();
-
 
   @override
   Widget build(BuildContext context) {
@@ -75,10 +76,15 @@ class ProfileScreen extends StatelessWidget {
                                           fontWeight: FontWeight.bold),
                                     ),
                                     InkWell(
-                                      onTap: (){
-                                        Get.toNamed(AppRoutes.qrCodeScreen, arguments: {
-                                          'UUID_ID': homeController.loginResponseModel!.data!.uuid!.toString(),
-                                        });
+                                      onTap: () {
+                                        Get.toNamed(AppRoutes.qrCodeScreen,
+                                            arguments: {
+                                              'UUID_ID': homeController
+                                                  .loginResponseModel!
+                                                  .data!
+                                                  .uuid!
+                                                  .toString(),
+                                            });
                                       },
                                       child: Container(
                                           decoration: BoxDecoration(
@@ -107,35 +113,49 @@ class ProfileScreen extends StatelessWidget {
                                         CrossAxisAlignment.center,
                                     mainAxisSize: MainAxisSize.max,
                                     children: [
-                                      Obx(()=>
-                                        ClipRRect(
+                                      Obx(
+                                        () => ClipRRect(
                                           borderRadius: BorderRadius.circular(
                                             getHorizontalSize(
                                               100.00,
                                             ),
                                           ),
-                                          child: homeController.profilePicture.value!=null?Image.network(
-                                            homeController.profilePicture.value,
-                                            height: getSize(
-                                              130.00,
-                                            ),
-                                            width: getSize(
-                                              130.00,
-                                            ),
-                                            fit: BoxFit.cover,
-                                            loadingBuilder: (BuildContext context, Widget child,
-                                                ImageChunkEvent? loadingProgress) {
-                                              if (loadingProgress == null) return child;
-                                              return Center(
-                                                child: CircularProgressIndicator(
-                                                  value: loadingProgress.expectedTotalBytes != null
-                                                      ? loadingProgress.cumulativeBytesLoaded /
-                                                      loadingProgress.expectedTotalBytes!
-                                                      : null,
-                                                ),
-                                              );
-                                            },
-                                          ):Container(),
+                                          child: homeController
+                                                      .profilePicture.value !=
+                                                  null
+                                              ? Image.network(
+                                                  homeController
+                                                      .profilePicture.value,
+                                                  height: getSize(
+                                                    130.00,
+                                                  ),
+                                                  width: getSize(
+                                                    130.00,
+                                                  ),
+                                                  fit: BoxFit.cover,
+                                                  loadingBuilder:
+                                                      (BuildContext context,
+                                                          Widget child,
+                                                          ImageChunkEvent?
+                                                              loadingProgress) {
+                                                    if (loadingProgress == null)
+                                                      return child;
+                                                    return Center(
+                                                      child:
+                                                          CircularProgressIndicator(
+                                                        value: loadingProgress
+                                                                    .expectedTotalBytes !=
+                                                                null
+                                                            ? loadingProgress
+                                                                    .cumulativeBytesLoaded /
+                                                                loadingProgress
+                                                                    .expectedTotalBytes!
+                                                            : null,
+                                                      ),
+                                                    );
+                                                  },
+                                                )
+                                              : Container(),
                                         ),
                                       ),
                                       Padding(
@@ -151,7 +171,8 @@ class ProfileScreen extends StatelessWidget {
                                               MainAxisAlignment.start,
                                           children: [
                                             Text(
-                                              homeController.homePageHeadeName.value,
+                                              homeController
+                                                  .homePageHeadeName.value,
                                               overflow: TextOverflow.ellipsis,
                                               textAlign: TextAlign.left,
                                               style:
@@ -162,32 +183,42 @@ class ProfileScreen extends StatelessWidget {
                                                       fontWeight:
                                                           FontWeight.bold),
                                             ),
-                                            if(homeController.loginResponseModel!.data!=null)
-
-                                            if(homeController.loginResponseModel!.data!=null)
-                                            Align(
-                                              alignment: Alignment.center,
-                                              child: Padding(
-                                                padding: EdgeInsets.only(
-                                                  top: 3,
-                                                  right: 6,
+                                            if (homeController
+                                                    .loginResponseModel!.data !=
+                                                null)
+                                              if (homeController
+                                                      .loginResponseModel!
+                                                      .data !=
+                                                  null)
+                                                Align(
+                                                  alignment: Alignment.center,
+                                                  child: Padding(
+                                                    padding: EdgeInsets.only(
+                                                      top: 3,
+                                                      right: 6,
+                                                    ),
+                                                    child: Text(
+                                                      homeController
+                                                              .loginResponseModel!
+                                                              .data!
+                                                              .email ??
+                                                          '',
+                                                      overflow:
+                                                          TextOverflow.ellipsis,
+                                                      textAlign: TextAlign.left,
+                                                      style: AppStyle.DmSansFont
+                                                          .copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryAppTextF1,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      18),
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .normal),
+                                                    ),
+                                                  ),
                                                 ),
-                                                child: Text(
-                                                  homeController.loginResponseModel!.data!.email??'',
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  textAlign: TextAlign.left,
-                                                  style: AppStyle.DmSansFont
-                                                      .copyWith(
-                                                          color: ColorConstant
-                                                              .primaryAppTextF1,
-                                                          fontSize:
-                                                              getFontSize(18),
-                                                          fontWeight: FontWeight
-                                                              .normal),
-                                                ),
-                                              ),
-                                            ),
                                           ],
                                         ),
                                       ),
@@ -198,7 +229,6 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-
                         Card(
                           margin: const EdgeInsets.symmetric(horizontal: 0),
                           color: ColorConstant.naturalGrey2,
@@ -247,20 +277,28 @@ class ProfileScreen extends StatelessWidget {
                                 Container(
                                   width: getHorizontalSize(350),
                                   child: Padding(
-                                    padding:  EdgeInsets.only(left: getHorizontalSize(20),
-                                        right: getHorizontalSize(20),top: getVerticalSize(20)),
+                                    padding: EdgeInsets.only(
+                                        left: getHorizontalSize(20),
+                                        right: getHorizontalSize(20),
+                                        top: getVerticalSize(20)),
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Row(
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
                                               "Balance",
-                                              style: AppStyle.textStyleDMSANS.copyWith(
-                                                  color: ColorConstant.primaryWhite,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(16)),
+                                              style: AppStyle.textStyleDMSANS
+                                                  .copyWith(
+                                                      color: ColorConstant
+                                                          .primaryWhite,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          getFontSize(16)),
                                             ),
                                             SvgPicture.asset(
                                               "asset/icons/ic_visa.svg",
@@ -269,29 +307,54 @@ class ProfileScreen extends StatelessWidget {
                                           ],
                                         ),
                                         Obx(
-                                          ()=>dashBoardController.UserBalance.value==""?Container(): Text(
-                                            "\$${dashBoardController.UserBalance.value}",
-                                            style: AppStyle.textStyleDMSANS.copyWith(
-                                                color: ColorConstant.primaryWhite,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: getFontSize(26)),
-                                          ),
+                                          () => dashBoardController
+                                                      .UserBalance.value ==
+                                                  ""
+                                              ? Container()
+                                              : Text(
+                                            NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
+                                                  style: AppStyle
+                                                      .textStyleDMSANS
+                                                      .copyWith(
+                                                          color: ColorConstant
+                                                              .primaryWhite,
+                                                          fontWeight:
+                                                              FontWeight.w500,
+                                                          fontSize:
+                                                              getFontSize(26)),
+                                                ),
                                         ),
-                                        SizedBox(height: getHorizontalSize(8),),
+                                        SizedBox(
+                                          height: getHorizontalSize(8),
+                                        ),
                                         Row(
                                           children: [
                                             SvgPicture.asset(
                                               "asset/icons/ic_chip.svg",
                                               fit: BoxFit.fill,
                                             ),
-                                            SizedBox(width: getHorizontalSize(12),),
+                                            SizedBox(
+                                              width: getHorizontalSize(12),
+                                            ),
                                             Text(
-                                                homeController.loginResponseModel!.data!=null? homeController.loginResponseModel!.data!.cardNumber.toString().replaceRange(0, 12, '*' * 12):"",
-                                              style: AppStyle.textStyleDMSANS.copyWith(
-                                                wordSpacing: 12,
-                                                  color: ColorConstant.primaryWhite,
-                                                  fontWeight: FontWeight.w500,
-                                                  fontSize: getFontSize(22)),
+                                              homeController.loginResponseModel!
+                                                          .data !=
+                                                      null
+                                                  ? CommonUtils.FormatCardNumber(
+                                                      homeController
+                                                          .loginResponseModel!
+                                                          .data!
+                                                          .cardNumber
+                                                          .toString())
+                                                  : "",
+                                              style: AppStyle.textStyleDMSANS
+                                                  .copyWith(
+                                                      color: ColorConstant
+                                                          .primaryWhite,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontSize:
+                                                          getFontSize(22)),
                                             ),
                                           ],
                                         ),
@@ -309,31 +372,33 @@ class ProfileScreen extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding:  EdgeInsets.only(top:getVerticalSize(20),left: getHorizontalSize(30),right: getHorizontalSize(34)),
+                padding: EdgeInsets.only(
+                    top: getVerticalSize(20),
+                    left: getHorizontalSize(30),
+                    right: getHorizontalSize(34)),
                 child: Column(
                   children: [
-
                     ProfileOptionWidget(
-                      onTap: (){
-                         Get.toNamed(AppRoutes.profileDetailsScreen);
+                      onTap: () {
+                        Get.toNamed(AppRoutes.profileDetailsScreen);
                       },
                       icon: "asset/icons/ic_profile_selected.svg",
                       title: 'Personal',
                     ),
                     ProfileOptionWidget(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(AppRoutes.linkCardBankScreen);
                       },
                       icon: "asset/icons/ic_licence_pass.svg",
                       title: 'Banking Details',
                     ),
                     ProfileOptionWidget(
-                      onTap: (){
-
-                        String webLink =
-                        profileScreenController.loginResponseModel!.data!.privacyPolicy.toString();
-                        print(
-                            "Webview Link in Daily Horoscope Page :- " + webLink);
+                      onTap: () {
+                        String webLink = profileScreenController
+                            .loginResponseModel!.data!.privacyPolicy
+                            .toString();
+                        print("Webview Link in Daily Horoscope Page :- " +
+                            webLink);
                         Get.toNamed(AppRoutes.webviewPage, arguments: {
                           "webLink": webLink,
                           "appBarName": "Privacy Policy",
@@ -343,28 +408,24 @@ class ProfileScreen extends StatelessWidget {
                       title: 'Privacy & Security',
                     ),
                     ProfileOptionWidget(
-                      onTap: (){
-                      },
+                      onTap: () {},
                       icon: "asset/icons/ic_offer.svg",
                       title: 'Offers & Rewards',
                     ),
                     ProfileOptionWidget(
-                      onTap: (){
+                      onTap: () {
                         Get.toNamed(AppRoutes.supportScreen);
-
-                        },
+                      },
                       icon: "asset/icons/ic_helpp.svg",
                       title: 'Help',
                     ),
                     ProfileOptionWidget(
-                      onTap: (){
+                      onTap: () {
                         profileScreenController.showLogOutDialouge();
                       },
                       icon: "asset/icons/ic_logoutt.svg",
                       title: 'Logout',
                     ),
-
-
                   ],
                 ),
               )
@@ -1358,4 +1419,6 @@ class ProfileScreen extends StatelessWidget {
       ),
     );
   }
+
+
 }

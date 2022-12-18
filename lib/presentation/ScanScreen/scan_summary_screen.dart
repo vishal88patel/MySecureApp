@@ -11,6 +11,7 @@ import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
+import '../../utils/HelperFiles/common_utils.dart';
 import 'controller/scan_screen_controller.dart';
 
 class ScanSummaryScreen extends StatelessWidget {
@@ -553,6 +554,7 @@ class ScanSummaryScreen extends StatelessWidget {
                                             Radius.circular(12))),
                                     height: 55,
                                     width: 70,
+                                    padding: EdgeInsets.all(8),
                                     child: Image.asset(
                                       "asset/icons/ic_main_card.png",
                                     )),
@@ -575,7 +577,9 @@ class ScanSummaryScreen extends StatelessWidget {
                                               color: ColorConstant.primaryBlack,
                                               fontSize: getFontSize(18),
                                               fontWeight: FontWeight.w600)),
-                                      Text(scanController.loginResponseModel.value.data!.cardNumber.toString().replaceRange(0, 12, '*' * 12),
+                                      Text(
+                                          CommonUtils.FormatCardNumber(
+                                              scanController.loginResponseModel.value.data!.cardNumber.toString()),
                                           style: AppStyle.DmSansFont.copyWith(
                                               color: ColorConstant.primaryBlack,
                                               fontSize: getFontSize(18),

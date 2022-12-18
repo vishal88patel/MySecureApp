@@ -9,6 +9,7 @@ import 'package:secure_cash_app/theme/app_style.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../utils/ConstantsFiles/string_constants.dart';
+import '../../utils/HelperFiles/common_utils.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/pref_utils.dart';
 import 'controller/cashout_amount_scareen_controller.dart';
@@ -33,7 +34,7 @@ class CashoutAmountScreen extends StatelessWidget {
                     children: [
                       Container(
                         height: getVerticalSize(
-                          420.00,
+                          440.00,
                         ),
                         width: size.width,
                         child: Stack(
@@ -211,7 +212,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                                                       18)),
                                                     ),
                                                     SvgPicture.asset(
-                                                      "asset/icons/ic_card_logo.svg",
+                                                      "asset/icons/ic_visa.svg",
                                                       fit: BoxFit.fill,
                                                     ),
                                                   ],
@@ -248,12 +249,9 @@ class CashoutAmountScreen extends StatelessWidget {
                                                     ),
                                                     SizedBox(
                                                       width:
-                                                          getHorizontalSize(12),
+                                                          12,
                                                     ),
-                                                    SizedBox(
-                                                      width:
-                                                          getHorizontalSize(12),
-                                                    ),
+
                                                     Obx(
                                                       () => Text(
                                                         topWithCreditCardScreenController
@@ -261,16 +259,13 @@ class CashoutAmountScreen extends StatelessWidget {
                                                                     .value
                                                                     .data !=
                                                                 null
-                                                            ? topWithCreditCardScreenController
-                                                                .loginResponseModel
-                                                                .value
-                                                                .data!
-                                                                .cardNumber
-                                                                .toString()
-                                                                .replaceRange(
-                                                                    0,
-                                                                    12,
-                                                                    '*' * 12)
+                                                            ? CommonUtils.FormatCardNumber(
+                                                                topWithCreditCardScreenController
+                                                                    .loginResponseModel
+                                                                    .value
+                                                                    .data!
+                                                                    .cardNumber
+                                                                    .toString())
                                                             : "",
                                                         style: AppStyle
                                                             .textStyleDMSANS

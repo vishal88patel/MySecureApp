@@ -99,133 +99,120 @@ class HomeScreenController extends GetxController {
         Padding(
           padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
               vertical: getVerticalSize(300)),
-          child: Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Container(
+          child: Wrap(
+            children: [
+              Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    color: ColorConstant.primaryWhite),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-
-
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(25),
-                              topRight: Radius.circular(25)
-                          ),
-                          color: ColorConstant.greyF4,),
-
-                        child: Column(
-                          children: [
-                            SizedBox(
-                              height: 12,
-                            ),
-
-                            Row(crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Image.asset('asset/icons/done_image.png',color: Colors.transparent,
-                                    height: 60),
-                                Image.asset('asset/icons/done_image.png',height: 60),
-                                Row( mainAxisAlignment: MainAxisAlignment.end,
-
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        if (Get.isDialogOpen == true) Get.back();
-                                      },
-                                      child: Icon(
-                                        Icons.close,
-                                        color: Colors.black,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      width: 12,
-                                    ),
-                                  ],
-                                ),
-
-                              ],
-                            ),
-
-                            SizedBox(
-                              height: 12,
-                            ),
-                          ],
-                        )), SizedBox(
-                      height: 20,
-                    ),
-                    // Lottie.asset('asset/animations/welcome.json', height: 80),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(3.0),
+                  child: Container(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(Radius.circular(25)),
+                        color: ColorConstant.primaryWhite),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Flexible(
-                          child: Obx(
-                                () => Text(
-                              textAlign: TextAlign.center,
-                              "Hi " + homePageHeadeName.value,
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.primaryBlack,
-                                  decoration: TextDecoration.none,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: getFontSize(24)),
+
+
+                        Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(25),
+                                  topRight: Radius.circular(25)
+                              ),
+                              color: ColorConstant.greyF4,),
+
+                            child: Column(
+                              children: [
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                        'asset/icons/done_image.png', height: 60),
+                                  ],
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            )),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        // Lottie.asset('asset/animations/welcome.json', height: 80),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Flexible(
+                              child: Obx(
+                                    () => Text(
+                                  textAlign: TextAlign.center,
+                                  "Hi " + homePageHeadeName.value,
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.primaryBlack,
+                                      decoration: TextDecoration.none,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: getFontSize(24)),
+                                ),
+                              ),
                             ),
+                          ],
+                        ),
+                        SizedBox(height: 10,),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Flexible(
+                                child:Text(
+                                  textAlign: TextAlign.center,
+                                  "Welcome to MySecure App. \nThanks for creating an account",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.primaryBlack,
+                                      decoration: TextDecoration.none,
+                                      fontWeight: FontWeight.w300,
+                                      fontSize: getFontSize(18)),
+                                ),
+
+                              ),
+                            ],
                           ),
                         ),
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                          child: AppElevatedButton(
+                            buttonName: 'Ok',
+                            radius: 5,
+                            textColor: Colors.white,
+                            onPressed: () {
+                              Get.back();
+                              // Get.toNamed(AppRoutes.dashBoardScreen);
+                            },
+                          ),
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
+
                       ],
                     ),
-                    SizedBox(height: 10,),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Flexible(
-                            child:Text(
-                              textAlign: TextAlign.center,
-                              "Welcome to MySecure App. \nThanks for creating an account",
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.primaryBlack,
-                                  decoration: TextDecoration.none,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: getFontSize(18)),
-                            ),
-
-                          ),
-                        ],
-                      ),
-                    ),
-                    /* SizedBox(
-                      height: 40,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                      child: AppElevatedButton(
-                        buttonName: 'Ok',
-                        radius: 5,
-                        textColor: Colors.white,
-                        onPressed: () {
-                          Get.back();
-                          // Get.toNamed(AppRoutes.dashBoardScreen);
-                        },
-                      ),
-                    ),*/
-
-                  ],
+                  ),
                 ),
               ),
-            ),
+            ],
           ),
         ),
         barrierDismissible: false,
