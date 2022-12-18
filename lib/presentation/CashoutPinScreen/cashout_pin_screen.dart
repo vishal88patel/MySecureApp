@@ -144,7 +144,9 @@ class CashoutPinScreen extends StatelessWidget {
                                         onCompleted: (v) {
                                           print("Completed");
                                         },
-                                        onChanged: (value) {},
+                                        onChanged: (value) {
+                                          print("-------"+value);
+                                        },
                                         beforeTextPaste: (text) {
                                           print("Allowing to paste $text");
                                           return true;
@@ -173,7 +175,7 @@ class CashoutPinScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   NumPad(
-                                    type: 'OTP',
+                                    type: 'OTP4',
                                     controller: pinScreenController.pinController,
                                     delete: () {
                                       HapticFeedback.lightImpact();

@@ -170,7 +170,7 @@ class ScanPasswordScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   NumPad(
-                                    type: 'OTP',
+                                    type: 'OTP4',
                                     controller: scanPinController.pinController,
                                     delete: () {
                                       HapticFeedback.lightImpact();

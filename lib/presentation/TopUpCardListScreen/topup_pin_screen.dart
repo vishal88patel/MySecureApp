@@ -122,6 +122,9 @@ class TopUpPinScreen extends StatelessWidget {
                                         animationType: AnimationType.fade,
                                         cursorColor: ColorConstant.primaryWhite,
                                         textStyle: TextStyle(color: ColorConstant.naturalBlack),
+                                        inputFormatters: [
+                                          LengthLimitingTextInputFormatter(4),
+                                        ],
                                         pinTheme: PinTheme(
                                           shape: PinCodeFieldShape.box,
                                           borderRadius: BorderRadius.circular(12),
@@ -171,7 +174,7 @@ class TopUpPinScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   NumPad(
-                                    type: 'OTP',
+                                    type: 'OTP4',
                                     controller: cardListController.pinController,
                                     delete: () {
                                       HapticFeedback.lightImpact();

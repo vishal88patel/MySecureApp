@@ -197,7 +197,7 @@ class RequestPasswordScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   NumPad(
-                                    type: 'OTP',
+                                    type: 'OTP4',
                                     controller: requestMoneyScreenController.passController,
                                     delete: () {
                                       HapticFeedback.lightImpact();
