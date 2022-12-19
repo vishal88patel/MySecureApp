@@ -54,5 +54,33 @@
       });
     });
   </script>
+  <script>
+       if ('serviceWorker' in navigator) {
+          window.addEventListener('load', function () {
+            navigator.serviceWorker.register('/firebase-messaging-sw.js');
+          });
+      }
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-messaging.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-analytics.js"></script>
+
+  <script>
+  //Replace with your config data
+   const firebaseConfig = {
+    apiKey: "AIzaSyARgzgVx3H2xU4mcw7noLovdqRfxH3WJ2M",
+    authDomain: "mysequreapp-5fc1f.firebaseapp.com",
+    projectId: "mysequreapp-5fc1f",
+    storageBucket: "mysequreapp-5fc1f.appspot.com",
+    messagingSenderId: "849138110745",
+    appId: "1:849138110745:web:6350aa2e8a7915f0903588",
+    measurementId: "G-8MM97206FX"
+  };
+
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+  </script>
 </body>
 </html>

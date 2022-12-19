@@ -41,7 +41,8 @@ class LinkCardAddCardScreen extends StatelessWidget {
                                 icon1: "asset/icons/ic_back.svg",
                                 icon2: "asset/icons/ic_notification.svg",
                                 onPressedIcon1: () {
-                                  Get.back();
+                                  // Get.back();
+                                  Navigator.pop(context);
                                 },
                                 onPressedIcon2: () {
                                   Get.toNamed(AppRoutes.notificationScreen);
