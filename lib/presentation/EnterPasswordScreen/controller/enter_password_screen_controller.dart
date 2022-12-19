@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -86,7 +87,8 @@ class EnterPasswordScreenController extends GetxController {
     });
   }
 
-  Future<FormData> getLoginBody({required String email,required String phone,required String password}) async {
+  Future<FormData> getLoginBody({required String email,required String phone,
+    required String password}) async {
     final form = FormData({
       "type": email.isEmpty?"2":"1",
       "email": email,
@@ -104,9 +106,11 @@ class EnterPasswordScreenController extends GetxController {
   }
 
   void checkDeviceType() {
-    if (Platform.isMacOS) {
+    if (kIsWeb) {
+      device_type = "Web";
+    }  else if (Platform.isMacOS) {
       device_type = "Ios";
-    } else {
+    }else {
       device_type = "Android";
     }
   }
