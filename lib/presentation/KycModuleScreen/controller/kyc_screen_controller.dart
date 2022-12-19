@@ -10,6 +10,7 @@ import '../../../ApiServices/network_info.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 
@@ -212,6 +213,7 @@ class KycScreenController extends GetxController {
         .then((value) {
       print(value);
       if (value['status']) {
+        PrefUtils.setString(StringConstants.IS_OTP_DONE, "1");
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.SUCCESS);
         Get.toNamed(AppRoutes.kycOtpSuccessScreen);

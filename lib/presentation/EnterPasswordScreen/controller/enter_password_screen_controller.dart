@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -74,6 +75,9 @@ class EnterPasswordScreenController extends GetxController {
         LoginResponseModel loginResponseModel =LoginResponseModel.fromJson(value);
         PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
         PrefUtils.setString(StringConstants.IS_KYC_DONE, loginResponseModel.data!.isKyc.toString());
+        if(loginResponseModel.data!.isEmailVerify.toString()=="1" || loginResponseModel.data!.isMobileVerify.toString()=="1"){
+          PrefUtils.setString(StringConstants.IS_OTP_DONE, "1");
+        }
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
         Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
       } else {
@@ -83,7 +87,8 @@ class EnterPasswordScreenController extends GetxController {
     });
   }
 
-  Future<FormData> getLoginBody({required String email,required String phone,required String password}) async {
+  Future<FormData> getLoginBody({required String email,required String phone,
+    required String password}) async {
     final form = FormData({
       "type": email.isEmpty?"2":"1",
       "email": email,
@@ -101,9 +106,11 @@ class EnterPasswordScreenController extends GetxController {
   }
 
   void checkDeviceType() {
-    if (Platform.isMacOS) {
+    if (kIsWeb) {
+      device_type = "Web";
+    }  else if (Platform.isMacOS) {
       device_type = "Ios";
-    } else {
+    }else {
       device_type = "Android";
     }
   }

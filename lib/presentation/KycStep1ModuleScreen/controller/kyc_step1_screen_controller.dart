@@ -386,6 +386,7 @@ class KycStep1ScreenController extends GetxController {
       progress();
 
       PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+
     } else {
       //  UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(

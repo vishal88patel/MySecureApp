@@ -10,6 +10,8 @@ import 'package:secure_cash_app/routes/app_routes.dart';
 import 'App Configurations/color_constants.dart';
 import 'initial_bindings.dart';
 
+import 'package:flutter/foundation.dart';
+
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
   'high_importance_channel', // id
   'High Importance Notifications',

@@ -54,6 +54,10 @@ class DashBoardScreenController extends GetxController {
         LoginResponseModel.fromJson(value);
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
         PrefUtils.setString(StringConstants.IS_KYC_DONE, loginResponseModel.data!.isKyc.toString());
+        if(loginResponseModel.data!.isEmailVerify.toString()=="1" || loginResponseModel.data!.isMobileVerify.toString()=="1"){
+          PrefUtils.setString(StringConstants.IS_OTP_DONE, "1");
+        }
+
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
