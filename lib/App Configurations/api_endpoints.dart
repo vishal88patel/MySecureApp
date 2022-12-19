@@ -20,6 +20,7 @@ class ApiEndPoints {
   static String GET_PROFILE = BASE_URL + "/auth/getProfile";
   static String Gwt_NOTIFICATION_API = BASE_URL + "/getNotification";
   static String HOME_PAGE_GET_LINKED_BANK = BASE_URL + "/getLinkBank";
+  static String GET_BANK_API = BASE_URL + "/getBankList";
   static String GET_WALLET = BASE_URL + "/getWallet";
   static String GET_UUID_USER = BASE_URL + "/getUuidUser";
   static String TRANSACTION = BASE_URL + "/transaction";

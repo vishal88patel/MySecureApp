@@ -1,20 +1,19 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-import 'package:secure_cash_app/presentation/LoanApprovedScreen/controller/loan_approved_screen_controller.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
-import '../../Custom Widgets/appbar_image_1.dart';
 import '../../Custom Widgets/common_image_view.dart';
+import '../../routes/app_routes.dart';
+import 'controller/bank_linked_success_screen.dart';
 
-class LoanApprovedScreen extends StatelessWidget {
-  var loanApprovedController = Get.find<LoanApprovedSScreenController>();
+class BankLinkedSuccessScreen extends StatelessWidget {
+  var loanApprovedController = Get.find<BankLinkesSuccessScreenController>();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +45,7 @@ class LoanApprovedScreen extends StatelessWidget {
                 child: SingleChildScrollView(
                   child: Container(
                     height: getVerticalSize(
-                      750.00,
+                      650.00,
                     ),
                     child: Stack(
                       alignment: Alignment.topCenter,
@@ -69,6 +68,12 @@ class LoanApprovedScreen extends StatelessWidget {
                             mainAxisSize: MainAxisSize.min,
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              SizedBox(
+                                height: 30,
+                              ),
+                              SizedBox(
+                                height: 30,
+                              ),
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
@@ -112,7 +117,7 @@ class LoanApprovedScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       left: 28, right: 28, top: 10),
                                   child: Text(
-                                    "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
+                                    "Your bank has been linked successfully.",
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.greyTextColor,
@@ -121,42 +126,8 @@ class LoanApprovedScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 28, right: 28, top: 10),
-                                  child: Text(
-                                    "Total Amount",
-                                    overflow: TextOverflow.ellipsis,
-                                    textAlign: TextAlign.left,
-                                    style: AppStyle.DmSansFont.copyWith(
-                                        color: ColorConstant.greyTextColor,
-                                        fontSize: getFontSize(20),
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ),
-                              ),
-                              Align(
-                                alignment: Alignment.center,
-                                child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 28, right: 28, top: 10, bottom: 5),
-                                  child: Obx(
-                                    () => Text(
-                                      "\$" +
-                                          loanApprovedController.loanCalModel
-                                              .value.data!.loanAmount
-                                              .toString(),
-                                      overflow: TextOverflow.ellipsis,
-                                      textAlign: TextAlign.left,
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.primaryBlack,
-                                          fontSize: getFontSize(28),
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  ),
-                                ),
+                              SizedBox(
+                                height: 30,
                               ),
                               SizedBox(
                                 height: 30,
@@ -231,38 +202,44 @@ class LoanApprovedScreen extends StatelessWidget {
                                               Align(
                                                 alignment: Alignment.center,
                                                 child: Obx(
-                                                  () => loanApprovedController
-                                                              .profileImage
-                                                              .value !=
-                                                          null
-                                                      ? Image.network(
-                                                          loanApprovedController
-                                                              .profileImage
-                                                              .value,
-                                                          loadingBuilder:
-                                                              (BuildContext
-                                                                      context,
-                                                                  Widget child,
-                                                                  ImageChunkEvent?
-                                                                      loadingProgress) {
-                                                          if (loadingProgress ==
-                                                              null)
-                                                            return child;
-                                                          return Center(
-                                                            child:
-                                                                CircularProgressIndicator(
-                                                              value: loadingProgress
-                                                                          .expectedTotalBytes !=
-                                                                      null
-                                                                  ? loadingProgress
-                                                                          .cumulativeBytesLoaded /
-                                                                      loadingProgress
-                                                                          .expectedTotalBytes!
-                                                                  : null,
-                                                            ),
-                                                          );
-                                                        })
-                                                      : Container(),
+                                                  () =>
+                                                      loanApprovedController
+                                                                  .profileImage
+                                                                  .value !=
+                                                              null
+                                                          ? Container(
+                                                              child: ClipRRect(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12),
+                                                                child: Image.network(
+                                                                    loanApprovedController
+                                                                        .profileImage
+                                                                        .value,
+                                                                    loadingBuilder: (BuildContext
+                                                                            context,
+                                                                        Widget
+                                                                            child,
+                                                                        ImageChunkEvent?
+                                                                            loadingProgress) {
+                                                                  if (loadingProgress ==
+                                                                      null)
+                                                                    return child;
+                                                                  return Center(
+                                                                    child:
+                                                                        CircularProgressIndicator(
+                                                                      value: loadingProgress.expectedTotalBytes !=
+                                                                              null
+                                                                          ? loadingProgress.cumulativeBytesLoaded /
+                                                                              loadingProgress.expectedTotalBytes!
+                                                                          : null,
+                                                                    ),
+                                                                  );
+                                                                }),
+                                                              ),
+                                                            )
+                                                          : Container(),
                                                 ),
                                               ),
                                             ],
@@ -350,11 +327,14 @@ class LoanApprovedScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(
                                     left: 40.0, right: 40, top: 12),
                                 child: AppElevatedButton(
-                                  buttonName: "Go To Wallet",
+                                  buttonName: "Done",
                                   textColor: Colors.white,
                                   buttonColor: ColorConstant.primaryLightGreen,
                                   radius: 16,
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                        arguments: {"bottomTabCount": 0});
+                                  },
                                 ),
                               ),
                               Align(

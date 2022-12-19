@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:lpinyin/lpinyin.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 import 'package:secure_cash_app/presentation/test.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
@@ -18,9 +19,10 @@ import '../../../theme/app_style.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../HomeScreen/model/get_linked_bank.dart';
+import '../Model/get_bank_list.dart';
 
 class MyLinkedBankListScreenController extends GetxController {
-  var getLinkedBankModel = GrtLinkedBank().obs;
+  var getBankModel = GetBankList().obs;
   var isBankSelected = 0.obs;
   var contacts = <ContactInfo>[].obs;
 
@@ -31,17 +33,17 @@ class MyLinkedBankListScreenController extends GetxController {
 
   @override
   void onInit() {
-    // callGetLinkedBankApi();
-    loadData();
+    callGetLinkedBankApi();
+    // loadData();
     super.onInit();
   }
 
-  void selectBank(var index){
-    isBankSelected.value =index;
+  void selectBank(var index) {
+    isBankSelected.value = index;
   }
 
-  void selectBankOnTap(BuildContext context){
-
+  void selectBankOnTap(BuildContext context,
+      {bankId, bankName, bankUrl, bankScript, bankImage}) {
     Get.dialog(
       Padding(
         padding: EdgeInsets.symmetric(
@@ -81,7 +83,7 @@ class MyLinkedBankListScreenController extends GetxController {
                                   .fromLTRB(
                                   0, 10, 0, 0),
                               child: Text(
-                                "Do you want to link ‘DBS Bank’ \nwith My Secure App?",
+                                "Do you want to link ${bankName} \nwith My Secure App?",
                                 textAlign:
                                 TextAlign.center,
                                 style: AppStyle
@@ -95,29 +97,35 @@ class MyLinkedBankListScreenController extends GetxController {
                             height: 20,
                           ),
                           Padding(
-                            padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: getHorizontalSize(40)),
                             child: Column(
                               children: [
                                 SizedBox(
                                   height: getVerticalSize(50),
 
                                   child: AppElevatedButton(
-                                    buttonColor: ColorConstant.appProgressBarColor,
+                                    buttonColor: ColorConstant
+                                        .appProgressBarColor,
                                     buttonName: 'Cancel',
                                     radius: 10,
                                     onPressed: () {
                                       Navigator.pop(context);
                                     },),
                                 ),
-                            SizedBox(height: getVerticalSize(10),),
+                                SizedBox(height: getVerticalSize(10),),
                                 SizedBox(
                                   height: getVerticalSize(50),
                                   child: AppElevatedButton(
-                                    buttonColor: ColorConstant.primaryLightGreen,
+                                    buttonColor: ColorConstant
+                                        .primaryLightGreen,
                                     buttonName: 'ok',
                                     radius: 10,
                                     onPressed: () {
                                       Navigator.pop(context);
+                                      onClickOfNextButtonForAndroid(
+                                          bankId: bankId, bankImage:bankImage, bankName:bankName,
+                                          bankScript:bankScript, bankUrl:bankUrl);
                                     },),
                                 ),
                               ],
@@ -137,7 +145,7 @@ class MyLinkedBankListScreenController extends GetxController {
                           ),
                           padding: EdgeInsets.all(5),
                           child: Image.asset(
-                            "asset/icons/bank1_image.png",height: 60,),
+                            "asset/icons/bank1_image.png", height: 60,),
                         ),
                       ),
                     ),
@@ -152,16 +160,40 @@ class MyLinkedBankListScreenController extends GetxController {
     );
   }
 
-  void loadData() async {
-    //加载联系人列表
-    rootBundle.loadString('asset/contects.json').then((value) {
-      List list = json.decode(value);
-      list.forEach((v) {
-        contacts.add(ContactInfo.fromJson(v));
+  Future<void> onClickOfNextButtonForAndroid(
+      {bankId, bankName, bankUrl, bankScript, bankImage}) async {
+    final status = await Permission.manageExternalStorage.request();
+    if (status == PermissionStatus.granted) {
+      Get.toNamed(AppRoutes.collectDetailScreen, arguments: {
+        'BANK_ID': bankId,
+        'BANK_NAME': bankName,
+        'BANK_URL': bankUrl,
+        'BANK_JS': bankScript,
+        'BANK_IMAGE': bankImage,
       });
+    } else if (status == PermissionStatus.denied) {
+      UIUtils.showSnakBar(
+          bodyText: "Please allow permission",
+          headerText: StringConstants.ERROR);
+    } else if (status == PermissionStatus.permanentlyDenied) {
+      print('Take the user to the settings page.');
+      await openAppSettings();
+    }
+  }
+
+  void loadData() async {
+    getBankModel.value.data!.banks!.forEach((element) {
+      contacts.add(ContactInfo(name: element.name.toString(),
+          id: "",
+          bgColor: Colors.red,
+          firstletter: element.name.toString().substring(0, 1),
+          img: "",
+          namePinyin: "",
+          tagIndex: ""));
       handleList(contacts);
     });
   }
+
   void handleList(List<ContactInfo> list) {
     if (list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
@@ -212,14 +244,15 @@ class MyLinkedBankListScreenController extends GetxController {
   Future<void> callGetLinkedBankApi() async {
     ApiService()
         .callGetApi(
-            body: await getBankApiBody(),
-            headerWithToken: true,
-            showLoader: true,
-            url: ApiEndPoints.HOME_PAGE_GET_LINKED_BANK)
+        body: await getBankApiBody(),
+        headerWithToken: true,
+        showLoader: true,
+        url: ApiEndPoints.GET_BANK_API)
         .then((value) {
       print(value);
       if (value['status'] ?? false) {
-        getLinkedBankModel.value = GrtLinkedBank.fromJson(value);
+        getBankModel.value = GetBankList.fromJson(value);
+        loadData();
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
@@ -231,6 +264,7 @@ class MyLinkedBankListScreenController extends GetxController {
     final form = FormData({});
     return form;
   }
+
   Widget buildListItem(ContactInfo model) {
     String susTag = model.getSuspensionTag();
     return Padding(
@@ -238,20 +272,20 @@ class MyLinkedBankListScreenController extends GetxController {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Offstage(
-            offstage: model.isShowSuspension != true,
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '$susTag',
-                  textScaleFactor: 1.2,
-                  style: AppStyle.DmSansFont.copyWith(
-                      color: ColorConstant.grey8F,
-                      fontWeight: FontWeight.w500,
-                      fontSize: getFontSize(16)),
-                ),
-                const Divider(),
-              ],
-            )
+              offstage: model.isShowSuspension != true,
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '$susTag',
+                    textScaleFactor: 1.2,
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.grey8F,
+                        fontWeight: FontWeight.w500,
+                        fontSize: getFontSize(16)),
+                  ),
+                  const Divider(),
+                ],
+              )
           ),
 
           Text(
@@ -267,12 +301,14 @@ class MyLinkedBankListScreenController extends GetxController {
       ),
     );
   }
+
   Decoration getIndexBarDecoration(Color color) {
     return BoxDecoration(
         color: color,
         borderRadius: BorderRadius.circular(20.0),
         border: Border.all(color: Colors.grey[300]!, width: .5));
   }
+
   void showBankInfoBottomsheet() {
     Get.bottomSheet(
         isScrollControlled: true,
@@ -305,7 +341,7 @@ class MyLinkedBankListScreenController extends GetxController {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
+                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
                 child: Text(
                   "Link Your Bank Account",
                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -424,7 +460,7 @@ class MyLinkedBankListScreenController extends GetxController {
                   buttonName: 'Continue',
                   radius: 5,
                   onPressed: () {
-                   onclickOfContinueButton();
+                    onclickOfContinueButton();
                     // Get.toNamed(AppRoutes.dashBoardScreen);
                   },
                 ),

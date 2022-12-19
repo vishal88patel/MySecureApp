@@ -20,6 +20,8 @@ import 'package:secure_cash_app/presentation/instructionScreen/binding/instructi
 import 'package:secure_cash_app/presentation/instructionScreen/instruction_screen.dart';
 import '../presentation/AuthOptionScreen/auth_option_screen.dart';
 import '../presentation/AuthOptionScreen/binding/auth_option_screen_binding.dart';
+import '../presentation/BankLinkedSuccessScreen/bank_linked_success_screen.dart';
+import '../presentation/BankLinkedSuccessScreen/binding/bank_linked_screen.dart';
 import '../presentation/BankScreen/bank_screen.dart';
 import '../presentation/BankScreen/binding/bank_screen_binding.dart';
 import '../presentation/BoostCreditScreen/binding/boost_credit_screen_binding.dart';
@@ -94,6 +96,8 @@ import '../presentation/LoginScreen/binding/login_screen_binding.dart';
 import '../presentation/LoginScreen/login_screen.dart';
 import '../presentation/MyBankAccountListScreen/binding/my_bank_account_list_screen_binding.dart';
 import '../presentation/MyBankAccountListScreen/my_bank_account_list_screen.dart';
+import '../presentation/MyLinkedBankListScreen/CollectDetailScreen/binding/collect_detail_screen_binding.dart';
+import '../presentation/MyLinkedBankListScreen/CollectDetailScreen/collect_detail_screen.dart';
 import '../presentation/MyLinkedBankListScreen/binding/my_linked_bank_list_screen_binding.dart';
 import '../presentation/MyLinkedBankListScreen/my_linked_bank_list_screen.dart';
 import '../presentation/NotificationScreen/binding/notification_screen_binding.dart';
@@ -231,6 +235,7 @@ class AppRoutes {
   static String scanSummaryScreen = '/scan_summary_screen';
   static String scanPasswordScreen = '/scan_password_screen';
   static String collectDetailScreen = '/collect_detail_screen';
+  static String bankLinkedSuccess = '/bank_linked_success_screen';
   static String qrCodeScreen = '/qr_code_screen';
   static String loan_approved = '/loan_approved_screen';
   static String kvcPhoneNumber = '/kvc_phone_number';
@@ -873,6 +878,24 @@ class AppRoutes {
       page: () => MyLinkedBankListScreen(),
       bindings: [
         MyLinkedBankListScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: collectDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CollectDetailScreen(),
+      bindings: [
+        CollectDetailScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: bankLinkedSuccess,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => BankLinkedSuccessScreen(),
+      bindings: [
+        BankLinkesSuccessScreenBinding(),
       ],
     ),
 
