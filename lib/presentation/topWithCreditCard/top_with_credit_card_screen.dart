@@ -682,13 +682,13 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                             radius: 5,
                                             onPressed: () {
                                               PrefUtils.getString(
-                                                          StringConstants
-                                                              .IS_KYC_DONE) ==
-                                                      "0"
-                                                  ? Get.toNamed(
-                                                      AppRoutes.kycEmailScreen)
+                                                  StringConstants
+                                                      .IS_KYC_DONE) ==
+                                                  "0"
+                                                  ? PrefUtils.getString(StringConstants.IS_OTP_DONE)=="1"?Get.toNamed(AppRoutes
+                                                  .kycSelectStepScreen):Get.toNamed(AppRoutes.kycEmailScreen)
                                                   : Get.toNamed(AppRoutes
-                                                      .kycSelectStepScreen);
+                                                  .kycSelectStepScreen);
                                             }),
                                     SizedBox(
                                       height: getVerticalSize(20),
