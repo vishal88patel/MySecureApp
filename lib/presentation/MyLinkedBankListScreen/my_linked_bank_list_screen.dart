@@ -260,7 +260,7 @@ class MyLinkedBankListScreen extends StatelessWidget {
                           itemBuilder: (BuildContext context, int index) {
                             ContactInfo model =
                                 bankListController.contacts[index];
-                            return bankListController.buildListItem(model);
+                            return bankListController.buildListItem(model,index,context);
                           },
                           physics: BouncingScrollPhysics(),
                           indexBarData: SuspensionUtil.getTagIndexList(

@@ -122,7 +122,7 @@ class BankLinkedSuccessScreen extends StatelessWidget {
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.greyTextColor,
                                         fontSize: getFontSize(20),
-                                        fontWeight: FontWeight.bold),
+                                        fontWeight: FontWeight.w500),
                                   ),
                                 ),
                               ),
@@ -147,7 +147,7 @@ class BankLinkedSuccessScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       top: 15, right: 10, left: 40),
                                   child: Text(
-                                    "Payment to ",
+                                    "Bank",
                                     overflow: TextOverflow.ellipsis,
                                     textAlign: TextAlign.left,
                                     style: AppStyle.DmSansFont.copyWith(

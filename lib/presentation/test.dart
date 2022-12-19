@@ -147,37 +147,44 @@ class _ContactListPageState extends State<ContactListPage> {
 
 class ContactInfo extends ISuspensionBean {
   String name;
+  String? bankUrl;
   String? tagIndex;
+  String? bankScript;
   String? namePinyin;
 
   Color? bgColor;
   IconData? iconData;
 
-  String? img;
-  String? id;
+  String? bankImage;
+  String? bankId;
   String? firstletter;
 
   ContactInfo({
     required this.name,
+    this.bankUrl,
+    this.bankScript,
     this.tagIndex,
-    this.namePinyin,
     this.bgColor,
     this.iconData,
-    this.img,
-    this.id,
+    this.namePinyin,
+    this.bankImage,
+    this.bankId,
     this.firstletter,
   });
 
   ContactInfo.fromJson(Map<String, dynamic> json)
       : name = json['name'],
-        img = json['img'],
-        id = json['id']?.toString(),
-        firstletter = json['firstletter'];
+        bankImage = json['img'],
+        bankId = json['id']?.toString(),
+        firstletter = json['firstletter'],
+  bankUrl = json['bankUrl'];
 
   Map<String, dynamic> toJson() => {
 //        'id': id,
     'name': name,
-    'img': img,
+    'img': bankImage,
+    'bankId': bankId,
+    'bankUrl': bankUrl,
 //        'firstletter': firstletter,
 //        'tagIndex': tagIndex,
 //        'namePinyin': namePinyin,
