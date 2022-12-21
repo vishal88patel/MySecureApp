@@ -48,7 +48,8 @@ class CollectDetailScreenController extends GetxController {
       ),
       "BANK_ID": bankId,
       "BANK_URL": bankUrl,
-      "BANK_JS": bankScript
+      "BANK_JS": bankScript,
+      "BANK_NAME": bankName
     });
   }
 

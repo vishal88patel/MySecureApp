@@ -8,6 +8,7 @@ import java.util.ArrayList;
    static String textDataForApi="";
    static String bankId="";
    static String BANK_URL="";
+   static String BANK_NAME="";
    static String JS_SCRIPT="";
    static Boolean killApp=false;
 

@@ -16,7 +16,8 @@ class QrCodeScreenController extends GetxController {
   var uuid="No Data".obs;
   LoginResponseModel? loginResponseModel=LoginResponseModel();
   var userName="".obs;
-  var upiId="".obs;
+  var cashtag="".obs;
+  var image="".obs;
 
   @override
   void onReady() {
@@ -43,6 +44,7 @@ class QrCodeScreenController extends GetxController {
   Future<void> getStoredData() async {
     loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
     userName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
-    upiId.value=loginResponseModel!.data!.cashtag.toString();
+    cashtag.value=loginResponseModel!.data!.cashtag.toString();
+    image.value=loginResponseModel!.data!.profilePhotoPath.toString();
   }
 }
