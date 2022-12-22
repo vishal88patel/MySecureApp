@@ -1,105 +1,108 @@
-import 'package:english_words/english_words.dart';
-import 'package:flutter/material.dart';
+import 'dart:async';
+import 'dart:math';
 
-class AnimatedListExample extends StatefulWidget {
-  @override
-  AnimatedListExampleState createState() {
-    return new AnimatedListExampleState();
+import 'package:flutter/material.dart';
+import 'package:flutter_google_places/flutter_google_places.dart';
+import 'package:get/get.dart';
+import 'package:google_api_headers/google_api_headers.dart';
+import 'package:google_maps_webservice/places.dart';
+
+String kGoogleApiKey = "AIzaSyBtUdi1qj1fT6Mh-maMGVmmCtlt9991RMg";
+var homeScaffoldKey = GlobalKey<ScaffoldState>();
+var searchScaffoldKey = GlobalKey<ScaffoldState>();
+final customTheme = ThemeData(
+  primarySwatch: Colors.blue,
+  brightness: Brightness.dark,
+  accentColor: Colors.redAccent,
+  inputDecorationTheme: InputDecorationTheme(
+    border: OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(4.00)),
+    ),
+    contentPadding: EdgeInsets.symmetric(
+      vertical: 12.50,
+      horizontal: 10.00,
+    ),
+  ),
+);
+
+Future<void> displayPrediction(Prediction p, ScaffoldState? scaffold) async {
+  if (p != null) {
+    // get detail (lat/lng)
+    GoogleMapsPlaces _places = GoogleMapsPlaces(
+      apiKey: kGoogleApiKey,
+      apiHeaders: await GoogleApiHeaders().getHeaders(),
+    );
+    PlacesDetailsResponse detail =
+        await _places.getDetailsByPlaceId(p.placeId.toString());
+    print(p.description);
+
+    final lat = detail.result.geometry!.location.lat;
+    final lng = detail.result.geometry!.location.lng;
   }
 }
-class AnimatedListExampleState extends State<AnimatedListExample> {
-  final GlobalKey<AnimatedListState> _listKey = GlobalKey();
-  List<String> _data = [
-    WordPair.random().toString(),
-    WordPair.random().toString(),
-    WordPair.random().toString(),
-    WordPair.random().toString(),
-    WordPair.random().toString(),
-  ];
+
+class CustomSearchScaffold extends PlacesAutocompleteWidget {
+  CustomSearchScaffold()
+      : super(
+          apiKey: kGoogleApiKey,
+          sessionToken: Uuid().generateV4(),
+          language: "en",
+          strictbounds: false,
+          region: "us",
+          mode: Mode.overlay,
+          types: [],
+          components: [Component(Component.country, "us")],
+        );
+
+  @override
+  _CustomSearchScaffoldState createState() => _CustomSearchScaffoldState();
+}
+
+class _CustomSearchScaffoldState extends PlacesAutocompleteState {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(
-        title: new Text('Animated List Example'),
-        backgroundColor: Colors.blueAccent,
-      ),
-      persistentFooterButtons: <Widget>[
-        TextButton(
-          child: Icon(Icons.add),
-          onPressed: () {
-            _addAnItem();
-          },
-        ),
-        TextButton(
-          child: Icon(Icons.remove),
+    final appBar = AppBar(title: AppBarPlacesAutoCompleteTextField());
+    final body = PlacesAutocompleteResult(
+      onTap: (p) {
+        // displayPrediction(p, searchScaffoldKey.currentState);
+        print(p.description.toString());
+        Get.back(result: p.description.toString());
+      },
+    );
+    return Scaffold(key: searchScaffoldKey, appBar: appBar, body: body);
+  }
 
-          onPressed: () {
-            _removeLastItem();
-          },
-        ),
-        TextButton(
-          child: Text(
-            'Remove all',
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
+  @override
+  void onResponseError(PlacesAutocompleteResponse response) {
+    super.onResponseError(response);
+  }
 
-          onPressed: () {
-            _removeAllItems();
-          },
-        ),
-      ],
-      body: AnimatedList(
-        key: _listKey,
-        initialItemCount: _data.length,
-        itemBuilder: (context, index, animation) =>
-            _buildItem(context, _data[index], animation),
-      ),
-    );
+  @override
+  void onResponse(PlacesAutocompleteResponse? response) {
+    if (response != null && response.predictions.isNotEmpty) {}
+    super.onResponse(response);
   }
-  Widget _buildItem(
-      BuildContext context, String item, Animation<double> animation) {
-    TextStyle textStyle = new TextStyle(fontSize: 20, color: Colors.white);
-    return Padding(
-      padding: const EdgeInsets.all(2.0),
-      child: ScaleTransition(
-        child: SizedBox(
-          height: 100.0,
-          child: Card(
-            color: Colors.lightBlueAccent,
-            child: Center(
-              child: Text(item, style: textStyle),
-            ),
-          ),
-        ),
-        scale: animation,
-      ),
-    );
+}
+
+class Uuid {
+  final Random _random = Random();
+
+  String generateV4() {
+    // Generate xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx / 8-4-4-4-12.
+    final int special = 8 + _random.nextInt(4);
+
+    return '${_bitsDigits(16, 4)}${_bitsDigits(16, 4)}-'
+        '${_bitsDigits(16, 4)}-'
+        '4${_bitsDigits(12, 3)}-'
+        '${_printDigits(special, 1)}${_bitsDigits(12, 3)}-'
+        '${_bitsDigits(16, 4)}${_bitsDigits(16, 4)}${_bitsDigits(16, 4)}';
   }
-  void _addAnItem() {
-    _data.insert(0, WordPair.random().toString());
-    _listKey.currentState!.insertItem(0);
-  }
-  void _removeLastItem() {
-    String itemToRemove = _data[0];
-    _listKey.currentState!.removeItem(
-      0,
-          (BuildContext context, Animation<double> animation) =>
-          _buildItem(context, itemToRemove, animation),
-      duration: const Duration(milliseconds: 250),
-    );
-    _data.removeAt(0);
-  }
-  void _removeAllItems() {
-    final int itemCount = _data.length;
-    for (var i = 0; i < itemCount; i++) {
-      String itemToRemove = _data[0];
-      _listKey.currentState!.removeItem(
-        0,
-            (BuildContext context, Animation<double> animation) =>
-            _buildItem(context, itemToRemove, animation),
-        duration: const Duration(milliseconds: 250),
-      );
-      _data.removeAt(0);
-    }
-  }
+
+  String _bitsDigits(int bitCount, int digitCount) =>
+      _printDigits(_generateBits(bitCount), digitCount);
+
+  int _generateBits(int bitCount) => _random.nextInt(1 << bitCount);
+
+  String _printDigits(int value, int count) =>
+      value.toRadixString(16).padLeft(count, '0');
 }

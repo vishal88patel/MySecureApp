@@ -4,6 +4,7 @@ import 'package:credit_card_type_detector/credit_card_type_detector.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
@@ -46,6 +47,14 @@ class LinkCardEditCardController extends GetxController {
     super.onClose();
   }
   void onClickOfAddCardButton(BuildContext context) {
+
+    var expDate=expDateController.text.split("/");
+    var now = new DateTime.now();
+    var formatterMonth = new DateFormat('MM');
+    var formatterYear = new DateFormat('yyyy');
+    String month = formatterMonth.format(now);
+    String year = formatterYear.format(now);
+
     if (nameController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter card holder name",
@@ -62,6 +71,21 @@ class LinkCardEditCardController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter expiry month and year",
           headerText: StringConstants.ERROR);
+    }else if (int.parse(expDate[0])>12) {
+      UIUtils.showSnakBar(
+          bodyText: "Please enter valid expiry month and year",
+          headerText: StringConstants.ERROR);
+    } else if (int.parse(expDate[1])<=int.parse(year.substring(2,4))) {
+      if(int.parse(expDate[1]) == int.parse(year.substring(2,4)) && int.parse(expDate[0])<=int.parse(month)){
+        UIUtils.showSnakBar(
+            bodyText: "Expiry date should be greater than current month and year",
+            headerText: StringConstants.ERROR);
+      }else{
+        UIUtils.showSnakBar(
+            bodyText: "Expiry date should be greater than current month and year",
+            headerText: StringConstants.ERROR);
+      }
+
     } else if (!expDateController.text.contains("/") || expDateController.text.length!=5) {
       UIUtils.showSnakBar(
           bodyText: "Please enter proper expiry month and year(exp:12/34)",

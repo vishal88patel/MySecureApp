@@ -81,14 +81,18 @@ class LinkCardAddCardController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter expiry month and year",
           headerText: StringConstants.ERROR);
+    } else if (int.parse(expDate[0])>12) {
+      UIUtils.showSnakBar(
+          bodyText: "Please enter valid expiry month and year",
+          headerText: StringConstants.ERROR);
     } else if (int.parse(expDate[1])<=int.parse(year.substring(2,4))) {
       if(int.parse(expDate[1]) == int.parse(year.substring(2,4)) && int.parse(expDate[0])<=int.parse(month)){
         UIUtils.showSnakBar(
-            bodyText: "Please enter valid expiry month and year",
+            bodyText: "Expiry date should be greater than current month and year",
             headerText: StringConstants.ERROR);
       }else{
         UIUtils.showSnakBar(
-            bodyText: "Please enter valid expiry year and year",
+            bodyText: "Expiry date should be greater than current month and year",
             headerText: StringConstants.ERROR);
       }
 

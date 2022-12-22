@@ -1,7 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
+import 'package:uuid/uuid.dart';
+import 'package:http/http.dart' as http;
 
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
@@ -16,9 +20,11 @@ class EnterAddressScreenController extends GetxController {
   TextEditingController stateController = TextEditingController();
   TextEditingController zipCodeController = TextEditingController();
   var stateList=[].obs;
+  var placeList=[].obs;
+  RxList placeListMain=[].obs;
   var selectedState="Select State".obs;
   String? selectedStateFordropdown;
-
+ var _sessionToken="";
 
   @override
   void onReady() {
@@ -27,11 +33,17 @@ class EnterAddressScreenController extends GetxController {
 
   @override
   void onInit() {
+
     Future.delayed(Duration(milliseconds: 50),(){
       getStateList();
     });
     super.onInit();
   }
+
+
+
+
+
 
   @override
   void onClose() {
