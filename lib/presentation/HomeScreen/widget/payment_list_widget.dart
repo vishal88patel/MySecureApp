@@ -25,8 +25,8 @@ class PaymentListWidget extends StatelessWidget {
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),
                 color: ColorConstant.skyF6 ),
               child: Padding(
-                padding: const EdgeInsets.all(15),
-                child: Image.asset(iconName, height: getVerticalSize(26), width: getVerticalSize(26),
+                padding:  EdgeInsets.all(getVerticalSize(15)),
+                child: Image.asset(iconName, height: getVerticalSize(29), width: getVerticalSize(29),
                 ),
               ),
             ),

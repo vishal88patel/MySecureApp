@@ -392,7 +392,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                           child: AppTextField(
                         controller: personalDetailsController.ssnController,
                         keyBordType: TextInputType.number,
-                        hintText: "SSN",
+                        hintText: "Social Security Number",
                         maxLength: 9,
                         readOnly: personalDetailsController.readOnly.value,
                       )),

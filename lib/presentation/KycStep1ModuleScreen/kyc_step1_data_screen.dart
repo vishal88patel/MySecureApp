@@ -203,7 +203,7 @@ class KycStep1Screen extends StatelessWidget {
                                         child: AppTextField(
                                           controller: kycStep1Controller.ssnController,
                                           keyBordType: TextInputType.number,
-                                          hintText: "SSN",
+                                          hintText: "Social Security Number",
                                           maxLength: 9,
                                           readOnly: kycStep1Controller.readOnly.value,
                                         )),
