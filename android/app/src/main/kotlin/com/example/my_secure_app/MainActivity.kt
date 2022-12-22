@@ -21,6 +21,7 @@ class MainActivity : FlutterActivity() {
                 val bankId: String? = call.argument("BANK_ID")
                 val bankUrl: String? = call.argument("BANK_URL")
                 val bankScript: String? = call.argument("BANK_JS")
+                val bankName: String? = call.argument("BANK_NAME")
                 Constants.AuthToken = ""
                 Constants.bankId = ""
                 Constants.BANK_URL = ""
@@ -31,6 +32,7 @@ class MainActivity : FlutterActivity() {
                 Constants.AuthToken = token
                 Constants.bankId = bankId
                 Constants.BANK_URL = bankUrl
+                Constants.BANK_NAME = bankName
                 Constants.JS_SCRIPT = bankScript
 
                 val intent = Intent(this, MyTestingActivityKotlin::class.java)

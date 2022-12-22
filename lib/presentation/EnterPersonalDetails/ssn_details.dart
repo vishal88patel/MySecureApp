@@ -93,7 +93,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                   Padding(
                                     padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                     child: Text(
-                                      "Enter the SNN Code",
+                                      "Enter the Social Security Number",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.grey8F,
                                           fontWeight: FontWeight.w400,
@@ -109,7 +109,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                         LengthLimitingTextInputFormatter(9),
                                       ],
                                       decoration: InputDecoration(
-                                        hintText: 'Enter SNN code',
+                                        hintText: 'Enter Social Security Number',
                                         hintStyle: AppStyle.DmSansFont.copyWith(
                                             color: ColorConstant.grey8F,
                                             fontWeight: FontWeight.w400,

@@ -62,10 +62,10 @@ class EnterBirthDateController extends GetxController {
 
     if (ssnController.text.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please enter SSN", headerText: StringConstants.ERROR);
+          bodyText: "Please enter Social Security Number", headerText: StringConstants.ERROR);
     }else if (ssnController.text.length!=9) {
       UIUtils.showSnakBar(
-          bodyText: "SSN Should be 9 digit number", headerText: StringConstants.ERROR);
+          bodyText: "Social Security Number Should be 9 digit number", headerText: StringConstants.ERROR);
     }
     else {
       // Get.toNamed(AppRoutes.personalDetailScreen);

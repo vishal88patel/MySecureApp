@@ -38,7 +38,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     private var webView: WebView?=null
     private var progress_bar: ProgressBar?=null
     private var url: TextView?=null
-    private var close: ImageView?=null
+    private var bank_name: TextView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
     private var JS=""" """
     private var isSuccess:Boolean=false
@@ -59,7 +59,9 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         progress_bar = findViewById(R.id.pp)
 
         url= findViewById(R.id.tv_url)
-        close=findViewById(R.id.iv_close)
+        bank_name= findViewById(R.id.tv_bank_name)
+        //val closee= findViewById<ImageView>(R.id.iv_cross)
+
         val window: Window = window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
@@ -68,6 +70,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         webView?.getSettings()?.useWideViewPort = true
         webView?.getSettings()?.domStorageEnabled = true
         url!!.text = Constants.BANK_URL
+        bank_name!!.text = Constants.BANK_NAME
         //url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
         JS="""${Constants.JS_SCRIPT}"""
         //JS="""javascript:(function() {var form = document.querySelector('form');function updateResult() {var out = new URLSearchParams(new FormData(form)).toString();Bridge.callFromJs(out);}form.addEventListener('submit', updateResult);})()"""
@@ -85,6 +88,9 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 }
             }
         })
+      /*  closee.setOnClickListener {
+            finish()
+        }*/
         webView?.webViewClient = object : WebViewClient() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {

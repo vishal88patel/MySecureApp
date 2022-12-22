@@ -39,14 +39,14 @@ class PersonalScreenController extends GetxController {
   TextEditingController annualIncomeController = TextEditingController();
   TextEditingController businessNameController = TextEditingController();
   var purposeOfOpeningAcc = "".obs;
-  var employmentStatus = "Employeed".obs;
+  var employmentStatus = "Employed".obs;
   String? employmentStatusDropDownValue;
   var setSelectedAnnualIncome = "".obs;
   var setSelectedGender = "".obs;
   String? setSelectedAnnualIncomeDropdown;
   String? setSelectedForGender;
   var dropdownTextForStatus =
-      ['Employeed', 'Retired', 'Disability', 'Self Employed'].obs;
+      ['Employed', 'Retired', 'Disability', 'Self Employed'].obs;
   var dropdownTextForGender = ['Male', 'Female', 'Other'].obs;
   var dropdownTextForIncome = [
     'Less than \$25,000',
@@ -90,7 +90,7 @@ class PersonalScreenController extends GetxController {
     employmentNameController.text = employmentStatus.value;
     employmentStatusDropDownValue = value;
     dropdownTextForStatus.refresh();
-    // Employeed', 'Retired', 'Disability','Self Employed
+    // Employed', 'Retired', 'Disability','Self Employed
     if (employmentNameController.text == "Retired" ||
         employmentNameController.text == "Disability") {
       showJobTitle.value = false;
@@ -100,7 +100,7 @@ class PersonalScreenController extends GetxController {
       nameOfBusinessTitle.value = true;
       showJobTitle.value = false;
     }
-    if (employmentNameController.text == "Employeed") {
+    if (employmentNameController.text == "Employed") {
       showJobTitle.value = true;
       nameOfBusinessTitle.value = false;
     }

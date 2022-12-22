@@ -54,7 +54,7 @@ class LoanSsnScreen extends StatelessWidget {
                                       ),
                                     ),
                                     Text(
-                                      "Give us your SSN",
+                                      "Give us your Social Security Number",
                                       style: AppStyle.DmSansFont.copyWith(
                                           color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w700,
@@ -105,7 +105,7 @@ class LoanSsnScreen extends StatelessWidget {
                                                 .isedit.value
                                                 ? true
                                                 : false,
-                                            hintText: 'SNN',
+                                            hintText: 'Social Security Number',
                                             suffixIcon: IconButton(
                                               icon: Icon(Icons.edit,
                                                   color: ColorConstant.grey8F,

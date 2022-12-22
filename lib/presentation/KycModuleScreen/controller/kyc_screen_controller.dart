@@ -13,18 +13,16 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/regex_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../LoginScreen/models/login_response_model.dart';
 
 
 
 class KycScreenController extends GetxController {
-  TextEditingController firstNameController = TextEditingController();
-  TextEditingController lastNameController = TextEditingController();
-  TextEditingController mobileController = TextEditingController();
+
   TextEditingController phoneNumberController = TextEditingController();
   TextEditingController otpController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-  TextEditingController dobController = TextEditingController();
-  TextEditingController ssnController = TextEditingController();
+  LoginResponseModel? loginResponseModel = LoginResponseModel();
 
   var isLoaderShow = false.obs;
   var kycFrom = 2.obs;
@@ -38,6 +36,7 @@ class KycScreenController extends GetxController {
 
   @override
   void onInit() {
+    getStoredData();
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
@@ -46,6 +45,19 @@ class KycScreenController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
+  Future<void> getStoredData() async {
+    loginResponseModel =
+    (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+    emailController.text = loginResponseModel!.data!.email.isNull
+        ? ""
+        : loginResponseModel!.data!.email!;
+    /*phoneNumberController.text = loginResponseModel!.data!.mobile.isNull
+        ? ""
+        : loginResponseModel!.data!.mobile!;*/
+
+  }
+
 
   void onTapOfSendOtpEmailButton() {
     if (emailController.text.isEmpty) {

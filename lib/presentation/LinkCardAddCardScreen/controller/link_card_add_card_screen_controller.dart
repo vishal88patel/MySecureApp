@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:intl/intl.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
@@ -56,6 +57,14 @@ class LinkCardAddCardController extends GetxController {
 
 
   void onClickOfAddCardButton(BuildContext context) {
+    var expDate=expDateController.text.split("/");
+    var now = new DateTime.now();
+    var formatterMonth = new DateFormat('MM');
+    var formatterYear = new DateFormat('yyyy');
+    String month = formatterMonth.format(now);
+    String year = formatterYear.format(now);
+
+    print("expmonth"+int.parse(expDate[0]).toString()+":"+month.toString()+"----"+"expmonth"+int.parse(expDate[1]).toString()+":"+year.substring(2,4).toString());
     if (nameController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter card holder name",
@@ -72,6 +81,17 @@ class LinkCardAddCardController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter expiry month and year",
           headerText: StringConstants.ERROR);
+    } else if (int.parse(expDate[1])<=int.parse(year.substring(2,4))) {
+      if(int.parse(expDate[1]) == int.parse(year.substring(2,4)) && int.parse(expDate[0])<=int.parse(month)){
+        UIUtils.showSnakBar(
+            bodyText: "Please enter valid expiry month and year",
+            headerText: StringConstants.ERROR);
+      }else{
+        UIUtils.showSnakBar(
+            bodyText: "Please enter valid expiry year and year",
+            headerText: StringConstants.ERROR);
+      }
+
     } else if (!expDateController.text.contains("/") || expDateController.text.length!=5) {
       UIUtils.showSnakBar(
           bodyText: "Please enter proper expiry month and year(exp:12/34)",
