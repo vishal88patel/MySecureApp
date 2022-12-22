@@ -1,6 +1,7 @@
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 
 import 'controller/collect_detail_screen_controller.dart';
 
@@ -10,12 +11,13 @@ class CollectDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:  Image.asset(
-        "asset/splash_image.png",
-        height: MediaQuery.of(context).size.height,
-        width: MediaQuery.of(context).size.width,
-        fit: BoxFit.fill,
-      ),
+      body:  Center(
+        child: SizedBox(
+          width: 32,
+          height: 32,
+          child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen,),
+        ),
+      )
     );
   }
 }
