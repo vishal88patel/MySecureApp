@@ -91,8 +91,8 @@ dependencies:
   flutter_pin_code_fields: ^1.2.0
   azlistview: ^2.0.0
   lpinyin: ^2.0.3
+  flutter_google_places: ^0.3.0
   uuid: ^3.0.7
-  geocoding: ^2.0.5
 
 
 

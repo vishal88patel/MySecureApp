@@ -21,12 +21,12 @@ class PaymentListWidget extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              height: getVerticalSize(60), width: getVerticalSize(60),
+              // height: getVerticalSize(60), width: getVerticalSize(60),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),
                 color: ColorConstant.skyF6 ),
               child: Padding(
-                padding:  EdgeInsets.all(getVerticalSize(12)),
-                child: Image.asset(iconName,
+                padding:  EdgeInsets.all(getVerticalSize(15)),
+                child: Image.asset(iconName, height: getVerticalSize(29), width: getVerticalSize(29),
                 ),
               ),
             ),
