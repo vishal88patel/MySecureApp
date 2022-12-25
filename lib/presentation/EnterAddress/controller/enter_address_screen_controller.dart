@@ -51,11 +51,12 @@ class EnterAddressScreenController extends GetxController {
   }
 
   onTapOfNextButton() {
-    if (address01Controller.text.isEmpty) {
-      UIUtils.showSnakBar(
-          bodyText: "Please enter first address",
-          headerText: StringConstants.ERROR);
-    }  else if (cityController.text.isEmpty) {
+    // if (address01Controller.text.isEmpty) {
+    //   UIUtils.showSnakBar(
+    //       bodyText: "Please enter first address",
+    //       headerText: StringConstants.ERROR);
+    // }  else
+      if (cityController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter city", headerText: StringConstants.ERROR);
     } else if (selectedState.value.isEmpty) {

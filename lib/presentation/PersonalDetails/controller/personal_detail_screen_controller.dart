@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:secure_cash_app/presentation/LoginEmailScreen/controller/login_email_screen_controller.dart';
@@ -25,12 +26,12 @@ import 'get_status_income_response_model.dart';
 class PersonalScreenController extends GetxController {
   String token = "";
 
-  var loginController = Get.find<LoginScreenController>();
+  var loginController = Get.put(LoginScreenController());
   var loginEmailController = Get.put(LoginEmailScreenController());
-  var createPasswordController = Get.find<CreatePasswordScreenController>();
-  var enterPersonalDetailController = Get.find<EnterBirthDateController>();
-  var enterLegalNameController = Get.find<EnterLegalNameScreenController>();
-  var enterAddressController = Get.find<EnterAddressScreenController>();
+  var createPasswordController = Get.put(CreatePasswordScreenController());
+  var enterPersonalDetailController = Get.put(EnterBirthDateController());
+  var enterLegalNameController = Get.put(EnterLegalNameScreenController());
+  var enterAddressController = Get.put(EnterAddressScreenController());
 
   // var enterAddressController = Get.find<EnterBirthDateController>();
 
@@ -240,7 +241,8 @@ class PersonalScreenController extends GetxController {
                         : loginEmailController.phoneController.text,
                     password:
                         createPasswordController.confirmPassController.text,
-                    address_1: enterAddressController.address01Controller.text,
+                    // address_1: enterAddressController.address01Controller.text,
+                    address_1: 'enterAddressController.address01Controller.text',
                     address_2:
                         enterAddressController.address02Controller.text.isEmpty ? "":enterAddressController.address02Controller.text,
                     city: enterAddressController.cityController.text,
@@ -278,7 +280,8 @@ class PersonalScreenController extends GetxController {
                         : loginEmailController.phoneController.text,
                     password:
                         createPasswordController.confirmPassController.text,
-                    address_1: enterAddressController.address01Controller.text,
+                    // address_1: enterAddressController.address01Controller.text,
+                    address_1: 'enterAddressController.address01Controller.text',
                     address_2: enterAddressController.address02Controller.text.isEmpty ? "":enterAddressController.address02Controller.text,
                     city: enterAddressController.cityController.text,
                     state: enterAddressController.selectedState!.value,
@@ -432,7 +435,9 @@ class PersonalScreenController extends GetxController {
   }
 
   void checkDeviceType() {
-    if (Platform.isMacOS) {
+    if (kIsWeb) {
+      device_type = "Web";
+    }  else if (Platform.isMacOS) {
       device_type = "Ios";
     } else {
       device_type = "Android";
