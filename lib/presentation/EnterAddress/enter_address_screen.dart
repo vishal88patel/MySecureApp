@@ -8,7 +8,6 @@ import 'package:secure_cash_app/Custom%20Widgets/app_textField.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
-import '../../testing_screen.dart';
 import 'controller/enter_address_screen_controller.dart';
 
 class EnterAddressDetailScreen extends StatelessWidget {
@@ -127,45 +126,109 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                             SizedBox(
                                               height: getVerticalSize(30),
                                             ),
-                                            Stack(
-                                              alignment: Alignment.centerRight,
-                                              children: [
-                                                AppTextField(
-                                                    readOnly: true,
-                                                    hintText:
-                                                        'Enter your Address 01',
-                                                    controller:
-                                                        enterAddressController
-                                                            .address01Controller),
-                                                InkWell(
-                                                    onTap: () async {
-                                                      Get.to(CustomSearchScaffold())!
-                                                          .then((value) {
-                                                        if (value != null &&
-                                                            value
-                                                                .toString()
-                                                                .isNotEmpty &&
-                                                            value.toString() !=
-                                                                "") {
-                                                          enterAddressController
-                                                              .address01Controller
-                                                              .text = value;
-                                                        }
-                                                      });
-                                                    },
-                                                    child: Container(
-                                                        height: 30,
-                                                        width: 30,
-                                                        color: Colors.white,
-                                                        child: Image.asset(
-                                                          "asset/icons/locatio_icon.png",
-                                                          height: 30,
-                                                          width: 30,
-                                                        )))
-                                              ],
-                                            ),
+                                            AppTextField(
+                                                hintText:
+                                                    'Enter your Address 01',
+                                                controller:
+                                                    enterAddressController
+                                                        .address01Controller),
                                             SizedBox(
                                               height: getVerticalSize(30),
+                                            ),
+                                            Obx(
+                                              () => AnimatedContainer(
+                                                height: enterAddressController
+                                                    .animConHeight.value,
+                                                duration:
+                                                    Duration(milliseconds: 300),
+                                                color: Colors.white,
+                                                child: Card(
+                                                  elevation: 4,
+                                                  child: Obx(
+                                                    () => Column(
+                                                      children: [
+                                                        Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                                  left: 12,
+                                                                  top: 12,
+                                                                  bottom: 6,
+                                                                  right: 12),
+                                                          child: Container(
+                                                            height: 20,
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                  "SUGGESTIONS",
+                                                                  style: AppStyle
+                                                                          .DmSansFont
+                                                                      .copyWith(
+                                                                          color:
+                                                                              ColorConstant.grey8F),
+                                                                ),
+                                                                InkWell(
+                                                                  onTap: () {
+                                                                    enterAddressController
+                                                                        .animConHeight
+                                                                        .value = 0.00;
+                                                                  },
+                                                                  child: Icon(
+                                                                    Icons.clear,
+                                                                    color: Colors
+                                                                        .grey,
+                                                                  ),
+                                                                )
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        ),
+                                                        Expanded(
+                                                          child:
+                                                              ListView.builder(
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .zero,
+                                                                  shrinkWrap:
+                                                                      false,
+                                                                  itemCount:
+                                                                      enterAddressController
+                                                                          .placeList
+                                                                          .value
+                                                                          .length,
+                                                                  itemBuilder:
+                                                                      (BuildContext
+                                                                              context,
+                                                                          int index) {
+                                                                    return ListTile(
+                                                                      onTap:
+                                                                          () {
+                                                                        enterAddressController.onTapOfAddressTile(enterAddressController
+                                                                            .placeList
+                                                                            .value[index]);
+                                                                      },
+                                                                      title:
+                                                                          Text(
+                                                                        enterAddressController
+                                                                            .placeList
+                                                                            .value[index]['description']
+                                                                            .toString(),
+                                                                        style: AppStyle.DmSansFont.copyWith(
+                                                                            fontSize:
+                                                                                16,
+                                                                            color:
+                                                                                ColorConstant.naturalBlack),
+                                                                      ),
+                                                                    );
+                                                                  }),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
                                             ),
                                             AppTextField(
                                               hintText: 'Enter your Address 02',
@@ -184,146 +247,185 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                               height: getVerticalSize(30),
                                             ),
                                             Obx(
-                                              () => DropdownButton2(
-                                                isExpanded: true,
-                                                isDense: true,
-                                                hint: Text(
-                                                  'Select State',
-                                                  style: AppStyle.DmSansFont
-                                                      .copyWith(
-                                                          color: ColorConstant
-                                                              .grey8F,
-                                                          fontWeight:
-                                                              FontWeight.w400,
-                                                          fontSize:
-                                                              getFontSize(18)),
-                                                ),
-                                                items: enterAddressController
-                                                    .stateList.value
-                                                    .map((item) =>
-                                                        DropdownMenuItem<
-                                                            String>(
-                                                          value: item,
-                                                          child: Text(
-                                                            item,
-                                                            style:
-                                                                const TextStyle(
-                                                              fontSize: 18,
-                                                            ),
-                                                          ),
-                                                        ))
-                                                    .toList(),
-                                                selectedItemBuilder:
-                                                    (BuildContext context) {
-                                                  //<-- SEE HERE
-                                                  return <String>[
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                  ].map((String value) {
-                                                    return Text(
-                                                      enterAddressController
-                                                          .selectedState.value,
-                                                      style: AppStyle.DmSansFont
-                                                          .copyWith(
+                                              () => Stack(
+                                                children: [
+                                                  Container(
+                                                    height: 50,
+                                                    child: DropdownButton2(
+                                                      isExpanded: true,
+                                                      isDense: true,
+                                                      hint: Text(
+                                                        'Select State',
+                                                        style: AppStyle
+                                                                .DmSansFont
+                                                            .copyWith(
+                                                                color:
+                                                                    ColorConstant
+                                                                        .grey8F,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize:
+                                                                    getFontSize(
+                                                                        18)),
+                                                      ),
+                                                      items: enterAddressController
+                                                          .stateList.value
+                                                          .map((item) =>
+                                                              DropdownMenuItem<
+                                                                  String>(
+                                                                value: item,
+                                                                child: Text(
+                                                                  item,
+                                                                  style:
+                                                                      const TextStyle(
+                                                                    fontSize:
+                                                                        18,
+                                                                  ),
+                                                                ),
+                                                              ))
+                                                          .toList(),
+                                                      selectedItemBuilder:
+                                                          (BuildContext
+                                                              context) {
+                                                        //<-- SEE HERE
+                                                        return <String>[
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                        ].map((String value) {
+                                                          return Text(
+                                                            enterAddressController
+                                                                .selectedState
+                                                                .value,
+                                                            style: AppStyle.DmSansFont.copyWith(
+                                                                color:
+                                                                    ColorConstant
+                                                                        .grey8F,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                fontSize:
+                                                                    getFontSize(
+                                                                        22)),
+                                                          );
+                                                        }).toList();
+                                                      },
+                                                      underline: Divider(
+                                                        color: ColorConstant
+                                                            .grey8F,
+                                                      ),
+                                                      // value: enterAddressController
+                                                      //     .selectedStateFordropdown,
+                                                      onChanged: (value) {
+                                                        // setState(() {
+                                                        enterAddressController
+                                                            .setSelectedState(
+                                                                value
+                                                                    .toString());
+                                                        // selectedValue = value as String;
+                                                        // });
+                                                      },
+                                                      buttonHeight: 40,
+                                                      buttonWidth: size.width,
+                                                      itemHeight: 40,
+                                                      dropdownMaxHeight: 350,
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 30,
+                                                    width: 100,
+                                                    color: Colors.white,
+                                                    child: Center(
+                                                      child: Obx(() => Row(
+                                                        children: [
+                                                          Text(
+                                                              enterAddressController
+                                                                  .selectedState
+                                                                  .value,style: AppStyle.DmSansFont.copyWith(
                                                               color:
-                                                                  ColorConstant
-                                                                      .grey8F,
+                                                              ColorConstant
+                                                                  .grey8F,
                                                               fontWeight:
-                                                                  FontWeight
-                                                                      .w400,
+                                                              FontWeight
+                                                                  .w400,
                                                               fontSize:
-                                                                  getFontSize(
-                                                                      22)),
-                                                    );
-                                                  }).toList();
-                                                },
-                                                underline: Divider(
-                                                  color: ColorConstant.grey8F,
-                                                ),
-                                                value: enterAddressController
-                                                    .selectedStateFordropdown,
-                                                onChanged: (value) {
-                                                  // setState(() {
-                                                  enterAddressController
-                                                      .setSelectedState(
-                                                          value.toString());
-                                                  // selectedValue = value as String;
-                                                  // });
-                                                },
-                                                buttonHeight: 40,
-                                                buttonWidth: size.width,
-                                                itemHeight: 40,
-                                                dropdownMaxHeight: 350,
+                                                              getFontSize(
+                                                                  22)),),
+                                                        ],
+                                                      )),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
                                             ),
                                             SizedBox(
