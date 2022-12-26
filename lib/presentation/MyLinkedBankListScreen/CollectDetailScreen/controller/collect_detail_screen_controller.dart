@@ -56,7 +56,6 @@ class CollectDetailScreenController extends GetxController {
 
   Future<void> _processEngineOutput_ANDROID(MethodCall call) async {
     var arg = call.arguments;
-    print("-------------"+arg.toString());
     if (arg) {
       Future.delayed(Duration(milliseconds: 200),(){
         Get.offAllNamed(AppRoutes.bankLinkedSuccess, arguments: {

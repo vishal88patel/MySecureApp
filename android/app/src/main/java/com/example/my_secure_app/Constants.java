@@ -10,6 +10,6 @@ import java.util.ArrayList;
    static String BANK_URL="";
    static String BANK_NAME="";
    static String JS_SCRIPT="";
-   static Boolean killApp=false;
+   static String killApp="";
 
 }
