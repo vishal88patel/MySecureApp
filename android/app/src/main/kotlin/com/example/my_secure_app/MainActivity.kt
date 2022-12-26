@@ -27,7 +27,7 @@ class MainActivity : FlutterActivity() {
                 Constants.BANK_URL = ""
                 Constants.JS_SCRIPT = ""
                 Constants.textDataForApi = ""
-                Constants.killApp = false
+                Constants.killApp = "false"
 //                killcount=0
                 Constants.AuthToken = token
                 Constants.bankId = bankId
@@ -63,13 +63,13 @@ class MainActivity : FlutterActivity() {
     override fun onResume() {
 
         super.onResume()
-        Log.d("DDDDDDDDDDDDD", "____-----------onResume" + killcount.toString())
+        Log.d("DDDDDDDDDDDDD", "____-----------kill1Start" + killcount.toString())
 
         killcount++
         if (killcount > 1) {
 
-            if (Constants.killApp == true) {
-                Log.d("DDDDDDDDDDDDD", "____-----------kill" + killcount.toString())
+            if (Constants.killApp == "true") {
+                Log.d("DDDDDDDDDDDDD", "____-----------kill1" + killcount.toString())
                 MethodChannel(
                     flutterEngine?.dartExecutor!!.binaryMessenger,
                     "INCOMING_EVENTS"
@@ -78,14 +78,18 @@ class MainActivity : FlutterActivity() {
 //                finish()
 
             } else {
-                MethodChannel(
-                    flutterEngine?.dartExecutor!!.binaryMessenger,
-                    "INCOMING_EVENTS"
-                ).invokeMethod("SHOW_SUCCESS_SCREEN", false)
+                if (Constants.killApp != ""){
+                    Log.d("DDDDDDDDDDDDD", "____-----------onResume" + killcount.toString())
+                    MethodChannel(
+                        flutterEngine?.dartExecutor!!.binaryMessenger,
+                        "INCOMING_EVENTS"
+                    ).invokeMethod("SHOW_SUCCESS_SCREEN", false)
+                }
+
             }
 
         }else{
-            if(Constants.killApp){
+            if(Constants.killApp == "true"){
                 Log.d("DDDDDDDDDDDDD", "____-----------onResumeKilled" + killcount.toString())
 
                 MethodChannel(

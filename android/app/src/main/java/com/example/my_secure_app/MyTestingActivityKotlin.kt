@@ -209,13 +209,13 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                     Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
                     if (isSuccess){
                         WebStorage.getInstance().deleteAllData()
-                        Constants.killApp=true
+                        Constants.killApp="true"
                         isSuccess=false
                         finish()
                     }
                     else{
                         isSuccess=false
-                        Constants.killApp=false
+                        Constants.killApp="false"
                     }
                 }
             }
@@ -381,14 +381,14 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 if (response.body() != null) {
                     Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
                     if (isSuccess){
-                        Constants.killApp=true
+                        Constants.killApp="true"
                         isSuccess=false
                         finish()
                     }
                     else{
                         isSuccess=false
                         Log.d("SSSSSSSS","Fals,time completeeee")
-                        Constants.killApp=false
+                        Constants.killApp="false"
                         WebStorage.getInstance().deleteAllData()
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                             CookieManager.getInstance().removeAllCookies(null)
@@ -420,7 +420,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     fun onCloseFunction(){
         isSuccess=false
         Log.d("SSSSSSSS","Falseeeeeee,timerrr completeeee")
-        Constants.killApp=false
+        Constants.killApp="false"
         finish()
     }
 
