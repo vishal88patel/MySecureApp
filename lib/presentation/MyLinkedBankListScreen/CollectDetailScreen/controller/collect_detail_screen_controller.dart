@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import '../../../../routes/app_routes.dart';
 import '../../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../../utils/HelperFiles/pref_utils.dart';
+import '../../../BankLinkedSuccessScreen/bank_linked_failed_screen.dart';
 
 
 
@@ -55,6 +56,7 @@ class CollectDetailScreenController extends GetxController {
 
   Future<void> _processEngineOutput_ANDROID(MethodCall call) async {
     var arg = call.arguments;
+    print("-------------"+arg.toString());
     if (arg) {
       Future.delayed(Duration(milliseconds: 200),(){
         Get.offAllNamed(AppRoutes.bankLinkedSuccess, arguments: {
@@ -63,7 +65,7 @@ class CollectDetailScreenController extends GetxController {
         });
       });
     } else {
-      Get.back();
+      Get.offAll(BankLinkedFailedScreen());
     }
     print("<=====EVEBNT CALLED=====>" + call.arguments);
   }
