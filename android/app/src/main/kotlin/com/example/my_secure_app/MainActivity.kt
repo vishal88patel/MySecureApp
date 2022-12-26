@@ -86,6 +86,8 @@ class MainActivity : FlutterActivity() {
 
         }else{
             if(Constants.killApp){
+                Log.d("DDDDDDDDDDDDD", "____-----------onResumeKilled" + killcount.toString())
+
                 MethodChannel(
                     flutterEngine?.dartExecutor!!.binaryMessenger,
                     "INCOMING_EVENTS"

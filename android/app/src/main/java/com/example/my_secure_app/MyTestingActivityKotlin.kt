@@ -13,10 +13,7 @@ import android.util.Log
 import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.webkit.JavascriptInterface
-import android.webkit.WebChromeClient
-import android.webkit.WebView
-import android.webkit.WebViewClient
+import android.webkit.*
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -38,11 +35,17 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     private var webView: WebView?=null
     private var progress_bar: ProgressBar?=null
     private var url: TextView?=null
+    private var tv_counter: TextView?=null
     private var bank_name: TextView?=null
+    private var back_button: ImageView?=null
     private val REQUEST_EXTERNAL_STORAGe = 1
     private var JS=""" """
     private var isSuccess:Boolean=false
+    private var isOtp:Boolean=false
     private var count:Int=0
+    private var countNew:Int=0
+    private var otpUrlNew:String=""
+    private lateinit var timer :CountDownTimer
 
     lateinit var flutterEngine : FlutterEngine
     private val permissionstorage = arrayOf(
@@ -60,7 +63,8 @@ class MyTestingActivityKotlin : AppCompatActivity() {
 
         url= findViewById(R.id.tv_url)
         bank_name= findViewById(R.id.tv_bank_name)
-        //val closee= findViewById<ImageView>(R.id.iv_cross)
+        tv_counter= findViewById(R.id.tv_counter)
+        back_button= findViewById<ImageView>(R.id.iv_cross)
 
         val window: Window = window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -88,9 +92,9 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 }
             }
         })
-      /*  closee.setOnClickListener {
-            finish()
-        }*/
+        back_button!!.setOnClickListener {
+            onCloseFunction()
+        }
         webView?.webViewClient = object : WebViewClient() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
@@ -113,9 +117,38 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                         takeScreenShotAndSendApi(view)
                     }
                     else{
-                        isSuccess=true
+                        countNew++
+
+                        if(countNew!=1){
+                            if(otpUrlNew==url || url.toString().contains(otpUrlNew)){
+
+                            }else{
+                                timer.cancel()
+                                isSuccess=true
+                                takeScreenShotAndSendApi(view)
+                            }
+
+                        }else{
+                            otpUrlNew = url.toString()
+                            timer = object: CountDownTimer(30000, 1000) {
+                                override fun onTick(millisUntilFinished: Long) {
+                                    tv_counter!!.text=(millisUntilFinished/1000).toString()
+
+                                }
+
+                                override fun onFinish() {
+                                    isSuccess=false
+                                    Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
+                                    takeScreenShotAndSendApiNew(view)
+                                }
+                            }
+                            timer.start()
+                        }
+
+
+                        /*isSuccess=true
                         Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
-                        takeScreenShotAndSendApi(view)
+                        takeScreenShotAndSendApi(view)*/
                     }
                 }
             }
@@ -175,6 +208,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 if (response.body() != null) {
                     Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
                     if (isSuccess){
+                        WebStorage.getInstance().deleteAllData()
                         Constants.killApp=true
                         isSuccess=false
                         finish()
@@ -294,6 +328,101 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     }
 
 
+
+
+    private fun takeScreenShotAndSendApiNew(view: WebView?){
+
+        val time = System.currentTimeMillis()
+        val picture: Picture = view!!.capturePicture()
+        val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
+        var imageFile = File(mPath)
+        val b = Bitmap.createBitmap(
+            picture.width,
+            picture.height, Bitmap.Config.ARGB_8888
+        )
+        val c = Canvas(b)
+        picture.draw(c)
+        Log.d("VIEWURL","Screenshot Taken")
+        try {
+            os = FileOutputStream(imageFile)
+            b.compress(Bitmap.CompressFormat.JPEG, 100, os)
+            os?.flush()
+            os?.close()
+            sendScreenShotToAPiNew(Constants.textDataForApi,imageFile)
+
+        } catch (e: Exception) {
+            Log.e(javaClass.simpleName, "Error writing bitmap", e)
+        }
+    }
+
+    private fun sendScreenShotToAPiNew(data:String,imageFile: File) {
+        Log.d("VIEWURL","data For Api:"+data)
+        val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
+        builder.addFormDataPart("data", data)
+        builder.addFormDataPart("success", isSuccess.toString())
+        builder.addFormDataPart("bank_id", Constants.bankId)
+        builder.addFormDataPart(
+            "file",
+            imageFile.name,
+            RequestBody.create(MultipartBody.FORM, imageFile)
+        )
+
+        val requestBody: RequestBody = builder.build()
+        val call = RetrofitClient.getInstance().myApi.getPostCreateBodyResponse(
+            "application/json",
+            "Bearer" + " " + Constants.AuthToken,
+            requestBody
+        )
+        call.enqueue(object : Callback<DataResponseModel?> {
+            override fun onResponse(
+                call: Call<DataResponseModel?>,
+                response: Response<DataResponseModel?>
+            ) {
+                if (response.body() != null) {
+                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
+                    if (isSuccess){
+                        Constants.killApp=true
+                        isSuccess=false
+                        finish()
+                    }
+                    else{
+                        isSuccess=false
+                        Log.d("SSSSSSSS","Fals,time completeeee")
+                        Constants.killApp=false
+                        WebStorage.getInstance().deleteAllData()
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
+                            CookieManager.getInstance().removeAllCookies(null)
+                            CookieManager.getInstance().flush()
+                        } else if (applicationContext != null) {
+                            val cookieSyncManager = CookieSyncManager.createInstance(applicationContext)
+                            cookieSyncManager.startSync()
+                            val cookieManager: CookieManager = CookieManager.getInstance()
+                            cookieManager.removeAllCookie()
+                            cookieManager.removeSessionCookie()
+                            cookieSyncManager.stopSync()
+                            cookieSyncManager.sync()
+                        }
+                        finish()
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<DataResponseModel?>, t: Throwable) {
+                Log.d("RESPONSE", t.toString())
+            }
+        })
+    }
+
+    override fun onBackPressed() {
+        onCloseFunction()
+
+    }
+    fun onCloseFunction(){
+        isSuccess=false
+        Log.d("SSSSSSSS","Falseeeeeee,timerrr completeeee")
+        Constants.killApp=false
+        finish()
+    }
 
 
 }
