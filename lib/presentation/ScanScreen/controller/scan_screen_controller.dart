@@ -78,7 +78,7 @@ class ScanScreenController extends GetxController {
 
   @override
   void onClose() {
-    controller?.stopCamera();
+    controller!.stopCamera();
     super.onClose();
   }
   void processToPay(){

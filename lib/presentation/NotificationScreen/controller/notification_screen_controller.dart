@@ -140,3 +140,5 @@ class NotificationScreenController extends GetxController {
     }
   }
 }
+
+
