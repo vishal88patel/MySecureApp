@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:qr_code_dart_scan/qr_code_dart_scan.dart';
 import 'package:secure_cash_app/presentation/statistic/statistic.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
@@ -49,12 +50,20 @@ class DashBoardScreen extends StatelessWidget {
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
         onPressed: ()async {
-          var res = await Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SimpleBarcodeScannerPage(),
-              ));
-          debugPrint('4vcbcvbvb $res');
+          // var res = await Navigator.push(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => const SimpleBarcodeScannerPage(),
+          //     ));
+          // debugPrint('4vcbcvbvb $res');
+
+
+
+          // Navigator.of(context).push(
+          //   MaterialPageRoute(
+          //     builder: (context) => PictureDecode()));
+
+
 
 //           await Navigator.of(context).push(
 //             MaterialPageRoute(
@@ -70,9 +79,11 @@ class DashBoardScreen extends StatelessWidget {
           //     ),
           //   ),
           // );
-          // initPermission().then((value) {
-          //   dashBoardController.onTapOfBottomnavigation(2);
-          // });
+
+
+          initPermission().then((value) {
+            dashBoardController.onTapOfBottomnavigation(2);
+          });
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -451,5 +462,54 @@ class DashBoardScreen extends StatelessWidget {
     }
     else if (statuses[Permission.camera] == PermissionStatus.granted &&
         statuses[Permission.microphone] == PermissionStatus.granted) {}
+  }
+}
+
+
+
+class PictureDecode extends StatefulWidget {
+
+
+  const PictureDecode({Key? key}) : super(key: key);
+
+  @override
+  State<PictureDecode> createState() => _PictureDecodeState();
+}
+
+class _PictureDecodeState extends State<PictureDecode> {
+  Result? currentResult;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: QRCodeDartScanView(
+        scanInvertedQRCode: true,
+        typeScan: TypeScan.takePicture,
+        onCapture: (Result result) {
+          setState(() {
+            currentResult = result;
+          });
+        },
+        child: Align(
+          alignment: Alignment.bottomCenter,
+          child: Container(
+            margin: EdgeInsets.only(left: 20, right: 20, bottom: 200),
+            padding: EdgeInsets.all(20),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Text: ${currentResult?.text ?? 'Not found'}'),
+                Text('Format: ${currentResult?.barcodeFormat ?? 'Not found'}'),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
