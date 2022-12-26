@@ -94,6 +94,7 @@ dependencies:
   lpinyin: ^2.0.3
   flutter_google_places: ^0.3.0
   uuid: ^3.0.7
+  simple_barcode_scanner: ^0.0.7
 
 
 
