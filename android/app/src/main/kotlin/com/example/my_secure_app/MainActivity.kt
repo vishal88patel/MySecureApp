@@ -78,7 +78,7 @@ class MainActivity : FlutterActivity() {
 //                finish()
 
             } else {
-                if (Constants.killApp != ""){
+                if (Constants.killApp == "false"){
                     Log.d("DDDDDDDDDDDDD", "____-----------onResume" + killcount.toString())
                     MethodChannel(
                         flutterEngine?.dartExecutor!!.binaryMessenger,
