@@ -179,6 +179,7 @@ class Data {
     isCashCard = json['is_cash_card'];
     privacyPolicy = json['privacyPolicy'];
     token = json['token'];
+    isKyc = json['is_kyc'];
   }
 
   Map<String, dynamic> toJson() {

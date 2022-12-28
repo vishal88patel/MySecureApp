@@ -161,12 +161,14 @@ class CCOrderScreen extends StatelessWidget {
                               ),
                               Row(
                                 children: [
-                                  Text(
-                                    "Black",
-                                    style: AppStyle.DmSansFont.copyWith(
-                                        color: ColorConstant.darkBlue,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: getFontSize(20)),
+                                  Obx(
+                                  ()=> Text(
+                                    ccOrderController.color.value=="black"?"Black":"White",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.darkBlue,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                    ),
                                   ),
                                 ],
                               ),

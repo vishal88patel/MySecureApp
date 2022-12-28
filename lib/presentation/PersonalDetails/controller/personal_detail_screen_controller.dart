@@ -139,12 +139,12 @@ class PersonalScreenController extends GetxController {
             url: ApiEndPoints.LOAN_TYPE)
         .then((value) {
       print(value);
-      if (value['status']) {
+      if (value!=null && value['status']) {
         loanModel.value = GetLoanTypeResponseModel.fromJson(value);
         loanList.value = loanModel.value.data ?? [];
       } else {
         UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
+            bodyText: "Error fatching loan type", headerText: StringConstants.ERROR);
       }
     });
   }
@@ -241,8 +241,7 @@ class PersonalScreenController extends GetxController {
                         : loginEmailController.phoneController.text,
                     password:
                         createPasswordController.confirmPassController.text,
-                    // address_1: enterAddressController.address01Controller.text,
-                    address_1: 'enterAddressController.address01Controller.text',
+                    address_1: enterAddressController.address01Controller.text,
                     address_2:
                         enterAddressController.address02Controller.text.isEmpty ? "":enterAddressController.address02Controller.text,
                     city: enterAddressController.cityController.text,
@@ -280,8 +279,7 @@ class PersonalScreenController extends GetxController {
                         : loginEmailController.phoneController.text,
                     password:
                         createPasswordController.confirmPassController.text,
-                    // address_1: enterAddressController.address01Controller.text,
-                    address_1: 'enterAddressController.address01Controller.text',
+                    address_1: enterAddressController.address01Controller.text,
                     address_2: enterAddressController.address02Controller.text.isEmpty ? "":enterAddressController.address02Controller.text,
                     city: enterAddressController.cityController.text,
                     state: enterAddressController.selectedState!.value,
@@ -321,6 +319,8 @@ class PersonalScreenController extends GetxController {
             loginResponseModel.data!.isKyc.toString());
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
         PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE, true);
+        PrefUtils.setString(StringConstants.IS_CASH_CARD, loginResponseModel.data!.isCashCard.toString());
+
         Get.offAllNamed(AppRoutes.dashBoardScreen,
             arguments: {"bottomTabCount": 0});
       } else {

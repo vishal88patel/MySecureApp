@@ -132,15 +132,15 @@ class ProfileScreenController extends GetxController {
         url: ApiEndPoints.LOGOUT)
         .then((value) {
       print(value);
-      if (value['status']) {
+      if (value!=null && value['status']) {
         PrefUtils.clear();
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.SUCCESS);
         PrefUtils.clear();
         Get.offAllNamed(AppRoutes.loginScreen);
       } else {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
+        // UIUtils.showSnakBar(
+        //     bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
   }
