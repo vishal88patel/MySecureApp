@@ -26,6 +26,20 @@ import '../presentation/BankScreen/bank_screen.dart';
 import '../presentation/BankScreen/binding/bank_screen_binding.dart';
 import '../presentation/BoostCreditScreen/binding/boost_credit_screen_binding.dart';
 import '../presentation/BoostCreditScreen/boost_credit_screen.dart';
+import '../presentation/CCAddressScreen/binding/cc_address_screen_binding.dart';
+import '../presentation/CCAddressScreen/cc_address_screen.dart';
+import '../presentation/CCCardDetailScreen/binding/cc_card_detail_screen_binding.dart';
+import '../presentation/CCCardDetailScreen/cc_card_detail_screen.dart';
+import '../presentation/CCCardScreen/binding/cc_card_screen_binding.dart';
+import '../presentation/CCCardScreen/cc_card_screen.dart';
+import '../presentation/CCIntroScreen/binding/cc_intro_scareen_binding.dart';
+import '../presentation/CCIntroScreen/cc_intro_screen.dart';
+import '../presentation/CCOrderScreen/binding/cc_order_screen_binding.dart';
+import '../presentation/CCOrderScreen/cc_order_screen.dart';
+import '../presentation/CCStyleScreen/binding/cc_style_screen_binding.dart';
+import '../presentation/CCStyleScreen/cc_style_screen.dart';
+import '../presentation/CCSuccessScreen/binding/cc_success_screen_binding.dart';
+import '../presentation/CCSuccessScreen/cc_success_screen.dart';
 import '../presentation/CardListScreen/binding/card_list_screen_binding.dart';
 import '../presentation/CardListScreen/card_list_screen.dart';
 import '../presentation/CashCardScreen/binding/cash_card_screen_binding.dart';
@@ -294,6 +308,15 @@ class AppRoutes {
   static String instructionScreens = '/instruction_screen';
   static String profileDetailsScreen = '/profile_details_screen';
   static String showUserCardScreen = '/show_user_card_screen';
+
+
+  static String ccIntroScreen = '/cc_intro_screen';
+  static String ccStyleScreen = '/cc_style_screen';
+  static String ccOrderScreen = '/cc_order_screen';
+  static String ccAddressScreen = '/cc_address_screen';
+  static String ccSuccessScreen = '/cc_success_screen';
+  static String ccCardScreen = '/cc_card_screen';
+  static String ccCardDetailScreen = '/cc_card_detail_screen';
 
 
 
@@ -1180,5 +1203,74 @@ class AppRoutes {
       ],
     ),
 
+    GetPage(
+      name: ccIntroScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCIntroScreen(),
+      bindings: [
+        CCIntroBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccStyleScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCStyleScreen(),
+      bindings: [
+        CCStyleBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccOrderScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCOrderScreen(),
+      bindings: [
+        CCOrderBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccAddressScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCAddressScreen(),
+      bindings: [
+        CCAddressBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccSuccessScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCSuccessScreen(),
+      bindings: [
+        CCSuccessBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCCardScreen(),
+      bindings: [
+        CCCardBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccCardDetailScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCCardDetailScreen(),
+      bindings: [
+        CCCardDetailBinding(),
+      ],
+    ),
   ];
 }

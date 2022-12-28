@@ -33,7 +33,8 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               HomeScreen(),
               StatisticScreen(),
-              ScanScreen(),
+              StatisticScreen(),
+             // ScanScreen(),
               BitCoinnScreen(),
               ProfileScreen(),
               // TransactionScreen(),
