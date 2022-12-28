@@ -9,6 +9,7 @@ import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
+import '../../webQrCodeScreen.dart';
 import '../BitCoinScreen/bitcoinn_screen.dart';
 import '../HomeScreen/home_screen.dart';
 import '../ScanScreen/scan_screen.dart';
@@ -50,40 +51,17 @@ class DashBoardScreen extends StatelessWidget {
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
         onPressed: ()async {
-          // var res = await Navigator.push(
-          //     context,
-          //     MaterialPageRoute(
-          //       builder: (context) => const SimpleBarcodeScannerPage(),
-          //     ));
-          // debugPrint('4vcbcvbvb $res');
+          var res = await Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const WebQrCodeScreen(),
+              ));
 
 
 
-          // Navigator.of(context).push(
-          //   MaterialPageRoute(
-          //     builder: (context) => PictureDecode()));
-
-
-
-//           await Navigator.of(context).push(
-//             MaterialPageRoute(
-//               builder: (context) => AiBarcodeScanner(
-//
-// //    validateText: 'https://', // link to be validated
-// //   validateType: ValidateType.startsWith,
-//                 onScan: (String value) {
-//                   debugPrint('4vcbcvbvb $value');
-
-
-          //       },
-          //     ),
-          //   ),
-          // );
-
-
-          initPermission().then((value) {
-            dashBoardController.onTapOfBottomnavigation(2);
-          });
+          // initPermission().then((value) {
+          //   dashBoardController.onTapOfBottomnavigation(2);
+          // });
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

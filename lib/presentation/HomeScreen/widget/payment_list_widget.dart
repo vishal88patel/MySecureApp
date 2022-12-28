@@ -9,7 +9,7 @@ class PaymentListWidget extends StatelessWidget {
   final void Function()? onTap;
   const PaymentListWidget({Key? key,
     required this.title,
-     this.onTap,
+    this.onTap,
     required this.iconName}) : super(key: key);
 
   @override
@@ -18,15 +18,15 @@ class PaymentListWidget extends StatelessWidget {
       onTap: onTap,
       child: SizedBox(
         height: getVerticalSize(122.5), width: getHorizontalSize(90),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.center,
+        child: Column(crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              // height: getVerticalSize(60), width: getVerticalSize(60),
+              height: getVerticalSize(60), width: getVerticalSize(60),
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(16),
-                color: ColorConstant.skyF6 ),
+                  color: ColorConstant.skyF6 ),
               child: Padding(
-                padding:  EdgeInsets.all(getVerticalSize(15)),
-                child: Image.asset(iconName, height: getVerticalSize(29), width: getVerticalSize(29),
+                padding:  EdgeInsets.all(getVerticalSize(12)),
+                child: Image.asset(iconName,
                 ),
               ),
             ),
