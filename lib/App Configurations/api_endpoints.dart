@@ -33,5 +33,7 @@ class ApiEndPoints {
   static String GET_CASHTAG_USRE = BASE_URL + "/getCashtagUser";
   static String REQUEST_MONEY = BASE_URL + "/requestMoney";
   static String RECENT_TRANSACTION = BASE_URL + "/getRecentTransaction";
+  static String PLACE_CASHCARD = BASE_URL + "/placeOrderCashCard";
+  static String GET_CASHCARD = BASE_URL + "/getMyCashCard";
 
 }

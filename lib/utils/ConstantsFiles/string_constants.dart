@@ -5,6 +5,7 @@ class StringConstants {
   static String FCM_TOKEN = "FCM_TOKKEN";
   static String AUTH_TOKEN = "AUTH_TOKEN";
   static String IS_KYC_DONE = "is_kyc_done";
+  static String IS_CASH_CARD = "is_cash_card";
   static String IS_OTP_DONE = "is_otp_done";
   static String LOGIN_RESPONSE = "LoginResponseModel";
   static String SHOW_WELCOME_DISLOUGE = "show_welcome_dialouge";

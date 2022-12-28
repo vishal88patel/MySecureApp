@@ -75,6 +75,7 @@ class EnterPasswordScreenController extends GetxController {
         LoginResponseModel loginResponseModel =LoginResponseModel.fromJson(value);
         PrefUtils.setString(StringConstants.AUTH_TOKEN, loginResponseModel.data!.token.toString());
         PrefUtils.setString(StringConstants.IS_KYC_DONE, loginResponseModel.data!.isKyc.toString());
+        PrefUtils.setString(StringConstants.IS_CASH_CARD, loginResponseModel.data!.isCashCard.toString());
         if(loginResponseModel.data!.isEmailVerify.toString()=="1" || loginResponseModel.data!.isMobileVerify.toString()=="1"){
           PrefUtils.setString(StringConstants.IS_OTP_DONE, "1");
         }

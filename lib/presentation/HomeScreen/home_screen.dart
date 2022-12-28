@@ -10,7 +10,9 @@ import 'package:shimmer/shimmer.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
+import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
+import '../../utils/HelperFiles/pref_utils.dart';
 import '../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import '../NotificationScreen/controller/notification_screen_controller.dart';
 import '../ScanScreen/controller/scan_screen_controller.dart';
@@ -329,7 +331,8 @@ class HomeScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: (){
-                              Get.toNamed(AppRoutes.cashCardScreen);
+                              PrefUtils.getString(StringConstants.IS_CASH_CARD)=="0"?
+                              Get.toNamed(AppRoutes.ccIntroScreen):Get.toNamed(AppRoutes.ccCardScreen);
                             },
                             child: PaymentListWidget(
                               title: 'Cash Card',
