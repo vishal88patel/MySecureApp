@@ -521,7 +521,8 @@ class CCCardScreen extends StatelessWidget {
                                             buttonName: 'Activated',
                                             radius: 16,
                                             onPressed: () {
-
+                                              Get.toNamed(
+                                                  AppRoutes.ccCardDetailScreen);
                                               // Get.to(AmountRadialScreen());
                                             }),
                                       ):Container(

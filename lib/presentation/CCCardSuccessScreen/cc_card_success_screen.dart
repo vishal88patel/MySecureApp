@@ -116,7 +116,7 @@ class CCCardSuccessScreen extends StatelessWidget {
                                   padding:
                                   EdgeInsets.only(left: 28, right: 28, top: 10),
                                   child: Text(
-                                    "Your card has been linked successfully.",
+                                    "Your Cash Card Activation Process is Completed Successfully.",
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.naturalGrey4,
@@ -125,7 +125,6 @@ class CCCardSuccessScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(height: 16,),
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(

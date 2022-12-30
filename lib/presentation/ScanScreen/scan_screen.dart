@@ -218,12 +218,15 @@ class _ScanScreenState extends State<ScanScreen> {
 
     }
   }
+
   @override
   void dispose() {
     counter=0;
     // controller?.dispose();
     super.dispose();
   }
+
+
 
 
   @override

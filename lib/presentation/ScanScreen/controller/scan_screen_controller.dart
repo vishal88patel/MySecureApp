@@ -156,9 +156,11 @@ class ScanScreenController extends GetxController {
         name.value=uuidModel.value.data!.name!;
         image.value=uuidModel.value.data!.profilePhotoUrl!;
         UIUtils.hideProgressDialog();
+        controller?.dispose();
         Get.toNamed(AppRoutes.scanSummaryScreen)!.then((value) {
           cameraStart();
         });
+        cameraStart();
       } else {
         cameraStart();
         UIUtils.showSnakBar(
