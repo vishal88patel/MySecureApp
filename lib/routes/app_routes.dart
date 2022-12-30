@@ -32,10 +32,14 @@ import '../presentation/CCCardDetailScreen/binding/cc_card_detail_screen_binding
 import '../presentation/CCCardDetailScreen/cc_card_detail_screen.dart';
 import '../presentation/CCCardScreen/binding/cc_card_screen_binding.dart';
 import '../presentation/CCCardScreen/cc_card_screen.dart';
+import '../presentation/CCCardSuccessScreen/binding/cc_card_success_screen_binding.dart';
+import '../presentation/CCCardSuccessScreen/cc_card_success_screen.dart';
 import '../presentation/CCIntroScreen/binding/cc_intro_scareen_binding.dart';
 import '../presentation/CCIntroScreen/cc_intro_screen.dart';
 import '../presentation/CCOrderScreen/binding/cc_order_screen_binding.dart';
 import '../presentation/CCOrderScreen/cc_order_screen.dart';
+import '../presentation/CCPinScreen/binding/cc_pin_screen_binding.dart';
+import '../presentation/CCPinScreen/cc_pin_screen.dart';
 import '../presentation/CCStyleScreen/binding/cc_style_screen_binding.dart';
 import '../presentation/CCStyleScreen/cc_style_screen.dart';
 import '../presentation/CCSuccessScreen/binding/cc_success_screen_binding.dart';
@@ -315,8 +319,10 @@ class AppRoutes {
   static String ccOrderScreen = '/cc_order_screen';
   static String ccAddressScreen = '/cc_address_screen';
   static String ccSuccessScreen = '/cc_success_screen';
+  static String ccCardSuccessScreen = '/cc_card_success_screen';
   static String ccCardScreen = '/cc_card_screen';
   static String ccCardDetailScreen = '/cc_card_detail_screen';
+  static String ccPinScreen = '/cc_pin_detail_screen';
 
 
 
@@ -1270,6 +1276,26 @@ class AppRoutes {
       page: () => CCCardDetailScreen(),
       bindings: [
         CCCardDetailBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccPinScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCPinScreen(),
+      bindings: [
+        CCPinBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccCardSuccessScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCCardSuccessScreen(),
+      bindings: [
+        CCCardSuccessBinding(),
       ],
     ),
   ];

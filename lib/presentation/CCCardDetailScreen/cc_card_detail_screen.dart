@@ -170,7 +170,7 @@ class CCCardDetailScreen extends StatelessWidget {
                                 SelectModeWidget(
                                   onTap: (){
                                     FocusManager.instance.primaryFocus?.unfocus();
-                                    //ccCardDetailController.onClickOfAddCardButton(context);
+                                    ccCardDetailController.onClickOfAddCardButton(context);
                                     // Get.toNamed(AppRoutes.topAddCardFillScreen);
                                   },
                                   verticalPadding: 20,

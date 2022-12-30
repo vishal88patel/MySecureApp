@@ -24,7 +24,7 @@ import '../model/cashcard_model.dart';
 
 
 class CCCardController extends GetxController {
-  var showCard = true.obs;
+  var showCard = false.obs;
   var cashCardModel=CashCardModel().obs;
   LoginResponseModel? loginResponseModel=LoginResponseModel();
   var cardNumber="".obs;
@@ -34,6 +34,7 @@ class CCCardController extends GetxController {
   var cardExpMonth="".obs;
   var time="".obs;
   var pin="".obs;
+  var status="0".obs;
   var isLock="".obs;
 
   var state = false.obs;
@@ -91,6 +92,13 @@ class CCCardController extends GetxController {
         time.value= cashCardModel.value.data!.orderDate!.toString();
         pin.value= cashCardModel.value.data!.pin!;
         isLock.value= cashCardModel.value.data!.isLock!;
+        status.value= cashCardModel.value.data!.status!;
+        if(isLock.value.toString()=="0"){
+          state.value=false;
+        }else{
+          state.value=true;
+        }
+
 
 
       } else {
@@ -106,4 +114,27 @@ class CCCardController extends GetxController {
     return form;
   }
 
+  Future<void> UpdateCashCardLockApi() async {
+    // UIUtils.showProgressDialog(isCancellable: false);
+    ApiService()
+        .callPostApi(
+        body: await UpdateCashCardLockApiBody(),
+        headerWithToken: true,
+        showLoader: true,
+        url: ApiEndPoints.UPDATE_CASHCARD_LOCK)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+
+      } else {
+
+      }
+    });
+  }
+  Future<FormData> UpdateCashCardLockApiBody() async {
+    final form = FormData({
+      "is_lock": state.value?"1":"0",
+    });
+    return form;
+  }
 }

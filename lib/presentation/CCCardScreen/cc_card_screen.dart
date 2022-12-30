@@ -137,7 +137,7 @@ class CCCardScreen extends StatelessWidget {
                                                   children: [
                                                     Text(
                                           ccCardController
-                                              .cardNumber.value!=""?   ccCardController
+                                              .cardNumber.value!=""?ccCardController
                                                           .cardNumber.value
                                                           .toString()
                                                           .substring(0, 4):"",
@@ -157,8 +157,7 @@ class CCCardScreen extends StatelessWidget {
                                                     ),
                                                     Text(
                                                         ccCardController
-                                                            .cardNumber.value!=""?            ccCardController
-                                                          .cardNumber.value
+                                                            .cardNumber.value!=""?ccCardController.cardNumber.value
                                                           .toString()
                                                           .substring(4, 8):"",
                                                       style: AppStyle.DmSansFont
@@ -271,10 +270,11 @@ class CCCardScreen extends StatelessWidget {
                                                                       20)),
                                                     ),
                                                     Text(
-                                                      ccCardController
+                                                        ccCardController
+                                                            .cardNumber.value!=""? ccCardController
                                                           .cardNumber.value
                                                           .toString()
-                                                          .substring(12, 16),
+                                                          .substring(12, 16):"",
                                                       style: AppStyle.DmSansFont
                                                           .copyWith(
                                                               color: ColorConstant
@@ -513,17 +513,29 @@ class CCCardScreen extends StatelessWidget {
                                         ),
                                       ],
                                     ),
-                                    Container(
-                                      width: size.width / 3.5,
-                                      height: getVerticalSize(50),
-                                      child: AppElevatedButton(
-                                          buttonName: 'Activate',
-                                          radius: 16,
-                                          onPressed: () {
-                                            Get.toNamed(
-                                                AppRoutes.ccCardDetailScreen);
-                                            // Get.to(AmountRadialScreen());
-                                          }),
+                                    Obx(()=>
+                                       ccCardController.status=="1"?Container(
+                                        width: size.width / 3.5,
+                                        height: getVerticalSize(50),
+                                        child: AppElevatedButton(
+                                            buttonName: 'Activated',
+                                            radius: 16,
+                                            onPressed: () {
+
+                                              // Get.to(AmountRadialScreen());
+                                            }),
+                                      ):Container(
+                              width: size.width / 3.5,
+                              height: getVerticalSize(50),
+                              child: AppElevatedButton(
+                                  buttonName: 'Activate',
+                                  radius: 16,
+                                  onPressed: () {
+                                      Get.toNamed(
+                                          AppRoutes.ccCardDetailScreen);
+                                      // Get.to(AmountRadialScreen());
+                                  }),
+                            ),
                                     ),
                                   ],
                                 ),
@@ -567,6 +579,7 @@ class CCCardScreen extends StatelessWidget {
                                         value: ccCardController.state.value,
                                         onChanged: (value) {
                                           ccCardController.state.value = value;
+                                          ccCardController.UpdateCashCardLockApi();
                                         },
                                         thumbColor: CupertinoColors.white,
                                         activeColor:
@@ -580,41 +593,47 @@ class CCCardScreen extends StatelessWidget {
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: getVerticalSize(18)),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                        "asset/icons/ic_nine_dot.svg",
+                              child: GestureDetector(
+                                onTap: (){
+                                  Get.toNamed(
+                                      AppRoutes.ccPinScreen,arguments: {"pin":ccCardController.pin.toString()});
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "asset/icons/ic_nine_dot.svg",
+                                          fit: BoxFit.fill,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: getHorizontalSize(16)),
+                                          child: Text(
+                                            "Change PIN",
+                                            style: AppStyle.textStyleDMSANS
+                                                .copyWith(
+                                                    color: ColorConstant
+                                                        .naturalBlack,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: getFontSize(18)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        right: getHorizontalSize(10),
+                                      ),
+                                      child: SvgPicture.asset(
+                                        "asset/icons/ic_right_arrow.svg",
                                         fit: BoxFit.fill,
                                       ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                            left: getHorizontalSize(16)),
-                                        child: Text(
-                                          "Change PIN",
-                                          style: AppStyle.textStyleDMSANS
-                                              .copyWith(
-                                                  color: ColorConstant
-                                                      .naturalBlack,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: getFontSize(18)),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  Padding(
-                                    padding: EdgeInsets.only(
-                                      right: getHorizontalSize(10),
                                     ),
-                                    child: SvgPicture.asset(
-                                      "asset/icons/ic_right_arrow.svg",
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                             Padding(

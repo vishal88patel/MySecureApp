@@ -34,6 +34,7 @@ class DashBoardScreen extends StatelessWidget {
             children: [
               HomeScreen(),
               StatisticScreen(),
+              //StatisticScreen(),
              ScanScreen(),
               BitCoinnScreen(),
               ProfileScreen(),
@@ -51,17 +52,17 @@ class DashBoardScreen extends StatelessWidget {
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
         onPressed: ()async {
-          var res = await Navigator.push(
+          /*var res = await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const WebQrCodeScreen(),
-              ));
+              ));*/
 
 
 
-          // initPermission().then((value) {
-          //   dashBoardController.onTapOfBottomnavigation(2);
-          // });
+           initPermission().then((value) {
+             dashBoardController.onTapOfBottomnavigation(2);
+           });
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

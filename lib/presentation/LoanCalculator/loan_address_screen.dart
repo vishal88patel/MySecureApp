@@ -123,128 +123,186 @@ class LoanAddressScreen extends StatelessWidget {
                                               height: getVerticalSize(30),
                                             ),
                                             Obx(
-                                                  ()=> DropdownButton2(
-                                                isExpanded: true,
-                                                isDense: true,
-                                                hint: Text(
-                                                  'Select State',
-                                                  style: AppStyle.DmSansFont
-                                                      .copyWith(color: ColorConstant.grey8F,
-                                                      fontWeight: FontWeight.w400,fontSize: getFontSize(16)),
-                                                ),
-                                                items: loanCalculatorController.stateList.value
-                                                    .map((item) =>
-                                                    DropdownMenuItem<String>(
-                                                      value: item,
-                                                      child: Text(
-                                                        item,
-                                                        style: const TextStyle(
-                                                          fontSize: 14,
-                                                        ),
+                                                  () => Stack(
+                                                children: [
+                                                  Container(
+                                                    height: 50,
+                                                    child: DropdownButton2(
+                                                      isExpanded: true,
+                                                      isDense: true,
+                                                      hint: Text(
+                                                        'Select State',
+                                                        style: AppStyle
+                                                            .DmSansFont
+                                                            .copyWith(
+                                                            color:
+                                                            ColorConstant
+                                                                .grey8F,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w400,
+                                                            fontSize:
+                                                            getFontSize(
+                                                                18)),
                                                       ),
-                                                    ))
-                                                    .toList(),
-                                                selectedItemBuilder: (BuildContext context) {
-                                                  //<-- SEE HERE
-                                                  return <String>[
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                    'Car',
-                                                    'Train',
-                                                    'Bus',
-                                                    'Flight',
-                                                  ].map((String value) {
-                                                    return Text(
-                                                      loanCalculatorController
-                                                          .selectedState.value,
-                                                      style: AppStyle.DmSansFont
-                                                          .copyWith(
-                                                          color: ColorConstant.grey8F,
-                                                          fontWeight: FontWeight.w400,
-                                                          fontSize: getFontSize(20)),
-                                                    );
-                                                  }).toList();
-                                                },
-                                                value: loanCalculatorController.selectedStateFordropdown,
-                                                onChanged: (value) {
-                                                  // setState(() {
-                                                  loanCalculatorController
-                                                      .setSelectedState(value.toString());
-                                                  // selectedValue = value as String;
-                                                  // });
-                                                },
-                                                buttonHeight: 40,
-                                                buttonWidth: size.width,
-                                                itemHeight: 40,
-                                                dropdownMaxHeight: 350,
+                                                      items: loanCalculatorController
+                                                          .stateList.value
+                                                          .map((item) =>
+                                                          DropdownMenuItem<
+                                                              String>(
+                                                            value: item,
+                                                            child: Text(
+                                                              item,
+                                                              style:
+                                                              const TextStyle(
+                                                                fontSize:
+                                                                18,
+                                                              ),
+                                                            ),
+                                                          ))
+                                                          .toList(),
+                                                      selectedItemBuilder:
+                                                          (BuildContext
+                                                      context) {
+                                                        //<-- SEE HERE
+                                                        return <String>[
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                          'Car',
+                                                          'Train',
+                                                          'Bus',
+                                                          'Flight',
+                                                        ].map((String value) {
+                                                          return Text(
+                                                            loanCalculatorController
+                                                                .selectedState
+                                                                .value,
+                                                            style: AppStyle.DmSansFont.copyWith(
+                                                                color:
+                                                                ColorConstant
+                                                                    .grey8F,
+                                                                fontWeight:
+                                                                FontWeight
+                                                                    .w400,
+                                                                fontSize:
+                                                                getFontSize(
+                                                                    22)),
+                                                          );
+                                                        }).toList();
+                                                      },
+                                                      underline: Divider(
+                                                        color: ColorConstant
+                                                            .grey8F,
+                                                      ),
+                                                      // value: enterAddressController
+                                                      //     .selectedStateFordropdown,
+                                                      onChanged: (value) {
+                                                        // setState(() {
+                                                        loanCalculatorController
+                                                            .setSelectedState(
+                                                            value
+                                                                .toString());
+                                                        // selectedValue = value as String;
+                                                        // });
+                                                      },
+                                                      buttonHeight: 40,
+                                                      buttonWidth: size.width,
+                                                      itemHeight: 40,
+                                                      dropdownMaxHeight: 350,
+                                                    ),
+                                                  ),
+                                                  Container(
+                                                    height: 30,
+                                                    width: 100,
+                                                    color: Colors.white,
+                                                    child: Center(
+                                                      child: Obx(() => Row(
+                                                        children: [
+                                                          Text(
+                                                            loanCalculatorController
+                                                                .selectedState
+                                                                .value,style: AppStyle.DmSansFont.copyWith(
+                                                              color:
+                                                              ColorConstant
+                                                                  .grey8F,
+                                                              fontWeight:
+                                                              FontWeight
+                                                                  .w400,
+                                                              fontSize:
+                                                              getFontSize(
+                                                                  22)),),
+                                                        ],
+                                                      )),
+                                                    ),
+                                                  )
+                                                ],
                                               ),
-
                                             ),
                                             SizedBox(
                                               height: getVerticalSize(30),

@@ -35,10 +35,10 @@ class Data {
   String? status;
   String? isLock;
   String? pin;
-  String? cardFrontImage;
-  String? cardBackImage;
+  Null? cardFrontImage;
+  Null? cardBackImage;
   String? orderDate;
-  String? activeDate;
+  Null? activeDate;
   String? createdAt;
   String? updatedAt;
 
