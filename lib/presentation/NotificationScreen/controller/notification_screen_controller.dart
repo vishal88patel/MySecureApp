@@ -55,7 +55,7 @@ class NotificationScreenController extends GetxController {
         originallist.clear();
         list.clear();
         originallist.addAll(notificationModel.value.data ?? []);
-        list.value=originallist.reversed.toList();
+        list.value = originallist.reversed.toList();
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
@@ -92,28 +92,33 @@ class NotificationScreenController extends GetxController {
             arguments: {"bottomTabCount": 0});
         break;
       case "KYC_CHECK":
-        PrefUtils.getString(StringConstants.IS_KYC_DONE)=="0"?
-        Get.toNamed(AppRoutes.kycEmailScreen):Get.toNamed(AppRoutes.kycSelectStepScreen);
+        PrefUtils.getString(StringConstants.IS_KYC_DONE) == "0"
+            ? Get.toNamed(AppRoutes.kycEmailScreen)
+            : Get.toNamed(AppRoutes.kycSelectStepScreen);
         break;
       case "LOAN_GET":
         Get.toNamed(AppRoutes.loanApplyInfoScreen);
+        break;
+      case "CASH_CARD":
+        PrefUtils.getString(StringConstants.IS_CASH_CARD)=="0"?
+        Get.toNamed(AppRoutes.ccIntroScreen):Get.toNamed(AppRoutes.ccCardScreen);
         break;
 
       case "REQUEST_MONEY":
         CustomModel c = CustomModel();
         c = CustomModel.fromJson(jsonDecode(data.toString()));
         var scanController = Get.find<ScanScreenController>();
-        scanController.qrCodeResult.value=c.requestUser!.uuid.toString();
-        scanController.amountController.text=c.amount.toString();
-        scanController.uuid.value=c.requestUser!.uuid.toString();
+        scanController.qrCodeResult.value = c.requestUser!.uuid.toString();
+        scanController.amountController.text = c.amount.toString();
+        scanController.uuid.value = c.requestUser!.uuid.toString();
         // Get.toNamed(AppRoutes.scanSummaryScreen, arguments: {
         //   "uuid": c.requestUser!.uuid.toString(),
         //   "amount": c.amount.toString(),
         // });
-        scanController.getArguments(arguments:{
-          "uuid":c.requestUser!.uuid.toString(),
-          "amount":c.amount.toString(),
-        } );
+        scanController.getArguments(arguments: {
+          "uuid": c.requestUser!.uuid.toString(),
+          "amount": c.amount.toString(),
+        });
         break;
     }
   }
@@ -131,14 +136,12 @@ class NotificationScreenController extends GetxController {
   }
 
   Future<FormData> getBody(String id) async {
-    if(id.isEmpty){
-      return  FormData({});
-    }else{
-      return  FormData({
-        "id":id,
+    if (id.isEmpty) {
+      return FormData({});
+    } else {
+      return FormData({
+        "id": id,
       });
     }
   }
 }
-
-

@@ -478,16 +478,18 @@ class CCCardScreen extends StatelessWidget {
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
                                           children: [
-                                            Text(
-                                              "Card Shipped",
-                                              style:
-                                                  AppStyle.DmSansFont.copyWith(
-                                                      color: ColorConstant
-                                                          .primaryBlack,
-                                                      fontWeight:
-                                                          FontWeight.w500,
-                                                      fontSize:
-                                                          getFontSize(20)),
+                                            Obx(
+                                            ()=> Text(
+                                                ccCardController.  card_status.value.toString(),
+                                                style:
+                                                    AppStyle.DmSansFont.copyWith(
+                                                        color: ColorConstant
+                                                            .primaryBlack,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(20)),
+                                              ),
                                             ),
                                             Obx(
                                               () => Text(

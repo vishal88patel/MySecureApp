@@ -36,6 +36,7 @@ class CCCardController extends GetxController {
   var pin="".obs;
   var status="0".obs;
   var isLock="".obs;
+  var card_status="".obs;
 
   var state = false.obs;
 
@@ -89,10 +90,11 @@ class CCCardController extends GetxController {
         cardCvv.value= cashCardModel.value.data!.cvv!;
         cardExpYear.value= cashCardModel.value.data!.expYear!;
         cardExpMonth.value= cashCardModel.value.data!.expMonth!;
-        time.value= cashCardModel.value.data!.orderDate!.toString();
+        time.value= cashCardModel.value.data!.updatedAt!.toString();
         pin.value= cashCardModel.value.data!.pin!;
         isLock.value= cashCardModel.value.data!.isLock!;
         status.value= cashCardModel.value.data!.status!;
+        card_status.value= cashCardModel.value.data!.order_status!;
         if(isLock.value.toString()=="0"){
           state.value=false;
         }else{
