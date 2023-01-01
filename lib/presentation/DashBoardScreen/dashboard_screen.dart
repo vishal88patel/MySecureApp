@@ -3,8 +3,10 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_dart_scan/qr_code_dart_scan.dart';
+import 'package:secure_cash_app/presentation/ScanScreen/controller/scan_screen_controller.dart';
 import 'package:secure_cash_app/presentation/statistic/statistic.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
+import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
@@ -16,11 +18,17 @@ import '../ScanScreen/scan_screen.dart';
 import '../profileScreen/profile_screen.dart';
 import 'controller/dashboard_screen_controller.dart';
 
-class DashBoardScreen extends StatelessWidget {
+class DashBoardScreen extends StatefulWidget {
+  @override
+  State<DashBoardScreen> createState() => _DashBoardScreenState();
+}
+
+class _DashBoardScreenState extends State<DashBoardScreen> {
   var dashBoardController = Get.find<DashBoardScreenController>();
+  // var scanController = Get.put(ScanScreenController());
 
   // var scanController = Get.find<ScanScreenController>();
-  // var scanController = Get.put(ScanScreenController());
+  String result = '';
 
   @override
   Widget build(BuildContext context) {
@@ -52,17 +60,54 @@ class DashBoardScreen extends StatelessWidget {
           child: SvgPicture.asset("asset/icons/ic_scan.svg"),
         ),
         onPressed: ()async {
-          /*var res = await Navigator.push(
+         /* var res = await Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => const WebQrCodeScreen(),
               ));*/
+        /*  WidgetsBinding.instance.addPostFrameCallback((_) async {
+            var res = await Navigator.pushAndRemoveUntil(context, MaterialPageRoute(
+              builder: (context) => const SimpleBarcodeScannerPage(),
+            ), (r) => false);
+            // Navigator.pushNamedAndRemoveUntil(
+            //     context,
+            //     MaterialPageRoute(
+            //       builder: (context) => const SimpleBarcodeScannerPage(),
+            //     ));
+            if (res is String) {
+              result = res;
+
+              print('barcode ==== $res');
+              print('barcode ==== $result');
+            }
+
+            try {
+                result = res;
+                scanController.qrCodeResult.value = res.code.toString();
+                print("UdId" + res.code.toString());
+                if (scanController.qrCodeResult.value.isNotEmpty) {
+                  if (scanController.qrCodeResult.value != null &&
+                      scanController.qrCodeResult.value.isNotEmpty) {
+                    //UIUtils.showSnakBar(headerText: "Success",bodyText: "Qr Code Scan Successfully");
+                    // scanController.controller?.pauseCamera();
+                    scanController.uuid.value =
+                        scanController.qrCodeResult.value;
+                    scanController.callGetUuidApi();
+                    // Get.to(ScanSummaryScreen());
+                  } else {
+                    UIUtils.showSnakBar(headerText: "Error",
+                        bodyText: "Qr Code not valid please scan with valid document");
+                  }
+                }
+            }catch (e){
+              print('error00++++ ${e.toString()}');
+            }
+          });*/
 
 
-
-           initPermission().then((value) {
+           // initPermission().then((value) {
              dashBoardController.onTapOfBottomnavigation(2);
-           });
+           // });
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

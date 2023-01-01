@@ -1,3 +1,4 @@
+import 'package:ai_barcode_scanner/ai_barcode_scanner.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
@@ -21,7 +22,7 @@ class ScanScreenController extends GetxController {
   var qrCodeResult="".obs;
   TextEditingController passController = TextEditingController();
   var passIsObsecure = true.obs;
-  QRViewController? controller;
+  // QRViewController? controller;
   var uuidModel=GetUuidDetail().obs;
   final jobRoleCtrl = TextEditingController();
   var uuid="".obs;
@@ -35,6 +36,7 @@ class ScanScreenController extends GetxController {
   var animContainerHeighr=85.00.obs;
   var selectedMethod="Select Payment Method".obs;
   Rx<LoginResponseModel> loginResponseModel = LoginResponseModel().obs;
+  MobileScannerController controller = MobileScannerController();
 
   var isFirstOpen = false.obs;
   var balance="00000".obs;
@@ -44,6 +46,7 @@ class ScanScreenController extends GetxController {
 
   @override
   void onReady() {
+
     cameraStart();
     super.onReady();
   }
@@ -72,13 +75,13 @@ class ScanScreenController extends GetxController {
   }
   Future<void> cameraStart() async {
     Future.delayed(Duration(milliseconds: 100), () {
-      controller?.resumeCamera();
+      controller.start();
     });
   }
 
   @override
   void onClose() {
-    controller!.stopCamera();
+    controller.stop();
     super.onClose();
   }
   void processToPay(){
