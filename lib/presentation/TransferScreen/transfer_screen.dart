@@ -93,7 +93,7 @@ class TransferScreen extends StatelessWidget {
                       ),
                       Obx(
                         () => Text(
-                          NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
+                            dashBoardController.UserBalance.value.isNotEmpty?  NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)):"",
                           style: AppStyle.DmSansFont.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w700,
