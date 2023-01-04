@@ -24,11 +24,14 @@ import '../model/cashcard_model.dart';
 
 
 class CCCardController extends GetxController {
+  var arguments = Get.arguments;
+  var position="".obs;
+  var index=0.obs;
   var showCard = false.obs;
   var cashCardModel=CashCardModel().obs;
-  LoginResponseModel? loginResponseModel=LoginResponseModel();
   var cardNumber="".obs;
-  var cardName="".obs;
+  var color="".obs;
+  var tempNumber="".obs;
   var cardCvv="".obs;
   var cardExpYear="".obs;
   var cardExpMonth="".obs;
@@ -36,8 +39,8 @@ class CCCardController extends GetxController {
   var pin="".obs;
   var status="0".obs;
   var isLock="".obs;
+  var cashcardId="".obs;
   var card_status="".obs;
-
   var state = false.obs;
 
   @override
@@ -47,17 +50,29 @@ class CCCardController extends GetxController {
 
   @override
   void onInit() {
-    getStoredData();
-    callGetCashCardApi();
+    getArguments();
+    //callGetCashCardApi();
   }
 
   @override
   void onClose() {
     super.onClose();
   }
-  Future<void> getStoredData() async {
-    loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
-    cardName.value=loginResponseModel!.data!.firstName.toString()+" "+loginResponseModel!.data!.lastName.toString();
+
+  getArguments(){
+
+    if (arguments != null) {
+      position.value = arguments['position'];
+      print(index.value.toString()+"--index");
+      if(position.value=="1"){
+        index.value=1;
+        callGetCashCardApi();
+      }else{
+        index.value=0;
+        callGetCashCardApi();
+      }
+    }
+
 
   }
 
@@ -86,15 +101,19 @@ class CCCardController extends GetxController {
       print(value);
       if (value!=null&&value['status']) {
         cashCardModel.value = CashCardModel.fromJson(value);
-        cardNumber.value= cashCardModel.value.data!.cardNumber!;
-        cardCvv.value= cashCardModel.value.data!.cvv!;
-        cardExpYear.value= cashCardModel.value.data!.expYear!;
-        cardExpMonth.value= cashCardModel.value.data!.expMonth!;
-        time.value= cashCardModel.value.data!.updatedAt!.toString();
-        pin.value= cashCardModel.value.data!.pin!;
-        isLock.value= cashCardModel.value.data!.isLock!;
-        status.value= cashCardModel.value.data!.status!;
-        card_status.value= cashCardModel.value.data!.order_status!;
+        cardNumber.value=(cashCardModel.value.data![index.value].cardNumber!=null?cashCardModel.value.data![index.value].cardNumber:"")!;
+        tempNumber.value= (cashCardModel.value.data![index.value].tempCard!=null?cashCardModel.value.data![index.value].tempCard:"")!;
+        cardCvv.value= cashCardModel.value.data![index.value].cvv!;
+        cardExpYear.value= cashCardModel.value.data![index.value].expYear!;
+        cardExpMonth.value= cashCardModel.value.data![index.value].expMonth!;
+        time.value= cashCardModel.value.data![index.value].updatedAt!.toString();
+        pin.value= cashCardModel.value.data![index.value].pin!;
+        isLock.value= cashCardModel.value.data![index.value].isLock!;
+        status.value= cashCardModel.value.data![index.value].status!;
+        color.value= cashCardModel.value.data![index.value].color!;
+        card_status.value= cashCardModel.value.data![index.value].orderStatus!;
+        print(card_status.value);
+        cashcardId.value= cashCardModel.value.data![index.value].id!.toString();
         if(isLock.value.toString()=="0"){
           state.value=false;
         }else{
@@ -136,6 +155,7 @@ class CCCardController extends GetxController {
   Future<FormData> UpdateCashCardLockApiBody() async {
     final form = FormData({
       "is_lock": state.value?"1":"0",
+      "id": cashcardId.value
     });
     return form;
   }

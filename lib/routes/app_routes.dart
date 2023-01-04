@@ -30,6 +30,8 @@ import '../presentation/CCAddressScreen/binding/cc_address_screen_binding.dart';
 import '../presentation/CCAddressScreen/cc_address_screen.dart';
 import '../presentation/CCCardDetailScreen/binding/cc_card_detail_screen_binding.dart';
 import '../presentation/CCCardDetailScreen/cc_card_detail_screen.dart';
+import '../presentation/CCCardListScreen/binding/cc_card_list_screen_binding.dart';
+import '../presentation/CCCardListScreen/cc_card_list_screen.dart';
 import '../presentation/CCCardScreen/binding/cc_card_screen_binding.dart';
 import '../presentation/CCCardScreen/cc_card_screen.dart';
 import '../presentation/CCCardSuccessScreen/binding/cc_card_success_screen_binding.dart';
@@ -320,6 +322,7 @@ class AppRoutes {
   static String ccAddressScreen = '/cc_address_screen';
   static String ccSuccessScreen = '/cc_success_screen';
   static String ccCardSuccessScreen = '/cc_card_success_screen';
+  static String ccCardListScreen = '/cc_card_list_screen';
   static String ccCardScreen = '/cc_card_screen';
   static String ccCardDetailScreen = '/cc_card_detail_screen';
   static String ccPinScreen = '/cc_pin_detail_screen';
@@ -1296,6 +1299,16 @@ class AppRoutes {
       page: () => CCCardSuccessScreen(),
       bindings: [
         CCCardSuccessBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: ccCardListScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => CCCardListScreen(),
+      bindings: [
+        CCCardListBinding(),
       ],
     ),
   ];

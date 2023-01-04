@@ -27,6 +27,7 @@ class CCPinController extends GetxController {
   TextEditingController pinController = TextEditingController();
   var isPin=0.obs;
   var pin="".obs;
+  var id="".obs;
   var arguments = Get.arguments;
   @override
   void onReady() {
@@ -40,6 +41,7 @@ class CCPinController extends GetxController {
   getArguments(){
     if (arguments != null) {
       pin.value = arguments['pin'];
+      id.value = arguments['id'];
       if(pin.value=="0"){
         isPin.value=0;
       }else{
@@ -97,6 +99,7 @@ class CCPinController extends GetxController {
   Future<FormData> UpdateCashCardPinApiBody() async {
     final form = FormData({
       "pin": pinController.text,
+      "id": id.value,
     });
     return form;
   }

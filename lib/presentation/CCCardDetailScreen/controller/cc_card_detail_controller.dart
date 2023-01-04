@@ -32,9 +32,10 @@ class CCCardDetailController extends GetxController {
   TextEditingController cardNumberController = TextEditingController();
   TextEditingController expDateController = TextEditingController();
   TextEditingController cvvController = TextEditingController();
-
+  var arguments = Get.arguments;
   var netImage1 = "".obs;
   var netImage2 = "".obs;
+  var id = "".obs;
   var cardTypeImage = "".obs;
   @override
   void onReady() {
@@ -43,12 +44,21 @@ class CCCardDetailController extends GetxController {
 
   @override
   void onInit() {
-
+    getArguments();
   }
 
   @override
   void onClose() {
     super.onClose();
+  }
+
+  getArguments(){
+
+    if (arguments != null) {
+      id.value = arguments['id'];
+      print(id.value.toString());
+    }
+
   }
 
   void onClickOfAddCardButton(BuildContext context) {
@@ -125,11 +135,11 @@ class CCCardDetailController extends GetxController {
     http.MultipartRequest('POST', Uri.parse(ApiEndPoints.ACTIVE_CASHCARD));
 
     request.headers.addAll(headers);
-    request.fields['cardholder_name'] = nameController.text;
     request.fields['card_number'] = cardNumberController.text.replaceAll(" ", "");
     request.fields['exp_year'] ="20${expDateController.text.split("/")[1]}";
     request.fields['exp_month'] =expDateController.text.split("/")[0].toString();
     request.fields['cvv'] = cvvController.text;
+    request.fields['id'] = id.value;
 
     request.files.add(
         await http.MultipartFile.fromPath("card_front_image",netImage1.value));
