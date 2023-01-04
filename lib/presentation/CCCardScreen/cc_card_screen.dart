@@ -83,14 +83,16 @@ class CCCardScreen extends StatelessWidget {
                               },
                               child: Stack(
                                 children: [
-                                  Container(
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(16),
-                                      color:ccCardController
-                                          .color.value.toLowerCase().toString()=="black"? Colors.black: ColorConstant
-                                          .cream,),
-                                    height: size.width / 1.75,
-                                    width: size.width,
+                                  Obx(()=>
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(16),
+                                        color:ccCardController
+                                            .color.value.toLowerCase().toString()=="black"? Colors.black: ColorConstant
+                                            .cream,),
+                                      height: size.width / 1.75,
+                                      width: size.width,
+                                    ),
                                   ),
                                   Padding(
                                     padding:
