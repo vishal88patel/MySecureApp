@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:loading_indicator/loading_indicator.dart';
 import 'package:secure_cash_app/presentation/statistic/controller/statistic_screen_controller.dart';
 import 'package:secure_cash_app/presentation/statistic/widgets/chart2.dart';
 import 'package:secure_cash_app/presentation/statistic/widgets/recent_expenses_widget.dart';
@@ -31,7 +32,7 @@ class StatisticScreen extends StatefulWidget {
 }
 
 class _StatisticScreenState extends State<StatisticScreen> {
-  var homeController = Get.put(StatisticScreenController());
+  var statisticController = Get.put(StatisticScreenController());
   final Color barBackgroundColor = const Color(0xff72d8bf);
   final Duration animDuration = const Duration(milliseconds: 250);
 
@@ -53,18 +54,28 @@ class _StatisticScreenState extends State<StatisticScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AppAppBar(
-                  title: "Statistic",
-                  icon1: "asset/icons/Back.svg",
-                  icon2: "asset/icons/ic_setting_black.svg",
-                  titleColor: ColorConstant.naturalBlack,
-                  onPressedIcon1: () {
-                    Get.offAllNamed(AppRoutes.dashBoardScreen,
-                        arguments: {"bottomTabCount": 0});
-                  },
-                  onPressedIcon2: () {
-                    UIUtils.showSnakBar(headerText: StringConstants.SUCCESS,bodyText: "Setting Page will be Coming soon");
-                  },
+                SizedBox(
+                  height: getVerticalSize(26),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: getHorizontalSize(22),
+                      right: getHorizontalSize(22)),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "Statistic",
+                        style: AppStyle.textStyleDMSANS.copyWith(
+                            color: ColorConstant.naturalBlack,
+                            fontWeight: FontWeight.w700,
+                            fontSize: getFontSize(22)),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: getVerticalSize(28),
                 ),
                 Padding(
                   padding: EdgeInsets.only(
@@ -97,12 +108,16 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 SizedBox(
                                   height: getVerticalSize(5),
                                 ),
-                                Text(
-                                  "\$0",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(28)),
+                                Obx(
+                                  () => Text(
+                                    "\$" +
+                                        statisticController.totalIncome.value
+                                            .toString(),
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getFontSize(28)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -123,12 +138,16 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 SizedBox(
                                   height: getVerticalSize(5),
                                 ),
-                                Text(
-                                  "\$0",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(28)),
+                                Obx(
+                                  () => Text(
+                                    "\$" +
+                                        statisticController.totalExpense.value
+                                            .toString(),
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: getFontSize(28)),
+                                  ),
                                 ),
                               ],
                             ),
@@ -143,26 +162,89 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         children: [
                           Container(
                             decoration: BoxDecoration(
-                                color: ColorConstant.grey8F.withOpacity(0.3),
-                                borderRadius: BorderRadius.circular(16)),
+                                borderRadius: BorderRadius.circular(50),
+                                color: ColorConstant.naturalGrey
+                                    .withOpacity(0.10)),
                             padding: EdgeInsets.symmetric(
-                                horizontal: getHorizontalSize(10),
-                                vertical: getVerticalSize(2)),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Text(
-                                  "Weekly",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.naturalBlack,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(15)),
-                                ),
-                                SizedBox(
-                                  width: getHorizontalSize(5),
-                                ),
-                                Icon(Icons.keyboard_arrow_down_outlined),
-                              ],
+                                vertical: getVerticalSize(3),
+                                horizontal: getHorizontalSize(3)),
+                            child: Obx(
+                              () => Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  InkWell(
+                                    onTap: () {
+                                      statisticController.timeExpense(1);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: statisticController
+                                                      .isWeeklyTime
+                                                      .value ==
+                                                  1
+                                              ? ColorConstant.primaryWhite
+                                              : Colors.transparent),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: getHorizontalSize(10),
+                                            vertical: getVerticalSize(8)),
+                                        child: Text(
+                                          "Weekly",
+                                          style: AppStyle.textStyleDMSANS
+                                              .copyWith(
+                                                  color: statisticController
+                                                              .isWeeklyTime
+                                                              .value ==
+                                                          1
+                                                      ? ColorConstant
+                                                          .darkGreen
+                                                      : ColorConstant.greyBD,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: getFontSize(16)),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () {
+                                      statisticController.timeExpense(2);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(50),
+                                          color: statisticController
+                                                      .isWeeklyTime
+                                                      .value ==
+                                                  2
+                                              ? ColorConstant.primaryWhite
+                                              : Colors.transparent),
+                                      child: Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: getHorizontalSize(10),
+                                            vertical: getVerticalSize(8)),
+                                        child: Text(
+                                          "Monthly",
+                                          style: AppStyle.textStyleDMSANS
+                                              .copyWith(
+                                                  color: statisticController
+                                                              .isWeeklyTime
+                                                              .value ==
+                                                          2
+                                                      ? ColorConstant
+                                                          .darkGreen
+                                                      : ColorConstant.greyBD,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: getFontSize(16)),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           Row(
@@ -208,38 +290,37 @@ class _StatisticScreenState extends State<StatisticScreen> {
                     ],
                   ),
                 ),
-                AspectRatio(
-                  aspectRatio: 1.4,
-                  child: Stack(
-                    children: <Widget>[
-                      Padding(
-                        padding: const EdgeInsets.symmetric(vertical: 0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: <Widget>[
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 0),
-                                child: BarChart(
-                                  randomData(),
-                                  swapAnimationDuration: animDuration,
+                Obx(()=>
+                   statisticController.isWeeklyTime.value==1?AspectRatio(
+                    aspectRatio: 1.95,
+                    child: Stack(
+                      children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: <Widget>[
+                              Expanded(
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 0),
+                                  child: BarChart(
+                                    randomData(),
+                                    swapAnimationDuration: animDuration,
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(
-                              height: 40,
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
+                      ],
+                    ),
+                  ):ChartWeeklyScreen(),
                 ),
                 SizedBox(
                   height: getVerticalSize(30),
                 ),
-                ChartWeeklyScreen(),
+
                 SizedBox(
                   height: getVerticalSize(30),
                 ),
@@ -259,15 +340,16 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         children: [
                           InkWell(
                             onTap: () {
-                              homeController.incomeExpense(1);
+                              statisticController.incomeExpense(1);
                             },
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color:
-                                      homeController.isIncomeExpense.value == 1
-                                          ? ColorConstant.primaryWhite
-                                          : Colors.transparent),
+                                  color: statisticController
+                                              .isIncomeExpense.value ==
+                                          1
+                                      ? ColorConstant.primaryWhite
+                                      : Colors.transparent),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: getHorizontalSize(50),
@@ -275,7 +357,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 child: Text(
                                   "Income",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: homeController
+                                      color: statisticController
                                                   .isIncomeExpense.value ==
                                               1
                                           ? ColorConstant.darkGreen
@@ -288,15 +370,16 @@ class _StatisticScreenState extends State<StatisticScreen> {
                           ),
                           InkWell(
                             onTap: () {
-                              homeController.incomeExpense(2);
+                              statisticController.incomeExpense(2);
                             },
                             child: Container(
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  color:
-                                      homeController.isIncomeExpense.value == 2
-                                          ? ColorConstant.primaryWhite
-                                          : Colors.transparent),
+                                  color: statisticController
+                                              .isIncomeExpense.value ==
+                                          2
+                                      ? ColorConstant.primaryWhite
+                                      : Colors.transparent),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
                                     horizontal: getHorizontalSize(40),
@@ -304,7 +387,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 child: Text(
                                   "Expenses",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: homeController
+                                      color: statisticController
                                                   .isIncomeExpense.value ==
                                               2
                                           ? ColorConstant.darkGreen
@@ -356,12 +439,16 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       fontSize: getFontSize(20)),
                                 ),
                               ]),
-                          Text(
-                            '\$0',
-                            style: AppStyle.textStyleDMSANS.copyWith(
-                                color: ColorConstant.primaryBlack,
-                                fontWeight: FontWeight.w700,
-                                fontSize: getFontSize(24)),
+                          Obx(()=>
+                             Text(
+                                "\$" +
+                                    statisticController.totalIncome.value
+                                        .toString(),
+                              style: AppStyle.textStyleDMSANS.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: getFontSize(24)),
+                            ),
                           ),
                         ])),
                 SizedBox(
@@ -477,34 +564,104 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         fontSize: getFontSize(24)),
                   ),
                 ),
-                /*ListView.builder(
-                    shrinkWrap: true,
-                    physics: const NeverScrollableScrollPhysics(),
-                    itemCount: 5,
-                    itemBuilder: (BuildContext context, int index) {
-                      return RecentExpenses(
-                        image: "asset/icons/mg_image.png",
-                        title: "Loan Amount Payment",
-                        date: "04/12/2022",
-                        status:"credit" ,
-                        amount: "5000",
-                        transactionStatus:"Failed" ,
-                      );
-                    }),*/
                 SizedBox(
                   height: getVerticalSize(25),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'No Expenses Found',
-                      style: AppStyle.textStyleDMSANS.copyWith(
-                          color: ColorConstant.primaryDarkGreen,
-                          fontWeight: FontWeight.w700,
-                          fontSize: getFontSize(24)),
-                    ),
-                  ],
+                Obx(
+                  () => statisticController.statisticModel.value.data != null
+                      ? statisticController.statisticModel.value.data!
+                              .userTransaction!.isNotEmpty
+                          ? ListView.builder(
+                              shrinkWrap: true,
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: statisticController.statisticModel
+                                  .value.data!.userTransaction!.length,
+                              itemBuilder: (BuildContext context, int index) {
+                                return RecentExpenses(
+                                  title: statisticController.statisticModel
+                                      .value.data!.userTransaction![index].notes
+                                      .toString(),
+                                  amount: statisticController
+                                      .statisticModel
+                                      .value
+                                      .data!
+                                      .userTransaction![index]
+                                      .amount
+                                      .toString(),
+                                  image: "asset/icons/img_history.png",
+                                  status: statisticController
+                                      .statisticModel
+                                      .value
+                                      .data!
+                                      .userTransaction![index]
+                                      .status
+                                      .toString(),
+                                  transactionStatus: statisticController
+                                      .statisticModel
+                                      .value
+                                      .data!
+                                      .userTransaction![index]
+                                      .transactionStatus
+                                      .toString(),
+                                  date: statisticController.statisticModel.value
+                                      .data!.userTransaction![index].createdAt
+                                      .toString(),
+                                );
+                              })
+                          : Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Padding(
+                                    padding:
+                                        EdgeInsets.all(getVerticalSize(20)),
+                                    child: Container(
+                                        width: double.infinity,
+                                        height: getVerticalSize(40),
+                                        margin: EdgeInsets.symmetric(
+                                            horizontal: getHorizontalSize(20)),
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            color:
+                                                ColorConstant.primaryAppTextF1),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  "No New Transactions",
+                                                  style: AppStyle.DmSansFont
+                                                      .copyWith(
+                                                          color: ColorConstant
+                                                              .naturalGrey3,
+                                                          fontWeight:
+                                                              FontWeight.w600,
+                                                          fontSize:
+                                                              getFontSize(20)),
+                                                )
+                                              ],
+                                            ),
+                                          ],
+                                        )))
+                              ],
+                            )
+                      : Padding(
+                          padding: const EdgeInsets.all(180),
+                          child: Container(
+                              height: 50,
+                              width: 50,
+                              child: LoadingIndicator(
+                                indicatorType: Indicator.lineSpinFadeLoader,
+                                colors: [ColorConstant.buttonGreen],
+                                strokeWidth: 1,
+                                backgroundColor: Colors.transparent,
+                                pathBackgroundColor: Colors.transparent,
+                              )),
+                        ),
                 ),
                 SizedBox(
                   height: getVerticalSize(50),
@@ -516,18 +673,19 @@ class _StatisticScreenState extends State<StatisticScreen> {
   }
 
   BarChartGroupData makeGroupData(
-    int x,
-    double y, {
+    double total,
+    int day,
+    double income, {
     bool isTouched = false,
     Color barColor = Colors.white,
     double width = 22,
     List<int> showTooltips = const [],
   }) {
     return BarChartGroupData(
-      x: x,
+      x: day,
       barRods: [
         BarChartRodData(
-          toY: isTouched ? y + 1 : y,
+          toY: isTouched ? income + 1 : income,
           color: isTouched ? Color(0xff4CD080) : Color(0xff4CD080),
           width: 12,
           borderRadius: BorderRadius.circular(10),
@@ -545,26 +703,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
     );
   }
 
-  List<BarChartGroupData> showingGroups() => List.generate(7, (i) {
-        switch (i) {
-          case 0:
-            return makeGroupData(0, 10, isTouched: i == touchedIndex);
-          case 1:
-            return makeGroupData(1, 6.5, isTouched: i == touchedIndex);
-          case 2:
-            return makeGroupData(2, 5, isTouched: i == touchedIndex);
-          case 3:
-            return makeGroupData(3, 7.5, isTouched: i == touchedIndex);
-          case 4:
-            return makeGroupData(4, 9, isTouched: i == touchedIndex);
-          case 5:
-            return makeGroupData(5, 11.5, isTouched: i == touchedIndex);
-          case 6:
-            return makeGroupData(6, 6.5, isTouched: i == touchedIndex);
-          default:
-            return throw Error();
-        }
-      });
+
 
   Widget getTitles(double value, TitleMeta meta) {
     const style = TextStyle(
@@ -643,50 +782,57 @@ class _StatisticScreenState extends State<StatisticScreen> {
         switch (i) {
           case 0:
             return makeGroupData(
+              25,
               0,
-              Random().nextInt(15).toDouble() + 6,
+              5,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 1:
             return makeGroupData(
+              10,
               1,
-              Random().nextInt(15).toDouble() + 6,
+             5,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 2:
             return makeGroupData(
+              30,
               2,
-              Random().nextInt(15).toDouble() + 6,
+              5,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 3:
             return makeGroupData(
+              25,
               3,
-              Random().nextInt(15).toDouble() + 6,
+              5,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 4:
             return makeGroupData(
+              20,
               4,
-              Random().nextInt(15).toDouble() + 6,
+              5,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 5:
             return makeGroupData(
+              20,
               5,
-              Random().nextInt(15).toDouble() + 6,
+              5,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 6:
             return makeGroupData(
+              20,
               6,
-              Random().nextInt(15).toDouble() + 6,
+              10,
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
