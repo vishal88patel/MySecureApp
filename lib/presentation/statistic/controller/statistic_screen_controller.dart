@@ -23,7 +23,7 @@ class StatisticScreenController extends GetxController {
 
   @override
   void onInit() {
-    callStasticApi(type: type.value,tType:tType.value);
+    callStasticApi(type: type.value,tType:tType.value,showLoader: false);
     super.onInit();
   }
 
@@ -36,10 +36,10 @@ class StatisticScreenController extends GetxController {
     isIncomeExpense.value = index;
     if(isIncomeExpense.value==2){
       tType.value = "debit";
-      callStasticApi(type: type.value,tType:tType.value);
+      callStasticApi(type: type.value,tType:tType.value,showLoader: true);
     }else{
       tType.value = "credit";
-      callStasticApi(type: type.value,tType:tType.value);
+      callStasticApi(type: type.value,tType:tType.value,showLoader: true);
     }
   }
 
@@ -47,19 +47,19 @@ class StatisticScreenController extends GetxController {
     isWeeklyTime.value = index;
     if(isWeeklyTime.value==2){
       type.value = 1;
-      callStasticApi(type: type.value,tType:tType.value);
+      callStasticApi(type: type.value,tType:tType.value,showLoader: true);
     }else{
       type.value =0;
-      callStasticApi(type: type.value,tType:tType.value);
+      callStasticApi(type: type.value,tType:tType.value,showLoader: true);
     }
   }
 
-  Future<void> callStasticApi({required int type,required String tType}) async {
+  Future<void> callStasticApi({required int type,required String tType,required bool showLoader}) async {
     ApiService()
         .callGetApi(
         body: await callStasticApiBody(),
         headerWithToken: true,
-        showLoader: true,
+        showLoader: showLoader,
         url: "${ApiEndPoints.GET_STASTICS}?type=$type&transaction_type=$tType")
         .then((value) {
       print("callStasticApi"+value.toString());
