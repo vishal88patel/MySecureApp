@@ -10,11 +10,9 @@ class StatisticScreenController extends GetxController {
   var statisticModel=GetStasticsModel().obs;
   var isIncomeExpense = 1.obs;
   var isWeeklyTime = 1.obs;
-  var totalIncome = "".obs;
-  var totalExpense = "".obs;
-  var lastDaysExpense = "".obs;
-  var weekly = false.obs;
-  var income = false.obs;
+  var totalIncome = "0".obs;
+  var totalExpense = "0".obs;
+  var lastDaysExpense = "0".obs;
   var type = 0.obs;
   var tType = "credit".obs;
 

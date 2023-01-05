@@ -173,7 +173,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       statisticController.timeExpense(1);
                                     },
@@ -208,7 +208,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       ),
                                     ),
                                   ),
-                                  InkWell(
+                                  GestureDetector(
                                     onTap: () {
                                       statisticController.timeExpense(2);
                                     },
@@ -338,7 +338,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                       () => Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               statisticController.incomeExpense(1);
                             },
@@ -352,7 +352,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       : Colors.transparent),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: getHorizontalSize(50),
+                                    horizontal: getHorizontalSize(45),
                                     vertical: getVerticalSize(15)),
                                 child: Text(
                                   "Income",
@@ -363,12 +363,12 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                           ? ColorConstant.darkGreen
                                           : ColorConstant.greyBD,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(20)),
+                                      fontSize: getFontSize(22)),
                                 ),
                               ),
                             ),
                           ),
-                          InkWell(
+                          GestureDetector(
                             onTap: () {
                               statisticController.incomeExpense(2);
                             },
@@ -382,7 +382,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       : Colors.transparent),
                               child: Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: getHorizontalSize(40),
+                                    horizontal: getHorizontalSize(45),
                                     vertical: getVerticalSize(15)),
                                 child: Text(
                                   "Expenses",
@@ -393,7 +393,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                           ? ColorConstant.darkGreen
                                           : ColorConstant.greyBD,
                                       fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(20)),
+                                      fontSize: getFontSize(22)),
                                 ),
                               ),
                             ),
@@ -649,19 +649,47 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                         )))
                               ],
                             )
-                      : Padding(
-                          padding: const EdgeInsets.all(180),
+                      :Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Padding(
+                          padding:
+                          EdgeInsets.all(getVerticalSize(20)),
                           child: Container(
-                              height: 50,
-                              width: 50,
-                              child: LoadingIndicator(
-                                indicatorType: Indicator.lineSpinFadeLoader,
-                                colors: [ColorConstant.buttonGreen],
-                                strokeWidth: 1,
-                                backgroundColor: Colors.transparent,
-                                pathBackgroundColor: Colors.transparent,
-                              )),
-                        ),
+                              width: double.infinity,
+                              height: getVerticalSize(40),
+                              margin: EdgeInsets.symmetric(
+                                  horizontal: getHorizontalSize(20)),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                  BorderRadius.circular(12),
+                                  color:
+                                  ColorConstant.primaryAppTextF1),
+                              child: Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.center,
+                                children: [
+                                  Column(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "No New Transactions",
+                                        style: AppStyle.DmSansFont
+                                            .copyWith(
+                                            color: ColorConstant
+                                                .naturalGrey3,
+                                            fontWeight:
+                                            FontWeight.w600,
+                                            fontSize:
+                                            getFontSize(20)),
+                                      )
+                                    ],
+                                  ),
+                                ],
+                              )))
+                    ],
+                  ),
                 ),
                 SizedBox(
                   height: getVerticalSize(50),
