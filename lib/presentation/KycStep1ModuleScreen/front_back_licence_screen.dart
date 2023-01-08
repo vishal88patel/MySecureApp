@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
-
+import 'package:flutter/foundation.dart';
+import 'package:universal_html/html.dart' as html;
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -35,19 +36,51 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  var kycStep1Controller = Get.find<KycStep1ScreenController>();
+  // var kycStep1Controller = Get.find<KycStep1ScreenController>();
+  var kycStep1Controller = Get.put(KycStep1ScreenController());
 
   XFile? imageFile;
   @override
   void initState() {
-    _initCamera(context);
-
+    if (kIsWeb) {
+      askForPermission();
+    }else{
+      _initCamera(context);
+    }
     super.initState();
+  }
+
+  Future<void> askForPermission() async {
+    final perm = await html.window.navigator.permissions!.query({"name": "camera"});
+    if (perm.state == "denied") {
+      return;
+    }
+    // final stream = await html.window.navigator.getUserMedia(video: true);
+    _cameras = await availableCameras();
+    _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
+    _controller?.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      // _controller!.setFlashMode(FlashMode.off);
+      setState(() {});
+    });
+    setState(() {});
+
   }
 
 
   Future<void> _initCamera(context) async {
-    Map<Permission, PermissionStatus> statuses = await [
+    _cameras = await availableCameras();
+    _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
+    _controller?.initialize().then((_) {
+      if (!mounted) {
+        return;
+      }
+      _controller!.setFlashMode(FlashMode.off);
+      setState(() {});
+    });
+   /* Map<Permission, PermissionStatus> statuses = await [
       Permission.camera,
       Permission.microphone,
     ].request();
@@ -239,7 +272,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
         setState(() {});
       });
     }
-  }
+  */}
 
   @override
   void dispose() {
@@ -250,23 +283,23 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
   @override
   Widget build(BuildContext context) {
     super.build(context);
-    if (_controller != null) {
-      if (!_controller!.value.isInitialized) {
-        return Container();
-      }
-    } else {
-      return  Center(
-        child: SizedBox(
-          width: 32,
-          height: 32,
-          child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen,),
-        ),
-      );
-    }
+    // if (_controller != null) {
+    //   if (!_controller!.value.isInitialized) {
+    //     return Container();
+    //   }
+    // } else {
+    //   return  Center(
+    //     child: SizedBox(
+    //       width: 32,
+    //       height: 32,
+    //       child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen,),
+    //     ),
+    //   );
+    // }
 
-    if (!_controller!.value.isInitialized) {
-      return Container();
-    }
+    // if (!_controller!.value.isInitialized) {
+    //   return Container();
+    // }
     return Scaffold(
       backgroundColor: Theme.of(context).backgroundColor,
       key: _scaffoldKey,
@@ -553,7 +586,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
             imageFile = file;
           });
            if(widget.image==2){
-            kycStep1Controller.netImage2.value=file!.path;
+            // kycStep1Controller.netImage2.value=file!.path;
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -561,7 +594,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
             );
 
           }else if(widget.image==3){
-            kycStep1Controller.netImage3.value=file!.path;
+            // kycStep1Controller.netImage3.value=file!.path;
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -708,4 +741,5 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
 
   @override
   bool get wantKeepAlive => true;
+
 }

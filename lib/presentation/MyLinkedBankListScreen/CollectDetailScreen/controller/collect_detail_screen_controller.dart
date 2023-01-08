@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -28,7 +29,8 @@ class CollectDetailScreenController extends GetxController {
 
   @override
   void onInit() {
-    if(Platform.isAndroid){
+    if(kIsWeb){}
+   else if(Platform.isAndroid){
       platformForAndroid.setMethodCallHandler(_processEngineOutput_ANDROID);
     }else{
 

@@ -11,6 +11,7 @@ import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/controller/kyc
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
@@ -42,7 +43,8 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   @override
   void initState() {
     super.initState();
-    scanBarcodeNormal();
+    // scanBarcodeNormal();
+    // scanBarcode();
   }
 
 
@@ -53,9 +55,50 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       backgroundColor: Colors.black,
       body: WillPopScope(
         onWillPop: () => showBackDialog(),
-        child: Container(
-          child: Center(child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen),),
-        ),
+        child: Center(
+          child: ElevatedButton(
+            onPressed: () async {
+              var res = await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SimpleBarcodeScannerPage(),
+                  ));
+              setState(() {
+                if (res is String) {
+                  if (!mounted) return;
+
+                  setState(() {
+                    //_scanBarcode = barcodeScanRes;
+                    kycStep1Controller.qrCodeResult.value=res.toString();
+                    print(res.toString());
+                    if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0){
+                      counter=1;
+                      const start1 = "DCS";
+                      const end1 = "DDE";
+                      const start2 = "DAC";
+                      const end2 = "DDF";
+                      const start3 = "DBB";
+                      const end3 = "DBA";
+                      final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
+                      final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
+                      final startIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(start3);
+                      final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
+                      final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
+                      final endIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
+                      lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
+                      fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
+                      dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
+
+                      if(fname.isNotEmpty && lname.isNotEmpty){
+                        scanDataa(fname,lname,dobData);
+                      }}
+                  });
+                }
+              });
+            },
+            child: const Text('Open Scanner'),
+          ),
+        )
       ),
     );
   }
@@ -205,6 +248,46 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         if(fname.isNotEmpty && lname.isNotEmpty){
           scanDataa(fname,lname,dobData);
         }}
+    });
+  }
+
+  Future<void> scanBarcode() async {
+    var res = await Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const SimpleBarcodeScannerPage(),
+        ));
+    setState(() {
+      if (res is String) {
+        if (!mounted) return;
+
+        setState(() {
+          //_scanBarcode = barcodeScanRes;
+          kycStep1Controller.qrCodeResult.value=res.toString();
+          print(res.toString());
+          if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0){
+            counter=1;
+            const start1 = "DCS";
+            const end1 = "DDE";
+            const start2 = "DAC";
+            const end2 = "DDF";
+            const start3 = "DBB";
+            const end3 = "DBA";
+            final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
+            final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
+            final startIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(start3);
+            final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
+            final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
+            final endIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
+            lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
+            fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
+            dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
+
+            if(fname.isNotEmpty && lname.isNotEmpty){
+              scanDataa(fname,lname,dobData);
+            }}
+        });
+      }
     });
   }
 
