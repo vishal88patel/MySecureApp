@@ -486,11 +486,13 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               child: Container(
                                   height: getSize(200.00),
                                   width: getSize(200.00),
-                                  child: CircularProgressIndicator(
-                                      value: statisticController.finalpercentGraph3.value,
-                                      strokeWidth: 20,
-                                      backgroundColor: Colors.green,
-                                      color: Colors.orange)))
+                                  child: Obx(()=>
+                                    CircularProgressIndicator(
+                                        value: statisticController.percentGraph3.value,
+                                        strokeWidth: 20,
+                                        backgroundColor: Colors.green,
+                                        color: Colors.orange),
+                                  )))
                         ]))),
                 Align(
                     alignment: Alignment.center,
