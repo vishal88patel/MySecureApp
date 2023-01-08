@@ -43,6 +43,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => scanBarcode());
     // scanBarcodeNormal();
     // scanBarcode();
   }
@@ -56,48 +57,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       body: WillPopScope(
         onWillPop: () => showBackDialog(),
         child: Center(
-          child: ElevatedButton(
-            onPressed: () async {
-              var res = await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SimpleBarcodeScannerPage(),
-                  ));
-              setState(() {
-                if (res is String) {
-                  if (!mounted) return;
-
-                  setState(() {
-                    //_scanBarcode = barcodeScanRes;
-                    kycStep1Controller.qrCodeResult.value=res.toString();
-                    print(res.toString());
-                    if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0){
-                      counter=1;
-                      const start1 = "DCS";
-                      const end1 = "DDE";
-                      const start2 = "DAC";
-                      const end2 = "DDF";
-                      const start3 = "DBB";
-                      const end3 = "DBA";
-                      final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
-                      final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
-                      final startIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(start3);
-                      final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
-                      final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
-                      final endIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
-                      lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
-                      fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
-                      dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
-
-                      if(fname.isNotEmpty && lname.isNotEmpty){
-                        scanDataa(fname,lname,dobData);
-                      }}
-                  });
-                }
-              });
-            },
-            child: const Text('Open Scanner'),
-          ),
+          child:CircularProgressIndicator(color: ColorConstant.primaryDarkGreen,)
         )
       ),
     );
@@ -252,43 +212,46 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   }
 
   Future<void> scanBarcode() async {
-    var res = await Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const SimpleBarcodeScannerPage(),
-        ));
-    setState(() {
-      if (res is String) {
-        if (!mounted) return;
+    Future.delayed(Duration(microseconds: 200),() async {
+      var res = await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const SimpleBarcodeScannerPage(),
+          ));
+      setState(() {
+        if (res is String) {
+          if (!mounted) return;
 
-        setState(() {
-          //_scanBarcode = barcodeScanRes;
-          kycStep1Controller.qrCodeResult.value=res.toString();
-          print(res.toString());
-          if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0){
-            counter=1;
-            const start1 = "DCS";
-            const end1 = "DDE";
-            const start2 = "DAC";
-            const end2 = "DDF";
-            const start3 = "DBB";
-            const end3 = "DBA";
-            final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
-            final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
-            final startIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(start3);
-            final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
-            final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
-            final endIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
-            lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
-            fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
-            dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
+          setState(() {
+            //_scanBarcode = barcodeScanRes;
+            kycStep1Controller.qrCodeResult.value=res.toString();
+            print(res.toString());
+            if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0){
+              counter=1;
+              const start1 = "DCS";
+              const end1 = "DDE";
+              const start2 = "DAC";
+              const end2 = "DDF";
+              const start3 = "DBB";
+              const end3 = "DBA";
+              final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
+              final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
+              final startIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(start3);
+              final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
+              final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
+              final endIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
+              lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
+              fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
+              dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
 
-            if(fname.isNotEmpty && lname.isNotEmpty){
-              scanDataa(fname,lname,dobData);
-            }}
-        });
-      }
+              if(fname.isNotEmpty && lname.isNotEmpty){
+                scanDataa(fname,lname,dobData);
+              }}
+          });
+        }
+      });
     });
+
   }
 
 }

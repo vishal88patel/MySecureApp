@@ -300,87 +300,98 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
     // if (!_controller!.value.isInitialized) {
     //   return Container();
     // }
-    return Scaffold(
-      backgroundColor: Theme.of(context).backgroundColor,
-      key: _scaffoldKey,
-      extendBody: true,
-      body: WillPopScope(
-        onWillPop: () => showBackDialog(),
-        child: Stack(
-          children: [
-            _buildCameraPreview(),
-            cameraOverlay(padding: 2,image: widget.image!, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
-            Column(
-              children: [
-                SizedBox(
-                  height: getVerticalSize(52),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      InkWell(
-                        onTap:(){
-                          Get.back();
-                        },
-                        child: SvgPicture.asset(
-                          "asset/icons/ic_back.svg",
-                          fit: BoxFit.fill,
-                          color: Colors.white,
-                          height: getVerticalSize(42),
-                        ),
-                      ),
-                      Text(
-                        "Driving Licence",
-                        style: AppStyle.textStyleDMSANS.copyWith(
-                            color: ColorConstant.primaryWhite,
-                            fontWeight: FontWeight.w700,
-                            fontSize: getFontSize(24)),
-                      ),
-                      SvgPicture.asset(
-                        "asset/icons/ic_back.svg",
-                        fit: BoxFit.fill,
-                        color: Colors.transparent,
-                      ),
-                    ],
+    if (_controller == null || !_controller!.value.isInitialized) {
+      return  Center(
+              child: SizedBox(
+                width: 32,
+                height: 32,
+                child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen,),
+              ),
+            );
+    }else{
+      return Scaffold(
+        backgroundColor: Theme.of(context).backgroundColor,
+        key: _scaffoldKey,
+        extendBody: true,
+        body: WillPopScope(
+          onWillPop: () => showBackDialog(),
+          child: Stack(
+            children: [
+              _buildCameraPreview(),
+              cameraOverlay(padding: 2,image: widget.image!, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
+              Column(
+                children: [
+                  SizedBox(
+                    height: getVerticalSize(52),
                   ),
-                ),
-                SizedBox(
-                  height: getVerticalSize(16),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Center(
-                      child: SvgPicture.asset(
-                        "asset/icons/ic_app_logo.svg",
-                        height: getVerticalSize(100),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                  Padding(
+                    padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
+                        InkWell(
+                          onTap:(){
+                            Get.back();
+                          },
+                          child: SvgPicture.asset(
+                            "asset/icons/ic_back.svg",
+                            fit: BoxFit.fill,
+                            color: Colors.white,
+                            height: getVerticalSize(42),
+                          ),
+                        ),
                         Text(
-                          widget.title,textAlign: TextAlign.center,
+                          "Driving Licence",
                           style: AppStyle.textStyleDMSANS.copyWith(
                               color: ColorConstant.primaryWhite,
-                              fontWeight: FontWeight.w500,
+                              fontWeight: FontWeight.w700,
                               fontSize: getFontSize(24)),
+                        ),
+                        SvgPicture.asset(
+                          "asset/icons/ic_back.svg",
+                          fit: BoxFit.fill,
+                          color: Colors.transparent,
                         ),
                       ],
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                  SizedBox(
+                    height: getVerticalSize(16),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Center(
+                        child: SvgPicture.asset(
+                          "asset/icons/ic_app_logo.svg",
+                          height: getVerticalSize(100),
+                          fit: BoxFit.fill,
+                        ),
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            widget.title,textAlign: TextAlign.center,
+                            style: AppStyle.textStyleDMSANS.copyWith(
+                                color: ColorConstant.primaryWhite,
+                                fontWeight: FontWeight.w500,
+                                fontSize: getFontSize(24)),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
 
-          ],
+            ],
+          ),
         ),
-      ),
-      bottomNavigationBar: _buildBottomNavigationBar(),
-    );
+        bottomNavigationBar: _buildBottomNavigationBar(),
+      );
+
+    }
   }
 
   Widget cameraOverlay({required double padding,required int image, required double aspectRatio, required Color color}) {
