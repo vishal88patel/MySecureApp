@@ -2,9 +2,20 @@ import 'package:d_chart/d_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
+import '../model/getStasticsModel.dart';
+
 
 class ChartWeeklyScreen extends StatefulWidget {
-  const ChartWeeklyScreen({Key? key}) : super(key: key);
+ final iWeek1;
+ final iWeek2;
+ final iWeek3;
+ final iWeek4;
+ final eWeek1;
+ final eWeek2;
+ final eWeek3;
+ final eWeek4;
+
+  const ChartWeeklyScreen({Key? key, this.iWeek1, this.iWeek2, this.iWeek3, this.iWeek4, this.eWeek1, this.eWeek2, this.eWeek3, this.eWeek4}) : super(key: key);
 
   @override
   State<ChartWeeklyScreen> createState() => _ChartWeeklyScreenState();
@@ -23,28 +34,28 @@ class _ChartWeeklyScreenState extends State<ChartWeeklyScreen> {
 
           data: [
             {
-              'id': 'Bar 1',
+              'id': 'Income',
               'data': [
-                {'domain': 'Week1', 'measure': 7},
-                {'domain': 'Week2', 'measure': 3},
-                {'domain': 'Week3', 'measure': 4},
-                {'domain': 'Week4', 'measure': 6},
+                {'domain': 'Week1', 'measure': int.parse(widget.iWeek1.toString())},
+                {'domain': 'Week2', 'measure': int.parse(widget.iWeek2.toString())},
+                {'domain': 'Week3', 'measure': int.parse(widget.iWeek3.toString())},
+                {'domain': 'Week4', 'measure': int.parse(widget.iWeek4.toString())},
               ],
             },
             {
-              'id': 'Bar 2',
+              'id': 'Expense',
               'data': [
-                {'domain': 'Week1', 'measure': 4},
-                {'domain': 'Week2', 'measure': 10},
-                {'domain': 'Week3', 'measure': 2},
-                {'domain': 'Week4', 'measure': 1},
+                {'domain': 'Week1', 'measure': int.parse(widget.eWeek1.toString())},
+                {'domain': 'Week2', 'measure': int.parse(widget.eWeek2.toString())},
+                {'domain': 'Week3', 'measure': int.parse(widget.eWeek3.toString())},
+                {'domain': 'Week4', 'measure': int.parse(widget.eWeek4.toString())},
               ],
             },
           ],
 
 
           measureMin: 0,
-          measureMax: 8,
+          measureMax: 100,
           minimumPaddingBetweenLabel: 1,
           domainLabelPaddingToAxisLine: 16,
           axisLineTick: 2,
@@ -54,7 +65,7 @@ class _ChartWeeklyScreenState extends State<ChartWeeklyScreen> {
           axisLinePointWidth: 0,
           axisLineColor: Colors.transparent,
           measureLabelPaddingToAxisLine: 16,
-          barColor: (barData, index, id) => id == 'Bar 1'
+          barColor: (barData, index, id) => id == 'Income'
               ? Color(0xff4CD080)
               : Color(0xffFFAE58),
           showBarValue: true,

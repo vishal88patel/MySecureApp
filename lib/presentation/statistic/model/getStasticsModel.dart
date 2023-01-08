@@ -109,12 +109,14 @@ class UserTransaction {
 }
 
 class Statistic {
-  String? totalIncome;
-  int? totalExpense;
-  String? lastDaysExpenses;
-  int? lastDaysIncome;
-  int? bankAdd;
-  int? cardAdd;
+  dynamic totalIncome;
+  dynamic totalExpense;
+  dynamic lastDaysExpenses;
+  dynamic lastDaysIncome;
+  dynamic bankAdd;
+  dynamic cardAdd;
+  MonthlyData? monthlyData;
+  List<WeeklyData>? weeklyData;
 
   Statistic(
       {this.totalIncome,
@@ -122,7 +124,9 @@ class Statistic {
         this.lastDaysExpenses,
         this.lastDaysIncome,
         this.bankAdd,
-        this.cardAdd});
+        this.cardAdd,
+        this.monthlyData,
+        this.weeklyData});
 
   Statistic.fromJson(Map<String, dynamic> json) {
     totalIncome = json['totalIncome'];
@@ -131,6 +135,15 @@ class Statistic {
     lastDaysIncome = json['lastDaysIncome'];
     bankAdd = json['bankAdd'];
     cardAdd = json['cardAdd'];
+    monthlyData = json['monthlyData'] != null
+        ? new MonthlyData.fromJson(json['monthlyData'])
+        : null;
+    if (json['weeklyData'] != null) {
+      weeklyData = <WeeklyData>[];
+      json['weeklyData'].forEach((v) {
+        weeklyData!.add(new WeeklyData.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -141,6 +154,95 @@ class Statistic {
     data['lastDaysIncome'] = this.lastDaysIncome;
     data['bankAdd'] = this.bankAdd;
     data['cardAdd'] = this.cardAdd;
+    if (this.monthlyData != null) {
+      data['monthlyData'] = this.monthlyData!.toJson();
+    }
+    if (this.weeklyData != null) {
+      data['weeklyData'] = this.weeklyData!.map((v) => v.toJson()).toList();
+    }
+    return data;
+  }
+}
+
+class MonthlyData {
+  Week1? week1;
+  Week1? week2;
+  Week1? week3;
+  Week1? week4;
+
+  MonthlyData({this.week1, this.week2, this.week3, this.week4});
+
+  MonthlyData.fromJson(Map<String, dynamic> json) {
+    week1 = json['week1'] != null ? new Week1.fromJson(json['week1']) : null;
+    week2 = json['week2'] != null ? new Week1.fromJson(json['week2']) : null;
+    week3 = json['week3'] != null ? new Week1.fromJson(json['week3']) : null;
+    week4 = json['week4'] != null ? new Week1.fromJson(json['week4']) : null;
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.week1 != null) {
+      data['week1'] = this.week1!.toJson();
+    }
+    if (this.week2 != null) {
+      data['week2'] = this.week2!.toJson();
+    }
+    if (this.week3 != null) {
+      data['week3'] = this.week3!.toJson();
+    }
+    if (this.week4 != null) {
+      data['week4'] = this.week4!.toJson();
+    }
+    return data;
+  }
+}
+
+class Week1 {
+  String? income;
+  String? expens;
+  String? duration;
+
+  Week1({this.income, this.expens, this.duration});
+
+  Week1.fromJson(Map<String, dynamic> json) {
+    income = json['income'];
+    expens = json['expens'];
+    duration = json['duration'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['income'] = this.income;
+    data['expens'] = this.expens;
+    data['duration'] = this.duration;
+    return data;
+  }
+}
+
+class WeeklyData {
+  String? id;
+  String? date;
+  dynamic total;
+  dynamic income;
+  dynamic expens;
+
+  WeeklyData({this.id, this.date, this.total, this.income, this.expens});
+
+  WeeklyData.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    date = json['date'];
+    total = json['total'];
+    income = json['income'];
+    expens = json['expens'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['date'] = this.date;
+    data['total'] = this.total;
+    data['income'] = this.income;
+    data['expens'] = this.expens;
     return data;
   }
 }

@@ -182,8 +182,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                           borderRadius:
                                               BorderRadius.circular(50),
                                           color: statisticController
-                                                      .isWeeklyTime
-                                                      .value ==
+                                                      .isWeeklyTime.value ==
                                                   1
                                               ? ColorConstant.primaryWhite
                                               : Colors.transparent),
@@ -199,8 +198,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                                               .isWeeklyTime
                                                               .value ==
                                                           1
-                                                      ? ColorConstant
-                                                          .darkGreen
+                                                      ? ColorConstant.darkGreen
                                                       : ColorConstant.greyBD,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: getFontSize(16)),
@@ -217,8 +215,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                           borderRadius:
                                               BorderRadius.circular(50),
                                           color: statisticController
-                                                      .isWeeklyTime
-                                                      .value ==
+                                                      .isWeeklyTime.value ==
                                                   2
                                               ? ColorConstant.primaryWhite
                                               : Colors.transparent),
@@ -234,8 +231,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                                               .isWeeklyTime
                                                               .value ==
                                                           2
-                                                      ? ColorConstant
-                                                          .darkGreen
+                                                      ? ColorConstant.darkGreen
                                                       : ColorConstant.greyBD,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: getFontSize(16)),
@@ -290,37 +286,48 @@ class _StatisticScreenState extends State<StatisticScreen> {
                     ],
                   ),
                 ),
-                Obx(()=>
-                   statisticController.isWeeklyTime.value==1?AspectRatio(
-                    aspectRatio: 1.95,
-                    child: Stack(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                Obx(
+                  () => statisticController.isWeeklyTime.value == 1
+                      ? AspectRatio(
+                          aspectRatio: 1.95,
+                          child: Stack(
                             children: <Widget>[
-                              Expanded(
-                                child: Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(horizontal: 0),
-                                  child: BarChart(
-                                    randomData(),
-                                    swapAnimationDuration: animDuration,
-                                  ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.symmetric(vertical: 0),
+                                child: Column(
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 0),
+                                        child: BarChart(
+                                          randomData(),
+                                          swapAnimationDuration: animDuration,
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ),
-                      ],
-                    ),
-                  ):ChartWeeklyScreen(),
+                        )
+                      : statisticController.statisticModel.value.data != null
+                          ? Obx(() => ChartWeeklyScreen(
+                              iWeek1: statisticController.iWeek1.value=="0"?"1":statisticController.iWeek1.value,
+                              iWeek2: statisticController.iWeek2.value=="0"?"1":statisticController.iWeek2.value,
+                              iWeek3: statisticController.iWeek3.value=="0"?"1":statisticController.iWeek3.value,
+                              iWeek4: statisticController.iWeek4.value=="0"?"1":statisticController.iWeek4.value,
+                              eWeek1: statisticController.eWeek1.value=="0"?"1":statisticController.eWeek1.value,
+                              eWeek2: statisticController.eWeek2.value=="0"?"1":statisticController.eWeek2.value,
+                              eWeek3: statisticController.eWeek3.value=="0"?"1":statisticController.eWeek3.value,
+                              eWeek4: statisticController.eWeek4.value=="0"?"1":statisticController.eWeek4.value))
+                          : Container(),
                 ),
                 SizedBox(
                   height: getVerticalSize(30),
                 ),
-
                 SizedBox(
                   height: getVerticalSize(30),
                 ),
@@ -439,11 +446,11 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       fontSize: getFontSize(20)),
                                 ),
                               ]),
-                          Obx(()=>
-                             Text(
-                                "\$" +
-                                    statisticController.totalIncome.value
-                                        .toString(),
+                          Obx(
+                            () => Text(
+                              "\$" +
+                                  statisticController.totalIncome.value
+                                      .toString(),
                               style: AppStyle.textStyleDMSANS.copyWith(
                                   color: ColorConstant.primaryBlack,
                                   fontWeight: FontWeight.w700,
@@ -464,7 +471,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             borderRadius: BorderRadius.circular(100)),
                         child:
                             Stack(alignment: Alignment.centerLeft, children: [
-                          Align(
+                         /* Align(
                               alignment: Alignment.centerLeft,
                               child: Container(
                                   height: getSize(200.00),
@@ -473,14 +480,14 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       value: 0.3,
                                       backgroundColor: Colors.teal,
                                       strokeWidth: 20,
-                                      color: Colors.green))),
+                                      color: Colors.green))),*/
                           Align(
                               alignment: Alignment.centerLeft,
                               child: Container(
                                   height: getSize(200.00),
                                   width: getSize(200.00),
                                   child: CircularProgressIndicator(
-                                      value: 0.7,
+                                      value: statisticController.finalpercentGraph3.value,
                                       strokeWidth: 20,
                                       backgroundColor: Colors.green,
                                       color: Colors.orange)))
@@ -506,7 +513,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                 padding:
                                     EdgeInsets.only(left: 8, top: 1, bottom: 1),
                                 child: Text(
-                                  'Transportation',
+                                  'Expense',
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.primaryOrange,
                                       fontWeight: FontWeight.w500,
@@ -525,14 +532,14 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               Padding(
                                 padding: EdgeInsets.only(left: 8, top: 1),
                                 child: Text(
-                                  'Shopping',
+                                  'Income',
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.buttonGreen,
                                       fontWeight: FontWeight.w500,
                                       fontSize: getFontSize(18)),
                                 ),
                               ),
-                              Container(
+                              /*Container(
                                   height: getSize(6.00),
                                   width: getSize(6.00),
                                   margin: EdgeInsets.only(
@@ -550,7 +557,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                       fontWeight: FontWeight.w500,
                                       fontSize: getFontSize(18)),
                                 ),
-                              )
+                              )*/
                             ]))),
                 Padding(
                   padding: EdgeInsets.symmetric(
@@ -649,47 +656,44 @@ class _StatisticScreenState extends State<StatisticScreen> {
                                         )))
                               ],
                             )
-                      :Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                          padding:
-                          EdgeInsets.all(getVerticalSize(20)),
-                          child: Container(
-                              width: double.infinity,
-                              height: getVerticalSize(40),
-                              margin: EdgeInsets.symmetric(
-                                  horizontal: getHorizontalSize(20)),
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                  BorderRadius.circular(12),
-                                  color:
-                                  ColorConstant.primaryAppTextF1),
-                              child: Row(
-                                mainAxisAlignment:
-                                MainAxisAlignment.center,
-                                children: [
-                                  Column(
-                                    mainAxisAlignment:
-                                    MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "No New Transactions",
-                                        style: AppStyle.DmSansFont
-                                            .copyWith(
-                                            color: ColorConstant
-                                                .naturalGrey3,
-                                            fontWeight:
-                                            FontWeight.w600,
-                                            fontSize:
-                                            getFontSize(20)),
-                                      )
-                                    ],
-                                  ),
-                                ],
-                              )))
-                    ],
-                  ),
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Padding(
+                                padding: EdgeInsets.all(getVerticalSize(20)),
+                                child: Container(
+                                    width: double.infinity,
+                                    height: getVerticalSize(40),
+                                    margin: EdgeInsets.symmetric(
+                                        horizontal: getHorizontalSize(20)),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        color: ColorConstant.primaryAppTextF1),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              "No New Transactions",
+                                              style:
+                                                  AppStyle.DmSansFont.copyWith(
+                                                      color: ColorConstant
+                                                          .naturalGrey3,
+                                                      fontWeight:
+                                                          FontWeight.w600,
+                                                      fontSize:
+                                                          getFontSize(20)),
+                                            )
+                                          ],
+                                        ),
+                                      ],
+                                    )))
+                          ],
+                        ),
                 ),
                 SizedBox(
                   height: getVerticalSize(50),
@@ -722,7 +726,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
               : const BorderSide(color: Colors.white, width: 0),
           backDrawRodData: BackgroundBarChartRodData(
             show: true,
-            toY: 20,
+            toY: 100,
             color: Color(0xffFFAE58),
           ),
         ),
@@ -730,8 +734,6 @@ class _StatisticScreenState extends State<StatisticScreen> {
       showingTooltipIndicators: showTooltips,
     );
   }
-
-
 
   Widget getTitles(double value, TitleMeta meta) {
     const style = TextStyle(
@@ -742,25 +744,25 @@ class _StatisticScreenState extends State<StatisticScreen> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = const Text('Mon', style: style);
+        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![0].id.toString(),);
         break;
       case 1:
-        text = const Text('Tue', style: style);
+        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![1].id.toString(),);
         break;
       case 2:
-        text = const Text('Wed', style: style);
+        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![2].id.toString(),);
         break;
       case 3:
-        text = const Text('Tus', style: style);
+        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![3].id.toString(),);
         break;
       case 4:
-        text = const Text('Fri', style: style);
+        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![4].id.toString(),);
         break;
       case 5:
-        text = const Text('Set', style: style);
+        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![5].id.toString(),);
         break;
       case 6:
-        text = const Text('Sun', style: style);
+        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![6].id.toString(),);
         break;
       default:
         text = const Text('', style: style);
@@ -810,57 +812,57 @@ class _StatisticScreenState extends State<StatisticScreen> {
         switch (i) {
           case 0:
             return makeGroupData(
-              25,
               0,
-              5,
+              0,
+              statisticController.iDay1.value.toDouble(),
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 1:
             return makeGroupData(
-              10,
+              0,
               1,
-             5,
+              statisticController.iDay2.value.toDouble(),
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 2:
             return makeGroupData(
-              30,
+              0,
               2,
-              5,
+              statisticController.iDay3.value.toDouble(),
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 3:
             return makeGroupData(
-              25,
+              0,
               3,
-              5,
+              statisticController.iDay4.value.toDouble(),
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 4:
             return makeGroupData(
-              20,
+              0,
               4,
-              5,
+              statisticController.iDay5.value.toDouble(),
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 5:
             return makeGroupData(
-              20,
+              0,
               5,
-              5,
+              statisticController.iDay6.value.toDouble(),
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );
           case 6:
             return makeGroupData(
-              20,
+              0,
               6,
-              10,
+              statisticController.iDay6.value.toDouble(),
               barColor: widget.availableColors[
                   Random().nextInt(widget.availableColors.length)],
             );

@@ -59,8 +59,8 @@ class DashBoardScreenController extends GetxController {
         }
 
       } else {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
+        // UIUtils.showSnakBar(
+        //     bodyText: value['message'], headerText: StringConstants.ERROR);
       }
     });
   }

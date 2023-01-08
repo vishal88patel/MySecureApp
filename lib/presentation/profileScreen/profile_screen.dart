@@ -8,6 +8,7 @@ import 'package:secure_cash_app/presentation/profileScreen/widget/profile_op_wid
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/common_utils.dart';
+import 'package:swipe_deck/swipe_deck.dart';
 
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../utils/HelperFiles/math_utils.dart';
@@ -19,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
   var profileScreenController = Get.put(ProfileScreenController());
   var dashBoardController = Get.find<DashBoardScreenController>();
 
+  List<String> abc=["1","2","3"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Container(
                 height: getVerticalSize(
-                  490.00,
+                  530.00,
                 ),
                 width: size.width,
                 child: Stack(
@@ -52,7 +54,7 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     ),
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Align(
                           alignment: Alignment.topCenter,
@@ -230,7 +232,8 @@ class ProfileScreen extends StatelessWidget {
                             ],
                           ),
                         ),
-                        Card(
+
+                        /*Card(
                           margin: const EdgeInsets.symmetric(horizontal: 0),
                           color: ColorConstant.naturalGrey2,
                           shape: RoundedRectangleBorder(
@@ -371,7 +374,14 @@ class ProfileScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),
+                        ),*/
+                      ],
+                    ),
+                    Column(
+                      children: [
+                        SizedBox(height:220,),
+                            Obx(()=>Stack(alignment: Alignment.center, children:profileScreenController.cardList.value)),
+
                       ],
                     ),
                   ],
