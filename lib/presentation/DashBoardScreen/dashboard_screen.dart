@@ -42,7 +42,6 @@ class _DashBoardScreenState extends State<DashBoardScreen> {
             children: [
               HomeScreen(),
               StatisticScreen(),
-              //StatisticScreen(),
              ScanScreen(),
               BitCoinnScreen(),
               ProfileScreen(),
