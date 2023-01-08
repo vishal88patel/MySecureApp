@@ -136,8 +136,9 @@ class StatisticScreenController extends GetxController {
         igraph3.value=int.parse(statisticModel.value.data!.statistic!.totalIncome!.toString()).toDouble();
         egraph3.value=int.parse(statisticModel.value.data!.statistic!.totalExpense!.toString()).toDouble();
         totalGraph3.value=igraph3.value+egraph3.value;
-        percentGraph3.value=egraph3.value/totalGraph3.value;
-        finalpercentGraph3.value=percentGraph3.value.toInt()*100;
+        percentGraph3.value=egraph3.value==0?0.0:egraph3.value/totalGraph3.value;
+        //finalpercentGraph3.value=percentGraph3.value*100;
+        print("percentGraph3:"+percentGraph3.value.toString());
       } else {
         UIUtils.hideProgressDialog();
       }
