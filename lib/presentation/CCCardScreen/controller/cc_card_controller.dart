@@ -127,7 +127,7 @@ class CCCardController extends GetxController {
         }else{
           state.value=true;
         }
-
+        UIUtils.hideProgressDialog();
 
 
       } else {
@@ -157,12 +157,12 @@ class CCCardController extends GetxController {
         if(isLock.value=="1"){
           isLock.value="0";
           color.value=cashCardModel.value.data![index.value].color!;
-
         }else{
           isLock.value="1";
           color.value="black";
+          showCard.value=false;
+
         }
-        showCard.value=!showCard.value;
       } else {
 
       }

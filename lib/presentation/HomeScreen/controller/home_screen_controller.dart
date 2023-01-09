@@ -80,6 +80,7 @@ class HomeScreenController extends GetxController {
         homeModel.value = HomePageResponseModel.fromJson(value);
 
         // callGetLinkedBankApi();
+        UIUtils.hideProgressDialog();
       } else {
         UIUtils.showSnakBar(
             bodyText: "Error Fetching Offers", headerText: StringConstants.ERROR);

@@ -33,7 +33,7 @@ class CCOrderScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment:
                             CrossAxisAlignment.start,
-                            children: [
+                            children: [  SizedBox(height: 26,),
                               Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
@@ -80,7 +80,7 @@ class CCOrderScreen extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(
-                                height: getVerticalSize(50),
+                                height: getVerticalSize(30),
                               ),
                               GestureDetector(
                                 onTap: (){

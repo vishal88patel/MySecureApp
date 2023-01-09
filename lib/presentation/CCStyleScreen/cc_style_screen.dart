@@ -32,7 +32,7 @@ class CCStyleScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment:
                             CrossAxisAlignment.start,
-                            children: [
+                            children: [  SizedBox(height: 26,),
                               Row(
                                 mainAxisAlignment:
                                 MainAxisAlignment.spaceBetween,
@@ -79,7 +79,7 @@ class CCStyleScreen extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(
-                                height: getVerticalSize(10),
+                                height: getVerticalSize(30),
                               ),
 
                               Row(

@@ -40,7 +40,7 @@ class CCPinScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-
+                                    SizedBox(height: 26,),
                                     Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -94,7 +94,7 @@ class CCPinScreen extends StatelessWidget {
                                     ),
 
                                     SizedBox(
-                                      height: getVerticalSize(28),
+                                      height: getVerticalSize(30),
                                     ),
                                     Obx(()=> Text(
                                       ccPinController.isPin.value==0

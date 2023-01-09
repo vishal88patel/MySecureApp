@@ -1011,50 +1011,57 @@ class _StatisticScreenState extends State<StatisticScreen> {
       case 0:
         text = Text(
           statisticController
+              .statisticModel.value.data!=null?statisticController
               .statisticModel.value.data!.statistic!.weeklyData![0].id
-              .toString(),
+              .toString():"",
         );
         break;
       case 1:
         text = Text(
           statisticController
+              .statisticModel.value.data!=null?statisticController
               .statisticModel.value.data!.statistic!.weeklyData![1].id
-              .toString(),
+              .toString():"",
         );
         break;
       case 2:
         text = Text(
           statisticController
+              .statisticModel.value.data!=null?statisticController
               .statisticModel.value.data!.statistic!.weeklyData![2].id
-              .toString(),
+              .toString():"",
         );
         break;
       case 3:
         text = Text(
           statisticController
+              .statisticModel.value.data!=null?statisticController
               .statisticModel.value.data!.statistic!.weeklyData![3].id
-              .toString(),
+              .toString():"",
         );
         break;
       case 4:
         text = Text(
           statisticController
+              .statisticModel.value.data!=null?statisticController
               .statisticModel.value.data!.statistic!.weeklyData![4].id
-              .toString(),
+              .toString():"",
         );
         break;
       case 5:
         text = Text(
           statisticController
+              .statisticModel.value.data!=null?statisticController
               .statisticModel.value.data!.statistic!.weeklyData![5].id
-              .toString(),
+              .toString():"",
         );
         break;
       case 6:
         text = Text(
           statisticController
+              .statisticModel.value.data!=null?statisticController
               .statisticModel.value.data!.statistic!.weeklyData![6].id
-              .toString(),
+              .toString():"",
         );
         break;
       default:

@@ -28,6 +28,7 @@ class CCIntroScreen extends StatelessWidget {
                           crossAxisAlignment:
                           CrossAxisAlignment.start,
                           children: [
+                            SizedBox(height: 26,),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                 horizontal: getHorizontalSize(20.0),
@@ -79,7 +80,7 @@ class CCIntroScreen extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              height: getVerticalSize(40),
+                              height: getVerticalSize(30),
                             ),
                             Image.asset('asset/icons/img_cash_card.png',
                                 fit: BoxFit.cover,width: double.infinity),

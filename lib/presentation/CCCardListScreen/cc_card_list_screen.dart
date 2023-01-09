@@ -30,6 +30,9 @@ class CCCardListScreen extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
+                        SizedBox(
+                          height: 26,
+                        ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -70,7 +73,7 @@ class CCCardListScreen extends StatelessWidget {
                           ],
                         ),
                         SizedBox(
-                          height: getVerticalSize(50),
+                          height: getVerticalSize(30),
                         ),
                         Obx(
                                   () => ccCardListController.cashCardModel.value.data != null
@@ -82,8 +85,7 @@ class CCCardListScreen extends StatelessWidget {
                                   itemBuilder: (BuildContext context, int index) {
                                     return GestureDetector(
                                       onTap: () {
-                                        Get.toNamed(
-                                                AppRoutes.ccCardScreen,arguments: {"position":index.toString()});
+                                        Get.offAllNamed(AppRoutes.ccCardScreen,arguments: {"position":index.toString()});
                                       },
                                       child: Padding(
                                         padding: EdgeInsets.only(top: getVerticalSize(20)),
@@ -91,6 +93,17 @@ class CCCardListScreen extends StatelessWidget {
                                           children: [
                                             Container(
                                               decoration: BoxDecoration(
+                                                boxShadow: [
+                                                  BoxShadow(
+                                                    color: Colors.grey,
+                                                    blurRadius: 10.0, // soften the shadow
+                                                    spreadRadius: 2.0, //extend the shadow
+                                                    offset: Offset(
+                                                      5.0, // Move to right 5  horizontally
+                                                      7.0, // Move to bottom 5 Vertically
+                                                    ),
+                                                  )
+                                                ],
                                                   borderRadius: BorderRadius.circular(16),
                                                   color: ccCardListController
                                                       .cashCardModel.value.data![index].color?.toLowerCase().toString()=="black"?Colors.black:ColorConstant.cream,),

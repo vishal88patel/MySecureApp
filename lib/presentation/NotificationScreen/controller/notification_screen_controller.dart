@@ -101,7 +101,7 @@ class NotificationScreenController extends GetxController {
         break;
       case "CASH_CARD":
         PrefUtils.getString(StringConstants.IS_CASH_CARD)=="0"?
-        Get.toNamed(AppRoutes.ccIntroScreen):Get.toNamed(AppRoutes.ccCardScreen);
+        Get.toNamed(AppRoutes.ccIntroScreen):Get.toNamed(AppRoutes.ccCardScreen,arguments: {"position":"0"});
         break;
 
       case "REQUEST_MONEY":

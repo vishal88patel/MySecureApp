@@ -139,6 +139,7 @@ class StatisticScreenController extends GetxController {
         percentGraph3.value=egraph3.value==0?0.0:egraph3.value/totalGraph3.value;
         //finalpercentGraph3.value=percentGraph3.value*100;
         print("percentGraph3:"+percentGraph3.value.toString());
+        UIUtils.hideProgressDialog();
       } else {
         UIUtils.hideProgressDialog();
       }

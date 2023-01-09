@@ -29,7 +29,7 @@ class CCAddressScreen extends StatelessWidget {
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: [  SizedBox(height: 26,),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -70,7 +70,7 @@ class CCAddressScreen extends StatelessWidget {
                               ],
                             ),
                             SizedBox(
-                              height: getVerticalSize(10),
+                              height: getVerticalSize(30),
                             ),
                             Row(
                               children: [

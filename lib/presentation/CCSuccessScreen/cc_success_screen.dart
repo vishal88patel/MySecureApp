@@ -1,20 +1,15 @@
 import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:pin_code_fields/pin_code_fields.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
-import 'package:secure_cash_app/Custom%20Widgets/app_textField.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../Custom Widgets/common_image_view.dart';
 import 'controller/cc_success_controller.dart';
-
-
 
 class CCSuccessScreen extends StatelessWidget {
   var ccSuccessController = Get.find<CCSuccessController>();
@@ -43,12 +38,11 @@ class CCSuccessScreen extends StatelessWidget {
                         Align(
                           alignment: Alignment.center,
                           child: CommonImageView(
-                            svgPath: "asset/icons/img_success_bg.svg",
-                            height: getVerticalSize(
-                              450.00,
-                            ),
-                            width: size.width/1.15
-                          ),
+                              svgPath: "asset/icons/img_success_bg.svg",
+                              height: getVerticalSize(
+                                450.00,
+                              ),
+                              width: size.width / 1.15),
                         ),
                         Align(
                           alignment: Alignment.center,
@@ -60,10 +54,7 @@ class CCSuccessScreen extends StatelessWidget {
                                 alignment: Alignment.center,
                                 child: Padding(
                                   padding: EdgeInsets.only(
-                                      left: 64,
-                                      right: 64,
-                                      top: 20
-                                  ),
+                                      left: 64, right: 64, top: 20),
                                   child: Image.asset(
                                     "asset/icons/img_success_check.png",
                                     height: getSize(
@@ -97,11 +88,9 @@ class CCSuccessScreen extends StatelessWidget {
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
-                                  padding:
-                                  EdgeInsets.only(left: 32, right: 32, top: 10),
-                                  child:
-
-                                  Text(
+                                  padding: EdgeInsets.only(
+                                      left: 32, right: 32, top: 10),
+                                  child: Text(
                                     "Your Cusomize Cash Card order has been placed successfully.",
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
@@ -109,21 +98,26 @@ class CCSuccessScreen extends StatelessWidget {
                                         fontSize: getFontSize(20),
                                         fontWeight: FontWeight.w400),
                                   ),
-
                                 ),
                               ),
-                              SizedBox(height: 14,),
+                              SizedBox(
+                                height: 14,
+                              ),
                               Align(
                                 alignment: Alignment.center,
                                 child: Padding(
-                                  padding: EdgeInsets.only(left: 38.0, right: 38,top:32),
+                                  padding: EdgeInsets.only(
+                                      left: 38.0, right: 38, top: 32),
                                   child: DottedLine(
                                       dashColor: ColorConstant.greyTextColor),
                                 ),
                               ),
-                              SizedBox(height: 14,),
+                              SizedBox(
+                                height: 14,
+                              ),
                               Padding(
-                                padding: const EdgeInsets.only(left: 40.0,right: 40,top: 12),
+                                padding: const EdgeInsets.only(
+                                    left: 40.0, right: 40, top: 12),
                                 child: AppElevatedButton(
                                   buttonName: "Home",
                                   textColor: Colors.white,
@@ -135,8 +129,9 @@ class CCSuccessScreen extends StatelessWidget {
                                   },
                                 ),
                               ),
-                              SizedBox(height: 16,),
-
+                              SizedBox(
+                                height: 16,
+                              ),
                             ],
                           ),
                         ),
@@ -152,4 +147,3 @@ class CCSuccessScreen extends StatelessWidget {
     );
   }
 }
-

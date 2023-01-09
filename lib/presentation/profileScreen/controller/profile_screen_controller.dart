@@ -212,7 +212,7 @@ class ProfileScreenController extends GetxController {
     profilePicture.value =
         loginResponseModel!.data!.profilePhotoPath.toString();
 
-    callGetCashCardApi();
+    // callGetCashCardApi();
   }
 
   List _generateCards() {

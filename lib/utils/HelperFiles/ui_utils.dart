@@ -39,7 +39,7 @@ class UIUtils {
 
   ///common method for hiding progress dialog
   static void hideProgressDialog() {
-    if (isProgressVisible) Get.back();
+    if (Get.isDialogOpen==true) Get.back();
     isProgressVisible = false;
   }
 
