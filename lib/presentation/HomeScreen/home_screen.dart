@@ -332,7 +332,8 @@ class HomeScreen extends StatelessWidget {
                           InkWell(
                             onTap: (){
                               PrefUtils.getString(StringConstants.IS_CASH_CARD)=="0"?
-                              Get.toNamed(AppRoutes.ccIntroScreen):Get.toNamed(AppRoutes.ccCardListScreen);
+                              Get.toNamed(AppRoutes.ccIntroScreen):Get.toNamed(AppRoutes.ccCardScreen);
+
                             },
                             child: PaymentListWidget(
                               title: 'Cash Card',

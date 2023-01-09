@@ -87,11 +87,23 @@ class CCCardScreen extends StatelessWidget {
                                     Container(
                                       decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(16),
-                                        color:ccCardController
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.grey,
+                                            blurRadius: 10.0, // soften the shadow
+                                            spreadRadius: 2.0, //extend the shadow
+                                            offset: Offset(
+                                              5.0, // Move to right 5  horizontally
+                                              7.0, // Move to bottom 5 Vertically
+                                            ),
+                                          )
+                                        ],
+                                        color:ccCardController.isLock=="1"?ColorConstant.lockCardColor:ccCardController
                                             .color.value.toLowerCase().toString()=="black"? Colors.black: ColorConstant
                                             .cream,),
                                       height: size.width / 1.75,
                                       width: size.width,
+
                                     ),
                                   ),
                                   Padding(
@@ -105,16 +117,18 @@ class CCCardScreen extends StatelessWidget {
                                           children: [
                                             InkWell(
                                               onTap: () {
-                                                ccCardController
-                                                        .showCard.value =
-                                                    !ccCardController
-                                                        .showCard.value;
+                                                if(ccCardController.status != "1"){
+                                                  showDialouge();
+                                                }else{
+                                                  ccCardController
+                                                      .showCard.value =
+                                                  !ccCardController
+                                                      .showCard.value;
+                                                }
+
                                               },
                                               child: Obx(
                                                 () => ccCardController
-                                                            .status.value !=
-                                                        "0"
-                                                    ? ccCardController
                                                             .showCard.value
                                                         ? SvgPicture.asset(
                                                             "asset/icons/ic_open_eye.svg",
@@ -130,7 +144,7 @@ class CCCardScreen extends StatelessWidget {
                                                                 getVerticalSize(
                                                                     24),
                                                           )
-                                                    : Container(),
+
                                               ),
                                             ),
                                           ],
@@ -427,10 +441,23 @@ class CCCardScreen extends StatelessWidget {
 
                                         ),
                                         SizedBox(
-                                          height: getVerticalSize(44),
+                                          height: getVerticalSize(60),
                                         ),
-                                        SizedBox(
-                                          height: getVerticalSize(36),
+                                        Obx(()=> Text(
+                                          ccCardController.fullName.value,
+                                          style: AppStyle.DmSansFont
+                                              .copyWith(
+                                              color:ccCardController
+                                                  .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                  .primaryWhite: ColorConstant
+                                                  .naturalBlack,
+                                              fontWeight:
+                                              FontWeight
+                                                  .w500,
+                                              fontSize:
+                                              getFontSize(
+                                                  16)),
+                                        ),
                                         ),
                                         Row(
                                           mainAxisAlignment:
@@ -440,63 +467,7 @@ class CCCardScreen extends StatelessWidget {
                                               children: [
                                                 Column(
                                                   children: [
-                                                    Text(
-                                                      "CVV",
-                                                      style: AppStyle.DmSansFont
-                                                          .copyWith(
-                                                          color:ccCardController
-                                                              .color.value.toLowerCase().toString()=="black"? ColorConstant
-                                                              .primaryWhite: ColorConstant
-                                                              .naturalBlack,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                      16)),
-                                                    ),
-                                                    Obx(
-                                                      () => ccCardController
-                                                              .showCard.value
-                                                          ? Text(
-                                                              ccCardController
-                                                                  .cardCvv
-                                                                  .value,
-                                                              style: AppStyle.DmSansFont.copyWith(
-                                                                  color:ccCardController
-                                                                      .color.value.toLowerCase().toString()=="black"? ColorConstant
-                                                                      .primaryWhite: ColorConstant
-                                                                      .naturalBlack,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w500,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          16)),
-                                                            )
-                                                          : Text(
-                                                              "***",
-                                                              style: AppStyle.DmSansFont.copyWith(
-                                                                  color:ccCardController
-                                                                      .color.value.toLowerCase().toString()=="black"? ColorConstant
-                                                                      .primaryWhite: ColorConstant
-                                                                      .naturalBlack,
-                                                                  fontWeight:
-                                                                      FontWeight
-                                                                          .w700,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          18)),
-                                                            ),
-                                                    ),
-                                                  ],
-                                                ),
-                                                SizedBox(
-                                                  width: getVerticalSize(20),
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Text(
+                                                    Obx(()=> Text(
                                                       "EXP",
                                                       style: AppStyle.DmSansFont
                                                           .copyWith(
@@ -504,71 +475,132 @@ class CCCardScreen extends StatelessWidget {
                                                               .color.value.toLowerCase().toString()=="black"? ColorConstant
                                                               .primaryWhite: ColorConstant
                                                               .naturalBlack,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .w500,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                      16)),
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w500,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              16)),
+                                                    ),
                                                     ),
                                                     Obx(
-                                                      () =>
-                                                          ccCardController
-                                                                  .showCard
-                                                                  .value
-                                                              ? Text(
-                                                                  ccCardController
-                                                                              .cardExpMonth
-                                                                              .value !=
-                                                                          ""
-                                                                      ? ccCardController
-                                                                              .cardExpMonth
-                                                                              .value +
-                                                                          "/" +
-                                                                          ccCardController
-                                                                              .cardExpYear
-                                                                              .value
-                                                                              .substring(2, 4)
-                                                                      : "",
-                                                                  style: AppStyle.DmSansFont.copyWith(
-                                                                      color:ccCardController
-                                                                          .color.value.toLowerCase().toString()=="black"? ColorConstant
-                                                                          .primaryWhite: ColorConstant
-                                                                          .naturalBlack,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w500,
-                                                                      fontSize:
-                                                                          getFontSize(
-                                                                              16)),
-                                                                )
-                                                              : Text(
-                                                                  "**/**",
-                                                                  style: AppStyle.DmSansFont.copyWith(
-                                                                      color:ccCardController
-                                                                          .color.value.toLowerCase().toString()=="black"? ColorConstant
-                                                                          .primaryWhite: ColorConstant
-                                                                          .naturalBlack,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .w700,
-                                                                      fontSize:
-                                                                          getFontSize(
-                                                                              18)),
-                                                                ),
+                                                          () =>
+                                                      ccCardController
+                                                          .showCard
+                                                          .value
+                                                          ? Text(
+                                                        ccCardController
+                                                            .cardExpMonth
+                                                            .value !=
+                                                            ""
+                                                            ? ccCardController
+                                                            .cardExpMonth
+                                                            .value +
+                                                            "/" +
+                                                            ccCardController
+                                                                .cardExpYear
+                                                                .value
+                                                                .substring(2, 4)
+                                                            : "",
+                                                        style: AppStyle.DmSansFont.copyWith(
+                                                            color:ccCardController
+                                                                .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                                .primaryWhite: ColorConstant
+                                                                .naturalBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w500,
+                                                            fontSize:
+                                                            getFontSize(
+                                                                16)),
+                                                      )
+                                                          : Text(
+                                                        "**/**",
+                                                        style: AppStyle.DmSansFont.copyWith(
+                                                            color:ccCardController
+                                                                .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                                .primaryWhite: ColorConstant
+                                                                .naturalBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w700,
+                                                            fontSize:
+                                                            getFontSize(
+                                                                18)),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+
+                                                SizedBox(
+                                                  width: getVerticalSize(20),
+                                                ),
+                                                Column(
+                                                  children: [
+                                                    Obx(()=> Text(
+                                                      "CVV",
+                                                      style: AppStyle.DmSansFont
+                                                          .copyWith(
+                                                          color:ccCardController
+                                                              .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                              .primaryWhite: ColorConstant
+                                                              .naturalBlack,
+                                                          fontWeight:
+                                                          FontWeight
+                                                              .w500,
+                                                          fontSize:
+                                                          getFontSize(
+                                                              16)),
+                                                    ),
+                                                    ),
+                                                    Obx(
+                                                          () => ccCardController
+                                                          .showCard.value
+                                                          ? Text(
+                                                        ccCardController
+                                                            .cardCvv
+                                                            .value,
+                                                        style: AppStyle.DmSansFont.copyWith(
+                                                            color:ccCardController
+                                                                .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                                .primaryWhite: ColorConstant
+                                                                .naturalBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w500,
+                                                            fontSize:
+                                                            getFontSize(
+                                                                16)),
+                                                      )
+                                                          : Text(
+                                                        "***",
+                                                        style: AppStyle.DmSansFont.copyWith(
+                                                            color:ccCardController
+                                                                .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                                .primaryWhite: ColorConstant
+                                                                .naturalBlack,
+                                                            fontWeight:
+                                                            FontWeight
+                                                                .w700,
+                                                            fontSize:
+                                                            getFontSize(
+                                                                18)),
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
                                               ],
                                             ),
-                                            SvgPicture.asset(
-                                              "asset/icons/ic_cc_visa.svg",
-                                              fit: BoxFit.fill,
-                                              color:ccCardController
-                                                  .color.value.toLowerCase().toString()=="black"? ColorConstant
-                                                  .primaryWhite: ColorConstant
-                                                  .naturalBlack,
-                                              height: getVerticalSize(20),
+                                            Obx(()=>
+                                               SvgPicture.asset(
+                                                "asset/icons/ic_cc_visa.svg",
+                                                fit: BoxFit.fill,
+                                                color:ccCardController
+                                                    .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                    .primaryWhite: ColorConstant
+                                                    .naturalBlack,
+                                                height: getVerticalSize(20),
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -751,12 +783,17 @@ class CCCardScreen extends StatelessWidget {
                                   vertical: getVerticalSize(18)),
                               child: GestureDetector(
                                 onTap: () {
-                                  Get.toNamed(AppRoutes.ccPinScreen,
-                                      arguments: {
-                                        "pin": ccCardController.pin.toString(),
-                                        "id": ccCardController.cashcardId
-                                            .toString()
-                                      });
+                                  if(ccCardController.status != "1"){
+                                    showDialouge();
+                                  }else{
+                                    Get.toNamed(AppRoutes.ccPinScreen,
+                                        arguments: {
+                                          "pin": ccCardController.pin.toString(),
+                                          "id": ccCardController.cashcardId
+                                              .toString()
+                                        });
+                                  }
+
                                 },
                                 child: Row(
                                   mainAxisAlignment:
@@ -779,6 +816,67 @@ class CCCardScreen extends StatelessWidget {
                                                         .naturalBlack,
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: getFontSize(18)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    Padding(
+                                      padding: EdgeInsets.only(
+                                        right: getHorizontalSize(10),
+                                      ),
+                                      child: SvgPicture.asset(
+                                        "asset/icons/ic_right_arrow.svg",
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  vertical: getVerticalSize(18)),
+                              child: GestureDetector(
+                                onTap: () {
+                                  if(ccCardController.cashCardModel.value.data!.length==2){
+                                    Get.toNamed(
+                                        AppRoutes.ccCardListScreen);
+                                  }
+                                  else{
+                                    Get.toNamed(
+                                        AppRoutes.ccIntroScreen);
+                                  }
+                                  Get.toNamed(
+                                      AppRoutes.ccIntroScreen);
+                                  /*Get.toNamed(AppRoutes.ccPinScreen,
+                                      arguments: {
+                                        "pin": ccCardController.pin.toString(),
+                                        "id": ccCardController.cashcardId
+                                            .toString()
+                                      });*/
+                                },
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                          "asset/icons/ic_card.svg",
+                                          color: ColorConstant.primaryLightGreen,
+                                          fit: BoxFit.fill,
+                                        ),
+                                        Padding(
+                                          padding: EdgeInsets.only(
+                                              left: getHorizontalSize(16)),
+                                          child: Text(
+                                            ccCardController.cashCardModel.value.data!.length==2?"View Cash Cards":"Add New Card",
+                                            style: AppStyle.textStyleDMSANS
+                                                .copyWith(
+                                                color: ColorConstant
+                                                    .naturalBlack,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: getFontSize(18)),
                                           ),
                                         ),
                                       ],
@@ -846,5 +944,103 @@ class CCCardScreen extends StatelessWidget {
                     ),
                   ],
                 ))));
+  }
+
+  Future<void> showDialouge() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment
+                                  .center,
+                              children: [
+                                SvgPicture.asset(
+                                    "asset/icons/ic_lock_pending.svg")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 14,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Please Activate the card",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
   }
 }

@@ -48,6 +48,7 @@ class ColorConstant {
   static Color lightGold = const Color(0xFFC3BBAB);
   static Color cream = const Color(0xFFF3F3F3);
   static Color pinkColor = const Color(0xFFFF4081);
+  static Color lockCardColor = const Color(0xFF575b62);
 
 
   // new ui screen color
