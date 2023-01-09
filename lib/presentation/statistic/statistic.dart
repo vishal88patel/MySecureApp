@@ -4,16 +4,11 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:loading_indicator/loading_indicator.dart';
 import 'package:secure_cash_app/presentation/statistic/controller/statistic_screen_controller.dart';
 import 'package:secure_cash_app/presentation/statistic/widgets/chart2.dart';
 import 'package:secure_cash_app/presentation/statistic/widgets/recent_expenses_widget.dart';
-import 'package:secure_cash_app/utils/ConstantsFiles/string_constants.dart';
-import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_AppBar .dart';
-import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 
@@ -315,14 +310,30 @@ class _StatisticScreenState extends State<StatisticScreen> {
                         )
                       : statisticController.statisticModel.value.data != null
                           ? Obx(() => ChartWeeklyScreen(
-                              iWeek1: statisticController.iWeek1.value=="0"?"1":statisticController.iWeek1.value,
-                              iWeek2: statisticController.iWeek2.value=="0"?"1":statisticController.iWeek2.value,
-                              iWeek3: statisticController.iWeek3.value=="0"?"1":statisticController.iWeek3.value,
-                              iWeek4: statisticController.iWeek4.value=="0"?"1":statisticController.iWeek4.value,
-                              eWeek1: statisticController.eWeek1.value=="0"?"1":statisticController.eWeek1.value,
-                              eWeek2: statisticController.eWeek2.value=="0"?"1":statisticController.eWeek2.value,
-                              eWeek3: statisticController.eWeek3.value=="0"?"1":statisticController.eWeek3.value,
-                              eWeek4: statisticController.eWeek4.value=="0"?"1":statisticController.eWeek4.value))
+                              iWeek1: statisticController.iWeek1.value == "0"
+                                  ? "1"
+                                  : statisticController.iWeek1.value,
+                              iWeek2: statisticController.iWeek2.value == "0"
+                                  ? "1"
+                                  : statisticController.iWeek2.value,
+                              iWeek3: statisticController.iWeek3.value == "0"
+                                  ? "1"
+                                  : statisticController.iWeek3.value,
+                              iWeek4: statisticController.iWeek4.value == "0"
+                                  ? "1"
+                                  : statisticController.iWeek4.value,
+                              eWeek1: statisticController.eWeek1.value == "0"
+                                  ? "1"
+                                  : statisticController.eWeek1.value,
+                              eWeek2: statisticController.eWeek2.value == "0"
+                                  ? "1"
+                                  : statisticController.eWeek2.value,
+                              eWeek3: statisticController.eWeek3.value == "0"
+                                  ? "1"
+                                  : statisticController.eWeek3.value,
+                              eWeek4: statisticController.eWeek4.value == "0"
+                                  ? "1"
+                                  : statisticController.eWeek4.value))
                           : Container(),
                 ),
                 SizedBox(
@@ -471,7 +482,7 @@ class _StatisticScreenState extends State<StatisticScreen> {
                             borderRadius: BorderRadius.circular(100)),
                         child:
                             Stack(alignment: Alignment.centerLeft, children: [
-                         /* Align(
+                          /* Align(
                               alignment: Alignment.centerLeft,
                               child: Container(
                                   height: getSize(200.00),
@@ -486,9 +497,10 @@ class _StatisticScreenState extends State<StatisticScreen> {
                               child: Container(
                                   height: getSize(200.00),
                                   width: getSize(200.00),
-                                  child: Obx(()=>
-                                    CircularProgressIndicator(
-                                        value: statisticController.percentGraph3.value,
+                                  child: Obx(
+                                    () => CircularProgressIndicator(
+                                        value: statisticController
+                                            .percentGraph3.value,
                                         strokeWidth: 20,
                                         backgroundColor: Colors.green,
                                         color: Colors.orange),
@@ -498,69 +510,320 @@ class _StatisticScreenState extends State<StatisticScreen> {
                     alignment: Alignment.center,
                     child: Padding(
                         padding: EdgeInsets.only(left: 15, top: 50, right: 15),
-                        child: Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Container(
-                                  height: getSize(6.00),
-                                  width: getSize(6.00),
-                                  margin: EdgeInsets.only(top: 6, bottom: 8),
-                                  decoration: BoxDecoration(
-                                      color: ColorConstant.primaryOrange,
-                                      borderRadius: BorderRadius.circular(
-                                          getHorizontalSize(3.00)))),
-                              Padding(
-                                padding:
-                                    EdgeInsets.only(left: 8, top: 1, bottom: 1),
-                                child: Text(
-                                  'Expense',
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryOrange,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                                ),
-                              ),
-                              Container(
-                                  height: getSize(6.00),
-                                  width: getSize(6.00),
-                                  margin: EdgeInsets.only(
-                                      left: 32, top: 6, bottom: 8),
-                                  decoration: BoxDecoration(
-                                      color: ColorConstant.buttonGreen,
-                                      borderRadius: BorderRadius.circular(
-                                          getHorizontalSize(3.00)))),
-                              Padding(
-                                padding: EdgeInsets.only(left: 8, top: 1),
-                                child: Text(
-                                  'Income',
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.buttonGreen,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                                ),
-                              ),
-                              /*Container(
-                                  height: getSize(6.00),
-                                  width: getSize(6.00),
-                                  margin: EdgeInsets.only(
-                                      left: 32, top: 6, bottom: 8),
-                                  decoration: BoxDecoration(
-                                      color: ColorConstant.darkGreen,
-                                      borderRadius: BorderRadius.circular(
-                                          getHorizontalSize(3.00)))),
-                              Padding(
-                                padding: EdgeInsets.only(left: 8, bottom: 1),
-                                child: Text(
-                                  'Coffee',
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.darkGreen,
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: getFontSize(18)),
-                                ),
-                              )*/
-                            ]))),
+                        child: Obx(
+                          () => statisticController.isIncomeExpense.value == 1
+                              ? Column(children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: size.width / 2.4,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                height: getSize(10.00),
+                                                width: getSize(10.00),
+                                                margin: EdgeInsets.only(
+                                                    top: 6, bottom: 8),
+                                                decoration: BoxDecoration(
+                                                    color: ColorConstant
+                                                        .primaryOrange,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            getHorizontalSize(
+                                                                15.00)))),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 1, bottom: 1),
+                                              child: Text(
+                                                'Wallet Credit',
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryOrange,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(18)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                height: getSize(10.00),
+                                                width: getSize(10.00),
+                                                margin: EdgeInsets.only(
+                                                    left: 32,
+                                                    top: 6,
+                                                    bottom: 8),
+                                                decoration: BoxDecoration(
+                                                    color: ColorConstant
+                                                        .buttonGreen,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            getHorizontalSize(
+                                                                3.00)))),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 1),
+                                              child: Text(
+                                                'Loan Amount Credit',
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .buttonGreen,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(18)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(6),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: size.width / 2.4,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                height: getSize(10.00),
+                                                width: getSize(10.00),
+                                                margin: EdgeInsets.only(
+                                                    top: 6, bottom: 8),
+                                                decoration: BoxDecoration(
+                                                    color: ColorConstant
+                                                        .primaryDarkGreen,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            getHorizontalSize(
+                                                                15.00)))),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 1, bottom: 1),
+                                              child: Text(
+                                                'Add money by card',
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryDarkGreen,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(18)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                height: getSize(10.00),
+                                                width: getSize(10.00),
+                                                margin: EdgeInsets.only(
+                                                    left: 32,
+                                                    top: 6,
+                                                    bottom: 8),
+                                                decoration: BoxDecoration(
+                                                    color: ColorConstant
+                                                        .appProgressBarColor,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            getHorizontalSize(
+                                                                15.00)))),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 1),
+                                              child: Text(
+                                                'Add money by Bank',
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .appProgressBarColor,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(18)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  /*Container(
+                                    height: getSize(6.00),
+                                    width: getSize(6.00),
+                                    margin: EdgeInsets.only(
+                                        left: 32, top: 6, bottom: 8),
+                                    decoration: BoxDecoration(
+                                        color: ColorConstant.darkGreen,
+                                        borderRadius: BorderRadius.circular(
+                                            getHorizontalSize(3.00)))),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 8, bottom: 1),
+                                  child: Text(
+                                    'Coffee',
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.darkGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
+                                )*/
+                                ])
+                              : Column(children: [
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: size.width / 2.4,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                height: getSize(10.00),
+                                                width: getSize(10.00),
+                                                margin: EdgeInsets.only(
+                                                    top: 6, bottom: 8),
+                                                decoration: BoxDecoration(
+                                                    color: ColorConstant
+                                                        .primaryOrange,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            getHorizontalSize(
+                                                                15.00)))),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 1, bottom: 1),
+                                              child: Text(
+                                                'Wallet send money',
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryOrange,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(18)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      Container(
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Container(
+                                                height: getSize(10.00),
+                                                width: getSize(10.00),
+                                                margin: EdgeInsets.only(
+                                                    left: 32,
+                                                    top: 6,
+                                                    bottom: 8),
+                                                decoration: BoxDecoration(
+                                                    color: ColorConstant
+                                                        .buttonGreen,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            getHorizontalSize(
+                                                                3.00)))),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 1),
+                                              child: Text(
+                                                'Loan repayment',
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .buttonGreen,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(18)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: getVerticalSize(6),
+                                  ),
+                                  Row(
+                                    children: [
+                                      Container(
+                                        width: size.width / 2.4,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                height: getSize(10.00),
+                                                width: getSize(10.00),
+                                                margin: EdgeInsets.only(
+                                                    top: 6, bottom: 8),
+                                                decoration: BoxDecoration(
+                                                    color: ColorConstant
+                                                        .primaryDarkGreen,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            getHorizontalSize(
+                                                                15.00)))),
+                                            Padding(
+                                              padding: EdgeInsets.only(
+                                                  left: 8, top: 1, bottom: 1),
+                                              child: Text(
+                                                'Cash out',
+                                                style: AppStyle.textStyleDMSANS
+                                                    .copyWith(
+                                                        color: ColorConstant
+                                                            .primaryDarkGreen,
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontSize:
+                                                            getFontSize(18)),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+
+                                  /*Container(
+                                    height: getSize(6.00),
+                                    width: getSize(6.00),
+                                    margin: EdgeInsets.only(
+                                        left: 32, top: 6, bottom: 8),
+                                    decoration: BoxDecoration(
+                                        color: ColorConstant.darkGreen,
+                                        borderRadius: BorderRadius.circular(
+                                            getHorizontalSize(3.00)))),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 8, bottom: 1),
+                                  child: Text(
+                                    'Coffee',
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.darkGreen,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(18)),
+                                  ),
+                                )*/
+                                ]),
+                        ))),
                 Padding(
                   padding: EdgeInsets.symmetric(
                       vertical: getVerticalSize(30),
@@ -746,25 +1009,53 @@ class _StatisticScreenState extends State<StatisticScreen> {
     Widget text;
     switch (value.toInt()) {
       case 0:
-        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![0].id.toString(),);
+        text = Text(
+          statisticController
+              .statisticModel.value.data!.statistic!.weeklyData![0].id
+              .toString(),
+        );
         break;
       case 1:
-        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![1].id.toString(),);
+        text = Text(
+          statisticController
+              .statisticModel.value.data!.statistic!.weeklyData![1].id
+              .toString(),
+        );
         break;
       case 2:
-        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![2].id.toString(),);
+        text = Text(
+          statisticController
+              .statisticModel.value.data!.statistic!.weeklyData![2].id
+              .toString(),
+        );
         break;
       case 3:
-        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![3].id.toString(),);
+        text = Text(
+          statisticController
+              .statisticModel.value.data!.statistic!.weeklyData![3].id
+              .toString(),
+        );
         break;
       case 4:
-        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![4].id.toString(),);
+        text = Text(
+          statisticController
+              .statisticModel.value.data!.statistic!.weeklyData![4].id
+              .toString(),
+        );
         break;
       case 5:
-        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![5].id.toString(),);
+        text = Text(
+          statisticController
+              .statisticModel.value.data!.statistic!.weeklyData![5].id
+              .toString(),
+        );
         break;
       case 6:
-        text = Text(statisticController.statisticModel.value.data!.statistic!.weeklyData![6].id.toString(),);
+        text = Text(
+          statisticController
+              .statisticModel.value.data!.statistic!.weeklyData![6].id
+              .toString(),
+        );
         break;
       default:
         text = const Text('', style: style);

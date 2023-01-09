@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Container(
                 height: getVerticalSize(
-                  530.00,
+                  490.00,
                 ),
                 width: size.width,
                 child: Stack(
@@ -233,7 +233,7 @@ class ProfileScreen extends StatelessWidget {
                           ),
                         ),
 
-                        /*Card(
+                        Card(
                           margin: const EdgeInsets.symmetric(horizontal: 0),
                           color: ColorConstant.naturalGrey2,
                           shape: RoundedRectangleBorder(
@@ -374,16 +374,16 @@ class ProfileScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                        ),*/
+                        ),
                       ],
                     ),
-                    Column(
+                  /*  Column(
                       children: [
                         SizedBox(height:220,),
                             Obx(()=>Stack(alignment: Alignment.center, children:profileScreenController.cardList.value)),
 
                       ],
-                    ),
+                    ),*/
                   ],
                 ),
               ),

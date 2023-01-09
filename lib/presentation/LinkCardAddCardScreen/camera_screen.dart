@@ -1,5 +1,6 @@
 
 import 'package:camera/camera.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -271,7 +272,7 @@ class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
         child: Stack(
           children: <Widget>[
             _buildCameraPreview(),
-            cameraOverlay(padding: 2, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
+            cameraOverlay(padding: 2.8, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
             Column(
               children: [
                 SizedBox(
@@ -428,14 +429,14 @@ class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
       double verticalPadding;
 
       if (parentAspectRatio < aspectRatio) {
-        horizontalPadding = padding;
+        horizontalPadding = 9;
         verticalPadding = (constraints.maxHeight -
             ((constraints.maxWidth - 60 * padding) / aspectRatio)) /
             2;
       } else {
         verticalPadding = padding;
         horizontalPadding = (constraints.maxWidth -
-            ((constraints.maxHeight - 2 * padding) * aspectRatio)) /
+            ((constraints.maxHeight - 9 * padding) * aspectRatio)) /
             2;
       }
       return Stack(fit: StackFit.expand, children: [
@@ -459,11 +460,25 @@ class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
                     left: horizontalPadding, right: horizontalPadding),
                 height: verticalPadding,
                 color: color)),
+
         Container(
           margin: EdgeInsets.symmetric(
-              horizontal: horizontalPadding, vertical: verticalPadding),
-          decoration: BoxDecoration(border: Border.all(color:  ColorConstant.buttonGreen)),
-        )
+              horizontal: horizontalPadding+8, vertical: verticalPadding+8),
+          decoration: BoxDecoration(
+            border: Border.all(color: ColorConstant.primaryWhite),
+          ),
+          child: DottedBorder(
+            dashPattern: [8, 6],
+            borderType: BorderType.RRect,
+            strokeWidth: 4,
+            padding: EdgeInsets.all(6),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              child: Container(
+              ),
+            ),
+          ),
+        ),
       ]);
     });
   }

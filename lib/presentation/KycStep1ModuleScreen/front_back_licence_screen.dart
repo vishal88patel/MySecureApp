@@ -1,43 +1,44 @@
 import 'dart:developer';
-import 'dart:io';
 
 import 'package:camera/camera.dart';
+import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
-import 'package:secure_cash_app/routes/app_routes.dart';
-import 'package:secure_cash_app/utils/ConstantsFiles/string_constants.dart';
 import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import 'licence_scan_screen.dart';
 
-
 class FrontBackLicenceCameraScreen extends StatefulWidget {
   final int? image;
   final String title;
-  const FrontBackLicenceCameraScreen({required this.image,
-    required this.title}) : super();
+
+  const FrontBackLicenceCameraScreen({required this.image, required this.title})
+      : super();
 
   @override
-  FrontBackLicenceCameraScreenState createState() => FrontBackLicenceCameraScreenState();
+  FrontBackLicenceCameraScreenState createState() =>
+      FrontBackLicenceCameraScreenState();
 }
 
-class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScreen> with AutomaticKeepAliveClientMixin {
+class FrontBackLicenceCameraScreenState
+    extends State<FrontBackLicenceCameraScreen>
+    with AutomaticKeepAliveClientMixin {
   CameraController? _controller;
   List<CameraDescription>? _cameras;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   var kycStep1Controller = Get.find<KycStep1ScreenController>();
 
   XFile? imageFile;
+
   @override
   void initState() {
     _initCamera(context);
@@ -45,18 +46,19 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
     super.initState();
   }
 
-
   Future<void> _initCamera(context) async {
     Map<Permission, PermissionStatus> statuses = await [
       Permission.camera,
       Permission.microphone,
     ].request();
 
-    if (statuses[Permission.camera]==PermissionStatus.denied || statuses[Permission.microphone]==PermissionStatus.denied) {
+    if (statuses[Permission.camera] == PermissionStatus.denied ||
+        statuses[Permission.microphone] == PermissionStatus.denied) {
       Navigator.pop(context);
       Get.dialog(
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(325)),
+          padding: EdgeInsets.symmetric(
+              horizontal: 50.0, vertical: getVerticalSize(325)),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
@@ -92,7 +94,9 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                         ),
                       ],
                     ),
-                    SizedBox(height: 22,),
+                    SizedBox(
+                      height: 22,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -100,7 +104,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Flexible(
-                            child:Text(
+                            child: Text(
                               textAlign: TextAlign.center,
                               "Please Allow Camera And Microphone Permission",
                               style: AppStyle.DmSansFont.copyWith(
@@ -109,7 +113,6 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                                   fontWeight: FontWeight.w300,
                                   fontSize: getFontSize(18)),
                             ),
-
                           ),
                         ],
                       ),
@@ -130,7 +133,6 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                         },
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -139,12 +141,14 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
         ),
         barrierDismissible: false,
       );
-    }
-    else if(statuses[Permission.camera]==PermissionStatus.permanentlyDenied || statuses[Permission.microphone]==PermissionStatus.permanentlyDenied){
+    } else if (statuses[Permission.camera] ==
+            PermissionStatus.permanentlyDenied ||
+        statuses[Permission.microphone] == PermissionStatus.permanentlyDenied) {
       Navigator.pop(context);
       Get.dialog(
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: getVerticalSize(325)),
+          padding: EdgeInsets.symmetric(
+              horizontal: 50.0, vertical: getVerticalSize(325)),
           child: Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(25),
@@ -180,7 +184,9 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                         ),
                       ],
                     ),
-                    SizedBox(height: 22,),
+                    SizedBox(
+                      height: 22,
+                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: Row(
@@ -188,7 +194,7 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Flexible(
-                            child:Text(
+                            child: Text(
                               textAlign: TextAlign.center,
                               "Please Allow Camera And Microphone Permission",
                               style: AppStyle.DmSansFont.copyWith(
@@ -197,7 +203,6 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                                   fontWeight: FontWeight.w300,
                                   fontSize: getFontSize(18)),
                             ),
-
                           ),
                         ],
                       ),
@@ -218,7 +223,6 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                         },
                       ),
                     ),
-
                   ],
                 ),
               ),
@@ -227,8 +231,8 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
         ),
         barrierDismissible: false,
       );
-    }
-    else if (statuses[Permission.camera]==PermissionStatus.granted && statuses[Permission.microphone]==PermissionStatus.granted) {
+    } else if (statuses[Permission.camera] == PermissionStatus.granted &&
+        statuses[Permission.microphone] == PermissionStatus.granted) {
       _cameras = await availableCameras();
       _controller = CameraController(_cameras![0], ResolutionPreset.veryHigh);
       _controller?.initialize().then((_) {
@@ -255,11 +259,13 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
         return Container();
       }
     } else {
-      return  Center(
+      return Center(
         child: SizedBox(
           width: 32,
           height: 32,
-          child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen,),
+          child: CircularProgressIndicator(
+            color: ColorConstant.primaryDarkGreen,
+          ),
         ),
       );
     }
@@ -276,19 +282,25 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
         child: Stack(
           children: [
             _buildCameraPreview(),
-            cameraOverlay(padding: 2,image: widget.image!, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
+            cameraOverlay(
+                padding: 2.8,
+                image: widget.image!,
+                aspectRatio: 1,
+                color: ColorConstant.primaryDarkGreen),
             Column(
               children: [
                 SizedBox(
                   height: getVerticalSize(52),
                 ),
                 Padding(
-                  padding: EdgeInsets.only(left: getHorizontalSize(20),right: getHorizontalSize(20)),
+                  padding: EdgeInsets.only(
+                      left: getHorizontalSize(20),
+                      right: getHorizontalSize(20)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       InkWell(
-                        onTap:(){
+                        onTap: () {
                           Get.back();
                         },
                         child: SvgPicture.asset(
@@ -330,7 +342,8 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          widget.title,textAlign: TextAlign.center,
+                          widget.title,
+                          textAlign: TextAlign.center,
                           style: AppStyle.textStyleDMSANS.copyWith(
                               color: ColorConstant.primaryWhite,
                               fontWeight: FontWeight.w500,
@@ -342,7 +355,6 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                 ),
               ],
             ),
-
           ],
         ),
       ),
@@ -350,21 +362,25 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
     );
   }
 
-  Widget cameraOverlay({required double padding,required int image, required double aspectRatio, required Color color}) {
+  Widget cameraOverlay(
+      {required double padding,
+      required int image,
+      required double aspectRatio,
+      required Color color}) {
     return LayoutBuilder(builder: (context, constraints) {
       double parentAspectRatio = constraints.maxWidth / constraints.maxHeight;
       double horizontalPadding;
       double verticalPadding;
 
       if (parentAspectRatio < aspectRatio) {
-        horizontalPadding = padding;
+        horizontalPadding = 9;
         verticalPadding = (constraints.maxHeight -
-            ((constraints.maxWidth - 60 * padding) / aspectRatio)) /
+                ((constraints.maxWidth - 60 * padding) / aspectRatio)) /
             2;
       } else {
         verticalPadding = padding;
         horizontalPadding = (constraints.maxWidth -
-            ((constraints.maxHeight - 2 * padding) * aspectRatio)) /
+                ((constraints.maxHeight - 9 * padding) * aspectRatio)) /
             2;
       }
       return Stack(fit: StackFit.expand, children: [
@@ -389,21 +405,55 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                 height: verticalPadding,
                 color: color)),
         Container(
-
           margin: EdgeInsets.symmetric(
               horizontal: horizontalPadding, vertical: verticalPadding),
-          decoration: BoxDecoration(border: Border.all(color: ColorConstant.primaryDarkGreen),
+          decoration: BoxDecoration(
+            border: Border.all(color: ColorConstant.primaryDarkGreen),
+          ),
+        ),
+        Container(
+          margin: EdgeInsets.symmetric(
+              horizontal: horizontalPadding+8, vertical: verticalPadding+8),
+          decoration: BoxDecoration(
+            border: Border.all(color: ColorConstant.primaryWhite),
+          ),
+          child: DottedBorder(
+            dashPattern: [8, 6],
+            borderType: BorderType.RRect,
+            strokeWidth: 5,
+            radius: Radius.circular(12),
+            padding: EdgeInsets.all(6),
+            child: ClipRRect(
+              borderRadius: BorderRadius.all(Radius.circular(12)),
+              child: Container(
               ),
-        )
+            ),
+          ),
+        ),
+        // Align(
+        //     alignment: Alignment.center,
+        //     child: DottedBorder(
+        //       borderType: BorderType.RRect,
+        //       color: Colors.white,
+        //       radius: Radius.circular(12),
+        //       child: ClipRRect(
+        //         borderRadius: BorderRadius.all(Radius.circular(12)),
+        //         child: Container(
+        //           width: horizontalPadding,
+        //           color: Colors.transparent,
+        //         ),
+        //       ),
+        //     )),
       ]);
     });
   }
+
   Widget _buildCameraPreview() {
     final size = MediaQuery.of(context).size;
     return ClipRect(
       child: Container(
         child: Transform.scale(
-          scale: 6/4,
+          scale: 6 / 4,
           child: Center(
             child: CameraPreview(_controller!),
           ),
@@ -415,134 +465,138 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
   Future<void> showWelcomeDialouge() async {
     await Future.delayed(Duration.zero);
     Get.dialog(
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 50.0,
-              vertical: getVerticalSize(250)),
-          child: Container(
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [ColorConstant.skyE8, ColorConstant.lightSky]),
-              border: Border.all(
+      Padding(
+        padding: EdgeInsets.symmetric(
+            horizontal: 50.0, vertical: getVerticalSize(250)),
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [ColorConstant.skyE8, ColorConstant.lightSky]),
+            border: Border.all(
                 // color: kHintColor,
-              ),
-              borderRadius: BorderRadius.circular(25),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(3.0),
-              child: Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.all(Radius.circular(25)),
-                    color: ColorConstant.primaryBlack),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: getVerticalSize(30),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                             Get.back();
-                             Get.back();
-                          },
-                          child: Icon(
-                            Icons.close,
-                            color: Colors.white,
-                          ),
+                ),
+            borderRadius: BorderRadius.circular(25),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(3.0),
+            child: Container(
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(Radius.circular(25)),
+                  color: ColorConstant.primaryBlack),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: getVerticalSize(30),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Get.back();
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.white,
                         ),
-                        SizedBox(
-                          width: 12,
+                      ),
+                      SizedBox(
+                        width: 12,
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: getVerticalSize(50),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Flexible(
+                          child: Text(
+                            textAlign: TextAlign.center,
+                            "The app is requesting camera permission",
+                            style: AppStyle.textStyleDMSANS.copyWith(
+                                color: ColorConstant.primaryWhite,
+                                decoration: TextDecoration.none,
+                                fontWeight: FontWeight.w300,
+                                fontSize: getFontSize(18)),
+                          ),
                         ),
                       ],
                     ),
-                    SizedBox(height: getVerticalSize(50),),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Flexible(
-                            child:Text(
-                              textAlign: TextAlign.center,
-                              "The app is requesting camera permission",
-                              style: AppStyle.textStyleDMSANS.copyWith(
-                                  color: ColorConstant.primaryWhite,
-                                  decoration: TextDecoration.none,
-                                  fontWeight: FontWeight.w300,
-                                  fontSize: getFontSize(18)),
-                            ),
-
-                          ),
-                        ],
-                      ),
+                  ),
+                  SizedBox(
+                    height: getVerticalSize(50),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                    child: AppElevatedButton(
+                      buttonName: 'Turn on camera',
+                      radius: 5,
+                      textColor: Color(0xFF08CDA1),
+                      onPressed: () {
+                        Get.back();
+                        // Get.toNamed(AppRoutes.dashBoardScreen);
+                      },
                     ),
-                    SizedBox(height: getVerticalSize(50),),
-
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                      child: AppElevatedButton(
-                        buttonName: 'Turn on camera',
-                        radius: 5,
-                        textColor: Color(0xFF08CDA1),
-                        onPressed: () {
-                          Get.back();
-                          // Get.toNamed(AppRoutes.dashBoardScreen);
-                        },
-                      ),
-                    ),
-
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
         ),
-        barrierDismissible: false,
-      );
-
+      ),
+      barrierDismissible: false,
+    );
   }
 
   Widget _buildBottomNavigationBar() {
     return Padding(
-      padding:  EdgeInsets.only(bottom: 36.0),
+      padding: EdgeInsets.only(bottom: 36.0),
       child: Container(
         color: Colors.transparent,
         height: 100.0,
         width: double.infinity,
         child: Row(
-          mainAxisAlignment:MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: <Widget>[
-            Container(height: 40,width: 40,),
+            Container(
+              height: 40,
+              width: 40,
+            ),
             InkWell(
-              onTap: (){
-              _captureImage();
-            },
+              onTap: () {
+                _captureImage();
+              },
               child: CircleAvatar(
                 backgroundColor: Colors.grey.shade300,
                 radius: 40.0,
-                  child: Center(
-                      child: Icon(
-                        Icons.camera_alt,
-                        size: 50.0,
-                        color:Colors.black,
-                      ),
+                child: Center(
+                  child: Icon(
+                    Icons.camera_alt,
+                    size: 50.0,
+                    color: Colors.black,
+                  ),
                 ),
               ),
             ),
-            Container(height: 40,width: 40,),
-
+            Container(
+              height: 40,
+              width: 40,
+            ),
           ],
         ),
       ),
     );
   }
-
 
   void _captureImage() async {
     print('_captureImage');
@@ -552,30 +606,28 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
           setState(() {
             imageFile = file;
           });
-           if(widget.image==2){
-            kycStep1Controller.netImage2.value=file!.path;
+          if (widget.image == 2) {
+            kycStep1Controller.netImage2.value = file!.path;
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => const FrontBackLicenceCameraScreen(image: 3,title: 'Scan the back  image of\n Driving Licence',)),
+                  builder: (context) => const FrontBackLicenceCameraScreen(
+                        image: 3,
+                        title: 'Scan the back  image of\n Driving Licence',
+                      )),
             );
-
-          }else if(widget.image==3){
-            kycStep1Controller.netImage3.value=file!.path;
+          } else if (widget.image == 3) {
+            kycStep1Controller.netImage3.value = file!.path;
             Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => const LicenceScanScreen()),
             );
-          }else{
-
-          }
-          if(file!.path.isNotEmpty){
-          }
+          } else {}
+          if (file!.path.isNotEmpty) {}
           setState(() {});
         }
       });
-
     }
   }
 
@@ -595,18 +647,21 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
       final XFile file = await cameraController.takePicture();
       return file;
     } on CameraException catch (e) {
-
       return null;
     }
   }
+
   Future<void> _onCameraSwitch() async {
     final CameraDescription cameraDescription =
-    (_controller!.description == _cameras![0]) ? _cameras![1] : _cameras![0];
+        (_controller!.description == _cameras![0])
+            ? _cameras![1]
+            : _cameras![0];
     if (_controller != null) {
       await _controller!.dispose();
     }
     log('message ');
-    _controller = CameraController(cameraDescription, ResolutionPreset.veryHigh);
+    _controller =
+        CameraController(cameraDescription, ResolutionPreset.veryHigh);
     _controller!.addListener(() {
       if (mounted) setState(() {});
       if (_controller!.value.hasError) {
@@ -616,17 +671,16 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
 
     try {
       await _controller?.initialize();
-    } on CameraException catch (e) {
-
-    }
+    } on CameraException catch (e) {}
     if (mounted) {
       setState(() {});
     }
   }
 
   void showInSnackBar(String message) {
-    UIUtils.showSnakBar(headerText: "",bodyText: message.toString());
+    UIUtils.showSnakBar(headerText: "", bodyText: message.toString());
   }
+
   Future<bool> showBackDialog() async {
     return await Get.dialog(
       Padding(
@@ -651,9 +705,8 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                           child: Text(
                             "Are you sure,\n you want to cancel this process?",
                             textAlign: TextAlign.center,
-                            style: AppStyle.DmSansFont
-                                .copyWith(fontSize: 18,color: ColorConstant.darkBlue),
-
+                            style: AppStyle.DmSansFont.copyWith(
+                                fontSize: 18, color: ColorConstant.darkBlue),
                           )),
                       const SizedBox(
                         height: 25,
@@ -663,31 +716,34 @@ class FrontBackLicenceCameraScreenState extends State<FrontBackLicenceCameraScre
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: AppElevatedButton(buttonName: 'NO',
+                            child: AppElevatedButton(
+                              buttonName: 'NO',
                               radius: 5,
                               buttonColor: ColorConstant.primaryDarkGreen,
                               onPressed: () {
                                 Get.back();
-                              },),
+                              },
+                            ),
                           ),
-
                           SizedBox(
                             width: 8,
                           ),
                           Expanded(
-                            child: AppElevatedButton(buttonName: 'YES',
+                            child: AppElevatedButton(
+                              buttonName: 'YES',
                               buttonColor: ColorConstant.primaryDarkGreen,
                               radius: 5,
                               onPressed: () {
-                              if(widget.image==2){
-                                Get.back();
-                                Get.back();
-                              }else if(widget.image==3){
-                                Get.back();
-                                Get.back();
-                                Get.back();
-                              }
-                              },),
+                                if (widget.image == 2) {
+                                  Get.back();
+                                  Get.back();
+                                } else if (widget.image == 3) {
+                                  Get.back();
+                                  Get.back();
+                                  Get.back();
+                                }
+                              },
+                            ),
                           ),
                         ],
                       )
