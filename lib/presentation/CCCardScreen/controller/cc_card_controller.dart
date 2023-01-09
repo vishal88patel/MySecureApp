@@ -25,6 +25,8 @@ import '../model/cashcard_model.dart';
 
 class CCCardController extends GetxController {
   var arguments = Get.arguments;
+  LoginResponseModel? loginResponseModel=LoginResponseModel();
+  var fullName="".obs;
   var position="".obs;
   var index=0.obs;
   var showCard = false.obs;
@@ -51,12 +53,18 @@ class CCCardController extends GetxController {
   @override
   void onInit() {
     getArguments();
+    getStoredData();
     //callGetCashCardApi();
   }
 
   @override
   void onClose() {
     super.onClose();
+  }
+
+  Future<void> getStoredData() async {
+    loginResponseModel = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE));
+    fullName.value=loginResponseModel!.data!.firstName!+" "+loginResponseModel!.data!.lastName.toString();
   }
 
   getArguments(){
@@ -146,7 +154,15 @@ class CCCardController extends GetxController {
         .then((value) {
       print(value);
       if (value['status']) {
+        if(isLock.value=="1"){
+          isLock.value="0";
+          color.value=cashCardModel.value.data![index.value].color!;
 
+        }else{
+          isLock.value="1";
+          color.value="black";
+        }
+        showCard.value=!showCard.value;
       } else {
 
       }
@@ -159,4 +175,6 @@ class CCCardController extends GetxController {
     });
     return form;
   }
+
+
 }

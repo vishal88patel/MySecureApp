@@ -375,22 +375,6 @@ class CCCardListScreen extends StatelessWidget {
                         SizedBox(
                           height: getVerticalSize(40),
                         ),
-                        Obx(()=>
-                        ccCardListController.cashCardModel.value.data != null?ccCardListController
-                              .cashCardModel.value.data!.length==1?Padding(
-                            padding: EdgeInsets.symmetric(
-                              horizontal: getHorizontalSize(20.0),
-                            ),
-                            child: AppElevatedButton(
-                                buttonName: 'Add Free Cash Card',
-                                radius: 12,
-                                onPressed: () {
-                                  Get.toNamed(
-                                      AppRoutes.ccIntroScreen);
-                                  // Get.to(AmountRadialScreen());
-                                }),
-                          ):Container():Container(),
-                        ),
                       ],
                     ),
                   ),
