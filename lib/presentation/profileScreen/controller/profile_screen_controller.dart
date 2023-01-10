@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:secure_cash_app/presentation/LoginScreen/models/login_response_model.dart';
 
 import '../../../ApiServices/api_service.dart';
@@ -21,6 +22,7 @@ class ProfileScreenController extends GetxController {
   LoginResponseModel? loginResponseModel = LoginResponseModel();
   var homePageHeadeName = "".obs;
   var profilePicture = "".obs;
+  var balance = "".obs;
   var cardList = <Widget>[].obs;
   List<PlanetCard> planetCard = [];
   var cashCardModel = CashCardModel().obs;
@@ -220,6 +222,8 @@ class ProfileScreenController extends GetxController {
         loginResponseModel!.data!.lastName.toString();
     profilePicture.value =
         loginResponseModel!.data!.profilePhotoPath.toString();
+    balance.value =
+        loginResponseModel!.data!.balance.toString();
 
     callGetCashCardApi();
   }
@@ -229,77 +233,101 @@ class ProfileScreenController extends GetxController {
       cardList.value.add(
         Center(
           child: Card(
+            margin: const EdgeInsets.symmetric(horizontal: 0),
             color: planetCard[x].color,
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20.0),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
             ),
-            // color: Color.fromARGB(250, 112, 19, 179),
             child: Column(
-              children: <Widget>[
-                Container(
-                    height: 160,
-                    width: size.width / 1.1,
-                    child: Column(
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(
-                              left: getHorizontalSize(20),
-                              right: getHorizontalSize(20),
-                              top: getVerticalSize(20)),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                InkWell(
+                  onTap:(){
+                    Get.toNamed(AppRoutes.showUserCardScreen);
+                  },
+                  child: Container(
+                    height:160,
+                    width: size.width/1.1,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          left: getHorizontalSize(20),
+                          right: getHorizontalSize(20),
+                          top: getVerticalSize(20)),
+                      child: Column(
+                        crossAxisAlignment:
+                        CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment:
+                            MainAxisAlignment.spaceBetween,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(
-                                    loginResponseModel!.data!.firstName! +
-                                        ' ' +
-                                        loginResponseModel!.data!.lastName
-                                            .toString(),
-                                    style: AppStyle.textStyleDMSANS.copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(20)),
-                                  ),
-                                  SvgPicture.asset(
-                                    "asset/icons/ic_visa.svg",
-                                    fit: BoxFit.fill,
-                                  ),
-                                ],
+                              Text(
+                                x==0?"Balance":"CardHolder Name",
+                                style: AppStyle.textStyleDMSANS
+                                    .copyWith(
+                                    color: ColorConstant
+                                        .primaryWhite,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                    fontSize:
+                                    getFontSize(16)),
                               ),
-                              SizedBox(
-                                height: getHorizontalSize(30),
-                              ),
-                              Row(
-                                children: [
-                                  SvgPicture.asset(
-                                    "asset/icons/ic_chip.svg",
-                                    fit: BoxFit.fill,
-                                  ),
-                                  SizedBox(
-                                    width: getHorizontalSize(12),
-                                  ),
-                                  Text(
-                                    CommonUtils.FormatCardNumber(
-                                      planetCard[x].cardNumber.toString(),
-                                    ),
-                                    style: AppStyle.textStyleDMSANS.copyWith(
-                                        color: ColorConstant.primaryWhite,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: getFontSize(22)),
-                                  ),
-                                ],
+                              SvgPicture.asset(
+                                "asset/icons/ic_visa.svg",
                               ),
                             ],
                           ),
-                        )
-                      ],
-                    )),
+                          x==0? Obx(
+                                ()=> balance.value==""?Container():Text(
+                              NumberFormat.currency(name: '\$ ').format(int.parse(balance.value)),
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: getFontSize(22)),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ):Obx(
+                                ()=> homePageHeadeName.value==""?Container():Text(homePageHeadeName.value,
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  fontWeight: FontWeight.w700,
+                                  fontSize: getFontSize(22)),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          SizedBox(
+                            height: getHorizontalSize(16),
+                          ),
+                          Row(
+                            children: [
+                              SvgPicture.asset(
+                                "asset/icons/ic_chip.svg",
+                                fit: BoxFit.fill,
+                              ),
+                              SizedBox(
+                                width: getHorizontalSize(18),
+                              ),
+                              Text(
+                                CommonUtils.FormatCardNumber(planetCard[x].cardNumber.toString()),
+                                style: AppStyle.textStyleDMSANS
+                                    .copyWith(
+                                    color: ColorConstant
+                                        .primaryWhite,
+                                    fontWeight:
+                                    FontWeight.w500,
+                                    fontSize:
+                                    getFontSize(22)),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
+
         ),
       );
     }

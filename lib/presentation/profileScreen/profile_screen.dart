@@ -245,7 +245,7 @@ class ProfileScreen extends StatelessWidget {
                                     : Container(),
                               ),
                             ): Container(
-                              height: 215,
+                              height: 210,
                               child: Obx(
                                     () =>
                                 profileScreenController.cardList.value != null &&  profileScreenController.cardList.value.isNotEmpty
