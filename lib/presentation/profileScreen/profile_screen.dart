@@ -8,6 +8,7 @@ import 'package:secure_cash_app/presentation/profileScreen/widget/profile_op_wid
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
 import 'package:secure_cash_app/utils/HelperFiles/common_utils.dart';
+import 'package:stacked_card_carousel/stacked_card_carousel.dart';
 import 'package:swipe_deck/swipe_deck.dart';
 
 import '../../Custom Widgets/app_ElevatedButton .dart';
@@ -19,6 +20,7 @@ class ProfileScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
   var profileScreenController = Get.put(ProfileScreenController());
   var dashBoardController = Get.find<DashBoardScreenController>();
+  PageController controller = PageController(viewportFraction: 1, keepPage: true);
 
   List<String> abc=["1","2","3"];
   @override
@@ -33,40 +35,35 @@ class ProfileScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Container(
-                height: getVerticalSize(
-                  490.00,
-                ),
-                width: size.width,
-                child: Stack(
-                  children: [
-                    ClipRRect(
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(50),
-                          bottomRight: Radius.circular(50)),
-                      child: Image.asset(
-                        "asset/icons/ic_noti_background.png",
-                        width: MediaQuery.of(context).size.width,
-                        height: getVerticalSize(
-                          500.00,
+              Obx(
+              ()=> Container(
+                  height: profileScreenController.cardList.value!=null && profileScreenController.cardList.value.length==1?380.00:410,
+
+                  width: size.width,
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(50),
+                            bottomRight: Radius.circular(50)),
+                        child: Image.asset(
+                          "asset/icons/ic_noti_background.png",
+                          width: MediaQuery.of(context).size.width,
+                          height: 410.00,
+                          fit: BoxFit.cover,
                         ),
-                        fit: BoxFit.cover,
                       ),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: 40,
+                                height: 46,
                               ),
                               Padding(
-                                padding: const EdgeInsets.all(16.0),
+                                padding: const EdgeInsets.only(left: 16.0,right: 16),
                                 child: Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -106,285 +103,179 @@ class ProfileScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              Align(
-                                alignment: Alignment.centerLeft,
-                                child: Padding(
-                                  padding: EdgeInsets.all(12),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Obx(
-                                        () => ClipRRect(
-                                          borderRadius: BorderRadius.circular(
-                                            getHorizontalSize(
-                                              100.00,
-                                            ),
+                              Padding(
+                                padding: EdgeInsets.only(left: 12,right: 12,bottom: 12,top: 8),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.center,
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Obx(
+                                      () => ClipRRect(
+                                        borderRadius: BorderRadius.circular(
+                                          getHorizontalSize(
+                                            100.00,
                                           ),
-                                          child: homeController
-                                                      .profilePicture.value !=
-                                                  null
-                                              ? Image.network(
-                                                  homeController
-                                                      .profilePicture.value,
-                                                  height: getSize(
-                                                    130.00,
-                                                  ),
-                                                  width: getSize(
-                                                    130.00,
-                                                  ),
-                                                  fit: BoxFit.cover,
-                                                  loadingBuilder:
-                                                      (BuildContext context,
-                                                          Widget child,
-                                                          ImageChunkEvent?
-                                                              loadingProgress) {
-                                                    if (loadingProgress == null)
-                                                      return child;
-                                                    return Center(
-                                                      child:
-                                                          CircularProgressIndicator(
-                                                        value: loadingProgress
-                                                                    .expectedTotalBytes !=
-                                                                null
-                                                            ? loadingProgress
-                                                                    .cumulativeBytesLoaded /
-                                                                loadingProgress
-                                                                    .expectedTotalBytes!
-                                                            : null,
-                                                      ),
-                                                    );
-                                                  },
-                                                )
-                                              : Container(),
                                         ),
-                                      ),
-                                      Padding(
-                                        padding: EdgeInsets.only(
-                                          left: 24,
-                                          bottom: 4,
-                                        ),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              homeController
-                                                  .homePageHeadeName.value,
-                                              overflow: TextOverflow.ellipsis,
-                                              textAlign: TextAlign.left,
-                                              style:
-                                                  AppStyle.DmSansFont.copyWith(
-                                                      color: ColorConstant
-                                                          .primaryWhite,
-                                                      fontSize: getFontSize(26),
-                                                      fontWeight:
-                                                          FontWeight.bold),
-                                            ),
-                                            if (homeController
-                                                    .loginResponseModel!.data !=
-                                                null)
-                                              if (homeController
-                                                      .loginResponseModel!
-                                                      .data !=
-                                                  null)
-                                                Align(
-                                                  alignment: Alignment.center,
-                                                  child: Padding(
-                                                    padding: EdgeInsets.only(
-                                                      top: 3,
-                                                      right: 6,
-                                                    ),
-                                                    child: Text(
-                                                      homeController
-                                                              .loginResponseModel!
-                                                              .data!
-                                                              .email ??
-                                                          '',
-                                                      overflow:
-                                                          TextOverflow.ellipsis,
-                                                      textAlign: TextAlign.left,
-                                                      style: AppStyle.DmSansFont
-                                                          .copyWith(
-                                                              color: ColorConstant
-                                                                  .primaryAppTextF1,
-                                                              fontSize:
-                                                                  getFontSize(
-                                                                      18),
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .normal),
-                                                    ),
-                                                  ),
+                                        child: homeController
+                                                    .profilePicture.value !=
+                                                null
+                                            ? Image.network(
+                                                homeController
+                                                    .profilePicture.value,
+                                                height: getSize(
+                                                  110.00,
                                                 ),
-                                          ],
-                                        ),
+                                                width: getSize(
+                                                  110.00,
+                                                ),
+                                                fit: BoxFit.cover,
+                                                loadingBuilder:
+                                                    (BuildContext context,
+                                                        Widget child,
+                                                        ImageChunkEvent?
+                                                            loadingProgress) {
+                                                  if (loadingProgress == null)
+                                                    return child;
+                                                  return Center(
+                                                    child:
+                                                        CircularProgressIndicator(
+                                                      value: loadingProgress
+                                                                  .expectedTotalBytes !=
+                                                              null
+                                                          ? loadingProgress
+                                                                  .cumulativeBytesLoaded /
+                                                              loadingProgress
+                                                                  .expectedTotalBytes!
+                                                          : null,
+                                                    ),
+                                                  );
+                                                },
+                                              )
+                                            : Container(),
                                       ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-
-                        Card(
-                          margin: const EdgeInsets.symmetric(horizontal: 0),
-                          color: ColorConstant.naturalGrey2,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20)),
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: getHorizontalSize(270),
-                                height: getVerticalSize(20),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Card(
-                          margin: const EdgeInsets.symmetric(horizontal: 0),
-                          color: ColorConstant.brandYellow,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.only(
-                                topLeft: Radius.circular(20),
-                                topRight: Radius.circular(20)),
-                          ),
-                          child: Column(
-                            children: [
-                              Container(
-                                width: getHorizontalSize(310),
-                                height: getVerticalSize(20),
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Card(
-                            margin: const EdgeInsets.symmetric(horizontal: 0),
-                            color: ColorConstant.primaryLightGreen,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(20),
-                                  topRight: Radius.circular(20)),
-                            ),
-                            child: Column(
-                              children: [
-                                InkWell(
-                                  onTap:(){
-                            Get.toNamed(AppRoutes.showUserCardScreen);
-                          },
-                                  child: Container(
-                                    width: getHorizontalSize(350),
-                                    child: Padding(
+                                    ),
+                                    Padding(
                                       padding: EdgeInsets.only(
-                                          left: getHorizontalSize(20),
-                                          right: getHorizontalSize(20),
-                                          top: getVerticalSize(20)),
+                                        left: 24,
+                                        bottom: 4,
+                                      ),
                                       child: Column(
+                                        mainAxisSize: MainAxisSize.min,
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: [
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              Text(
-                                                "Balance",
-                                                style: AppStyle.textStyleDMSANS
-                                                    .copyWith(
-                                                        color: ColorConstant
-                                                            .primaryWhite,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize:
-                                                            getFontSize(16)),
-                                              ),
-                                              SvgPicture.asset(
-                                                "asset/icons/ic_visa.svg",
-                                                fit: BoxFit.fill,
-                                              ),
-                                            ],
+                                          Text(
+                                            homeController
+                                                .homePageHeadeName.value,
+                                            overflow: TextOverflow.ellipsis,
+                                            textAlign: TextAlign.left,
+                                            style:
+                                                AppStyle.DmSansFont.copyWith(
+                                                    color: ColorConstant
+                                                        .primaryWhite,
+                                                    fontSize: getFontSize(26),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                           ),
-                                          Obx(
-                                            () => dashBoardController
-                                                        .UserBalance.value ==
-                                                    ""
-                                                ? Container()
-                                                : Text(
-                                              NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
-                                                    style: AppStyle
-                                                        .textStyleDMSANS
-                                                        .copyWith(
-                                                            color: ColorConstant
-                                                                .primaryWhite,
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            fontSize:
-                                                                getFontSize(26)),
+                                          if (homeController
+                                                  .loginResponseModel!.data !=
+                                              null)
+                                            if (homeController
+                                                    .loginResponseModel!
+                                                    .data !=
+                                                null)
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                    top: 3,
+                                                    right: 6,
                                                   ),
-                                          ),
-                                          SizedBox(
-                                            height: getHorizontalSize(8),
-                                          ),
-                                          Row(
-                                            children: [
-                                              SvgPicture.asset(
-                                                "asset/icons/ic_chip.svg",
-                                                fit: BoxFit.fill,
-                                              ),
-                                              SizedBox(
-                                                width: getHorizontalSize(12),
-                                              ),
-                                              Text(
-                                                homeController.loginResponseModel!
-                                                            .data !=
-                                                        null
-                                                    ? CommonUtils.FormatCardNumber(
-                                                        homeController
+                                                  child: Text(
+                                                    homeController
                                                             .loginResponseModel!
                                                             .data!
-                                                            .cardNumber
-                                                            .toString())
-                                                    : "",
-                                                style: AppStyle.textStyleDMSANS
-                                                    .copyWith(
-                                                        color: ColorConstant
-                                                            .primaryWhite,
-                                                        fontWeight:
-                                                            FontWeight.w500,
-                                                        fontSize:
-                                                            getFontSize(22)),
+                                                            .email ??
+                                                        '',
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    textAlign: TextAlign.left,
+                                                    style: AppStyle.DmSansFont
+                                                        .copyWith(
+                                                            color: ColorConstant
+                                                                .primaryAppTextF1,
+                                                            fontSize:
+                                                                getFontSize(
+                                                                    18),
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .normal),
+                                                  ),
+                                                ),
                                               ),
-                                            ],
-                                          ),
                                         ],
                                       ),
                                     ),
-                                  ),
+                                  ],
                                 ),
-                              ],
+                              ),
+                            ],
+                          ),
+
+                          Obx(
+                            () =>profileScreenController.cardList.value!=null && profileScreenController.cardList.value.length==1?Container(
+                              height: 180,
+                              child: Obx(
+                                    () =>
+                                    profileScreenController.cardList.value != null &&  profileScreenController.cardList.value.isNotEmpty
+                                    ? ScrollConfiguration(
+                                 behavior: const ScrollBehavior().copyWith(overscroll: false),
+                                  child: StackedCardCarousel(
+                                  pageController: PageController(initialPage: 5,
+                                        keepPage: true,
+                                        viewportFraction: 1),
+                                  initialOffset: 0,
+                                  items: profileScreenController.cardList.value,
+                                ),
+                                    )
+                                    : Container(),
+                              ),
+                            ): Container(
+                              height: 215,
+                              child: Obx(
+                                    () =>
+                                profileScreenController.cardList.value != null &&  profileScreenController.cardList.value.isNotEmpty
+                                    ? ScrollConfiguration(
+                                  behavior: const ScrollBehavior().copyWith(overscroll: false),
+
+                                  child: StackedCardCarousel(
+                                  pageController: PageController(initialPage: 5,
+                                        keepPage: true,
+                                        viewportFraction: 1),
+                                  type: StackedCardCarouselType.cardsStack,
+                                  initialOffset: 0,
+                                  items: profileScreenController.cardList.value,
+                                ),
+                                    )
+                                    : Container(),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  /*  Column(
-                      children: [
-                        SizedBox(height:220,),
-                            Obx(()=>Stack(alignment: Alignment.center, children:profileScreenController.cardList.value)),
+                        ],
+                      ),
+                    /*  Column(
+                        children: [
+                          SizedBox(height:220,),
+                              Obx(()=>Stack(alignment: Alignment.center, children:profileScreenController.cardList.value)),
 
-                      ],
-                    ),*/
-                  ],
+                        ],
+                      ),*/
+                    ],
+                  ),
                 ),
               ),
               Padding(

@@ -10,6 +10,7 @@ import '../../../Custom Widgets/app_ElevatedButton .dart';
 import '../../../routes/app_routes.dart';
 import '../../../theme/app_style.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/common_utils.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
@@ -21,15 +22,15 @@ class ProfileScreenController extends GetxController {
   var homePageHeadeName = "".obs;
   var profilePicture = "".obs;
   var cardList = <Widget>[].obs;
-  List<PlanetCard> planetCard =[];
-  var cashCardModel=CashCardModel().obs;
-  List<String> cardNumberList=[];
-  List<Color> colorList=[];
-  List<double> marginList=[];
+  List<PlanetCard> planetCard = [];
+  var cashCardModel = CashCardModel().obs;
+  List<String> cardNumberList = [];
+  List<Color> colorList = [];
+  List<String> cvvList = [];
+
   @override
   void onInit() {
     getStoredData();
-
 
     super.onInit();
   }
@@ -134,39 +135,46 @@ class ProfileScreenController extends GetxController {
       barrierDismissible: true,
     );
   }
+
   Future<void> callGetCashCardApi() async {
     cardNumberList.clear();
     colorList.clear();
-    marginList.clear();
+    cvvList.clear();
     colorList.add(ColorConstant.primaryLightGreen);
-    colorList.add(ColorConstant.primaryOrange,);
+    colorList.add(
+      ColorConstant.primaryOrange,
+    );
     colorList.add(ColorConstant.naturalGrey4);
-    marginList.add(5);
-    marginList.add(5);
-    marginList.add(5);
+
     cardNumberList.add(loginResponseModel!.data!.cardNumber.toString());
+    cvvList.add(loginResponseModel!.data!.cvv.toString());
+
     ApiService()
         .callGetApi(
-        body: await getGetCashCardApiBody(),
-        headerWithToken: true,
-        showLoader: true,
-        url: ApiEndPoints.GET_CASHCARD)
+            body: await getGetCashCardApiBody(),
+            headerWithToken: true,
+            showLoader: false,
+            url: ApiEndPoints.GET_CASHCARD)
         .then((value) {
       print(value);
-      if (value!=null&&value['status']) {
+      if (value != null && value['status']) {
         cashCardModel.value = CashCardModel.fromJson(value);
-        for(int i=0;i<cashCardModel.value.data!.length;i++){
-          if(cashCardModel.value.data![i].cardNumber!.isNotEmpty){
-            cardNumberList.add(cashCardModel.value.data![i].cardNumber.toString());
+        for (int i = 0; i < cashCardModel.value.data!.length; i++) {
+          if (cashCardModel.value.data![i].cardNumber!.isNotEmpty) {
+            cardNumberList
+                .add(cashCardModel.value.data![i].cardNumber.toString());
+            cvvList.add(cashCardModel.value.data![i].cvv.toString());
           }
-
         }
-        for(int i=0;i<cardNumberList.length;i++){
-          if(cardNumberList[i].isNotEmpty){
-            planetCard.add(PlanetCard(cardNumber: cardNumberList[i],color: colorList[i],marginTop:  marginList[i]));
+        for (int i = 0; i < cardNumberList.length; i++) {
+          if (cardNumberList[i].isNotEmpty) {
+            planetCard.add(PlanetCard(
+                cardNumber: cardNumberList[i],
+                color: colorList[i],
+                cvv: cvvList[i]));
           }
-
         }
+        UIUtils.hideProgressDialog();
         _generateCards();
       } else {
         UIUtils.hideProgressDialog();
@@ -180,6 +188,7 @@ class ProfileScreenController extends GetxController {
     final form = FormData({});
     return form;
   }
+
   Future<void> callLogOutApi() async {
     ApiService()
         .callPostApi(body: await getLogOutBody(), url: ApiEndPoints.LOGOUT)
@@ -212,162 +221,87 @@ class ProfileScreenController extends GetxController {
     profilePicture.value =
         loginResponseModel!.data!.profilePhotoPath.toString();
 
-    // callGetCashCardApi();
+    callGetCashCardApi();
   }
 
   List _generateCards() {
     for (int x = 0; x < cardNumberList.length; x++) {
-      cardList.value.add(Column(
-        children: [
-          Draggable(
-            onDragEnd: (drag) {
-           removeCards(x);
-            },
-            childWhenDragging: Container(),
-            feedback:  Card(
-              color: planetCard[x].color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              // color: Color.fromARGB(250, 112, 19, 179),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      height: 160,
-                      width: size.width / 1.1,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: getHorizontalSize(20),
-                                right: getHorizontalSize(20),
-                                top: getVerticalSize(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      loginResponseModel!.data!.firstName!+ '' +loginResponseModel!.data!.lastName.toString(),
-                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                          color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(20)),
-                                    ),
-                                    SvgPicture.asset(
-                                      "asset/icons/ic_visa.svg",
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getHorizontalSize(16),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      "asset/icons/ic_chip.svg",
-                                      fit: BoxFit.fill,
-                                    ),
-                                    SizedBox(
-                                      width: getHorizontalSize(12),
-                                    ),
-                                    Text(
-                                      planetCard[x].cardNumber.toString(),
-                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                          color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(22)),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      )),
-                ],
-              ),
+      cardList.value.add(
+        Center(
+          child: Card(
+            color: planetCard[x].color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20.0),
             ),
-            child: GestureDetector(
-          onTap: () {},
-          child: Center(
-            child: Card(
-              color: planetCard[x].color,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20.0),
-              ),
-              // color: Color.fromARGB(250, 112, 19, 179),
-              child: Column(
-                children: <Widget>[
-                  Container(
-                      height: 160,
-                      width: size.width / 1.1,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(
-                                left: getHorizontalSize(20),
-                                right: getHorizontalSize(20),
-                                top: getVerticalSize(20)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Text(
-                                      loginResponseModel!.data!.firstName!+ '' +loginResponseModel!.data!.lastName.toString(),
-                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                          color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(20)),
-                                    ),
-                                    SvgPicture.asset(
-                                      "asset/icons/ic_visa.svg",
-                                      fit: BoxFit.fill,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getHorizontalSize(16),
-                                ),
-                                Row(
-                                  children: [
-                                    SvgPicture.asset(
-                                      "asset/icons/ic_chip.svg",
-                                      fit: BoxFit.fill,
-                                    ),
-                                    SizedBox(
-                                      width: getHorizontalSize(12),
-                                    ),
-                                    Text(
+            // color: Color.fromARGB(250, 112, 19, 179),
+            child: Column(
+              children: <Widget>[
+                Container(
+                    height: 160,
+                    width: size.width / 1.1,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: getHorizontalSize(20),
+                              right: getHorizontalSize(20),
+                              top: getVerticalSize(20)),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Text(
+                                    loginResponseModel!.data!.firstName! +
+                                        ' ' +
+                                        loginResponseModel!.data!.lastName
+                                            .toString(),
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(20)),
+                                  ),
+                                  SvgPicture.asset(
+                                    "asset/icons/ic_visa.svg",
+                                    fit: BoxFit.fill,
+                                  ),
+                                ],
+                              ),
+                              SizedBox(
+                                height: getHorizontalSize(30),
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    "asset/icons/ic_chip.svg",
+                                    fit: BoxFit.fill,
+                                  ),
+                                  SizedBox(
+                                    width: getHorizontalSize(12),
+                                  ),
+                                  Text(
+                                    CommonUtils.FormatCardNumber(
                                       planetCard[x].cardNumber.toString(),
-                                      style: AppStyle.textStyleDMSANS.copyWith(
-                                          color: ColorConstant.primaryWhite,
-                                          fontWeight: FontWeight.w500,
-                                          fontSize: getFontSize(22)),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          )
-                        ],
-                      )),
-                ],
-              ),
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.primaryWhite,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(22)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    )),
+              ],
             ),
           ),
-            ),
-          ),
-          Container(height: x*25,),
-
-        ],
-      ));
+        ),
+      );
     }
     cardList.refresh();
     return cardList.value;
@@ -376,9 +310,8 @@ class ProfileScreenController extends GetxController {
   void removeCards(index) {
     cardList.value.removeAt(index);
     cardList.refresh();
-    if(cardList.length==0){
+    if (cardList.length == 0) {
       _generateCards();
     }
-
   }
 }

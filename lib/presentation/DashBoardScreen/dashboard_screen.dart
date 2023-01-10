@@ -37,10 +37,6 @@ class DashBoardScreen extends StatelessWidget {
               ScanScreen(),
               BitCoinnScreen(),
               ProfileScreen(),
-              // TransactionScreen(),
-              // LinkBankListScreen(),
-              // ApplyLoanInfoScreen(),
-              // ProfileScreen()
             ],
           ),
         ),
