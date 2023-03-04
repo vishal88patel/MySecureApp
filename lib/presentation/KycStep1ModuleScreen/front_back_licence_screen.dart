@@ -13,6 +13,7 @@ import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/controller/kyc
 import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
+import '../../qrcode_screen.dart';
 import '../../theme/app_style.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import 'licence_scan_screen.dart';
@@ -623,6 +624,9 @@ class FrontBackLicenceCameraScreenState
               MaterialPageRoute(
                   builder: (context) => const LicenceScanScreen()),
             );
+            // Navigator.of(context).push(MaterialPageRoute(
+            //   builder: (context) => const QRViewExample(),
+            // ));
           } else {}
           if (file!.path.isNotEmpty) {}
           setState(() {});
