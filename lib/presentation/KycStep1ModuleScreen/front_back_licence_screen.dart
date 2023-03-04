@@ -331,13 +331,7 @@ class FrontBackLicenceCameraScreenState
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Center(
-                      child: SvgPicture.asset(
-                        "asset/icons/ic_app_logo.svg",
-                        height: getVerticalSize(100),
-                        fit: BoxFit.fill,
-                      ),
-                    ),
+                    Container(height: getVerticalSize(100),),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -423,11 +417,50 @@ class FrontBackLicenceCameraScreenState
             strokeWidth: 5,
             radius: Radius.circular(12),
             padding: EdgeInsets.all(6),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              child: Container(
+            child:widget.image==2? Container(
+              color: Colors.transparent,
+              child: Center(
+                child:Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset("asset/icons/face_detection.png",height: size.height/3,width:size.height/5,color: Colors.white,),
+                    SizedBox(width:getVerticalSize(30) ,),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          height: getVerticalSize(4),
+                                width: getHorizontalSize(100),
+                                decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(Radius.circular(20))
+                                ),
+                            ),
+                        SizedBox(height:getVerticalSize(30) ,),
+                        Container(
+                          height: getVerticalSize(4),
+                          width: getHorizontalSize(100),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                          ),
+                        ),
+                        SizedBox(height:getVerticalSize(30) ,),
+                        Container(
+                          height: getVerticalSize(4),
+                          width: getHorizontalSize(100),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.all(Radius.circular(20))
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                )
               ),
-            ),
+            ):Container(),
           ),
         ),
         // Align(
