@@ -13,7 +13,7 @@ class CreatePasswordScreenController extends GetxController {
 
   var createPaasIsObsecure = true.obs;
   var confirmPassIsObsecure = true.obs;
-
+  RegExp regexPASS = RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
   @override
   void onReady() {
     super.onReady();
@@ -44,12 +44,19 @@ class CreatePasswordScreenController extends GetxController {
         headerText: StringConstants.ERROR,
         bodyText: "Please enter password",
       );
+    }
+    else if (!regexPASS.hasMatch(createPassController.text)) {
+      return UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please enter strong password(1 Uppercase,1 lowercase,1 Numeric Number,1 Special Character)",
+      );
     } else if (confirmPassController.text.isEmpty) {
       UIUtils.showSnakBar(
         headerText: StringConstants.ERROR,
         bodyText: "Please enter confirm Password",
       );
-    } else if (createPassController.text != confirmPassController.text) {
+    }
+    else if (createPassController.text != confirmPassController.text) {
       UIUtils.showSnakBar(
         headerText: StringConstants.ERROR,
         bodyText: "Password did not matched",
