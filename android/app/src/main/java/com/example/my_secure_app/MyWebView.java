@@ -48,7 +48,7 @@ public class MyWebView extends WebView {
         int keyunicode = event.getUnicodeChar(event.getMetaState());
         char character = (char) keyunicode;
         System.out.println("DEBUG MESSAGE KEY=" + character + " KEYCODE=" + keycode);
-        Log.d("TAG", "--------PPPPPPPPPPPPPPPPP---------: "+  Constants.charList.size());
+        Log.d("TAG", "--------PPPPPPPPPPPPPPPPP---------: "+  AppConstants.charList.size());
         return super.onKeyDown(keyCode, event);
     }
 
@@ -65,7 +65,7 @@ public class MyWebView extends WebView {
         int keyunicode = event.getUnicodeChar(event.getMetaState());
         char character = (char) keyunicode;
         System.out.println("DEBUG MESSAGE KEY=" + character + " KEYCODE=" + keycode);
-        Log.d("TAG", "--------PPPPPPPPPPPPPPPPP---------: "+  Constants.charList.size());
+        Log.d("TAG", "--------PPPPPPPPPPPPPPPPP---------: "+  AppConstants.charList.size());
         return super.onKeyUp(keyCode, event);
     }
 
@@ -77,13 +77,13 @@ public class MyWebView extends WebView {
         System.out.println("DEBUG MESSAGE KEY=" + character + " KEYCODE=" + keycode);
         if(event.getAction()==KeyEvent.ACTION_UP){
             if(keycode==67){
-                if(Constants.charList.isEmpty()){
+                if(AppConstants.charList.isEmpty()){
                 }else {
-                    Constants.charList.remove(Constants.charList.size()-1);
+                    AppConstants.charList.remove(AppConstants.charList.size()-1);
 
                 }
             }else {
-                Constants.charList.add(String.valueOf(character));
+                AppConstants.charList.add(String.valueOf(character));
             }
             Log.d("TAG", "--------SSSSSSSSSSSSSSS---------: ");
             CustomActivity.recyclerView.getAdapter().notifyDataSetChanged();

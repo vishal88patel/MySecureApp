@@ -6,6 +6,7 @@ import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
+
 class MainActivity : FlutterActivity() {
     private val CHANNEL = "GET_DETAIL_CHANNEL"
     private var killcount: Int = 0;
@@ -22,18 +23,18 @@ class MainActivity : FlutterActivity() {
                 val bankUrl: String? = call.argument("BANK_URL")
                 val bankScript: String? = call.argument("BANK_JS")
                 val bankName: String? = call.argument("BANK_NAME")
-                Constants.AuthToken = ""
-                Constants.bankId = ""
-                Constants.BANK_URL = ""
-                Constants.JS_SCRIPT = ""
-                Constants.textDataForApi = ""
-                Constants.killApp = "false"
+                AppConstants.AuthToken = ""
+                AppConstants.bankId = ""
+                AppConstants.BANK_URL = ""
+                AppConstants.JS_SCRIPT = ""
+                AppConstants.textDataForApi = ""
+                AppConstants.killApp = "false"
 //                killcount=0
-                Constants.AuthToken = token
-                Constants.bankId = bankId
-                Constants.BANK_URL = bankUrl
-                Constants.BANK_NAME = bankName
-                Constants.JS_SCRIPT = bankScript
+                AppConstants.AuthToken = token
+                AppConstants.bankId = bankId
+                AppConstants.BANK_URL = bankUrl
+                AppConstants.BANK_NAME = bankName
+                AppConstants.JS_SCRIPT = bankScript
 
                 val intent = Intent(this, MyTestingActivityKotlin::class.java)
                 startActivity(intent)
@@ -68,17 +69,17 @@ class MainActivity : FlutterActivity() {
         killcount++
         if (killcount > 1) {
 
-            if (Constants.killApp == "true") {
+            if (AppConstants.killApp == "true") {
                 Log.d("DDDDDDDDDDDDD", "____-----------kill1" + killcount.toString())
                 MethodChannel(
                     flutterEngine?.dartExecutor!!.binaryMessenger,
                     "INCOMING_EVENTS"
                 ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
                 killcount = 0
-//                finish()
+                finish()
 
             } else {
-                if (Constants.killApp == "false"){
+                if (AppConstants.killApp == "false"){
                     Log.d("DDDDDDDDDDDDD", "____-----------onResume" + killcount.toString())
                     MethodChannel(
                         flutterEngine?.dartExecutor!!.binaryMessenger,
@@ -89,7 +90,7 @@ class MainActivity : FlutterActivity() {
             }
 
         }else{
-            if(Constants.killApp == "true"){
+            if(AppConstants.killApp == "true"){
                 Log.d("DDDDDDDDDDDDD", "____-----------onResumeKilled" + killcount.toString())
 
                 MethodChannel(
@@ -97,7 +98,7 @@ class MainActivity : FlutterActivity() {
                     "INCOMING_EVENTS"
                 ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
                 killcount = 0
-//                finish()
+                finish()
             }
         }
     }

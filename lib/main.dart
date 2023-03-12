@@ -50,7 +50,6 @@ Future<void> main() async {
     badge: true,
     sound: true,
   );
-
   runApp(MyApp());
 }
 
@@ -70,7 +69,6 @@ class _MyAppState extends State<MyApp> {
     var initializationSettings =
     InitializationSettings(android: initialzationSettingsAndroid);
     flutterLocalNotificationsPlugin.initialize(initializationSettings);
-
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
@@ -92,7 +90,6 @@ class _MyAppState extends State<MyApp> {
             ));
       }
     });
-
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage message) {
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
@@ -114,7 +111,6 @@ class _MyAppState extends State<MyApp> {
     });
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     Map<int, Color> color =
@@ -142,7 +138,6 @@ class _MyAppState extends State<MyApp> {
           splashColor:  ColorConstant.primaryLightGreen,
           highlightColor:  ColorConstant.primaryLightGreen,
       ),
-
       initialBinding: InitialBindings(),
       initialRoute: AppRoutes.splashScreen,
       getPages: AppRoutes.pages,
