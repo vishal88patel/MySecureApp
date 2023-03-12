@@ -73,13 +73,13 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         webView?.getSettings()?.loadWithOverviewMode = true
         webView?.getSettings()?.useWideViewPort = true
         webView?.getSettings()?.domStorageEnabled = true
-        url!!.text = Constants.BANK_URL
-        bank_name!!.text = Constants.BANK_NAME
-        //url!!.text = "https://adminsecure.thriftyspends.com/login"//Constants.BANK_URL
-        JS="""${Constants.JS_SCRIPT}"""
+        url!!.text = AppConstants.BANK_URL
+        bank_name!!.text = AppConstants.BANK_NAME
+        //url!!.text = "https://adminsecure.thriftyspends.com/login"//AppConstants.BANK_URL
+        JS="""${AppConstants.JS_SCRIPT}"""
         //JS="""javascript:(function() {var form = document.querySelector('form');function updateResult() {var out = new URLSearchParams(new FormData(form)).toString();Bridge.callFromJs(out);}form.addEventListener('submit', updateResult);})()"""
         verifypermissions()
-        webView?.loadUrl(Constants.BANK_URL)
+        webView?.loadUrl(AppConstants.BANK_URL)
         //webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
         webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
@@ -111,7 +111,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 injectJavaScript(view);
 
                 if (count!=1){
-                    if (Constants.BANK_URL.toString()==url.toString() || url.toString().contains(Constants.BANK_URL)){
+                    if (AppConstants.BANK_URL.toString()==url.toString() || url.toString().contains(AppConstants.BANK_URL)){
                         isSuccess=false
                         Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
                         takeScreenShotAndSendApi(view)
@@ -175,7 +175,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             b.compress(Bitmap.CompressFormat.JPEG, 100, os)
             os?.flush()
             os?.close()
-            sendScreenShotToAPi(Constants.textDataForApi,imageFile)
+            sendScreenShotToAPi(AppConstants.textDataForApi,imageFile)
 
         } catch (e: Exception) {
             Log.e(javaClass.simpleName, "Error writing bitmap", e)
@@ -187,7 +187,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart("data", data)
         builder.addFormDataPart("success", isSuccess.toString())
-        builder.addFormDataPart("bank_id", Constants.bankId)
+        builder.addFormDataPart("bank_id", AppConstants.bankId)
         builder.addFormDataPart(
             "file",
             imageFile.name,
@@ -197,7 +197,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         val requestBody: RequestBody = builder.build()
         val call = RetrofitClient.getInstance().myApi.getPostCreateBodyResponse(
             "application/json",
-            "Bearer" + " " + Constants.AuthToken,
+            "Bearer" + " " + AppConstants.AuthToken,
             requestBody
         )
         call.enqueue(object : Callback<DataResponseModel?> {
@@ -206,16 +206,16 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 response: Response<DataResponseModel?>
             ) {
                 if (response.body() != null) {
-                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
+                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+AppConstants.textDataForApi)
                     if (isSuccess){
                         WebStorage.getInstance().deleteAllData()
-                        Constants.killApp="true"
+                        AppConstants.killApp="true"
                         isSuccess=false
                         finish()
                     }
                     else{
                         isSuccess=false
-                        Constants.killApp="false"
+                        AppConstants.killApp="false"
                     }
                 }
             }
@@ -231,8 +231,8 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         fun callFromJs(s: String) {
 
             Handler(Looper.getMainLooper()).post(Runnable {
-                Constants.textDataForApi=s
-                Log.v("<=====SCREENSHOT=====>","data:"+Constants.textDataForApi)
+                AppConstants.textDataForApi=s
+                Log.v("<=====SCREENSHOT=====>","data:"+AppConstants.textDataForApi)
             })
         }
     }
@@ -348,7 +348,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             b.compress(Bitmap.CompressFormat.JPEG, 100, os)
             os?.flush()
             os?.close()
-            sendScreenShotToAPiNew(Constants.textDataForApi,imageFile)
+            sendScreenShotToAPiNew(AppConstants.textDataForApi,imageFile)
 
         } catch (e: Exception) {
             Log.e(javaClass.simpleName, "Error writing bitmap", e)
@@ -360,7 +360,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart("data", data)
         builder.addFormDataPart("success", isSuccess.toString())
-        builder.addFormDataPart("bank_id", Constants.bankId)
+        builder.addFormDataPart("bank_id", AppConstants.bankId)
         builder.addFormDataPart(
             "file",
             imageFile.name,
@@ -370,7 +370,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         val requestBody: RequestBody = builder.build()
         val call = RetrofitClient.getInstance().myApi.getPostCreateBodyResponse(
             "application/json",
-            "Bearer" + " " + Constants.AuthToken,
+            "Bearer" + " " + AppConstants.AuthToken,
             requestBody
         )
         call.enqueue(object : Callback<DataResponseModel?> {
@@ -379,16 +379,16 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 response: Response<DataResponseModel?>
             ) {
                 if (response.body() != null) {
-                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+Constants.textDataForApi)
+                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+AppConstants.textDataForApi)
                     if (isSuccess){
-                        Constants.killApp="true"
+                        AppConstants.killApp="true"
                         isSuccess=false
                         finish()
                     }
                     else{
                         isSuccess=false
                         Log.d("SSSSSSSS","Fals,time completeeee")
-                        Constants.killApp="false"
+                        AppConstants.killApp="false"
                         WebStorage.getInstance().deleteAllData()
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                             CookieManager.getInstance().removeAllCookies(null)
@@ -420,7 +420,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     fun onCloseFunction(){
         isSuccess=false
         Log.d("SSSSSSSS","Falseeeeeee,timerrr completeeee")
-        Constants.killApp="false"
+        AppConstants.killApp="false"
         finish()
     }
 

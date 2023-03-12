@@ -295,8 +295,7 @@ class PersonalScreenController extends GetxController {
                     first_name:
                         enterLegalNameController.firstNameController.text,
                     last_name: enterLegalNameController.lastNameController.text,
-                    date_of_birth:
-                        enterPersonalDetailController.dobController.text,
+                    date_of_birth: enterPersonalDetailController.dobController.text,
                     device_id: await PlatformDeviceId.getDeviceId,
                     fcm_token: token,
                     devicy_type: device_type,

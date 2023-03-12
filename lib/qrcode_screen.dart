@@ -84,7 +84,9 @@ class _QRViewExampleState extends State<QRViewExample>
     if (Platform.isAndroid) {
       controller!.pauseCamera();
     }
-    controller!.resumeCamera();
+    Future.delayed(Duration(milliseconds: 200), () {
+      controller?.resumeCamera();
+    });
   }
 
   @override

@@ -162,11 +162,11 @@ class KycScreenController extends GetxController {
           },
           codeSent: (String verificationID, int? resendToken) {
             verificationIDRecived = verificationID;
+            UIUtils.hideProgressDialog();
             Future.delayed(Duration(milliseconds: 1500),(){
               // UIUtils.hideProgressDialog();
               UIUtils.showSnakBar(bodyText: 'OTP Sent Successfully',headerText: StringConstants.SUCCESS);
               isLoaderShow.value=false;
-              UIUtils.hideProgressDialog();
               Get.toNamed(AppRoutes.kycOtpScreen);
 
             });

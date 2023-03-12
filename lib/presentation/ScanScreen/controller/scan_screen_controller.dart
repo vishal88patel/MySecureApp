@@ -71,7 +71,8 @@ class ScanScreenController extends GetxController {
     }
   }
   Future<void> cameraStart() async {
-    Future.delayed(Duration(milliseconds: 100), () {
+
+    Future.delayed(Duration(milliseconds: 200), () {
       controller?.resumeCamera();
     });
   }

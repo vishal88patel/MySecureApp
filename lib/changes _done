@@ -1,320 +1,35 @@
-1-- one page one field -- done
-2-- state api is remain -- will do it in nesxt build --remain
-3-- ssn input number -- done
-4-- zip code 5 digit validation -- done
-5-- birth date 18 year validation -- done
-6-- job title disable for retired -- done
-7-- job title disable for  disability -- done
-8-- employee ask for job title -- done
-9-- remain need to understand -remain
-10-- dont show default loan -- done
+Secure cash App improvements
 
-
-
-Column(
-          children: [
-            SizedBox(
-              height: 20,
-            ),
-            Container(
-              width: size.width,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  AppbarImage1(
-                    height: getVerticalSize(
-                      120.00,
-                    ),
-                    width: getHorizontalSize(
-                      359.00,
-                    ),
-                    imagePath: "asset/icons/img_ribbons_1.png",
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(24),
-                    child: Text(
-                      "Payment Receipt",
-                      overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.left,
-                      style: AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant.primaryWhite,
-                          fontSize: getFontSize(28)),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Container(
-                height: size.height / 1.2,
-                width: getHorizontalSize(370),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(25),
-                      topRight: Radius.circular(25),
-                    )),
-                child: CustomPaint(
-                  painter: TicketPainter(
-                    borderColor: ColorConstant.primaryBlack,
-                    bgColor: ColorConstant.primaryWhite,
-                  ),
-                  child: Stack(
-                    children: [
-                      Column(
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.all(getVerticalSize(15)),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                ClipRRect(
-                                    borderRadius:
-                                    BorderRadius.circular(15.0),
-                                    child: Image.asset(
-                                      "asset/icons/doller_card.png",
-                                      height: 220,
-                                      fit: BoxFit.cover,
-                                    )),
-                                SizedBox(
-                                  height: getVerticalSize(30),
-                                ),
-                                Text(
-                                  "Name",
-                                  style: AppStyle.DmSansFont
-                                      .copyWith(
-                                      color: ColorConstant.lightText,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(18)),
-                                ),
-                                Obx(
-                                      () => Text(
-                                    loanApprovedController.HeadeName.value,
-                                    style: AppStyle.DmSansFont
-                                        .copyWith(
-                                        color:
-                                        ColorConstant.primaryBlack,
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: getFontSize(24)),
-                                  ),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(30),
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        /* Text(
-                                              "Date",
-                                              style: AppStyle
-                                                  .DmSansFont
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .lightText,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize:
-                                                          getFontSize(18)),
-                                            ),
-                                            Text(
-                                              "21 Dec 2021",
-                                              style: AppStyle.textStyleSFPROBold
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .primaryBlack,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize:
-                                                          getFontSize(24)),
-                                            ),
-                                            SizedBox(
-                                              height: getVerticalSize(30),
-                                            ),*/
-                                        Text(
-                                          "Loan Type",
-                                          style: AppStyle
-                                              .DmSansFont
-                                              .copyWith(
-                                              color: ColorConstant
-                                                  .lightText,
-                                              fontWeight:
-                                              FontWeight.w400,
-                                              fontSize:
-                                              getFontSize(18)),
-                                        ),
-                                        Obx(
-                                              () => Text(
-                                            loanApprovedController.loan_type
-                                                .toString(),
-                                            style: AppStyle
-                                                .DmSansFont
-                                                .copyWith(
-                                                color: ColorConstant
-                                                    .primaryBlack,
-                                                fontWeight:
-                                                FontWeight.w700,
-                                                fontSize:
-                                                getFontSize(24)),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    Column(
-                                      crossAxisAlignment:
-                                      CrossAxisAlignment.start,
-                                      children: [
-                                        /*Text(
-                                              "TIme",
-                                              style: AppStyle
-                                                  .DmSansFont
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .lightText,
-                                                      fontWeight:
-                                                          FontWeight.w400,
-                                                      fontSize:
-                                                          getFontSize(18)),
-                                            ),
-                                            Text(
-                                              "07:00 PM",
-                                              style: AppStyle.textStyleSFPROBold
-                                                  .copyWith(
-                                                      color: ColorConstant
-                                                          .primaryBlack,
-                                                      fontWeight:
-                                                          FontWeight.w700,
-                                                      fontSize:
-                                                          getFontSize(24)),
-                                            ),
-                                            SizedBox(
-                                              height: getVerticalSize(30),
-                                            ),*/
-                                        Text(
-                                          "Amount ",
-                                          style: AppStyle
-                                              .DmSansFont
-                                              .copyWith(
-                                              color: ColorConstant
-                                                  .lightText,
-                                              fontWeight:
-                                              FontWeight.w400,
-                                              fontSize:
-                                              getFontSize(18)),
-                                        ),
-                                        Obx(
-                                              () => Text(
-                                            "\$" +
-                                                loanApprovedController
-                                                    .loanCalModel
-                                                    .value
-                                                    .data!
-                                                    .loanAmount
-                                                    .toString(),
-                                            style: AppStyle
-                                                .DmSansFont
-                                                .copyWith(
-                                                color: ColorConstant
-                                                    .primaryBlack,
-                                                fontWeight:
-                                                FontWeight.w700,
-                                                fontSize:
-                                                getFontSize(24)),
-                                          ),
-                                        ),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(15),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Column(
-                            children: [
-                              Container(
-                                width: getHorizontalSize(340),
-                                height: getVerticalSize(1),
-                                color: ColorConstant.divider,
-                              ),
-                              SizedBox(
-                                height: getVerticalSize(40),
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      "Congratulations,",
-                                      style: AppStyle.DmSansFont
-                                          .copyWith(
-                                          color:
-                                          ColorConstant.lightGreen,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(16)),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      textAlign: TextAlign.center,
-                                      "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
-                                      style: AppStyle.DmSansFont
-                                          .copyWith(
-                                          color: ColorConstant
-                                              .primaryBlack,
-                                          fontWeight: FontWeight.w700,
-                                          fontSize: getFontSize(16)),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                              SizedBox(
-                                height: getVerticalSize(60),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: ClipRRect(
-                                  borderRadius: BorderRadius.circular(15.0),
-                                  child: Image.asset(
-                                      "asset/icons/barcode_image.jpeg"),
-                                ),
-                              )
-                            ],
-                          )
-                        ],
-                      ),
-                      Positioned(
-                        top: 190,
-                        right: 10,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Lottie.asset('asset/animations/approved_anim.json',height: 80),
-                            Transform.rotate(
-                              angle: 0.6,
-                              child: Image.asset(
-                                "asset/icons/approved_sign.png",
-                                height: 70,
-                                width: 200,
-                              ),
-                            ),
-
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                )),
-          ],
-        )
+Driving licence cancel loading,
+ back ma photo click ma j aayi jay che,
+direct bahar javu joie, image scroll document ready issue,
+next button all green,
+photo clicking page transparent with instructions on top,
+All photo verification pages should be transparent,
+Kyaythi pn back jatu reh che ae nai chale amuk j jagya thi back javay aevu rakhvanu che bdhe thi back jatu reh ae na chale,
+Identity verification already thai gyu hoy ne aapde fari karavu hoy to admin page thi change kmnu karvanu
+Verification direct pchi home page upar aaya ane qr code scan pay ma camera connect nthi thatu
+Camera connectivity issue
+Admin panel ma document upload na thya hoy to view nu button km API do Cho,
+Payment history ma settings ma su che?
+Apply for loan na module ma details fill up karine j confirmation pop up aave che aev bannev vachhe aek loading page mukvanu che jem aapde kyc na document upload Thai gya pchi Mukiye che ae ritna
+Aema lakhvanu validating your information, verifying your information, checking your credit score,
+Verifying your details
+Apply Loan > loan page > select loan type > agar user borrow loan select karyu hoy sign up vakhte to ahiya ae same page batava ni jarur nthi , agar wallet service select karyu hoy to j aa page batado ane aa page ma pn same box pattern karvani che.
+Select loan amt vadu pop up box aek terms and conditions check box mukvanu che ane i agree and i don't agree na box mukvana che instead of ok and cancel.
+Loan amt scroller che ae end upar jaine ubhu rai javu joie amna aakhu god god j fare che.
+Transfer vakht cash card order nthi kari to pn kmnu card show kare che.
+Ane transfer karya pchi pn profile section ma card ma bal to original j show kare che khali home page upar balance change thay che.
+Add a card > scan your card not working
+Selfie with document > transparent and with instructions image on it.
+Apply for loan> chellu page che ae be ni vache aek page add karvanu che jema loading mukvanu che verifying your documents, verifying your details, verifying your credit score, checking your credentials.
+>Congratulations you had successfully applied for loan we had confirmed your details as per fdic rules and regulations
+Your loan amt will be shortly credited to your wallet, thank you for being a part of secure cash app.
+Cash card page > after locking the card it should have been written on the card that the card is locked please unlock your card.
+Cash card order karya pchi j pop up box aave che aema gif nthi with animation.
+Notification page > mark all read aapya pchi bdhi notification jati km reh che,
+Ane mark as read ane unread vada 2 option aapo ane aema settings nu su use che.
+My profile page > balance j ma dekhade che ae card nathi rakhvu aeni badle khali banking details hovi joie routing , account number ane name bs ane balance j hoy ae dekhadvanu.
+Profile > Banking details page > aema andar jaiye aetle 2 option che my card ane my bank ae bev ma jetla card link karya hoy ae bdha aava joie ane bank pn multiple link kari hoy to ae pn aavi joie.
+Privacy & security> settings na options aapvana jem k pass word change, sucretag change , pin change, bija security na jetla feature hoy ae bdha aava joie.
+Home page > remove see more
