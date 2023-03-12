@@ -14,7 +14,7 @@ class EnterBirthDateController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
   DateTime selectedDate = DateTime.now();
-
+  RegExp regexSSN = RegExp(r"^(?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4}$");
 
   @override
   void onReady() {
@@ -66,6 +66,12 @@ class EnterBirthDateController extends GetxController {
     }else if (ssnController.text.length!=9) {
       UIUtils.showSnakBar(
           bodyText: "Social Security Number Should be 9 digit number", headerText: StringConstants.ERROR);
+    }
+    else if (!regexSSN.hasMatch(ssnController.text.toString().trim())) {
+      return UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Enter Valid SSN",
+      );
     }
     else {
       // Get.toNamed(AppRoutes.personalDetailScreen);

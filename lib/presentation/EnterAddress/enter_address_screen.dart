@@ -12,12 +12,6 @@ import 'controller/enter_address_screen_controller.dart';
 
 class EnterAddressDetailScreen extends StatelessWidget {
   var enterAddressController = Get.find<EnterAddressScreenController>();
-  final List<String> items = [
-    'Item1',
-    'Item2',
-    'Item3',
-    'Item4',
-  ];
   String? selectedValue;
 
   @override
@@ -132,9 +126,6 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                                 controller:
                                                 enterAddressController
                                                     .address01Controller),
-                                            SizedBox(
-                                              height: getVerticalSize(30),
-                                            ),
                                             Obx(
                                                   () => AnimatedContainer(
                                                 height: enterAddressController
@@ -229,6 +220,9 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                                   ),
                                                 ),
                                               ),
+                                            ),
+                                            SizedBox(
+                                              height: getVerticalSize(30),
                                             ),
                                             AppTextField(
                                               hintText: 'Enter your Address 02',
@@ -395,9 +389,9 @@ class EnterAddressDetailScreen extends StatelessWidget {
                                                         // selectedValue = value as String;
                                                         // });
                                                       },
-                                                      buttonHeight: 40,
+                                                      buttonHeight: 45,
                                                       buttonWidth: size.width,
-                                                      itemHeight: 40,
+                                                      itemHeight: 45,
                                                       dropdownMaxHeight: 350,
                                                     ),
                                                   ),
