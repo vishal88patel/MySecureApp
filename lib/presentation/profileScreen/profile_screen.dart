@@ -199,7 +199,7 @@ class ProfileScreen extends StatelessWidget {
                                                     homeController
                                                             .loginResponseModel!
                                                             .data!
-                                                            .email ??
+                                                            .cashtag ??
                                                         '',
                                                     overflow:
                                                         TextOverflow.ellipsis,
@@ -251,7 +251,6 @@ class ProfileScreen extends StatelessWidget {
                                 profileScreenController.cardList.value != null &&  profileScreenController.cardList.value.isNotEmpty
                                     ? ScrollConfiguration(
                                   behavior: const ScrollBehavior().copyWith(overscroll: false),
-
                                   child: StackedCardCarousel(
                                   pageController: PageController(initialPage: 5,
                                         keepPage: true,

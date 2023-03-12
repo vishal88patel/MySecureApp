@@ -202,6 +202,7 @@ class HomeScreenController extends GetxController {
                             textColor: Colors.white,
                             onPressed: () {
                               Get.back();
+                              showVerifyIdentityDialouge();
                               // Get.toNamed(AppRoutes.dashBoardScreen);
                             },
                           ),
@@ -219,11 +220,7 @@ class HomeScreenController extends GetxController {
           ),
         ),
         barrierDismissible: false,
-      ).then((value) {
-        Future.delayed(Duration(milliseconds: 500), () {
-          showVerifyIdentityDialouge();
-        });
-      });
+      );
     } else {
 
     }
@@ -353,6 +350,10 @@ class HomeScreenController extends GetxController {
                       textColor: Colors.white,
                       onPressed: () {
                         Get.back();
+                        Future.delayed(Duration(milliseconds: 200), () {
+                          PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
+                          Get.toNamed(AppRoutes.kycEmailScreen);
+                        });
                         // Get.toNamed(AppRoutes.dashBoardScreen);
                       },
                     ),
@@ -365,11 +366,6 @@ class HomeScreenController extends GetxController {
         ),
       ),
       barrierDismissible: false,
-    ).then((value) {
-      Future.delayed(Duration(milliseconds: 500), () {
-        PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
-        Get.toNamed(AppRoutes.kycEmailScreen);
-      });
-    });
+    );
   }
 }

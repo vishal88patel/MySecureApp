@@ -184,7 +184,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       //_scanBarcode = barcodeScanRes;
       kycStep1Controller.qrCodeResult.value=barcodeScanRes.toString();
       print(barcodeScanRes.toString());
-      if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0){
+      if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0 && kycStep1Controller.qrCodeResult.value.toString().contains("DCS")&& kycStep1Controller.qrCodeResult.value.toString().contains("DDE")){
         counter=1;
         const start1 = "DCS";
         const end1 = "DDE";
@@ -205,6 +205,12 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         if(fname.isNotEmpty && lname.isNotEmpty){
           scanDataa(fname,lname,dobData);
         }}
+      else{
+        UIUtils.showSnakBar(
+            bodyText: "Wrong QR,Please Scan Again",
+            headerText: StringConstants.ERROR);
+        Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+      }
     });
   }
 

@@ -20,6 +20,7 @@ import '../../LoginScreen/models/login_response_model.dart';
 class KycScreenController extends GetxController {
 
   TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController plusOneController = TextEditingController(text: "+1");
   TextEditingController otpController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   LoginResponseModel? loginResponseModel = LoginResponseModel();
@@ -132,7 +133,7 @@ class KycScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Mobile Number",
           headerText: StringConstants.ERROR);
-    } else if (phoneNumberController.text.length != 17) {
+    } else if (phoneNumberController.text.length != 12) {
       UIUtils.showSnakBar(
           bodyText: "Mobile Number Should be 11 digit number",
           headerText: StringConstants.ERROR);
@@ -141,14 +142,11 @@ class KycScreenController extends GetxController {
       UIUtils.showProgressDialog(isCancellable: false);
       log('sdfkksafkakksfh1 ${phoneNumberController.text}');
       String number = phoneNumberController.text
-          .replaceAll('(', '')
-          .replaceAll(')', '')
-          .replaceAll('-', '')
-          .replaceRange(5, 7, '');
+          .replaceAll('-', '');
       log('sdfkksafkakksfh ${number}');
       sendOtpPhoneApi();
       auth.verifyPhoneNumber(
-          phoneNumber: phoneNumberController.text,
+          phoneNumber: plusOneController.text+phoneNumberController.text,
           verificationCompleted: (PhoneAuthCredential credential) async {
             await auth
                 .signInWithCredential(credential)

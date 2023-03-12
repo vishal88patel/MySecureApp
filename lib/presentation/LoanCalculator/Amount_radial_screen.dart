@@ -307,6 +307,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                                 sizeUnit:
                                                 GaugeSizeUnit
                                                     .logicalPixel,
+
                                                 gradient:
                                                 SweepGradient(
                                                   colors: <Color>[
@@ -315,6 +316,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                                     ColorConstant
                                                         .primaryLightGreen,
                                                   ],
+
                                                 )),
                                             MarkerPointer(
                                                 value: _volumeValue,
@@ -330,6 +332,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                                 color: ColorConstant
                                                     .primaryLightGreen,
                                                 borderWidth: 1,
+
                                                 borderColor: ColorConstant
                                                     .primaryLightGreen)
                                           ],
@@ -338,6 +341,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                             GaugeAnnotation(
                                                 angle: 90,
                                                 axisValue: 5,
+
                                                 positionFactor: 0.2,
                                                 widget: Column(
                                                   mainAxisAlignment:

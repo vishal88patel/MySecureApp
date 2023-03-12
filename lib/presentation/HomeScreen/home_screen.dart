@@ -362,7 +362,7 @@ class HomeScreen extends StatelessWidget {
                         height: getVerticalSize(10),
                       ),
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
@@ -371,14 +371,6 @@ class HomeScreen extends StatelessWidget {
                                 color: ColorConstant.naturalBlack,
                                 fontWeight: FontWeight.w700,
                                 fontSize: getFontSize(22)),
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                          Text(
-                            "See More",
-                            style: AppStyle.textStyleDMSANS.copyWith(
-                                color: ColorConstant.primaryLightGreen,
-                                fontWeight: FontWeight.w700,
-                                fontSize: getFontSize(18)),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ],

@@ -84,26 +84,50 @@ class KycPhoneScreen extends StatelessWidget {
                                     SizedBox(
                                       height: getVerticalSize(43),
                                     ),
-                                    TextFormField(
-                                      readOnly: true,
-                                      style: TextStyle(color: ColorConstant.primaryWhite,),
-                                      decoration: InputDecoration(
-                                        hintText: 'Phone Number',
-                                        hintStyle: AppStyle.DmSansFont.copyWith(
-                                            color: ColorConstant.primaryWhite,
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: getFontSize(16)),
-                                        enabledBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+                                    Row(
+                                      children: [
+                                        Container(
+                                          width:22,
+                                            child: TextFormField(
+                                            controller: kycController.plusOneController,
+                                            readOnly: true,
+                                            style:TextStyle(color: ColorConstant.primaryWhite,),
+                                            decoration: InputDecoration(
+                                              enabledBorder: UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: ColorConstant.primaryWhite, width: 1),
+                                              ),
+                                              focusedBorder: UnderlineInputBorder(
+                                                borderSide: BorderSide(
+                                                    color: ColorConstant.primaryWhite, width: 1),
+                                              ),
+                                            ),
+                                            cursorColor: ColorConstant.primaryWhite,
+                                          )
                                         ),
-                                        focusedBorder: UnderlineInputBorder(
-                                          borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+                                        Expanded(
+                                          child: TextFormField(
+                                            readOnly: true,
+                                            style: TextStyle(color: ColorConstant.primaryWhite,),
+                                            decoration: InputDecoration(
+                                              hintText: 'Phone Number',
+                                              hintStyle: AppStyle.DmSansFont.copyWith(
+                                                  color: ColorConstant.primaryWhite,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: getFontSize(16)),
+                                              enabledBorder: UnderlineInputBorder(
+                                                borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+                                              ),
+                                              focusedBorder: UnderlineInputBorder(
+                                                borderSide: BorderSide(color: ColorConstant.primaryAppTextF1),
+                                              ),
+                                            ),
+                                            // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
+                                            controller:
+                                            kycController.phoneNumberController,
+                                          ),
                                         ),
-                                      ),
-                                      // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
-
-                                      controller:
-                                      kycController.phoneNumberController,
+                                      ],
                                     ),
                                   ],
                                 ),

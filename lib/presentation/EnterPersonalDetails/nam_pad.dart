@@ -183,24 +183,12 @@ buttonWidget(
         }
       }
       else if(type=='PHONE'){
-        if(controller.text.length<=16) {
-          if (controller.text.length <= 0) {
-            controller.text += '+';
-          }
+        if(controller.text.length<=11) {
           controller.text += number.toString();
-          if (controller.text.length == 2) {
-            controller.text += ' ';
-          }
           if (controller.text.length == 3) {
-            controller.text += '(';
+            controller.text += '-';
           }
           if (controller.text.length == 7) {
-            controller.text += ')';
-          }
-          if (controller.text.length == 8) {
-            controller.text += ' ';
-          }
-          if (controller.text.length == 12) {
             controller.text += '-';
           }
           log('message5 ${controller.text}');
