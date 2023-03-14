@@ -44,9 +44,11 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                   height: getVerticalSize(52),
                                 ),
                                 Center(
-                                  child: SvgPicture.asset(
-                                    "asset/icons/ic_app_logo.svg",
-                                    fit: BoxFit.fill,
+                                  child: Padding(
+                                    padding: EdgeInsets.all(getHorizontalSize(20)),
+                                    child: SvgPicture.asset(
+                                      "asset/icons/ic_app_logo.svg",
+                                    ),
                                   ),
                                 ),
                                 SizedBox(

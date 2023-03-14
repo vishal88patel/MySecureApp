@@ -18,9 +18,11 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorConstant.primaryDarkGreen,
       body: Center(
-        child: SvgPicture.asset(
-          "asset/icons/ic_app_logo.svg",
-          fit: BoxFit.fill,
+        child: Padding(
+          padding: EdgeInsets.all(getVerticalSize(16)),
+          child: SvgPicture.asset(
+            "asset/icons/ic_app_logo.svg",
+          ),
         ),
       ),
     );
