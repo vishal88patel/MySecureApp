@@ -47,8 +47,7 @@ class HomeScreen extends StatelessWidget {
                         children: [
                           SvgPicture.asset(
                             "asset/icons/ic_app_logo.svg",
-                            fit: BoxFit.fill,
-                            height: getVerticalSize(42),
+                            height: getVerticalSize(34),
                           ),
                           Text(
                             " ",
