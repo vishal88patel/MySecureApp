@@ -19,7 +19,7 @@ import 'controller/profile_screen_controller.dart';
 class ProfileScreen extends StatelessWidget {
   var homeController = Get.put(HomeScreenController());
   var profileScreenController = Get.put(ProfileScreenController());
-  var dashBoardController = Get.find<DashBoardScreenController>();
+
   PageController controller = PageController(viewportFraction: 1, keepPage: true);
 
   List<String> abc=["1","2","3"];
