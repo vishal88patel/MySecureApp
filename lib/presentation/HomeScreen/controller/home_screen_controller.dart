@@ -30,8 +30,7 @@ class HomeScreenController extends GetxController {
   var isOtpDone = "0".obs;
   @override
   void onReady() {
-    WidgetsBinding.instance
-        .addPostFrameCallback((_) => showWelcomeDialouge());
+
     super.onReady();
   }
 
@@ -81,6 +80,10 @@ class HomeScreenController extends GetxController {
 
         // callGetLinkedBankApi();
         UIUtils.hideProgressDialog();
+        Future.delayed(Duration(milliseconds: 500),(){
+          showWelcomeDialouge();
+        });
+
       } else {
         UIUtils.showSnakBar(
             bodyText: "Error Fetching Offers", headerText: StringConstants.ERROR);
@@ -276,6 +279,7 @@ class HomeScreenController extends GetxController {
                                   GestureDetector(
                                     onTap: () {
                                       if (Get.isDialogOpen == true) Get.back();
+                                      PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
                                     },
                                     child: Icon(
                                       Icons.close,

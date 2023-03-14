@@ -29,6 +29,7 @@ class MainActivity : FlutterActivity() {
                 AppConstants.JS_SCRIPT = ""
                 AppConstants.textDataForApi = ""
                 AppConstants.killApp = "false"
+                AppConstants.isLinkingDone = "false"
 //                killcount=0
                 AppConstants.AuthToken = token
                 AppConstants.bankId = bankId
@@ -64,6 +65,16 @@ class MainActivity : FlutterActivity() {
     override fun onResume() {
 
         super.onResume()
+        if (AppConstants.isLinkingDone == "false") {
+            Log.d("DDDDDDDDDDDDD", "____-----------kill1" + killcount.toString())
+            MethodChannel(
+                flutterEngine?.dartExecutor!!.binaryMessenger,
+                "INCOMING_EVENTS"
+            ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
+            killcount = 0
+            AppConstants.isLinkingDone = "true"
+
+
         Log.d("DDDDDDDDDDDDD", "____-----------kill1Start" + killcount.toString())
 
         killcount++
@@ -76,7 +87,7 @@ class MainActivity : FlutterActivity() {
                     "INCOMING_EVENTS"
                 ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
                 killcount = 0
-                finish()
+                AppConstants.isLinkingDone = "true"
 
             } else {
                 if (AppConstants.killApp == "false"){
@@ -85,6 +96,7 @@ class MainActivity : FlutterActivity() {
                         flutterEngine?.dartExecutor!!.binaryMessenger,
                         "INCOMING_EVENTS"
                     ).invokeMethod("SHOW_SUCCESS_SCREEN", false)
+                    AppConstants.isLinkingDone = "true"
                 }
 
             }
@@ -98,9 +110,10 @@ class MainActivity : FlutterActivity() {
                     "INCOMING_EVENTS"
                 ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
                 killcount = 0
-                finish()
+                AppConstants.isLinkingDone = "true"
             }
         }
+    }
     }
 
 }

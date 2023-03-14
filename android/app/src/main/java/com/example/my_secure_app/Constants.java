@@ -11,5 +11,6 @@ import java.util.ArrayList;
    static String BANK_NAME="";
    static String JS_SCRIPT="";
    static String killApp="";
+   static String isLinkingDone="";
 
 }

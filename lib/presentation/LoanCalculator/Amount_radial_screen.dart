@@ -1,13 +1,9 @@
-import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_vibrate/flutter_vibrate.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_gauges/gauges.dart';
 import 'package:vibration/vibration.dart';
 
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_AppBar .dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../Custom Widgets/dash_widget.dart';
 import '../../theme/app_style.dart';
@@ -31,16 +27,16 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
   double amountInto = 0;
 
   Future<void> onVolumeChanged(double value) async {
-    if (await Vibration.hasAmplitudeControl()!=null) {
+    if (await Vibration.hasAmplitudeControl() != null) {
       Vibration.vibrate(amplitude: 50);
-    };
+    }
+    ;
     setState(() {
       if (value.round() > 4999) {
         if (showInfoDialouge) {
           Get.dialog(
             Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: getHorizontalSize(40)),
+              padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
               child: Center(
                 child: Material(
                   color: Colors.transparent,
@@ -48,58 +44,45 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                     children: [
                       Container(
                         decoration: BoxDecoration(
-                            color: ColorConstant
-                                .primaryWhite,
+                            color: ColorConstant.primaryWhite,
                             borderRadius:
-                            const BorderRadius.all(
-                                Radius.circular(15))),
-                        margin: const EdgeInsets.only(
-                            bottom: 20),
+                                const BorderRadius.all(Radius.circular(15))),
+                        margin: const EdgeInsets.only(bottom: 20),
                         padding: const EdgeInsets.only(
                           bottom: 20,
                         ),
-                        constraints: const BoxConstraints(
-                            minWidth: 180),
+                        constraints: const BoxConstraints(minWidth: 180),
                         child: Column(
                           children: [
                             Container(
                               decoration: BoxDecoration(
-                                  color:
-                                  Color(0xFFF4F4F6),
-                                  borderRadius:
-                                  const BorderRadius
-                                      .all(
-                                      Radius.circular(
-                                          15))),
+                                  color: Color(0xFFF4F4F6),
+                                  borderRadius: const BorderRadius.all(
+                                      Radius.circular(15))),
                               padding: EdgeInsets.all(12),
                               child: InkWell(
-                                onTap:(){
+                                onTap: () {
                                   // Get.back();
                                 },
                                 child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment
-                                      .end,
+                                  crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Icon(
-                                        Icons.close),
+                                    Icon(Icons.close),
                                     Row(
                                       mainAxisAlignment:
-                                      MainAxisAlignment
-                                          .center,
+                                          MainAxisAlignment.center,
                                       children: [
                                         Image.asset(
-                                            "asset/icons/information_image.png",height: 50,)
+                                          "asset/icons/information_image.png",
+                                          height: 50,
+                                        )
                                       ],
                                     ),
                                     Center(
                                       child: Text(
                                         "Info",
-                                        textAlign:
-                                        TextAlign.center,
-                                        style: AppStyle
-                                            .DmSansFont
-                                            .copyWith(
+                                        textAlign: TextAlign.center,
+                                        style: AppStyle.DmSansFont.copyWith(
                                             fontSize: getFontSize(24),
                                             fontWeight: FontWeight.w700,
                                             color: ColorConstant.darkBlue),
@@ -112,50 +95,50 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                             const SizedBox(
                               height: 20,
                             ),
-
                             const SizedBox(
                               height: 10,
                             ),
                             Container(
-                                padding: const EdgeInsets
-                                    .fromLTRB(
-                                    0, 10, 0, 0),
+                                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                                 child: Text(
                                   "Loan Above \$ 4999 will \nbe Converted to Business Loan",
-                                  textAlign:
-                                  TextAlign.center,
-                                  style: AppStyle
-                                      .DmSansFont
-                                      .copyWith(
+                                  textAlign: TextAlign.center,
+                                  style: AppStyle.DmSansFont.copyWith(
                                       fontSize: getFontSize(18),
-                                      color: ColorConstant
-                                          .darkBlue),
+                                      color: ColorConstant.darkBlue),
                                 )),
                             const SizedBox(
                               height: 20,
                             ),
                             Padding(
-                              padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getHorizontalSize(40)),
                               child: Row(
                                 children: [
                                   Expanded(
                                     child: AppElevatedButton(
-                                      buttonColor: ColorConstant.appProgressBarColor,
+                                      buttonColor:
+                                          ColorConstant.appProgressBarColor,
                                       buttonName: 'Cancel',
                                       radius: 10,
                                       onPressed: () {
                                         Navigator.pop(context);
-                                      },),
+                                      },
+                                    ),
                                   ),
-                                  SizedBox(width: getHorizontalSize(10),),
+                                  SizedBox(
+                                    width: getHorizontalSize(10),
+                                  ),
                                   Expanded(
                                     child: AppElevatedButton(
-                                      buttonColor: ColorConstant.primaryLightGreen,
+                                      buttonColor:
+                                          ColorConstant.primaryLightGreen,
                                       buttonName: 'ok',
                                       radius: 10,
                                       onPressed: () {
                                         Navigator.pop(context);
-                                      },),
+                                      },
+                                    ),
                                   ),
                                 ],
                               ),
@@ -187,9 +170,9 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
         backgroundColor: ColorConstant.primaryWhite,
-        body:  SingleChildScrollView(
+        body: SingleChildScrollView(
           child: Container(
               height: size.height,
               child: Stack(
@@ -208,9 +191,9 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                 height: getVerticalSize(10),
                               ),
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
-
                                   InkWell(
                                     onTap: () {
                                       Get.back();
@@ -218,13 +201,14 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           borderRadius:
-                                          BorderRadius.circular(12),
+                                              BorderRadius.circular(12),
                                           border: Border.all(
-                                              color:
-                                              ColorConstant.backBorder)),
+                                              color: ColorConstant.backBorder)),
                                       padding: EdgeInsets.all(6),
                                       child: Icon(
-                                        Icons.arrow_back_ios_new_outlined,size: 22,),
+                                        Icons.arrow_back_ios_new_outlined,
+                                        size: 22,
+                                      ),
                                     ),
                                   ),
                                   Text(
@@ -235,11 +219,17 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                         fontSize: getFontSize(22)),
                                   ),
                                   Container(
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                        border: Border.all(color: Colors.transparent)),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(12),
+                                        border: Border.all(
+                                            color: Colors.transparent)),
                                     padding: EdgeInsets.all(10),
-                                    child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
-                                  ),                      ],
+                                    child: Icon(
+                                      Icons.arrow_back_ios_new_outlined,
+                                      color: Colors.transparent,
+                                    ),
+                                  ),
+                                ],
                               ),
                               SizedBox(
                                 height: getVerticalSize(30),
@@ -247,8 +237,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                               Text(
                                 "Select Loan Amount",
                                 style: AppStyle.DmSansFont.copyWith(
-                                    color: ColorConstant
-                                        .primaryBlack,
+                                    color: ColorConstant.primaryBlack,
                                     fontWeight: FontWeight.w500,
                                     fontSize: getFontSize(20)),
                               ),
@@ -258,8 +247,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                               Text(
                                 "Select the amount needed and the \nreimbursement period",
                                 style: AppStyle.DmSansFont.copyWith(
-                                    color:
-                                    ColorConstant.primaryBlack,
+                                    color: ColorConstant.primaryBlack,
                                     fontWeight: FontWeight.w400,
                                     fontSize: getFontSize(18)),
                               ),
@@ -271,147 +259,130 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                   height: 300,
                                   width: 300,
                                   child: Obx(
-                                        ()=> SfRadialGauge(axes: <
-                                        RadialAxis>[
+                                    () => SfRadialGauge(
+                                        axes: <RadialAxis>[
+
                                       RadialAxis(
                                           minimum: 100,
                                           startAngle: 270,
                                           endAngle: 260,
-                                          maximum:
-                                          loanCalculatorController
-                                              .maximumAvailableLoan
-                                              .value
+                                          maximum: loanCalculatorController
+                                              .maximumAvailableLoan.value
                                               .toDouble(),
                                           showLabels: false,
                                           showTicks: false,
                                           radiusFactor: 0.7,
-                                          axisLineStyle:
-                                          AxisLineStyle(
+                                          axisLineStyle: AxisLineStyle(
                                               cornerStyle:
-                                              CornerStyle
-                                                  .bothCurve,
-                                              color:
-                                              ColorConstant
-                                                  .greenF3,
-                                              thickness: 20),
+                                                  CornerStyle.bothCurve,
+                                              color: ColorConstant.greenF3,
+                                              thickness: 20
+                                          ),
                                           pointers: <GaugePointer>[
                                             RangePointer(
                                                 value: _volumeValue,
                                                 cornerStyle:
-                                                CornerStyle
-                                                    .bothCurve,
+                                                    CornerStyle.bothCurve,
                                                 width: 20,
-
                                                 color: ColorConstant
-                                                    .primaryLightGreen.withOpacity(0.6),
+                                                    .primaryLightGreen
+                                                    .withOpacity(0.6),
                                                 sizeUnit:
-                                                GaugeSizeUnit
-                                                    .logicalPixel,
-
-                                                gradient:
-                                                SweepGradient(
+                                                    GaugeSizeUnit.logicalPixel,
+                                                gradient: SweepGradient(
                                                   colors: <Color>[
                                                     ColorConstant
                                                         .primaryLightGreen,
                                                     ColorConstant
                                                         .primaryLightGreen,
                                                   ],
-
                                                 )),
                                             MarkerPointer(
                                                 value: _volumeValue,
                                                 enableDragging: true,
-                                                onValueChanged:
-                                                onVolumeChanged,
+                                                onValueChanged: onVolumeChanged,
                                                 markerHeight: 34,
                                                 markerWidth: 34,
-                                                markerType:
-                                                MarkerType.image,
+                                                markerType: MarkerType.image,
                                                 imageUrl:
-                                                "asset/icons/finger_image.png",
+                                                    "asset/icons/finger_image.png",
                                                 color: ColorConstant
                                                     .primaryLightGreen,
                                                 borderWidth: 1,
-
-                                                borderColor: ColorConstant
-                                                    .primaryLightGreen)
+                                                borderColor: ColorConstant.primaryLightGreen)
                                           ],
-                                          annotations: <
-                                              GaugeAnnotation>[
+                                          annotations: <GaugeAnnotation>[
                                             GaugeAnnotation(
                                                 angle: 90,
                                                 axisValue: 5,
-
                                                 positionFactor: 0.2,
                                                 widget: Column(
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .center,
+                                                      MainAxisAlignment.center,
                                                   children: [
                                                     Text(
                                                       "Amount",
-                                                      style: AppStyle.DmSansFont.copyWith(
-                                                          color: ColorConstant
-                                                              .primaryBlack,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold,
-                                                          fontSize:
-                                                          getFontSize(
-                                                              20)),
+                                                      style: AppStyle.DmSansFont
+                                                          .copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      20)),
                                                     ),
                                                     SizedBox(
                                                       height:
-                                                      getVerticalSize(
-                                                          8),
+                                                          getVerticalSize(8),
                                                     ),
                                                     Text(
                                                       "\$" +
                                                           _volumeValue
                                                               .ceil()
                                                               .toString(),
-                                                      style: AppStyle.DmSansFont.copyWith(
-                                                          color: ColorConstant
-                                                              .primaryBlack,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .w700,
-                                                          fontSize:
-                                                          getFontSize(
-                                                              28)),
+                                                      style: AppStyle.DmSansFont
+                                                          .copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w700,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      28)),
                                                     ),
                                                     SizedBox(
                                                       height:
-                                                      getVerticalSize(
-                                                          8),
+                                                          getVerticalSize(8),
                                                     ),
                                                     DotWidget(
-                                                      dashColor:
-                                                      ColorConstant
+                                                      dashColor: ColorConstant
                                                           .primaryDarkGreen,
                                                       totalWidth:
-                                                      getHorizontalSize(
-                                                          120),
+                                                          getHorizontalSize(
+                                                              120),
                                                       dashHeight: 1,
                                                       dashWidth: 2,
                                                       emptyWidth: 2,
                                                     ),
                                                     SizedBox(
                                                       height:
-                                                      getVerticalSize(
-                                                          8),
+                                                          getVerticalSize(8),
                                                     ),
                                                     Text(
                                                       "@ ${loanCalculatorController.interestRate}% Per Year",
-                                                      style: AppStyle.DmSansFont.copyWith(
-                                                          color: ColorConstant
-                                                              .primaryBlack,
-                                                          fontWeight:
-                                                          FontWeight
-                                                              .bold,
-                                                          fontSize:
-                                                          getFontSize(
-                                                              14)),
+                                                      style: AppStyle.DmSansFont
+                                                          .copyWith(
+                                                              color: ColorConstant
+                                                                  .primaryBlack,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                              fontSize:
+                                                                  getFontSize(
+                                                                      14)),
                                                     ),
                                                   ],
                                                 ))
@@ -423,80 +394,62 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                               Container(
                                 height: getVerticalSize(150),
                                 child: GridView.builder(
-                                  itemCount:
-                                  loanCalculatorController
-                                      .loanTenuteList
-                                      .value
-                                      .length,
+                                  itemCount: loanCalculatorController
+                                      .loanTenuteList.value.length,
                                   gridDelegate:
-                                  SliverGridDelegateWithFixedCrossAxisCount(
+                                      SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 3,
                                     childAspectRatio: 2,
                                   ),
-                                  itemBuilder:
-                                      (BuildContext context,
-                                      int i) {
+                                  itemBuilder: (BuildContext context, int i) {
                                     return Padding(
                                       padding: EdgeInsets.symmetric(
-                                          vertical:
-                                          getVerticalSize(8)),
+                                          vertical: getVerticalSize(8)),
                                       child: GestureDetector(
                                         onTap: () {
-                                          loanCalculatorController.onTapOnLoanTenure(
-                                              loanCalculatorController
-                                                  .loanTenuteList
-                                                  .value[i]
-                                                  .id!
-                                                  .toInt(),
-                                              loanCalculatorController
-                                                  .loanTenuteList
-                                                  .value[i]
-                                                  .name
-                                                  .toString());
+                                          loanCalculatorController
+                                              .onTapOnLoanTenure(
+                                                  loanCalculatorController
+                                                      .loanTenuteList
+                                                      .value[i]
+                                                      .id!
+                                                      .toInt(),
+                                                  loanCalculatorController
+                                                      .loanTenuteList
+                                                      .value[i]
+                                                      .name
+                                                      .toString());
                                         },
                                         child: Obx(
-                                              () => Padding(
-                                            padding:
-                                            const EdgeInsets
-                                                .all(4.0),
+                                          () => Padding(
+                                            padding: const EdgeInsets.all(4.0),
                                             child: Container(
-                                              width:
-                                              size.width / 3.5,
+                                              width: size.width / 3.5,
                                               decoration: BoxDecoration(
                                                   color: loanCalculatorController
-                                                      .selectedLoanTenureId
-                                                      .value
-                                                      .toString() ==
-                                                      loanCalculatorController
-                                                          .loanTenuteList
-                                                          .value[
-                                                      i]
-                                                          .id
-                                                          .toString()
+                                                              .selectedLoanTenureId
+                                                              .value
+                                                              .toString() ==
+                                                          loanCalculatorController
+                                                              .loanTenuteList
+                                                              .value[i]
+                                                              .id
+                                                              .toString()
                                                       ? ColorConstant
-                                                      .primaryLightGreen
-                                                      : ColorConstant
-                                                      .greenF3
-                                                      .withOpacity(
-                                                      0.5),
-                                                  borderRadius: BorderRadius
-                                                      .all(Radius
-                                                      .circular(
-                                                      10))),
+                                                          .primaryLightGreen
+                                                      : ColorConstant.greenF3
+                                                          .withOpacity(0.5),
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                          Radius.circular(10))),
                                               child: Padding(
                                                 padding: EdgeInsets.only(
-                                                    left:
-                                                    getHorizontalSize(
-                                                        10),
+                                                    left: getHorizontalSize(10),
                                                     right:
-                                                    getHorizontalSize(
-                                                        10),
-                                                    top:
-                                                    getHorizontalSize(
-                                                        10),
+                                                        getHorizontalSize(10),
+                                                    top: getHorizontalSize(10),
                                                     bottom:
-                                                    getHorizontalSize(
-                                                        10)),
+                                                        getHorizontalSize(10)),
                                                 child: Center(
                                                   child: Text(
                                                     loanCalculatorController
@@ -505,19 +458,23 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                                         .name
                                                         .toString(),
                                                     style: AppStyle.DmSansFont.copyWith(
-                                                        color: loanCalculatorController.selectedLoanTenureId.value.toString() ==
-                                                            loanCalculatorController.loanTenuteList.value[i].id
-                                                                .toString()
+                                                        color: loanCalculatorController
+                                                                    .selectedLoanTenureId
+                                                                    .value
+                                                                    .toString() ==
+                                                                loanCalculatorController
+                                                                    .loanTenuteList
+                                                                    .value[i]
+                                                                    .id
+                                                                    .toString()
                                                             ? ColorConstant
-                                                            .primaryWhite
+                                                                .primaryWhite
                                                             : ColorConstant
-                                                            .grey8F,
+                                                                .grey8F,
                                                         fontWeight:
-                                                        FontWeight
-                                                            .w400,
+                                                            FontWeight.w400,
                                                         fontSize:
-                                                        getFontSize(
-                                                            16)),
+                                                            getFontSize(16)),
                                                   ),
                                                 ),
                                               ),
@@ -536,8 +493,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                               AppElevatedButton(
                                 radius: 10,
                                 buttonName: 'Process to Loan',
-                                textColor:
-                                ColorConstant.primaryWhite,
+                                textColor: ColorConstant.primaryWhite,
                                 fontWeight: FontWeight.w700,
                                 onPressed: () {
                                   loanCalculatorController
@@ -556,11 +512,10 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                       ),
                     ),
                   ),
-
                 ],
               )),
         ));
-      /*Scaffold(
+    /*Scaffold(
         backgroundColor: ColorConstant.primaryDarkGreen,
         body: Stack(
           children: [
