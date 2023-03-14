@@ -302,7 +302,7 @@ class FrontBackLicenceCameraScreenState
                     children: [
                       InkWell(
                         onTap: () {
-                          Get.back();
+                          showBackDialog();
                         },
                         child: SvgPicture.asset(
                           "asset/icons/ic_back.svg",

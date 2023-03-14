@@ -114,6 +114,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
                                 Get.back();
                                 Get.back();
                                 Get.back();
+                                Get.back();
                               },),
                           ),
                         ],
@@ -207,7 +208,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         }}
       else{
         UIUtils.showSnakBar(
-            bodyText: "Wrong QR,Please Scan Again",
+            bodyText: "Please Scan Again",
             headerText: StringConstants.ERROR);
         Get.offAllNamed(AppRoutes.kycStep1DataScreen);
       }

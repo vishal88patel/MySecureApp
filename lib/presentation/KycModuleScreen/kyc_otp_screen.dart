@@ -43,6 +43,8 @@ class KycOtpScreen extends StatelessWidget {
                                         InkWell(
                                           onTap: () {
                                             Get.back();
+                                            Get.back();
+                                            Get.back();
                                           },
                                           child: Container(
                                             decoration: BoxDecoration(

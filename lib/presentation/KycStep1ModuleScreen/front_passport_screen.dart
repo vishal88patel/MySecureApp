@@ -316,12 +316,8 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Center(
-                      child: SvgPicture.asset(
-                        "asset/icons/ic_app_logo.svg",
-                        height: getVerticalSize(100),
-                        fit: BoxFit.fill,
-                      ),
+                    SizedBox(
+                      height: getVerticalSize(100),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,

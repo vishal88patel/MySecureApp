@@ -16,6 +16,7 @@ import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CCCardScreen/model/cashcard_model.dart';
+import '../../DashBoardScreen/controller/dashboard_screen_controller.dart';
 import '../models/plenet_card.dart';
 
 class ProfileScreenController extends GetxController {
@@ -29,7 +30,7 @@ class ProfileScreenController extends GetxController {
   List<String> cardNumberList = [];
   List<Color> colorList = [];
   List<String> cvvList = [];
-
+  var dashBoardController = Get.find<DashBoardScreenController>();
   @override
   void onInit() {
     getStoredData();
@@ -277,8 +278,8 @@ class ProfileScreenController extends GetxController {
                             ],
                           ),
                           x==0? Obx(
-                                ()=> balance.value==""?Container():Text(
-                              NumberFormat.currency(name: '\$ ').format(int.parse(balance.value)),
+                                ()=> dashBoardController.UserBalance.value==""?Container():Text(
+                              NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
                               style: AppStyle.DmSansFont.copyWith(
                                   color: ColorConstant.primaryWhite,
                                   fontWeight: FontWeight.w700,

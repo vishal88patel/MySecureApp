@@ -65,7 +65,7 @@ public class CustomActivity extends AppCompatActivity {
 //        charList.add("hello");
 //        charList.add("hello");
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        adapter = new MyRecyclerViewAdapter(this, Constants.charList);
+        adapter = new MyRecyclerViewAdapter(this, AppConstants.charList);
         recyclerView.setAdapter(adapter);
     }
 
@@ -109,10 +109,10 @@ public class CustomActivity extends AppCompatActivity {
 
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
 
-        builder.addFormDataPart("data", android.text.TextUtils.join(",", Constants.charList));
+        builder.addFormDataPart("data", android.text.TextUtils.join(",", AppConstants.charList));
 
         RequestBody requestBody = builder.build();
-        Call<DataResponseModel> call = RetrofitClient.getInstance().getMyApi().getPostCreateBodyResponse("application/json", "Bearer" + " " + Constants.AuthToken, requestBody);
+        Call<DataResponseModel> call = RetrofitClient.getInstance().getMyApi().getPostCreateBodyResponse("application/json", "Bearer" + " " + AppConstants.AuthToken, requestBody);
         call.enqueue(new Callback<DataResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<DataResponseModel> call, @NonNull Response<DataResponseModel> response) {
@@ -227,7 +227,7 @@ public class CustomActivity extends AppCompatActivity {
 
 
         RequestBody requestBody = builder.build();
-        Call<DataResponseModel> call = RetrofitClient.getInstance().getMyApi().getPostCreateBodyResponse("application/json", "Bearer" + " " + Constants.AuthToken, requestBody);
+        Call<DataResponseModel> call = RetrofitClient.getInstance().getMyApi().getPostCreateBodyResponse("application/json", "Bearer" + " " + AppConstants.AuthToken, requestBody);
         call.enqueue(new Callback<DataResponseModel>() {
             @Override
             public void onResponse(@NonNull Call<DataResponseModel> call, @NonNull Response<DataResponseModel> response) {
