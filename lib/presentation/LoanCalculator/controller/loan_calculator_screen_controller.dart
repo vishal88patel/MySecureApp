@@ -66,7 +66,7 @@ class LoanCalculatorScreenController extends GetxController {
   var stateList = [].obs;
   var selectedState = "Select State".obs;
   String? selectedStateFordropdown;
-
+  var isAgree = false.obs;
   @override
   void onReady() {
     super.onReady();
@@ -82,7 +82,9 @@ class LoanCalculatorScreenController extends GetxController {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     super.onInit();
   }
-
+  void isAgreeCheckBox() {
+    isAgree.value = !isAgree.value;
+  }
   Future<void> getStoredData() async {
     if (PrefUtils.getString(StringConstants.IS_KYC_DONE) != "0" && PrefUtils.getString(StringConstants.IS_KYC_DONE) != "1") {
       isKycDone.value = true;

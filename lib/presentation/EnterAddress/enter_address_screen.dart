@@ -20,7 +20,7 @@ class EnterAddressDetailScreen extends StatelessWidget {
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
           child: Container(
-              height: size.height,
+              height: size.height*1.1,
               color: ColorConstant.buttonGreen.withOpacity(0.3),
               child: Stack(
                 children: [

@@ -233,6 +233,7 @@ class PrivacyDetailsScreen extends StatelessWidget {
                 textColor: ColorConstant.primaryWhite,
                 onPressed: () {
                   FocusManager.instance.primaryFocus?.unfocus();
+                  Get.back();
                   UIUtils.showSnakBar(
                       bodyText:
                           "This Api in maintenance and will be working soon!!",

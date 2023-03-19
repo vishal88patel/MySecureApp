@@ -67,7 +67,6 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.end,
                                   children: [
-                                    Icon(Icons.close),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -93,50 +92,53 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                               ),
                             ),
                             const SizedBox(
-                              height: 20,
+                              height: 10,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: getHorizontalSize(12)),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  Obx(()
+                                  => IconButton(onPressed: (){
+                                    loanCalculatorController.isAgreeCheckBox();
+                                  },
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: getHorizontalSize(8)),
+                                      constraints: BoxConstraints(),
+                                      icon: Icon(loanCalculatorController.isAgree.value
+                                          ?Icons.check_box:Icons.check_box_outline_blank,
+                                        color: ColorConstant.grey8F,)),
+                                  ),
+                                  Text(
+                                    "Loan Above \$4999 will be \nConverted to Business Loan",
+                                    style: AppStyle.textStyleDMSANS.copyWith(
+                                        color: ColorConstant.naturalGrey,
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: getFontSize(20)),
+                                  ),
+                                ],
+                              ),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
-                            Container(
-                                padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                                child: Text(
-                                  "Loan Above \$ 4999 will \nbe Converted to Business Loan",
-                                  textAlign: TextAlign.center,
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      fontSize: getFontSize(18),
-                                      color: ColorConstant.darkBlue),
-                                )),
-                            const SizedBox(
-                              height: 20,
-                            ),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: getHorizontalSize(40)),
+                                  horizontal: getHorizontalSize(30)),
                               child: Row(
                                 children: [
                                   Expanded(
                                     child: AppElevatedButton(
                                       buttonColor:
-                                          ColorConstant.appProgressBarColor,
-                                      buttonName: 'Cancel',
-                                      radius: 10,
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                      },
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: getHorizontalSize(10),
-                                  ),
-                                  Expanded(
-                                    child: AppElevatedButton(
-                                      buttonColor:
                                           ColorConstant.primaryLightGreen,
-                                      buttonName: 'ok',
+                                      buttonName: 'Okay',
                                       radius: 10,
                                       onPressed: () {
-                                        Navigator.pop(context);
+                                        if(loanCalculatorController.isAgree.value){
+                                          Navigator.pop(context);
+                                        }
                                       },
                                     ),
                                   ),
@@ -151,7 +153,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                 ),
               ),
             ),
-            barrierDismissible: true,
+            barrierDismissible: false,
           );
 
           showInfoDialouge = false;
@@ -252,7 +254,7 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                     fontSize: getFontSize(18)),
                               ),
                               SizedBox(
-                                height: 15,
+                                height: getVerticalSize(12),
                               ),
                               Center(
                                 child: Container(
@@ -485,9 +487,6 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                                     );
                                   },
                                 ),
-                              ),
-                              SizedBox(
-                                height: getHorizontalSize(40),
                               ),
                               Spacer(),
                               AppElevatedButton(
