@@ -292,6 +292,11 @@ class ProfileScreen extends StatelessWidget {
                       title: 'Personal',
                     ),
                     ProfileOptionWidget(
+                      onTap: () { Get.toNamed(AppRoutes.privacyDetailsScreen);},
+                      icon: "asset/icons/ic_lock.svg",
+                      title: 'Privacy Details',
+                    ),
+                    ProfileOptionWidget(
                       onTap: () {
                         Get.toNamed(AppRoutes.linkCardBankScreen);
                       },
@@ -313,6 +318,7 @@ class ProfileScreen extends StatelessWidget {
                       icon: "asset/icons/ic_lock.svg",
                       title: 'Privacy & Security',
                     ),
+
                     ProfileOptionWidget(
                       onTap: () {showOfferComingDialouge();},
                       icon: "asset/icons/ic_offer.svg",

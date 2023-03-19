@@ -128,6 +128,8 @@ import '../presentation/PersonalDetails/binding/personal_detail_screen_binding.d
 import '../presentation/PersonalDetails/personal_detail_screen.dart';
 import '../presentation/PersonalDetailsScreen/binding/personal_details_screen_binding.dart';
 import '../presentation/PersonalDetailsScreen/personal_details_screen.dart';
+import '../presentation/PrivacyDetailsScreen/binding/privacy_details_screen_binding.dart';
+import '../presentation/PrivacyDetailsScreen/privacy_details_screen.dart';
 import '../presentation/QrCodeScreen/binding/qrCode_screen_binding.dart';
 import '../presentation/QrCodeScreen/qrCode_screen.dart';
 import '../presentation/RequestMoneyScreen/pay_summary_screen.dart';
@@ -313,6 +315,7 @@ class AppRoutes {
   static String topUpPinsScreen = '/topUp_pin_screen';
   static String instructionScreens = '/instruction_screen';
   static String profileDetailsScreen = '/profile_details_screen';
+  static String privacyDetailsScreen = '/privacy_details_screen';
   static String showUserCardScreen = '/show_user_card_screen';
 
 
@@ -663,6 +666,15 @@ class AppRoutes {
       page: () => PersonalDetailsScreen(),
       bindings: [
         PersonalDetailsScreenBinding(),
+      ],
+    ),
+    GetPage(
+      name: privacyDetailsScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => PrivacyDetailsScreen(),
+      bindings: [
+        PrivacyDetailsScreenBinding(),
       ],
     ),
     GetPage(
