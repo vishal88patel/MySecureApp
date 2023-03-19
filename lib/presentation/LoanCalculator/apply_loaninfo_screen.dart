@@ -260,7 +260,7 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                                     ? Get.toNamed(AppRoutes
                                                         .kycSelectStepScreen)
                                                     : Get.toNamed(AppRoutes
-                                                        .kycEmailScreen);
+                                                        .kycPhoneScreen);
                                               }),
                                       SizedBox(
                                         height: getVerticalSize(26),

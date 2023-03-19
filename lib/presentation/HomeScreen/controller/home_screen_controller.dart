@@ -356,7 +356,7 @@ class HomeScreenController extends GetxController {
                         Get.back();
                         Future.delayed(Duration(milliseconds: 200), () {
                           PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
-                          Get.toNamed(AppRoutes.kycEmailScreen);
+                          Get.toNamed(AppRoutes.kycPhoneScreen);
                         });
                         // Get.toNamed(AppRoutes.dashBoardScreen);
                       },

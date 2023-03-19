@@ -37,7 +37,7 @@ class CCCardScreen extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               SizedBox(
-                                height: 26,
+                                height: 16,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -119,8 +119,24 @@ class CCCardScreen extends StatelessWidget {
                                         children: [
                                           Row(
                                             mainAxisAlignment:
-                                                MainAxisAlignment.end,
+                                                MainAxisAlignment.spaceBetween,
                                             children: [
+                                              Obx(()=>
+                                               ccCardController.isLock=="1"?Text(
+                                                  "Card is locked please unlock your card.",
+                                                  style: AppStyle.DmSansFont.copyWith(
+                                                      color:ccCardController
+                                                          .color.value.toLowerCase().toString()=="black"? ColorConstant
+                                                          .primaryWhite: ColorConstant
+                                                          .naturalBlack,
+                                                      fontWeight:
+                                                      FontWeight
+                                                          .w400,
+                                                      fontSize:
+                                                      getFontSize(
+                                                          16)),
+                                                ):Container(),
+                                              ),
                                               InkWell(
                                                 onTap: () {
                                                   if(ccCardController.status != "1"){

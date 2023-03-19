@@ -73,13 +73,8 @@ class KycOtpScreen extends StatelessWidget {
                                     SizedBox(
                                       height: getVerticalSize(57),
                                     ),
-                                    Center(
-                                      child: Padding(
-                                        padding: EdgeInsets.all(getHorizontalSize(20)),
-                                        child: SvgPicture.asset(
-                                          "asset/icons/ic_app_logo.svg",
-                                        ),
-                                      ),
+                                    SizedBox(
+                                      height: getVerticalSize(100),
                                     ),
                                     SizedBox(
                                       height: getVerticalSize(40),

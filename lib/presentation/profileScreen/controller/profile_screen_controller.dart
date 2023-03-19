@@ -24,6 +24,8 @@ class ProfileScreenController extends GetxController {
   var homePageHeadeName = "".obs;
   var profilePicture = "".obs;
   var balance = "".obs;
+  var accNum = "4738565434567700".obs;
+  var routingNum = "".obs;
   var cardList = <Widget>[].obs;
   List<PlanetCard> planetCard = [];
   var cashCardModel = CashCardModel().obs;
@@ -225,7 +227,7 @@ class ProfileScreenController extends GetxController {
         loginResponseModel!.data!.profilePhotoPath.toString();
     balance.value =
         loginResponseModel!.data!.balance.toString();
-
+    routingNum.value=loginResponseModel!.data!.routeNumber.toString();
     callGetCashCardApi();
   }
 
@@ -246,82 +248,151 @@ class ProfileScreenController extends GetxController {
                     Get.toNamed(AppRoutes.showUserCardScreen);
                   },
                   child: Container(
-                    height:160,
                     width: size.width/1.1,
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          left: getHorizontalSize(20),
-                          right: getHorizontalSize(20),
-                          top: getVerticalSize(20)),
-                      child: Column(
-                        crossAxisAlignment:
-                        CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                    child: Wrap(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.only(
+                              left: getHorizontalSize(20),
+                              right: getHorizontalSize(20),
+                              top: getVerticalSize(20),bottom:getVerticalSize(12) ),
+                          child: Stack(
                             children: [
-                              Text(
-                                x==0?"Balance":"CardHolder Name",
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .primaryWhite,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(16)),
+                              Column(
+                                crossAxisAlignment:
+                                CrossAxisAlignment.start,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        x==0?"Balance":"CardHolder Name",
+                                        style: AppStyle.textStyleDMSANS
+                                            .copyWith(
+                                            color: ColorConstant
+                                                .primaryWhite,
+                                            fontWeight:
+                                            FontWeight.w500,
+                                            fontSize:
+                                            getFontSize(16)),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: getHorizontalSize(4),
+                                  ),
+                                  x==0? Obx(
+                                        ()=> dashBoardController.UserBalance.value==""?Container():Text(
+                                      NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ):Obx(
+                                        ()=> homePageHeadeName.value==""?Container():Text(homePageHeadeName.value,
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                      overflow: TextOverflow.ellipsis,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: getHorizontalSize(10),
+                                  ),
+                                  Text(
+                                    "Account number",
+                                    style: AppStyle.textStyleDMSANS
+                                        .copyWith(
+                                        color: ColorConstant
+                                            .primaryWhite,
+                                        fontWeight:
+                                        FontWeight.w400,
+                                        fontSize:
+                                        getFontSize(22)),
+                                  ),
+                                  SizedBox(
+                                    height: getHorizontalSize(4),
+                                  ),
+                                  Text(
+                                    CommonUtils.FormatCardNumber(accNum.toString()),
+                                    style: AppStyle.textStyleDMSANS
+                                        .copyWith(
+                                        color: ColorConstant
+                                            .primaryWhite,
+                                        fontWeight:
+                                        FontWeight.w700,
+                                        fontSize:
+                                        getFontSize(18)),
+                                  ),
+                                  SizedBox(
+                                    height: getHorizontalSize(10),
+                                  ),
+                                  Text(
+                                    "Routing number",
+                                    style: AppStyle.textStyleDMSANS
+                                        .copyWith(
+                                        color: ColorConstant
+                                            .primaryWhite,
+                                        fontWeight:
+                                        FontWeight.w400,
+                                        fontSize:
+                                        getFontSize(22)),
+                                  ),
+                                  SizedBox(
+                                    height: getHorizontalSize(4),
+                                  ),
+                                  Text(
+                                    routingNum.toString(),
+                                    style: AppStyle.textStyleDMSANS
+                                        .copyWith(
+                                        color: ColorConstant
+                                            .primaryWhite,
+                                        fontWeight:
+                                        FontWeight.w700,
+                                        fontSize:
+                                        getFontSize(18)),
+                                  ),
+                                  /*Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        "asset/icons/ic_chip.svg",
+                                        fit: BoxFit.fill,
+                                      ),
+                                      SizedBox(
+                                        width: getHorizontalSize(18),
+                                      ),
+                                      Text(
+                                        CommonUtils.FormatCardNumber(planetCard[x].cardNumber.toString()),
+                                        style: AppStyle.textStyleDMSANS
+                                            .copyWith(
+                                            color: ColorConstant
+                                                .primaryWhite,
+                                            fontWeight:
+                                            FontWeight.w500,
+                                            fontSize:
+                                            getFontSize(22)),
+                                      ),
+                                    ],
+                                  ),*/
+                                ],
                               ),
-                              SvgPicture.asset(
-                                "asset/icons/ic_visa.svg",
+                              Row(
+                                mainAxisAlignment:
+                                MainAxisAlignment.end,
+                                children: [
+                                  SvgPicture.asset(
+                                    "asset/icons/ic_visa.svg",
+                                  ),
+                                ],
                               ),
                             ],
                           ),
-                          x==0? Obx(
-                                ()=> dashBoardController.UserBalance.value==""?Container():Text(
-                              NumberFormat.currency(name: '\$ ').format(int.parse(dashBoardController.UserBalance.value)),
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.primaryWhite,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getFontSize(22)),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ):Obx(
-                                ()=> homePageHeadeName.value==""?Container():Text(homePageHeadeName.value,
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.primaryWhite,
-                                  fontWeight: FontWeight.w700,
-                                  fontSize: getFontSize(22)),
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                          ),
-                          SizedBox(
-                            height: getHorizontalSize(16),
-                          ),
-                          Row(
-                            children: [
-                              SvgPicture.asset(
-                                "asset/icons/ic_chip.svg",
-                                fit: BoxFit.fill,
-                              ),
-                              SizedBox(
-                                width: getHorizontalSize(18),
-                              ),
-                              Text(
-                                CommonUtils.FormatCardNumber(planetCard[x].cardNumber.toString()),
-                                style: AppStyle.textStyleDMSANS
-                                    .copyWith(
-                                    color: ColorConstant
-                                        .primaryWhite,
-                                    fontWeight:
-                                    FontWeight.w500,
-                                    fontSize:
-                                    getFontSize(22)),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),

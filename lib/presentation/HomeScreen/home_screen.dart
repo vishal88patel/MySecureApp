@@ -321,7 +321,7 @@ class HomeScreen extends StatelessWidget {
                             onTap: () {
                               print("::::"+homeController.isOtpDone.toString());
                               homeController.isOtpDone=="1"?
-                              Get.toNamed(AppRoutes.kycSelectStepScreen):Get.toNamed(AppRoutes.kycEmailScreen);
+                              Get.toNamed(AppRoutes.kycSelectStepScreen):Get.toNamed(AppRoutes.kycPhoneScreen);
                             },
                             child: PaymentListWidget(
                               title: 'Identity Verification',

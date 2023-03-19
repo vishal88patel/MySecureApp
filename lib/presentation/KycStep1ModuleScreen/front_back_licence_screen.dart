@@ -284,10 +284,10 @@ class FrontBackLicenceCameraScreenState
           children: [
             _buildCameraPreview(),
             cameraOverlay(
-                padding: 2.8,
+                padding: 2.25,
                 image: widget.image!,
                 aspectRatio: 1,
-                color: ColorConstant.primaryDarkGreen),
+                color: Color.fromRGBO(00, 00, 00, 0.7)),
             Column(
               children: [
                 SizedBox(
@@ -322,6 +322,7 @@ class FrontBackLicenceCameraScreenState
                         "asset/icons/ic_back.svg",
                         fit: BoxFit.fill,
                         color: Colors.transparent,
+                        height: getVerticalSize(42),
                       ),
                     ],
                   ),
@@ -332,7 +333,9 @@ class FrontBackLicenceCameraScreenState
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Container(height: getVerticalSize(100),),
+                    Container(
+                      height: getVerticalSize(100),
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -368,14 +371,14 @@ class FrontBackLicenceCameraScreenState
       double verticalPadding;
 
       if (parentAspectRatio < aspectRatio) {
-        horizontalPadding = 9;
+        horizontalPadding = 22;
         verticalPadding = (constraints.maxHeight -
                 ((constraints.maxWidth - 60 * padding) / aspectRatio)) /
             2;
       } else {
         verticalPadding = padding;
         horizontalPadding = (constraints.maxWidth -
-                ((constraints.maxHeight - 9 * padding) * aspectRatio)) /
+                ((constraints.maxHeight - 5 * padding) * aspectRatio)) /
             2;
       }
       return Stack(fit: StackFit.expand, children: [
@@ -399,71 +402,22 @@ class FrontBackLicenceCameraScreenState
                     left: horizontalPadding, right: horizontalPadding),
                 height: verticalPadding,
                 color: color)),
-        Container(
+        widget.image==2?Container(
           margin: EdgeInsets.symmetric(
               horizontal: horizontalPadding, vertical: verticalPadding),
-          decoration: BoxDecoration(
-            border: Border.all(color: ColorConstant.primaryDarkGreen),
+          child: SvgPicture.asset(
+            "asset/icons/id_scan.svg",
+            width: MediaQuery.of(context).size.width/1.1,
+            color: ColorConstant.primaryWhite,
           ),
-        ),
-        Container(
+        ):Container(
+
           margin: EdgeInsets.symmetric(
-              horizontal: horizontalPadding+8, vertical: verticalPadding+8),
-          decoration: BoxDecoration(
-            border: Border.all(color: ColorConstant.primaryWhite),
-          ),
-          child: DottedBorder(
-            dashPattern: [8, 6],
-            borderType: BorderType.RRect,
-            strokeWidth: 5,
-            radius: Radius.circular(12),
-            padding: EdgeInsets.all(6),
-            child:widget.image==2? Container(
-              color: Colors.transparent,
-              child: Center(
-                child:Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset("asset/icons/face_detection.png",height: size.height/3,width:size.height/5,color: Colors.white,),
-                    SizedBox(width:getVerticalSize(30) ,),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          height: getVerticalSize(4),
-                                width: getHorizontalSize(100),
-                                decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.all(Radius.circular(20))
-                                ),
-                            ),
-                        SizedBox(height:getVerticalSize(30) ,),
-                        Container(
-                          height: getVerticalSize(4),
-                          width: getHorizontalSize(100),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20))
-                          ),
-                        ),
-                        SizedBox(height:getVerticalSize(30) ,),
-                        Container(
-                          height: getVerticalSize(4),
-                          width: getHorizontalSize(100),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(Radius.circular(20))
-                          ),
-                        ),
-                      ],
-                    )
-                  ],
-                )
-              ),
-            ):Container(),
+              horizontal: horizontalPadding, vertical: verticalPadding),
+          decoration: BoxDecoration(border: Border.all(color: ColorConstant.primaryDarkGreen),
           ),
         ),
+
         // Align(
         //     alignment: Alignment.center,
         //     child: DottedBorder(

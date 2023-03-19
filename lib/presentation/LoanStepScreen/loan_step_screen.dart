@@ -208,7 +208,7 @@ class LoanStepScreen extends StatelessWidget {
                                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
                                   Text(
-                                    "Payble Amount ",
+                                    "Payable Amount ",
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.primaryBlack,
                                         fontWeight: FontWeight.normal,

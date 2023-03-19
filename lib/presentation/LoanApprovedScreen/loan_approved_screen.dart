@@ -112,11 +112,11 @@ class LoanApprovedScreen extends StatelessWidget {
                                   padding: EdgeInsets.only(
                                       left: 28, right: 28, top: 10),
                                   child: Text(
-                                    "Your Loan is Approved! and the Amount has been Credited in Your Wallet",
+                                    "Congratulations you had successfully applied for loan we had confirmed your details as per fdic rules and regulations.Your loan amt will be shortly credited to your wallet, thank you for being a part of secure cash app.",
                                     textAlign: TextAlign.center,
                                     style: AppStyle.DmSansFont.copyWith(
                                         color: ColorConstant.greyTextColor,
-                                        fontSize: getFontSize(20),
+                                        fontSize: getFontSize(18),
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ),

@@ -709,7 +709,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                                                 .IS_KYC_DONE) ==
                                                         "0"
                                                     ? PrefUtils.getString(StringConstants.IS_OTP_DONE)=="1"?Get.toNamed(AppRoutes
-                                                        .kycSelectStepScreen):Get.toNamed(AppRoutes.kycEmailScreen)
+                                                        .kycSelectStepScreen):Get.toNamed(AppRoutes.kycPhoneScreen)
                                                     : Get.toNamed(AppRoutes
                                                         .kycSelectStepScreen);
                                               }),

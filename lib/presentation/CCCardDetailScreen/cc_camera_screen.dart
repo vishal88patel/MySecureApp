@@ -271,7 +271,7 @@ class CCCardCameraScreenState extends State<CCCardCameraScreen>
         child: Stack(
           children: <Widget>[
             _buildCameraPreview(),
-            cameraOverlay(padding: 2, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
+            cameraOverlay(padding: 2, aspectRatio:1, color: Color.fromRGBO(00, 00, 00, 0.7)),
             Column(
               children: [
                 SizedBox(
@@ -304,6 +304,7 @@ class CCCardCameraScreenState extends State<CCCardCameraScreen>
                         "asset/icons/ic_back.svg",
                         fit: BoxFit.fill,
                         color: Colors.transparent,
+                        height: getVerticalSize(42),
                       ),
                     ],
                   ),
@@ -424,7 +425,7 @@ class CCCardCameraScreenState extends State<CCCardCameraScreen>
       double verticalPadding;
 
       if (parentAspectRatio < aspectRatio) {
-        horizontalPadding = padding;
+        horizontalPadding = 22;
         verticalPadding = (constraints.maxHeight -
             ((constraints.maxWidth - 60 * padding) / aspectRatio)) /
             2;

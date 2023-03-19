@@ -37,19 +37,18 @@ class ProfileScreen extends StatelessWidget {
             children: [
               Obx(
               ()=> Container(
-                  height: profileScreenController.cardList.value!=null && profileScreenController.cardList.value.length==1?380.00:410,
-
+                  height: profileScreenController.cardList.value!=null && profileScreenController.cardList.value.length==1?350:350,
                   width: size.width,
                   child: Stack(
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(50),
-                            bottomRight: Radius.circular(50)),
+                            bottomLeft: Radius.circular(32),
+                            bottomRight: Radius.circular(32)),
                         child: Image.asset(
                           "asset/icons/ic_noti_background.png",
                           width: MediaQuery.of(context).size.width,
-                          height: 410.00,
+                          height: 350.00,
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -228,7 +227,7 @@ class ProfileScreen extends StatelessWidget {
 
                           Obx(
                             () =>profileScreenController.cardList.value!=null && profileScreenController.cardList.value.length==1?Container(
-                              height: 180,
+                              height: 160,
                               child: Obx(
                                     () =>
                                     profileScreenController.cardList.value != null &&  profileScreenController.cardList.value.isNotEmpty
@@ -244,7 +243,8 @@ class ProfileScreen extends StatelessWidget {
                                     )
                                     : Container(),
                               ),
-                            ): Container(
+                            ):Container()
+                           /* Container(
                               height: 210,
                               child: Obx(
                                     () =>
@@ -262,7 +262,7 @@ class ProfileScreen extends StatelessWidget {
                                     )
                                     : Container(),
                               ),
-                            ),
+                            ),*/
                           ),
                         ],
                       ),
@@ -279,7 +279,6 @@ class ProfileScreen extends StatelessWidget {
               ),
               Padding(
                 padding: EdgeInsets.only(
-                    top: getVerticalSize(20),
                     left: getHorizontalSize(30),
                     right: getHorizontalSize(34)),
                 child: Column(

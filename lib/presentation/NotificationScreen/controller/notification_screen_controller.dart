@@ -93,7 +93,7 @@ class NotificationScreenController extends GetxController {
         break;
       case "KYC_CHECK":
         PrefUtils.getString(StringConstants.IS_KYC_DONE) == "0"
-            ? Get.toNamed(AppRoutes.kycEmailScreen)
+            ? Get.toNamed(AppRoutes.kycPhoneScreen)
             : Get.toNamed(AppRoutes.kycSelectStepScreen);
         break;
       case "LOAN_GET":

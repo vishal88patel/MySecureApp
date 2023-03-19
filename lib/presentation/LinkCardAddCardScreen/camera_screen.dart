@@ -272,7 +272,7 @@ class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
         child: Stack(
           children: <Widget>[
             _buildCameraPreview(),
-            cameraOverlay(padding: 2.8, aspectRatio:1, color: ColorConstant.primaryDarkGreen),
+            cameraOverlay(padding: 2.25, aspectRatio:1, color:Color.fromRGBO(00, 00, 00, 0.7)),
             Column(
               children: [
                 SizedBox(
@@ -459,20 +459,9 @@ class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
 
         Container(
           margin: EdgeInsets.symmetric(
-              horizontal: horizontalPadding+8, vertical: verticalPadding+8),
+              horizontal: horizontalPadding, vertical: verticalPadding),
           decoration: BoxDecoration(
-            border: Border.all(color: ColorConstant.primaryWhite),
-          ),
-          child: DottedBorder(
-            dashPattern: [8, 6],
-            borderType: BorderType.RRect,
-            strokeWidth: 4,
-            padding: EdgeInsets.all(6),
-            child: ClipRRect(
-              borderRadius: BorderRadius.all(Radius.circular(12)),
-              child: Container(
-              ),
-            ),
+            border: Border.all(color: ColorConstant.primaryLightGreen),
           ),
         ),
       ]);
@@ -519,18 +508,7 @@ class LinkCardCameraScreenState extends State<LinkCardCameraScreen>
                 ),
               ),
             ),
-            widget.image==1?InkWell(
-              onTap: (){
-                _onCameraSwitch();
-              },
-              child: Center(
-                child: Icon(
-                  Icons.cameraswitch_outlined,
-                  size: 50.0,
-                  color: ColorConstant.buttonGreen,
-                ),
-              ),
-            ):Container(height: 40,width: 40,),
+            Container(height: 40,width: 40,),
 
           ],
         ),
