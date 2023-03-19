@@ -24,7 +24,7 @@ class KycScreenController extends GetxController {
   TextEditingController otpController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   LoginResponseModel? loginResponseModel = LoginResponseModel();
-
+  var showTooltip=false.obs;
   var isLoaderShow = false.obs;
   var kycFrom = 2.obs;
   FirebaseAuth auth = FirebaseAuth.instance;

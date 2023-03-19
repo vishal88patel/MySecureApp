@@ -16,7 +16,7 @@ class KycOtpSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstant.darkBlue,
+      backgroundColor: ColorConstant.primaryWhite,
         body: SingleChildScrollView(
           child: Container(
             height: size.height,
@@ -47,10 +47,10 @@ class KycOtpSuccessScreen extends StatelessWidget {
                                     decoration: BoxDecoration(
                                         borderRadius:
                                         BorderRadius.circular(12),
-                                        border: Border.all(color: ColorConstant.primaryWhite.withOpacity(0.3))),
+                                        border: Border.all(color: ColorConstant.grey8F.withOpacity(0.3))),
                                     padding: EdgeInsets.all(6),
                                     child: Icon(
-                                        Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.primaryWhite),
+                                        Icons.arrow_back_ios_new_outlined,size: 22,color: ColorConstant.grey8F),
                                   ),
                                 ),
                                 Text(
@@ -71,90 +71,44 @@ class KycOtpSuccessScreen extends StatelessWidget {
                         ),
                       ),
                       Spacer(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: getHorizontalSize(40)),
-                        child: Center(
-                          child: Material(
-                            color: Colors.transparent,
-                            child: Wrap(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: ColorConstant
-                                          .primaryWhite,
-                                      borderRadius:
-                                      const BorderRadius.all(
-                                          Radius.circular(15))),
-                                  margin: const EdgeInsets.only(
-                                      bottom: 20),
-                                  padding: const EdgeInsets.only(
-                                    bottom: 20,
-                                  ),
-                                  constraints: const BoxConstraints(
-                                      minWidth: 180),
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        decoration: BoxDecoration(
-                                            color:
-                                            Color(0xFFF4F4F6),
-                                            borderRadius:
-                                            const BorderRadius
-                                                .all(
-                                                Radius.circular(
-                                                    15))),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(12.0),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment
-                                                .center,
-                                            children: [
-                                              Image.asset(
-                                                "asset/icons/img_success_check.png",
-                                                height: 100,
-                                                width: 100,
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Container(
-                                          padding: const EdgeInsets
-                                              .fromLTRB(
-                                              10, 10, 10, 10),
-                                          child: Text(
-                                            "OTP Verified Successfully, Now You Can Proceed for Documentation and Identity Verification",
-                                            textAlign:
-                                            TextAlign.center,
-                                            style: AppStyle
-                                                .DmSansFont
-                                                .copyWith(
-                                                fontSize: getFontSize(20),
-                                                color:
-                                                ColorConstant
-                                                    .darkBlue,
-                                                fontWeight:
-                                                FontWeight
-                                                    .bold),
-                                          )),
-                                      const SizedBox(
-                                        height: 10,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
+                      Row(
+                        mainAxisAlignment:
+                        MainAxisAlignment
+                            .center,
+                        children: [
+                          Image.asset(
+                            "asset/icons/img_success_check.png",
+                            height: 100,
+                            width: 100,
                           ),
+                        ],
+                      ),
+                      SizedBox(
+
+                        height: getVerticalSize(20),
+                      ),
+                      Padding(
+                        padding:  EdgeInsets.only(left:getVerticalSize(24),right: getVerticalSize(24),),
+                        child: Text(
+                          "OTP Verified Successfully, Now You Can Proceed for Documentation and Identity Verification",
+                          textAlign:
+                          TextAlign.center,
+                          style: AppStyle
+                              .DmSansFont
+                              .copyWith(
+                              fontSize: getFontSize(22),
+                              color:
+                              ColorConstant
+                                  .darkBlue,
+                              fontWeight:
+                              FontWeight
+                                  .bold),
                         ),
                       ),
+                      SizedBox(
+                        height: getVerticalSize(10),
+                      ),
                       Spacer(),
-
                       Padding(
                         padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                         child: AppElevatedButton(

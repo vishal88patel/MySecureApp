@@ -2,6 +2,7 @@ import 'package:dotted_line/dotted_line.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
@@ -140,6 +141,13 @@ class CCSuccessScreen extends StatelessWidget {
                   ),
                 ),
               ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset('asset/animations/partyyy.json',
+                  height: 300, width: MediaQuery.of(context).size.width),
             ],
           ),
         ],
