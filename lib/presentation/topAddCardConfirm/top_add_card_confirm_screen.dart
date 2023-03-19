@@ -21,6 +21,7 @@ class TopAddCardConfirmScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // PrefUtils.setString(StringConstants.IS_KYC_DONE,"1");
+
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
@@ -280,7 +281,7 @@ class TopAddCardConfirmScreen extends StatelessWidget {
                                   child: Divider(),
                                 ),
                                 SizedBox(height: getVerticalSize(20),),
-                                
+
                                 Padding(
                                   padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                   child: Container(

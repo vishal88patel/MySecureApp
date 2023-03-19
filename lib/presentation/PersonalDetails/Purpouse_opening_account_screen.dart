@@ -91,266 +91,263 @@ class PurpouseAccountScreen extends StatelessWidget {
                                         color: ColorConstant.primaryWhite),
                                     padding: EdgeInsets.symmetric(
                                         horizontal: getHorizontalSize(20.0)),
-                                    child: Column(
-                                      children: [
-                                        SizedBox(
-                                          height: getVerticalSize(150),
-                                        ),
-                                        Text(
-                                          "Purpouse Of Opening Account",
-                                          style: AppStyle.DmSansFont.copyWith(
-                                              color: ColorConstant.darkBlue,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(26)),
-                                        ),
-                                        SizedBox(
-                                          height: getVerticalSize(30),
-                                        ),
-                                        Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal:
-                                                  getHorizontalSize(30)),
-                                          child: Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                  Radius.circular(10)),
-                                              color: personalDetailController
-                                                              .purposeOfOpeningAcc
-                                                              .value ==
-                                                          "using_wallet_service" ||
-                                                      personalDetailController
-                                                              .purposeOfOpeningAcc
-                                                              .value ==
-                                                          ""
-                                                  ? Colors.transparent
-                                                  : ColorConstant.greyF4,
-                                            ),
-                                            child: Column(
-                                              children: [
-                                                Obx(
-                                                  () => InkWell(
-                                                    onTap: () {
-                                                      personalDetailController
-                                                          .onTapOfBorroeOrPErsonalLoan(
-                                                              "borrow_loan");
-                                                    },
-                                                    child: Container(
-                                                      width: double.infinity,
-                                                      decoration: BoxDecoration(
-                                                          borderRadius: BorderRadius.only(
-                                                              topRight:
-                                                                  Radius.circular(
-                                                                      10),
-                                                              topLeft: Radius.circular(
-                                                                  10),
-                                                              bottomLeft: Radius.circular(
-                                                                  personalDetailController.purposeOfOpeningAcc.value == "using_wallet_service" || personalDetailController.purposeOfOpeningAcc.value == ""
-                                                                      ? 10
-                                                                      : 0),
-                                                              bottomRight:
-                                                                  Radius.circular(
-                                                                      personalDetailController.purposeOfOpeningAcc.value == "using_wallet_service" || personalDetailController.purposeOfOpeningAcc.value == ""
-                                                                          ? 10
-                                                                          : 0)),
-                                                          color: personalDetailController
-                                                                      .purposeOfOpeningAcc
-                                                                      .value ==
-                                                                  "borrow_loan"
-                                                              ? ColorConstant.buttonGreen
-                                                              : Colors.transparent,
-                                                          border: Border.all(
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: getVerticalSize(150),
+                                          ),
+                                          Text(
+                                            "Purpouse Of Opening Account",
+                                            style: AppStyle.DmSansFont.copyWith(
+                                                color: ColorConstant.darkBlue,
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: getFontSize(26)),
+                                          ),
+                                          SizedBox(
+                                            height: getVerticalSize(30),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal:
+                                                    getHorizontalSize(30)),
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius: BorderRadius.all(
+                                                    Radius.circular(10)),
+                                                color: personalDetailController
+                                                                .purposeOfOpeningAcc
+                                                                .value ==
+                                                            "using_wallet_service" ||
+                                                        personalDetailController
+                                                                .purposeOfOpeningAcc
+                                                                .value ==
+                                                            ""
+                                                    ? Colors.transparent
+                                                    : ColorConstant.primaryWhite,
+                                              ),
+                                              child: Column(
+                                                children: [
+                                                  Obx(
+                                                    () => InkWell(
+                                                      onTap: () {
+                                                        personalDetailController
+                                                            .onTapOfBorroeOrPErsonalLoan(
+                                                                "borrow_loan");
+                                                      },
+                                                      child: Container(
+                                                        width: double.infinity,
+                                                        decoration: BoxDecoration(
+                                                            borderRadius: BorderRadius.only(
+                                                                topRight:
+                                                                    Radius.circular(
+                                                                        10),
+                                                                topLeft: Radius.circular(
+                                                                    10),
+                                                                bottomLeft: Radius.circular(
+                                                                    personalDetailController.purposeOfOpeningAcc.value == "using_wallet_service" || personalDetailController.purposeOfOpeningAcc.value == ""
+                                                                        ? 10
+                                                                        : 0),
+                                                                bottomRight:
+                                                                    Radius.circular(
+                                                                        personalDetailController.purposeOfOpeningAcc.value == "using_wallet_service" || personalDetailController.purposeOfOpeningAcc.value == ""
+                                                                            ? 10
+                                                                            : 0)),
                                                             color: personalDetailController
                                                                         .purposeOfOpeningAcc
                                                                         .value ==
                                                                     "borrow_loan"
-                                                                ? ColorConstant
-                                                                    .buttonGreen
-                                                                : ColorConstant
-                                                                    .buttonGreen,
-                                                          )),
-                                                      child: Padding(
-                                                        padding: EdgeInsets
-                                                            .symmetric(
-                                                                vertical:
-                                                                    getVerticalSize(
-                                                                        20)),
-                                                        child: Text('Borrow Loan',
-                                                            textAlign: TextAlign
-                                                                .center,
-                                                            style: AppStyle.DmSansFont.copyWith(
-                                                                color: personalDetailController
-                                                                            .purposeOfOpeningAcc.value ==
-                                                                        "borrow_loan"
-                                                                    ? ColorConstant
-                                                                        .primaryWhite
-                                                                    : ColorConstant
-                                                                        .darkBlue,
-                                                                fontWeight:
-                                                                    FontWeight
-                                                                        .w500,
-                                                                fontSize:
-                                                                    getFontSize(
-                                                                        16))),
+                                                                ? ColorConstant.buttonGreen
+                                                                : Colors.transparent,
+                                                            border: Border.all(
+                                                              color: personalDetailController
+                                                                          .purposeOfOpeningAcc
+                                                                          .value ==
+                                                                      "borrow_loan"
+                                                                  ? ColorConstant
+                                                                      .buttonGreen
+                                                                  : ColorConstant
+                                                                      .buttonGreen,
+                                                            )),
+                                                        child: Padding(
+                                                          padding: EdgeInsets
+                                                              .symmetric(
+                                                                  vertical:
+                                                                      getVerticalSize(
+                                                                          20)),
+                                                          child: Text('Borrow Loan',
+                                                              textAlign: TextAlign
+                                                                  .center,
+                                                              style: AppStyle.DmSansFont.copyWith(
+                                                                  color: personalDetailController
+                                                                              .purposeOfOpeningAcc.value ==
+                                                                          "borrow_loan"
+                                                                      ? ColorConstant
+                                                                          .primaryWhite
+                                                                      : ColorConstant
+                                                                          .darkBlue,
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .w500,
+                                                                  fontSize:
+                                                                      getFontSize(
+                                                                          16))),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
-                                                ),
-                                                SizedBox(
-                                                  height: getVerticalSize(15),
-                                                ),
-                                                Obx(
-                                                  () => personalDetailController
-                                                                  .purposeOfOpeningAcc
-                                                                  .value ==
-                                                              "using_wallet_service" ||
-                                                          personalDetailController
-                                                                  .purposeOfOpeningAcc
-                                                                  .value ==
-                                                              ""
-                                                      ? Container()
-                                                      : ListView(
-                                                          shrinkWrap: true,
-                                                          children:
-                                                              personalDetailController
-                                                                  .loanList
-                                                                  .value
-                                                                  .map((i) =>
-                                                                      Padding(
-                                                                        padding:
-                                                                            EdgeInsets.symmetric(vertical: getVerticalSize(5)),
-                                                                        child:
-                                                                            InkWell(
-                                                                          onTap:
-                                                                              () {
-                                                                            personalDetailController.onTapOnLoanTile(i.id);
-                                                                          },
-                                                                          child:
-                                                                              Padding(
+                                                  SizedBox(
+                                                    height: getVerticalSize(15),
+                                                  ),
+                                                  Obx(
+                                                    () => personalDetailController
+                                                                    .purposeOfOpeningAcc
+                                                                    .value ==
+                                                                "using_wallet_service" ||
+                                                            personalDetailController
+                                                                    .purposeOfOpeningAcc
+                                                                    .value ==
+                                                                ""
+                                                        ? Container()
+                                                        : Container(
+                                                      width: size.width / 2,
+                                                          color: ColorConstant.primaryWhite,
+                                                          child: ListView(
+                                                              shrinkWrap: true,
+                                                              children:
+                                                                  personalDetailController
+                                                                      .loanList
+                                                                      .value
+                                                                      .map((i) =>
+                                                                          Padding(
                                                                             padding:
-                                                                                EdgeInsets.symmetric(horizontal: getHorizontalSize(50)),
+                                                                                EdgeInsets.symmetric(vertical: getVerticalSize(5)),
                                                                             child:
-                                                                                Row(
-                                                                              mainAxisAlignment: MainAxisAlignment.start,
-                                                                              mainAxisSize: MainAxisSize.min,
-                                                                              children: [
-                                                                                Icon(
-                                                                                  personalDetailController.selectedLoanId.value == i.id.toString() ? Icons.check_box : Icons.check_box_outline_blank_outlined,
-                                                                                  color: personalDetailController.selectedLoanId.value == i.id.toString() ? ColorConstant.buttonGreen : Colors.black.withOpacity(0.5),
-                                                                                  size: 24,
-                                                                                ),
-                                                                                /*Container(
-                                                            width: getHorizontalSize(22),
-                                                            height: getVerticalSize(22),
-                                                            decoration: BoxDecoration(
-                                                                  color: personalDetailController
-                                                                      .selectedLoanId
-                                                                      .value ==
-                                                                      i.id.toString()
-                                                                      ? ColorConstant
-                                                                      .buttonGreen
-                                                                      : Colors.transparent,
-                                                                  borderRadius:
-                                                                  BorderRadius.circular(
-                                                                      100),
-                                                                  border: Border.all(
-                                                                      color: personalDetailController
-                                                                          .selectedLoanId
-                                                                          .value ==
-                                                                          i.id.toString()?
-                                                                      ColorConstant
-                                                                          .buttonGreen:Colors.black)),
-                                                          ),*/
-                                                                                SizedBox(
-                                                                                  width: getHorizontalSize(9),
-                                                                                ),
-                                                                                Text(
-                                                                                  i.name.toString(),
-                                                                                  style: AppStyle.DmSansFont.copyWith(color: ColorConstant.darkBlue, fontSize: getFontSize(22)),
-                                                                                ),
-                                                                                SizedBox(
-                                                                                  width: getHorizontalSize(10),
-                                                                                ),
-                                                                              ],
+                                                                                InkWell(
+                                                                              onTap:
+                                                                                  () {
+                                                                                personalDetailController.onTapOnLoanTile(i.id);
+                                                                              },
+                                                                              child: Obx(
+                                                                                        () => Padding(
+                                                                                      padding: const EdgeInsets.all(4.0),
+                                                                                      child: Container(
+                                                                                        width: size.width / 3.5,
+                                                                                        decoration: BoxDecoration(
+                                                                                            color:  personalDetailController.selectedLoanId.value == i.id.toString() ? ColorConstant
+                                                                                                .primaryLightGreen
+                                                                                                : ColorConstant.greenF3
+                                                                                                .withOpacity(0.5),
+                                                                                            borderRadius:
+                                                                                            BorderRadius.all(
+                                                                                                Radius.circular(10))),
+                                                                                        child: Padding(
+                                                                                          padding: EdgeInsets.only(
+                                                                                              left: getHorizontalSize(10),
+                                                                                              right:
+                                                                                              getHorizontalSize(10),
+                                                                                              top: getHorizontalSize(10),
+                                                                                              bottom:
+                                                                                              getHorizontalSize(10)),
+                                                                                          child: Center(
+                                                                                            child: Text(
+                                                                                                i.name.toString(),
+                                                                                              style: AppStyle.DmSansFont.copyWith(
+                                                                                                  color: personalDetailController.selectedLoanId.value == i.id.toString() ?
+                                                                                                       ColorConstant
+                                                                                                      .primaryWhite
+                                                                                                      : ColorConstant
+                                                                                                      .grey8F,
+                                                                                                  fontWeight:
+                                                                                                  FontWeight.w400,
+                                                                                                  fontSize:
+                                                                                                  getFontSize(16)),
+                                                                                            ),
+                                                                                          ),
+                                                                                        ),
+                                                                                      ),
+                                                                                    ),
+                                                                                  ),
                                                                             ),
-                                                                          ),
-                                                                        ),
-                                                                      ))
-                                                                  .toList(),
+                                                                          ))
+                                                                      .toList(),
+                                                            ),
                                                         ),
-                                                ),
-                                              ],
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: getVerticalSize(15),
-                                        ),
-                                        Obx(
-                                          () => Padding(
-                                            padding: EdgeInsets.symmetric(
-                                                horizontal:
-                                                    getHorizontalSize(30)),
-                                            child: InkWell(
-                                              onTap: () {
-                                                personalDetailController
-                                                    .onTapOfBorroeOrPErsonalLoan(
-                                                        "using_wallet_service");
-                                              },
-                                              child: Container(
-                                                width: double.infinity,
-                                                decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.all(
-                                                            Radius.circular(
-                                                                10)),
-                                                    color: personalDetailController
-                                                                .purposeOfOpeningAcc
-                                                                .value ==
-                                                            "using_wallet_service"
-                                                        ? ColorConstant
-                                                            .buttonGreen
-                                                        : Colors.transparent,
-                                                    border: Border.all(
-                                                        color: ColorConstant
-                                                            .buttonGreen)),
-                                                child: Padding(
-                                                  padding: EdgeInsets.symmetric(
-                                                      vertical:
-                                                          getVerticalSize(20)),
-                                                  child: Text(
-                                                      'Using Wallet Service',
-                                                      textAlign:
-                                                          TextAlign.center,
-                                                      style: AppStyle.DmSansFont.copyWith(
-                                                          color: personalDetailController
-                                                                      .purposeOfOpeningAcc
-                                                                      .value ==
-                                                                  "using_wallet_service"
-                                                              ? ColorConstant
-                                                                  .primaryWhite
-                                                              : ColorConstant
-                                                                  .darkBlue,
-                                                          fontWeight:
-                                                              FontWeight.w500,
-                                                          fontSize:
-                                                              getFontSize(16))),
+                                          SizedBox(
+                                            height: getVerticalSize(15),
+                                          ),
+                                          Obx(
+                                            () => Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal:
+                                                      getHorizontalSize(30)),
+                                              child: InkWell(
+                                                onTap: () {
+                                                  personalDetailController
+                                                      .onTapOfBorroeOrPErsonalLoan(
+                                                          "using_wallet_service");
+                                                },
+                                                child: Container(
+                                                  width: double.infinity,
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.all(
+                                                              Radius.circular(
+                                                                  10)),
+                                                      color: personalDetailController
+                                                                  .purposeOfOpeningAcc
+                                                                  .value ==
+                                                              "using_wallet_service"
+                                                          ? ColorConstant
+                                                              .buttonGreen
+                                                          : Colors.transparent,
+                                                      border: Border.all(
+                                                          color: ColorConstant
+                                                              .buttonGreen)),
+                                                  child: Padding(
+                                                    padding: EdgeInsets.symmetric(
+                                                        vertical:
+                                                            getVerticalSize(20)),
+                                                    child: Text(
+                                                        'Using Wallet Service',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        style: AppStyle.DmSansFont.copyWith(
+                                                            color: personalDetailController
+                                                                        .purposeOfOpeningAcc
+                                                                        .value ==
+                                                                    "using_wallet_service"
+                                                                ? ColorConstant
+                                                                    .primaryWhite
+                                                                : ColorConstant
+                                                                    .darkBlue,
+                                                            fontWeight:
+                                                                FontWeight.w500,
+                                                            fontSize:
+                                                                getFontSize(16))),
+                                                  ),
                                                 ),
                                               ),
                                             ),
                                           ),
-                                        ),
-                                        SizedBox(
-                                          height: getVerticalSize(60),
-                                        ),
-                                        AppElevatedButton(
-                                          buttonName: 'Register',
-                                          onPressed: () {
-                                            personalDetailController
-                                                .onClickOfRegisterButton();
-                                            // Get.toNamed(AppRoutes.dashBoardScreen);
-                                          },
-                                        ),
-                                      ],
+                                          SizedBox(
+                                            height: getVerticalSize(60),
+                                          ),
+                                          AppElevatedButton(
+                                            buttonName: 'Register',
+                                            onPressed: () {
+                                              personalDetailController
+                                                  .onClickOfRegisterButton();
+                                              // Get.toNamed(AppRoutes.dashBoardScreen);
+                                            },
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   ),
                                 ),
