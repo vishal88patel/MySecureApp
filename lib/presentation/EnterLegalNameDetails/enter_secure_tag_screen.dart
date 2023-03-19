@@ -14,12 +14,22 @@ import '../../utils/HelperFiles/ui_utils.dart';
 import 'controller/enter_legel_name_screen_controller.dart';
 import 'enter_middle_name_screen.dart';
 
-class EnterSecureTagScreen extends StatelessWidget {
+class EnterSecureTagScreen extends StatefulWidget {
+  @override
+  State<EnterSecureTagScreen> createState() => _EnterSecureTagScreenState();
+}
+
+class _EnterSecureTagScreenState extends State<EnterSecureTagScreen> {
   // var enterLegelNameController = Get.find<EnterLegalNameScreenController>();
   var enterLegelNameController = Get.put(EnterLegalNameScreenController());
-
+@override
+  void initState() {
+  enterLegelNameController. getCashTagSuggestio();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
@@ -146,6 +156,113 @@ class EnterSecureTagScreen extends StatelessWidget {
                                             SizedBox(
                                               height: getVerticalSize(54),
                                             ),
+                                            Text(
+                                              "Your can choose some unique cashtag from below",
+                                              style: AppStyle.DmSansFont
+                                                  .copyWith(
+                                                  color: ColorConstant.grey8F,
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: getFontSize(18)),
+                                            ),
+                                            Container(
+                                              child: GridView.builder(
+                                                shrinkWrap: true,
+                                                itemCount: 3,
+                                                gridDelegate:
+                                                SliverGridDelegateWithFixedCrossAxisCount(
+                                                  crossAxisCount: 3,
+                                                  childAspectRatio: 2,
+                                                ),
+                                                itemBuilder: (BuildContext context, int i) {
+                                                  return Padding(
+                                                    padding: EdgeInsets.symmetric(
+                                                        vertical: getVerticalSize(8)),
+                                                    child: GestureDetector(
+                                                      onTap: () {
+                                                        enterLegelNameController
+                                                            .onTapOnLoanTenure(
+                                                            enterLegelNameController
+                                                                .loanTenuteList
+                                                                .value[i]
+                                                                .id!
+                                                                .toInt(),
+                                                            enterLegelNameController
+                                                                .loanTenuteList
+                                                                .value[i]
+                                                                .name
+                                                                .toString());
+                                                      },
+                                                      child: Obx(
+                                                            () => Padding(
+                                                          padding: const EdgeInsets.all(4.0),
+                                                          child: enterLegelNameController
+                                                              .loanTenuteList
+                                                              .value.isNotEmpty?Container(
+                                                            width: size.width / 3.5,
+                                                            decoration: BoxDecoration(
+                                                                color: enterLegelNameController
+                                                                    .selectedLoanTenureId
+                                                                    .value
+                                                                    .toString() ==
+                                                                    enterLegelNameController
+                                                                        .loanTenuteList
+                                                                        .value[i]
+                                                                        .id
+                                                                        .toString()
+                                                                    ? ColorConstant
+                                                                    .primaryLightGreen
+                                                                    : ColorConstant.greenF3
+                                                                    .withOpacity(0.5),
+                                                                borderRadius:
+                                                                BorderRadius.all(
+                                                                    Radius.circular(10))),
+                                                            child: Padding(
+                                                              padding: EdgeInsets.only(
+                                                                  left: getHorizontalSize(10),
+                                                                  right:
+                                                                  getHorizontalSize(10),
+                                                                  top: getHorizontalSize(10),
+                                                                  bottom:
+                                                                  getHorizontalSize(10)),
+                                                              child: Center(
+                                                                child: Text(
+                                                                  enterLegelNameController
+                                                                      .loanTenuteList
+                                                                      .value[i]
+                                                                      .name
+                                                                      .toString(),
+                                                                  style: AppStyle.DmSansFont.copyWith(
+                                                                      color: enterLegelNameController
+                                                                          .selectedLoanTenureId
+                                                                          .value
+                                                                          .toString() ==
+                                                                          enterLegelNameController
+                                                                              .loanTenuteList
+                                                                              .value[i]
+                                                                              .id
+                                                                              .toString()
+                                                                          ? ColorConstant
+                                                                          .primaryWhite
+                                                                          : ColorConstant
+                                                                          .grey8F,
+                                                                      fontWeight:
+                                                                      FontWeight.w400,
+                                                                      fontSize:
+                                                                      getFontSize(16)),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ):Container(),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              height: getVerticalSize(54),
+                                            ),
                                             AppElevatedButton(
                                               buttonName: 'Next',
                                               onPressed: () {
@@ -157,8 +274,9 @@ class EnterSecureTagScreen extends StatelessWidget {
                                                       headerText: StringConstants
                                                           .ERROR);
                                                 } else {
-                                                  enterLegelNameController
-                                                      .checkCashTagValidation();
+                                                  // enterLegelNameController
+                                                  //     .checkCashTagValidation();
+                                                  UIUtils.showProgressDialog(isCancellable: false);
                                                   // Get.to(()=>
                                                   //     LoaderScreen(AppRoutes.enterAddressScreen),
                                                   //     transition: Transition.rightToLeft);

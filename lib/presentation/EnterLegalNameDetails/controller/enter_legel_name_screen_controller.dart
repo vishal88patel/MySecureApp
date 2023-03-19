@@ -8,16 +8,28 @@ import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../PersonalDetails/model/get_loan_type_response_model.dart';
 import '../../loader_screen.dart';
+import '../model/cashtag_model.dart';
 
 class EnterLegalNameScreenController extends GetxController {
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController middleNameController = TextEditingController();
   TextEditingController secureTagController = TextEditingController();
-  TextEditingController dollarController = TextEditingController(text: "\$");
+  TextEditingController dollarController = TextEditingController(text: "");
+  var loanTenuteList = [
+  ].obs;
+  var selectedLoanTenureId = 1000.obs;
+  var selectedLoanTenure = "".obs;
 
+  void onTapOnLoanTenure(int id, String name) {
+    secureTagController.text=name;
+    selectedLoanTenureId.value = id;
+    selectedLoanTenure.value = name;
 
+    loanTenuteList.refresh();
+  }
 
   @override
   void onReady() {
@@ -26,6 +38,7 @@ class EnterLegalNameScreenController extends GetxController {
 
   @override
   void onInit() {
+
     super.onInit();
   }
 
@@ -80,5 +93,39 @@ class EnterLegalNameScreenController extends GetxController {
     final form = FormData({"cashtag": text});
     print(form.toString());
     return form;
+  }
+  Future<FormData> getBodyForCashTag(String text1,String text2) async {
+    final form = FormData({
+      "string1": text1,
+      "string2": text2,
+    });
+    print(form.toString());
+    return form;
+  }
+
+  Future<void> getCashTagSuggestio() async {
+    ApiService()
+        .callPostApi(
+        body: await getBodyForCashTag(firstNameController.text,lastNameController.text),
+        headerWithToken: false,
+        url: ApiEndPoints.GET_CASHTAG_SUGGESTION)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        CashTagModel model=CashTagModel.fromJson(value);
+            for(int i=0;i<model.data!.length;i++){
+              loanTenuteList.value.add(LoanModel(
+                  name: model.data![i], createdAt: "", deletedAt: "", id: i, updatedAt: ""),);
+            }
+        loanTenuteList.refresh();
+
+        // Get.to(()=>
+        //     LoaderScreen(AppRoutes.enterAddressScreen),
+        //     transition: Transition.rightToLeft);
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
   }
 }

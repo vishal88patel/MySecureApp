@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -17,20 +18,8 @@ class UIUtils {
   static void showProgressDialog({isCancellable = false}) async {
     if (!isProgressVisible) {
       Get.dialog(
-        Padding(
-          padding: const EdgeInsets.all(165),
-          child: Container(
-            height: 50,
-            width: 50,
-            child: LoadingIndicator(
-                indicatorType: Indicator.lineSpinFadeLoader, /// Required, The loading type of the widget
-                colors:  [ColorConstant.buttonGreen],       /// Optional, The color collections
-                strokeWidth: 1,                     /// Optional, The stroke of the line, only applicable to widget which contains line
-                backgroundColor: Colors.transparent,     /// Optional, Background of the widget
-                pathBackgroundColor: Colors.transparent,   /// Optional, the stroke backgroundColor
-            )
-          ),
-        ),
+        CupertinoActivityIndicator(
+            radius: 23.0, color: ColorConstant.primaryDarkGreen),
         barrierDismissible: isCancellable,
       );
       isProgressVisible = true;

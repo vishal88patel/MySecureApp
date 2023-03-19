@@ -27,8 +27,6 @@ class NotificationScreenController extends GetxController {
 
   @override
   void onInit() {
-    callNotificationApi();
-
     super.onInit();
   }
 
@@ -37,14 +35,14 @@ class NotificationScreenController extends GetxController {
     super.onClose();
   }
 
-  Future<void> callNotificationApi() async {
+  Future<void> callNotificationApi({required String type}) async {
     isLoading.value = true;
     ApiService()
         .callGetApi(
             body: await getNotificationBody(),
             headerWithToken: true,
             showLoader: false,
-            url: ApiEndPoints.Gwt_NOTIFICATION_API)
+            url: ApiEndPoints.Gwt_NOTIFICATION_API+"?is_read=$type")
         .then((value) {
       print(value);
       if (value != null && value['status'] != null && value['status'] ??
@@ -131,7 +129,19 @@ class NotificationScreenController extends GetxController {
             showLoader: false,
             url: ApiEndPoints.CLEAR_NOTIFICATION)
         .then((value) {
-      callNotificationApi();
+      callNotificationApi(type: "0");
+    });
+  }
+
+  Future<void> readAllNotification(String id) async {
+    ApiService()
+        .callPostApi(
+            body: await getBody(id),
+            headerWithToken: true,
+            showLoader: false,
+            url: ApiEndPoints.READ_NOTIFICATION)
+        .then((value) {
+      callNotificationApi(type: "0");
     });
   }
 

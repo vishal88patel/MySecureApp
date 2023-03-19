@@ -68,7 +68,9 @@ import '../presentation/DashBoardScreen/dashboard_screen.dart';
 import '../presentation/EnterAddress/binding/enter_address_screen_binding.dart';
 import '../presentation/EnterAddress/enter_address_screen.dart';
 import '../presentation/EnterLegalNameDetails/binding/enter_legel_name_screen_binding.dart';
+import '../presentation/EnterLegalNameDetails/binding/enter_phone_screen_binding.dart';
 import '../presentation/EnterLegalNameDetails/enter_first_name_screen.dart';
+import '../presentation/EnterLegalNameDetails/enter_phone_screen.dart';
 import '../presentation/EnterLegalNameDetails/enter_secure_tag_screen.dart';
 import '../presentation/EnterPasswordScreen/binding/enter_password_screen_binding.dart';
 import '../presentation/EnterPasswordScreen/enter_password_screen.dart';
@@ -251,6 +253,7 @@ class AppRoutes {
   static String onBoardingScreen = '/onBoarding_screen';
   static String authOptionScreen = '/auth_option_screen';
   static String enterSecureTagScreen = '/enter_secureTag_screen';
+  static String enterphoneScreen = '/enter_phone_screen';
   static String enterSnnDetailScreen = '/enter_snn_detail_screen';
   static String purpouseAccountScreen = '/purpouse_account_screen';
   static String scanScreen = '/scan_screen';
@@ -450,6 +453,16 @@ class AppRoutes {
       page: () => EnterSecureTagScreen(),
       bindings: [
         EnterLegalNameScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: enterphoneScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EnterPhoneScreen(),
+      bindings: [
+        EnterPhoneScreenBinding(),
       ],
     ),
 

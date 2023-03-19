@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -145,7 +146,9 @@ class _NotificationScreenState extends State<NotificationScreen> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(
-                            c.requestUser!.firstName.toString()+" "+c.requestUser!.lastName.toString(),
+                            c.requestUser!.firstName.toString() +
+                                " " +
+                                c.requestUser!.lastName.toString(),
                             style: AppStyle.textStyleDMSANS.copyWith(
                                 color: ColorConstant.naturalBlack,
                                 fontWeight: FontWeight.w700,
@@ -192,182 +195,149 @@ class _NotificationScreenState extends State<NotificationScreen> {
       ),
     );
   }
-
+int currentTab=0;
   @override
   Widget build(BuildContext context) {
-    notificationController.callNotificationApi();
-    return Scaffold(
-        backgroundColor: ColorConstant.primaryDarkGreen,
-        body: Stack(
-          children: [
-            Column(
-              children: [
-                SizedBox(
-                  height: getVerticalSize(35),
-                ),
-                Image.asset(
-                  "asset/icons/ic_noti_background.png",
-                  width: MediaQuery.of(context).size.width,
-                  fit: BoxFit.cover,
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: getVerticalSize(35),
-                ),
-                AppAppBar(
-                  title: "Notification",
-                  icon1: "asset/icons/ic_back.svg",
-                  icon2: "asset/icons/ic_setting.svg",
-                  onPressedIcon1: () {
-                    Get.back();
-                  },
-                  onPressedIcon2: () {
-                    UIUtils.showSnakBar(headerText: StringConstants.SUCCESS,bodyText: "Setting Page will be Coming soon");
-                  },
-                ),
-              ],
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: 180,
-                ),
-                Expanded(
-                  child: Card(
-                    margin: const EdgeInsets.symmetric(horizontal: 0),
-                    color: ColorConstant.primaryWhite,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(36),
-                          topRight: Radius.circular(36)),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 8,
-                        ),
-                        Container(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              InkWell(
-                                onTap: () {
-                                  if (notificationController.list.value !=
-                                          null &&
-                                      notificationController
-                                          .list.value.isNotEmpty) {
-                                    _removeAllItems();
-                                  }
-                                },
-                                child: Text(
-                                  "Mark as read",
+    notificationController. callNotificationApi(type: "0");
+    return DefaultTabController(
+      length: 2,
+      child: Scaffold(
+          backgroundColor: ColorConstant.primaryDarkGreen,
+          body: Stack(
+            children: [
+              Column(
+                children: [
+                  SizedBox(
+                    height: getVerticalSize(35),
+                  ),
+                  Image.asset(
+                    "asset/icons/ic_noti_background.png",
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: getVerticalSize(35),
+                  ),
+                  AppAppBar(
+                    title: "Notification",
+                    icon1: "asset/icons/ic_back.svg",
+                    icon2: "asset/icons/ic_setting.svg",
+                    onPressedIcon1: () {
+                      Get.back();
+                    },
+                    onPressedIcon2: () {
+                      UIUtils.showSnakBar(
+                          headerText: StringConstants.SUCCESS,
+                          bodyText: "Setting Page will be Coming soon");
+                    },
+                  ),
+                ],
+              ),
+              Column(
+                children: [
+                  SizedBox(
+                    height: 180,
+                  ),
+                  Expanded(
+                    child: Card(
+                      margin: const EdgeInsets.symmetric(horizontal: 0),
+                      color: ColorConstant.primaryWhite,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(36),
+                            topRight: Radius.circular(36)),
+                      ),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                currentTab==0?  InkWell(
+                                  onTap: () {
+                                    if (notificationController.list.value !=
+                                            null &&
+                                        notificationController
+                                            .list.value.isNotEmpty) {
+                                      notificationController.readAllNotification("");
+                                    }
+                                  },
+                                  child: Text(
+                                    "Mark as read",
+                                    style: AppStyle.DmSansFont.copyWith(
+                                        color: ColorConstant.primaryDarkGreen,
+                                        fontSize: getFontSize(20)),
+                                  ),
+                                ):Text(
+                                  "",
                                   style: AppStyle.DmSansFont.copyWith(
                                       color: ColorConstant.primaryDarkGreen,
                                       fontSize: getFontSize(20)),
                                 ),
+                                SizedBox(
+                                  width: 14,
+                                )
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: getVerticalSize(12),
+                          ),
+                          TabBar(
+                            onTap: (index) {
+                              currentTab=index;
+                              setState(() {
+
+                              });
+                              notificationController. callNotificationApi(type: currentTab.toString());
+                            },
+                            tabs: [
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0,top: 8),
+                                child: Text(
+                                  "Unread Notifications",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.primaryDarkGreen,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: getFontSize(18)),
+                                ),
                               ),
-                              SizedBox(
-                                width: 14,
-                              )
+                              Padding(
+                                padding: const EdgeInsets.only(bottom: 8.0,top: 8),
+                                child: Text(
+                                  "Read Notifications",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.primaryDarkGreen,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: getFontSize(18)),
+                                ),
+                              ),
                             ],
                           ),
-                        ),
-                        SizedBox(
-                          height: getVerticalSize(12),
-                        ),
-                        Expanded(
-                            child: Obx(
-                          () => notificationController.isLoading.value == false
-                              ? notificationController.list.isNotEmpty
-                                  ? AnimatedList(
-                                      shrinkWrap: true,
-                                      key: _listKey,
-                                      initialItemCount:
-                                          notificationController.list.length,
-                                      itemBuilder:
-                                          (context, index, animation) =>
-                                              notificationController
-                                                          .list[index].type ==
-                                                      "REQUEST_MONEY"
-                                                  ? _buildItemForPay(
-                                                      context,
-                                                      notificationController
-                                                          .list[index],
-                                                      animation)
-                                                  : _buildItem(
-                                                      context,
-                                                      notificationController
-                                                          .list[index],
-                                                      animation),
-                                    )
-                                  : Column(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                          padding: EdgeInsets.all(getVerticalSize(20)),
-                                          child:Container(
-                                              width: double.infinity,
-                                              height: getVerticalSize(200),
-                                              margin:
-                                              EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                                              decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(12),
-                                                  color: ColorConstant.primaryAppTextF1),
-                                              child: Row(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Column(
-                                                    mainAxisAlignment:
-                                                    MainAxisAlignment.center,
-                                                    children: [
-                                                      Image.asset(
-                                                        "asset/icons/no_recent.png",
-                                                        fit: BoxFit.fill,
-                                                        height: getVerticalSize(70),
-                                                        width: getVerticalSize(70),
-                                                      ),
-                                                      Text(
-                                                        "No New Notification",
-                                                        style: AppStyle.DmSansFont.copyWith(
-                                                            color: ColorConstant.naturalGrey3,
-                                                            fontWeight: FontWeight.w600,
-                                                            fontSize: getFontSize(20)),
-                                                      )
-                                                    ],
-                                                  ),
-                                                ],
-                                              ))
-                                      )
-
-                                    ],
-                                  )
-                              : Padding(
-                                  padding: const EdgeInsets.all(180),
-                                  child: Container(
-                                      height: 50,
-                                      width: 50,
-                                      child: LoadingIndicator(
-                                        indicatorType:
-                                            Indicator.lineSpinFadeLoader,
-                                        colors: [ColorConstant.buttonGreen],
-                                        strokeWidth: 1,
-                                        backgroundColor: Colors.transparent,
-                                        pathBackgroundColor: Colors.transparent,
-                                      )),
-                                ),
-                        )),
-                      ],
+                          Expanded(
+                            child: TabBarView(
+                              children: [
+                                getReadNotificationList(),
+                                getReadNotification(),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ),
-          ],
-        ));
+                ],
+              ),
+            ],
+          )),
+    );
   }
 
   void _removeAllItems() {
@@ -381,10 +351,135 @@ class _NotificationScreenState extends State<NotificationScreen> {
         duration: const Duration(milliseconds: 300),
       );
       notificationController.list.removeAt(0);
-
     }
     notificationController.clearNotification("");
-    notificationController.callNotificationApi();
+    notificationController. callNotificationApi(type: "0");
+  }
+
+  Widget getReadNotificationList() {
+    return Expanded(
+        child: Obx(
+      () => notificationController.isLoading.value == false
+          ? notificationController.list.isNotEmpty
+              ? AnimatedList(
+                  padding: EdgeInsets.only(top: 12),
+                  shrinkWrap: true,
+                  key: _listKey,
+                  initialItemCount: notificationController.list.length,
+                  itemBuilder: (context, index, animation) =>
+                      notificationController.list[index].type == "REQUEST_MONEY"
+                          ? _buildItemForPay(context,
+                              notificationController.list[index], animation)
+                          : _buildItem(context,
+                              notificationController.list[index], animation),
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(getVerticalSize(20)),
+                        child: Container(
+                            width: double.infinity,
+                            height: getVerticalSize(200),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: getHorizontalSize(20)),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: ColorConstant.primaryAppTextF1),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "asset/icons/no_recent.png",
+                                      fit: BoxFit.fill,
+                                      height: getVerticalSize(70),
+                                      width: getVerticalSize(70),
+                                    ),
+                                    Text(
+                                      "No New Notification",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.naturalGrey3,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: getFontSize(20)),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )))
+                  ],
+                )
+          : Padding(
+              padding: const EdgeInsets.all(180),
+              child:CupertinoActivityIndicator(
+                  radius: 23.0, color: ColorConstant.primaryDarkGreen),
+            ),
+    ));
+  }
+
+  Widget getReadNotification() {
+    return Expanded(
+        child: Obx(
+      () => notificationController.isLoading.value == false
+          ? notificationController.list.isNotEmpty
+              ? AnimatedList(
+                  padding: EdgeInsets.only(top: 12),
+                  shrinkWrap: true,
+                  key: _listKey,
+                  initialItemCount: notificationController.list.length,
+                  itemBuilder: (context, index, animation) =>
+                      notificationController.list[index].type == "REQUEST_MONEY"
+                          ? _buildItemForPay(context,
+                              notificationController.list[index], animation)
+                          : _buildItem(context,
+                              notificationController.list[index], animation),
+                )
+              : Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Padding(
+                        padding: EdgeInsets.all(getVerticalSize(20)),
+                        child: Container(
+                            width: double.infinity,
+                            height: getVerticalSize(200),
+                            margin: EdgeInsets.symmetric(
+                                horizontal: getHorizontalSize(20)),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(12),
+                                color: ColorConstant.primaryAppTextF1),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Image.asset(
+                                      "asset/icons/no_recent.png",
+                                      fit: BoxFit.fill,
+                                      height: getVerticalSize(70),
+                                      width: getVerticalSize(70),
+                                    ),
+                                    Text(
+                                      "No New Notification",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.naturalGrey3,
+                                          fontWeight: FontWeight.w600,
+                                          fontSize: getFontSize(20)),
+                                    )
+                                  ],
+                                ),
+                              ],
+                            )))
+                  ],
+                )
+          : Padding(
+              padding: const EdgeInsets.all(180),
+              child: CupertinoActivityIndicator(
+                  radius: 23.0, color: ColorConstant.primaryDarkGreen),
+            ),
+    ));
   }
 }
 

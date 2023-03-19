@@ -16,6 +16,7 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 import '../../CreatePasswordScreen/controller/create_password_screen_controller.dart';
 import '../../EnterAddress/controller/enter_address_screen_controller.dart';
 import '../../EnterLegalNameDetails/controller/enter_legel_name_screen_controller.dart';
+import '../../EnterLegalNameDetails/controller/enter_phone_screen_controller.dart';
 import '../../EnterPersonalDetails/controller/enter_personal_detail_screen_controller.dart';
 import '../../LoginScreen/controller/login_screen_controller.dart';
 import '../../LoginScreen/models/login_response_model.dart';
@@ -32,6 +33,7 @@ class PersonalScreenController extends GetxController {
   var enterPersonalDetailController = Get.put(EnterBirthDateController());
   var enterLegalNameController = Get.put(EnterLegalNameScreenController());
   var enterAddressController = Get.put(EnterAddressScreenController());
+  var phoneController = Get.put(EnterPhoneScreenController());
 
   // var enterAddressController = Get.find<EnterBirthDateController>();
 
@@ -236,9 +238,7 @@ class PersonalScreenController extends GetxController {
                     email: loginController.emailController.text.isEmpty
                         ? ""
                         : loginController.emailController.text,
-                    mobile: loginEmailController.phoneController.text.isEmpty
-                        ? ""
-                        : loginEmailController.phoneController.text,
+                    mobile: phoneController.phoneController.text,
                     password:
                         createPasswordController.confirmPassController.text,
                     address_1: enterAddressController.address01Controller.text,
@@ -274,9 +274,7 @@ class PersonalScreenController extends GetxController {
                     email: loginController.emailController.text.isEmpty
                         ? ""
                         : loginController.emailController.text,
-                    mobile: loginEmailController.phoneController.text.isEmpty
-                        ? ""
-                        : loginEmailController.phoneController.text,
+                mobile: phoneController.phoneController.text,
                     password:
                         createPasswordController.confirmPassController.text,
                     address_1: enterAddressController.address01Controller.text,

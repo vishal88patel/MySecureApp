@@ -7,16 +7,19 @@ import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 
-class LoaderScreen extends StatefulWidget {
-  String appRoutes;
+import '../../routes/app_routes.dart';
 
-  LoaderScreen(this.appRoutes);
+class LoanLoaderScreen extends StatefulWidget {
+  String appRoutes;
+  Map<String,dynamic> value;
+
+  LoanLoaderScreen(this.appRoutes,this.value);
 
   @override
-  State<LoaderScreen> createState() => _LoaderScreenState();
+  State<LoanLoaderScreen> createState() => _LoanLoaderScreenState();
 }
 
-class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderStateMixin {
+class _LoanLoaderScreenState extends State<LoanLoaderScreen> with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
 
   @override
@@ -25,11 +28,14 @@ class _LoaderScreenState extends State<LoaderScreen> with SingleTickerProviderSt
     new AnimationController(vsync: this, duration: Duration(milliseconds: 1000));
     _animationController.addListener(() => setState(() {}));
     _animationController.repeat();
-    Future.delayed(Duration(milliseconds: 1000), () {
-      Get.offNamed(widget.appRoutes.toString());
+    Future.delayed(Duration(milliseconds: 6000), () {
+      Get.toNamed(AppRoutes.loan_approved,
+          arguments: widget.value);
     });
     _animationController.repeat(max: 1);
     _animationController.forward();
+
+
     super.initState();
   }
   @override

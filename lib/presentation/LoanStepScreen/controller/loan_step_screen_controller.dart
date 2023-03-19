@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/widget/loan_loadr_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../ApiServices/network_info.dart';
@@ -59,12 +60,22 @@ class LoanStepScreenController extends GetxController {
       if (value['status']) {
         LoanCalculationResponseModel loanCalModel =
         LoanCalculationResponseModel.fromJson(value);
-        Get.toNamed(AppRoutes.loan_approved,
-            arguments: {
-              "loanCalModel": loanCalModel,
-              "loanAmount": loanCalModel.data!.loanAmount.toString(),
-              "loan_type": loan_type.value,
-            });
+        Get.to(
+                () => LoanLoaderScreen(
+              AppRoutes.loan_approved,
+                    {
+                      "loanCalModel": loanCalModel,
+                      "loanAmount": loanCalModel.data!.loanAmount.toString(),
+                      "loan_type": loan_type.value,
+                    }
+            ),
+            transition: Transition.rightToLeft);
+        // Get.toNamed(AppRoutes.loan_approved,
+        //     arguments: {
+        //       "loanCalModel": loanCalModel,
+        //       "loanAmount": loanCalModel.data!.loanAmount.toString(),
+        //       "loan_type": loan_type.value,
+        //     });
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
