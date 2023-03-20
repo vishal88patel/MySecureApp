@@ -12,6 +12,7 @@ import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/common_utils.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import '../../utils/HelperFiles/ui_utils.dart';
+import '../ChangePassword/change_password.dart';
 import 'controller/privacy_details_screen_controller.dart';
 
 class PrivacyDetailsScreen extends StatelessWidget {
@@ -218,7 +219,7 @@ class PrivacyDetailsScreen extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                Get.toNamed(AppRoutes.forgotPasswordScreen);
+                Get.to(ChangePasswordScreen());
               },
               child: Text(
                 "Change password",
