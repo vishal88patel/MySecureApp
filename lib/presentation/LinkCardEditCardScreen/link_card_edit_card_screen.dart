@@ -24,10 +24,9 @@ class LinkCardEditCardScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
+                color: ColorConstant.buttonGreen.withOpacity(0.3),
                 child: Stack(
                   children: [
-                    Image.asset('asset/icons/background_image.png',
-                        fit: BoxFit.cover, width: double.infinity),
                     SafeArea(
                       child: Stack(
                         clipBehavior: Clip.none,
@@ -35,26 +34,66 @@ class LinkCardEditCardScreen extends StatelessWidget {
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              AppAppBar(
-                                title: "Confirm Your Card",
-                                icon1: "asset/icons/ic_back.svg",
-                                icon2: "asset/icons/ic_notification.svg",
-                                onPressedIcon1: () {
-                                  Get.back();
-                                },
-                                onPressedIcon2: () {
-                                  Get.toNamed(AppRoutes.notificationScreen);
-                                },
-                              ),
                               Padding(
                                 padding: EdgeInsets.symmetric(
-                                    horizontal: getHorizontalSize(20)),
-                                child: Text(
-                                  "Scan completed, now verify your data",
-                                  style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: getFontSize(22)),
+                                    horizontal: getHorizontalSize(20),vertical: getVerticalSize(20)),
+                                child: Row(
+                                  mainAxisAlignment:
+                                  MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color:
+                                                ColorConstant.backBorder)),
+                                        padding: EdgeInsets.all(6),
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new_outlined,
+                                          size: 22,
+                                        ),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Confirm your card",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(12),
+                                          border: Border.all(
+                                              color: Colors.transparent)),
+                                      padding: EdgeInsets.all(6),
+                                      child: Icon(
+                                        Icons.arrow_back_ios_new_outlined,
+                                        color: Colors.transparent,
+                                        size: 22,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Padding(
+                                padding:  EdgeInsets.only(left: getHorizontalSize(18)),
+                                child: Row(
+                                  children: [
+                                    Text(
+                                      "Fill in the fields below or use camera \nphone to scan card",
+                                      style: AppStyle.textStyleDMSANS.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: getFontSize(22)),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],

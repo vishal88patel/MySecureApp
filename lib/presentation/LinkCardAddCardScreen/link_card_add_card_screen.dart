@@ -98,14 +98,17 @@ class LinkCardAddCardScreen extends StatelessWidget {
                                           height: getVerticalSize(100),
                                         ),
                                         Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              horizontal: getHorizontalSize(20)),
-                                          child: Text(
-                                            "Fill in the fields below or use camera \nphone to scan card",
-                                            style: AppStyle.textStyleDMSANS.copyWith(
-                                                color: ColorConstant.primaryBlack,
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: getFontSize(22)),
+                                          padding:  EdgeInsets.only(left: getHorizontalSize(18)),
+                                          child: Row(
+                                            children: [
+                                              Text(
+                                                "Fill in the fields below or use camera \nphone to scan card",
+                                                style: AppStyle.textStyleDMSANS.copyWith(
+                                                    color: ColorConstant.primaryBlack,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: getFontSize(22)),
+                                              ),
+                                            ],
                                           ),
                                         ),
 
