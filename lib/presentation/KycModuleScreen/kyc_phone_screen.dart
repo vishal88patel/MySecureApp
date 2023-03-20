@@ -61,11 +61,9 @@ class KycPhoneScreen extends StatelessWidget {
                                                         .withOpacity(0.3))),
                                             padding: EdgeInsets.all(6),
                                             child: Icon(
-                                                Icons
-                                                    .arrow_back_ios_new_outlined,
+                                                Icons.arrow_back_ios_new_outlined,
                                                 size: 22,
-                                                color:
-                                                    ColorConstant.primaryWhite),
+                                                color: ColorConstant.primaryWhite),
                                           ),
                                         ),
                                         Text(
