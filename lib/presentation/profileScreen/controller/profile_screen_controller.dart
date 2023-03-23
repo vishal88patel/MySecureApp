@@ -162,7 +162,7 @@ class ProfileScreenController extends GetxController {
             url: ApiEndPoints.GET_CASHCARD)
         .then((value) {
       print(value);
-      if (value != null && value['status']) {
+      if (value != null && value['success']) {
         cashCardModel.value = CashCardModel.fromJson(value);
         for (int i = 0; i < cashCardModel.value.data!.length; i++) {
           if (cashCardModel.value.data![i].cardNumber!.isNotEmpty) {

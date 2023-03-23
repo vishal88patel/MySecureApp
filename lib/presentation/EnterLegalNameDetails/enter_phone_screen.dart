@@ -126,7 +126,7 @@ class EnterPhoneScreen extends StatelessWidget {
                                             Row(
                                               children: [
                                                 Container(
-                                                  width:12,
+                                                  width:25,
                                                   child: AppTextField(
                                                       hintText: '',
                                                     controller:enterPhoneController.dollarController,

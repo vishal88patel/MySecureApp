@@ -18,15 +18,250 @@ class KycPhoneScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+        backgroundColor: ColorConstant.backgroundColor,
+        body: SingleChildScrollView(
+          child: Container(
+              height: size.height,
+              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              child: Stack(
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        top: getVerticalSize(20)),
+                    child: SafeArea(
+                      child: Stack(
+                        children: [
+                          Column(crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getHorizontalSize(20)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceBetween,
+                                  children: [
 
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color:
+                                                ColorConstant.backBorder)),
+                                        padding: EdgeInsets.all(6),
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new_outlined,
+                                          size: 22,),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Enter Your Phone number",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              12),
+                                          border: Border.all(
+                                              color: Colors.transparent)),
+                                      padding: EdgeInsets.all(10),
+                                      child: Icon(
+                                        Icons.arrow_back_ios_new_outlined,
+                                        color: Colors.transparent,),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(
+                                height: getVerticalSize(120),
+                              ),
+
+
+                              Expanded(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.only(
+                                        topRight: Radius.circular(20),
+                                        topLeft: Radius.circular(20),
+                                      ),
+                                      color: ColorConstant.primaryWhite
+                                  ),
+
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      SizedBox(
+                                        height: getVerticalSize(130),
+                                      ),
+                                      Spacer(),
+                                      Column(
+                                        children: [
+                                          Padding(
+                                            padding:  EdgeInsets.symmetric(horizontal:getHorizontalSize(20)),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                    width: 22,
+                                                    child: TextFormField(
+                                                      controller: kycController
+                                                          .plusOneController,
+                                                      readOnly: true,
+                                                      style: AppStyle.DmSansFont.copyWith(
+                                                          color:
+                                                          ColorConstant.primaryBlack,
+                                                          fontWeight:
+                                                          FontWeight.w400,
+                                                          fontSize:
+                                                          getFontSize(20)),
+                                                      decoration: InputDecoration(
+                                                        enabledBorder:
+                                                        UnderlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: ColorConstant
+                                                                  .primaryAppTextF1,
+                                                              width: 1),
+                                                        ),
+                                                        focusedBorder:
+                                                        UnderlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: ColorConstant
+                                                                  .primaryAppTextF1,
+                                                              width: 1),
+                                                        ),
+                                                      ),
+                                                      cursorColor:
+                                                      ColorConstant.grey8F,
+                                                    )),
+                                                Expanded(
+                                                  child: TextFormField(
+                                                    readOnly: true,
+                                                    style: TextStyle(
+                                                      color: ColorConstant.primaryBlack,
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                      hintText: 'Phone Number',
+                                                      hintStyle:
+                                                      AppStyle.DmSansFont.copyWith(
+                                                          color:
+                                                          ColorConstant.grey8F,
+                                                          fontWeight:
+                                                          FontWeight.w400,
+                                                          fontSize:
+                                                          getFontSize(20)),
+                                                      enabledBorder:
+                                                      UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: ColorConstant
+                                                                .primaryAppTextF1),
+                                                      ),
+                                                      focusedBorder:
+                                                      UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: ColorConstant
+                                                                .primaryAppTextF1),
+                                                      ),
+                                                    ),
+                                                    // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
+                                                    controller: kycController
+                                                        .phoneNumberController,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: getVerticalSize(40),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: getHorizontalSize(20)),
+                                            child: AppElevatedButton(
+                                              buttonName: 'Get OTP',
+                                              onPressed: () {
+                                                debugPrint(
+                                                    'Your code: ${kycController.phoneNumberController.text}');
+                                                kycController.onClickGetOtp(context);
+                                              },
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: getVerticalSize(20),
+                                          ),
+                                          NumPad(
+                                            type: 'PHONE',
+                                            controller:
+                                            kycController.phoneNumberController,
+                                            delete: () {
+                                              HapticFeedback.lightImpact();
+
+                                              if (kycController.phoneNumberController
+                                                  .text.isNotEmpty) {
+                                                kycController
+                                                    .phoneNumberController.text =
+                                                    kycController
+                                                        .phoneNumberController.text
+                                                        .substring(
+                                                        0,
+                                                        kycController
+                                                            .phoneNumberController
+                                                            .text
+                                                            .length -
+                                                            1);
+                                              }
+                                            },
+                                            // do something with the input numbers
+                                            onSubmit: () {
+                                              debugPrint(
+                                                  'Your code: ${kycController.phoneNumberController.text}');
+                                            },
+                                          ),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+
+                            ],
+                          ),
+
+
+                          Positioned(right: 10,
+                            top: getVerticalSize(60),
+                            child: Center(
+                                child: ClipRRect(
+                                  borderRadius:
+                                  BorderRadius.all(Radius.circular(100)),
+                                  child: Image.asset(
+                                    'asset/icons/name_image.jpg',
+                                    height: getVerticalSize(220),),
+                                )
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              )),
+        ));
+  }
+  /*@override
+  Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
                 child: Stack(
                   children: [
-                    Image.asset('asset/icons/background_image.png',
-                        fit: BoxFit.cover, width: double.infinity),
                     SafeArea(
                       child: Stack(
                         children: [
@@ -223,7 +458,7 @@ class KycPhoneScreen extends StatelessWidget {
                     ),
                   ],
                 ))));
-  }
+  }*/
 
   void showDialog(){
     Get.dialog(

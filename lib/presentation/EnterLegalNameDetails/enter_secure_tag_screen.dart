@@ -274,12 +274,8 @@ class _EnterSecureTagScreenState extends State<EnterSecureTagScreen> {
                                                       headerText: StringConstants
                                                           .ERROR);
                                                 } else {
-                                                  // enterLegelNameController
-                                                  //     .checkCashTagValidation();
-                                                  UIUtils.showProgressDialog(isCancellable: false);
-                                                  // Get.to(()=>
-                                                  //     LoaderScreen(AppRoutes.enterAddressScreen),
-                                                  //     transition: Transition.rightToLeft);
+                                                  enterLegelNameController
+                                                      .checkCashTagValidation();
 
                                                 }
                                               },
