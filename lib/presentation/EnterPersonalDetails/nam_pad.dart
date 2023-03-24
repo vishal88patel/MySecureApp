@@ -118,11 +118,7 @@ class NumPad extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               // this button is used to delete the last number
-              buttonWidget(
-                  number: '.',
-                  context: context,
-                  controller: controller,
-                  type: type),
+
 
               buttonWidget(
                   number: '0',

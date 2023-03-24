@@ -187,7 +187,7 @@ class PersonalScreenController extends GetxController {
   void onClickOfButton() {
     if (employmentNameController.text.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please enter employment type",
+          bodyText: "Please enter employment status",
           headerText: StringConstants.ERROR);
     } else if (showJobTitle.value && jobTitleController.text.isEmpty) {
       UIUtils.showSnakBar(

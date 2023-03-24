@@ -121,34 +121,37 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                     )):
                                                     Row(
                                                       children: [
-                                                        Container(
-                                                            width: 22,
-                                                            child: TextFormField(
-                                                              controller: forgotPasswordScreenController.plusController,
-                                                              readOnly: true,
-                                                              style: TextStyle(
-                                                                color:
-                                                                ColorConstant.primaryBlack,
-                                                              ),
-                                                              decoration: InputDecoration(
-                                                                enabledBorder:
-                                                                UnderlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: ColorConstant
-                                                                          .primaryAppTextF1,
-                                                                      width: 1),
+                                                        Padding(
+                                                          padding: EdgeInsets.only(top: 1.0),
+                                                          child: Container(
+                                                              width: 22,
+                                                              child: TextFormField(
+                                                                controller: forgotPasswordScreenController.plusController,
+                                                                readOnly: true,
+                                                                style: TextStyle(
+                                                                  color:
+                                                                  ColorConstant.primaryBlack,
                                                                 ),
-                                                                focusedBorder:
-                                                                UnderlineInputBorder(
-                                                                  borderSide: BorderSide(
-                                                                      color: ColorConstant
-                                                                          .primaryAppTextF1,
-                                                                      width: 1),
+                                                                decoration: InputDecoration(
+                                                                  enabledBorder:
+                                                                  UnderlineInputBorder(
+                                                                    borderSide: BorderSide(
+                                                                        color: ColorConstant
+                                                                            .primaryAppTextF1,
+                                                                        width: 1),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                  UnderlineInputBorder(
+                                                                    borderSide: BorderSide(
+                                                                        color: ColorConstant
+                                                                            .primaryAppTextF1,
+                                                                        width: 1),
+                                                                  ),
                                                                 ),
-                                                              ),
-                                                              cursorColor:
-                                                              ColorConstant.primaryAppTextF1,
-                                                            )),
+                                                                cursorColor:
+                                                                ColorConstant.primaryAppTextF1,
+                                                              )),
+                                                        ),
                                                         Expanded(
                                                           child: TextFormField(
                                                             readOnly: true,

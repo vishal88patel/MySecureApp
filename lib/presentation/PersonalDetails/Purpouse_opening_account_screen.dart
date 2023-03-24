@@ -15,7 +15,7 @@ class PurpouseAccountScreen extends StatelessWidget {
         backgroundColor: ColorConstant.backgroundColor,
         body: SingleChildScrollView(
             child: Container(
-                height: size.height,
+                height: size.height*1.1,
                 color: ColorConstant.buttonGreen.withOpacity(0.3),
                 child: Stack(
                   children: [
@@ -98,7 +98,7 @@ class PurpouseAccountScreen extends StatelessWidget {
                                             height: getVerticalSize(150),
                                           ),
                                           Text(
-                                            "Purpouse Of Opening Account",
+                                            "Purpose Of Opening Account",
                                             style: AppStyle.DmSansFont.copyWith(
                                                 color: ColorConstant.darkBlue,
                                                 fontWeight: FontWeight.w700,

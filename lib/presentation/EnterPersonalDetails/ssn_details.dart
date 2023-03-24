@@ -53,7 +53,7 @@ class EnterSNNDetailScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Enter Your SNN Code",
+                                  "Enter Your SSN Code",
                                   style: AppStyle.DmSansFont.copyWith(
                                       color: ColorConstant.primaryBlack,
                                       fontWeight: FontWeight.w700,

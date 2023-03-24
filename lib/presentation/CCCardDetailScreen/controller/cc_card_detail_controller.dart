@@ -69,7 +69,6 @@ class CCCardDetailController extends GetxController {
     String month = formatterMonth.format(now);
     String year = formatterYear.format(now);
 
-    print("expmonth"+int.parse(expDate[0]).toString()+":"+month.toString()+"----"+"expmonth"+int.parse(expDate[1]).toString()+":"+year.substring(2,4).toString());
     if (nameController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter card holder name",

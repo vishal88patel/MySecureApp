@@ -108,38 +108,41 @@ class KycPhoneScreen extends StatelessWidget {
                                             padding:  EdgeInsets.symmetric(horizontal:getHorizontalSize(20)),
                                             child: Row(
                                               children: [
-                                                Container(
-                                                    width: 22,
-                                                    child: TextFormField(
-                                                      controller: kycController
-                                                          .plusOneController,
-                                                      readOnly: true,
-                                                      style: AppStyle.DmSansFont.copyWith(
-                                                          color:
-                                                          ColorConstant.primaryBlack,
-                                                          fontWeight:
-                                                          FontWeight.w400,
-                                                          fontSize:
-                                                          getFontSize(20)),
-                                                      decoration: InputDecoration(
-                                                        enabledBorder:
-                                                        UnderlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                              color: ColorConstant
-                                                                  .primaryAppTextF1,
-                                                              width: 1),
+                                                Padding(
+                                                  padding: EdgeInsets.only(top: 1.0),
+                                                  child: Container(
+                                                      width: 22,
+                                                      child: TextFormField(
+                                                        controller: kycController
+                                                            .plusOneController,
+                                                        readOnly: true,
+                                                        style: AppStyle.DmSansFont.copyWith(
+                                                            color:
+                                                            ColorConstant.primaryBlack,
+                                                            fontWeight:
+                                                            FontWeight.w400,
+                                                            fontSize:
+                                                            getFontSize(20)),
+                                                        decoration: InputDecoration(
+                                                          enabledBorder:
+                                                          UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                                color: ColorConstant
+                                                                    .primaryAppTextF1,
+                                                                width: 1),
+                                                          ),
+                                                          focusedBorder:
+                                                          UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                                color: ColorConstant
+                                                                    .primaryAppTextF1,
+                                                                width: 1),
+                                                          ),
                                                         ),
-                                                        focusedBorder:
-                                                        UnderlineInputBorder(
-                                                          borderSide: BorderSide(
-                                                              color: ColorConstant
-                                                                  .primaryAppTextF1,
-                                                              width: 1),
-                                                        ),
-                                                      ),
-                                                      cursorColor:
-                                                      ColorConstant.grey8F,
-                                                    )),
+                                                        cursorColor:
+                                                        ColorConstant.grey8F,
+                                                      )),
+                                                ),
                                                 Expanded(
                                                   child: TextFormField(
                                                     readOnly: true,
