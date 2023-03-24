@@ -18,6 +18,7 @@ class ForgotPasswordScreenController extends GetxController {
 
   TextEditingController createPassController = TextEditingController();
   TextEditingController confirmPassController = TextEditingController();
+  TextEditingController plusController = TextEditingController(text: "+1");
   bool showNext = false;
   FirebaseAuth auth = FirebaseAuth.instance;
   String verificationIDRecived = '';
@@ -79,6 +80,7 @@ class ForgotPasswordScreenController extends GetxController {
     }
   }
   void onTapResetButton(){
+    print(phoneNumberController.text.toString());
     if(isEmailPhone.value){
       if(createPassController.text==confirmPassController.text){
         sendResetPasswordApi(
@@ -133,7 +135,7 @@ class ForgotPasswordScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Enter Mobile Number",
           headerText: StringConstants.ERROR);
-    } else if (phoneNumberController.text.length != 17) {
+    } else if (phoneNumberController.text.length != 12) {
       UIUtils.showSnakBar(
           bodyText: "Mobile Number Should be 11 digit number",
           headerText: StringConstants.ERROR);
@@ -144,13 +146,10 @@ class ForgotPasswordScreenController extends GetxController {
   log('sdfkksafkakksfh1 ${phoneNumberController.text}');
   log('sdfkksafkakksfh1 ${isPhone.value}');
   String number = phoneNumberController.text
-      .replaceAll('(', '')
-      .replaceAll(')', '')
-      .replaceAll('-', '')
-      .replaceRange(5, 7, '');
+      .replaceAll('-', '');
   log('sdfkksafkakksfh ${number}');
   auth.verifyPhoneNumber(
-      phoneNumber: phoneNumberController.text,
+      phoneNumber:plusController.text+number,
       verificationCompleted: (PhoneAuthCredential credential) async {
         await auth
             .signInWithCredential(credential)

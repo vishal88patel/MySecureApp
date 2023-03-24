@@ -127,7 +127,7 @@ class KycScreenController extends GetxController {
   }
 
   void onClickGetOtp(BuildContext context) async {
-
+    print(phoneNumberController.text);
     if (phoneNumberController.text.isEmpty ||
         phoneNumberController.text.isNull) {
       UIUtils.showSnakBar(
@@ -146,7 +146,7 @@ class KycScreenController extends GetxController {
       log('sdfkksafkakksfh ${number}');
       sendOtpPhoneApi();
       auth.verifyPhoneNumber(
-          phoneNumber: plusOneController.text+phoneNumberController.text,
+          phoneNumber:plusOneController.text+number,
           verificationCompleted: (PhoneAuthCredential credential) async {
             await auth
                 .signInWithCredential(credential)

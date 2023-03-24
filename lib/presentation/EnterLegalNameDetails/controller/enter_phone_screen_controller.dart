@@ -15,7 +15,7 @@ import '../../loader_screen.dart';
 
 class EnterPhoneScreenController extends GetxController {
   TextEditingController phoneController = TextEditingController();
-  TextEditingController dollarController = TextEditingController(text: "");
+  TextEditingController dollarController = TextEditingController(text: "+1");
 
 
 

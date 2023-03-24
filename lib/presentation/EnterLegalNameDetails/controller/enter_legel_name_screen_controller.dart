@@ -17,7 +17,7 @@ class EnterLegalNameScreenController extends GetxController {
   TextEditingController lastNameController = TextEditingController();
   TextEditingController middleNameController = TextEditingController();
   TextEditingController secureTagController = TextEditingController();
-  TextEditingController dollarController = TextEditingController(text: "");
+  TextEditingController dollarController = TextEditingController(text: "\$");
   var loanTenuteList = [
   ].obs;
   var selectedLoanTenureId = 1000.obs;
