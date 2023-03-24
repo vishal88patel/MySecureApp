@@ -373,7 +373,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                           width: 1),
                                     ),*/
                                               ),
-                                          keyboardType: TextInputType.phone,
+                                          keyboardType: TextInputType.number,
                                           style: AppStyle.DmSansFont.copyWith(
                                               color: ColorConstant.naturalBlack,
                                               fontWeight: FontWeight.w700,

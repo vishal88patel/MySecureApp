@@ -230,9 +230,7 @@ int currentTab=0;
                       Get.back();
                     },
                     onPressedIcon2: () {
-                      UIUtils.showSnakBar(
-                          headerText: StringConstants.SUCCESS,
-                          bodyText: "Setting Page will be Coming soon");
+
                     },
                   ),
                 ],
@@ -481,6 +479,7 @@ int currentTab=0;
             ),
     ));
   }
+
 }
 
 getCustomFormattedDateTime(String givenDateTime, String dateFormat) {

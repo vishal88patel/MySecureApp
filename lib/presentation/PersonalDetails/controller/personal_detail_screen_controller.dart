@@ -187,7 +187,7 @@ class PersonalScreenController extends GetxController {
   void onClickOfButton() {
     if (employmentNameController.text.isEmpty) {
       UIUtils.showSnakBar(
-          bodyText: "Please enter employment type",
+          bodyText: "Please enter employment status",
           headerText: StringConstants.ERROR);
     } else if (showJobTitle.value && jobTitleController.text.isEmpty) {
       UIUtils.showSnakBar(
@@ -265,7 +265,7 @@ class PersonalScreenController extends GetxController {
                     devicy_type: device_type,
                     middle_name:
                         enterLegalNameController.middleNameController.text,
-              cashtag: enterLegalNameController.secureTagController.text
+              cashtag: enterLegalNameController.secureTagController.text.replaceAll("\$", "")
                   )
                 : await getRegisterBody(
                     type: loginController.emailController.text.isEmpty

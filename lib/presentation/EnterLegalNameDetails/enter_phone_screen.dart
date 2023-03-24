@@ -125,8 +125,79 @@ class EnterPhoneScreen extends StatelessWidget {
                                             ),
                                             Row(
                                               children: [
+                                                Padding(
+                                                  padding: EdgeInsets.only(top: 1.0),
+                                                  child: Container(
+                                                      width: 25,
+
+                                                      child: TextFormField(
+                                                        controller:enterPhoneController.dollarController,                                                      readOnly: true,
+                                                        style: TextStyle(
+                                                          color:
+                                                          ColorConstant.primaryBlack,
+                                                        ),
+                                                        decoration: InputDecoration(
+                                                          enabledBorder:
+                                                          UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                                color: ColorConstant
+                                                                    .primaryAppTextF1,
+                                                                width: 1),
+                                                          ),
+                                                          focusedBorder:
+                                                          UnderlineInputBorder(
+                                                            borderSide: BorderSide(
+                                                                color: ColorConstant
+                                                                    .primaryAppTextF1,
+                                                                width: 1),
+                                                          ),
+                                                        ),
+                                                        cursorColor:
+                                                        ColorConstant.primaryAppTextF1,
+                                                      )),
+                                                ),
+                                                Expanded(
+
+                                                  child: TextFormField(
+                                                     maxLength: 10,
+                                                    readOnly: false,
+                                                    style: TextStyle(
+                                                      color: ColorConstant.primaryBlack,
+                                                    ),
+                                                    decoration: InputDecoration(
+                                                      counterText: "",
+                                                      hintText: 'Phone Number',
+                                                      hintStyle:
+                                                      AppStyle.DmSansFont.copyWith(
+                                                          color:
+                                                          ColorConstant.grey8F,
+                                                          fontWeight:
+                                                          FontWeight.w400,
+                                                          fontSize:
+                                                          getFontSize(20)),
+                                                      enabledBorder:
+                                                      UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: ColorConstant
+                                                                .primaryAppTextF1),
+                                                      ),
+                                                      focusedBorder:
+                                                      UnderlineInputBorder(
+                                                        borderSide: BorderSide(
+                                                            color: ColorConstant
+                                                                .primaryAppTextF1),
+                                                      ),
+                                                    ),
+                                                    // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
+                                                      controller: enterPhoneController.phoneController
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                           /* Row(
+                                              children: [
                                                 Container(
-                                                  width:25,
+                                                  width:12,
                                                   child: AppTextField(
                                                       hintText: '',
                                                     controller:enterPhoneController.dollarController,
@@ -143,7 +214,7 @@ class EnterPhoneScreen extends StatelessWidget {
                                                 ),
 
                                               ],
-                                            ),
+                                            ),*/
 
                                             SizedBox(
                                               height: getVerticalSize(54),

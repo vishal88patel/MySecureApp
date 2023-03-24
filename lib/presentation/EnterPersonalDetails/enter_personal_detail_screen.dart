@@ -87,7 +87,7 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                                         mainAxisSize: MainAxisSize.max,
                                         children: [
                                           SizedBox(
-                                            height: getVerticalSize(90),
+                                            height: getVerticalSize(120),
                                           ),
 
                                           Padding(
@@ -120,10 +120,8 @@ class EnterPersonalDetailScreen extends StatelessWidget {
                                               enterPersonalDetailController.dobController,
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: getVerticalSize(60),
-                                          ),
 
+Spacer(),
                                           Padding(
                                             padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                             child: AppElevatedButton(

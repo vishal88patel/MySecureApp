@@ -80,7 +80,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                         topRight: Radius.circular(20),
                                         topLeft: Radius.circular(20),
                                       ),
-                                      color:  ColorConstant.backgroundColor
+                                      color:  ColorConstant.primaryWhite
                                   ),
 
                                   child: SingleChildScrollView(
@@ -109,7 +109,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                 height: getVerticalSize(20),
                                               ),
                                               Obx(
-                                                    ()=> SizedBox(
+                                                    ()=> forgotPasswordScreenController.isEmailPhone.value?SizedBox(
                                                     child: AppTextField(
                                                       readOnly:  forgotPasswordScreenController.isEmailPhone.value
                                                           ?false:true,
@@ -117,10 +117,77 @@ class ForgotPasswordScreen extends StatelessWidget {
                                                           ?forgotPasswordScreenController.emailController
                                                           :forgotPasswordScreenController.phoneNumberController,
                                                       keyBordType: TextInputType.emailAddress,
-                                                      hintText:forgotPasswordScreenController.isEmailPhone.value
-                                                          ?"Email"
-                                                          : "Phone Number ",
-                                                    )),
+                                                      hintText: "Email",
+                                                    )):
+                                                    Row(
+                                                      children: [
+                                                        Padding(
+                                                          padding: EdgeInsets.only(top: 1.0),
+                                                          child: Container(
+                                                              width: 22,
+                                                              child: TextFormField(
+                                                                controller: forgotPasswordScreenController.plusController,
+                                                                readOnly: true,
+                                                                style: TextStyle(
+                                                                  color:
+                                                                  ColorConstant.primaryBlack,
+                                                                ),
+                                                                decoration: InputDecoration(
+                                                                  enabledBorder:
+                                                                  UnderlineInputBorder(
+                                                                    borderSide: BorderSide(
+                                                                        color: ColorConstant
+                                                                            .primaryAppTextF1,
+                                                                        width: 1),
+                                                                  ),
+                                                                  focusedBorder:
+                                                                  UnderlineInputBorder(
+                                                                    borderSide: BorderSide(
+                                                                        color: ColorConstant
+                                                                            .primaryAppTextF1,
+                                                                        width: 1),
+                                                                  ),
+                                                                ),
+                                                                cursorColor:
+                                                                ColorConstant.primaryAppTextF1,
+                                                              )),
+                                                        ),
+                                                        Expanded(
+                                                          child: TextFormField(
+                                                            readOnly: true,
+                                                            style: TextStyle(
+                                                              color: ColorConstant.primaryBlack,
+                                                            ),
+                                                            decoration: InputDecoration(
+                                                              hintText: 'Phone Number',
+                                                              hintStyle:
+                                                              AppStyle.DmSansFont.copyWith(
+                                                                  color:
+                                                                  ColorConstant.grey8F,
+                                                                  fontWeight:
+                                                                  FontWeight.w400,
+                                                                  fontSize:
+                                                                  getFontSize(20)),
+                                                              enabledBorder:
+                                                              UnderlineInputBorder(
+                                                                borderSide: BorderSide(
+                                                                    color: ColorConstant
+                                                                        .primaryAppTextF1),
+                                                              ),
+                                                              focusedBorder:
+                                                              UnderlineInputBorder(
+                                                                borderSide: BorderSide(
+                                                                    color: ColorConstant
+                                                                        .primaryAppTextF1),
+                                                              ),
+                                                            ),
+                                                            // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
+                                                            controller: forgotPasswordScreenController
+                                                                .phoneNumberController,
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
                                               ),
 
                                               Row(mainAxisAlignment: MainAxisAlignment.end,
