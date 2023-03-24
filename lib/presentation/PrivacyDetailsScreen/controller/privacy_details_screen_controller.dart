@@ -70,7 +70,7 @@ class PrivacyDetailsScreenController extends GetxController {
         emailController.text=loginResponseModel.data!.email.toString();
         dobController.text=dateConverter(loginResponseModel.data!.dateOfBirth.toString());
         ssnController.text=loginResponseModel.data!.ssn.toString();
-        pinController.text=loginResponseModel.data!.pin.toString();
+        pinController.text=loginResponseModel.data!.pin??"";
         UIUtils.hideProgressDialog();
 
       } else {
