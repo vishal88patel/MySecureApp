@@ -53,10 +53,14 @@ class KycScreenController extends GetxController {
     emailController.text = loginResponseModel!.data!.email.isNull
         ? ""
         : loginResponseModel!.data!.email!;
-    /*phoneNumberController.text = loginResponseModel!.data!.mobile.isNull
-        ? ""
-        : loginResponseModel!.data!.mobile!;*/
 
+
+    // phoneNumberController.text = loginResponseModel!.data!.mobile.isNull
+    //     ? ""
+    //     : loginResponseModel!.data!.mobile!;
+    String formattedPhoneNumber = loginResponseModel!.data!.mobile!.replaceAllMapped(RegExp(r'(\d{3})(\d{3})(\d+)'), (Match m) => "${m[1]}-${m[2]}-${m[3]}");
+
+    phoneNumberController.text=formattedPhoneNumber;
   }
 
 

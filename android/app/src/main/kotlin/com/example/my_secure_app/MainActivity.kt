@@ -67,10 +67,10 @@ class MainActivity : FlutterActivity() {
         super.onResume()
         if (AppConstants.isLinkingDone == "false") {
             Log.d("DDDDDDDDDDDDD", "____-----------kill1" + killcount.toString())
-            MethodChannel(
-                flutterEngine?.dartExecutor!!.binaryMessenger,
-                "INCOMING_EVENTS"
-            ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
+//            MethodChannel(
+//                flutterEngine?.dartExecutor!!.binaryMessenger,
+//                "INCOMING_EVENTS"
+//            ).invokeMethod("SHOW_SUCCESS_SCREEN", true)
             killcount = 0
             AppConstants.isLinkingDone = "true"
 

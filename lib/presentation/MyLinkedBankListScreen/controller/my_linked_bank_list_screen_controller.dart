@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:azlistview/azlistview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,13 +17,27 @@ import '../../../Custom Widgets/app_ElevatedButton .dart';
 import '../../../routes/app_routes.dart';
 import '../../../theme/app_style.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
+import '../../../utils/HelperFiles/pref_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
+import '../../BankLinkedSuccessScreen/bank_linked_failed_screen.dart';
 import '../Model/get_bank_list.dart';
 
 class MyLinkedBankListScreenController extends GetxController {
   var getBankModel = GetBankList().obs;
   var isBankSelected = 0.obs;
   var contacts = <ContactInfo>[].obs;
+
+  static const platformChannel = MethodChannel('GET_DETAIL_CHANNEL');
+  static const MethodChannel platformForAndroid =
+      const MethodChannel('INCOMING_EVENTS');
+  static const MethodChannel platformForIOS =
+      const MethodChannel('INCOMING_EVENTS');
+  var arguments = Get.arguments;
+  var bankId = "";
+  var bankName = "";
+  var bankUrl = "";
+  var bankScript = "";
+  var bankImage = "";
 
   @override
   void onReady() {
@@ -41,6 +57,8 @@ class MyLinkedBankListScreenController extends GetxController {
 
   void selectBankOnTap(BuildContext context,
       {bankId, bankName, bankUrl, bankScript, bankImage}) {
+
+
     Get.dialog(
       Padding(
         padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
@@ -110,11 +128,11 @@ class MyLinkedBankListScreenController extends GetxController {
                                     onPressed: () {
                                       Navigator.pop(context);
                                       onClickOfNextButtonForAndroid(
-                                          bankId: bankId,
-                                          bankImage: bankImage,
-                                          bankName: bankName,
-                                          bankScript: bankScript,
-                                          bankUrl: bankUrl);
+                                          bankIdd: bankId,
+                                          bankImaged: bankImage,
+                                          bankNamed: bankName,
+                                          bankScriptd: bankScript,
+                                          bankUrld: bankUrl);
                                     },
                                   ),
                                 ),
@@ -153,16 +171,27 @@ class MyLinkedBankListScreenController extends GetxController {
   }
 
   Future<void> onClickOfNextButtonForAndroid(
-      {bankId, bankName, bankUrl, bankScript, bankImage}) async {
+      {bankIdd, bankNamed, bankUrld, bankScriptd, bankImaged}) async {
     final status = await Permission.manageExternalStorage.request();
     if (status == PermissionStatus.granted) {
-      Get.toNamed(AppRoutes.collectDetailScreen, arguments: {
-        'BANK_ID': bankId,
-        'BANK_NAME': bankName,
-        'BANK_URL': bankUrl,
-        'BANK_JS': bankScript,
-        'BANK_IMAGE': bankImage,
-      });
+      if (Platform.isAndroid) {
+        platformForAndroid.setMethodCallHandler(_processEngineOutput_ANDROID);
+      } else {}
+
+      bankId = bankIdd;
+      bankName = bankNamed;
+      bankUrl = bankUrld;
+      bankScript = bankScriptd;
+      bankImage = bankImaged;
+
+      getArguments();
+      // Get.toNamed(AppRoutes.collectDetailScreen, arguments: {
+      //   'BANK_ID': bankId,
+      //   'BANK_NAME': bankName,
+      //   'BANK_URL': bankUrl,
+      //   'BANK_JS': bankScript,
+      //   'BANK_IMAGE': bankImage,
+      // });
     } else if (status == PermissionStatus.denied) {
       UIUtils.showSnakBar(
           bodyText: "Please allow permission",
@@ -171,6 +200,37 @@ class MyLinkedBankListScreenController extends GetxController {
       print('Take the user to the settings page.');
       await openAppSettings();
     }
+  }
+
+  Future<void> gotoWeb() async {
+    await platformChannel.invokeMethod('goToWeb', {
+      "AUTHTOKEN": await PrefUtils.getString(
+        StringConstants.AUTH_TOKEN,
+      ),
+      "BANK_ID": bankId,
+      "BANK_URL": bankUrl,
+      "BANK_JS": bankScript,
+      "BANK_NAME": bankName
+    });
+  }
+
+  void getArguments() {
+    gotoWeb();
+  }
+
+  Future<void> _processEngineOutput_ANDROID(MethodCall call) async {
+    var arg = call.arguments;
+    if (arg) {
+      Future.delayed(Duration(milliseconds: 200), () {
+        Get.offAllNamed(AppRoutes.bankLinkedSuccess, arguments: {
+          "BANK_IMAGE": bankImage,
+          "BANK_NAME": bankName,
+        });
+      });
+    } else {
+      Get.offAll(BankLinkedFailedScreen());
+    }
+    print("<=====EVEBNT CALLED=====>" + call.arguments);
   }
 
   void loadData() async {
@@ -182,7 +242,7 @@ class MyLinkedBankListScreenController extends GetxController {
           firstletter: element.name.toString().substring(0, 1),
           bankImage: element.image.toString(),
           bankUrl: element.bankUrl.toString(),
-          bankScript:getBankModel.value.data!.bankStript.toString() ,
+          bankScript: getBankModel.value.data!.bankStript.toString(),
           namePinyin: "",
           tagIndex: ""));
       handleList(contacts);
@@ -285,13 +345,10 @@ class MyLinkedBankListScreenController extends GetxController {
           InkWell(
             onTap: () {
               selectBankOnTap(context,
-                  bankName:
-                  model.name.toString(),
-                  bankUrl:
-                  model.bankUrl.toString(),
+                  bankName: model.name.toString(),
+                  bankUrl: model.bankUrl.toString(),
                   bankScript: model.bankScript.toString(),
-                  bankImage:
-                  model.bankImage.toString(),
+                  bankImage: model.bankImage.toString(),
                   bankId: model.bankId.toString());
             },
             child: Row(

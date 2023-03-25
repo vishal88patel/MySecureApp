@@ -225,6 +225,7 @@ class MyBankAccountListScreenController extends GetxController {
   }
 
   void onclickOfContinueButton() {
-    Get.toNamed(AppRoutes.bankListScreen);
+    Get.back();
+    Get.toNamed(AppRoutes.myLinkedBankListScreen);
   }
 }

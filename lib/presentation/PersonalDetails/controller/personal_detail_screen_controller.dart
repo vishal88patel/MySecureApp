@@ -354,6 +354,7 @@ class PersonalScreenController extends GetxController {
   }) async {
     final form = FormData({
       "type": type,
+      "mobile": mobile,
       "email": email,
       "address_1": address_1,
       "address_2": address_2,

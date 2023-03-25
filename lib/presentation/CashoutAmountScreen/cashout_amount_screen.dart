@@ -36,20 +36,21 @@ class CashoutAmountScreen extends StatelessWidget {
                         height: getVerticalSize(
                           440.00,
                         ),
+
                         width: size.width,
                         child: Stack(
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.only(
-                                  bottomLeft: Radius.circular(45),
-                                  bottomRight: Radius.circular(45)),
-                              child: Image.asset(
-                                "asset/icons/ic_noti_background.png",
+                                  bottomLeft: Radius.circular(36),
+                                  bottomRight: Radius.circular(36)),
+                              child: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: getVerticalSize(
                                   500.00,
                                 ),
-                                fit: BoxFit.cover,
+                                color: ColorConstant.buttonGreen.withOpacity(0.3),
+
                               ),
                             ),
                             Column(
@@ -64,19 +65,51 @@ class CashoutAmountScreen extends StatelessWidget {
                                       SizedBox(
                                         height: getVerticalSize(20),
                                       ),
-                                      AppAppBar(
-                                        title: "Cash out",
-                                        icon1: "asset/icons/ic_back.svg",
-                                        icon2:
-                                            "asset/icons/ic_notification.svg",
-                                        onPressedIcon1: () {
-                                          Get.back();
-                                        },
-                                        onPressedIcon2: () {
-                                          Get.toNamed(
-                                              AppRoutes.notificationScreen);
-                                        },
+
+                                      Column(
+                                        children: [
+                                          SizedBox(
+                                            height: getVerticalSize(26),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.only(left: getHorizontalSize(22),right: getHorizontalSize(22)),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                              children: [
+                                                InkWell(
+                                                  onTap: (){
+                                                    Get.back();
+                                                  },
+                                                  child: SvgPicture.asset(
+                                                    "asset/icons/ic_back.svg",
+                                                    fit: BoxFit.fill,
+                                                    color: ColorConstant.primaryBlack,
+                                                    height: getVerticalSize(42),
+                                                  ),
+                                                ),
+                                                Text(
+                                                  "Cash out",
+                                                  style: AppStyle.textStyleDMSANS.copyWith(
+                                                      color: ColorConstant.primaryBlack,
+                                                      fontWeight: FontWeight.w700,
+                                                      fontSize: getFontSize(20)),
+                                                ),
+                                                SvgPicture.asset(
+                                                  "asset/icons/ic_back.svg",
+                                                  color: Colors.transparent,
+                                                  fit: BoxFit.fill,
+                                                  height: getVerticalSize(42),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: getVerticalSize(28),
+                                          ),
+                                        ],
                                       ),
+
+
                                       Align(
                                         alignment: Alignment.centerLeft,
                                         child: Padding(
@@ -104,7 +137,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                                     style: AppStyle.DmSansFont
                                                         .copyWith(
                                                             color: ColorConstant
-                                                                .primaryWhite,
+                                                                .primaryBlack,
                                                             fontSize:
                                                                 getFontSize(22),
                                                             fontWeight:
@@ -124,7 +157,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                                       style: AppStyle.DmSansFont
                                                           .copyWith(
                                                               color: ColorConstant
-                                                                  .naturalGrey,
+                                                                  .naturalBlack,
                                                               fontSize:
                                                                   getFontSize(
                                                                       20),
@@ -136,6 +169,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                                 ],
                                               ),
                                               /* Image.asset(
+
                                           'asset/icons/ic_plus_orange.png',
                                           height: getVerticalSize(50),
                                           width: getHorizontalSize(50),
@@ -174,7 +208,7 @@ class CashoutAmountScreen extends StatelessWidget {
                                     margin: const EdgeInsets.symmetric(
                                         horizontal: 0),
                                     color: ColorConstant.primaryLightGreen,
-                                    shape: RoundedRectangleBorder(
+                                    shape: const RoundedRectangleBorder(
                                       borderRadius: BorderRadius.only(
                                           topLeft: Radius.circular(20),
                                           topRight: Radius.circular(20)),

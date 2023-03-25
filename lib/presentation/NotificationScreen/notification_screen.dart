@@ -355,129 +355,127 @@ int currentTab=0;
   }
 
   Widget getReadNotificationList() {
-    return Expanded(
-        child: Obx(
+    return Obx                 (
       () => notificationController.isLoading.value == false
-          ? notificationController.list.isNotEmpty
-              ? AnimatedList(
-                  padding: EdgeInsets.only(top: 12),
-                  shrinkWrap: true,
-                  key: _listKey,
-                  initialItemCount: notificationController.list.length,
-                  itemBuilder: (context, index, animation) =>
-                      notificationController.list[index].type == "REQUEST_MONEY"
-                          ? _buildItemForPay(context,
-                              notificationController.list[index], animation)
-                          : _buildItem(context,
-                              notificationController.list[index], animation),
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                        padding: EdgeInsets.all(getVerticalSize(20)),
-                        child: Container(
-                            width: double.infinity,
-                            height: getVerticalSize(200),
-                            margin: EdgeInsets.symmetric(
-                                horizontal: getHorizontalSize(20)),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: ColorConstant.primaryAppTextF1),
-                            child: Row(
+      ? notificationController.list.isNotEmpty
+          ? AnimatedList(
+              padding: EdgeInsets.only(top: 12),
+              shrinkWrap: true,
+              key: _listKey,
+              initialItemCount: notificationController.list.length,
+              itemBuilder: (context, index, animation) =>
+                  notificationController.list[index].type == "REQUEST_MONEY"
+                      ? _buildItemForPay(context,
+                          notificationController.list[index], animation)
+                      : _buildItem(context,
+                          notificationController.list[index], animation),
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                    padding: EdgeInsets.all(getVerticalSize(20)),
+                    child: Container(
+                        width: double.infinity,
+                        height: getVerticalSize(200),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: getHorizontalSize(20)),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: ColorConstant.primaryAppTextF1),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      "asset/icons/no_recent.png",
-                                      fit: BoxFit.fill,
-                                      height: getVerticalSize(70),
-                                      width: getVerticalSize(70),
-                                    ),
-                                    Text(
-                                      "No New Notification",
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.naturalGrey3,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: getFontSize(20)),
-                                    )
-                                  ],
+                                Image.asset(
+                                  "asset/icons/no_recent.png",
+                                  fit: BoxFit.fill,
+                                  height: getVerticalSize(70),
+                                  width: getVerticalSize(70),
                                 ),
+                                Text(
+                                  "No New Notification",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.naturalGrey3,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: getFontSize(20)),
+                                )
                               ],
-                            )))
-                  ],
-                )
-          : Padding(
-              padding: const EdgeInsets.all(180),
-              child:CupertinoActivityIndicator(
-                  radius: 23.0, color: ColorConstant.primaryDarkGreen),
-            ),
-    ));
+                            ),
+                          ],
+                        )))
+              ],
+            )
+      : Padding(
+          padding: const EdgeInsets.all(180),
+          child:CupertinoActivityIndicator(
+              radius: 23.0, color: ColorConstant.primaryDarkGreen),
+        ),
+    );
   }
 
   Widget getReadNotification() {
-    return Expanded(
-        child: Obx(
+    return Obx(
       () => notificationController.isLoading.value == false
-          ? notificationController.list.isNotEmpty
-              ? AnimatedList(
-                  padding: EdgeInsets.only(top: 12),
-                  shrinkWrap: true,
-                  key: _listKey,
-                  initialItemCount: notificationController.list.length,
-                  itemBuilder: (context, index, animation) =>
-                      notificationController.list[index].type == "REQUEST_MONEY"
-                          ? _buildItemForPay(context,
-                              notificationController.list[index], animation)
-                          : _buildItem(context,
-                              notificationController.list[index], animation),
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                        padding: EdgeInsets.all(getVerticalSize(20)),
-                        child: Container(
-                            width: double.infinity,
-                            height: getVerticalSize(200),
-                            margin: EdgeInsets.symmetric(
-                                horizontal: getHorizontalSize(20)),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                color: ColorConstant.primaryAppTextF1),
-                            child: Row(
+      ? notificationController.list.isNotEmpty
+          ? AnimatedList(
+              padding: EdgeInsets.only(top: 12),
+              shrinkWrap: true,
+              key: _listKey,
+              initialItemCount: notificationController.list.length,
+              itemBuilder: (context, index, animation) =>
+                  notificationController.list[index].type == "REQUEST_MONEY"
+                      ? _buildItemForPay(context,
+                          notificationController.list[index], animation)
+                      : _buildItem(context,
+                          notificationController.list[index], animation),
+            )
+          : Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                    padding: EdgeInsets.all(getVerticalSize(20)),
+                    child: Container(
+                        width: double.infinity,
+                        height: getVerticalSize(200),
+                        margin: EdgeInsets.symmetric(
+                            horizontal: getHorizontalSize(20)),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            color: ColorConstant.primaryAppTextF1),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Image.asset(
-                                      "asset/icons/no_recent.png",
-                                      fit: BoxFit.fill,
-                                      height: getVerticalSize(70),
-                                      width: getVerticalSize(70),
-                                    ),
-                                    Text(
-                                      "No New Notification",
-                                      style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.naturalGrey3,
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: getFontSize(20)),
-                                    )
-                                  ],
+                                Image.asset(
+                                  "asset/icons/no_recent.png",
+                                  fit: BoxFit.fill,
+                                  height: getVerticalSize(70),
+                                  width: getVerticalSize(70),
                                 ),
+                                Text(
+                                  "No New Notification",
+                                  style: AppStyle.DmSansFont.copyWith(
+                                      color: ColorConstant.naturalGrey3,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: getFontSize(20)),
+                                )
                               ],
-                            )))
-                  ],
-                )
-          : Padding(
-              padding: const EdgeInsets.all(180),
-              child: CupertinoActivityIndicator(
-                  radius: 23.0, color: ColorConstant.primaryDarkGreen),
-            ),
-    ));
+                            ),
+                          ],
+                        )))
+              ],
+            )
+      : Padding(
+          padding: const EdgeInsets.all(180),
+          child: CupertinoActivityIndicator(
+              radius: 23.0, color: ColorConstant.primaryDarkGreen),
+        ),
+    );
   }
 
 }

@@ -7,15 +7,17 @@ import 'controller/collect_detail_screen_controller.dart';
 
 class CollectDetailScreen extends StatelessWidget {
   var collectDetailController = Get.find<CollectDetailScreenController>();
+  bool isFirstTime=true;
 
   @override
   Widget build(BuildContext context) {
+print("ggiguygygfufguygfugfufg");
     return Scaffold(
       body:  Center(
         child: SizedBox(
           width: 32,
           height: 32,
-          child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen,),
+          child: CircularProgressIndicator(color: ColorConstant.redish,),
         ),
       )
     );
