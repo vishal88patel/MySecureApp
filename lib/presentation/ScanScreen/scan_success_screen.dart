@@ -19,7 +19,7 @@ class ScanSuccessScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: ColorConstant.primaryDarkGreen,
+      backgroundColor: ColorConstant.buttonGreen.withOpacity(0.3),
       body: Stack(
         children: [
           Column(

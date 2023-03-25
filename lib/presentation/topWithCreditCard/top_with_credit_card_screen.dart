@@ -40,15 +40,15 @@ class TopWithCreditCardScreen extends StatelessWidget {
                         children: [
                           ClipRRect(
                             borderRadius: BorderRadius.only(
-                                bottomLeft: Radius.circular(45),
-                                bottomRight: Radius.circular(45)),
-                            child: Image.asset(
-                              "asset/icons/ic_noti_background.png",
+                                bottomLeft: Radius.circular(36),
+                                bottomRight: Radius.circular(36)),
+                            child: Container(
+                              color: ColorConstant.buttonGreen.withOpacity(0.3),
                               width: MediaQuery.of(context).size.width,
                               height: getVerticalSize(
                                 500.00,
                               ),
-                              fit: BoxFit.cover,
+
                             ),
                           ),
                           Column(
@@ -61,19 +61,54 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      height: getVerticalSize(20),
+                                      height: getVerticalSize(48),
                                     ),
-                                    AppAppBar(
-                                      title: "Top Up",
-                                      icon1: "asset/icons/ic_back.svg",
-                                      icon2: "asset/icons/ic_notification.svg",
-                                      onPressedIcon1: () {
-                                        Get.back();
-                                      },
-                                      onPressedIcon2: () {
-                                        Get.toNamed(
-                                            AppRoutes.notificationScreen);
-                                      },
+                                    Padding(
+                                      padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          InkWell(
+                                            onTap: () {
+                                              Get.back();
+                                            },
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                  BorderRadius.circular(12),
+                                                  border: Border.all(
+                                                      color:
+                                                      ColorConstant.backBorder)),
+                                              padding: EdgeInsets.all(6),
+                                              child: Icon(
+                                                Icons.arrow_back_ios_new_outlined,
+                                                size: 22,),
+                                            ),
+                                          ),
+
+                                              Text(
+                                                "Top Up",
+                                                style: AppStyle.DmSansFont.copyWith(
+                                                    color: ColorConstant.primaryBlack,
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: getFontSize(20)),
+                                              ),
+
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                BorderRadius.circular(12),
+                                                border: Border.all(
+                                                    color: Colors.transparent)),
+                                            padding: EdgeInsets.all(10),
+                                            child: Icon(
+                                              Icons.arrow_back_ios_new_outlined,
+                                              color: Colors.transparent,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     Align(
                                       alignment: Alignment.centerLeft,
@@ -102,7 +137,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                                   style: AppStyle.DmSansFont
                                                       .copyWith(
                                                           color: ColorConstant
-                                                              .primaryWhite,
+                                                              .primaryBlack,
                                                           fontSize:
                                                               getFontSize(22),
                                                           fontWeight:
@@ -121,7 +156,7 @@ class TopWithCreditCardScreen extends StatelessWidget {
                                                     style: AppStyle.DmSansFont
                                                         .copyWith(
                                                             color: ColorConstant
-                                                                .naturalGrey,
+                                                                .naturalBlack,
                                                             fontSize:
                                                                 getFontSize(20),
                                                             fontWeight:

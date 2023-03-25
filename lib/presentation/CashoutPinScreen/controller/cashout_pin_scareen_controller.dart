@@ -71,10 +71,23 @@ class CashoutPinController extends GetxController {
   }
 
   void onTapOfListTile(BuildContext context) {
-    UIUtils.showProgressDialog(isCancellable: false);
-    Future.delayed(Duration(milliseconds: 2000), () {
-      WithdrawErrorApi(context);
-    });
+    if (pinController.text.isEmpty) {
+      UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please Enter PIN",
+      );
+    }else if(pinController.text.length<4){
+      UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Please Enter 4 Digit PIN",
+      );
+    }
+    else {
+      UIUtils.showProgressDialog(isCancellable: false);
+      Future.delayed(Duration(milliseconds: 2000), () {
+        WithdrawErrorApi(context);
+      });
+    }
   }
 
   Future<void> WithdrawErrorApi(BuildContext context) async {

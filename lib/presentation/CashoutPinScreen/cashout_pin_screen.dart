@@ -28,10 +28,9 @@ class CashoutPinScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
+                color: ColorConstant.buttonGreen.withOpacity(0.3),
                 child: Stack(
                   children: [
-                    Image.asset('asset/icons/background_image.png',
-                        fit: BoxFit.cover, width: double.infinity),
                     SafeArea(
                       child: Stack(
                         children: [
@@ -59,16 +58,12 @@ class CashoutPinScreen extends StatelessWidget {
                                                 borderRadius:
                                                 BorderRadius.circular(12),
                                                 border: Border.all(
-                                                    color: ColorConstant
-                                                        .primaryWhite
-                                                        .withOpacity(0.3))),
+                                                    color:
+                                                    ColorConstant.backBorder)),
                                             padding: EdgeInsets.all(6),
                                             child: Icon(
-                                                Icons
-                                                    .arrow_back_ios_new_outlined,
-                                                size: 22,
-                                                color:
-                                                ColorConstant.primaryWhite),
+                                              Icons.arrow_back_ios_new_outlined,
+                                              size: 22,),
                                           ),
                                         ),
                                         Obx(()=>
@@ -77,7 +72,7 @@ class CashoutPinScreen extends StatelessWidget {
                                                   ?"Set Your Pin"
                                                   :"Enter Your Pin",
                                               style: AppStyle.DmSansFont.copyWith(
-                                                  color: ColorConstant.primaryWhite,
+                                                  color: ColorConstant.primaryBlack,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: getFontSize(20)),
                                             ),
@@ -105,7 +100,7 @@ class CashoutPinScreen extends StatelessWidget {
                                           ?"Please Set Your Pin before continuing payment"
                                           :"Please Enter Your Pin before continuing payment",
                                       style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.primaryWhite,
+                                          color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w400,
                                           fontSize: getFontSize(20)),
                                     ),
@@ -144,9 +139,7 @@ class CashoutPinScreen extends StatelessWidget {
                                         onCompleted: (v) {
                                           print("Completed");
                                         },
-                                        onChanged: (value) {
-                                          print("-------"+value);
-                                        },
+                                        onChanged: (value) {},
                                         beforeTextPaste: (text) {
                                           print("Allowing to paste $text");
                                           return true;
@@ -162,6 +155,7 @@ class CashoutPinScreen extends StatelessWidget {
                                     horizontal: getHorizontalSize(20)),
                                 child: AppElevatedButton(
                                   buttonName: 'Continue',
+                                  buttonColor: ColorConstant.darkGreen,
                                   onPressed: () {
                                     debugPrint(
                                         'Your code: ${pinScreenController.pinController.text}');

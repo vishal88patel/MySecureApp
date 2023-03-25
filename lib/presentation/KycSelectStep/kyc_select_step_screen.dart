@@ -78,7 +78,10 @@ class KycSelectStepScreen extends StatelessWidget {
                                               border: Border.all(
                                                   color: Colors.transparent)),
                                           padding: EdgeInsets.all(10),
-                                          child: SvgPicture.asset("asset/icons/ic_notification.svg"),
+                                          child: Icon(
+                                            Icons.arrow_back_ios_new_outlined,
+                                            color: Colors.transparent,
+                                          ),
                                         ),
                                       ],
                                     ),

@@ -88,7 +88,7 @@ class ShowUserCardScreenCardController extends GetxController {
     loginModel.value = (await PrefUtils.getLoginModelData(StringConstants.LOGIN_RESPONSE))!;
     nameController.text=loginModel.value.data!.firstName.toString()+" "+ loginModel.value.data!.lastName.toString();
     cardNumberController.text=loginModel.value.data!.cardNumber.toString();
-    bankAccountNumber.text="47385654345677".toString();
+    bankAccountNumber.text=loginModel.value.data!.accountNumber.toString();
     routingNumber.text=loginModel.value.data!.routeNumber.toString();
     expDateController.text=dateConverter(loginModel.value.data!.expiredAt.toString()).substring(0,5);
     cvvController.text=loginModel.value.data!.cvv.toString();

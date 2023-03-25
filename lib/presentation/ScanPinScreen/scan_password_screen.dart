@@ -23,10 +23,9 @@ class ScanPasswordScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
+                color: ColorConstant.buttonGreen.withOpacity(0.3),
                 child: Stack(
                   children: [
-                    Image.asset('asset/icons/background_image.png',
-                        fit: BoxFit.cover, width: double.infinity),
                     SafeArea(
                       child: Stack(
                         children: [
@@ -54,18 +53,14 @@ class ScanPasswordScreen extends StatelessWidget {
                                           child: Container(
                                             decoration: BoxDecoration(
                                                 borderRadius:
-                                                    BorderRadius.circular(12),
+                                                BorderRadius.circular(12),
                                                 border: Border.all(
-                                                    color: ColorConstant
-                                                        .primaryWhite
-                                                        .withOpacity(0.3))),
+                                                    color:
+                                                    ColorConstant.backBorder)),
                                             padding: EdgeInsets.all(6),
                                             child: Icon(
-                                                Icons
-                                                    .arrow_back_ios_new_outlined,
-                                                size: 22,
-                                                color:
-                                                    ColorConstant.primaryWhite),
+                                              Icons.arrow_back_ios_new_outlined,
+                                              size: 22,),
                                           ),
                                         ),
                                         Obx(()=>
@@ -74,7 +69,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                                 ?"Set Your Pin"
                                                 :"Enter Your Pin",
                                             style: AppStyle.DmSansFont.copyWith(
-                                                color: ColorConstant.primaryWhite,
+                                                color: ColorConstant.primaryBlack,
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: getFontSize(20)),
                                           ),
@@ -102,7 +97,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                           ?"Please Set Your Pin before continuing payment"
                                           :"Please Enter Your Pin before continuing payment",
                                       style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.primaryWhite,
+                                          color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w400,
                                           fontSize: getFontSize(20)),
                                     ),
@@ -157,6 +152,7 @@ class ScanPasswordScreen extends StatelessWidget {
                                     horizontal: getHorizontalSize(20)),
                                 child: AppElevatedButton(
                                   buttonName: 'Continue',
+                                  buttonColor: ColorConstant.darkGreen,
                                   onPressed: () {
                                     debugPrint(
                                         'Your code: ${scanPinController.pinController.text}');
@@ -205,126 +201,3 @@ class ScanPasswordScreen extends StatelessWidget {
                 ))));
   }
 }
-/* @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: ColorConstant.backgroundColor,
-        body: SingleChildScrollView(
-            child: Container(
-                height: size.height,
-                child: Stack(
-                  children: [
-                    Padding(
-                      padding:  EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            height: getVerticalSize(52),
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              InkWell(
-                                onTap: (){
-                                  Get.back();
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                      border: Border.all(color: ColorConstant.backBorder)),
-                                  padding: EdgeInsets.all(10),
-                                  child: Icon(Icons.arrow_back_ios_new_outlined,size: getVerticalSize(18),),
-                                ),
-                              ),
-                              Obx(()=>
-                                 Text(
-                                  scanPinController.isPin.value==0
-                                      ?"Enter Pin"
-                                      :"Confirm Pin",
-                                  style: AppStyle.DmSansFont.copyWith(
-                                      color: ColorConstant.naturalBlack,
-                                      fontWeight: FontWeight.w700,
-                                      fontSize: getFontSize(24)),
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(color: Colors.transparent)),
-                                padding: EdgeInsets.all(10),
-                                child: Icon(Icons.arrow_back_ios_new_outlined,color: Colors.transparent,),
-                              ),                      ],
-                          ),
-                          SizedBox(
-                            height: getVerticalSize(28),
-                          ),
-                          Obx(()=> Text(
-                              scanPinController.isPin.value==0
-                                  ?"Please Set Your Pin before continuing payment"
-                                  :"Please Enter Your Pin before continuing payment",
-                              style: AppStyle.DmSansFont.copyWith(
-                                  color: ColorConstant.naturalGrey,
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: getFontSize(22)),
-                            ),
-                          ),
-                          SizedBox(
-                            height: getVerticalSize(54),
-                          ),
-                          Obx(
-                                () => AppTextField(
-                              hintText: 'Pin',
-                              controller:
-                              scanPinController.passController,
-                              maxLength: 4,
-                              isObsecure:
-                              scanPinController.passIsObsecure.value,
-                              suffixIcon: IconButton(
-                                icon: Icon(scanPinController
-                                    .passIsObsecure.value
-                                    ? Icons.visibility_off
-                                    : Icons.visibility
-                                  // Icons.visibility_off,
-                                ),
-                                color: ColorConstant.naturalGrey3,
-                                iconSize: getSize(24),
-                                onPressed: () {
-                                  scanPinController.onTapOfPassObsecure(
-                                      scanPinController.passIsObsecure.value);
-                                },
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            height: getVerticalSize(6),
-                          ),
-                          Text(
-                            "Must be 4 characters.",
-                            style: AppStyle.DmSansFont.copyWith(
-                                color: ColorConstant.naturalGrey,
-                                fontWeight: FontWeight.w400,
-                                fontSize: getFontSize(18)),
-                          ),
-
-                          Spacer(),
-                          AppElevatedButton(
-                            buttonName: "Continue",
-                            textColor: Colors.white,
-                            buttonColor: ColorConstant.primaryLightGreen,
-                            radius: 16,
-                            onPressed: () {
-                              scanPinController.callTransactionApi();
-
-                            },
-                          ),
-                          SizedBox(
-                            height: getVerticalSize(36),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ))));
-
-
-
-  }*/
