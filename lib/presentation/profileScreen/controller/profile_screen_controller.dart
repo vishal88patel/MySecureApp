@@ -228,6 +228,7 @@ class ProfileScreenController extends GetxController {
     balance.value =
         loginResponseModel!.data!.balance.toString();
     routingNum.value=loginResponseModel!.data!.routeNumber.toString();
+    accNum.value=loginResponseModel!.data!.accountNumber.toString();
     callGetCashCardApi();
   }
 

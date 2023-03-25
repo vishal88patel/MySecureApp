@@ -24,10 +24,9 @@ class CCPinScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
+                color: ColorConstant.buttonGreen.withOpacity(0.3),
                 child: Stack(
                   children: [
-                    Image.asset('asset/icons/background_image.png',
-                        fit: BoxFit.cover, width: double.infinity),
                     SafeArea(
                       child: Stack(
                         children: [
@@ -40,7 +39,7 @@ class CCPinScreen extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    SizedBox(height: 26,),
+
                                     Row(
                                       mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
@@ -55,16 +54,12 @@ class CCPinScreen extends StatelessWidget {
                                                 borderRadius:
                                                 BorderRadius.circular(12),
                                                 border: Border.all(
-                                                    color: ColorConstant
-                                                        .primaryWhite
-                                                        .withOpacity(0.3))),
+                                                    color:
+                                                    ColorConstant.backBorder)),
                                             padding: EdgeInsets.all(6),
                                             child: Icon(
-                                                Icons
-                                                    .arrow_back_ios_new_outlined,
-                                                size: 22,
-                                                color:
-                                                ColorConstant.primaryWhite),
+                                              Icons.arrow_back_ios_new_outlined,
+                                              size: 22,),
                                           ),
                                         ),
                                         Obx(()=>
@@ -73,7 +68,7 @@ class CCPinScreen extends StatelessWidget {
                                                   ?"Set Your Pin"
                                                   :"Enter Your Pin",
                                               style: AppStyle.DmSansFont.copyWith(
-                                                  color: ColorConstant.primaryWhite,
+                                                  color: ColorConstant.primaryBlack,
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: getFontSize(20)),
                                             ),
@@ -94,14 +89,14 @@ class CCPinScreen extends StatelessWidget {
                                     ),
 
                                     SizedBox(
-                                      height: getVerticalSize(30),
+                                      height: getVerticalSize(28),
                                     ),
                                     Obx(()=> Text(
                                       ccPinController.isPin.value==0
-                                          ?"Please Set Your Pin"
-                                          :"Please Enter Your Pin",
+                                          ?"Please Set Your Pin before continuing payment"
+                                          :"Please Enter Your Pin before continuing payment",
                                       style: AppStyle.DmSansFont.copyWith(
-                                          color: ColorConstant.primaryWhite,
+                                          color: ColorConstant.primaryBlack,
                                           fontWeight: FontWeight.w400,
                                           fontSize: getFontSize(20)),
                                     ),
@@ -140,9 +135,7 @@ class CCPinScreen extends StatelessWidget {
                                         onCompleted: (v) {
                                           print("Completed");
                                         },
-                                        onChanged: (value) {
-                                          print("-------"+value);
-                                        },
+                                        onChanged: (value) {},
                                         beforeTextPaste: (text) {
                                           print("Allowing to paste $text");
                                           return true;
@@ -157,7 +150,8 @@ class CCPinScreen extends StatelessWidget {
                                 padding: EdgeInsets.symmetric(
                                     horizontal: getHorizontalSize(20)),
                                 child: AppElevatedButton(
-                                  buttonName: 'Done',
+                                  buttonName: 'Continue',
+                                  buttonColor: ColorConstant.darkGreen,
                                   onPressed: () {
                                     debugPrint(
                                         'Your code: ${ccPinController.pinController.text}');

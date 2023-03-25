@@ -22,10 +22,11 @@ class LinkCardLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.buttonGreen.withOpacity(0.3),
+
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
+                color: ColorConstant.buttonGreen.withOpacity(0.3),
                 child: Stack(
                   children: [
                 Padding(

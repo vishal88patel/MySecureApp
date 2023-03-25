@@ -28,36 +28,69 @@ class CCCardDetailScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
+                color: ColorConstant.buttonGreen.withOpacity(0.3),
                 child: Stack(
                   children: [
-                    Image.asset('asset/icons/background_image.png',
-                        fit: BoxFit.cover,width: double.infinity),
                     SafeArea(
                       child: Stack(
                         clipBehavior: Clip.none,
                         children: [
                           Column( crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              Padding(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: getHorizontalSize(20)),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment
+                                      .spaceBetween,
+                                  children: [
 
-                              AppAppBar(
-                                title: "Add a Card",
-                                icon1: "asset/icons/ic_back.svg",
-                                icon2: "asset/icons/ic_notification.svg",
-                                onPressedIcon1: () {
-                                  // Get.back();
-                                  Navigator.pop(context);
-                                },
-                                onPressedIcon2: () {
-                                  Get.toNamed(AppRoutes.notificationScreen);
-                                },
+                                    InkWell(
+                                      onTap: () {
+                                        Get.back();
+
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color:
+                                                ColorConstant.backBorder)),
+                                        padding: EdgeInsets.all(6),
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new_outlined,
+                                          size: 22,),
+                                      ),
+                                    ),
+                                    Text(
+                                      "Add a Card",
+                                      style: AppStyle.DmSansFont.copyWith(
+                                          color: ColorConstant.primaryBlack,
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: getFontSize(20)),
+                                    ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(
+                                              12),
+                                          border: Border.all(
+                                              color: Colors.transparent)),
+                                      padding: EdgeInsets.all(10),
+                                      child: Icon(
+                                        Icons.arrow_back_ios_new_outlined,
+                                        color: Colors.transparent,),
+                                    ),
+                                  ],
+                                ),
                               ),
-
+                              SizedBox(height: getVerticalSize(20),),
                               Padding(
                                 padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
                                 child: Text(
                                   "Fill in the fields below or use camera \nphone to scan card",
                                   style: AppStyle.textStyleDMSANS.copyWith(
-                                      color: ColorConstant.primaryWhite,
+                                      color: ColorConstant.primaryBlack,
                                       fontWeight:FontWeight.w400,
                                       fontSize:getFontSize(22)),
                                 ),

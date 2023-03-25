@@ -70,6 +70,7 @@ class Data {
   String? expiredAt;
   String? cardType;
   String? routeNumber;
+  String? accountNumber;
   int? isKyc;
   int? isCashCard;
   String? privacyPolicy;
@@ -123,6 +124,7 @@ class Data {
         this.expiredAt,
         this.cardType,
         this.routeNumber,
+        this.accountNumber,
         this.isKyc,
         this.isCashCard,
         this.privacyPolicy,
@@ -176,6 +178,7 @@ class Data {
     expiredAt = json['expired_at'];
     cardType = json['card_Type'];
     routeNumber = json['route_number'];
+    accountNumber = json['account_number'];
     isCashCard = json['is_cash_card'];
     privacyPolicy = json['privacyPolicy'];
     token = json['token'];
@@ -231,6 +234,7 @@ class Data {
     data['expired_at'] = this.expiredAt;
     data['card_Type'] = this.cardType;
     data['route_number'] = this.routeNumber;
+    data['account_number'] = this.accountNumber;
     data['is_kyc'] = this.isKyc;
     data['is_cash_card'] = this.isCashCard;
     data['privacyPolicy'] = this.privacyPolicy;
