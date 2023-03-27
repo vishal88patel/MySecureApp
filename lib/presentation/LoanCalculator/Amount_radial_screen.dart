@@ -55,9 +55,9 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
                         child: Column(
                           children: [
                             Container(
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                   color: Color(0xFFF4F4F6),
-                                  borderRadius: const BorderRadius.all(
+                                  borderRadius: BorderRadius.all(
                                       Radius.circular(15))),
                               padding: EdgeInsets.all(12),
                               child: InkWell(

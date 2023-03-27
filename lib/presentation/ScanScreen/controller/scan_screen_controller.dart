@@ -44,7 +44,7 @@ class ScanScreenController extends GetxController {
 
   @override
   void onReady() {
-    cameraStart();
+    // cameraStart();
     super.onReady();
   }
 
