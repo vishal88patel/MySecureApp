@@ -53,35 +53,38 @@ class _GifScreenState extends State<GifScreen> with TickerProviderStateMixin {
           ),
         ),
       floatingActionButtonLocation:FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: AppElevatedButton(
-        buttonName: "Scan Documents",
-        textColor: Colors.white,
-        buttonColor:
-        ColorConstant.primaryLightGreen,
-        radius: 16,
-        onPressed: () {
-          if(onBoardingController.isFrom.value=="0"){
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                  const FrontBackLicenceCameraScreen(
-                    image: 2,
-                    title:"Scan the front image of\n Driving Licence",
-                  )),
-            );
-          }else{
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) =>
-                      FrontPassportCameraScreen(
-                        title: 'Passport',
-                        image: 4,
-                      )),
-            );
-          }
-        },
+      floatingActionButton: Padding(
+        padding:  EdgeInsets.all(16.0),
+        child: AppElevatedButton(
+          buttonName: "Scan Documents",
+          textColor: Colors.white,
+          buttonColor:
+          ColorConstant.primaryLightGreen,
+          radius: 16,
+          onPressed: () {
+            if(onBoardingController.isFrom.value=="0"){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                    const FrontBackLicenceCameraScreen(
+                      image: 2,
+                      title:"Scan the front image of\n Driving Licence",
+                    )),
+              );
+            }else{
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) =>
+                        FrontPassportCameraScreen(
+                          title: 'Passport',
+                          image: 4,
+                        )),
+              );
+            }
+          },
+        ),
       ),
     );
 
