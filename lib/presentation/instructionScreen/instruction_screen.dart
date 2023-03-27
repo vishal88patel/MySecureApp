@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:secure_cash_app/presentation/GifScreen/gif_screen.dart';
 import 'package:secure_cash_app/presentation/instructionScreen/instruction_content.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
@@ -57,21 +58,7 @@ class InstructionScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>
-                                const FrontBackLicenceCameraScreen(
-                                  image: 2,
-                                  title:"Scan the front image of\n Driving Licence",
-                                )),
-                          );
-                        }else{
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    FrontPassportCameraScreen(
-                                      title: 'Passport',
-                                      image: 4,
-                                    )),
+                                builder: (context) => GifScreen()),
                           );
                         }
                       },
@@ -172,27 +159,11 @@ class InstructionScreen extends StatelessWidget {
                                       if (onBoardingController
                                               .currentPage.value ==
                                           2) {
-                                        if(onBoardingController.isFrom.value=="0"){
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                const FrontBackLicenceCameraScreen(
-                                                  image: 2,
-                                                  title:"Scan the front image of\n Driving Licence",
-                                                )),
-                                          );
-                                        }else{
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) =>
-                                                    FrontPassportCameraScreen(
-                                                      title: 'Passport',
-                                                      image: 4,
-                                                    )),
-                                          );
-                                        }
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => GifScreen()),
+                                        );
                                       }
                                     },
                                   )

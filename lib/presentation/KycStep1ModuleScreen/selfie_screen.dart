@@ -197,7 +197,9 @@ class SelfieScreenState extends State<SelfieScreen>
                                 Get.back();
                                 Get.back();
                                 Get.back();
+                                Get.back();
                               }else{
+                                Get.back();
                                 Get.back();
                                 Get.back();
                               }
@@ -367,7 +369,7 @@ class SelfieScreenState extends State<SelfieScreen>
 class Paint extends CustomPainter{
   @override
   void paint(Canvas canvas, Size size) {
-    canvas.drawColor(ColorConstant.primaryDarkGreen, BlendMode.srcOver);
+    canvas.drawColor(ColorConstant.overlayColor, BlendMode.srcOver);
   }
 
   @override

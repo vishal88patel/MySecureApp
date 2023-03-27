@@ -728,7 +728,9 @@ class FrontBackLicenceCameraScreenState
                                 if (widget.image == 2) {
                                   Get.back();
                                   Get.back();
+                                  Get.back();
                                 } else if (widget.image == 3) {
+                                  Get.back();
                                   Get.back();
                                   Get.back();
                                   Get.back();
