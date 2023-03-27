@@ -1,17 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
+
 import '../../App Configurations/color_constants.dart';
-import '../../Custom Widgets/app_AppBar .dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../Custom Widgets/app_textField.dart';
-import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
-import '../../utils/ConstantsFiles/string_constants.dart';
-import '../../utils/HelperFiles/common_utils.dart';
 import '../../utils/HelperFiles/math_utils.dart';
-import '../../utils/HelperFiles/ui_utils.dart';
 import '../ChangePassword/change_password.dart';
 import 'controller/privacy_details_screen_controller.dart';
 
@@ -159,7 +153,67 @@ class PrivacyDetailsScreen extends StatelessWidget {
                   SizedBox(
                     height: getVerticalSize(20),
                   ),
-                  Obx(
+                  Row(
+                    children: [
+                      Container(
+                          width: 22,
+                          child: TextFormField(
+                            controller:
+                                personalDetailsController.plusOneController,
+                            readOnly: true,
+                            style: AppStyle.DmSansFont.copyWith(
+                                color: ColorConstant.grey8F,
+                                fontWeight: FontWeight.w400,
+                                fontSize: getFontSize(20)),
+                            decoration: InputDecoration(
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorConstant.grey8F.withOpacity(0.5),
+                                    width: 1),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                    color:
+                                        ColorConstant.grey8F.withOpacity(0.5),
+                                    width: 1),
+                              ),
+                            ),
+                            cursorColor: ColorConstant.grey8F,
+                          )),
+                      Expanded(
+                          child: Obx(
+                        () => TextFormField(
+                          readOnly: personalDetailsController.readOnly.value,
+                          maxLength: 10,
+                          keyboardType: TextInputType.number,
+                          style: TextStyle(
+                            color: ColorConstant.grey8F,
+                          ),
+                          decoration: InputDecoration(
+                            counterText: "",
+                            hintText: 'Phone Number',
+                            hintStyle: AppStyle.DmSansFont.copyWith(
+                                color: ColorConstant.grey8F,
+                                fontWeight: FontWeight.w400,
+                                fontSize: getFontSize(20)),
+                            enabledBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: ColorConstant.grey8F.withOpacity(0.5)),
+                            ),
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: ColorConstant.grey8F.withOpacity(0.5)),
+                            ),
+                          ),
+                          // var date = parts.sublist(1).join(':').trim(); // date: "'2019:04:01'"
+                          controller: personalDetailsController.phoneController,
+                        ),
+                      )),
+                    ],
+                  ),
+
+                  /* Obx(
                     () => SizedBox(
                         child: AppTextField(
                       controller: personalDetailsController.phoneController,
@@ -167,19 +221,17 @@ class PrivacyDetailsScreen extends StatelessWidget {
                       hintText: "phone",
                       readOnly: personalDetailsController.readOnly.value,
                     )),
-                  ),
+                  ),*/
                   SizedBox(
                     height: getVerticalSize(20),
                   ),
-                  Obx(
-                    () => SizedBox(
-                        child: AppTextField(
-                      controller: personalDetailsController.emailController,
-                      keyBordType: TextInputType.emailAddress,
-                      hintText: "Email",
-                      readOnly: personalDetailsController.readOnly.value,
-                    )),
-                  ),
+                  SizedBox(
+                      child: AppTextField(
+                    controller: personalDetailsController.emailController,
+                    keyBordType: TextInputType.emailAddress,
+                    hintText: "Email",
+                    readOnly: true,
+                  )),
                   SizedBox(
                     height: getVerticalSize(20),
                   ),
@@ -194,13 +246,13 @@ class PrivacyDetailsScreen extends StatelessWidget {
                     height: getVerticalSize(20),
                   ),
                   Obx(
-                        () => SizedBox(
+                    () => SizedBox(
                         child: AppTextField(
-                          controller: personalDetailsController.pinController,
-                          keyBordType: TextInputType.emailAddress,
-                          hintText: "Pin",
-                          readOnly: personalDetailsController.readOnly.value,
-                        )),
+                      controller: personalDetailsController.pinController,
+                      keyBordType: TextInputType.emailAddress,
+                      hintText: "Pin",
+                      readOnly: personalDetailsController.readOnly.value,
+                    )),
                   ),
                 ],
               ),
@@ -234,11 +286,9 @@ class PrivacyDetailsScreen extends StatelessWidget {
                 textColor: ColorConstant.primaryWhite,
                 onPressed: () {
                   FocusManager.instance.primaryFocus?.unfocus();
-                  Get.back();
-                  UIUtils.showSnakBar(
-                      bodyText:
-                          "This Api in maintenance and will be working soon!!",
-                      headerText: StringConstants.ERROR);
+                  personalDetailsController.onTapUpdateButton(context);
+
+                  // personalDetailsController.UpdateProfileApi();
                 }),
           ],
         ),

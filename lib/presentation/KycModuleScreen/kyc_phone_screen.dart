@@ -66,16 +66,25 @@ class KycPhoneScreen extends StatelessWidget {
                                           fontWeight: FontWeight.w700,
                                           fontSize: getFontSize(20)),
                                     ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(
-                                              12),
-                                          border: Border.all(
-                                              color: Colors.transparent)),
-                                      padding: EdgeInsets.all(10),
-                                      child: Icon(
-                                        Icons.arrow_back_ios_new_outlined,
-                                        color: Colors.transparent,),
+                                    InkWell(
+                                      onTap: () {
+                                        showDialog();
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color: ColorConstant
+                                                    .backBorder
+                                                    )),
+                                        padding: EdgeInsets.all(6),
+                                        child: Icon(
+                                          Icons.question_mark_rounded,
+                                          size: 22,
+                                          color: Colors.black,
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -101,48 +110,44 @@ class KycPhoneScreen extends StatelessWidget {
                                       SizedBox(
                                         height: getVerticalSize(130),
                                       ),
-                                      Spacer(),
                                       Column(
                                         children: [
                                           Padding(
                                             padding:  EdgeInsets.symmetric(horizontal:getHorizontalSize(20)),
                                             child: Row(
                                               children: [
-                                                Padding(
-                                                  padding: EdgeInsets.only(top: 1.0),
-                                                  child: Container(
-                                                      width: 22,
-                                                      child: TextFormField(
-                                                        controller: kycController
-                                                            .plusOneController,
-                                                        readOnly: true,
-                                                        style: AppStyle.DmSansFont.copyWith(
-                                                            color:
-                                                            ColorConstant.primaryBlack,
-                                                            fontWeight:
-                                                            FontWeight.w400,
-                                                            fontSize:
-                                                            getFontSize(20)),
-                                                        decoration: InputDecoration(
-                                                          enabledBorder:
-                                                          UnderlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                                color: ColorConstant
-                                                                    .primaryAppTextF1,
-                                                                width: 1),
-                                                          ),
-                                                          focusedBorder:
-                                                          UnderlineInputBorder(
-                                                            borderSide: BorderSide(
-                                                                color: ColorConstant
-                                                                    .primaryAppTextF1,
-                                                                width: 1),
-                                                          ),
+                                                Container(
+                                                    width: 22,
+                                                    child: TextFormField(
+                                                      controller: kycController
+                                                          .plusOneController,
+                                                      readOnly: true,
+                                                      style: AppStyle.DmSansFont.copyWith(
+                                                          color:
+                                                          ColorConstant.primaryBlack,
+                                                          fontWeight:
+                                                          FontWeight.w400,
+                                                          fontSize:
+                                                          getFontSize(20)),
+                                                      decoration: InputDecoration(
+                                                        enabledBorder:
+                                                        UnderlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: ColorConstant
+                                                                  .primaryAppTextF1,
+                                                              width: 1),
                                                         ),
-                                                        cursorColor:
-                                                        ColorConstant.grey8F,
-                                                      )),
-                                                ),
+                                                        focusedBorder:
+                                                        UnderlineInputBorder(
+                                                          borderSide: BorderSide(
+                                                              color: ColorConstant
+                                                                  .primaryAppTextF1,
+                                                              width: 1),
+                                                        ),
+                                                      ),
+                                                      cursorColor:
+                                                      ColorConstant.grey8F,
+                                                    )),
                                                 Expanded(
                                                   child: TextFormField(
                                                     readOnly: true,
@@ -198,7 +203,7 @@ class KycPhoneScreen extends StatelessWidget {
                                           SizedBox(
                                             height: getVerticalSize(20),
                                           ),
-                                          NumPad(
+                                          /*NumPad(
                                             type: 'PHONE',
                                             controller:
                                             kycController.phoneNumberController,
@@ -225,7 +230,7 @@ class KycPhoneScreen extends StatelessWidget {
                                               debugPrint(
                                                   'Your code: ${kycController.phoneNumberController.text}');
                                             },
-                                          ),
+                                          ),*/
                                         ],
                                       )
                                     ],
@@ -235,7 +240,6 @@ class KycPhoneScreen extends StatelessWidget {
 
                             ],
                           ),
-
 
                           Positioned(right: 10,
                             top: getVerticalSize(60),

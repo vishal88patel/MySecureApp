@@ -10,6 +10,7 @@ class ApiEndPoints {
   static String LOGIN = BASE_URL + "/auth/login";
   static String REGISTER = BASE_URL + "/auth/register";
   static String LOGOUT = BASE_URL + "/auth/logout";
+  static String UPDATE_PROFILE = BASE_URL + "/auth/updateProfile";
   static String SAVE_CREDITCARD = BASE_URL + "/saveCareditCard";
   static String GET_LOAN_CALCULATION = BASE_URL + "/getLoanCalculation";
   static String FORGOT_PASSWORD = BASE_URL + "/auth/forgotPassword";

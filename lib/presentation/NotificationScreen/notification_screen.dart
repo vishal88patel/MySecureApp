@@ -202,36 +202,62 @@ int currentTab=0;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-          backgroundColor: ColorConstant.primaryDarkGreen,
           body: Stack(
             children: [
+              Container(height:size.height,color: ColorConstant.buttonGreen.withOpacity(0.3)),
               Column(
                 children: [
                   SizedBox(
-                    height: getVerticalSize(35),
+                    height: getVerticalSize(48),
                   ),
-                  Image.asset(
-                    "asset/icons/ic_noti_background.png",
-                    width: MediaQuery.of(context).size.width,
-                    fit: BoxFit.cover,
-                  ),
-                ],
-              ),
-              Column(
-                children: [
-                  SizedBox(
-                    height: getVerticalSize(35),
-                  ),
-                  AppAppBar(
-                    title: "Notification",
-                    icon1: "asset/icons/ic_back.svg",
-                    icon2: "asset/icons/ic_setting.svg",
-                    onPressedIcon1: () {
-                      Get.back();
-                    },
-                    onPressedIcon2: () {
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: getHorizontalSize(20)),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment
+                          .spaceBetween,
+                      children: [
 
-                    },
+                        InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius:
+                                BorderRadius.circular(12),
+                                border: Border.all(
+                                    color:
+                                    ColorConstant.backBorder)),
+                            padding: EdgeInsets.all(6),
+                            child: Icon(
+                              Icons.arrow_back_ios_new_outlined,
+                              size: 22,),
+                          ),
+                        ),
+                        Text(
+                          "Notifications",
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.primaryBlack,
+                              fontWeight: FontWeight.w700,
+                              fontSize: getFontSize(20)),
+                        ),
+                        Container(
+                          decoration: BoxDecoration(
+                              borderRadius:
+                              BorderRadius.circular(12),
+                              border: Border.all(
+                                  color: Colors.transparent
+                              )),
+                          padding: EdgeInsets.all(6),
+                          child: Icon(
+                            Icons.question_mark_rounded,
+                            size: 22,
+                            color: Colors.transparent,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),
