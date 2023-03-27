@@ -139,103 +139,123 @@ class _SelectLoanTypeScreenState extends State<SelectLoanTypeScreen> {
                                   itemBuilder:
                                       (BuildContext context, int index) {
                                     return Obx(
-                                      () => Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: getVerticalSize(8)),
-                                        child: InkWell(
-                                          onTap: () {
-                                            loanCalculatorController
-                                                .onTapOnLoanTile(
-                                                    loanCalculatorController
-                                                        .loanList
-                                                        .value[index]
-                                                        .id,
-                                                    loanCalculatorController
-                                                        .loanList
-                                                        .value[index]
-                                                        .name);
-                                          },
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Icon(
-                                                loanCalculatorController
-                                                            .selectedLoanId
-                                                            .value ==
+                                      () => InkWell(
+                                        onTap: () {
+                                          loanCalculatorController
+                                              .onTapOnLoanTile(
+                                                  loanCalculatorController
+                                                      .loanList
+                                                      .value[index]
+                                                      .id,
+                                                  loanCalculatorController
+                                                      .loanList
+                                                      .value[index]
+                                                      .name);
+                                        },
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+
+                                            Padding(
+                                              padding: const EdgeInsets.all(4.0),
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: loanCalculatorController
+                                                        .selectedLoanId
+                                                        .value ==
                                                         loanCalculatorController
                                                             .loanList
                                                             .value[index]
                                                             .id
                                                             .toString()
-                                                    ? Icons.check_box_rounded
-                                                    : Icons
-                                                        .check_box_outline_blank_rounded,
-                                                size: getHorizontalSize(25),
-                                                color: ColorConstant
-                                                    .primaryLightGreen,
-                                              ),
-                                              SizedBox(
-                                                width: getHorizontalSize(7),
-                                              ),
-                                              Text(
-                                                loanCalculatorController
-                                                    .loanList.value[index].name
-                                                    .toString(),
-                                                style: AppStyle.DmSansFont
-                                                    .copyWith(
-                                                        color: ColorConstant
-                                                            .primaryBlack,
-                                                        fontSize:
-                                                            getFontSize(20)),
-                                              ),
-                                              SizedBox(
-                                                width: getHorizontalSize(10),
-                                              ),
-                                              Spacer(),
-                                              loanCalculatorController
-                                                          .selectedLoanId
-                                                          .value ==
+                                                        ? ColorConstant
+                                                        .primaryLightGreen
+                                                        : ColorConstant.greenF3
+                                                        .withOpacity(0.5),
+                                                    borderRadius:
+                                                    BorderRadius.all(
+                                                        Radius.circular(10))),
+                                                child: Padding(
+                                                  padding: EdgeInsets.only(
+                                                      left: getHorizontalSize(10),
+                                                      right:
+                                                      getHorizontalSize(10),
+                                                      top: getHorizontalSize(10),
+                                                      bottom:
+                                                      getHorizontalSize(10)),
+                                                  child: Center(
+                                                    child: Text(
                                                       loanCalculatorController
-                                                          .loanList
-                                                          .value[index]
-                                                          .id
-                                                          .toString()
-                                                  ? loanCalculatorController
-                                                              .loanList
-                                                              .value[index]
-                                                              .name !=
-                                                          "Business Loan"
-                                                      ? Text(
-                                                          "500\$ - 5000\$ ",
-                                                          style: AppStyle
-                                                                  .DmSansFont
-                                                              .copyWith(
-                                                                  color: ColorConstant
-                                                                      .primaryLightGreen,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          18)),
-                                                        )
-                                                      : Text(
-                                                          "5000\$ - 40000\$ ",
-                                                          style: AppStyle
-                                                                  .DmSansFont
-                                                              .copyWith(
-                                                                  color: ColorConstant
-                                                                      .primaryLightGreen,
-                                                                  fontSize:
-                                                                      getFontSize(
-                                                                          18)),
-                                                        )
-                                                  : Container()
-                                            ],
-                                          ),
+                                                          .loanList.value[index].name
+                                                          .toString(),
+                                                      style: AppStyle.DmSansFont.copyWith(
+                                                          color: loanCalculatorController
+                                                              .selectedLoanId
+                                                              .value
+                                                              .toString() ==
+                                                              loanCalculatorController
+                                                                  .loanList
+                                                                  .value[index]
+                                                                  .id
+                                                                  .toString()
+                                                              ? ColorConstant
+                                                              .primaryWhite
+                                                              : ColorConstant
+                                                              .grey8F,
+                                                          fontWeight:
+                                                          FontWeight.w400,
+                                                          fontSize:
+                                                          getFontSize(16)),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                            Spacer(),
+                                            loanCalculatorController
+                                                        .selectedLoanId
+                                                        .value ==
+                                                    loanCalculatorController
+                                                        .loanList
+                                                        .value[index]
+                                                        .id
+                                                        .toString()
+                                                ? loanCalculatorController
+                                                            .loanList
+                                                            .value[index]
+                                                            .name !=
+                                                        "Business Loan"
+                                                    ? Text(
+                                                        "500\$ - 5000\$ ",
+                                                        style: AppStyle
+                                                                .DmSansFont
+                                                            .copyWith(
+                                                                color: ColorConstant
+                                                                    .primaryLightGreen,
+                                                                fontSize:
+                                                                    getFontSize(
+                                                                        18)),
+                                                      )
+                                                    : Text(
+                                                        "5000\$ - 40000\$ ",
+                                                        style: AppStyle
+                                                                .DmSansFont
+                                                            .copyWith(
+                                                                color: ColorConstant
+                                                                    .primaryLightGreen,
+                                                                fontSize:
+                                                                    getFontSize(
+                                                                        18)),
+                                                      )
+                                                : Container()
+                                          ],
                                         ),
                                       ),
                                     );
                                   }),
+
                               SizedBox(
                                 height: getVerticalSize(150),
                               ),
