@@ -276,8 +276,8 @@ class _AmountRadialScreenState extends State<AmountRadialScreen> {
 
                                         RadialAxis(
                                             minimum: 100,
-                                            startAngle: 270,
-                                            endAngle: 260,
+                                            startAngle: 300,
+                                            endAngle: 240,
                                             maximum: loanCalculatorController
                                                 .maximumAvailableLoan.value
                                                 .toDouble(),
