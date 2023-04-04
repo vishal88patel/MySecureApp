@@ -218,9 +218,9 @@ class _EnterSecureTagScreenState extends State<EnterSecureTagScreen> {
                                                                     Radius.circular(10))),
                                                             child: Padding(
                                                               padding: EdgeInsets.only(
-                                                                  left: getHorizontalSize(10),
+                                                                  left: getHorizontalSize(6),
                                                                   right:
-                                                                  getHorizontalSize(10),
+                                                                  getHorizontalSize(6),
                                                                   top: getHorizontalSize(10),
                                                                   bottom:
                                                                   getHorizontalSize(10)),

@@ -19,7 +19,6 @@ import '../../utils/ConstantsFiles/string_constants.dart';
 import '../../utils/HelperFiles/math_utils.dart';
 import 'selfie_screen.dart';
 
-
 class LicenceScanScreen extends StatefulWidget {
   const LicenceScanScreen({Key? key}) : super(key: key);
 
@@ -29,13 +28,14 @@ class LicenceScanScreen extends StatefulWidget {
 
 class _LicenceScanScreenState extends State<LicenceScanScreen> {
   Barcode? result;
-  int? counter=0;
+  int counter = 0;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'BarCode');
   var kycStep1Controller = Get.find<KycStep1ScreenController>();
   var fname = "";
   var lname = "";
   var dobData = "";
   var dob = "";
+
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
 
@@ -45,8 +45,6 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
     scanBarcodeNormal();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,11 +52,15 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       body: WillPopScope(
         onWillPop: () => showBackDialog(),
         child: Container(
-          child: Center(child: CircularProgressIndicator(color: ColorConstant.primaryDarkGreen),),
+          child: Center(
+            child: CircularProgressIndicator(
+                color: ColorConstant.primaryDarkGreen),
+          ),
         ),
       ),
     );
   }
+
   Future<bool> showBackDialog() async {
     return await Get.dialog(
       Padding(
@@ -83,9 +85,8 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
                           child: Text(
                             "Are you sure,\n you want to cancel this process?",
                             textAlign: TextAlign.center,
-                            style: AppStyle.DmSansFont
-                                .copyWith(fontSize: 18,color: ColorConstant.darkBlue),
-
+                            style: AppStyle.DmSansFont.copyWith(
+                                fontSize: 18, color: ColorConstant.darkBlue),
                           )),
                       const SizedBox(
                         height: 25,
@@ -95,19 +96,21 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Expanded(
-                            child: AppElevatedButton(buttonName: 'NO',
+                            child: AppElevatedButton(
+                              buttonName: 'NO',
                               radius: 5,
                               buttonColor: ColorConstant.primaryDarkGreen,
                               onPressed: () {
                                 Get.back();
-                              },),
+                              },
+                            ),
                           ),
-
                           SizedBox(
                             width: 8,
                           ),
                           Expanded(
-                            child: AppElevatedButton(buttonName: 'YES',
+                            child: AppElevatedButton(
+                              buttonName: 'YES',
                               buttonColor: ColorConstant.primaryDarkGreen,
                               radius: 5,
                               onPressed: () {
@@ -115,7 +118,8 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
                                 Get.back();
                                 Get.back();
                                 Get.back();
-                              },),
+                              },
+                            ),
                           ),
                         ],
                       )
@@ -131,7 +135,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
     );
   }
 
-  void scanDataa(String? fName, String? lName,String dobData) {
+  void scanDataa(String? fName, String? lName, String dobData) {
     if (fName?.toLowerCase().trim() !=
         kycStep1Controller.firstNameController.text.toLowerCase().trim()) {
       UIUtils.showSnakBar(
@@ -146,24 +150,28 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
     } else if (dobData.toLowerCase().trim().toString() !=
         kycStep1Controller.dobController.text.replaceAll("/", "").toString()) {
-      print("DOBDATA"+dobData.toString()+",,,"+kycStep1Controller.dobController.text.replaceAll("/", "").toString());
+      print("DOBDATA" +
+          dobData.toString() +
+          ",,," +
+          kycStep1Controller.dobController.text.replaceAll("/", "").toString());
       UIUtils.showSnakBar(
           bodyText: "Birth Date is Not match With Driving Licence Birth Date",
           headerText: StringConstants.ERROR);
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
     } else {
-      UIUtils.showSnakBar(headerText: "Success",bodyText: "Driving Licence Scan Successfully");
+      UIUtils.showSnakBar(
+          headerText: "Success", bodyText: "Driving Licence Scan Successfully");
       Future.delayed(Duration(milliseconds: 200), () {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => SelfieScreen(image: 1,)),
+              builder: (context) => SelfieScreen(
+                    image: 1,
+                  )),
         );
       });
-
     }
   }
-
 
   Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;
@@ -174,6 +182,8 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       print(barcodeScanRes);
     } on PlatformException {
       barcodeScanRes = 'Failed to get platform version.';
+      Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+      return;
     }
 
     // If the widget was removed from the tree while the asynchronous platform
@@ -183,36 +193,49 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
 
     setState(() {
       //_scanBarcode = barcodeScanRes;
-      kycStep1Controller.qrCodeResult.value=barcodeScanRes.toString();
+      kycStep1Controller.qrCodeResult.value = barcodeScanRes.toString();
+      print( kycStep1Controller.qrCodeResult.value);
       print(barcodeScanRes.toString());
-      if(kycStep1Controller.qrCodeResult.value.isNotEmpty && counter==0 && kycStep1Controller.qrCodeResult.value.toString().contains("DCS")&& kycStep1Controller.qrCodeResult.value.toString().contains("DDE")){
-        counter=1;
+      if (kycStep1Controller.qrCodeResult.value.isNotEmpty &&
+          counter == 0 &&
+          kycStep1Controller.qrCodeResult.value.toString().contains("DCS") &&
+          kycStep1Controller.qrCodeResult.value.toString().contains("DDE")) {
+        print("jhdiiivbiyyib"+counter.toString());
+        counter = 1;
         const start1 = "DCS";
         const end1 = "DDE";
         const start2 = "DAC";
         const end2 = "DDF";
         const start3 = "DBB";
         const end3 = "DBA";
-        final startIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(start1);
-        final startIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(start2);
-        final startIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(start3);
-        final endIndex1 = kycStep1Controller.qrCodeResult.value.indexOf(end1, startIndex1 + start1.length);
-        final endIndex2 = kycStep1Controller.qrCodeResult.value.indexOf(end2, startIndex2 + start2.length);
-        final endIndex3 = kycStep1Controller.qrCodeResult.value.indexOf(end3, startIndex3 + start3.length);
-        lname = kycStep1Controller.qrCodeResult.value.substring(startIndex1 + start1.length, endIndex1);
-        fname = kycStep1Controller.qrCodeResult.value.substring(startIndex2 + start2.length, endIndex2);
-        dobData = kycStep1Controller.qrCodeResult.value.substring(startIndex3 + start3.length, endIndex3);
+        final startIndex1 =
+            kycStep1Controller.qrCodeResult.value.indexOf(start1);
+        final startIndex2 =
+            kycStep1Controller.qrCodeResult.value.indexOf(start2);
+        final startIndex3 =
+            kycStep1Controller.qrCodeResult.value.indexOf(start3);
+        final endIndex1 = kycStep1Controller.qrCodeResult.value
+            .indexOf(end1, startIndex1 + start1.length);
+        final endIndex2 = kycStep1Controller.qrCodeResult.value
+            .indexOf(end2, startIndex2 + start2.length);
+        final endIndex3 = kycStep1Controller.qrCodeResult.value
+            .indexOf(end3, startIndex3 + start3.length);
+        lname = kycStep1Controller.qrCodeResult.value
+            .substring(startIndex1 + start1.length, endIndex1);
+        fname = kycStep1Controller.qrCodeResult.value
+            .substring(startIndex2 + start2.length, endIndex2);
+        dobData = kycStep1Controller.qrCodeResult.value
+            .substring(startIndex3 + start3.length, endIndex3);
 
-        if(fname.isNotEmpty && lname.isNotEmpty){
-          scanDataa(fname,lname,dobData);
-        }}
-      else{
+        if (fname.isNotEmpty && lname.isNotEmpty) {
+          scanDataa(fname, lname, dobData);
+        }
+      }
+      else {
         UIUtils.showSnakBar(
-            bodyText: "Please Scan Again",
-            headerText: StringConstants.ERROR);
+            bodyText: "Invalid qrcode, Please scan again!!", headerText: StringConstants.ERROR);
         Get.offAllNamed(AppRoutes.kycStep1DataScreen);
       }
     });
   }
-
 }

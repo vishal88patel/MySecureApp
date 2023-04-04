@@ -14,7 +14,7 @@ class EnterBirthDateController extends GetxController {
   TextEditingController dobController = TextEditingController();
   TextEditingController ssnController = TextEditingController();
   DateTime selectedDate = DateTime.now();
-  RegExp regexSSN = RegExp(r"^(?!219099999|078051120)(?!666|000|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4}$");
+  RegExp regexSSN = RegExp(r"^(?!219099999|078051120)(?!666|000|111|222|333|444|555|777|888|999}|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4}$");
 
   @override
   void onReady() {

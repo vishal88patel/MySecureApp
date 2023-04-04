@@ -42,7 +42,10 @@ class FrontBackLicenceCameraScreenState
 
   @override
   void initState() {
-    _initCamera(context);
+    Future.delayed(Duration(milliseconds: 200), () {
+      _initCamera(context);
+    });
+
 
     super.initState();
   }

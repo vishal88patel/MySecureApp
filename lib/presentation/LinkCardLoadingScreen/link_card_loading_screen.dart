@@ -52,7 +52,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                   "Please Wait...",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
-                                      color: ColorConstant.primaryBlack,
+                                      color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w700,
                                           fontSize: getFontSize(32)),
                                 ),
@@ -77,7 +77,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         "Uploading Your Photos",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                            color: ColorConstant.primaryBlack,
+                                            color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),
@@ -104,7 +104,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         "Checking for errors",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                            color: ColorConstant.primaryBlack,                                                fontWeight: FontWeight.w500,
+                                            color: ColorConstant.primaryWhite,                                                fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),
                                     ],
@@ -129,7 +129,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         "Sending your data for verification",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                            color: ColorConstant.primaryBlack,
+                                            color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),
@@ -155,7 +155,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         "Verifying you",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
-                                            color: ColorConstant.primaryBlack,
+                                            color: ColorConstant.primaryWhite,
                                                 fontWeight: FontWeight.w500,
                                                 fontSize: getFontSize(20)),
                                       ),

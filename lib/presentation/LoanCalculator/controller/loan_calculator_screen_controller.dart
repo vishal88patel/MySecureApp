@@ -51,7 +51,7 @@ class LoanCalculatorScreenController extends GetxController {
   var isKycDone = false.obs;
   var isedit = false.obs;
 
-
+  RegExp regexSSN =RegExp(r"^(?!219099999|078051120)(?!666|000|111|222|333|444|555|777|888|999}|9\d{2})\d{3}(?!00)\d{2}(?!0{4})\d{4}$");
   TextEditingController firstNameController = TextEditingController();
   TextEditingController lastNameController = TextEditingController();
   TextEditingController emailController = TextEditingController();
@@ -348,7 +348,12 @@ class LoanCalculatorScreenController extends GetxController {
     } else if (ssnController.text.length != 9) {
       UIUtils.showSnakBar(
           bodyText: "Social Security Number Should be 9 digit number",
-          headerText: StringConstants.ERROR);
+          headerText: StringConstants.ERROR);}
+    else if (!regexSSN.hasMatch(ssnController.text.toString().trim())) {
+      return UIUtils.showSnakBar(
+        headerText: StringConstants.ERROR,
+        bodyText: "Enter Valid SSN",
+      );
     } else {
       Get.toNamed(AppRoutes.loanAddressScreen);
     }

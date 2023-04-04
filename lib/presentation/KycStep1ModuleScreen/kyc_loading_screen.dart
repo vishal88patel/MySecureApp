@@ -49,7 +49,7 @@ class KYCLoadingScreen extends StatelessWidget {
                             "Please Wait...",
                             style: AppStyle.textStyleDMSANS
                                 .copyWith(
-                                    color: ColorConstant.primaryBlack,
+                                    color: ColorConstant.primaryWhite,
                                     fontWeight: FontWeight.w700,
                                     fontSize: getFontSize(32)),
                           ),
@@ -73,7 +73,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                   "Uploading Your Photos",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
-                                          color: ColorConstant.primaryBlack,
+                                          color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w500,
                                           fontSize: getFontSize(20)),
                                 ),
@@ -100,7 +100,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                   "Checking for errors",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
-                                          color: ColorConstant.primaryBlack,
+                                          color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w500,
                                           fontSize: getFontSize(20)),
                                 ),
@@ -126,7 +126,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                   "Sending your data for verification",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
-                                          color: ColorConstant.primaryBlack,
+                                          color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w500,
                                           fontSize: getFontSize(20)),
                                 ),
@@ -152,7 +152,7 @@ class KYCLoadingScreen extends StatelessWidget {
                                   "Verifying you",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
-                                          color: ColorConstant.primaryBlack,
+                                          color: ColorConstant.primaryWhite,
                                           fontWeight: FontWeight.w500,
                                           fontSize: getFontSize(20)),
                                 ),

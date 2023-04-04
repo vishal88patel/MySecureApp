@@ -162,57 +162,40 @@ class InstructionScreen extends StatelessWidget {
                               height: getVerticalSize(36),
                             ),
                             Obx(
-                              () => onBoardingController.currentPage.value == 2
-                                  ? AppElevatedButton(
-                                      buttonName: "Start Identification",
-                                      textColor: Colors.white,
-                                      buttonColor:
-                                          ColorConstant.primaryLightGreen,
-                                      radius: 16,
-                                      onPressed: () {
-                                        if (onBoardingController
-                                                .currentPage.value ==
-                                            2) {
-                                          Navigator.push(
-                                            context,
-                                            MaterialPageRoute(
-                                                builder: (context) => GifScreen()),
-                                          );
-                                        }
-                                      },
-                                    )
-                                  : TextButton(
-                                      onPressed: () {
-                                        if (onBoardingController
-                                                .currentPage.value ==
-                                            0) {
-                                          onBoardingController.currentPage.value =
-                                              1;
-                                          onBoardingController.pageController
-                                              .nextPage(
-                                                  duration:
-                                                      Duration(milliseconds: 250),
-                                                  curve: Curves.easeIn);
-                                        } else if (onBoardingController
-                                                .currentPage.value ==
-                                            1) {
-                                          onBoardingController.currentPage.value =
-                                              2;
-                                          onBoardingController.pageController
-                                              .nextPage(
-                                                  duration:
-                                                      Duration(milliseconds: 250),
-                                                  curve: Curves.easeIn);
-                                        }
-                                      },
-                                      child: Text("Next",
-                                          style: AppStyle.textStyleDMSANS
-                                              .copyWith(
-                                                  color:
-                                                      ColorConstant.primaryLightGreen,
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: getFontSize(20)))),
+                                  () => AppElevatedButton(
+                                buttonName:
+                                onBoardingController.currentPage.value == 2
+                                    ? "Get Started"
+                                    : "Next",
+                                textColor: Colors.white,
+                                buttonColor: ColorConstant.primaryLightGreen,
+                                radius: 16,
+                                onPressed: () {
+                                  if(onBoardingController.currentPage.value==0){
+                                    onBoardingController.currentPage.value = 1;
+                                    onBoardingController.pageController.nextPage(
+                                        duration: Duration(milliseconds: 250),
+                                        curve: Curves.easeIn
+                                    );
+
+                                  }else if(onBoardingController.currentPage.value==1){
+                                    onBoardingController.currentPage.value = 2;
+                                    onBoardingController.  pageController.nextPage(
+                                        duration: Duration(milliseconds: 250),
+                                        curve: Curves.easeIn
+                                    );
+                                  }else if(onBoardingController.currentPage.value==2){
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => GifScreen()),
+                                    );
+                                  }
+
+                                },
+                              ),
                             ),
+
                           ],
                         ),
                       ),

@@ -21,7 +21,6 @@ import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
 import 'package:intl/intl.dart';
 
-import '../../ScanScreen/scan_success_screen.dart';
 import '../cc_camera_screen.dart';
 
 
