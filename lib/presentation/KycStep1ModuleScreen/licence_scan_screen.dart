@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
@@ -34,7 +35,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   var fname = "";
   var lname = "";
   var dobData = "";
-  var dob = "";
+  var doex = "";
 
   // In order to get hot reload to work we need to pause the camera if the platform
   // is android, or resume the camera if the platform is iOS.
@@ -135,7 +136,19 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
     );
   }
 
-  void scanDataa(String? fName, String? lName, String dobData) {
+  void scanDataa(String? fName, String? lName, String dobData,String doex) {
+    print("FNAME=>>>"+fName.toString());
+    print("LNAME=>>>"+lName.toString());
+    print("DOB=>>>"+dobData.toString());
+    print("DOA=>>>"+doex.toString());
+
+    DateTime today = DateTime.now();
+    String dateToday = today.toString().substring(0,10);
+    String dateExp = doex.substring(4,8)+"-"+doex.substring(0,2)+"-"+doex.substring(2,4);
+    DateTime dt1 = DateTime.parse(dateToday);
+    DateTime dt2 = DateTime.parse(dateExp);
+
+
     if (fName?.toLowerCase().trim() !=
         kycStep1Controller.firstNameController.text.toLowerCase().trim()) {
       UIUtils.showSnakBar(
@@ -156,6 +169,11 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
           kycStep1Controller.dobController.text.replaceAll("/", "").toString());
       UIUtils.showSnakBar(
           bodyText: "Birth Date is Not match With Driving Licence Birth Date",
+          headerText: StringConstants.ERROR);
+      Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+    } else if (dt1.isAfter(dt2)) {
+      UIUtils.showSnakBar(
+          bodyText: "Your Card Has Been Expired",
           headerText: StringConstants.ERROR);
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
     } else {
@@ -200,35 +218,37 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
           counter == 0 &&
           kycStep1Controller.qrCodeResult.value.toString().contains("DCS") &&
           kycStep1Controller.qrCodeResult.value.toString().contains("DDE")) {
-        print("jhdiiivbiyyib"+counter.toString());
-        counter = 1;
-        const start1 = "DCS";
-        const end1 = "DDE";
-        const start2 = "DAC";
-        const end2 = "DDF";
-        const start3 = "DBB";
-        const end3 = "DBA";
-        final startIndex1 =
-            kycStep1Controller.qrCodeResult.value.indexOf(start1);
-        final startIndex2 =
-            kycStep1Controller.qrCodeResult.value.indexOf(start2);
-        final startIndex3 =
-            kycStep1Controller.qrCodeResult.value.indexOf(start3);
-        final endIndex1 = kycStep1Controller.qrCodeResult.value
-            .indexOf(end1, startIndex1 + start1.length);
-        final endIndex2 = kycStep1Controller.qrCodeResult.value
-            .indexOf(end2, startIndex2 + start2.length);
-        final endIndex3 = kycStep1Controller.qrCodeResult.value
-            .indexOf(end3, startIndex3 + start3.length);
-        lname = kycStep1Controller.qrCodeResult.value
-            .substring(startIndex1 + start1.length, endIndex1);
-        fname = kycStep1Controller.qrCodeResult.value
-            .substring(startIndex2 + start2.length, endIndex2);
-        dobData = kycStep1Controller.qrCodeResult.value
-            .substring(startIndex3 + start3.length, endIndex3);
+        print("SCANDATA=>>>>>>>>"+counter.toString());
+        LineSplitter ls = new LineSplitter();
+        List<String> lines = ls.convert(kycStep1Controller.qrCodeResult.value);
+        for (var i = 0; i < lines.length; i++) {
+          if(lines[i].startsWith("DCS")){
+            lname=lines[i].substring(3).toLowerCase().trim();
+          }
+          if(lines[i].startsWith("DAC")){
+            fname=lines[i].substring(3).toLowerCase().trim();
+          }if(lines[i].startsWith("DBB")){
+            dobData=lines[i].substring(3).toLowerCase().trim();
+          }
+          if(lines[i].startsWith("DBA")){
+            doex=lines[i].substring(3).toLowerCase().trim();
+          }
 
-        if (fname.isNotEmpty && lname.isNotEmpty) {
-          scanDataa(fname, lname, dobData);
+        }
+        if(doex.toString()=="none"){
+          UIUtils.showSnakBar(
+              bodyText: "Your Card Has Been Expired",
+              headerText: StringConstants.ERROR);
+          Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+          return;
+        }
+        counter = 1;
+        if (fname.isNotEmpty && lname.isNotEmpty &&  lname.isNotEmpty &&  doex.isNotEmpty) {
+          scanDataa(fname, lname, dobData,doex);
+        }else{
+          UIUtils.showSnakBar(
+              bodyText: "Invalid qrcode, Please scan again!!", headerText: StringConstants.ERROR);
+          Get.offAllNamed(AppRoutes.kycStep1DataScreen);
         }
       }
       else {
