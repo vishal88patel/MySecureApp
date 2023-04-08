@@ -324,7 +324,7 @@ class LoanAddressScreen extends StatelessWidget {
                                               radius: 5,
                                               onPressed: () {
                                                 // Get.toNamed(AppRoutes.personalDetailScreen);
-                                                // Get.toNamed(AppRoutes.personalDetailScreen);
+
                                                 loanCalculatorController.onClickOfAddress();
                                               },
                                             ),

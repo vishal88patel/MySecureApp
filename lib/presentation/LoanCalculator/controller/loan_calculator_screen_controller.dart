@@ -379,6 +379,7 @@ class LoanCalculatorScreenController extends GetxController {
           bodyText: "Please 5 digit zip code",
           headerText: StringConstants.ERROR);
     } else {
+      Get.toNamed(AppRoutes.loanLoadingScreen,arguments: {"AMOUNT":maximumAvailableLoan.value});
       // Get.dialog(
       //   Padding(
       //     padding: EdgeInsets.symmetric(
@@ -490,7 +491,7 @@ class LoanCalculatorScreenController extends GetxController {
       //   barrierDismissible: true,
       // );
 
-      Get.bottomSheet(
+      /*Get.bottomSheet(
           isScrollControlled: true,
           Container(
             height: size.height,
@@ -656,7 +657,7 @@ class LoanCalculatorScreenController extends GetxController {
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-          ));
+          ));*/
      
     }
   }

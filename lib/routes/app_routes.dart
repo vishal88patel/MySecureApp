@@ -112,6 +112,8 @@ import '../presentation/LinkCardSuccessScreen/binding/link_card_success_screen_b
 import '../presentation/LinkCardSuccessScreen/link_card_success_screen.dart';
 import '../presentation/LoanApprovedScreen/binding/loan_approved_screen_binding.dart';
 import '../presentation/LoanApprovedScreen/loan_approved_screen.dart';
+import '../presentation/LoanLoadingScreen/binding/loan_loading_screen_binding.dart';
+import '../presentation/LoanLoadingScreen/loan_loading_screen.dart';
 import '../presentation/LoanStepScreen/binding/loan_step_screen_binding.dart';
 import '../presentation/LoanStepScreen/loan_step_screen.dart';
 import '../presentation/LoginScreen/binding/login_screen_binding.dart';
@@ -301,6 +303,7 @@ class AppRoutes {
   static String kycOtpSuccessScreen = '/kyc_otp_success_screen';
   static String kycStep1DataScreen = '/kyc_step1_data_screen';
   static String kycLoadingScreen = '/kyc_loading_screen';
+  static String loanLoadingScreen = '/loan_loading_screen';
   static String kycselfieLoadingScreen = '/kyc_selfie_loading_screen';
   static String kycSelectStepScreen = '/kyc_select_step_screen';
   static String kycSuccessScreen = '/kyc_success_screen';
@@ -639,6 +642,16 @@ class AppRoutes {
       page: () => KYCLoadingScreen(),
       bindings: [
         KycLoaderScreenBinding(),
+      ],
+    ),
+
+    GetPage(
+      name: loanLoadingScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => LoanLoadingScreen(),
+      bindings: [
+        LoanLoadingScreenBinding(),
       ],
     ),
 
