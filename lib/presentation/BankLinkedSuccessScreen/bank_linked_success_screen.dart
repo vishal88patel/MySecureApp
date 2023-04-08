@@ -23,7 +23,7 @@ class BankLinkedSuccessScreen extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              color: ColorConstant.darkGreen,
               child: Column(
                 children: [
                   SizedBox(
@@ -34,7 +34,7 @@ class BankLinkedSuccessScreen extends StatelessWidget {
                     child: Padding(
                       padding: EdgeInsets.all(24),
                       child: Text(
-                        "Payment Receipt",
+                        "Receipt",
                         overflow: TextOverflow.ellipsis,
                         textAlign: TextAlign.center,
                         style: AppStyle.DmSansFont.copyWith(

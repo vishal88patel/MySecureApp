@@ -25,7 +25,7 @@ class LoanApprovedScreen extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              color: ColorConstant.darkGreen,
               child: Column(
                 children: [
                   SizedBox(
@@ -358,7 +358,9 @@ class LoanApprovedScreen extends StatelessWidget {
                                       textColor: Colors.white,
                                       buttonColor: ColorConstant.primaryLightGreen,
                                       radius: 16,
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Get.offAllNamed(AppRoutes.dashBoardScreen,arguments: {"bottomTabCount":0});
+                                      },
                                     ),
                                   ),
                                   Align(

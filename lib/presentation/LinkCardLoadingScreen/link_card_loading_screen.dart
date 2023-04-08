@@ -26,7 +26,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,
-                color: ColorConstant.buttonGreen.withOpacity(0.3),
+                color: ColorConstant.blue26,
                 child: Stack(
                   children: [
                 Padding(

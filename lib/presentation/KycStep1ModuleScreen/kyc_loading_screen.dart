@@ -23,7 +23,7 @@ class KYCLoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: ColorConstant.buttonGreen.withOpacity(0.3),
+        backgroundColor: ColorConstant.blue26,
         body: SingleChildScrollView(
             child: Container(
                 height: size.height,

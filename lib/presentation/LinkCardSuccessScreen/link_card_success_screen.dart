@@ -28,7 +28,7 @@ class LinkCardSuccessScreen extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              color: ColorConstant.darkGreen,
               child: Column(
                 children: [
                   SizedBox(

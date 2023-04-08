@@ -415,7 +415,7 @@ class LoanCalculatorScreenController extends GetxController {
                           padding: EdgeInsets.all(12),
                           child: InkWell(
                             onTap:(){
-                              // Get.back();
+                               Get.back();
                             },
                             child: Column(
                               crossAxisAlignment:
@@ -475,6 +475,7 @@ class LoanCalculatorScreenController extends GetxController {
                               buttonName: 'Done',
                               radius: 10,
                               onPressed: () {
+                                Get.back();
                                 Get.to(()=>SelectLoanTypeScreen());
                               },),
                         ),

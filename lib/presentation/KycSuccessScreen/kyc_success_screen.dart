@@ -22,7 +22,7 @@ class KycSuccessScreen extends StatelessWidget {
         body: Stack(
           children: [
             Container(
-              color: ColorConstant.buttonGreen.withOpacity(0.3),
+              color: ColorConstant.darkGreen,
               child: Column(mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(

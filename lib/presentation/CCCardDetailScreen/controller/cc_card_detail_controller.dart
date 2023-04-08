@@ -68,6 +68,8 @@ class CCCardDetailController extends GetxController {
     String month = formatterMonth.format(now);
     String year = formatterYear.format(now);
 
+    print("${expDate[0]},${expDate[1]},$month,${year.substring(2,4)}");
+
     if (nameController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter card holder name",
@@ -88,18 +90,15 @@ class CCCardDetailController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please enter valid expiry month and year",
           headerText: StringConstants.ERROR);
-    } else if (int.parse(expDate[1])<=int.parse(year.substring(2,4))) {
-      if(int.parse(expDate[1]) == int.parse(year.substring(2,4)) && int.parse(expDate[0])<=int.parse(month)){
-        UIUtils.showSnakBar(
-            bodyText: "Expiry date should be greater than current month and year",
-            headerText: StringConstants.ERROR);
-      }else{
-        UIUtils.showSnakBar(
-            bodyText: "Expiry date should be greater than current month and year",
-            headerText: StringConstants.ERROR);
-      }
-
-    } else if (!expDateController.text.contains("/") || expDateController.text.length!=5) {
+    } else if (int.parse(expDate[1])<int.parse(year.substring(2,4))) {
+      UIUtils.showSnakBar(
+          bodyText: "Expiry date should be greater than current month and year",
+          headerText: StringConstants.ERROR);
+    } else if (int.parse(expDate[1])<=int.parse(year.substring(2,4)) && int.parse(expDate[1]) == int.parse(year.substring(2,4)) && int.parse(expDate[0])<=int.parse(month)) {
+      UIUtils.showSnakBar(
+          bodyText: "Expiry date should be greater than current month and year",
+          headerText: StringConstants.ERROR);
+  } else if (!expDateController.text.contains("/") || expDateController.text.length!=5) {
       UIUtils.showSnakBar(
           bodyText: "Please enter proper expiry month and year(exp:12/34)",
           headerText: StringConstants.ERROR);
