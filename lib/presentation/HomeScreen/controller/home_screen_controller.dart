@@ -331,7 +331,7 @@ class HomeScreenController extends GetxController {
                         Flexible(
                           child:Text(
                             textAlign: TextAlign.center,
-                            "To enable Wallet withdrawal and\n deposits first complete your Identity \nVerification",
+                            "To enable Wallet withdrawal and\n deposits first complete your Identity Verification",
                             style: AppStyle.DmSansFont.copyWith(
                                 color: ColorConstant.primaryBlack,
                                 decoration: TextDecoration.none,

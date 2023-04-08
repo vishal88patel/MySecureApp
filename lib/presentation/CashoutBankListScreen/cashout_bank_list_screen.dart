@@ -5,6 +5,7 @@ import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
 
 import '../../Custom Widgets/app_ElevatedButton .dart';
+import '../../routes/app_routes.dart';
 import '../../theme/app_style.dart';
 import 'controller/cashout_bank_list_screen_controller.dart';
 
@@ -85,14 +86,13 @@ class CashoutBankListScreen extends StatelessWidget {
                                       vertical: getVerticalSize(6.5)),
                                   child: InkWell(
                                     onTap: (){
-                                      // bankListController.showBankInfoBottomsheet();
+                                      Get.toNamed(AppRoutes.cashoutPinScreen);
                                     }, 
                                     child: Container(
                                       decoration: BoxDecoration(
                                           color: ColorConstant.greyF9,
                                           // border: Border.all(color: ColorConstant.primaryLightGreen),
-                                          borderRadius:
-                                              BorderRadius.circular(10)),
+                                          borderRadius: BorderRadius.circular(10)),
                                       padding: EdgeInsets.symmetric(
                                           vertical: getVerticalSize(10)),
                                       child: Row(
