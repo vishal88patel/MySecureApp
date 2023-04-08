@@ -242,7 +242,7 @@ class RequestMoneyScreenController extends GetxController {
 
   Future<void> callTransactionApi() async {
     UIUtils.showProgressDialog(isCancellable: false);
-    ApiService()
+   /* ApiService()
         .callPostApi(
         body: await getTransactionApiBody(),
         headerWithToken: true,
@@ -256,7 +256,7 @@ class RequestMoneyScreenController extends GetxController {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);
       }
-    });
+    });*/
   }
   Future<FormData> getTransactionApiBody() async {
     final form = FormData({

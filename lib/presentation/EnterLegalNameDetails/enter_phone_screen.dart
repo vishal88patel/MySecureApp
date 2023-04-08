@@ -160,6 +160,7 @@ class EnterPhoneScreen extends StatelessWidget {
 
                                                   child: TextFormField(
                                                      maxLength: 10,
+                                                    keyboardType: TextInputType.number,
                                                     readOnly: false,
                                                     style: TextStyle(
                                                       color: ColorConstant.primaryBlack,

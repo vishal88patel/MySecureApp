@@ -46,6 +46,7 @@ class AppTextField extends StatelessWidget {
       onChanged: onChanged,
       inputFormatters: inputFormatters,
       decoration: InputDecoration(
+        counterText: "",
         hintText: hintText,
         suffix: suffixImage==null ||  suffixImage=="" ?null:Image.asset(suffixImage.toString(),height: 20),
         hintStyle: AppStyle.DmSansFont.copyWith(

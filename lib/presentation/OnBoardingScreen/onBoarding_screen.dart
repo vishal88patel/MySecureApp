@@ -20,24 +20,25 @@ class OnBoardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: ColorConstant.primaryWhite,
-        body: GestureDetector(
-          onPanUpdate: (details) {
-            // Swiping in right direction.
-            if (details.delta.dx > 0) {
+    return GestureDetector(
+      onPanUpdate: (details) {
+        // Swiping in right direction.
+        if (details.delta.dx > 0) {
 
-            }
+          onBoardingController.pageController.animateToPage(onBoardingController.currentPage.value-1, duration: Duration(milliseconds: 250),
+              curve: Curves.easeIn);
+        }
 
-            // Swiping in left direction.
-            if (details.delta.dx < 0) {
-              onBoardingController.  pageController.nextPage(
-                  duration: Duration(milliseconds: 250),
-                  curve: Curves.easeIn
-              );
-            }
-          },
-          child: Column(
+        // Swiping in left direction.
+        if (details.delta.dx < 0) {
+
+          onBoardingController.pageController.animateToPage(onBoardingController.currentPage.value+1, duration: Duration(milliseconds: 250),
+              curve: Curves.easeIn);
+        }
+      },
+      child: Scaffold(
+          backgroundColor: ColorConstant.primaryWhite,
+          body: Column(
             children: [
               SizedBox(
                 height: getVerticalSize(60),
@@ -68,6 +69,7 @@ class OnBoardingScreen extends StatelessWidget {
               ),
               Expanded(
                 child: PageView.builder(
+                  physics: NeverScrollableScrollPhysics(),
                   onPageChanged: (value) {
                     onBoardingController.currentPage.value = value;
                     print(onBoardingController.currentPage.value);
@@ -149,7 +151,7 @@ class OnBoardingScreen extends StatelessWidget {
                                 onPressed: () {
                                   if(onBoardingController.currentPage.value==0){
                                     onBoardingController.currentPage.value = 1;
-                                    onBoardingController.  pageController.nextPage(
+                                    onBoardingController.pageController.nextPage(
                                         duration: Duration(milliseconds: 250),
                                         curve: Curves.easeIn
                                     );
@@ -178,8 +180,8 @@ class OnBoardingScreen extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-        ));
+          )),
+    );
   }
 
   Obx buildDot({int? index}) {

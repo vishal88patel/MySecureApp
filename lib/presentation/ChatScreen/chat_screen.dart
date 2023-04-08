@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:webview_flutter/platform_interface.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_AppBar .dart';
 import '../../theme/app_style.dart';
@@ -10,89 +13,148 @@ import '../../utils/HelperFiles/ui_utils.dart';
 import 'controller/chat_screen_controller.dart';
 
 class ChatScreen extends StatelessWidget {
-  var boostCreditController = Get.put(ChatScreenController);
+  var chatController = Get.find<ChatScreenController>();
 
   @override
   Widget build(BuildContext context) {
+    // PrefUtils.setString(StringConstants.IS_KYC_DONE,"1");
     return Scaffold(
-        backgroundColor: ColorConstant.primaryWhite,
-        body: SingleChildScrollView(
-          child: Container(
-              height: size.height,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: getVerticalSize(52),
-                  ),
-                  Padding(
-                    padding:
-                    EdgeInsets.symmetric(horizontal: getHorizontalSize(20)),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                    color: ColorConstant.backBorder)),
-                            padding: EdgeInsets.all(6),
-                            child: Icon(
-                              Icons.arrow_back_ios_new_outlined,
-                              size: 22,
+        backgroundColor: ColorConstant.backgroundColor,
+        body:SingleChildScrollView(
+            child: Container(
+                color: ColorConstant.buttonGreen.withOpacity(0.3),
+                height: size.height,
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: getVerticalSize(20)),
+                      child: SafeArea(
+                        child: Stack(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(
+                                      horizontal: getHorizontalSize(20)),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      InkWell(
+                                        onTap: () {
+                                          Get.back();
+                                        },
+                                        child: Container(
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                              BorderRadius.circular(12),
+                                              border: Border.all(
+                                                  color:
+                                                  ColorConstant.backBorder)),
+                                          padding: EdgeInsets.all(6),
+                                          child: Icon(
+                                            Icons.arrow_back_ios_new_outlined,
+                                            size: 22,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        chatController.appBarName.value,
+                                        style: AppStyle.DmSansFont.copyWith(
+                                            color: ColorConstant.primaryBlack,
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: getFontSize(20)),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                            BorderRadius.circular(12),
+                                            border: Border.all(
+                                                color: Colors.transparent)),
+                                        padding: EdgeInsets.all(6),
+                                        child: Icon(
+                                          Icons.arrow_back_ios_new_outlined,
+                                          color: Colors.transparent,
+                                          size: 22,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(30),
+                                ),
+                                Expanded(
+                                  child: Container(
+                                    width: double.infinity,
+                                    decoration: BoxDecoration(
+                                        color: ColorConstant.primaryWhite,
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(32),
+                                          topRight: Radius.circular(32),
+                                        )),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: getVerticalSize(20),
+                                        ),
+                                        Expanded(
+                                          child: Container(
+
+                                            decoration: BoxDecoration(
+                                              color: Colors.white,                                        borderRadius: BorderRadius.only(
+                                              topLeft: Radius.circular(32),
+                                              topRight: Radius.circular(32),
+                                            ),),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical: getVerticalSize(10),
+                                                  horizontal: getHorizontalSize(20)),
+                                              child:Obx(()=> Stack(
+                                                children: [
+                                                  WebView(
+                                                    initialUrl: chatController.webLink.value,
+                                                    javascriptMode: JavascriptMode.unrestricted,
+                                                    userAgent: chatController.userAgent.value,
+                                                    onProgress:(progress) => chatController.loadingValue.value = progress / 100,
+                                                    onPageFinished: (val){
+                                                      chatController.isLoading.value=false;
+                                                    },
+
+                                                  ),
+                                                  Obx(
+                                                    ()=> Visibility(
+                                                      visible: chatController.isLoading.value,
+                                                      child: Center(
+                                                        child: CupertinoActivityIndicator(
+                                                            radius: 23.0, color: ColorConstant.primaryDarkGreen),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: getVerticalSize(6),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+
+                              ],
                             ),
-                          ),
+                          ],
                         ),
-                        Text(
-                          "Live Chat",
-                          style: AppStyle.DmSansFont.copyWith(
-                              color: ColorConstant.primaryBlack,
-                              fontWeight: FontWeight.w700,
-                              fontSize: getFontSize(20)),
-                        ),
-                        Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(color: Colors.transparent)),
-                          padding: EdgeInsets.all(10),
-                          child: Icon(
-                            Icons.arrow_back_ios_new_outlined,
-                            color: Colors.transparent,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: getVerticalSize(40),
-                  ),
-                  Center(
-                      child: Image.asset(
-                        'asset/icons/img_comingsoon.png',
-                        height: getVerticalSize(300),
-                      )),
-                  SizedBox(
-                    height: getVerticalSize(30),
-                  ),
-                  Center(
-                    child: Text(
-                      "Service Coming Soon",
-                      style: AppStyle.DmSansFont.copyWith(
-                          color: ColorConstant.primaryDarkGreen,
-                          fontWeight: FontWeight.w700,
-                          fontSize: getFontSize(24)),
-                    ),
-                  ),
-                  SizedBox(
-                    height: getVerticalSize(30),
-                  ),
-                ],
-              )),
-        ));
+                  ],
+                )))
+    );
   }
 }
 

@@ -231,6 +231,7 @@ class _ScanScreenState extends State<ScanScreen> {
 
   @override
   Widget build(BuildContext context) {
+
     Future.delayed(Duration(milliseconds: 200), () {
       scanController.  controller?.resumeCamera();
     });

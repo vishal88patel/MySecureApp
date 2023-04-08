@@ -5,11 +5,9 @@ import 'package:permission_handler/permission_handler.dart';
 import 'package:qr_code_dart_scan/qr_code_dart_scan.dart';
 import 'package:secure_cash_app/presentation/statistic/statistic.dart';
 import 'package:secure_cash_app/utils/HelperFiles/math_utils.dart';
-import 'package:simple_barcode_scanner/simple_barcode_scanner.dart';
 import '../../App Configurations/color_constants.dart';
 import '../../Custom Widgets/app_ElevatedButton .dart';
 import '../../theme/app_style.dart';
-import '../../webQrCodeScreen.dart';
 import '../BitCoinScreen/bitcoinn_screen.dart';
 import '../HomeScreen/home_screen.dart';
 import '../ScanScreen/scan_screen.dart';
@@ -35,7 +33,7 @@ class DashBoardScreen extends StatelessWidget {
               HomeScreen(),
               StatisticScreen(),
               ScanScreen(),
-              //BitCoinnScreen(),
+             //BitCoinnScreen(),
               BitCoinnScreen(),
               ProfileScreen(),
             ],

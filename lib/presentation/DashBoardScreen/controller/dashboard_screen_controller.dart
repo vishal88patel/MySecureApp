@@ -163,6 +163,7 @@ class DashBoardScreenController extends GetxController {
   }
 
   Future<void> callGetWalletApi({required int pageNo}) async {
+    print("pull");
     ApiService()
         .callGetApi(
         body: await getWalletApiBody(),

@@ -286,7 +286,7 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
                     children: [
                       InkWell(
                         onTap:(){
-                          Get.back();
+                          showBackDialog();
                         },
                         child: SvgPicture.asset(
                           "asset/icons/ic_back.svg",
@@ -665,6 +665,7 @@ class FrontPassportCameraScreenState extends State<FrontPassportCameraScreen> wi
                               buttonColor: ColorConstant.primaryDarkGreen,
                               radius: 5,
                               onPressed: () {
+                                  Get.back();
                                   Get.back();
                                   Get.back();
                               },),

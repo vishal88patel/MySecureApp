@@ -55,6 +55,7 @@ class ScanScreenController extends GetxController {
     super.onInit();
   }
 
+
   void getArguments({arguments}) {
     if (arguments!=null && arguments['uuid'] != null && arguments['amount'] != null) {
       qrCodeResult.value = arguments['uuid'];
@@ -92,10 +93,10 @@ class ScanScreenController extends GetxController {
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
           bodyText: "Please Enter Valid Amount");
-    }else if(int.parse(balance.value)<int.parse(amountController.text)){
+    }else if(int.parse(balance.value)<int.parse(amountController.text)+(int.parse(amountController.text)*0.02)){
       UIUtils.showSnakBar(
           headerText: StringConstants.ERROR,
-          bodyText: "Insufficient Wallet Balance");
+          bodyText: "Insufficient Wallet Balance 2% payment fees has been added!!");
     }
    /* else if (selectedMethod.value =="Select Payment Method" ||selectedMethod.value.isEmpty) {
       UIUtils.showSnakBar(
@@ -178,50 +179,6 @@ class ScanScreenController extends GetxController {
     return form;
   }
 
-  void clickOnTransaction(){
-    if (passController.text.isEmpty) {
-      UIUtils.showSnakBar(
-        headerText: StringConstants.ERROR,
-        bodyText: "Please Enter PIN",
-      );
-    }else if(passController.text.length<4){
-      UIUtils.showSnakBar(
-        headerText: StringConstants.ERROR,
-        bodyText: "Please Enter 4 Digit PIN",
-      );
-    }
-    else {
-      callTransactionApi();
-    }
-  }
-
-  Future<void> callTransactionApi() async {
-    UIUtils.showProgressDialog(isCancellable: false);
-    ApiService()
-        .callPostApi(
-        body: await getTransactionApiBody(),
-        headerWithToken: true,
-        url: ApiEndPoints.TRANSACTION)
-        .then((value) {
-      print(value);
-      if (value['status']) {
-        UIUtils.hideProgressDialog();
-        Get.to(ScanSuccessScreen());
-      } else {
-        UIUtils.showSnakBar(
-            bodyText: value['message'], headerText: StringConstants.ERROR);
-      }
-    });
-  }
-
-  Future<FormData> getTransactionApiBody() async {
-    final form = FormData({
-      "uuid": uuid.value.toString(),
-      "amount": amountController.text.toString(),
-      "pin": passController.text
-    });
-    return form;
-  }
 
   void onChangeOfExpansonTile() {
     if(dropHeight.value==600){

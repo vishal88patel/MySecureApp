@@ -96,7 +96,7 @@ class LoanSsnScreen extends StatelessWidget {
                                           child: Obx(() => AppTextField(
                                             controller: loanCalculatorController
                                                 .ssnController,
-                                            keyBordType: TextInputType.text,
+                                            keyBordType: TextInputType.number,
                                             inputFormatters: [
                                               LengthLimitingTextInputFormatter(
                                                   9),

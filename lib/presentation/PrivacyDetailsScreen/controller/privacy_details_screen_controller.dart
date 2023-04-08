@@ -17,6 +17,7 @@ class PrivacyDetailsScreenController extends GetxController {
   var loginResponseModel = LoginResponseModel();
   TextEditingController tagController = TextEditingController();
   TextEditingController plusOneController = TextEditingController(text: "+1");
+  TextEditingController dollerController = TextEditingController(text: "\$");
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
   TextEditingController dobController = TextEditingController();
@@ -31,6 +32,7 @@ class PrivacyDetailsScreenController extends GetxController {
   var lastName = "".obs;
   var dob = "".obs;
   var readOnly = true.obs;
+  var createPaasIsObsecure = true.obs;
   DateTime selectedDate = DateTime.now();
   var dashBoardController = Get.find<DashBoardScreenController>();
   var kycController = Get.put<KycScreenController>(KycScreenController());
@@ -48,7 +50,9 @@ class PrivacyDetailsScreenController extends GetxController {
 
     super.onInit();
   }
-
+  void onTapOfCreatePassObsecure(bool val) {
+    createPaasIsObsecure.value = !val;
+  }
   @override
   void onClose() {
     super.onClose();
@@ -162,16 +166,18 @@ class PrivacyDetailsScreenController extends GetxController {
         .then((value) {
       print(value);
       if (value['status']) {
-        UIUtils.showSnakBar(
-            bodyText: value['message'] ?? '',
-            headerText: "Privacy data updated successfully");
-        Navigator.of(context).pop();
+
+
         dashBoardController.getUserDetails();
         String formattedPhoneNumber = phoneController.text.replaceAllMapped(
             RegExp(r'(\d{3})(\d{3})(\d+)'),
             (Match m) => "${m[1]}-${m[2]}-${m[3]}");
 
         kycController.phoneNumberController.text = formattedPhoneNumber;
+        Navigator.of(context).pop();
+        UIUtils.showSnakBar(
+            bodyText: " ",
+            headerText: "Privacy data updated successfully");
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'] ?? '',
@@ -220,7 +226,16 @@ class PrivacyDetailsScreenController extends GetxController {
         headerText: StringConstants.ERROR,
         bodyText: "Please enter ssn",
       );
-    } else {
+    } else if (pinController.text.isNotEmpty) {
+      if(pinController.text.length<4){
+        UIUtils.showSnakBar(
+          headerText: StringConstants.ERROR,
+          bodyText: "Please enter valid Pin",
+        );
+      }else{
+        UpdateProfileApi(context);
+      }
+    }else {
       UpdateProfileApi(context);
     }
   }
