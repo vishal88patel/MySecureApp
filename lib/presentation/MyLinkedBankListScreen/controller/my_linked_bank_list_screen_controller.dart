@@ -123,7 +123,7 @@ class MyLinkedBankListScreenController extends GetxController {
                                   child: AppElevatedButton(
                                     buttonColor:
                                         ColorConstant.primaryLightGreen,
-                                    buttonName: 'ok',
+                                    buttonName: 'Ok',
                                     radius: 10,
                                     onPressed: () {
                                       Navigator.pop(context);

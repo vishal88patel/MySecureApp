@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:secure_cash_app/App%20Configurations/color_constants.dart';
+import 'package:secure_cash_app/App%20Configurations/image_constants.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/presentation/LoanCalculator/model/loan_calculation_response.dart';
 import 'package:secure_cash_app/theme/app_style.dart';
@@ -373,116 +374,284 @@ class LoanCalculatorScreenController extends GetxController {
           bodyText: "Please 5 digit zip code",
           headerText: StringConstants.ERROR);
     } else {
-      Get.dialog(
-        Padding(
-          padding: EdgeInsets.symmetric(
-              horizontal: getHorizontalSize(40)),
-          child: Center(
-            child: Material(
-              color: Colors.transparent,
-              child: Wrap(
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: ColorConstant
-                            .primaryWhite,
-                        borderRadius:
-                        const BorderRadius.all(
-                            Radius.circular(15))),
-                    margin: const EdgeInsets.only(
-                        bottom: 20),
-                    padding: const EdgeInsets.only(
-                      bottom: 20,
-                    ),
-                    constraints: const BoxConstraints(
-                        minWidth: 180),
-                    child: Column(
-                      children: [
-                        Container(
-                          decoration: BoxDecoration(
-                              color:
-                              Color(0xFFF4F4F6),
-                              borderRadius:
-                              const BorderRadius
-                                  .all(
-                                  Radius.circular(
-                                      15))),
-                          padding: EdgeInsets.all(12),
-                          child: InkWell(
-                            onTap:(){
-                              // Get.back();
-                            },
-                            child: Column(
-                              crossAxisAlignment:
-                              CrossAxisAlignment
-                                  .end,
-                              children: [
-                                Icon(
-                                    Icons.close),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment
-                                      .center,
-                                  children: [
-                                    Image.asset(
-                                        "asset/icons/ic_thumb.png")
-                                  ],
-                                ),
-                                Icon(
-                                  Icons.close,
-                                  color: Colors
-                                      .transparent,
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+      // Get.dialog(
+      //   Padding(
+      //     padding: EdgeInsets.symmetric(
+      //         horizontal: getHorizontalSize(40)),
+      //     child: Center(
+      //       child: Material(
+      //         color: Colors.transparent,
+      //         child: Wrap(
+      //           children: [
+      //             Container(
+      //               decoration: BoxDecoration(
+      //                   color: ColorConstant
+      //                       .primaryWhite,
+      //                   borderRadius:
+      //                   const BorderRadius.all(
+      //                       Radius.circular(15))),
+      //               margin: const EdgeInsets.only(
+      //                   bottom: 20),
+      //               padding: const EdgeInsets.only(
+      //                 bottom: 20,
+      //               ),
+      //               constraints: const BoxConstraints(
+      //                   minWidth: 180),
+      //               child: Column(
+      //                 children: [
+      //                   Container(
+      //                     decoration: BoxDecoration(
+      //                         color:
+      //                         Color(0xFFF4F4F6),
+      //                         borderRadius:
+      //                         const BorderRadius
+      //                             .all(
+      //                             Radius.circular(
+      //                                 15))),
+      //                     padding: EdgeInsets.all(12),
+      //                     child: InkWell(
+      //                       onTap:(){
+      //                         // Get.back();
+      //                       },
+      //                       child: Column(
+      //                         crossAxisAlignment:
+      //                         CrossAxisAlignment
+      //                             .end,
+      //                         children: [
+      //                           Icon(
+      //                               Icons.close),
+      //                           Row(
+      //                             mainAxisAlignment:
+      //                             MainAxisAlignment
+      //                                 .center,
+      //                             children: [
+      //                               Image.asset(
+      //                                   "asset/icons/ic_thumb.png")
+      //                             ],
+      //                           ),
+      //                           Icon(
+      //                             Icons.close,
+      //                             color: Colors
+      //                                 .transparent,
+      //                           ),
+      //                         ],
+      //                       ),
+      //                     ),
+      //                   ),
+      //                   const SizedBox(
+      //                     height: 20,
+      //                   ),
+      //
+      //                   const SizedBox(
+      //                     height: 10,
+      //                   ),
+      //                   Container(
+      //                       padding: const EdgeInsets
+      //                           .fromLTRB(
+      //                           0, 10, 0, 0),
+      //                       child: Text(
+      //                         "Based on your Profile and \nDocuments, You are eligible for loan \n upto "
+      //                             "\$${maximumAvailableLoan.value}. Thank You",
+      //                         textAlign:
+      //                         TextAlign.center,
+      //                         style: AppStyle
+      //                             .DmSansFont
+      //                             .copyWith(
+      //                             fontSize: getFontSize(18),
+      //                             color: ColorConstant
+      //                                 .darkBlue),
+      //                       )),
+      //                   const SizedBox(
+      //                     height: 10,
+      //                   ),
+      //                   Padding(
+      //                     padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
+      //                     child: AppElevatedButton(
+      //                         buttonColor: ColorConstant.primaryLightGreen,
+      //                         buttonName: 'Done',
+      //                         radius: 10,
+      //                         onPressed: () {
+      //                           Get.to(()=>SelectLoanTypeScreen());
+      //                         },),
+      //                   ),
+      //                 ],
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+      //     ),
+      //   ),
+      //   barrierDismissible: true,
+      // );
 
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Container(
-                            padding: const EdgeInsets
-                                .fromLTRB(
-                                0, 10, 0, 0),
-                            child: Text(
-                              "Based on your Profile and \nDocuments, You are eligible for loan \n upto "
-                                  "\$${maximumAvailableLoan.value}. Thank You",
-                              textAlign:
-                              TextAlign.center,
-                              style: AppStyle
-                                  .DmSansFont
-                                  .copyWith(
-                                  fontSize: getFontSize(18),
-                                  color: ColorConstant
-                                      .darkBlue),
-                            )),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
-                          child: AppElevatedButton(
-                              buttonColor: ColorConstant.primaryLightGreen,
-                              buttonName: 'Done',
-                              radius: 10,
-                              onPressed: () {
-                                Get.to(()=>SelectLoanTypeScreen());
-                              },),
-                        ),
-                      ],
+      Get.bottomSheet(
+          isScrollControlled: true,
+          Container(
+            height: size.height,
+            color: ColorConstant.blue26,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 40,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(14.0),
+                  child: Container(
+                    padding: EdgeInsets.all(9),
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.green,
+                    ),
+                    child: SvgPicture.asset(
+                      AppImages.icDollar,
+                      color: ColorConstant.primaryWhite,
+                      height: 30,
+                      width: 30,
                     ),
                   ),
-                ],
-              ),
+                ),
+                Padding(
+                  padding:
+                  const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
+                  child: Text(
+                    "Get Loan In Your Bank Account",
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.primaryWhite,
+                        fontWeight: FontWeight.w600,
+                        decoration: TextDecoration.none,
+                        fontSize: getFontSize(24)),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          StringConstants.BANK_INFO_TEXT,
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.primaryWhite,
+                              decoration: TextDecoration.none,
+                              fontWeight: FontWeight.w300,
+                              fontSize: getFontSize(18)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        "asset/icons/ic_okay.svg",
+                        color: Colors.green,
+                      ),
+                      SizedBox(width: 8,),
+                      Flexible(
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          StringConstants.BANK_INFO_TEXT_1,
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.primaryWhite,
+                              decoration: TextDecoration.none,
+                              fontWeight: FontWeight.w300,
+                              fontSize: getFontSize(18)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      SvgPicture.asset(
+                        "asset/icons/ic_okay.svg",
+                        color: Colors.green,
+                      ),
+                      SizedBox(width: 8,),
+                      Flexible(
+                        child: Text(
+                          textAlign: TextAlign.start,
+                          "Based on your Profile and \nDocuments, You are eligible for loan \n upto "
+                                                     "\$${maximumAvailableLoan.value}. Thank You",
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.primaryWhite,
+                              decoration: TextDecoration.none,
+                              fontWeight: FontWeight.w300,
+                              fontSize: getFontSize(18)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Spacer(),
+
+                Padding(
+                  padding: const EdgeInsets.all(12.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+
+                      Flexible(
+                        child: Text(
+                          textAlign: TextAlign.center,
+                          StringConstants.BANK_INFO_TEXT_3,
+                          style: AppStyle.DmSansFont.copyWith(
+                              color: ColorConstant.skyE8,
+                              decoration: TextDecoration.none,
+                              fontWeight: FontWeight.w300,
+                              fontSize: getFontSize(18)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 18.0),
+                  child: AppElevatedButton(
+                    buttonName: 'Continue',
+                    radius: 5,
+                    onPressed: () {
+                      Get.back();
+                      Get.to(()=>SelectLoanTypeScreen());
+                    },
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ],
             ),
           ),
-        ),
-        barrierDismissible: true,
-      );
+          backgroundColor: Colors.white,
+          elevation: 0,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(10),
+          ));
      
     }
   }

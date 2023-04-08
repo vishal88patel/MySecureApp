@@ -238,7 +238,8 @@ class CashoutCardListScreen extends StatelessWidget {
                           if(!cardListController.selectedCard.value){
                             UIUtils.showSnakBar(headerText: StringConstants.ERROR,bodyText: "Please Select a Card");
                           }else{
-                          Get.toNamed(AppRoutes.cashoutPinScreen);}
+                          Get.toNamed(AppRoutes.cashoutPinScreen);
+                          }
                         },
                       ),
                     ),

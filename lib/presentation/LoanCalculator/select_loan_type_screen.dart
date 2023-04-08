@@ -175,7 +175,7 @@ class _SelectLoanTypeScreenState extends State<SelectLoanTypeScreen> {
                                                         : ColorConstant.greenF3
                                                         .withOpacity(0.5),
                                                     borderRadius:
-                                                    BorderRadius.all(
+                                                    const BorderRadius.all(
                                                         Radius.circular(10))),
                                                 child: Padding(
                                                   padding: EdgeInsets.only(

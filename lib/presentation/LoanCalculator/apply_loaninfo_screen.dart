@@ -39,63 +39,54 @@ class ApplyLoanInfoScreen extends StatelessWidget {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          InkWell(
-                                            onTap: () {
-                                              Get.back();
-                                            },
-                                            child: Container(
+                                      Padding(
+                                        padding:  EdgeInsets.symmetric(vertical: getHorizontalSize(20)),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            InkWell(
+                                              onTap: () {
+                                                Get.back();
+                                              },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    borderRadius:
+                                                        BorderRadius.circular(12),
+                                                    border: Border.all(
+                                                        color: ColorConstant
+                                                            .backBorder)),
+                                                padding: EdgeInsets.all(6),
+                                                child: Icon(
+                                                  Icons
+                                                      .arrow_back_ios_new_outlined,
+                                                  size: 22,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              "Online Digital Loan",
+                                              style: AppStyle.DmSansFont.copyWith(
+                                                  color: ColorConstant.darkBlue,
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: getFontSize(22)),
+                                            ),
+                                            Container(
                                               decoration: BoxDecoration(
                                                   borderRadius:
                                                       BorderRadius.circular(12),
                                                   border: Border.all(
-                                                      color: ColorConstant
-                                                          .backBorder)),
-                                              padding: EdgeInsets.all(6),
+                                                      color: Colors.transparent)),
+                                              padding: EdgeInsets.all(10),
                                               child: Icon(
-                                                Icons
-                                                    .arrow_back_ios_new_outlined,
-                                                size: 22,
+                                                Icons.arrow_back_ios_new_outlined,
+                                                color: Colors.transparent,
                                               ),
                                             ),
-                                          ),
-                                          Text(
-                                            "",
-                                            style: AppStyle.DmSansFont.copyWith(
-                                                color:
-                                                    ColorConstant.primaryBlack,
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: getFontSize(20)),
-                                          ),
-                                          Container(
-                                            decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(12),
-                                                border: Border.all(
-                                                    color: Colors.transparent)),
-                                            padding: EdgeInsets.all(10),
-                                            child: Icon(
-                                              Icons.arrow_back_ios_new_outlined,
-                                              color: Colors.transparent,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                      SizedBox(
-                                        height: getVerticalSize(10),
-                                      ),
-                                      Center(
-                                        child: Text(
-                                          "Online Digital Loan",
-                                          style: AppStyle.DmSansFont.copyWith(
-                                              color: ColorConstant.darkBlue,
-                                              fontWeight: FontWeight.w700,
-                                              fontSize: getFontSize(22)),
+                                          ],
                                         ),
                                       ),
+
                                       Spacer(),
                                       Text(
                                         "Thanks for making an interest in loan please proceed with the details.",
