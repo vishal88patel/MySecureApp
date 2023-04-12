@@ -41,11 +41,9 @@ class LoanLoadingScreen extends StatelessWidget {
                                 SizedBox(
                                   height: getVerticalSize(52),
                                 ),
+                                Center(child: Image.asset("asset/icons/app_icon.png",height: getVerticalSize(80),)),
                                 SizedBox(
-                                  height: getVerticalSize(100),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(30),
+                                  height: getVerticalSize(40),
                                 ),
                                 Text(
                                   "Please Wait...",
@@ -72,17 +70,15 @@ class LoanLoadingScreen extends StatelessWidget {
                                       SizedBox(
                                         width: getVerticalSize(6),
                                       ),
-                                      Obx(
-                                        () => Text(
-                                          "Based on your Profile and \nDocuments, You are eligible for loan \nupto "
-                                          "\$${loanLoaderController.maximumAvailableLoan.value}. Thank You",
+                                       Text(
+                                          "Fetching your Credit Score and \nLoan limit",
                                           style: AppStyle.textStyleDMSANS
                                               .copyWith(
                                                   color: ColorConstant
                                                       .primaryWhite,
                                                   fontWeight: FontWeight.w500,
                                                   fontSize: getFontSize(20)),
-                                        ),
+
                                       ),
                                     ],
                                   ),
@@ -106,7 +102,7 @@ class LoanLoadingScreen extends StatelessWidget {
                                         width: getVerticalSize(6),
                                       ),
                                       Text(
-                                        "Checking for errors",
+                                        "Approving your loan application",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
                                                 color:
@@ -136,7 +132,7 @@ class LoanLoadingScreen extends StatelessWidget {
                                         width: getVerticalSize(6),
                                       ),
                                       Text(
-                                        "Sending your data for verification",
+                                        "Checking your documents and \npersonal details",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
                                                 color:
@@ -165,14 +161,17 @@ class LoanLoadingScreen extends StatelessWidget {
                                       SizedBox(
                                         width: getVerticalSize(6),
                                       ),
-                                      Text(
-                                        "Verifying you",
-                                        style: AppStyle.textStyleDMSANS
-                                            .copyWith(
-                                                color:
-                                                    ColorConstant.primaryWhite,
-                                                fontWeight: FontWeight.w500,
-                                                fontSize: getFontSize(20)),
+                                      Obx(
+                                            () => Text(
+                                          "Based on your Profile and \nDocuments, You are eligible for loan \nupto "
+                                              "\$${loanLoaderController.maximumAvailableLoan.value}. Thank You",
+                                          style: AppStyle.textStyleDMSANS
+                                              .copyWith(
+                                                  color:
+                                                      ColorConstant.primaryWhite,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontSize: getFontSize(20)),
+                                        ),
                                       ),
                                     ],
                                   ),

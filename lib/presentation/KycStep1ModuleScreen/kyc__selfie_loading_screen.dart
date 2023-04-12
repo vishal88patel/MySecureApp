@@ -40,11 +40,9 @@ class KYCSelfieLoadingScreen extends StatelessWidget {
                           SizedBox(
                             height: getVerticalSize(52),
                           ),
+                          Center(child: Image.asset("asset/icons/app_icon.png",height: getVerticalSize(80),)),
                           SizedBox(
-                            height: getVerticalSize(100),
-                          ),
-                          SizedBox(
-                            height: getVerticalSize(30),
+                            height: getVerticalSize(40),
                           ),
                           Text(
                             "Please Wait...",
@@ -71,7 +69,7 @@ class KYCSelfieLoadingScreen extends StatelessWidget {
                                   width: getVerticalSize(6),
                                 ),
                                 Text(
-                                  "Uploading Your Photos",
+                                  "Establishing a secure connection \nto the server",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
                                           color: ColorConstant.primaryWhite,
@@ -98,7 +96,7 @@ class KYCSelfieLoadingScreen extends StatelessWidget {
                                   width: getVerticalSize(6),
                                 ),
                                 Text(
-                                  "Checking for errors",
+                                  "Scanning your document…",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
                                           color: ColorConstant.primaryWhite,
@@ -124,7 +122,7 @@ class KYCSelfieLoadingScreen extends StatelessWidget {
                                   width: getVerticalSize(6),
                                 ),
                                 Text(
-                                  "Sending your data for verification",
+                                  "Checking for blur or unclear \ndocuments",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
                                           color: ColorConstant.primaryWhite,
@@ -150,7 +148,7 @@ class KYCSelfieLoadingScreen extends StatelessWidget {
                                   width: getVerticalSize(6),
                                 ),
                                 Text(
-                                  "Verifying you",
+                                  "Validating with facial recognition \nand document uploaded",
                                   style: AppStyle.textStyleDMSANS
                                       .copyWith(
                                           color: ColorConstant.primaryWhite,

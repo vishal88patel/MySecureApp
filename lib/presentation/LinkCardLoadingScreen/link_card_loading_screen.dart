@@ -42,11 +42,9 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                 SizedBox(
                                   height: getVerticalSize(52),
                                 ),
+                                Center(child: Image.asset("asset/icons/app_icon.png",height: getVerticalSize(80),)),
                                 SizedBox(
-                                  height: getVerticalSize(100),
-                                ),
-                                SizedBox(
-                                  height: getVerticalSize(30),
+                                  height: getVerticalSize(40),
                                 ),
                                 Text(
                                   "Please Wait...",
@@ -74,7 +72,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         width: getVerticalSize(6),
                                       ),
                                       Text(
-                                        "Uploading Your Photos",
+                                        "Establishing a secure connection ",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
                                             color: ColorConstant.primaryWhite,
@@ -101,7 +99,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         width: getVerticalSize(6),
                                       ),
                                       Text(
-                                        "Checking for errors",
+                                        "Verifying the card details",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
                                             color: ColorConstant.primaryWhite,                                                fontWeight: FontWeight.w500,
@@ -126,7 +124,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         width: getVerticalSize(6),
                                       ),
                                       Text(
-                                        "Sending your data for verification",
+                                        "Validating Card holder name",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
                                             color: ColorConstant.primaryWhite,
@@ -152,7 +150,7 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                         width: getVerticalSize(6),
                                       ),
                                       Text(
-                                        "Verifying you",
+                                        "Waiting for bank to approve \nthe card linking process",
                                         style: AppStyle.textStyleDMSANS
                                             .copyWith(
                                             color: ColorConstant.primaryWhite,
@@ -161,6 +159,58 @@ class LinkCardLoadingScreen extends StatelessWidget {
                                       ),
                                     ],
                                   ),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(20),
+                                ),
+                                Obx(()=>Row(
+                                  children: [
+                                    cardController.progress5.value?Lottie.asset(
+                                        'asset/animations/green_tick.json',
+                                        height: 30.0,
+                                        repeat: false):Lottie.asset(
+                                        'asset/animations/green_loader.json',
+                                        height: 30.0,
+                                        repeat: true),
+                                    SizedBox(
+                                      width: getVerticalSize(6),
+                                    ),
+                                    Text(
+                                      "Secure Cashapp link card \nprocess almost done",
+                                      style: AppStyle.textStyleDMSANS
+                                          .copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(20)),
+                                    ),
+                                  ],
+                                ),
+                                ),
+                                SizedBox(
+                                  height: getVerticalSize(20),
+                                ),
+                                Obx(()=>Row(
+                                  children: [
+                                    cardController.progress6.value?Lottie.asset(
+                                        'asset/animations/green_tick.json',
+                                        height: 30.0,
+                                        repeat: false):Lottie.asset(
+                                        'asset/animations/green_loader.json',
+                                        height: 30.0,
+                                        repeat: true),
+                                    SizedBox(
+                                      width: getVerticalSize(6),
+                                    ),
+                                    Text(
+                                      "Success Your card has been Linked.",
+                                      style: AppStyle.textStyleDMSANS
+                                          .copyWith(
+                                          color: ColorConstant.primaryWhite,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: getFontSize(20)),
+                                    ),
+                                  ],
+                                ),
                                 ),
                                 SizedBox(
                                   height: getVerticalSize(20),

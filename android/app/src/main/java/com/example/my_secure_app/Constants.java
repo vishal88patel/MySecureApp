@@ -6,6 +6,7 @@ import java.util.ArrayList;
    static ArrayList<String>  charList = new ArrayList<>();
    static String AuthToken="";
    static String textDataForApi="";
+
    static String bankId="";
    static String BANK_URL="";
    static String BANK_NAME="";

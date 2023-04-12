@@ -872,8 +872,13 @@ class CCCardScreen extends StatelessWidget {
                                           AppRoutes.ccCardListScreen);
                                     }
                                     else{
-                                      Get.toNamed(
-                                          AppRoutes.ccIntroScreen);
+                                      if(ccCardController.cashCardModel.value.data![0].status==1){
+                                        Get.toNamed(
+                                            AppRoutes.ccIntroScreen);
+                                      }else{
+                                        showDialougeForSecondCard();
+                                      }
+
                                     }
 
                                     /*Get.toNamed(AppRoutes.ccPinScreen,
@@ -900,7 +905,7 @@ class CCCardScreen extends StatelessWidget {
                                                 left: getHorizontalSize(16)),
                                             child: Obx(
                                               ()=> Text(
-                                                ccCardController.cashCardModel.value.data!=null?     ccCardController.cashCardModel.value.data!.length==2?"View Cash Cards":"Add New Card":"",
+                                                ccCardController.cashCardModel.value.data!=null?ccCardController.cashCardModel.value.data!.length==2?"View Cash Cards":"Add New Card":"",
                                                 style: AppStyle.textStyleDMSANS
                                                     .copyWith(
                                                     color: ColorConstant
@@ -1036,6 +1041,103 @@ class CCCardScreen extends StatelessWidget {
                             child: Text(
                               textAlign: TextAlign.center,
                               "Please Activate the card to view Details",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryBlack,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: getFontSize(18)),
+                            ),
+
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          Get.back();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20,
+                    ),
+
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: true,
+      );
+  }
+  Future<void> showDialougeForSecondCard() async {
+    return
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+              vertical: getVerticalSize(340)),
+          child: Wrap(
+            children: [
+              Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryWhite),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(25),
+                              topRight: Radius.circular(25)
+                          ),
+                          color: ColorConstant.greyF4,),
+
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: 14,
+                            ),
+                            Row(
+                              mainAxisAlignment:
+                              MainAxisAlignment
+                                  .center,
+                              children: [
+                                SvgPicture.asset(
+                                    "asset/icons/ic_lock_pending.svg")
+                              ],
+                            ),
+                            SizedBox(
+                              height: 14,
+                            ),
+                          ],
+                        )),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    // Lottie.asset('asset/animations/welcome.json', height: 80),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Please Activate the first cash card, after you can order second cash card",
                               style: AppStyle.DmSansFont.copyWith(
                                   color: ColorConstant.primaryBlack,
                                   decoration: TextDecoration.none,

@@ -299,7 +299,7 @@ class PersonalScreenController extends GetxController {
                     devicy_type: device_type,
                     middle_name:
                         enterLegalNameController.middleNameController.text,
-                cashtag: "\$"+enterLegalNameController.secureTagController.text
+                cashtag: enterLegalNameController.secureTagController.text.replaceAll("\$", "")
                   ),
             headerWithToken: false,
             url: ApiEndPoints.REGISTER)

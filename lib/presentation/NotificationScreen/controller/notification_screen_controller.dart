@@ -50,10 +50,10 @@ class NotificationScreenController extends GetxController {
         isLoading.value = false;
         notificationModel.value = NotificationResponseModel.fromJson(value);
         globalNotificationCount.value = notificationModel.value.data!.length;
-        originallist.clear();
+        //originallist.clear();
         list.clear();
-        originallist.addAll(notificationModel.value.data ?? []);
-        list.value = originallist.reversed.toList();
+        list.addAll(notificationModel.value.data ?? []);
+        //list.value = originallist.reversed.toList();
       } else {
         UIUtils.showSnakBar(
             bodyText: value['message'], headerText: StringConstants.ERROR);

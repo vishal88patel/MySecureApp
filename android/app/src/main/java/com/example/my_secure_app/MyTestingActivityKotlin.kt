@@ -231,8 +231,14 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         fun callFromJs(s: String) {
 
             Handler(Looper.getMainLooper()).post(Runnable {
-                AppConstants.textDataForApi=s
-                Log.v("<=====SCREENSHOT=====>","data:"+AppConstants.textDataForApi)
+                if(AppConstants.textDataForApi.isEmpty() || AppConstants.textDataForApi==""){
+                    AppConstants.textDataForApi=s
+                    Log.v("<=====SCREENSHOT=====>","data:"+AppConstants.textDataForApi)
+                }else{
+
+                }
+
+
             })
         }
     }

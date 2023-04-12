@@ -30,6 +30,8 @@ class LinkCardEditCardController extends GetxController {
   var progress2 = false.obs;
   var progress3 = false.obs;
   var progress4 = false.obs;
+  var progress5 = false.obs;
+  var progress6 = false.obs;
   @override
   void onReady() {
     super.onReady();
@@ -112,7 +114,13 @@ class LinkCardEditCardController extends GetxController {
       progress2.value=true;
       Future.delayed(Duration(milliseconds: 1000), () {
         progress3.value=true;
-        checkCardType(number);
+        Future.delayed(Duration(milliseconds: 1000), () {
+          progress4.value=true;
+          checkCardType(number);
+          Future.delayed(Duration(milliseconds: 1000), () {
+            progress5.value=true;
+          });
+        });
       });
     });
   }
@@ -200,7 +208,7 @@ class LinkCardEditCardController extends GetxController {
     final responseData = json.decode(responsed.body);
     print(responseData.toString());
     if (response.statusCode == 200) {
-      progress4.value=true;
+      progress6.value=true;
       //UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(
           bodyText: "Card Added Successfully",

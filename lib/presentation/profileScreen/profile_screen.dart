@@ -192,11 +192,11 @@ class ProfileScreen extends StatelessWidget {
                                                     right: 6,
                                                   ),
                                                   child: Text(
-                                                    homeController
-                                                            .loginResponseModel!
-                                                            .data!
-                                                            .cashtag ??
-                                                        '',
+                                                    "\$${homeController
+                                                        .loginResponseModel!
+                                                        .data!
+                                                        .cashtag ??
+                                                        ''}",
                                                     overflow:
                                                         TextOverflow.ellipsis,
                                                     textAlign: TextAlign.left,
