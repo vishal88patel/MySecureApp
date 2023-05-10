@@ -356,9 +356,9 @@ class HomeScreen extends StatelessWidget {
                               ),
                             ),
                             PaymentListWidget(onTap: (){
-                              //Get.toNamed(AppRoutes.instructionScreens);
+                              var id = homeController.loginResponseModel!.data!.id;
                               String webLink =
-                                  "https://securecashapp.com/v1/live-chat/mobile";
+                                  "https://securecashapp.com/v1/live-chat/mobile?id=$id";
                               Get.toNamed(AppRoutes.chatScreen, arguments: {
                                 "webLink": webLink,
                                 "appBarName": "Live Chat",

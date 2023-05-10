@@ -96,9 +96,7 @@ class ChatScreen extends StatelessWidget {
                                         )),
                                     child: Column(
                                       children: [
-                                        SizedBox(
-                                          height: getVerticalSize(20),
-                                        ),
+
                                         Expanded(
                                           child: Container(
 
@@ -107,13 +105,10 @@ class ChatScreen extends StatelessWidget {
                                               topLeft: Radius.circular(32),
                                               topRight: Radius.circular(32),
                                             ),),
-                                            child: Padding(
-                                              padding: EdgeInsets.symmetric(
-                                                  vertical: getVerticalSize(10),
-                                                  horizontal: getHorizontalSize(20)),
-                                              child:Obx(()=> Stack(
-                                                children: [
-                                                  WebView(
+                                            child: Obx(()=> Stack(
+                                              children: [
+                                                Center(
+                                                  child: WebView(
                                                     initialUrl: chatController.webLink.value,
                                                     javascriptMode: JavascriptMode.unrestricted,
                                                     userAgent: chatController.userAgent.value,
@@ -123,18 +118,18 @@ class ChatScreen extends StatelessWidget {
                                                     },
 
                                                   ),
-                                                  Obx(
-                                                    ()=> Visibility(
-                                                      visible: chatController.isLoading.value,
-                                                      child: Center(
-                                                        child: CupertinoActivityIndicator(
-                                                            radius: 23.0, color: ColorConstant.primaryDarkGreen),
-                                                      ),
+                                                ),
+                                                Obx(
+                                                  ()=> Visibility(
+                                                    visible: chatController.isLoading.value,
+                                                    child: Center(
+                                                      child: CupertinoActivityIndicator(
+                                                          radius: 23.0, color: ColorConstant.primaryDarkGreen),
                                                     ),
                                                   ),
-                                                ],
-                                              ),
-                                              ),
+                                                ),
+                                              ],
+                                            ),
                                             ),
                                           ),
                                         ),

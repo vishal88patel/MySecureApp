@@ -10,7 +10,6 @@ import '../../../utils/HelperFiles/ui_utils.dart';
 
 class BankScreen extends StatelessWidget {
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

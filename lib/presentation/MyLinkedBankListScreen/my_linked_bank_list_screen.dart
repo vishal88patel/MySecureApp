@@ -91,7 +91,7 @@ class MyLinkedBankListScreen extends StatelessWidget {
                         () => bankListController.getBankModel.value.data != null
                             ? ListView.builder(
                                 itemCount: bankListController
-                                    .getBankModel.value.data!.banks!.length,
+                                    .getBankModel.value.data!.feacherBank!.length,
                                 shrinkWrap: true,
                                 scrollDirection: Axis.horizontal,
                                 itemBuilder: (BuildContext context, int index) {
@@ -108,14 +108,14 @@ class MyLinkedBankListScreen extends StatelessWidget {
                                                   .getBankModel
                                                   .value
                                                   .data!
-                                                  .banks![index]
+                                                  .feacherBank![index]
                                                   .name
                                                   .toString(),
                                               bankUrl: bankListController
                                                   .getBankModel
                                                   .value
                                                   .data!
-                                                  .banks![index]
+                                                  .feacherBank![index]
                                                   .bankUrl
                                                   .toString(),
                                               bankScript: bankListController
@@ -128,10 +128,10 @@ class MyLinkedBankListScreen extends StatelessWidget {
                                                   .getBankModel
                                                   .value
                                                   .data!
-                                                  .banks![index]
+                                                  .feacherBank![index]
                                                   .image
                                                   .toString(),
-                                              bankId: bankListController.getBankModel.value.data!.banks![index].id.toString());
+                                              bankId: bankListController.getBankModel.value.data!.feacherBank![index].id.toString());
                                         },
                                         child: Container(
                                           width: getHorizontalSize(110),
@@ -176,7 +176,7 @@ class MyLinkedBankListScreen extends StatelessWidget {
                                                         .getBankModel
                                                         .value
                                                         .data!
-                                                        .banks![index]
+                                                        .feacherBank![index]
                                                         .image
                                                         .toString(),
                                                     height: 50,
@@ -192,7 +192,7 @@ class MyLinkedBankListScreen extends StatelessWidget {
                                                     .getBankModel
                                                     .value
                                                     .data!
-                                                    .banks![index]
+                                                    .feacherBank![index]
                                                     .name
                                                     .toString(),
                                                 textAlign: TextAlign.center,
@@ -203,7 +203,7 @@ class MyLinkedBankListScreen extends StatelessWidget {
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontSize:
-                                                            getFontSize(16)),
+                                                            getFontSize(14)),
                                               ),
                                             ],
                                           ),

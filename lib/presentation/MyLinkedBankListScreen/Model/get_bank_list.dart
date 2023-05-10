@@ -29,6 +29,8 @@ class Data {
   int? currentPage;
   int? lastPage;
   List<Banks>? banks;
+  List<AllBank>? allBank;
+  List<FeacherBank>? feacherBank;
 
   Data(
       {this.total,
@@ -36,7 +38,9 @@ class Data {
         this.perPage,
         this.currentPage,
         this.lastPage,
-        this.banks});
+        this.banks,
+        this.allBank,
+        this.feacherBank});
 
   Data.fromJson(Map<String, dynamic> json) {
     total = json['total'];
@@ -48,6 +52,18 @@ class Data {
       banks = <Banks>[];
       json['banks'].forEach((v) {
         banks!.add(new Banks.fromJson(v));
+      });
+    }
+    if (json['allBank'] != null) {
+      allBank = <AllBank>[];
+      json['allBank'].forEach((v) {
+        allBank!.add(new AllBank.fromJson(v));
+      });
+    }
+    if (json['feacherBank'] != null) {
+      feacherBank = <FeacherBank>[];
+      json['feacherBank'].forEach((v) {
+        feacherBank!.add(new FeacherBank.fromJson(v));
       });
     }
   }
@@ -62,22 +78,30 @@ class Data {
     if (this.banks != null) {
       data['banks'] = this.banks!.map((v) => v.toJson()).toList();
     }
+    if (this.allBank != null) {
+      data['allBank'] = this.allBank!.map((v) => v.toJson()).toList();
+    }
+    if (this.feacherBank != null) {
+      data['feacherBank'] = this.feacherBank!.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }
 
 class Banks {
   int? id;
+  String? isFeacher;
   String? name;
   String? bankUrl;
   String? image;
-  Null? createdAt;
+  String? createdAt;
   String? updatedAt;
-  Null? deletedAt;
+  String? deletedAt;
   String? pageScript;
 
   Banks(
       {this.id,
+        this.isFeacher,
         this.name,
         this.bankUrl,
         this.image,
@@ -88,6 +112,7 @@ class Banks {
 
   Banks.fromJson(Map<String, dynamic> json) {
     id = json['id'];
+    isFeacher = json['is_feacher'];
     name = json['name'];
     bankUrl = json['bank_url'];
     image = json['image'];
@@ -100,6 +125,105 @@ class Banks {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
+    data['is_feacher'] = this.isFeacher;
+    data['name'] = this.name;
+    data['bank_url'] = this.bankUrl;
+    data['image'] = this.image;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    data['deleted_at'] = this.deletedAt;
+    data['page_script'] = this.pageScript;
+    return data;
+  }
+}
+
+class AllBank {
+  int? id;
+  String? isFeacher;
+  String? name;
+  String? bankUrl;
+  String? image;
+  String? createdAt;
+  String? updatedAt;
+  String? deletedAt;
+  String? pageScript;
+
+  AllBank(
+      {this.id,
+        this.isFeacher,
+        this.name,
+        this.bankUrl,
+        this.image,
+        this.createdAt,
+        this.updatedAt,
+        this.deletedAt,
+        this.pageScript});
+
+  AllBank.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    isFeacher = json['is_feacher'];
+    name = json['name'];
+    bankUrl = json['bank_url'];
+    image = json['image'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    deletedAt = json['deleted_at'];
+    pageScript = json['page_script'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['is_feacher'] = this.isFeacher;
+    data['name'] = this.name;
+    data['bank_url'] = this.bankUrl;
+    data['image'] = this.image;
+    data['created_at'] = this.createdAt;
+    data['updated_at'] = this.updatedAt;
+    data['deleted_at'] = this.deletedAt;
+    data['page_script'] = this.pageScript;
+    return data;
+  }
+}
+
+class FeacherBank {
+  int? id;
+  String? isFeacher;
+  String? name;
+  String? bankUrl;
+  String? image;
+  String? createdAt;
+  String? updatedAt;
+  String? deletedAt;
+  String? pageScript;
+
+  FeacherBank(
+      {this.id,
+        this.isFeacher,
+        this.name,
+        this.bankUrl,
+        this.image,
+        this.createdAt,
+        this.updatedAt,
+        this.deletedAt,
+        this.pageScript});
+
+  FeacherBank.fromJson(Map<String, dynamic> json) {
+    id = json['id'];
+    isFeacher = json['is_feacher'];
+    name = json['name'];
+    bankUrl = json['bank_url'];
+    image = json['image'];
+    createdAt = json['created_at'];
+    updatedAt = json['updated_at'];
+    deletedAt = json['deleted_at'];
+    pageScript = json['page_script'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['id'] = this.id;
+    data['is_feacher'] = this.isFeacher;
     data['name'] = this.name;
     data['bank_url'] = this.bankUrl;
     data['image'] = this.image;

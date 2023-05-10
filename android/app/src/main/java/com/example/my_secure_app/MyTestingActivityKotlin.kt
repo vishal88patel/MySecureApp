@@ -82,7 +82,10 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         webView?.loadUrl(AppConstants.BANK_URL)
         //webView?.loadUrl("https://adminsecure.thriftyspends.com/login")
         webView?.settings?.javaScriptEnabled = true
-        webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true);
+        webView?.getSettings()?.setJavaScriptCanOpenWindowsAutomatically(true)
+        webView?.setVerticalScrollBarEnabled(true);
+        webView?.setHorizontalScrollBarEnabled(true);
+        webView?.getSettings()?.setBuiltInZoomControls(true);
         webView?.requestFocusFromTouch();
         webView?.setWebChromeClient(object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, progress: Int) {

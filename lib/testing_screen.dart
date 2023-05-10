@@ -13,7 +13,7 @@ var searchScaffoldKey = GlobalKey<ScaffoldState>();
 final customTheme = ThemeData(
   primarySwatch: Colors.blue,
   brightness: Brightness.dark,
-  accentColor: Colors.redAccent,
+  hintColor: Colors.redAccent,
   inputDecorationTheme: InputDecorationTheme(
     border: OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(4.00)),
