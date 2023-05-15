@@ -332,6 +332,20 @@ class CCCardCameraScreenState extends State<CCCardCameraScreen>
                     ),
                   ],
                 ),
+                Spacer(),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(Icons.lock, color: ColorConstant.primaryWhite,size: getVerticalSize(20)),
+                    Text(
+                      " Secured with 256-bit encryption",
+                      style: AppStyle.textStyleDMSANS.copyWith(
+                          color: ColorConstant.primaryWhite,
+                          fontWeight: FontWeight.w400,
+                          fontSize: getFontSize(18)),
+                    ),
+                  ],
+                ),
               ],
             ),
           ],

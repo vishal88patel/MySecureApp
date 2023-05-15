@@ -60,11 +60,35 @@ class CardListScreenController extends GetxController {
   }
 
   Future<void> callGetCardListApi() async {
+    mainCardList.value.clear();
     ApiService()
         .callGetApi(
         body: await getBankApiBody(),
         headerWithToken: true,
         showLoader: true,
+        url: ApiEndPoints.GET_CARDLIST)
+        .then((value) {
+      print(value);
+      if (value['status']) {
+        cardListModel.value = CardListResponseModel.fromJson(value);
+        for (int i = 0; i < cardListModel.value.data!.length; i++) {
+          mainCardList.value.add(cardListModel.value.data![i]);
+        }
+
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<void> callGetCardListApiNoloader() async {
+    mainCardList.value.clear();
+    ApiService()
+        .callGetApi(
+        body: await getBankApiBody(),
+        headerWithToken: true,
+        showLoader: false,
         url: ApiEndPoints.GET_CARDLIST)
         .then((value) {
       print(value);

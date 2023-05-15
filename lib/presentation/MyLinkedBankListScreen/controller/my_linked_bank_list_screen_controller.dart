@@ -29,15 +29,16 @@ class MyLinkedBankListScreenController extends GetxController {
 
   static const platformChannel = MethodChannel('GET_DETAIL_CHANNEL');
   static const MethodChannel platformForAndroid =
-      const MethodChannel('INCOMING_EVENTS');
+  const MethodChannel('INCOMING_EVENTS');
   static const MethodChannel platformForIOS =
-      const MethodChannel('INCOMING_EVENTS');
+  const MethodChannel('INCOMING_EVENTS');
   var arguments = Get.arguments;
   var bankId = "";
   var bankName = "";
   var bankUrl = "";
   var bankScript = "";
   var bankImage = "";
+  TextEditingController searchCntr = TextEditingController();
 
   @override
   void onReady() {
@@ -57,8 +58,6 @@ class MyLinkedBankListScreenController extends GetxController {
 
   void selectBankOnTap(BuildContext context,
       {bankId, bankName, bankUrl, bankScript, bankImage}) {
-
-
     Get.dialog(
       Padding(
         padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(40)),
@@ -75,7 +74,7 @@ class MyLinkedBankListScreenController extends GetxController {
                       decoration: BoxDecoration(
                           color: ColorConstant.primaryWhite,
                           borderRadius:
-                              const BorderRadius.all(Radius.circular(15))),
+                          const BorderRadius.all(Radius.circular(15))),
                       margin: const EdgeInsets.only(bottom: 20),
                       padding: const EdgeInsets.only(
                         bottom: 20,
@@ -107,7 +106,7 @@ class MyLinkedBankListScreenController extends GetxController {
                                   height: getVerticalSize(50),
                                   child: AppElevatedButton(
                                     buttonColor:
-                                        ColorConstant.appProgressBarColor,
+                                    ColorConstant.appProgressBarColor,
                                     buttonName: 'Cancel',
                                     radius: 10,
                                     onPressed: () {
@@ -122,7 +121,7 @@ class MyLinkedBankListScreenController extends GetxController {
                                   height: getVerticalSize(50),
                                   child: AppElevatedButton(
                                     buttonColor:
-                                        ColorConstant.primaryLightGreen,
+                                    ColorConstant.primaryLightGreen,
                                     buttonName: 'Ok',
                                     radius: 10,
                                     onPressed: () {
@@ -234,8 +233,8 @@ class MyLinkedBankListScreenController extends GetxController {
   }
 
   void loadData() async {
-    getBankModel.value.data!.banks!.forEach((element) {
-      contacts.add(ContactInfo(
+    getBankModel.value.data!.allBank!.forEach((element) {
+      contacts.value.add(ContactInfo(
           name: element.name.toString(),
           bankId: element.id.toString(),
           bgColor: Colors.red,
@@ -298,10 +297,10 @@ class MyLinkedBankListScreenController extends GetxController {
   Future<void> callGetLinkedBankApi() async {
     ApiService()
         .callGetApi(
-            body: await getBankApiBody(),
-            headerWithToken: true,
-            showLoader: true,
-            url: ApiEndPoints.GET_BANK_API)
+        body: await getBankApiBody(),
+        headerWithToken: true,
+        showLoader: true,
+        url: ApiEndPoints.GET_BANK_API)
         .then((value) {
       print(value);
       if (value['status'] ?? false) {
@@ -408,7 +407,7 @@ class MyLinkedBankListScreenController extends GetxController {
               ),
               Padding(
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
+                const EdgeInsets.symmetric(horizontal: 14.0, vertical: 8),
                 child: Text(
                   "Link Your Bank Account",
                   style: AppStyle.textStyleDMSANS.copyWith(
@@ -549,4 +548,27 @@ class MyLinkedBankListScreenController extends GetxController {
   void onclickOfContinueButton() {
     Get.toNamed(AppRoutes.bankListScreen);
   }
-}
+
+  void searchOnList() {
+    if (searchCntr.text.isEmpty) {
+      contacts.clear();
+      loadData();
+    } else {
+      contacts.clear();
+      for (var element in getBankModel.value.data!.allBank!) {
+        if (element.name!.toLowerCase().contains(
+            searchCntr.text.toLowerCase())) {
+          contacts.value.add(ContactInfo(
+              name: element.name.toString(),
+              bankId: element.id.toString(),
+              bgColor: Colors.red,
+              firstletter: element.name.toString().substring(0, 1),
+              bankImage: element.image.toString(),
+              bankUrl: element.bankUrl.toString(),
+              bankScript: getBankModel.value.data!.bankStript.toString(),
+              namePinyin: "",
+              tagIndex: ""));
+        } else {}
+      }
+    }
+  }}

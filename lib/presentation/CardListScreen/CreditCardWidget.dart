@@ -11,12 +11,14 @@ class CreditCardWidget extends StatelessWidget {
   final String cardHolderName;
   final String expiryDate;
   final String cardType;
+  final bool color;
 
   const CreditCardWidget({Key? key,
     required this.cardNumber,
     required this.cardHolderName,
     required this.expiryDate,
     required this.cardType,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -26,8 +28,7 @@ class CreditCardWidget extends StatelessWidget {
 
       Stack(alignment: Alignment.center,
       children: [
-        Image.asset('asset/icons/credit_card.png'),
-
+       Image.asset( color?'asset/icons/credit_card.png':'asset/icons/card_color_image.png'),
         Positioned(
           top: getVerticalSize(20),
           child: SizedBox(width: size.width,

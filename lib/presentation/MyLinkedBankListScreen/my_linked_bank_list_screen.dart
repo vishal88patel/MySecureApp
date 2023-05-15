@@ -224,7 +224,11 @@ class MyLinkedBankListScreen extends StatelessWidget {
                         ),
                         child: TextFormField(
                           style: AppStyle.DmSansFont.copyWith(
-                              color: ColorConstant.primaryWhite),
+                              color: ColorConstant.primaryBlack),
+                          controller: bankListController.searchCntr,
+                          onChanged: (val){
+                            bankListController.searchOnList();
+                          },
                           decoration: InputDecoration(
                               fillColor: ColorConstant.naturalGrey2,
                               filled: true,

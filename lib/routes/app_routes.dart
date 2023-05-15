@@ -65,6 +65,8 @@ import '../presentation/CreatePasswordScreen/binding/create_password_screen_bind
 import '../presentation/CreatePasswordScreen/create_password_screen.dart';
 import '../presentation/DashBoardScreen/binding/dashboard_screen_binding.dart';
 import '../presentation/DashBoardScreen/dashboard_screen.dart';
+import '../presentation/EditCardScreen/binding/edit_card_screen_binding.dart';
+import '../presentation/EditCardScreen/edit_card_screen.dart';
 import '../presentation/EnterAddress/binding/enter_address_screen_binding.dart';
 import '../presentation/EnterAddress/enter_address_screen.dart';
 import '../presentation/EnterLegalNameDetails/binding/enter_legel_name_screen_binding.dart';
@@ -205,6 +207,7 @@ class AppRoutes {
   static String accountDetailListScreen = '/account__detail_list_screen';
   static String cardDetailListScreen = '/card_detail_list_screen';
   static String cardListScreen = '/card_list_screen';
+  static String cardDetailsScreen = '/card_details_screen';
 
   static String cashoutCardBankScreen = '/cashout_card_bank_screen';
   static String cashoutCardListScreen = '/cashout_card_list_screen';
@@ -294,6 +297,7 @@ class AppRoutes {
   static String linkCardAddCardScreen = '/link_card_add_card_screen';
   static String linkCardLoadingScreen = '/link_card_loading_screen';
   static String linkCardEditCardScreen = '/link_card_edit_card_screen';
+  static String editCardScreen = '/edit_card_screen';
   static String linkCardSuccessScreen = '/link_card_success_screen';
 
 
@@ -793,6 +797,15 @@ class AppRoutes {
       ],
     ),
 
+    GetPage(
+      name: editCardScreen,
+      transition: Transition.rightToLeft,
+      transitionDuration: Duration(milliseconds: 400),
+      page: () => EditCardScreen(),
+      bindings: [
+        EditCardBinding(),
+      ],
+    ),
     /*GetPage(
       name: cardLoaderScreen,
       transition: Transition.rightToLeft,

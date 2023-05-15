@@ -335,16 +335,15 @@ class PersonalDetailsScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(20),
                     ),
-                    Obx(
-                      () => SizedBox(
+                     SizedBox(
                           child: AppTextField(
                         controller:
                             personalDetailsController.emailController,
                         keyBordType: TextInputType.emailAddress,
                         hintText: "Email",
-                        readOnly: personalDetailsController.readOnly.value,
+                        readOnly: true,
                       )),
-                    ),
+
                     SizedBox(
                       height: getVerticalSize(20),
                     ),
@@ -387,16 +386,15 @@ class PersonalDetailsScreen extends StatelessWidget {
                     SizedBox(
                       height: getVerticalSize(20),
                     ),
-                    Obx(
-                      () => SizedBox(
+                    SizedBox(
                           child: AppTextField(
                         controller: personalDetailsController.ssnController,
                         keyBordType: TextInputType.number,
                         hintText: "Social Security Number",
                         maxLength: 9,
-                        readOnly: personalDetailsController.readOnly.value,
+                        readOnly: true,
                       )),
-                    ),
+
                   ],
                 ),
               ),
@@ -408,10 +406,7 @@ class PersonalDetailsScreen extends StatelessWidget {
                     textColor: ColorConstant.primaryWhite,
                     onPressed: () {
                       FocusManager.instance.primaryFocus?.unfocus();
-                      UIUtils.showSnakBar(
-                          bodyText:
-                              "This Api in maintenance and will be working soon!!",
-                          headerText: StringConstants.ERROR);
+                      personalDetailsController.onTapUpdateButton(context);
                     }),
               ),
               SizedBox(

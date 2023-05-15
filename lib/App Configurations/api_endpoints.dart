@@ -44,5 +44,6 @@ class ApiEndPoints {
   static String UPDATE_CASHCARD_PIN = BASE_URL + "/updateCashCardPin";
   static String ACTIVE_CASHCARD = BASE_URL + "/activeCashCard";
   static String GET_STASTICS = BASE_URL + "/getMyStatistic";
+  static String DELETE_CARD = BASE_URL + "/removeCareditCard";
 
 }

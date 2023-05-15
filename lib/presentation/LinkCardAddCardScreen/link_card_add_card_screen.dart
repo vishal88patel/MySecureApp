@@ -193,6 +193,21 @@ class LinkCardAddCardScreen extends StatelessWidget {
                                             ],
                                           ),
                                         ),
+                                        Padding(
+                                          padding:  EdgeInsets.only(left:  getHorizontalSize(20)),
+                                          child: Row(
+                                            children: [
+                                              Icon(Icons.lock, color: ColorConstant.primaryBlack,size: getVerticalSize(20),),
+                                              Text(
+                                                " Secured with 256-bit encryption",
+                                                style: AppStyle.textStyleDMSANS.copyWith(
+                                                    color: ColorConstant.primaryBlack,
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: getFontSize(18)),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                         SizedBox(height: getVerticalSize(24),),
                                         SelectModeWidget(
                                           onTap: (){

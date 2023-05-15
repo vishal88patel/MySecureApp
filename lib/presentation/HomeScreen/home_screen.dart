@@ -144,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "Welcome to Mysecure App",
+                                  "Welcome to Secure Cashapp",
                                   style: AppStyle.textStyleDMSANS.copyWith(
                                       color: ColorConstant.naturalGrey,
                                       fontWeight: FontWeight.w400,

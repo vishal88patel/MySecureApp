@@ -66,24 +66,18 @@ class KycPhoneScreen extends StatelessWidget {
                                           fontWeight: FontWeight.w700,
                                           fontSize: getFontSize(20)),
                                     ),
-                                    InkWell(
-                                      onTap: () {
-                                        showDialog();
-                                      },
-                                      child: Container(
-                                        decoration: BoxDecoration(
-                                            borderRadius:
-                                            BorderRadius.circular(12),
-                                            border: Border.all(
-                                                color: ColorConstant
-                                                    .backBorder
-                                                    )),
-                                        padding: EdgeInsets.all(6),
-                                        child: Icon(
-                                          Icons.question_mark_rounded,
-                                          size: 22,
-                                          color: Colors.black,
-                                        ),
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                          BorderRadius.circular(12),
+                                          border: Border.all(
+                                              color: Colors.transparent
+                                                  )),
+                                      padding: EdgeInsets.all(6),
+                                      child: Icon(
+                                        Icons.question_mark_rounded,
+                                        size: 22,
+                                        color: Colors.transparent,
                                       ),
                                     ),
                                   ],
@@ -155,6 +149,13 @@ class KycPhoneScreen extends StatelessWidget {
                                                       color: ColorConstant.primaryBlack,
                                                     ),
                                                     decoration: InputDecoration(
+                                                      suffixIcon:  Tooltip(
+                                                        message: 'to update the phone \nnumber navigate \nto profile details.',
+                                                        triggerMode: TooltipTriggerMode.tap,
+                                                        textAlign: TextAlign.center,
+                                                        child:Icon(Icons.question_mark_sharp),
+
+                                                      ),
                                                       hintText: 'Phone Number',
                                                       hintStyle:
                                                       AppStyle.DmSansFont.copyWith(
@@ -182,6 +183,7 @@ class KycPhoneScreen extends StatelessWidget {
                                                         .phoneNumberController,
                                                   ),
                                                 ),
+
                                               ],
                                             ),
                                           ),

@@ -6,6 +6,7 @@ import 'package:intl/intl.dart';
 import '../../../ApiServices/api_service.dart';
 import '../../../App Configurations/api_endpoints.dart';
 import '../../../App Configurations/color_constants.dart';
+import '../../../routes/app_routes.dart';
 import '../../../utils/ConstantsFiles/string_constants.dart';
 import '../../../utils/HelperFiles/math_utils.dart';
 import '../../../utils/HelperFiles/ui_utils.dart';
@@ -133,6 +134,66 @@ class PersonalDetailsScreenController extends GetxController {
    int dayDiff = today.day - birthDate.day;
 
    return yearDiff > 18 || yearDiff == 18 && monthDiff >= 0 && dayDiff >= 0;
+ }
+
+ Future<void> UpdateProfileApi(BuildContext context) async {
+   // UIUtils.showProgressDialog(isCancellable: false);
+   ApiService()
+       .callPostApi(
+       body: await UpdateProfileApiBody(),
+       headerWithToken: true,
+       showLoader: true,
+       url: ApiEndPoints.UPDATE_PROFILE)
+       .then((value) {
+     print(value);
+     if (value['status']) {
+
+       UIUtils.showSnakBar(
+           bodyText: "Personal details updated successfully",
+           headerText:"Success" );
+       Future.delayed(Duration(milliseconds: 1000), () {
+         Get.offAllNamed(AppRoutes.dashBoardScreen,
+             arguments: {"bottomTabCount": 0});  }
+       );
+     } else {
+       UIUtils.showSnakBar(
+           bodyText: value['message'] ?? '',
+           headerText: StringConstants.ERROR);
+       //Get.back();
+       //  Get.back();
+     }
+   });
+ }
+
+ Future<FormData> UpdateProfileApiBody() async {
+   final form = FormData({
+     "first_name": firstNameController.text.toString(),
+     "last_name": lastNameController.text.toString(),
+     "date_of_birth": dobController.text.toString(),
+
+   });
+   return form;
+ }
+
+ void onTapUpdateButton(BuildContext context) {
+   if (firstNameController.text.isEmpty) {
+     UIUtils.showSnakBar(
+       headerText: StringConstants.ERROR,
+       bodyText: "Please enter Firstname",
+     );
+   } else if (lastNameController.text.isEmpty) {
+     UIUtils.showSnakBar(
+       headerText: StringConstants.ERROR,
+       bodyText: "Please enter mobile",
+     );
+   } else if (dobController.text.isEmpty) {
+     UIUtils.showSnakBar(
+       headerText: StringConstants.ERROR,
+       bodyText: "Please enter email",
+     );
+   }else {
+     UpdateProfileApi(context);
+   }
  }
 
 }

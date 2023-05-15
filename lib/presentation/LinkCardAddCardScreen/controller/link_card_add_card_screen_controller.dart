@@ -63,7 +63,7 @@ class LinkCardAddCardController extends GetxController {
     var formatterYear = new DateFormat('yyyy');
     String month = formatterMonth.format(now);
     String year = formatterYear.format(now);
-    print("${expDate[0]},${expDate[1]},$month,${year.substring(2,4)}");
+   // print("${expDate[0]},${expDate[1]},$month,${year.substring(2,4)}");
     if (nameController.text.isEmpty) {
       UIUtils.showSnakBar(
           bodyText: "Please enter card holder name",
