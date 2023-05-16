@@ -233,7 +233,10 @@ class MyLinkedBankListScreenController extends GetxController {
   }
 
   void loadData() async {
+    print("========>1");
+    int count= 0;
     getBankModel.value.data!.allBank!.forEach((element) {
+      count++;
       contacts.value.add(ContactInfo(
           name: element.name.toString(),
           bankId: element.id.toString(),
@@ -244,11 +247,18 @@ class MyLinkedBankListScreenController extends GetxController {
           bankScript: getBankModel.value.data!.bankStript.toString(),
           namePinyin: "",
           tagIndex: ""));
-      handleList(contacts);
+
+      if(count==getBankModel.value.data!.allBank!.length)
+        {
+          handleList(contacts);
+        }
     });
+
+
   }
 
   void handleList(List<ContactInfo> list) {
+    print("========>2");
     if (list.isEmpty) return;
     for (int i = 0, length = list.length; i < length; i++) {
       String pinyin = PinyinHelper.getPinyinE(list[i].name);
@@ -265,7 +275,7 @@ class MyLinkedBankListScreenController extends GetxController {
 
     // show sus tag.
     SuspensionUtil.setShowSuspensionStatus(contacts);
-
+    print("========>3");
     contacts.refresh();
     update();
   }
