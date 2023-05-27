@@ -32,22 +32,23 @@ import java.util.*
 
 
 class MyTestingActivityKotlin : AppCompatActivity() {
-    private var webView: WebView?=null
-    private var progress_bar: ProgressBar?=null
-    private var url: TextView?=null
-    private var tv_counter: TextView?=null
-    private var bank_name: TextView?=null
-    private var back_button: ImageView?=null
+    private var webView: WebView? = null
+    private var progress_bar: ProgressBar? = null
+    private var url: TextView? = null
+    private var tv_counter: TextView? = null
+    private var bank_name: TextView? = null
+    private var back_button: ImageView? = null
     private val REQUEST_EXTERNAL_STORAGe = 1
-    private var JS=""" """
-    private var isSuccess:Boolean=false
-    private var isOtp:Boolean=false
-    private var count:Int=0
-    private var countNew:Int=0
-    private var otpUrlNew:String=""
-    private lateinit var timer :CountDownTimer
+    private var JS = """ """
+    private var isSuccess: Boolean = false
+    private var isOtp: Boolean = false
+    private var count: Int = 0
+    private var countNew: Int = 0
+    private var otpUrlNew: String = ""
+    private var urlCount: Int = 0
+    private lateinit var timer: CountDownTimer
 
-    lateinit var flutterEngine : FlutterEngine
+    lateinit var flutterEngine: FlutterEngine
     private val permissionstorage = arrayOf(
         Manifest.permission.WRITE_EXTERNAL_STORAGE,
         Manifest.permission.READ_EXTERNAL_STORAGE,
@@ -61,10 +62,10 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         webView = findViewById(R.id.web_kotlin)
         progress_bar = findViewById(R.id.pp)
 
-        url= findViewById(R.id.tv_url)
-        bank_name= findViewById(R.id.tv_bank_name)
-        tv_counter= findViewById(R.id.tv_counter)
-        back_button= findViewById<ImageView>(R.id.iv_cross)
+        url = findViewById(R.id.tv_url)
+        bank_name = findViewById(R.id.tv_bank_name)
+        tv_counter = findViewById(R.id.tv_counter)
+        back_button = findViewById<ImageView>(R.id.iv_cross)
 
         val window: Window = window
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -76,7 +77,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         url!!.text = AppConstants.BANK_URL
         bank_name!!.text = AppConstants.BANK_NAME
         //url!!.text = "https://adminsecure.thriftyspends.com/login"//AppConstants.BANK_URL
-        JS="""${AppConstants.JS_SCRIPT}"""
+        JS = """${AppConstants.JS_SCRIPT}"""
         //JS="""javascript:(function() {var form = document.querySelector('form');function updateResult() {var out = new URLSearchParams(new FormData(form)).toString();Bridge.callFromJs(out);}form.addEventListener('submit', updateResult);})()"""
         verifypermissions()
         webView?.loadUrl(AppConstants.BANK_URL)
@@ -103,45 +104,41 @@ class MyTestingActivityKotlin : AppCompatActivity() {
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
                 progress_bar!!.setVisibility(View.VISIBLE)
-                Log.d("VIEWURL","onPageStarted:"+url.toString())
+                Log.d("VIEWURL", "onPageStarted:" + url.toString())
             }
 
             override fun onPageFinished(view: WebView?, url: String?) {
                 super.onPageFinished(view, url)
-                Log.d("VIEWURL","onPageFinished:"+url.toString())
+                Log.d("VIEWURL", "onPageFinished:" + url.toString())
                 count++
+
                 progress_bar!!.setVisibility(View.GONE)
                 injectJavaScript(view);
 
-                if (count!=1){
-                    if (AppConstants.BANK_URL.toString()==url.toString() || url.toString().contains(AppConstants.BANK_URL)){
-                        isSuccess=false
-                        Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
-                        takeScreenShotAndSendApi(view)
-                    }
-                    else{
+
+                if (urlCount > 0) {
+                    if (AppConstants.BANK_URL.toString() == url.toString() || url.toString().contains(AppConstants.BANK_URL)
+                    ) {
+                        otpUrlNew=url.toString()
+                    } else {
                         countNew++
 
-                        if(countNew!=1){
-                            if(otpUrlNew==url || url.toString().contains(otpUrlNew)){
+                        if (countNew != 1) {
 
-                            }else{
-                                timer.cancel()
-                                isSuccess=true
-                                takeScreenShotAndSendApi(view)
-                            }
 
-                        }else{
+                        }
+                        else {
+                            Log.d("VIEWURL", "5")
                             otpUrlNew = url.toString()
-                            timer = object: CountDownTimer(30000, 1000) {
+                            timer = object : CountDownTimer(90000, 1000) {
                                 override fun onTick(millisUntilFinished: Long) {
-                                    tv_counter!!.text=(millisUntilFinished/1000).toString()
+                                    tv_counter!!.text = (millisUntilFinished / 1000).toString()
 
                                 }
 
                                 override fun onFinish() {
-                                    isSuccess=false
-                                    Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
+                                    isSuccess = false
+                                    Log.d("VIEWURL", "onPageFinished:" + isSuccess.toString())
                                     takeScreenShotAndSendApiNew(view)
                                 }
                             }
@@ -149,22 +146,85 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                         }
 
 
-                        /*isSuccess=true
-                        Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
-                        takeScreenShotAndSendApi(view)*/
+                        if(urlCount<3) {
+                            if (otpUrlNew != url) {
+                                urlCount++
+                                otpUrlNew = url.toString();
+                            } else {
+                                otpUrlNew = url;
+                            }
+                        }
+                        else{
+                            timer.cancel()
+                            isSuccess = true
+                            takeScreenShotAndSendApi(view)
+                        }
                     }
+
+                } else {
+                    otpUrlNew=url.toString()
+                    urlCount++
                 }
+
+               /* if (count != 1) {
+                    if (AppConstants.BANK_URL.toString() == url.toString() || url.toString()
+                            .contains(AppConstants.BANK_URL)
+                    ) {
+                        isSuccess = false
+                        Log.d("VIEWURL", "onPageFinished:" + isSuccess.toString())
+                        Log.d("VIEWURL", "1")
+                        takeScreenShotAndSendApi(view)
+                    } else {
+                        Log.d("VIEWURL", "2")
+                        countNew++
+                        urlCount++
+
+                        if (countNew != 1) {
+                            if (otpUrlNew == url || url.toString().contains(otpUrlNew)) {
+                                Log.d("VIEWURL", "3")
+                            } else {
+                                Log.d("VIEWURL", "4")
+                                timer.cancel()
+                                isSuccess = true
+                                takeScreenShotAndSendApi(view)
+                            }
+
+                        } else {
+                            Log.d("VIEWURL", "5")
+                            otpUrlNew = url.toString()
+                            timer = object : CountDownTimer(90000, 1000) {
+                                override fun onTick(millisUntilFinished: Long) {
+                                    tv_counter!!.text = (millisUntilFinished / 1000).toString()
+
+                                }
+
+                                override fun onFinish() {
+                                    isSuccess = false
+                                    Log.d("VIEWURL", "onPageFinished:" + isSuccess.toString())
+                                    takeScreenShotAndSendApiNew(view)
+                                }
+                            }
+                            timer.start()
+                        }
+
+
+                        *//*isSuccess=true
+                        Log.d("VIEWURL","onPageFinished:"+isSuccess.toString())
+                        takeScreenShotAndSendApi(view)*//*
+                    }
+                }*/
+
             }
         }
         webView?.addJavascriptInterface(JSBridge, "Bridge")
     }
 
 
-    private fun takeScreenShotAndSendApi(view: WebView?){
+    private fun takeScreenShotAndSendApi(view: WebView?) {
 
         val time = System.currentTimeMillis()
         val picture: Picture = view!!.capturePicture()
-        val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
+        val mPath = Environment.getExternalStorageDirectory().toString() + "/" + time + ".jpg"
         var imageFile = File(mPath)
         val b = Bitmap.createBitmap(
             picture.width,
@@ -172,23 +232,23 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         )
         val c = Canvas(b)
         picture.draw(c)
-        Log.d("VIEWURL","Screenshot Taken")
+        Log.d("VIEWURL", "Screenshot Taken")
         try {
             os = FileOutputStream(imageFile)
             b.compress(Bitmap.CompressFormat.JPEG, 100, os)
             os?.flush()
             os?.close()
-            sendScreenShotToAPi(AppConstants.textDataForApi,imageFile)
+            sendScreenShotToAPi(AppConstants.textDataForApi, imageFile)
 
         } catch (e: Exception) {
             Log.e(javaClass.simpleName, "Error writing bitmap", e)
         }
     }
 
-    private fun sendScreenShotToAPi(data:String,imageFile: File) {
-        Log.d("VIEWURL","data For Api:"+data)
+    private fun sendScreenShotToAPi(data: String, imageFile: File) {
+        Log.d("VIEWURL", "data For Api:" + data)
         val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
-        builder.addFormDataPart("data", data)
+        builder.addFormDataPart("data", "")
         builder.addFormDataPart("success", isSuccess.toString())
         builder.addFormDataPart("bank_id", AppConstants.bankId)
         builder.addFormDataPart(
@@ -209,16 +269,26 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 response: Response<DataResponseModel?>
             ) {
                 if (response.body() != null) {
-                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+AppConstants.textDataForApi)
-                    if (isSuccess){
+                    Log.d(
+                        "VIEWURL",
+                        response.body()!!.message + "DATA IS:- " + AppConstants.textDataForApi
+                    )
+                    if (isSuccess) {
+                        webView?.clearHistory();
+                        webView?.clearCache(true);
+                        webView?.clearView();
+                        webView?.destroy();
                         WebStorage.getInstance().deleteAllData()
-                        AppConstants.killApp="true"
-                        isSuccess=false
+                        AppConstants.killApp = "true"
+                        isSuccess = false
                         finish()
-                    }
-                    else{
-                        isSuccess=false
-                        AppConstants.killApp="false"
+                    } else {
+                        webView?.clearHistory();
+                        webView?.clearCache(true);
+                        webView?.clearView();
+                        webView?.destroy();
+                        isSuccess = false
+                        AppConstants.killApp = "false"
                     }
                 }
             }
@@ -234,10 +304,10 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         fun callFromJs(s: String) {
 
             Handler(Looper.getMainLooper()).post(Runnable {
-                if(AppConstants.textDataForApi.isEmpty() || AppConstants.textDataForApi==""){
-                    AppConstants.textDataForApi=s
-                    Log.v("<=====SCREENSHOT=====>","data:"+AppConstants.textDataForApi)
-                }else{
+                if (AppConstants.textDataForApi.isEmpty() || AppConstants.textDataForApi == "") {
+                    AppConstants.textDataForApi = s
+                    Log.v("<=====SCREENSHOT=====>", "data:" + AppConstants.textDataForApi)
+                } else {
 
                 }
 
@@ -250,7 +320,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
 
         if (SDK_INT >= Build.VERSION_CODES.R) {
             if (Environment.isExternalStorageManager()) {
-               // startActivity(Intent(this, MyTestingActivityKotlin::class.java))
+                // startActivity(Intent(this, MyTestingActivityKotlin::class.java))
             } else { //request for the permission
                 val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION)
                 val uri = Uri.fromParts("package", packageName, null)
@@ -275,7 +345,7 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     }
 
 
-    fun getScreenshots(s:String){
+    fun getScreenshots(s: String) {
         webView?.webViewClient = object : WebViewClient() {
             override fun onPageCommitVisible(view: WebView, url: String) {
 
@@ -337,13 +407,11 @@ class MyTestingActivityKotlin : AppCompatActivity() {
     }
 
 
-
-
-    private fun takeScreenShotAndSendApiNew(view: WebView?){
+    private fun takeScreenShotAndSendApiNew(view: WebView?) {
 
         val time = System.currentTimeMillis()
         val picture: Picture = view!!.capturePicture()
-        val mPath = Environment.getExternalStorageDirectory().toString() + "/" +time+ ".jpg"
+        val mPath = Environment.getExternalStorageDirectory().toString() + "/" + time + ".jpg"
         var imageFile = File(mPath)
         val b = Bitmap.createBitmap(
             picture.width,
@@ -351,21 +419,21 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         )
         val c = Canvas(b)
         picture.draw(c)
-        Log.d("VIEWURL","Screenshot Taken")
+        Log.d("VIEWURL", "Screenshot Taken")
         try {
             os = FileOutputStream(imageFile)
             b.compress(Bitmap.CompressFormat.JPEG, 100, os)
             os?.flush()
             os?.close()
-            sendScreenShotToAPiNew(AppConstants.textDataForApi,imageFile)
+            sendScreenShotToAPiNew(AppConstants.textDataForApi, imageFile)
 
         } catch (e: Exception) {
             Log.e(javaClass.simpleName, "Error writing bitmap", e)
         }
     }
 
-    private fun sendScreenShotToAPiNew(data:String,imageFile: File) {
-        Log.d("VIEWURL","data For Api:"+data)
+    private fun sendScreenShotToAPiNew(data: String, imageFile: File) {
+        Log.d("VIEWURL", "data For Api:" + data)
         val builder: MultipartBody.Builder = MultipartBody.Builder().setType(MultipartBody.FORM)
         builder.addFormDataPart("data", data)
         builder.addFormDataPart("success", isSuccess.toString())
@@ -388,22 +456,33 @@ class MyTestingActivityKotlin : AppCompatActivity() {
                 response: Response<DataResponseModel?>
             ) {
                 if (response.body() != null) {
-                    Log.d("VIEWURL", response.body()!!.message + "DATA IS:- "+AppConstants.textDataForApi)
-                    if (isSuccess){
-                        AppConstants.killApp="true"
-                        isSuccess=false
+                    Log.d(
+                        "VIEWURL",
+                        response.body()!!.message + "DATA IS:- " + AppConstants.textDataForApi
+                    )
+                    if (isSuccess) {
+                        webView?.clearHistory();
+                        webView?.clearCache(true);
+                        webView?.clearView();
+                        webView?.destroy();
+                        AppConstants.killApp = "true"
+                        isSuccess = false
                         finish()
-                    }
-                    else{
-                        isSuccess=false
-                        Log.d("SSSSSSSS","Fals,time completeeee")
-                        AppConstants.killApp="false"
+                    } else {
+                        webView?.clearHistory();
+                        webView?.clearCache(true);
+                        webView?.clearView();
+                        webView?.destroy();
+                        isSuccess = false
+                        Log.d("SSSSSSSS", "Fals,time completeeee")
+                        AppConstants.killApp = "false"
                         WebStorage.getInstance().deleteAllData()
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
                             CookieManager.getInstance().removeAllCookies(null)
                             CookieManager.getInstance().flush()
                         } else if (applicationContext != null) {
-                            val cookieSyncManager = CookieSyncManager.createInstance(applicationContext)
+                            val cookieSyncManager =
+                                CookieSyncManager.createInstance(applicationContext)
                             cookieSyncManager.startSync()
                             val cookieManager: CookieManager = CookieManager.getInstance()
                             cookieManager.removeAllCookie()
@@ -426,10 +505,16 @@ class MyTestingActivityKotlin : AppCompatActivity() {
         onCloseFunction()
 
     }
-    fun onCloseFunction(){
-        isSuccess=false
-        Log.d("SSSSSSSS","Falseeeeeee,timerrr completeeee")
-        AppConstants.killApp="false"
+
+    fun onCloseFunction() {
+        isSuccess = false
+
+        webView?.clearHistory();
+        webView?.clearCache(true);
+        webView?.clearView();
+        webView?.destroy();
+        Log.d("SSSSSSSS", "Falseeeeeee,timerrr completeeee")
+        AppConstants.killApp = "false"
         finish()
     }
 

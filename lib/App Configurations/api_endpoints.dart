@@ -25,6 +25,7 @@ class ApiEndPoints {
   static String Gwt_NOTIFICATION_API = BASE_URL + "/getNotification";
   static String HOME_PAGE_GET_LINKED_BANK = BASE_URL + "/getLinkBank";
   static String GET_BANK_API = BASE_URL + "/getBankList";
+  static String GET_BANK_DATA_API = BASE_URL + "/getBankScript";
   static String GET_WALLET = BASE_URL + "/getWallet";
   static String GET_UUID_USER = BASE_URL + "/getUuidUser";
   static String TRANSACTION = BASE_URL + "/transaction";
@@ -45,5 +46,6 @@ class ApiEndPoints {
   static String ACTIVE_CASHCARD = BASE_URL + "/activeCashCard";
   static String GET_STASTICS = BASE_URL + "/getMyStatistic";
   static String DELETE_CARD = BASE_URL + "/removeCareditCard";
+  static String APP_SETTINGS = BASE_URL + "/getAppSettings";
 
 }

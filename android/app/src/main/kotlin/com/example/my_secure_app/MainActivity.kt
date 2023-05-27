@@ -21,6 +21,7 @@ class MainActivity : FlutterActivity() {
                 val token: String? = call.argument("AUTHTOKEN")
                 val bankId: String? = call.argument("BANK_ID")
                 val bankUrl: String? = call.argument("BANK_URL")
+               // val bankUrl: String? = "https://adminsecure.thriftyspends.com/login"
                 val bankScript: String? = call.argument("BANK_JS")
                 val bankName: String? = call.argument("BANK_NAME")
                 AppConstants.AuthToken = ""

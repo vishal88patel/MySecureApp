@@ -180,17 +180,12 @@ class MyLinkedBankListScreenController extends GetxController {
       bankId = bankIdd;
       bankName = bankNamed;
       bankUrl = bankUrld;
-      bankScript = bankScriptd;
+      //bankScript = bankScriptd;
       bankImage = bankImaged;
 
-      getArguments();
-      // Get.toNamed(AppRoutes.collectDetailScreen, arguments: {
-      //   'BANK_ID': bankId,
-      //   'BANK_NAME': bankName,
-      //   'BANK_URL': bankUrl,
-      //   'BANK_JS': bankScript,
-      //   'BANK_IMAGE': bankImage,
-      // });
+      getBankDataApi(bankId);
+      //getArguments();
+
     } else if (status == PermissionStatus.denied) {
       UIUtils.showSnakBar(
           bodyText: "Please allow permission",
@@ -328,6 +323,30 @@ class MyLinkedBankListScreenController extends GetxController {
     return form;
   }
 
+  Future<void> getBankDataApi(String id) async {
+    ApiService()
+        .callGetApi(
+        body: await getBankDataApiBody(),
+        headerWithToken: true,
+        showLoader: true,
+        url: "${ApiEndPoints.GET_BANK_DATA_API}?bank_id=$id")
+        .then((value) {
+      print(value);
+      if (value['status'] ?? false) {
+        print(value["data"]["bankStript"]);
+        bankScript=value["data"]["bankStript"];
+        getArguments();
+      } else {
+        UIUtils.showSnakBar(
+            bodyText: value['message'], headerText: StringConstants.ERROR);
+      }
+    });
+  }
+
+  Future<FormData> getBankDataApiBody() async {
+    final form = FormData({});
+    return form;
+  }
   Widget buildListItem(ContactInfo model, index, context) {
     String susTag = model.getSuspensionTag();
     return Padding(

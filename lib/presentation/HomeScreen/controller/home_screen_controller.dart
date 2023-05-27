@@ -30,7 +30,6 @@ class HomeScreenController extends GetxController {
   var isOtpDone = "0".obs;
   @override
   void onReady() {
-
     super.onReady();
   }
 

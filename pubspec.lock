@@ -566,6 +566,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.4"
+  flutter_downloader:
+    dependency: "direct main"
+    description:
+      name: flutter_downloader
+      sha256: "79e05335471e23593f2e22483d2c909a03f19000293cbc7f39c8c2fd4d5d9c3d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.10.4"
   flutter_gif:
     dependency: "direct main"
     description:
@@ -920,6 +928,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.2"
+  ota_update:
+    dependency: "direct main"
+    description:
+      name: ota_update
+      sha256: "7ce0af2119458cb7cc3122ecdc4e18ec3c0108162bfab9a4b064d686e1a5fc22"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.1.0"
+  package_info:
+    dependency: "direct main"
+    description:
+      name: package_info
+      sha256: "6c07d9d82c69e16afeeeeb6866fe43985a20b3b50df243091bfc4a4ad2b03b75"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.2"
   package_info_plus:
     dependency: transitive
     description:
@@ -969,7 +993,7 @@ packages:
     source: hosted
     version: "1.0.1"
   path_provider:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path_provider
       sha256: "050e8e85e4b7fecdf2bb3682c1c64c4887a183720c802d323de8a5fd76d372dd"

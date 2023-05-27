@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 import 'package:secure_cash_app/presentation/test.dart';
@@ -31,7 +32,7 @@ Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  WidgetsFlutterBinding.ensureInitialized();
+  await FlutterDownloader.initialize();
   await Firebase.initializeApp( options: const
   FirebaseOptions( apiKey: "AIzaSyAC0PgxH-WFcLDxr8JjTrFym1n-qoFK8qE",
     appId: "1:849138110745:android:cfb4494f2bf68e15903588",

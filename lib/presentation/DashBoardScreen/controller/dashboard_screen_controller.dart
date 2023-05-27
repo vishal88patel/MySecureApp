@@ -172,7 +172,7 @@ class DashBoardScreenController extends GetxController {
         url: ApiEndPoints.GET_WALLET+"?page=$pageNo")
         .then((value) {
       print(value);
-      if (value!=null&&value['status']) {
+      if (value!=null && value['status']) {
         walletModel.value = GetWallet.fromJson(value);
 
         UserBalance.value= walletModel.value.data!.walletBalance!;
