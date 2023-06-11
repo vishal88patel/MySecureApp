@@ -9,6 +9,7 @@ class StringConstants {
   static String IS_OTP_DONE = "is_otp_done";
   static String LOGIN_RESPONSE = "LoginResponseModel";
   static String SHOW_WELCOME_DISLOUGE = "show_welcome_dialouge";
+  static String IS_FIRST_TIME = "first_time";
   static String BANK_INFO_TEXT =
       "MySecure App uses Paid to link your bank accounts. By linking your bank, Paid will have access to your login details and data collection from your account, and will share your data with MySecure App for reason including";
   static String BANK_INFO_TEXT_1= "Transfering money between your bank account and MySecure App";

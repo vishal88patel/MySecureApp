@@ -38,8 +38,7 @@ class HomeScreenController extends GetxController {
     getStoredData();
     isVerified.value = PrefUtils.getString(StringConstants.IS_KYC_DONE);
     isOtpDone.value = PrefUtils.getString(StringConstants.IS_OTP_DONE);
-     callHomePageApi();
-
+    callHomePageApi();
 
     super.onInit();
   }
@@ -74,24 +73,21 @@ class HomeScreenController extends GetxController {
             url: ApiEndPoints.HOME_PAGE_API)
         .then((value) {
       print(value);
-      if (value!=null && value['status'] ?? false) {
+      if (value != null && value['status'] ?? false) {
         homeModel.value = HomePageResponseModel.fromJson(value);
 
         // callGetLinkedBankApi();
         UIUtils.hideProgressDialog();
-        Future.delayed(Duration(milliseconds: 500),(){
+        Future.delayed(Duration(milliseconds: 500), () {
           showWelcomeDialouge();
         });
-
       } else {
         UIUtils.showSnakBar(
-            bodyText: "Error Fetching Offers", headerText: StringConstants.ERROR);
+            bodyText: "Error Fetching Offers",
+            headerText: StringConstants.ERROR);
       }
     });
   }
-
-
-
 
   Future<FormData> getHomePageApiBody() async {
     final form = FormData({});
@@ -102,7 +98,8 @@ class HomeScreenController extends GetxController {
     if (PrefUtils.getBool(StringConstants.SHOW_WELCOME_DISLOUGE)) {
       Get.dialog(
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
+          padding: EdgeInsets.symmetric(
+              horizontal: getHorizontalSize(60.0),
               vertical: getVerticalSize(300)),
           child: Wrap(
             children: [
@@ -121,16 +118,13 @@ class HomeScreenController extends GetxController {
                       mainAxisAlignment: MainAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-
-
                         Container(
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(25),
-                                  topRight: Radius.circular(25)
-                              ),
-                              color: ColorConstant.greyF4,),
-
+                                  topRight: Radius.circular(25)),
+                              color: ColorConstant.greyF4,
+                            ),
                             child: Column(
                               children: [
                                 SizedBox(
@@ -139,8 +133,8 @@ class HomeScreenController extends GetxController {
                                 Row(
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Image.asset(
-                                        'asset/icons/done_image.png', height: 60),
+                                    Image.asset('asset/icons/done_image.png',
+                                        height: 60),
                                   ],
                                 ),
                                 SizedBox(
@@ -158,7 +152,7 @@ class HomeScreenController extends GetxController {
                           children: [
                             Flexible(
                               child: Obx(
-                                    () => Text(
+                                () => Text(
                                   textAlign: TextAlign.center,
                                   "Hi " + homePageHeadeName.value,
                                   style: AppStyle.DmSansFont.copyWith(
@@ -171,7 +165,9 @@ class HomeScreenController extends GetxController {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10,),
+                        SizedBox(
+                          height: 10,
+                        ),
                         Padding(
                           padding: const EdgeInsets.all(8.0),
                           child: Row(
@@ -179,16 +175,15 @@ class HomeScreenController extends GetxController {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Flexible(
-                                child:Text(
+                                child: Text(
                                   textAlign: TextAlign.center,
-                                  "Welcome to MySecure App. \nThanks for creating an account",
+                                  "Welcome to Secure Cashapp. \nThanks for creating an account",
                                   style: AppStyle.DmSansFont.copyWith(
                                       color: ColorConstant.primaryBlack,
                                       decoration: TextDecoration.none,
                                       fontWeight: FontWeight.w300,
                                       fontSize: getFontSize(18)),
                                 ),
-
                               ),
                             ],
                           ),
@@ -212,7 +207,6 @@ class HomeScreenController extends GetxController {
                         SizedBox(
                           height: 20,
                         ),
-
                       ],
                     ),
                   ),
@@ -224,148 +218,142 @@ class HomeScreenController extends GetxController {
         barrierDismissible: false,
       );
     } else {
-
+      if (isVerified.value == "0" && PrefUtils.getBool(StringConstants.IS_FIRST_TIME)) {
+        showVerifyIdentityDialouge();
+      } else {}
     }
-
   }
 
   void showVerifyIdentityDialouge() {
     Get.dialog(
-      Padding(
-        padding: EdgeInsets.symmetric(horizontal: getHorizontalSize(60.0),
-            vertical: getVerticalSize(230)),
-        child: Container(
-
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(25),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(Radius.circular(25)),
-                  color: ColorConstant.primaryWhite),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-
-
-                  Container(
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(25),
-                            topRight: Radius.circular(25)
-                        ),
-                        ),
-
-                      child: Column(
-                        children: [
-                          SizedBox(
-                            height: 12,
-                          ),
-
-                          Row(crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Image.asset('asset/icons/done_image.png',color: Colors.transparent,
-                                  height: 60),
-                              Image.asset('asset/icons/verify_image.png',height: 80),
-                              Row( mainAxisAlignment: MainAxisAlignment.end,
-
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      if (Get.isDialogOpen == true) Get.back();
-                                      PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
-                                    },
-                                    child: Icon(
-                                      Icons.close,
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 12,
-                                  ),
-                                ],
-                              ),
-
-                            ],
-                          ),
-
-                          SizedBox(
-                            height: 12,
-                          ),
-                        ],
-                      )), SizedBox(
-                    height: 20,
-                  ),
-                  // Lottie.asset('asset/animations/welcome.json', height: 80),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Flexible(
-                        child:Text(
-                            textAlign: TextAlign.center,
-                            "Verify your idenditity" ,
-                            style: AppStyle.DmSansFont.copyWith(
-                                color: ColorConstant.primaryBlack,
-                                decoration: TextDecoration.none,
-                                fontWeight: FontWeight.bold,
-                                fontSize: getFontSize(24)),
-
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 10,),
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
+      Container(
+        decoration: BoxDecoration(color: ColorConstant.primaryWhite),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(25),
+                      topRight: Radius.circular(25)),
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Flexible(
-                          child:Text(
-                            textAlign: TextAlign.center,
-                            "To enable Wallet withdrawal and\n deposits first complete your Identity Verification",
-                            style: AppStyle.DmSansFont.copyWith(
-                                color: ColorConstant.primaryBlack,
-                                decoration: TextDecoration.none,
-                                fontWeight: FontWeight.w300,
-                                fontSize: getFontSize(18)),
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.isDialogOpen == true) Get.back();
+                            PrefUtils.setBool(
+                                StringConstants.IS_FIRST_TIME, false);
+                            PrefUtils.setBool(
+                                StringConstants.SHOW_WELCOME_DISLOUGE, false);
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.black,
                           ),
-
+                        ),
+                        SizedBox(
+                          width: 16,
                         ),
                       ],
                     ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset('asset/icons/welcome.jpg', height:340),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 12,
+                    ),
+                  ],
+                )),
+            SizedBox(
+              height: 20,
+            ),
+            // Lottie.asset('asset/animations/welcome.json', height: 80),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Flexible(
+                  child: Text(
+                    textAlign: TextAlign.center,
+                    "Welcome to Secure Cashapp",
+                    style: AppStyle.DmSansFont.copyWith(
+                        color: ColorConstant.primaryBlack,
+                        decoration: TextDecoration.none,
+                        fontWeight: FontWeight.bold,
+                        fontSize: getFontSize(24)),
                   ),
-                  SizedBox(
-                    height: 40,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 22.0),
-                    child: AppElevatedButton(
-                      buttonName: 'Get Started',
-                      radius: 5,
-                      textColor: Colors.white,
-                      onPressed: () {
-                        Get.back();
-                        Future.delayed(Duration(milliseconds: 200), () {
-                          PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE,false);
-                          Get.toNamed(AppRoutes.kycPhoneScreen);
-                        });
-                        // Get.toNamed(AppRoutes.dashBoardScreen);
-                      },
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: Text(
+                      textAlign: TextAlign.center,
+                      "You have been approved for a \nLOAN of \$ 32,000.To get your loan amount \nplease complete your Identity Verification \nby clicking the button below.",
+                      style: AppStyle.DmSansFont.copyWith(
+                          color: ColorConstant.primaryBlack,
+                          decoration: TextDecoration.none,
+                          fontWeight: FontWeight.w300,
+                          fontSize: getFontSize(18)),
                     ),
                   ),
-
                 ],
               ),
             ),
-          ),
+            SizedBox(
+              height: 40,
+            ),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22.0),
+              child: AppElevatedButton(
+                buttonName: 'Get Started',
+                radius: 5,
+                textColor: Colors.white,
+                onPressed: () {
+
+                  Future.delayed(Duration(milliseconds: 10), () {
+                    Get.back();
+                    Get.toNamed(AppRoutes.kycPhoneScreen);
+                    PrefUtils.setBool(
+                        StringConstants.IS_FIRST_TIME, false);
+                    PrefUtils.setBool(
+                        StringConstants.SHOW_WELCOME_DISLOUGE, false);
+                  });
+
+                  // Get.toNamed(AppRoutes.dashBoardScreen);
+                },
+              ),
+            ),
+            SizedBox(
+              height: 40,
+            ),
+          ],
         ),
       ),
       barrierDismissible: false,

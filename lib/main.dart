@@ -133,7 +133,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       locale: Get.deviceLocale,
       //for setting localization strings
-      title: 'My Secure App',
+      title: 'Secure Cashapp',
       theme: ThemeData(
           primarySwatch: MaterialColor(0xFF4CD080, color),
           splashColor:  ColorConstant.primaryLightGreen,

@@ -31,6 +31,8 @@ class SplashScreenController extends GetxController {
     }else{
       changeRoute();
     }*/
+    PrefUtils.setBool(
+        StringConstants.IS_FIRST_TIME, true);
     super.onInit();
   }
 

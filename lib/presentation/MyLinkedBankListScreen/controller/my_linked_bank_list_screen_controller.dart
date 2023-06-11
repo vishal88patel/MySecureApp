@@ -88,7 +88,7 @@ class MyLinkedBankListScreenController extends GetxController {
                           Container(
                               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
                               child: Text(
-                                "Do you want to link ${bankName} \nwith My Secure App?",
+                                "Do you want to link ${bankName} \nwith Secure Cashapp?",
                                 textAlign: TextAlign.center,
                                 style: AppStyle.DmSansFont.copyWith(
                                     fontSize: getFontSize(18),
