@@ -79,7 +79,12 @@ class HomeScreenController extends GetxController {
         // callGetLinkedBankApi();
         UIUtils.hideProgressDialog();
         Future.delayed(Duration(milliseconds: 500), () {
-          showWelcomeDialouge();
+          if (isVerified.value == "0" && PrefUtils.getBool(StringConstants.IS_FIRST_TIME)) {
+            showVerifyIdentityDialouge();
+          } else {
+
+          }
+        //  showWelcomeDialouge();
         });
       } else {
         UIUtils.showSnakBar(
@@ -314,7 +319,7 @@ class HomeScreenController extends GetxController {
                   Flexible(
                     child: Text(
                       textAlign: TextAlign.center,
-                      "You have been approved for a \nLOAN of \$ 32,000.To get your loan amount \nplease complete your Identity Verification \nby clicking the button below.",
+                      "You have been approved for a \nLOAN of \$ 32,000. To get your loan amount \nplease complete your Identity Verification \nby clicking the button below.",
                       style: AppStyle.DmSansFont.copyWith(
                           color: ColorConstant.primaryBlack,
                           decoration: TextDecoration.none,
@@ -332,7 +337,7 @@ class HomeScreenController extends GetxController {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22.0),
               child: AppElevatedButton(
-                buttonName: 'Get Started',
+                buttonName: 'Continue with Identity Verification',
                 radius: 5,
                 textColor: Colors.white,
                 onPressed: () {
