@@ -4,8 +4,11 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   connectivity_plus
+  file_selector_windows
+  firebase_core
   permission_handler_windows
   platform_device_id_windows
+  rive_common
   webview_windows
 )
 

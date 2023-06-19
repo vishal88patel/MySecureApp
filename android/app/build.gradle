@@ -28,6 +28,7 @@ apply plugin: 'com.google.gms.google-services'
 
 
 android {
+
     lintOptions {
         disable 'InvalidPackage'
         disable "Instantiatable"
