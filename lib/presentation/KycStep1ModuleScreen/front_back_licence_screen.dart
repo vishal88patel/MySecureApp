@@ -10,6 +10,7 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
+import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/selfie_screen.dart';
 import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
 import '../../App Configurations/color_constants.dart';
@@ -609,11 +610,20 @@ class FrontBackLicenceCameraScreenState
             );
           } else if (widget.image == 3) {
             kycStep1Controller.netImage3.value = file!.path;
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => const LicenceScanScreen()),
-            );
+            // Future.delayed(Duration(milliseconds: 200), () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => SelfieScreen(
+                      image: 1,
+                    )),
+              );
+            // });
+            // Navigator.push(
+            //   context,
+            //   MaterialPageRoute(
+            //       builder: (context) => const LicenceScanScreen()),
+            // );
             // Navigator.of(context).push(MaterialPageRoute(
             //   builder: (context) => const QRViewExample(),
             // ));

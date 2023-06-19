@@ -51,7 +51,7 @@ dependencies:
   #  for border dashed
   dotted_line: ^3.1.0
   shimmer: ^2.0.0
-  webview_flutter: ^3.0.0
+  webview_flutter: ^2.0.0
   permission_handler: ^10.1.0
   credit_card_type_detector: ^2.0.0
   flutter_credit_card: ^3.0.4

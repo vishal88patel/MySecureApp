@@ -44,6 +44,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   void initState() {
     super.initState();
     scanBarcodeNormal();
+
   }
 
   @override
@@ -191,6 +192,75 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
     }
   }
 
+  // Future<void> scanPDF417() async {
+  //   String barcodeScanRes;
+  //   try {
+  //     final List<Barcode> barcodes = await FlutterMobileVision.scan(
+  //       formats: Barcode.PDF417,
+  //       autoFocus: true,
+  //       flash: false,
+  //       multiple: false,
+  //       waitTap: false,
+  //     );
+  //     if (!mounted) return;
+  //     if (barcodes.length > 0) {
+  //       setState(() {
+  //         barcodeScanRes = barcodes[0].displayValue;
+  //         if (!mounted) return;
+  //         kycStep1Controller.qrCodeResult.value = barcodeScanRes.toString();
+  //         print( kycStep1Controller.qrCodeResult.value);
+  //         print(barcodeScanRes.toString());
+  //         if (kycStep1Controller.qrCodeResult.value.isNotEmpty &&
+  //             counter == 0 &&
+  //             kycStep1Controller.qrCodeResult.value.toString().contains("DCS") &&
+  //             kycStep1Controller.qrCodeResult.value.toString().contains("DDE")) {
+  //           print("SCANDATA=>>>>>>>>"+counter.toString());
+  //           LineSplitter ls = new LineSplitter();
+  //           List<String> lines = ls.convert(kycStep1Controller.qrCodeResult.value);
+  //           for (var i = 0; i < lines.length; i++) {
+  //             if(lines[i].startsWith("DCS")){
+  //               lname=lines[i].substring(3).toLowerCase().trim();
+  //             }
+  //             if(lines[i].startsWith("DAC")){
+  //               fname=lines[i].substring(3).toLowerCase().trim();
+  //             }if(lines[i].startsWith("DBB")){
+  //               dobData=lines[i].substring(3).toLowerCase().trim();
+  //             }
+  //             if(lines[i].startsWith("DBA")){
+  //               doex=lines[i].substring(3).toLowerCase().trim();
+  //             }
+  //
+  //           }
+  //           if(doex.toString()=="none"){
+  //             UIUtils.showSnakBar(
+  //                 bodyText: "Your Card Has Been Expired",
+  //                 headerText: StringConstants.ERROR);
+  //             Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+  //             return;
+  //           }
+  //           counter = 1;
+  //           if (fname.isNotEmpty && lname.isNotEmpty &&  lname.isNotEmpty &&  doex.isNotEmpty) {
+  //             scanDataa(fname, lname, dobData,doex);
+  //           }else{
+  //             UIUtils.showSnakBar(
+  //                 bodyText: "Invalid qrcode, Please scan again!!", headerText: StringConstants.ERROR);
+  //             Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+  //           }
+  //         }
+  //         else {
+  //           UIUtils.showSnakBar(
+  //               bodyText: "Invalid qrcode, Please scan again!!", headerText: StringConstants.ERROR);
+  //           Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+  //         }
+  //       });
+  //     }
+  //   } catch (e) {
+  //     Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+  //     return;
+  //   }
+  // }
+
+
   Future<void> scanBarcodeNormal() async {
     String barcodeScanRes;
     // Platform messages may fail, so we use a try/catch PlatformException.
@@ -259,3 +329,37 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
     });
   }
 }
+// @
+// 
+// DCSROBERTS
+// DDEN
+// DACASHLEY
+// DDFN
+// DADNICOLE
+// DDGN
+// DCAE
+// DCBA
+// DCDNONE
+// DBD10282020
+// DBB11041996
+// DBA11042025
+// DBC2
+// DAU066 in
+// DAYBLU
+// DAG1133 ACACIA CLUB RD # 24
+// DAIHOLLISTER
+// DAJMO
+// DAK656720000
+// DCF201083020023
+// DCGUSA
+// DAW110
+// DCK20303P0283350040101
+// DDAF
+// DDB01272020
+// I/flutter (29602):
+// ZMBN
+// ZMCN
+// ZMDTANE
+// ZME0
+// ZMF0
+// ZMG0
