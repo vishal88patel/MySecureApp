@@ -300,8 +300,14 @@ class KycStep1ScreenController extends GetxController {
   }
 
   callKycStep1IdApi() async {
-
-
+    firstNameController.text="N/A";
+    lastNameController.text="N/A";
+    emailController.text="N/A";
+    ssnController.text="N/A";
+    dobController.text="N/A";
+    firstName.value="N/A";
+    lastName.value="N/A";
+    dob.value="N/A";
     //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -319,7 +325,7 @@ class KycStep1ScreenController extends GetxController {
     request.fields['email'] = emailController.text;
     request.fields['mobile'] = "";
     request.fields['ssn'] = ssnController.text;
-    request.fields['kyc_status'] = "2";
+    request.fields['kyc_status'] = "1";
     request.fields['kyc_type'] = "1";
     request.fields['date_of_birth'] = dobController.text;
     request.fields['licence_json'] = "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
