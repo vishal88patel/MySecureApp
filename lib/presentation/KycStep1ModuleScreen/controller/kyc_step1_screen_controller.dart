@@ -268,12 +268,12 @@ class KycStep1ScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Click Driving Licence Back Photo",
           headerText: StringConstants.ERROR);
-    } else if (qrCodeResult.isEmpty ||
-        qrCodeResult.isNull ||
-        qrCodeResult.value == "-1") {
-      UIUtils.showSnakBar(
-          bodyText: "Please Scan Your Driving Licence",
-          headerText: StringConstants.ERROR);
+    // } else if (qrCodeResult.isEmpty ||
+    //     qrCodeResult.isNull ||
+    //     qrCodeResult.value == "-1") {
+    //   UIUtils.showSnakBar(
+    //       bodyText: "Please Scan Your Driving Licence",
+    //       headerText: StringConstants.ERROR);
     } else {
       callKycStep1IdApi();
     }
@@ -300,14 +300,14 @@ class KycStep1ScreenController extends GetxController {
   }
 
   callKycStep1IdApi() async {
-    firstNameController.text="N/A";
-    lastNameController.text="N/A";
-    emailController.text="N/A";
-    ssnController.text="N/A";
-    dobController.text="N/A";
-    firstName.value="N/A";
-    lastName.value="N/A";
-    dob.value="N/A";
+    // firstNameController.text="N/A";
+    // lastNameController.text="N/A";
+    // emailController.text="N/A";
+    // ssnController.text="N/A";
+    // dobController.text="N/A";
+    // firstName.value="N/A";
+    // lastName.value="N/A";
+    // dob.value="N/A";
     //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
@@ -343,10 +343,10 @@ class KycStep1ScreenController extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
-      apiTy.value=1;
+      apiTy.value=2;
       //   UIUtils.hideProgressDialog();
       progress();
-      PrefUtils.setString(StringConstants.IS_KYC_DONE, "2");
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
     } else {
       //  UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(

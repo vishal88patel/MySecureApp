@@ -305,7 +305,8 @@ class HomeScreen extends StatelessWidget {
                               title: 'Link Bank',
                               iconName: 'asset/icons/ic_link_bank_home.png',
                               onTap: (){
-                                Get.toNamed(AppRoutes.myLinkedBankListScreen);
+                                // Get.toNamed(AppRoutes.myLinkedBankListScreen);
+                                Get.toNamed(AppRoutes.myBankAccountListScreen);
                                 // Get.toNamed(AppRoutes.bankScreen);
                               },
                             ),
@@ -327,7 +328,7 @@ class HomeScreen extends StatelessWidget {
                             InkWell(
                               onTap: () {
                                 print("::::"+homeController.isOtpDone.toString());
-                                homeController.isOtpDone=="1"?
+                                homeController.isVerified=="1"?
                                 Get.toNamed(AppRoutes.kycSelectStepScreen):Get.toNamed(AppRoutes.kycPhoneScreen);
                               },
                               child: PaymentListWidget(
