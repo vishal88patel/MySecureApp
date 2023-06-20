@@ -300,15 +300,6 @@ class KycStep1ScreenController extends GetxController {
   }
 
   callKycStep1IdApi() async {
-    // firstNameController.text="N/A";
-    // lastNameController.text="N/A";
-    // emailController.text="N/A";
-    // ssnController.text="N/A";
-    // dobController.text="N/A";
-    // firstName.value="N/A";
-    // lastName.value="N/A";
-    // dob.value="N/A";
-    //  UIUtils.showProgressDialog(isCancellable: false);
     final headers = {
       'Content-Type': 'application/json',
       'Authorization':
@@ -440,4 +431,85 @@ class KycStep1ScreenController extends GetxController {
     Get.offAllNamed(AppRoutes.dashBoardScreen,
         arguments: {"bottomTabCount": 0});
   }
+
+
+  callKycImage1Api() async {
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization':
+      'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
+    };
+
+    var request =
+    http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
+
+    request.headers.addAll(headers);
+
+
+    request.files.add(await http.MultipartFile.fromPath("licence_front", netImage2.value));
+
+
+
+    var response = await request.send();
+
+    var responsed = await http.Response.fromStream(response);
+
+    final responseData = json.decode(responsed.body);
+
+    if (response.statusCode == 200) {
+      print(response.statusCode.toString());
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.SUCCESS);
+     // apiTy.value=2;
+      //   UIUtils.hideProgressDialog();
+   //   PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+    } else {
+      //  UIUtils.hideProgressDialog();
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.ERROR);
+    }
+  }
+
+  callKycImage2Api() async {
+    final headers = {
+      'Content-Type': 'application/json',
+      'Authorization':
+      'Bearer ${await PrefUtils.getString(StringConstants.AUTH_TOKEN)}',
+    };
+
+    var request =
+    http.MultipartRequest('POST', Uri.parse(ApiEndPoints.KYC_UPDATE));
+
+    request.headers.addAll(headers);
+
+
+
+
+    request.files.add(await http.MultipartFile.fromPath("licence_back", netImage3.value));
+
+    var response = await request.send();
+
+    var responsed = await http.Response.fromStream(response);
+
+    final responseData = json.decode(responsed.body);
+
+
+    if (response.statusCode == 200) {
+      print(response.statusCode.toString());
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.SUCCESS);
+      // apiTy.value=2;
+      //   UIUtils.hideProgressDialog();
+      //   PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+    } else {
+      //  UIUtils.hideProgressDialog();
+      UIUtils.showSnakBar(
+          bodyText: responseData['message'],
+          headerText: StringConstants.ERROR);
+    }
+  }
+
 }

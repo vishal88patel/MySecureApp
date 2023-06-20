@@ -600,6 +600,7 @@ class FrontBackLicenceCameraScreenState
           });
           if (widget.image == 2) {
             kycStep1Controller.netImage2.value = file!.path;
+            kycStep1Controller.callKycImage1Api();
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -611,6 +612,7 @@ class FrontBackLicenceCameraScreenState
           } else if (widget.image == 3) {
             kycStep1Controller.netImage3.value = file!.path;
             // Future.delayed(Duration(milliseconds: 200), () {
+            kycStep1Controller.callKycImage2Api();
               Navigator.push(
                 context,
                 MaterialPageRoute(
