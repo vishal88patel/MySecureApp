@@ -268,12 +268,12 @@ class KycStep1ScreenController extends GetxController {
       UIUtils.showSnakBar(
           bodyText: "Please Click Driving Licence Back Photo",
           headerText: StringConstants.ERROR);
-    // } else if (qrCodeResult.isEmpty ||
-    //     qrCodeResult.isNull ||
-    //     qrCodeResult.value == "-1") {
-    //   UIUtils.showSnakBar(
-    //       bodyText: "Please Scan Your Driving Licence",
-    //       headerText: StringConstants.ERROR);
+    } else if (qrCodeResult.isEmpty ||
+        qrCodeResult.isNull ||
+        qrCodeResult.value == "-1") {
+      UIUtils.showSnakBar(
+          bodyText: "Please Scan Your Driving Licence",
+          headerText: StringConstants.ERROR);
     } else {
       callKycStep1IdApi();
     }
@@ -316,7 +316,7 @@ class KycStep1ScreenController extends GetxController {
     request.fields['email'] = emailController.text;
     request.fields['mobile'] = "";
     request.fields['ssn'] = ssnController.text;
-    request.fields['kyc_status'] = "1";
+    request.fields['kyc_status'] = "2";
     request.fields['kyc_type'] = "1";
     request.fields['date_of_birth'] = dobController.text;
     request.fields['licence_json'] = "{'first_name':${firstName.value.toString()},'last_name':${lastName.value.toString()},'date_of_birth': ${dob.value.toString()}}";
@@ -334,10 +334,10 @@ class KycStep1ScreenController extends GetxController {
     final responseData = json.decode(responsed.body);
 
     if (response.statusCode == 200) {
-      apiTy.value=2;
+      apiTy.value=1;
       //   UIUtils.hideProgressDialog();
       progress();
-      PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
+      PrefUtils.setString(StringConstants.IS_KYC_DONE, "2");
     } else {
       //  UIUtils.hideProgressDialog();
       UIUtils.showSnakBar(
@@ -466,9 +466,7 @@ class KycStep1ScreenController extends GetxController {
    //   PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
     } else {
       //  UIUtils.hideProgressDialog();
-      UIUtils.showSnakBar(
-          bodyText: responseData['message'],
-          headerText: StringConstants.ERROR);
+
     }
   }
 
@@ -498,17 +496,13 @@ class KycStep1ScreenController extends GetxController {
 
     if (response.statusCode == 200) {
       print(response.statusCode.toString());
-      UIUtils.showSnakBar(
-          bodyText: responseData['message'],
-          headerText: StringConstants.SUCCESS);
+
       // apiTy.value=2;
       //   UIUtils.hideProgressDialog();
       //   PrefUtils.setString(StringConstants.IS_KYC_DONE, "1");
     } else {
       //  UIUtils.hideProgressDialog();
-      UIUtils.showSnakBar(
-          bodyText: responseData['message'],
-          headerText: StringConstants.ERROR);
+
     }
   }
 

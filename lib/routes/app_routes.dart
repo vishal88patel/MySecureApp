@@ -302,9 +302,9 @@ class AppRoutes {
 
 
   static String kycEmailScreen = '/kyc_email_screen';
-  //static String kycPhoneScreen = '/kyc_phone_screen';
+  static String kycPhoneScreen = '/kyc_phone_screen';
   static String kycOtpScreen = '/kyc_otp_screen';
-  static String kycPhoneScreen = '/kyc_step1_data_screen';
+  //static String kycPhoneScreen = '/kyc_step1_data_screen';
   static String kycOtpSuccessScreen = '/kyc_otp_success_screen';
   static String kycStep1DataScreen = '/kyc_step1_data_screen';
   static String kycLoadingScreen = '/kyc_loading_screen';
@@ -600,25 +600,25 @@ class AppRoutes {
       ],
     ),
 
-    // GetPage(
-    //   name: kycPhoneScreen,
-    //   transition: Transition.rightToLeft,
-    //   transitionDuration: Duration(milliseconds: 400),
-    //   page: () => KycPhoneScreen(),
-    //   bindings: [
-    //     KycScreenBinding(),
-    //   ],
-    // ),
-
     GetPage(
       name: kycPhoneScreen,
       transition: Transition.rightToLeft,
       transitionDuration: Duration(milliseconds: 400),
-      page: () => KycStep1Screen(),
+      page: () => KycPhoneScreen(),
       bindings: [
-        KycStep1ScreenBinding(),
+        KycScreenBinding(),
       ],
     ),
+
+    // GetPage(
+    //   name: kycPhoneScreen,
+    //   transition: Transition.rightToLeft,
+    //   transitionDuration: Duration(milliseconds: 400),
+    //   page: () => KycStep1Screen(),
+    //   bindings: [
+    //     KycStep1ScreenBinding(),
+    //   ],
+    // ),
 
     GetPage(
       name: kycOtpScreen,

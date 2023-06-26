@@ -315,7 +315,7 @@ class PersonalScreenController extends GetxController {
         PrefUtils.setString(StringConstants.IS_KYC_DONE,
             loginResponseModel.data!.isKyc.toString());
         PrefUtils.putObject(StringConstants.LOGIN_RESPONSE, loginResponseModel);
-        PrefUtils.setBool(StringConstants.SHOW_WELCOME_DISLOUGE, true);
+        PrefUtils.setBool(StringConstants.IS_FIRST_TIME, true);
         PrefUtils.setString(StringConstants.IS_CASH_CARD, loginResponseModel.data!.isCashCard.toString());
 
         Get.offAllNamed(AppRoutes.dashBoardScreen,

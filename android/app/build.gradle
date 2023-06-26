@@ -13,12 +13,12 @@ if (flutterRoot == null) {
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
-    flutterVersionCode = '22'
+    flutterVersionCode = '26'
 }
 
 def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
-    flutterVersionName = '1.0.22'
+    flutterVersionName = '1.0.26'
 }
 
 apply plugin: 'com.android.application'
@@ -28,7 +28,7 @@ apply plugin: 'com.google.gms.google-services'
 
 
 android {
-
+    ndkVersion "25.1.8937393"
     lintOptions {
         disable 'InvalidPackage'
         disable "Instantiatable"
@@ -36,7 +36,7 @@ android {
         abortOnError false
     }
     compileSdkVersion 33
-    ndkVersion flutter.ndkVersion
+
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8

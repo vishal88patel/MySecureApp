@@ -613,19 +613,19 @@ class FrontBackLicenceCameraScreenState
             kycStep1Controller.netImage3.value = file!.path;
             // Future.delayed(Duration(milliseconds: 200), () {
             kycStep1Controller.callKycImage2Api();
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => SelfieScreen(
-                      image: 1,
-                    )),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //       builder: (context) => SelfieScreen(
+              //         image: 1,
+              //       )),
+              // );
             // });
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(
-            //       builder: (context) => const LicenceScanScreen()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const LicenceScanScreen()),
+            );
             // Navigator.of(context).push(MaterialPageRoute(
             //   builder: (context) => const QRViewExample(),
             // ));

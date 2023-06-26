@@ -37,6 +37,7 @@ class HomeScreenController extends GetxController {
   void onInit() {
     getStoredData();
     isVerified.value = PrefUtils.getString(StringConstants.IS_KYC_DONE);
+    print("abcdefg$isVerified");
     isOtpDone.value = PrefUtils.getString(StringConstants.IS_OTP_DONE);
     callHomePageApi();
 

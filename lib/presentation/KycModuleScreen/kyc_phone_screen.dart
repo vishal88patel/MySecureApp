@@ -150,7 +150,7 @@ class KycPhoneScreen extends StatelessWidget {
                                                     ),
                                                     decoration: InputDecoration(
                                                       suffixIcon:  Tooltip(
-                                                        message: 'to update the phone \nnumber navigate \nto profile details.',
+                                                        message: 'to update the phone \nnumber navigate \nto privacy details.',
                                                         triggerMode: TooltipTriggerMode.tap,
                                                         textAlign: TextAlign.center,
                                                         child:Icon(Icons.question_mark_sharp),
