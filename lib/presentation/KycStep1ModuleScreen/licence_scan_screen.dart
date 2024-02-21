@@ -5,10 +5,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_mobile_vision_2/flutter_mobile_vision_2.dart';
+import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
+import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/front_back_licence_screen.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
 import 'package:secure_cash_app/utils/HelperFiles/ui_utils.dart';
 
@@ -27,7 +28,7 @@ class LicenceScanScreen extends StatefulWidget {
 }
 
 class _LicenceScanScreenState extends State<LicenceScanScreen> {
-  Barcode? result;
+
   int counter = 0;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'BarCode');
   var kycStep1Controller = Get.find<KycStep1ScreenController>();
@@ -42,8 +43,8 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
   @override
   void initState() {
     super.initState();
-    scanPDF417();
-
+    //scanPDF417();
+    scanBarcodeNormal();
   }
 
   @override
@@ -55,7 +56,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         child: Container(
           child: Center(
             child: CircularProgressIndicator(
-                color: ColorConstant.primaryDarkGreen),
+                color: ColorConstant.primaryLightGreen),
           ),
         ),
       ),
@@ -178,20 +179,87 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
     } else {
       UIUtils.showSnakBar(
-          headerText: "Success", bodyText: "Driving Licence Scan Successfully");
-      Future.delayed(Duration(milliseconds: 200), () {
+          headerText: "Success", bodyText: "111111111111");
+      Future.delayed(Duration(milliseconds: 500), () {
         Navigator.push(
           context,
           MaterialPageRoute(
               builder: (context) => SelfieScreen(
-                    image: 1,
-                  )),
+                image: 1,
+              )),
         );
       });
     }
   }
+  Future<void> scanBarcodeNormal() async {
+    String barcodeScanRes;
+    // Platform messages may fail, so we use a try/catch PlatformException.
+    try {
+      barcodeScanRes = await FlutterBarcodeScanner.scanBarcode(
+          "#105D38", 'Cancel', false, ScanMode.BARCODE);
+      print(barcodeScanRes);
+    } on PlatformException {
+      barcodeScanRes = 'Failed to get platform version.';
+      Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+      return;
+    }
 
-  Future<void> scanPDF417() async {
+    // If the widget was removed from the tree while the asynchronous platform
+    // message was in flight, we want to discard the reply rather than calling
+    // setState to update our non-existent appearance.
+    if (!mounted) return;
+
+    setState(() {
+      //_scanBarcode = barcodeScanRes;
+      kycStep1Controller.qrCodeResult.value = barcodeScanRes.toString();
+      print( kycStep1Controller.qrCodeResult.value);
+      print(barcodeScanRes.toString());
+      if (kycStep1Controller.qrCodeResult.value.isNotEmpty &&
+          counter == 0 &&
+          kycStep1Controller.qrCodeResult.value.toString().contains("DCS") &&
+          kycStep1Controller.qrCodeResult.value.toString().contains("DDE")) {
+        print("SCANDATA=>>>>>>>>"+counter.toString());
+        LineSplitter ls = new LineSplitter();
+        List<String> lines = ls.convert(kycStep1Controller.qrCodeResult.value);
+        for (var i = 0; i < lines.length; i++) {
+          if(lines[i].startsWith("DCS")){
+            lname=lines[i].substring(3).toLowerCase().trim();
+          }
+          if(lines[i].startsWith("DAC")){
+            fname=lines[i].substring(3).toLowerCase().trim();
+          }if(lines[i].startsWith("DBB")){
+            dobData=lines[i].substring(3).toLowerCase().trim();
+          }
+          if(lines[i].startsWith("DBA")){
+            doex=lines[i].substring(3).toLowerCase().trim();
+          }
+
+        }
+        if(doex.toString()=="none"){
+          UIUtils.showSnakBar(
+              bodyText: "Your Card Has Been Expired",
+              headerText: StringConstants.ERROR);
+          Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+          return;
+        }
+        counter = 1;
+        if (fname.isNotEmpty && lname.isNotEmpty &&  lname.isNotEmpty &&  doex.isNotEmpty) {
+          scanDataa(fname, lname, dobData,doex);
+        }else{
+          UIUtils.showSnakBar(
+              bodyText: "Invalid qrcode, Please scan again!!", headerText: StringConstants.ERROR);
+          Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+        }
+      }
+      else {
+        UIUtils.showSnakBar(
+            bodyText: "Invalid qrcode, Please scan again!!", headerText: StringConstants.ERROR);
+        Get.offAllNamed(AppRoutes.kycStep1DataScreen);
+      }
+    });
+  }
+
+  /*Future<void> scanPDF417() async {
     String barcodeScanRes;
     try {
       final List<Barcode> barcodes = await FlutterMobileVision.scan(
@@ -200,6 +268,7 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
         flash: false,
         multiple: false,
         waitTap: false,
+        fps: 60,
       );
       if (!mounted) return;
       if (barcodes.length > 0) {
@@ -257,9 +326,11 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
       Get.offAllNamed(AppRoutes.kycStep1DataScreen);
       return;
     }
-  }
+  }*/
 
 }
+
+//
 // @
 // 
 // DCSROBERTS
@@ -287,4 +358,9 @@ class _LicenceScanScreenState extends State<LicenceScanScreen> {
 // DCK20303P0283350040101
 // DDAF
 // DDB01272020
-
+// ZMBN
+// ZMCN
+// ZMDTANE
+// ZME0
+// ZMF0
+// ZMG0

@@ -37,6 +37,7 @@ Future<void> main() async {
   FirebaseOptions( apiKey: "AIzaSyAC0PgxH-WFcLDxr8JjTrFym1n-qoFK8qE",
     appId: "1:849138110745:android:cfb4494f2bf68e15903588",
     messagingSenderId: "849138110745", projectId: "mysequreapp-5fc1f", ), );
+
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
   ]);

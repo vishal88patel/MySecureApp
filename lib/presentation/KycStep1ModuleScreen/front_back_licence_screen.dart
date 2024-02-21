@@ -610,6 +610,7 @@ class FrontBackLicenceCameraScreenState
                       )),
             );
           } else if (widget.image == 3) {
+            _controller?.dispose();
             kycStep1Controller.netImage3.value = file!.path;
             // Future.delayed(Duration(milliseconds: 200), () {
             kycStep1Controller.callKycImage2Api();
@@ -621,7 +622,9 @@ class FrontBackLicenceCameraScreenState
               //       )),
               // );
             // });
-            Navigator.push(
+
+
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(
                   builder: (context) => const LicenceScanScreen()),
@@ -630,12 +633,14 @@ class FrontBackLicenceCameraScreenState
             //   builder: (context) => const QRViewExample(),
             // ));
           } else {}
+
           if (file!.path.isNotEmpty) {}
-          setState(() {});
+        //  setState(() {});
         }
       });
     }
   }
+
 
   Future<XFile?> takePicture() async {
     final CameraController? cameraController = _controller;

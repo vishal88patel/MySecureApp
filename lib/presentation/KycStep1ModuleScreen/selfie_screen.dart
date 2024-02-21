@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:developer';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:secure_cash_app/Custom%20Widgets/app_ElevatedButton%20.dart';
 import 'package:secure_cash_app/presentation/KycStep1ModuleScreen/controller/kyc_step1_screen_controller.dart';
 import 'package:secure_cash_app/routes/app_routes.dart';
@@ -32,14 +34,225 @@ class SelfieScreenState extends State<SelfieScreen>
   XFile? imageFile;
   @override
   void initState() {
-    _initCamera();
-
+    Future.delayed(Duration(milliseconds: 200), () {
+      _initCamera(context);
+    });
+log('camera open');
     super.initState();
   }
 
 
-  Future<void> _initCamera() async {
+  Future<void> _initCamera(context) async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.camera,
+      Permission.microphone,
+    ].request();
+
+    if (statuses[Permission.camera] == PermissionStatus.denied ||
+        statuses[Permission.microphone] == PermissionStatus.denied) {
+      Navigator.pop(context);
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: 50.0, vertical: getVerticalSize(325)),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryDarkGreen),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.isDialogOpen == true) Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 22,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Please Allow Camera And Microphone Permission",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          print("clickkkkk");
+                          openAppSettings();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    } else if (statuses[Permission.camera] ==
+        PermissionStatus.permanentlyDenied ||
+        statuses[Permission.microphone] == PermissionStatus.permanentlyDenied) {
+      Navigator.pop(context);
+      Get.dialog(
+        Padding(
+          padding: EdgeInsets.symmetric(
+              horizontal: 50.0, vertical: getVerticalSize(325)),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(25)),
+                    color: ColorConstant.primaryDarkGreen),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SizedBox(
+                      height: 12,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            if (Get.isDialogOpen == true) Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(
+                          width: 12,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: 22,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              textAlign: TextAlign.center,
+                              "Please Allow Camera And Microphone Permission",
+                              style: AppStyle.DmSansFont.copyWith(
+                                  color: ColorConstant.primaryWhite,
+                                  decoration: TextDecoration.none,
+                                  fontWeight: FontWeight.w300,
+                                  fontSize: getFontSize(18)),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 40,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 22.0),
+                      child: AppElevatedButton(
+                        buttonName: 'Ok',
+                        radius: 5,
+                        textColor: Colors.white,
+                        onPressed: () {
+                          if (Get.isDialogOpen == true) Get.back();
+                          openAppSettings();
+                          // Get.toNamed(AppRoutes.dashBoardScreen);
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+        barrierDismissible: false,
+      );
+    } else if (statuses[Permission.camera] == PermissionStatus.granted &&
+        statuses[Permission.microphone] == PermissionStatus.granted) {
+      _cameras = await availableCameras();
+      _controller = CameraController(_cameras![1], ResolutionPreset.veryHigh);
+      _controller?.initialize().then((_) {
+        if (!mounted) {
+          return;
+        }
+        _controller!.setFlashMode(FlashMode.off);
+        setState(() {});
+      });
+    }
+  }
+
+
+
+/*  @override
+  void dispose() {
+    _controller?.dispose();
+    super.dispose();
+  }*/
+
+  Future<void> getCamera()
+  async {
     _cameras = await availableCameras();
+
     _controller = CameraController(_cameras![1], ResolutionPreset.veryHigh,imageFormatGroup: ImageFormatGroup.yuv420,);
     _controller?.initialize().then((_) {
       if (!mounted) {
@@ -51,24 +264,19 @@ class SelfieScreenState extends State<SelfieScreen>
   }
 
   @override
-  void dispose() {
-    _controller?.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     if (_controller != null) {
       if (!_controller!.value.isInitialized) {
         return Container();
       }
     } else {
-      return const Center(
+      return Center(
         child: SizedBox(
           width: 32,
           height: 32,
-          child: CircularProgressIndicator(),
+          child: CircularProgressIndicator(
+            color: ColorConstant.primaryDarkGreen,
+          ),
         ),
       );
     }
@@ -199,9 +407,8 @@ class SelfieScreenState extends State<SelfieScreen>
                                 Get.back();
                                 Get.back();
                               }else{
-                                Get.back();
-                                Get.back();
-                                Get.back();
+                                Get.offAllNamed(AppRoutes.dashBoardScreen,
+                                    arguments: {"bottomTabCount": 0});
                               }
 
                               },),

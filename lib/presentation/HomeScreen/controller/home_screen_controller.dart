@@ -345,7 +345,8 @@ class HomeScreenController extends GetxController {
 
                   Future.delayed(Duration(milliseconds: 10), () {
                     Get.back();
-                    Get.toNamed(AppRoutes.kycPhoneScreen);
+                    isOtpDone.value=="1"?
+                    Get.toNamed(AppRoutes.kycSelectStepScreen):Get.toNamed(AppRoutes.kycPhoneScreen);
                     PrefUtils.setBool(
                         StringConstants.IS_FIRST_TIME, false);
                     PrefUtils.setBool(

@@ -31,6 +31,14 @@ class _GifScreenState extends State<GifScreen> with TickerProviderStateMixin {
     moveFiles();
     super.initState();
   }
+
+
+  @override
+  dispose() {
+    controller.dispose(); // you need this
+    super.dispose();
+  }
+
   moveFiles() {
     WidgetsBinding.instance?.addPostFrameCallback((_) {
       controller.repeat(min:0, max:300, period:const Duration(milliseconds:10000));

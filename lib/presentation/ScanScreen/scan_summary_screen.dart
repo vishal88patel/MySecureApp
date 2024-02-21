@@ -609,7 +609,7 @@ class ScanSummaryScreen extends StatelessWidget {
                                   padding: const EdgeInsets.all(8.0),
                                   child: Icon(CupertinoIcons.chevron_down,color: ColorConstant.primaryDarkGreen,),
                                 ),
-                                flipRightIconIfOpen: false,
+
                                 headerBackgroundColor:
                                 ColorConstant.primaryAppTextF1,
                                 headerBackgroundColorOpened:

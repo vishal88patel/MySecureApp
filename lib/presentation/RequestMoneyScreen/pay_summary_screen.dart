@@ -544,7 +544,7 @@ class PaySummaryScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Icon(CupertinoIcons.chevron_down),
                               ),
-                              flipRightIconIfOpen: true,
+
                               headerBackgroundColor:
                               ColorConstant.primaryAppTextF1,
                               headerBackgroundColorOpened:
@@ -578,7 +578,7 @@ class PaySummaryScreen extends StatelessWidget {
                                             "asset/Logo.png",
                                           )),
                                     ),
-                                    flipRightIconIfOpen: true,
+
                                     headerBackgroundColor:
                                     ColorConstant.primaryAppTextF1,
                                     headerBackgroundColorOpened:
@@ -620,7 +620,6 @@ class PaySummaryScreen extends StatelessWidget {
                                             "asset/Logo.png",
                                           )),
                                     ),
-                                    flipRightIconIfOpen: true,
                                     headerBackgroundColor:
                                     ColorConstant.primaryAppTextF1,
                                     headerBackgroundColorOpened:

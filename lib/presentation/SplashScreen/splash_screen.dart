@@ -165,6 +165,8 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future<void> GetSettingApi() async {
+    PackageInfo packageInfo = await PackageInfo.fromPlatform();
+
     ApiService()
         .callPostApi(
             body: await GetSettingBody(),
@@ -174,10 +176,9 @@ class _SplashScreenState extends State<SplashScreen> {
         .then((value) {
       print(value);
       if (value['status']) {
-        setState(() async {
+        setState(() {
           latestVersion = value["data"]["apk_version"];
           downloadUrl = value["data"]["apk_dowonload_link"];
-          PackageInfo packageInfo = await PackageInfo.fromPlatform();
           String currentVersion = packageInfo.version;
           print(currentVersion);
           print(latestVersion);
